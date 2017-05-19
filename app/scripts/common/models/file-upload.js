@@ -59,10 +59,10 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
             if(file){
               //Testing
               //console.log('file size: ' + file.size);
-              console.log('file name: ' + file.name);
+              //console.log('file name: ' + file.name);
               //var name = file.name.replace(/%20/g, '-').replace(/ /g, '-');
               var name = sanitizeFilename(file.name);
-              console.log('sanitized file name: ' + name);
+              //console.log('sanitized file name: ' + name);
 
               //File Size Check
               // if(file.size > 10585760) {
@@ -93,7 +93,6 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
                         console.log('Upload Done'); // Success!
                         toastModel.showToast('success','Upload Done!');
                         console.log('final resource at ' + data.Location);  //Testing
-                        console.log('test');
                         if (hasCallback) {
                             callbackUploadPicture(data);
                         } else {
