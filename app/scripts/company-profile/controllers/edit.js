@@ -336,6 +336,9 @@ angular.module('dmc.company-profile')
                 },
                 membership : {
                     title : 'Membership'
+                },
+                vpc : {
+                    title : 'VPC'
                 }
             };
 
