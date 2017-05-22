@@ -14,7 +14,8 @@
    "socialMediaTwitter":null,
    "socialMediaInthenews":null,
     "perferedCommMethod":"1",
-  "productionCapabilities": "Example Text",
+  "productionCapabilities": "{\"TestProperty\":\"Test Value\"}",
+     "otherOrganizationTags": "{\"TestProperty\":\"Test Value\"}",
    "address":{
       "id":1,
       "streetAddress1":"1415 N Cherry",

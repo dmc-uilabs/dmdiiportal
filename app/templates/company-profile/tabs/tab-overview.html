@@ -254,3 +254,13 @@
         </div> -->
     </div>
 </div>
+<div layout="row" ng-if="userdata.isAdmin || userData.isMember || userData.isDmdiiAdmin">
+    <div layout="column" class="" flex>
+        <div layout="row">
+            <md-input-container flex="100" class="right-space">
+                <label>Tag My Suppliers</label>
+                <textarea ng-model="source.otherOrganizationTags"></textarea>
+            </md-input-container>
+        </div>
+    </div>
+</div>

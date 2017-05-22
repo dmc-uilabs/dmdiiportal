@@ -301,7 +301,14 @@ angular.module('dmc.company-profile')
     
                 if ($scope.company.productionCapabilities && $scope.company.productionCapabilities != '') {
                     if (!isJSON($scope.company.productionCapabilities)) {
-                        toastModel.showToast('error', 'TDP is not a valid JSON string.');
+                        toastModel.showToast('error', '"TDP" is not a valid JSON string.');
+                        return;
+                    }
+                }
+    
+                if ($scope.company.otherOrganizationTags && $scope.company.otherOrganizationTags != '') {
+                    if (!isJSON($scope.company.otherOrganizationTags)) {
+                        toastModel.showToast('error', '"Tag My Suppliers" is not a valid JSON string.');
                         return;
                     }
                 }
