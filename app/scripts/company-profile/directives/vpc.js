@@ -303,6 +303,12 @@ angular.module('dmc.company-profile').
                 $scope.xray=false;
                 $scope.material=false;
 
+                $scope.newForm=false;
+
+                $scope.addForm=function(){
+                  $scope.newForm=!$scope.newForm;
+                }
+
 
                 $scope.toggleCategory=function(category){
                   if(category=='machining'){

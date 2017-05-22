@@ -18,10 +18,22 @@
 	<h2><span style="color:#65af3f">Manufacturing Processes</span></h2>
 	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('machining')">Machining</a></h3>
 	<div ng-show="machining" class="isActive">
-		<button class="md-raised md-button" disabled>Add Input</button>
+		<button class="md-raised md-button" ng-click="addForm()">Add Input</button>
+		<div ng-show="newForm" class="item_vpe column">
+			<label>Cost Item: </label>
+			<input type="text" placeholder="Ex: Labor Rate">
+			<p>
+			<label>Value: </label>
+			<input type="text" placeholder="10">
+			<p>
+			<label>Unit: </label>
+			<input type="text" placeholder="Dollars / Hour">
+			<p>
+			<label>Help: </label>
+			<input type="text" placeholder="Per Worker">
+		</div>
+
 		<div class="col-sm-6">
-
-
 			<div class="item_vpe column">
 				<div class="row">
 					<div class="col-sm-6">
@@ -121,7 +133,20 @@
 
 	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('casting')">Casting</a></h3>
 	<div ng-show = "casting" class="isActive">
-		<button class="md-raised md-button" disabled>Add Input</button>
+		<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
+		<div ng-show="newForm" class="item_vpe column">
+			<label>Cost Item: </label>
+			<input type="text" placeholder="Ex: Labor Rate">
+			<p>
+			<label>Value: </label>
+			<input type="text" placeholder="10">
+			<p>
+			<label>Unit: </label>
+			<input type="text" placeholder="Dollars / Hour">
+			<p>
+			<label>Help: </label>
+			<input type="text" placeholder="Per Worker">
+		</div>
 		<div class="col-sm-6">
 			<div class="item_vpe column">
 				<div class="row">
@@ -259,7 +284,20 @@
 
 	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('invCasting')">Investment Casting</a></h3>
 	<div ng-show="invCasting" class="isActive">
-		<button class="md-raised md-button" disabled>Add Input</button>
+		<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
+		<div ng-show="newForm" class="item_vpe column">
+			<label>Cost Item: </label>
+			<input type="text" placeholder="Ex: Labor Rate">
+			<p>
+			<label>Value: </label>
+			<input type="text" placeholder="10">
+			<p>
+			<label>Unit: </label>
+			<input type="text" placeholder="Dollars / Hour">
+			<p>
+			<label>Help: </label>
+			<input type="text" placeholder="Per Worker">
+		</div>
 		<div class="col-sm-6">
 			<div class="item_vpe column">
 				<div class="row">
@@ -284,7 +322,20 @@
 
 	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('welding')">Welding</a></h3>
 	<div ng-show ="welding" class="isActive">
-		<button class="md-raised md-button" disabled>Add Input</button>
+		<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
+		<div ng-show="newForm" class="item_vpe column">
+			<label>Cost Item: </label>
+			<input type="text" placeholder="Ex: Labor Rate">
+			<p>
+			<label>Value: </label>
+			<input type="text" placeholder="10">
+			<p>
+			<label>Unit: </label>
+			<input type="text" placeholder="Dollars / Hour">
+			<p>
+			<label>Help: </label>
+			<input type="text" placeholder="Per Worker">
+		</div>
 		<div class="col-sm-6">
 			<div class="item_vpe column">
 				<div class="row">
@@ -363,7 +414,20 @@
 	<h2><span style="color:#65af3f">Labor</span></h2>
 	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('genLabor')">General Labor</a></h3>
 	<div ng-show="genLabor" class="isActive">
-		<button class="md-raised md-button" disabled>Add Input</button>
+		<button class="md-raised md-button" ng-click="addForm()">Add Input</button>
+		<div ng-show="newForm" class="item_vpe column">
+			<label>Cost Item: </label>
+			<input type="text" placeholder="Ex: Labor Rate">
+			<p>
+			<label>Value: </label>
+			<input type="text" placeholder="10">
+			<p>
+			<label>Unit: </label>
+			<input type="text" placeholder="Dollars / Hour">
+			<p>
+			<label>Help: </label>
+			<input type="text" placeholder="Per Worker">
+		</div>
 		<div class="col-sm-6">
 			<div class="item_vpe column">
 				<div class="row">
@@ -456,7 +520,20 @@
 	<h2><span style="color:#65af3f">Finishing Processes</span></h2>
 	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('plating')">Plating</a></h3>
 	<div ng-show="plating" class="isActive">
-		<button class="md-raised md-button" disabled>Add Input</button>
+		<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
+		<div ng-show="newForm" class="item_vpe column">
+			<label>Cost Item: </label>
+			<input type="text" placeholder="Ex: Labor Rate">
+			<p>
+			<label>Value: </label>
+			<input type="text" placeholder="10">
+			<p>
+			<label>Unit: </label>
+			<input type="text" placeholder="Dollars / Hour">
+			<p>
+			<label>Help: </label>
+			<input type="text" placeholder="Per Worker">
+		</div>
 		<div class="col-sm-6">
 			<div class="item_vpe column">
 				<div class="row">
@@ -640,7 +717,20 @@
 
 	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('painting')">Painting</a></h3>
 	<div ng-show="painting" class="isActive">
-		<button class="md-raised md-button" disabled>Add Input</button>
+		<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
+		<div ng-show="newForm" class="item_vpe column">
+			<label>Cost Item: </label>
+			<input type="text" placeholder="Ex: Labor Rate">
+			<p>
+			<label>Value: </label>
+			<input type="text" placeholder="10">
+			<p>
+			<label>Unit: </label>
+			<input type="text" placeholder="Dollars / Hour">
+			<p>
+			<label>Help: </label>
+			<input type="text" placeholder="Per Worker">
+		</div>
 		<div class="col-sm-6">
 			<div class="item_vpe column">
 				<div class="row">
@@ -788,7 +878,20 @@
 
 	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('xray')">X-Ray Machine</a></h3>
 	<div ng-show="xray" class="isActive">
-		<button class="md-raised md-button" disabled>Add Input</button>
+		<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
+		<div ng-show="newForm" class="item_vpe column">
+			<label>Cost Item: </label>
+			<input type="text" placeholder="Ex: Labor Rate">
+			<p>
+			<label>Value: </label>
+			<input type="text" placeholder="10">
+			<p>
+			<label>Unit: </label>
+			<input type="text" placeholder="Dollars / Hour">
+			<p>
+			<label>Help: </label>
+			<input type="text" placeholder="Per Worker">
+		</div>
 		<div class="col-sm-6">
 			<div class="item_vpe column">
 				<div class="row">
@@ -851,7 +954,20 @@
 	<h2><span style="color:#65af3f">Materials</span></h2>
 	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('material')">Material Cost</a></h3>
 	<div ng-show="material" class="isActive">
-		<button class="md-raised md-button" disabled>Add Input</button>
+		<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
+		<div ng-show="newForm" class="item_vpe column">
+			<label>Cost Item: </label>
+			<input type="text" placeholder="Ex: Labor Rate">
+			<p>
+			<label>Value: </label>
+			<input type="text" placeholder="10">
+			<p>
+			<label>Unit: </label>
+			<input type="text" placeholder="Dollars / Hour">
+			<p>
+			<label>Help: </label>
+			<input type="text" placeholder="Per Worker">
+		</div>
 		<div class="col-sm-6">
 				<div class="item_vpe column">
 				<div class="row">
