@@ -478,8 +478,8 @@ angular.module('dmc.project')
             };
 
             $scope.updateFileList = function(fileInput) {
-              fileInput.projectModelFile = null
-              getFiles(fileInput.projectModel.directoryId)
+              $scope.service.interfaceModel.inParams["fileInput"].value = "";
+              getFiles(fileInput.projectModel.directoryId);
             }
 
             function getFiles(dirId){
@@ -489,8 +489,7 @@ angular.module('dmc.project')
             }
 
             $scope.setFileInputValue = function(file) {
-              $scope.service.interfaceModel.inParams["fileInput"].name = "fileInput"
-              $scope.service.interfaceModel.inParams["fileInput"].value = file.documentUrl
+              $scope.service.interfaceModel.inParams["fileInput"].value = file.documentUrl;
             }
 
         }
