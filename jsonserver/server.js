@@ -9,7 +9,8 @@ var server = jsonServer.create();
 server.use(jsonServer.defaults());
 // Add this before server.use(router)
 server.use(jsonServer.rewriter({
-    '/documents/directories/:id': '/documentsdirectories',
+    '/documents/directories/26': '/documentsdirectories',
+    '/documents/directories/29': '/documentsdirectoriestwo',
     '/documents/versions/:id': '/documentversions',
     '/user/createtoken':'/createtoken',
     '/project/:pid/invite/:uid': '/projects_members/:uid',
@@ -71,7 +72,8 @@ server.use(jsonServer.rewriter({
     '/user/save': '/user-account',
     // below is not using the :id field, but instead always returning the organization
     //  info for org 1 (UI Labs)
-    '/user/organization/:id': '/userByOrganization'
+    '/user/organization/:id': '/userByOrganization',
+    '/services/:id/dome-interfaces': '/dome-interfaces'
     // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
 
