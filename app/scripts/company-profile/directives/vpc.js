@@ -5,7 +5,7 @@ angular.module('dmc.company-profile').
             restrict: 'A',
             templateUrl: 'templates/company-profile/tabs/tab-vpc.html',
             scope: {
-
+                source: '='
             }, controller: function($scope, $element, $attrs, dataFactory, ajax) {
                 $element.addClass("tab-vpc");
 
