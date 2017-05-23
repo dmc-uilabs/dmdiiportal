@@ -59,8 +59,8 @@
         <md-option ng-repeat="p in projects" ng-value="{{p}}">{{p.title}}</md-option>
     </md-select>
 
-    <md-select ng-show="fileInput.projectModel" placeholder="Select File" ng-model="fileInput.projectModelFile">
-        <md-option ng-repeat="f in projectFiles" ng-value="{{f.id}}">{{f.documentName}}</md-option>
+    <md-select ng-show="fileInput.projectModel" placeholder="Select File" ng-model="fileInput.projectModelFile" ng-change="setFileInputValue(fileInput.projectModelFile)">
+        <md-option ng-repeat="f in projectFiles" ng-value="{{f}}">{{f.documentName}}</md-option>
     </md-select>
 
   </div>

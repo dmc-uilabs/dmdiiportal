@@ -465,7 +465,6 @@ angular.module('dmc.project')
             // }
 
             $scope.loadProjects = function() {
-
               if (!$scope.projects) {
                 // get all projects for file inputs
                 ajax.get(dataFactory.getProjects(),{
@@ -474,8 +473,6 @@ angular.module('dmc.project')
                   _start: 0
                 },function(response){
                   $scope.projects = response.data;
-                  // filterProjects();
-                  // apply();
                 });
               }
             };
@@ -489,6 +486,11 @@ angular.module('dmc.project')
               ajax.get(dataFactory.directoriesUrl(dirId).files, {}, function(docResp){
                 $scope.projectFiles = docResp.data||[];
               });
+            }
+
+            $scope.setFileInputValue = function(file) {
+              $scope.service.interfaceModel.inParams["fileInput"].name = "fileInput"
+              $scope.service.interfaceModel.inParams["fileInput"].value = file.documentUrl
             }
 
         }
