@@ -117,6 +117,10 @@ server.post('/services', function(req,res) {
 
 })
 
+server.patch('/documents/:id/accept', function(req, res) {
+    res.jsonp({"result": "success"});
+});
+
 server.get('/getChildren', function (req, res) {
 
     var data = (req.query ? req.query : null);
