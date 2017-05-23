@@ -64,8 +64,8 @@ angular.module('dmc.company-profile', [
             url: '/membership'
         }).state('company-profile-edit.contact', {
             url: '/contact'
-        }).state('company-profile-edit.tdp', {
-            url: '/tdp'
+        }).state('company-profile-edit.vpc', {
+            url: '/vpc'
         }).state('company-profile-create', {
             url: '/create',
             templateUrl: 'templates/company-profile/edit-company-profile.html',
@@ -79,10 +79,10 @@ angular.module('dmc.company-profile', [
             url: '/projects'
         }).state('company-profile-create.membership', {
             url: '/membership'
+        }).state('company-profile-create.vpc',{
+            url: '/vpc'
         }).state('company-profile-create.contact', {
             url: '/contact'
-        }).state('company-profile-create.tdp', {
-            url: '/tdp'
         });
 
         $urlRouterProvider.otherwise('/profile/1');
