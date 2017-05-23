@@ -96,7 +96,7 @@
         </div>
 
 				<md-list class="list-inputs" ui-sortable="sortableOptions" ng-model="service.interfaceModel.inputs">
-					<md-list-item ng-repeat="item in service.interfaceModel.inputs" layout="row" layout-align="start end">
+					<md-list-item ng-repeat="item in service.interfaceModel.inputs" layout="row" layout-align="start end" ng-hide="item.name == 'fileInput'">
 						<div flex="50" class="left">
 							<md-input-container>
 							<label>{{item.name}}</label>
