@@ -19,7 +19,20 @@
                   ]
             },
             {
-                  "content": "My Profile"
+                  "content": "My Profile",
+                  "notes":
+                  [
+                    {
+                      "content": "General File Upload Issue",
+                      "notes":
+                      [
+                        {
+                          "content": "Early users of our website would have noticed that at times when they would upload files to their workspaces' documents page, or pictures to their profile pages, those files at time would not pass our file scanning process and those files would not be retrievable. We found that the reason for this was due to special characters being contained in the file name that would not work well with our file storage solution. Characters such as: ? , | * & ^ etc, would during upload time cause the file to be considered malicious or unsafe. We've updated our upload process to now removed all special characters that could cause files to be tagged as unsafe by our platform before being scanned by our platform. False positives for dangerous files should no longer happen going forward.",
+                          "class": "release-bug"
+                        }
+                      ]
+                    }
+                  ]
             },
             {
                   "content": "Create DMDII content"
@@ -86,71 +99,13 @@
                   "notes":
                   [
                         {
-                              "content": "About the DMC",
-                              "notes":
-                              [
-                                {
-                                  "content": "About DMC page in Microsoft Browsers",
-                                  "notes":
-                                  [
-                                    {
-                                      "content": "We recently discovered that this page did not properly render when using Internet Explorer and Microsoft Edge. We've made a changes that will make this page appears as intended. This change should also make the page more mobile browser friendly.",
-                                      "class": "release-bug"
-                                    }
-                                  ]
-                                }
-                              ]
+                              "content": "About the DMC"
                         },
                         {
-                              "content": "DMC Security",
-                              "notes":
-                              [
-                                {
-                                  "content": "DMC Security page in Microsoft Browsers",
-                                  "notes":
-                                  [
-                                    {
-                                      "content": "We recently discovered that this page did not properly render when using Internet Explorer and Microsoft Edge. We've made a changes that will make this page appears as intended. This change should also make the page more mobile browser friendly.",
-                                      "class": "release-bug"
-                                    }
-                                  ]
-                                }
-                              ]
+                              "content": "DMC Security"
                         },
                         {
-                              "content": "DMC Academia",
-                              "notes":
-                              [
-                                {
-                                  "content": "DMC Academia page in Microsoft Browsers",
-                                  "notes":
-                                  [
-                                    {
-                                      "content": "We recently discovered that this page did not properly render when using Internet Explorer and Microsoft Edge. We've made a changes that will make this page appears as intended. This change should also make the page more mobile browser friendly.",
-                                      "class": "release-bug"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "content": "Online Training Section",
-                                  "notes":
-                                  [
-                                    {
-                                      "content": "We've added a new section to the DMC Academia page. In the last release we added the DMC Academia page to start showcasing how academic institutions are starting to incorporate the DMC in the classroom. This rekease, we've added another section to this page all about how people can start to learn more about Digital Manufacturing. DMDII's Workforce Development program has partnered with some of DMDII's members as well as with Coursera to build a ten course Specialization on Digital Manufacturing and Design, of which half are now available. Learn more by visiting the new DMC Academia page.",
-                                      "class": "release-content"
-                                    }
-                                  ]
-                                },
-                                {
-                                  "content": "DMC for Academia Video Available",
-                                  "notes":
-                                  [
-                                    {
-                                      "content": "After hosting the DMC Webinar for Academia, we knew users would be interested in seeing a recording if they were not able to attend. We've edited the video and it is now accessible on Youtube (Visit the DMC Activities page to find it right now). The video can also be found at the top of the DMC Academia for students page and can be played from there. Finally, the video can be found on the DMC User Group Meetings workspace documents section which is publicly available to verified users.",
-                                      "class": "release-content"                                   }
-                                  ]
-                                }
-                              ]
+                              "content": "DMC Academia"
                         },
                         {
                               "content": "DMC Releases"
@@ -178,7 +133,30 @@
                               "notes":
                               [
                                     {
-                                          "content": "Organization Profile page"
+                                          "content": "Organization Profile page",
+                                          "notes":
+                                          [
+                                            {
+                                              "content": "General File Upload Issue",
+                                              "notes":
+                                              [
+                                                {
+                                                  "content": "Early users of our website would have noticed that at times when they would upload files to their workspaces' documents page, or pictures to their profile pages, those files at time would not pass our file scanning process and those files would not be retrievable. We found that the reason for this was due to special characters being contained in the file name that would not work well with our file storage solution. Characters such as: ? , | * & ^ etc, would during upload time cause the file to be considered malicious or unsafe. We've updated our upload process to now removed all special characters that could cause files to be tagged as unsafe by our platform before being scanned by our platform. False positives for dangerous files should no longer happen going forward.",
+                                                  "class": "release-bug"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "content": "Organization Tagging",
+                                              "notes":
+                                              [
+                                                {
+                                                  "content": "Organization Administrators can now tag other organizations with their relationship status, which are only viewable by members of your organization. The tags at this moment will allow administrators to tag organization with anything they wish, but in a future update the tag names will be predefined. Additionally these tags are not yet something that can be viewed after they are saved but will be in a future update. In the future, these tag will allow organizations to do things such as invite all of organizations with a particular tag to a workspace they wish for them to participate in.",
+                                                  "class": "release-feature"
+                                                }
+                                              ]
+                                            }
+                                          ]
                                     }
                               ]
                         },
@@ -190,27 +168,22 @@
                               "notes":
                               [
                                 {
-                                  "content": "Workspace Directory Revamp",
+                                  "content": "Sorting in Workspace Directory",
                                   "notes":
                                   [
                                     {
-                                      "content": "Workspaces have received a major overhaul this release. Users will find we've removed the All and My Workspace pages. Instead, users will now only have a Workspaces page (found under Explore in the main menu). The pages now will load exponentially more quickly and now returns information to make in simple to navigate to the workspace you you care most about at the time such as the workspace creator, date of creation, due date, and if the workspace is public or private.",
-                                      "class": "release-feature",
-                                      "notes":
-                                      [
-                                        {
-                                          "content": "In the past workspaces would exist exist across two different pages, My Workspaces, and All Workspaces, but now simply exist on two different tabs on the same page, which loads the content much more quickly. Users now also have access to filter workspace lists by public, and private.",
-                                          "class": "release-feature"
-                                        },
-                                        {
-                                          "content": "For some of our most active users, we've also introduced pagination, so now users will receive a list of ten workspaces before needing to click next to get to the next part of the list. Before, users that have created 50 workspaces for their testing purposes would need to wait for all of the workspaces to load on the page. Now you'll be able to start finding the content you are looking for more quickly.",
-                                          "class": "release-feature"
-                                        },
-                                        {
-                                          "content": "Users are also now able to request access to both kinds of public workspaces right from the workspace directory.",
-                                          "class": "release-feature"
-                                        }
-                                      ]
+                                      "content": "In a previous release, we updated the user interface for workspaces as well as provided the ability for users to sort workpspaces they are viewing in the directory list. After that release, when workspaces were being sorted by the date of workspace creation or by the name of the workspace, results at times would be repeated and each page visited would return only sorted information for what that page number would display before. Now when sorting results, what one wold expect to be returned is now being returned.",
+                                      "class": "release-bug"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": "Filtering in Workspace Directory",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "In a previous release, we updated the user interface for workspaces as well as provided the ability for users to filter workspaces they are viewing in the directory. In that release, filtering would only filter workspaces found on that particular page list, so each next page a user would visit would have a different amount of results depending on the amount of matching results. Now each page a user visits has the same number of results and does not repeat information that has been shown to the user on previous pages.",
+                                      "class": "release-bug"
                                     }
                                   ]
                                 },
@@ -218,6 +191,22 @@
                                   "content": "Workspace Profile",
                                   "notes":
                                   [
+                                        {
+                                              "content": "Edit Workspace",
+                                              "notes":
+                                              [
+                                                {
+                                                  "content": "Workspace Delete Re-implemented",
+                                                  "notes":
+                                                  [
+                                                    {
+                                                      "content": "In a previous release, we implemented the ability for owners of workspaces to delete their workspaces. In a more recent update, that feature was lost in our deployment. Once we found this had happened, we reintroduced the code for this feature in this release.",
+                                                      "class": "release-bug"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                        },
                                         {
                                               "content": "Home"
                                         },
@@ -228,7 +217,50 @@
                                               "content": "Team"
                                         },
                                         {
-                                              "content": "Documents"
+                                              "content": "Documents",
+                                              "notes":
+                                              [
+                                                {
+                                                  "content": "General File Upload Issue",
+                                                  "notes":
+                                                  [
+                                                    {
+                                                      "content": "Early users of our website would have noticed that at times when they would upload files to their workspaces' documents page, or pictures to their profile pages, those files at time would not pass our file scanning process and those files would not be retrievable. We found that the reason for this was due to special characters being contained in the file name that would not work well with our file storage solution. Characters such as: ? , | * & ^ etc, would during upload time cause the file to be considered malicious or unsafe. We've updated our upload process to now removed all special characters that could cause files to be tagged as unsafe by our platform before being scanned by our platform. False positives for dangerous files should no longer happen going forward.",
+                                                      "class": "release-bug"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "content": "Last Scan Date for Uploaded Documents",
+                                                  "notes":
+                                                  [
+                                                    {
+                                                      "content": "Files that get uploaded to the website, be that on a workspace's document page or on a DMDII Project's Profile page, that file now include a property that shows when the file was scanned and passed our infrastructure's scans. Files that were uploaded previous to this will all be tagged as having been last scanned on the same day.",
+                                                      "class": "release-feature"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "content": "Encryption Type for Uploaded Files",
+                                                  "notes":
+                                                  [
+                                                    {
+                                                      "content": "Files that get uploaded to our website always get encrypted when stored. Going forward, each time a file is uploaded to our website, we will let you know when encryption method is being used to keep your files safe on our website. The encryption type will be listed in the file properties for workspace documents as well as DMDII Project documents.",
+                                                      "class": "release-feature"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "content": "Sharing Documents to Other Workspaces",
+                                                  "notes":
+                                                  [
+                                                    {
+                                                      "content": "Avid users of our website know that workspaces allow users to do team management, task management, application management, discussions and much more. Many users also use workspaces to store important documents for projects they are working on. Users now have the ability to share documents they've uploaded to their workspaces to other workspace (applicable to public and private workspaces). Workspace owners will be notified that someone is attempting to share a file with them and will need to decide whether to accept or decline the file being accessible to users and themselves in the workspace.",
+                                                      "class": "release-feature"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
                                         },
                                         {
                                               "content": "Tasks"
@@ -238,42 +270,29 @@
                                               "notes":
                                               [
                                                 {
-                                                  "content": "Service Profile Page",
-                                                  "notes":
-                                                  [
-                                                    {
-                                                      "content": "App Documents Available in Workspace Service Profile Page",
-                                                      "notes":
-                                                      [
-                                                        {
-                                                          "content": "In the past, DMC Marketplace applications that users added to their workspaces would not contain the documents that were associated with the applications. Now, users can view the documents that are important to them from the workspace service profile page.",
-                                                          "class": "release-bug"
-                                                        }
-                                                      ]
-                                                    },
-                                                    {
-                                                      "content": "Application Run History",
-                                                      "notes":
-                                                      [
-                                                        {
-                                                          "content": "In the last release we added a new feature to show past application runs, which show if the application ran successfully and what the inputs and outputs for the application were. The issue was, that the history would only show the user id of the person that ran the application rather than the display-name. Now the display-name shows up appropriately as intended.",
-                                                          "class": "release-bug"
-                                                        }
-                                                      ]
-                                                    }
-                                                  ]
+                                                  "content": "Service Profile Page"
                                                 },
                                                 {
                                                   "content": "Application Run page",
                                                   "notes":
                                                   [
                                                     {
-                                                      "content": "Application Run History",
+                                                      "content": "Application Inputs from Workspace Documents",
                                                       "notes":
                                                       [
                                                         {
-                                                          "content": "In the last release we added a new feature to show past application runs, which show if the application ran successfully and what the inputs and outputs for the application were. The issue was, that the history would only show the user id of the person that ran the application rather than the display-name. Now the display-name shows up appropriately as intended.",
-                                                          "class": "release-bug"
+                                                          "cotent": "Application now can accept file inputs from applications stored in a workspace. Our marketplace is slowly growing, this being the case, to make users' experience a much less click intensive one as well as to make their experience a better one when running applications that require file input, we have introduced the ability to let users select documents in their workspaces as the input file to an application if an application needs one. This has not yet been rolled out to all applications as we are not yet hosting many applications that require file inputs, but as more applications become available, we want to make sure that applications have this feature already built out and ready to be utilized. In this release we also have introduced an application into the DMC Marketplace that we have created that utilizes this new feature called Should Cost Analysis.",
+                                                          "classs": "release-feature"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "content": "Saving Application Outputs",
+                                                      "notes":
+                                                      [
+                                                        {
+                                                          "cotent": "In a previous release, we introduced a feature to applications that allowed users to see outputs generated by successfully executed applications in their workspaces. Similarly, we now allow users to save the output of applications as a file to the applications respective workspace's documents page which now allows users to be able to download applications' run data to be reviewed at a later time or to be shared with other users.",
+                                                          "classs": "release-feature"
                                                         }
                                                       ]
                                                     }
@@ -292,22 +311,28 @@
                   "notes":
                   [
                     {
-                      "content": "User Profile Pictures out of Sync",
+                      "content": "General File Upload Issue",
                       "notes":
                       [
                         {
-                          "content": "Avid users of the website may have noticed that some users would have multiple profile pictures appear across the site. That is, users would have one profile picture on their user profile page, but a different picture or no picture could appear on their user card on the organization profile page. This could happen in multiple places. During this release, we worked on making sure that the correct profile picture for users appears on the user profile page as well as the user card on their organization profile page. Fixes to sync the profile pictures of users accross the rest of the site should be fixed in a future release.",
+                          "content": "Early users of our website would have noticed that at times when they would upload files to their workspaces' documents page, or pictures to their profile pages, those files at time would not pass our file scanning process and those files would not be retrievable. We found that the reason for this was due to special characters being contained in the file name that would not work well with our file storage solution. Characters such as: ? , | * & ^ etc, would during upload time cause the file to be considered malicious or unsafe. We've updated our upload process to now removed all special characters that could cause files to be tagged as unsafe by our platform before being scanned by our platform. False positives for dangerous files should no longer happen going forward.",
                           "class": "release-bug"
-                        }
-                      ]
-                    },
-                    {
-                      "content": "Sending User Verification Token",
-                      "notes":
-                      [
+                        },
                         {
-                          "content": "For security reasons, the DMC requires administrators of organization to grant access to members by sharing a verification token with them. In the past, we would generate the token for the administrator to share with the organization member to give them access. Administrators now have the choice to send the token to the e-mail the member has on file. If administrators want to be more careful an wish to share the token with the member with an e-mail they are more comfortable sending the token to, we do still provide that option as we did before.",
-                          "class": "release-feature"
+                          "content": "Virtual Production Capabilities (VPC) file for Organizations",
+                          "notes":
+                          [
+                            {
+                              "cotnent": "Organization administrators can now generate what we call a VPC for their organizations. This VPC is summary of what the organization's virtual Production Capabilities are, and once filled out, allows members of those organizations to use our new Should Cost Tool application now available in our marketplace. The VPC tab is only available for viewing/dowload by verified members of organizations",
+                              "class": "release-feature",
+                              "notes":
+                              [
+                                {
+                                  "content": "To generate the VPC, organizazation admninistrators can can vist their My Organization page and edit their organization's profile page. They will see a VPC tab in the body of the form where this can be done. Click into each category to see the questions. Any question left unanswered will not be saved to their VPC."
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     }
@@ -318,20 +343,7 @@
                   "notes":
                   [
                         {
-                          "content": "Application Profile page",
-                          "notes":
-                          [
-                            {
-                              "content": "App Documents and Logos Visable on Application Profile Pages",
-                              "notes":
-                              [
-                                {
-                                  "content": "In the past only site-wide administrators were able to see the logo and documents associated with applications that are in the DMC marketplace. We've made a few changes to the way we handle permissions to files and documents that should fix this issue for all applications going forward. Now users can experience the marketplace that marketplace the way it was always meant to look.",
-                                  "class": "release-bug"
-                                }
-                              ]
-                            }
-                          ]
+                          "content": "Application Profile page"
                         }
                   ]
             },
@@ -340,10 +352,56 @@
                   "notes":
                   [
                         {
-                              "content": "DMDII Member Directory"
+                              "content": "DMDII Member Directory",
+                              "notes":
+                              [
+                                {
+                                  "content": "General File Upload Issue",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "Early users of our website would have noticed that at times when they would upload files to their workspaces' documents page, or pictures to their profile pages, those files at time would not pass our file scanning process and those files would not be retrievable. We found that the reason for this was due to special characters being contained in the file name that would not work well with our file storage solution. Characters such as: ? , | * & ^ etc, would during upload time cause the file to be considered malicious or unsafe. We've updated our upload process to now removed all special characters that could cause files to be tagged as unsafe by our platform before being scanned by our platform. False positives for dangerous files should no longer happen going forward.",
+                                      "class": "release-bug"
+                                    }
+                                  ]
+                                }
+                              ]
                         },
                         {
-                              "content": "DMDII Projects Directory"
+                              "content": "DMDII Projects Directory",
+                              "notes":
+                              [
+                                {
+                                  "content": "General File Upload Issue",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "Early users of our website would have noticed that at times when they would upload files to their workspaces' documents page, or pictures to their profile pages, those files at time would not pass our file scanning process and those files would not be retrievable. We found that the reason for this was due to special characters being contained in the file name that would not work well with our file storage solution. Characters such as: ? , | * & ^ etc, would during upload time cause the file to be considered malicious or unsafe. We've updated our upload process to now removed all special characters that could cause files to be tagged as unsafe by our platform before being scanned by our platform. False positives for dangerous files should no longer happen going forward.",
+                                      "class": "release-bug"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": "Last Scan Date for Uploaded Documents",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "Files that get uploaded to the website, be that on a workspace's document page or on a DMDII Project's Profile page, that file now include a property that shows when the file was scanned and passed our infrastructure's scans. Files that were uploaded previous to this will all be tagged as having been last scanned on the same day.",
+                                      "class": "release-feature"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": "Encryption Type for Uploaded Files",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "Files that get uploaded to our website always get encrypted when stored. Going forward, each time a file is uploaded to our website, we will let you know when encryption method is being used to keep your files safe on our website. The encryption type will be listed in the file properties for workspace documents as well as DMDII Project documents.",
+                                      "class": "release-feature"
+                                    }
+                                  ]
+                                }
+                              ]
                         }
                   ]
             }
