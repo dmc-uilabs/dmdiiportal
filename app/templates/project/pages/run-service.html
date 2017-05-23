@@ -51,6 +51,16 @@
 	<h3>Your Run Time: {{runTime}} s.</h3>
 	<h3>Last Run Time: {{lastRunTime}} s.</h3>
 	<h3>Average Run: {{averageRun}} s.</h3>
+
+  <div layout="row" style="border: 2px solid green;">
+    <h3>File Input</h3>
+
+    <md-select placeholder="Select Project" ng-model="projectModel" md-on-open="loadProjects()">
+        <md-option ng-repeat="p in projects" ng-value="{{p.id}}">{{p.title}}</md-option>
+    </md-select>
+
+  </div>
+
 	<div layout="row">
 		<div flex="50" class="inputs">
 			<div layout="row" class="margin-bottom-10" layout-align="space-between center">

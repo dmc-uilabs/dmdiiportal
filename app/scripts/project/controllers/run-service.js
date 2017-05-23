@@ -453,6 +453,35 @@ angular.module('dmc.project')
             if ($scope.service.currentStatus && $scope.service.currentStatus.status == 0) {
                 updateStatusAndPoll($scope.service.currentStatus.id);
             }
+
+
+            filterProjects = function() {
+              // Filter projects for only projects that user is a member of
+              ajax.get(dataFactory.getMembersToProject(),{
+                profileId : $scope.userData.profileId
+              },function(response){
+                $scope.filtered_response = response.data.filter(acceptedInvite);
+                $scope.projects = unfiltered_projects.filter(isMember);
+              });
+            }
+
+            $scope.loadProjects = function() {
+
+              if (!$scope.projects) {
+                // get all projects for file inputs
+                ajax.get(dataFactory.getProjects(),{
+                  _sort : "id",
+                  _order: "DESC",
+                  _start: 0
+                },function(response){
+                  $scope.projects = response.data;
+                  filterProjects();
+                  // apply();
+                });
+              } else {
+
+              }
+            };
         }
     ]
 );
