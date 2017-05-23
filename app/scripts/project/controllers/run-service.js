@@ -455,15 +455,14 @@ angular.module('dmc.project')
             }
 
 
-            filterProjects = function() {
-              // Filter projects for only projects that user is a member of
-              ajax.get(dataFactory.getMembersToProject(),{
-                profileId : $scope.userData.profileId
-              },function(response){
-                $scope.filtered_response = response.data.filter(acceptedInvite);
-                $scope.projects = unfiltered_projects.filter(isMember);
-              });
-            }
+            // filterProjects = function() {
+            //   // Filter projects for only projects that user is a member of
+            //   ajax.get(dataFactory.getMembersToProject(),{
+            //     profileId : $scope.userData.profileId
+            //   },function(response){
+            //     $scope.projects = $scope.unfilteredProjects.filter(isMember);
+            //   });
+            // }
 
             $scope.loadProjects = function() {
 
@@ -475,13 +474,23 @@ angular.module('dmc.project')
                   _start: 0
                 },function(response){
                   $scope.projects = response.data;
-                  filterProjects();
+                  // filterProjects();
                   // apply();
                 });
-              } else {
-
               }
             };
+
+            $scope.updateFileList = function(fileInput) {
+              fileInput.projectModelFile = null
+              getFiles(fileInput.projectModel.directoryId)
+            }
+
+            function getFiles(dirId){
+              ajax.get(dataFactory.directoriesUrl(dirId).files, {}, function(docResp){
+                $scope.projectFiles = docResp.data||[];
+              });
+            }
+
         }
     ]
 );

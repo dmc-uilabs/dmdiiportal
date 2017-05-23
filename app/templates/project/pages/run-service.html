@@ -55,8 +55,12 @@
   <div layout="row" style="border: 2px solid green;">
     <h3>File Input</h3>
 
-    <md-select placeholder="Select Project" ng-model="projectModel" md-on-open="loadProjects()">
-        <md-option ng-repeat="p in projects" ng-value="{{p.id}}">{{p.title}}</md-option>
+    <md-select placeholder="Select Project" ng-model="fileInput.projectModel" md-on-open="loadProjects()" ng-change="updateFileList(fileInput)">
+        <md-option ng-repeat="p in projects" ng-value="{{p}}">{{p.title}}</md-option>
+    </md-select>
+
+    <md-select ng-show="fileInput.projectModel" placeholder="Select File" ng-model="fileInput.projectModelFile">
+        <md-option ng-repeat="f in projectFiles" ng-value="{{f.id}}">{{f.documentName}}</md-option>
     </md-select>
 
   </div>
