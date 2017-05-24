@@ -20,7 +20,8 @@
 <div ng-show="hasCustomUI" layout = "row">
   <div class="container">
       <!--Custom UI Content will be displayed here-->
-      <div class="content-placeholder"></div>
+      <div class="content-placeholder">
+      </div>
   </div>
 </div>
 <div ng-if="!service.id" class="project-details-services" layout="column">
@@ -63,6 +64,7 @@
 	<h3>Your Run Time: {{runTime}} s.</h3>
 	<h3>Last Run Time: {{lastRunTime}} s.</h3>
 	<h3>Average Run: {{averageRun}} s.</h3>
+
 	<div layout="row">
 		<div flex="50" class="inputs">
 			<div layout="row" class="margin-bottom-10" layout-align="space-between center">
@@ -79,7 +81,20 @@
 					</md-button>
 				</div>
 			</div>
+
 			<md-content>
+        <div ng-if="service.interfaceModel.inParams.fileInput" layout="row" layout-align="space-between center">
+          <h3>Input File From Workspace:</h3>
+          <div flex="75">
+            <md-select placeholder="Select Project" ng-model="fileInput.projectModel" md-on-open="loadProjects()" ng-change="updateFileList(fileInput)">
+                <md-option ng-repeat="p in projects" ng-value="{{p}}">{{p.title}}</md-option>
+            </md-select>
+            <md-select ng-show="fileInput.projectModel" placeholder="Select File" ng-model="fileInput.projectModelFile" ng-change="setFileInputValue(fileInput.projectModelFile)">
+                <md-option ng-repeat="f in projectFiles" ng-value="{{f}}">{{f.documentName}}</md-option>
+            </md-select>
+          </div>
+        </div>
+
 				<md-list class="list-inputs" ui-sortable="sortableOptions" ng-model="service.interfaceModel.inputs">
 					<md-list-item ng-repeat="item in service.interfaceModel.inputs" layout="row" layout-align="start end">
 						<div flex="50" class="left">

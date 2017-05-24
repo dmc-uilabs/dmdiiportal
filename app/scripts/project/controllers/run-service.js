@@ -453,6 +453,34 @@ angular.module('dmc.project')
             if ($scope.service.currentStatus && $scope.service.currentStatus.status == 0) {
                 updateStatusAndPoll($scope.service.currentStatus.id);
             }
+
+
+            $scope.loadProjects = function() {
+              if (!$scope.projects) {
+                // get all projects for file inputs
+                ajax.get(dataFactory.getMyProjects(),{
+                  _limit: 300
+                },function(response){
+                  $scope.projects = response.data;
+                });
+              }
+            };
+
+            $scope.updateFileList = function(fileInput) {
+              $scope.service.interfaceModel.inParams["fileInput"].value = "";
+              getFiles(fileInput.projectModel.directoryId);
+            }
+
+            function getFiles(dirId){
+              ajax.get(dataFactory.directoriesUrl(dirId).files, {}, function(docResp){
+                $scope.projectFiles = docResp.data||[];
+              });
+            }
+
+            $scope.setFileInputValue = function(file) {
+              $scope.service.interfaceModel.inParams["fileInput"].value = file.documentUrl;
+            }
+
         }
     ]
 );
