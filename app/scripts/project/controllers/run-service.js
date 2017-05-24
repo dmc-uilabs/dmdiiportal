@@ -455,13 +455,20 @@ angular.module('dmc.project')
             }
 
 
+            // filterProjects = function() {
+            //   // Filter projects for only projects that user is a member of
+            //   ajax.get(dataFactory.getMembersToProject(),{
+            //     profileId : $scope.userData.profileId
+            //   },function(response){
+            //     $scope.projects = $scope.unfilteredProjects.filter(isMember);
+            //   });
+            // }
+
             $scope.loadProjects = function() {
               if (!$scope.projects) {
                 // get all projects for file inputs
-                ajax.get(dataFactory.getProjects(),{
-                  _sort : "id",
-                  _order: "DESC",
-                  _start: 0
+                ajax.get(dataFactory.getMyProjects(),{
+                  _limit: 300
                 },function(response){
                   $scope.projects = response.data;
                 });
