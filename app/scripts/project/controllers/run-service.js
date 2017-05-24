@@ -466,9 +466,9 @@ angular.module('dmc.project')
               }
             };
 
-            $scope.updateFileList = function(fileInput) {
-              $scope.service.interfaceModel.inParams["fileInput"].value = "";
-              getFiles(fileInput.projectModel.directoryId);
+            $scope.updateFileList = function(inputFile) {
+              $scope.service.interfaceModel.inParams["inputFile"].value = "";
+              getFiles(inputFile.projectModel.directoryId);
             }
 
             function getFiles(dirId){
@@ -477,8 +477,8 @@ angular.module('dmc.project')
               });
             }
 
-            $scope.setFileInputValue = function(file) {
-              $scope.service.interfaceModel.inParams["fileInput"].value = file.documentUrl;
+            $scope.setinputFileValue = function(file) {
+              $scope.service.interfaceModel.inParams["inputFile"].value = file.documentUrl;
             }
 
         }

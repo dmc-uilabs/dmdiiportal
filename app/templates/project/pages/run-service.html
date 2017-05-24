@@ -17,10 +17,131 @@
         </div>
     </md-toolbar>
 </div>
+
+<div class="project-run-services padding-10" ng-if="!runHistory" ng-show="hasCustomUI && service.interfaceModel.inParams.inputFile" layout="column">
+	<div layout="row" layout-align="space-between center">
+          <h3 flex>Input File From Workspace:</h3>
+          <div flex="40" style="margin: 0px 8px">
+            <md-select placeholder="Select Project" ng-model="inputFile.projectModel" md-on-open="loadProjects()" ng-change="updateFileList(inputFile)">
+                <md-option ng-repeat="p in projects" ng-value="{{p}}">{{p.title}}</md-option>
+            </md-select>
+          </div>
+          <div flex="40">
+            <md-select ng-show="inputFile.projectModel" placeholder="Select File" ng-model="inputFile.projectModelFile" ng-change="setinputFileValue(inputFile.projectModelFile)">
+                <md-option ng-repeat="f in projectFiles" ng-value="{{f}}">{{f.documentName}}</md-option>
+            </md-select>
+          </div>
+  </div>
+</div>
+
 <div ng-show="hasCustomUI" layout = "row">
   <div class="container">
       <!--Custom UI Content will be displayed here-->
       <div class="content-placeholder">
+
+
+
+
+
+
+
+
+        <div class="project-run-services padding-10" ng-if="!runHistory" ng-show="hasCustomUI && service.interfaceModel.inParams.inputFile" layout="column">
+          <div id="VPCstyle">
+
+          <div layout="row" layout-wrap layout-align="center start">
+              <div layout="column" ng-hide="true">
+
+                  <md-input-container>
+                      <input id="displayName" type="text">
+                  </md-input-container>
+                  <md-input-container>
+                      <input id="companyId" type="text">
+                  </md-input-container>
+                  <md-input-container>
+                      <input id="companyName" type="text">
+                  </md-input-container>
+                  <md-input-container>
+                      <input id="email" type="text">
+                  </md-input-container>
+                  <md-input-container>
+                      <input id="inputFile" type="text">
+                  </md-input-container>
+
+              </div>
+
+              <div layout="column" flex>
+                <h3>Select TDP File:</h3>
+                <md-select placeholder="Select Project" ng-model="inputFile.projectModel" md-on-open="loadProjects()" ng-change="updateFileList(inputFile)">
+                    <md-option ng-repeat="p in projects" ng-value="{{p}}">{{p.title}}</md-option>
+                </md-select>
+                <md-select ng-show="inputFile.projectModel" placeholder="Select File" ng-model="inputFile.projectModelFile" ng-change="setinputFileValue(inputFile.projectModelFile)">
+                    <md-option ng-repeat="f in projectFiles" ng-value="{{f}}">{{f.documentName}}</md-option>
+                </md-select>
+
+              </div>
+
+              <div layout="column" flex>
+
+                  <h3>Other Inputs:</h3>
+                  <md-input-container>
+                      <label>Auth Token</label>
+                      <input id="authToken" type="text">
+                  </md-input-container>
+                  <md-input-container>
+                      <label>Contact Info (Email)</label>
+                      <input id="contactInfo" type="text">
+                  </md-input-container>
+                  <md-input-container>
+                      <label>Expiration Date</label>
+                      <input id="expireDate" type="date">
+                  </md-input-container>
+              </div>
+
+          </div>
+
+          <button class="md-raised md-primary md-button md-default-theme right" ng-click='run()'>RUN</button>
+
+      </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
   </div>
 </div>
@@ -71,13 +192,13 @@
 			</div>
 
 			<md-content>
-        <div ng-if="service.interfaceModel.inParams.fileInput" layout="row" layout-align="space-between center">
+        <div ng-if="service.interfaceModel.inParams.inputFile" layout="row" layout-align="space-between center">
           <h3>Input File From Workspace:</h3>
           <div flex="75">
-            <md-select placeholder="Select Project" ng-model="fileInput.projectModel" md-on-open="loadProjects()" ng-change="updateFileList(fileInput)">
+            <md-select placeholder="Select Project" ng-model="inputFile.projectModel" md-on-open="loadProjects()" ng-change="updateFileList(inputFile)">
                 <md-option ng-repeat="p in projects" ng-value="{{p}}">{{p.title}}</md-option>
             </md-select>
-            <md-select ng-show="fileInput.projectModel" placeholder="Select File" ng-model="fileInput.projectModelFile" ng-change="setFileInputValue(fileInput.projectModelFile)">
+            <md-select ng-show="inputFile.projectModel" placeholder="Select File" ng-model="inputFile.projectModelFile" ng-change="setinputFileValue(inputFile.projectModelFile)">
                 <md-option ng-repeat="f in projectFiles" ng-value="{{f}}">{{f.documentName}}</md-option>
             </md-select>
           </div>
