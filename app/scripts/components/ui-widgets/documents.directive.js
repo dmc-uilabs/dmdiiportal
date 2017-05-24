@@ -514,7 +514,7 @@ $scope.$watchCollection('selectedVips', function() {
                 projectId : "="
           	},
 			templateUrl: 'templates/components/ui-widgets/documents-workspace.html',
-			controller: function($scope, $element, $attrs, dataFactory, ajax, $mdDialog, $q, fileUpload, $rootScope, toastModel) {
+			controller: function($scope, $element, $attrs, dataFactory, ajax, $mdDialog, $q, fileUpload, $rootScope, toastModel, $http) {
 
 				$scope.selectedDirs = {};
 				$scope.selectedFiles = {};
@@ -755,6 +755,19 @@ $scope.$watchCollection('selectedVips', function() {
 							});
 						});
 				}
+				
+				$scope.acceptFile = function(documentId) {
+					$http.patch(dataFactory.documentsUrl(documentId).accept, {}).then(function() {
+                        $scope.changeDir($scope.currentDir.id);
+					});
+				};
+				
+				$scope.declineFile = function(file) {
+                    $http.delete(dataFactory.documentsUrl(file.id).delete, {}).then(function(response) {
+                        $scope.changeDir($scope.currentDir.id);
+                    });
+				};
+				
 
 				$scope.delete = function(ev){
 					confirm('Are you sure you want to delete these files/folders?', ev).then(function(){

@@ -15,7 +15,8 @@
     "version": 0,
     "directoryId": 100,
     "baseDocId": 792,
-    "hasVersions": false
+    "hasVersions": false,
+    "isAccepted": false
 }, {
     "id": 727,
     "documentName": "promo_10.png",
@@ -33,5 +34,6 @@
     "version": 0,
     "directoryId": 100,
     "baseDocId": 792,
-    "hasVersions": false
+    "hasVersions": false,
+    "isAccepted": true
 }]
