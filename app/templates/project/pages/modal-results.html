@@ -7,10 +7,18 @@
 			</md-button>
 		</div>
 		<h3>Results: {{(history.status == 1 ? 'success' : 'error')}}</h3>
-		<div>
+		<div layout="row" layout-align="space-between center">
+			<div flex="45">
 			<md-button class="md-primary md-raised" ng-click="rerun()">
 				Rerun
 			</md-button>
+		</div>
+		<div flex="45">
+				<md-button class="md-primary md-raised" ng-click="toWorkspace()">
+					output to wokspace
+				</md-button>
+		</div>
+
 		</div>
 		<div layout="row" class="preview" layout-align="space-between center">
 			<div flex="45">
@@ -36,5 +44,5 @@
 				</md-content>
 			</div>
 		</div>
-	</div>
+		</div>
 </md-dialog>

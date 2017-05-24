@@ -80,6 +80,69 @@ angular.module('dmc.project')
                 $state.go('project.run-services', dataSearch);
             };
 
+
+
+            $scope.toWorkspace = function(ev){
+                $scope.cancel();
+                console.log("adding to my workspace")
+
+
+                confirm('Are you sure you want to add the output file to your workspace?', ev).then(function(){
+                  var promises = [];
+
+                  // promises.concat($.map($scope.selectedDirs, function(v, k){
+                  //     return ajax.delete(dataFactory.directoriesUrl(k).delete, {}, function(resp){});
+                  // }));
+                  //
+                  // promises.concat($.map($scope.selectedFiles, function(v, k){
+                  //   return ajax.delete(dataFactory.documentsUrl(k).delete, {}, function(resp){});
+                  // }));
+                  //
+                  // $q.all(promises).then(function(resps){
+                  //     toastModel.showToast("success", "Documents/folders deleted.");
+                  //     $scope.currentDir.children = $.grep($scope.currentDir.children, function(child){return !$scope.selectedDirs[child.id];});
+                  //     $scope.dirFiles = $.grep($scope.dirFiles, function(file){return !$scope.selectedFiles[file.id];});
+                  //     resetSelection();
+                  // });
+
+                  console.log("added it  ing to my workspace")
+
+
+
+                })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            };
+
+
+            function confirm(message,ev){
+              var confirm = $mdDialog.confirm()
+                .title('Please Confirm')
+                .content(message)
+                .ariaLabel('Confirm')
+                .targetEvent(ev)
+                .ok('Ok')
+                .cancel('Cancel');
+
+                return $mdDialog.show(confirm)
+            }
+
+
+
             $http.get(dataFactory.services($scope.history.serviceId).get_position_inputs).then(function(response){
                 if(response.data && response.data.length > 0){
                     $scope.history.position_inputs = response.data[0];
