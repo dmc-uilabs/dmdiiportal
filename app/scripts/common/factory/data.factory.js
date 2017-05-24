@@ -633,6 +633,8 @@ angular.module('dmc.data',[])
                     // share: localhost + 'documents/'+id+'/user/'+userid
                     share: localhost + 'documents/'+id+'/share?user='+user+'&internal='+internal+'&email='+email,
                     accept: localhost + 'documents/' + id + '/accept'
+                    shareWs: localhost + 'documents/'+id+'/shareWs?ws='+user
+
                 }
             },
             directoriesUrl: function(id) {

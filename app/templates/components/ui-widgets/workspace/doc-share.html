@@ -17,7 +17,11 @@
           <!--<md-select ng-model="shareType" placeholder="Share Type" class="md-no-underline">-->
               <!--<md-option ng-repeat="(key, value) in shareTypes" value="{{key}}">{{value}}</md-option>-->
           <!--</md-select>-->
+
+
+
           <md-autocomplete flex
+              ng-if="shareOption.type != 'dmc_workspace'"
               md-input-name="autocompleteField"
               md-no-cache="true"
               md-selected-item="user"
@@ -25,11 +29,29 @@
               md-items="item in search(query)"
               md-item-text="item.displayName"
               md-floating-label="User"
-              ng-hide="!shareOption.internal">
+              ng-hide="!shareOption.internal || shareOption.type == 'dmc_workspace' ">
               <md-item-template>
                   <span md-highlight-text="searchText">{{item.displayName}}</span>
               </md-item-template>
           </md-autocomplete>
+
+
+
+          <md-autocomplete flex
+              md-input-name="autocompleteField2"
+              md-no-cache="true"
+              md-selected-item="user"
+              md-search-text="query"
+              md-items="item in search(query)"
+              md-item-text="item.title"
+              md-floating-label="Select DMC Workspace"
+              ng-show="shareOption.type == 'dmc_workspace'">
+              <md-item-template>
+                  <span md-highlight-text="searchText">{{item.title}}</span>
+              </md-item-template>
+          </md-autocomplete>
+
+
 
           <md-input-container ng-hide="!shareOption || shareOption.internal">
       			<label>Email</label>
@@ -41,9 +63,10 @@
               <!--<label>Email</label>-->
               <!--<input name="shareEmail" ng-model="shareEmail" placeholder="Email"/>-->
           <!--</md-input-container>-->
-          <md-checkbox ng-show="!showConfirm && shareOption && shareOption.internal" ng-model="shareOption.email">Send Email to User?</md-checkbox>
-          <md-button ng-hide="showConfirm" class="md-raised md-primary" ng-click="showConfirm=true" ng-disabled="!user && !email" aria-label="share">Share</md-button>
-          <h5 ng-hide="!showConfirm">Are you sure you want to share with {{shareOption.internal ? user.displayName : user.email}}?</h5>
+          <md-checkbox ng-show="!showConfirm && shareOption && shareOption.internal && shareOption.type != 'dmc_workspace'" ng-model="shareOption.email">Send Email to User?</md-checkbox>
+          <md-button ng-hide="showConfirm" class="md-raised md-primary" ng-click="showConfirm=true" ng-disabled="!user && !email && shareOption.type != 'dmc_workspace'" aria-label="share">Share</md-button>
+          <h5 ng-hide="!showConfirm || shareOption.type == 'dmc_workspace'">Are you sure you want to share with {{shareOption.internal ? user.displayName : user.email}}?</h5>
+          <h5 ng-hide="!showConfirm ">Are you sure you want to share " {{file.documentName}} " with DMC Workspace tiled " {{ user.title}} "?</h5>
           <md-button ng-hide="!showConfirm" class="md-raised md-primary" ng-click="showConfirm=false" aria-label="cancel">Cancel</md-button>
           <md-button ng-hide="!showConfirm" class="md-raised md-primary" ng-click="share()" ng-disabled="!user && !email" aria-label="share">Confirm</md-button>
           <!--<md-button class="md-raised md-primary" ng-if="shareType === 'external'" ng-click="shareWithEmail()" ng-disabled="shareEmail == ''" aria-label="share">Share</md-button>-->
