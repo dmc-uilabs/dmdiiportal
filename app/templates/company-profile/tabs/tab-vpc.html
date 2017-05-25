@@ -13,7 +13,7 @@
 </form>
 <button ng-click="submitMyForm()">Submit</button> -->
 <div layout="row">
-	<div ng-if="vpc" layout="column" class="vpc vpc-padding margin-right8">
+	<div ng-if="vpc.length > 0" layout="column" class="vpc vpc-padding margin-right8">
 		<div ng-repeat="vpcItem in vpc" layout="row">
 			<div class="item_vpe my-vpc-item">
 				<div class="row">
@@ -35,9 +35,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-6" ng-class="vpc ? 'vpc' : ''">
-		<button ng-if="vpc && !defaults" class="md-raised md-primary save-button md-button md-default-theme margin-top-25" ng-click ="toggleDefaults()">Show Defaults</button>
-		<button ng-if="vpc && defaults" class="md-raised md-primary save-button md-button md-default-theme margin-top-25" ng-click ="toggleDefaults()">Hide Defaults</button>
+	<div class="col-sm-6" ng-class="(vpc.length > 0) ? 'vpc' : ''">
+		<button ng-if="!defaults" class="md-raised md-primary save-button md-button md-default-theme margin-top-25" ng-click ="toggleDefaults()">Show Defaults</button>
+		<button ng-if="defaults" class="md-raised md-primary save-button md-button md-default-theme margin-top-25" ng-click ="toggleDefaults()">Hide Defaults</button>
 		<div ng-show="defaults">
 			<p>
 			<h2><span style="color:#65af3f">Manufacturing Processes</span></h2>
