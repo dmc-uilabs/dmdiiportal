@@ -14,7 +14,7 @@
 			</md-button>
 		</div>
 		<div flex="45">
-				<md-button class="md-primary md-raised" ng-click="toWorkspace()">
+				<md-button class="md-primary md-raised" ng-click="toWorkspace()" ng-show="history.interface.outParams.finalFileName || history.interface.outParams.outputFile || history.interface.outParams.fileOutput || history.interface.outParams.BetaFactor">
 					output to wokspace
 				</md-button>
 		</div>

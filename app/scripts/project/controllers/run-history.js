@@ -50,6 +50,7 @@ angular.module('dmc.project')
         '$stateParams',
         'dataFactory',
         'history',
+        'ajax',
         function (
             $scope,
             $state,
@@ -57,7 +58,7 @@ angular.module('dmc.project')
             $http,
             $stateParams,
             dataFactory,
-            history) {
+            history,ajax) {
 
             $scope.history = history;
 
@@ -88,43 +89,21 @@ angular.module('dmc.project')
 
 
                 confirm('Are you sure you want to add the output file to your workspace?', ev).then(function(){
-                  var promises = [];
 
-                  // promises.concat($.map($scope.selectedDirs, function(v, k){
-                  //     return ajax.delete(dataFactory.directoriesUrl(k).delete, {}, function(resp){});
-                  // }));
-                  //
-                  // promises.concat($.map($scope.selectedFiles, function(v, k){
-                  //   return ajax.delete(dataFactory.documentsUrl(k).delete, {}, function(resp){});
-                  // }));
-                  //
-                  // $q.all(promises).then(function(resps){
-                  //     toastModel.showToast("success", "Documents/folders deleted.");
-                  //     $scope.currentDir.children = $.grep($scope.currentDir.children, function(child){return !$scope.selectedDirs[child.id];});
-                  //     $scope.dirFiles = $.grep($scope.dirFiles, function(file){return !$scope.selectedFiles[file.id];});
-                  //     resetSelection();
-                  // });
+                  var url = "";
+                  if($scope.history.interface.outParams.finalFileName)
+                    url = $scope.history.interface.outParams.finalFileName.value
+                  if($scope.history.interface.outParams.outputFile)
+                      url = $scope.history.interface.outParams.outputFile.value
+                  if($scope.history.interface.outParams.fileOutput)
+                      url = $scope.history.interface.outParams.fileOutput.value
 
-                  console.log("added it  ing to my workspace")
-
+                  ajax.get(dataFactory.documentsUrl($scope.history.project.id,url).saveSr,{},function(resp){
+									            toastModel.showToast("success", file.documentName+" saved to your workspace "+toastUser+".");
+						   		});
 
 
                 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             };
 
