@@ -1199,6 +1199,9 @@ angular.module('dmc.data',[])
       					'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS',
                         'Choose Organizations': 'ORG'
       				}
+            },
+            getMyVPC: function() {
+              return localhost +'organizations/myVPC' 
             }
         };
     }

@@ -73,7 +73,8 @@ server.use(jsonServer.rewriter({
     // below is not using the :id field, but instead always returning the organization
     //  info for org 1 (UI Labs)
     '/user/organization/:id': '/userByOrganization',
-    '/services/:id/dome-interfaces': '/dome-interfaces'
+    '/services/:id/dome-interfaces': '/dome-interfaces',
+    '/organizations/myVPC': '/myVPC'
     // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
 
