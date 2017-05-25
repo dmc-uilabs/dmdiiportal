@@ -378,7 +378,7 @@ angular.module('dmc.company-profile').
                     }
 
                   }
-                  $scope.source.productionCapabilities = angular.toJson($scope.contents);
+                  $scope.source.productionCapabilities = JSON.stringify($scope.contents);
 	                console.log($scope.source.productionCapabilities);
                   toastModel.showToast('success', 'VPC submitted, Save organization to complete.');
                   closeCategories();
