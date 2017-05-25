@@ -8,7 +8,17 @@ angular.module('dmc.company-profile').
                 source: '='
             }, controller: function($scope, $element, $attrs, dataFactory, ajax) {
                 $element.addClass("tab-vpc");
+                
+                $scope.vpc = {};
 
+                $scope.$watch(function () {
+                    return $scope.source.productionCapabilities;
+                }, function (newValue, oldValue) {
+	                if ($scope.source.productionCapabilities) {
+                        $scope.vpc = $scope.vpc = JSON.parse($scope.source.productionCapabilities);
+                    }
+                }, true);
+                
                 $scope.arr_json=
                 [
                 	{
@@ -287,12 +297,11 @@ angular.module('dmc.company-profile').
                 		"value" : 2,
                 		"unit" : "dollars / inch"
                 	}
-                ]
-
+                ];
 
                 $scope.myForm=new Array($scope.arr_json.length);
 
-
+                $scope.defaults=false;
                 $scope.machining =false;
                 $scope.casting =false;
                 $scope.invCasting=false;
@@ -307,9 +316,8 @@ angular.module('dmc.company-profile').
 
                 $scope.addForm=function(){
                   $scope.newForm=!$scope.newForm;
-                }
-
-
+                };
+                
                 $scope.toggleCategory=function(category){
                   if(category=='machining'){
                     $scope.machining=!$scope.machining;
@@ -338,7 +346,11 @@ angular.module('dmc.company-profile').
                   else {
                     $scope.material =!$scope.material;
                   }
-                }
+                };
+                
+                $scope.toggleDefaults = function() {
+                	$scope.defaults = !$scope.defaults;
+		        };
                 
                 var closeCategories = function() {
                     $scope.machining =false;
@@ -370,7 +382,7 @@ angular.module('dmc.company-profile').
 	                console.log($scope.source.productionCapabilities);
                   toastModel.showToast('success', 'VPC submitted, Save organization to complete.');
                   closeCategories();
-                }
+                };
             }
         };
     }]);

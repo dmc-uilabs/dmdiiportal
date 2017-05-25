@@ -12,1039 +12,1067 @@
 	</div>
 </form>
 <button ng-click="submitMyForm()">Submit</button> -->
-<div>
-	<p>
-	<h2><span style="color:#65af3f">Manufacturing Processes</span></h2>
-	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('machining')">Machining</a></h3>
-	<div ng-show="machining" class="isActive">
-		<button class="md-raised md-button" ng-click="addForm()">Add Input</button>
-		<div ng-show="newForm" class="item_vpe column">
-			<label>Cost Item: </label>
-			<input type="text" placeholder="Ex: Labor Rate">
-			<p>
-			<label>Value: </label>
-			<input type="text" placeholder="10">
-			<p>
-			<label>Unit: </label>
-			<input type="text" placeholder="Dollars / Hour">
-			<p>
-			<label>Help: </label>
-			<input type="text" placeholder="Per Worker">
-		</div>
-
-		<div class="col-sm-6">
-			<div class="item_vpe column">
+<div layout="row">
+	<div ng-if="vpc" layout="column" class="vpc vpc-padding margin-right8">
+		<div ng-repeat="vpcItem in vpc" layout="row">
+			<div class="item_vpe my-vpc-item">
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-xs-12">
 						<div class="title_vpe">
-							Labor Rate
+							{{vpcItem.name}}
+						</div>
+						<div ng-if="vpcItem.help" class="help_vpe">
+							{{vpcItem.help}}
 						</div>
 					</div>
+				</div>
+				<div class="column">
+					<input class="input_vpe" ng-model ="vpcItem.value" type="text">
+					<div class="unit_vpe">
+						{{vpcItem.unit}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-6" ng-class="vpc ? 'vpc' : ''">
+		<button ng-if="vpc && !defaults" class="md-raised md-primary save-button md-button md-default-theme margin-top-25" ng-click ="toggleDefaults()">Show Defaults</button>
+		<button ng-if="vpc && defaults" class="md-raised md-primary save-button md-button md-default-theme margin-top-25" ng-click ="toggleDefaults()">Hide Defaults</button>
+		<div ng-show="defaults">
+			<p>
+			<h2><span style="color:#65af3f">Manufacturing Processes</span></h2>
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('machining')">Machining</a></h3>
+			<div ng-show="machining" class="isActive">
+				<button class="md-raised md-button" ng-click="addForm()">Add Input</button>
+				<div ng-show="newForm" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input type="text" placeholder="Ex: Labor Rate">
+					<p>
+					<label>Value: </label>
+					<input type="text" placeholder="10">
+					<p>
+					<label>Unit: </label>
+					<input type="text" placeholder="Dollars / Hour">
+					<p>
+					<label>Help: </label>
+					<input type="text" placeholder="Per Worker">
+				</div>
+
+				<div class="col-sm-6">
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="title_vpe">
+									Labor Rate
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<input class="input_vpe" ng-model='myForm[0].value' placeholder="59" type="text">
+								<div class="unit_vpe">
+								Unit: Dollars / Hour
+							</div>
+						</div>
+					</div>
+
+
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Setup Time
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[1].value" placeholder="5" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
+					</div>
+
+
+
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Program Time
+								</div>
+								<div class="help_vpe">
+									Per cubic Inch of removal volume - as a proxy for part complexity
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model ="myForm[2].value" placeholder="2" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
+					</div>
+
+
+
+
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Run Time
+								</div>
+								<div class="help_vpe">
+									Per cubic Inch of removal volume - as a proxy for part complexity
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[3].value" placeholder="25" type="text">
+							<div class="unit_vpe">
+								Unit: Seconds
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Inspect Time
+								</div>
+								<div class="help_vpe">
+									Per cubic Inch of removal volume - as a proxy for part complexity
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[4].value" placeholder="5" type="text">
+							<div class="unit_vpe">
+								Unit: Seconds
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('casting')">Casting</a></h3>
+			<div ng-show = "casting" class="isActive">
+				<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
+				<div ng-show="newForm" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input type="text" placeholder="Ex: Labor Rate">
+					<p>
+					<label>Value: </label>
+					<input type="text" placeholder="10">
+					<p>
+					<label>Unit: </label>
+					<input type="text" placeholder="Dollars / Hour">
+					<p>
+					<label>Help: </label>
+					<input type="text" placeholder="Per Worker">
 				</div>
 				<div class="col-sm-6">
-					<input class="input_vpe" ng-model='myForm[0].value' placeholder="59" type="text">
-						<div class="unit_vpe">
-						Unit: Dollars / Hour
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Labor Rate
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[5].value" placeholder="30" type="text">
+							<div class="unit_vpe">
+								Unit: Dollars / Hour
+							</div>
+						</div>
+					</div>
+
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Melting Time
+								</div>
+								<div class="help_vpe">
+									Per cubic Inch of material
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model=myForm[6].value placeholder="2" type="text">
+							<div class="unit_vpe">
+								Unit: Seconds
+							</div>
+						</div>
+					</div>
+
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Molding Time
+								</div>
+								<div class="help_vpe">
+									Per cubic Inch of material, investment casting only
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[7].value" placeholder="90" type="text">
+							<div class="unit_vpe">
+								Unit: Seconds
+							</div>
+						</div>
+					</div>
+
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Holding Time
+								</div>
+								<div class="help_vpe">
+									Per cubic Inch of material, non-cored greensand casting only
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[8].value" placeholder="90" type="text">
+							<div class="unit_vpe">
+								Unit: Seconds
+							</div>
+						</div>
+					</div>
+
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Shakeout Time
+								</div>
+								<div class="help_vpe">
+									Per Part
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[9].value" placeholder="1" type="text">
+							<div class="unit_vpe">
+								Unit: Minute
+							</div>
+						</div>
+					</div>
+
+
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Cooling Time
+								</div>
+								<div class="help_vpe">
+									Per cubic Inch of material
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[10].value" placeholder="10" type="text">
+							<div class="unit_vpe">
+								Unit: Seconds
+							</div>
+						</div>
+					</div>
+
+
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Finishing Time
+								</div>
+								<div class="help_vpe">
+									Per Part
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[11].value" placeholder="5" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('invCasting')">Investment Casting</a></h3>
+			<div ng-show="invCasting" class="isActive">
+				<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
+				<div ng-show="newForm" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input type="text" placeholder="Ex: Labor Rate">
+					<p>
+					<label>Value: </label>
+					<input type="text" placeholder="10">
+					<p>
+					<label>Unit: </label>
+					<input type="text" placeholder="Dollars / Hour">
+					<p>
+					<label>Help: </label>
+					<input type="text" placeholder="Per Worker">
+				</div>
+				<div class="col-sm-6">
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Batch Volume
+								</div>
+								<div class="help_vpe">
+									To estimate the number of castings Performed in a single batch
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model=myForm[12].value placeholder="5" type="text">
+							<div class="unit_vpe">
+								Unit: Feet<sup>3</sup>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('welding')">Welding</a></h3>
+			<div ng-show ="welding" class="isActive">
+				<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
+				<div ng-show="newForm" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input type="text" placeholder="Ex: Labor Rate">
+					<p>
+					<label>Value: </label>
+					<input type="text" placeholder="10">
+					<p>
+					<label>Unit: </label>
+					<input type="text" placeholder="Dollars / Hour">
+					<p>
+					<label>Help: </label>
+					<input type="text" placeholder="Per Worker">
+				</div>
+				<div class="col-sm-6">
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Labor Rate
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[18].value" placeholder="40" type="text">
+							<div class="unit_vpe">
+								Unit: Dollars / Hour
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Prepare Time
+								</div>
+								<div class="help_vpe">
+									Per Inch of weld
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[19].value" placeholder="30" type="text">
+							<div class="unit_vpe">
+								Unit: Seconds
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Weld Time
+								</div>
+								<div class="help_vpe">
+									Per Inch of weld
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[20].value" placeholder="2" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Visual Inspection Time
+								</div>
+								<div class="help_vpe">
+									Per Inch of weld
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[21].value" placeholder="2" type="text">
+							<div class="unit_vpe">
+								Unit: Seconds
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 
 
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Setup Time
+			<hr>
+			<h2><span style="color:#65af3f">Labor</span></h2>
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('genLabor')">General Labor</a></h3>
+			<div ng-show="genLabor" class="isActive">
+				<button class="md-raised md-button" ng-click="addForm()">Add Input</button>
+				<div ng-show="newForm" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input type="text" placeholder="Ex: Labor Rate">
+					<p>
+					<label>Value: </label>
+					<input type="text" placeholder="10">
+					<p>
+					<label>Unit: </label>
+					<input type="text" placeholder="Dollars / Hour">
+					<p>
+					<label>Help: </label>
+					<input type="text" placeholder="Per Worker">
+				</div>
+				<div class="col-sm-6">
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Labor Rate
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[13].value" placeholder="25" type="text">
+							<div class="unit_vpe">
+								Unit: Dollars / Hour
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[1].value" placeholder="5" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Bolt Time
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[14].value" placeholder="30" type="text">
+							<div class="unit_vpe">
+								Unit: Seconds
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Order Time
+								</div>
+								<div class="help_vpe">
+									Time to place a single or bulk order
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[15].value" placeholder="5" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Receive Time
+								</div>
+								<div class="help_vpe">
+									Time to receive a single or bulk order at the facility (unload truck, check manifest, etc.)
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[16].value" placeholder="10" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Unbox Time
+								</div>
+								<div class="help_vpe">
+									Time to unbox a single or bulk order
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[17].value" placeholder="15" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 
-
-
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Program Time
+			<hr>
+			<h2><span style="color:#65af3f">Finishing Processes</span></h2>
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('plating')">Plating</a></h3>
+			<div ng-show="plating" class="isActive">
+				<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
+				<div ng-show="newForm" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input type="text" placeholder="Ex: Labor Rate">
+					<p>
+					<label>Value: </label>
+					<input type="text" placeholder="10">
+					<p>
+					<label>Unit: </label>
+					<input type="text" placeholder="Dollars / Hour">
+					<p>
+					<label>Help: </label>
+					<input type="text" placeholder="Per Worker">
+				</div>
+				<div class="col-sm-6">
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Labor Rate
+								</div>
+							</div>
 						</div>
-						<div class="help_vpe">
-							Per cubic Inch of removal volume - as a proxy for part complexity
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[22].value" placeholder="30" type="text">
+							<div class="unit_vpe">
+								Unit: Dollars / Hour
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model ="myForm[2].value" placeholder="2" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Setup Time
+								</div>
+								<div class="help_vpe">
+									Per Part
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[23].value" placeholder="5" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Stripping Time
+								</div>
+								<div class="help_vpe">
+									Per square Inch of surface area
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[24].value" placeholder="30" type="text">
+							<div class="unit_vpe">
+								Unit: Seconds
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Blasting Time
+								</div>
+								<div class="help_vpe">
+									Per square Inch of surface area
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[25].value" placeholder="20" type="text">
+							<div class="unit_vpe">
+								Unit: Seconds
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Plating Time
+								</div>
+								<div class="help_vpe">
+									Per Part
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[26].value" placeholder="60" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Phosphate Coating :: Preparation Time
+								</div>
+								<div class="help_vpe">
+									Per Part
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[27].value" placeholder="15" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Phosphate Coating :: Cleaning Time
+								</div>
+								<div class="help_vpe">
+									Per Part
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[28].value" placeholder="10" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Phosphate Coating :: Activation Time
+								</div>
+								<div class="help_vpe">
+									Per Part
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[29].value" placeholder="20" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Phosphate Coating :: Phosphating Time
+								</div>
+								<div class="help_vpe">
+									Per Part
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[30].value" placeholder="60" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Phosphate Coating :: Treatment Time
+								</div>
+								<div class="help_vpe">
+									Per Part
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[31].value" placeholder="20" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 
-
-
-
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Run Time
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('painting')">Painting</a></h3>
+			<div ng-show="painting" class="isActive">
+				<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
+				<div ng-show="newForm" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input type="text" placeholder="Ex: Labor Rate">
+					<p>
+					<label>Value: </label>
+					<input type="text" placeholder="10">
+					<p>
+					<label>Unit: </label>
+					<input type="text" placeholder="Dollars / Hour">
+					<p>
+					<label>Help: </label>
+					<input type="text" placeholder="Per Worker">
+				</div>
+				<div class="col-sm-6">
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Labor Rate
+								</div>
+							</div>
 						</div>
-						<div class="help_vpe">
-							Per cubic Inch of removal volume - as a proxy for part complexity
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[32].value" placeholder="30" type="text">
+							<div class="unit_vpe">
+								Unit: Dollars / Hour
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[3].value" placeholder="25" type="text">
-					<div class="unit_vpe">
-						Unit: Seconds
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Washing Time
+								</div>
+								<div class="help_vpe">
+									Per square Inch of surface area
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[33].value" placeholder="6" type="text">
+							<div class="unit_vpe">
+								Unit: Seconds
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Masking Time
+								</div>
+								<div class="help_vpe">
+									Per square Inch of surface area
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[34].value" placeholder="6" type="text">
+							<div class="unit_vpe">
+								Unit: Seconds
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Apply Time
+								</div>
+								<div class="help_vpe">
+									Per square Inch of surface area
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[35].value" placeholder="3" type="text">
+							<div class="unit_vpe">
+								Unit: Seconds
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Curing Time
+								</div>
+								<div class="help_vpe">
+									Per Part
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[36].value" placeholder="30" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Drying Time
+								</div>
+								<div class="help_vpe">
+									Per Part
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[37].value" placeholder="60" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Inspecting Time
+								</div>
+								<div class="help_vpe">
+									Per Part
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[38].value" placeholder="10" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Finishing Time
+								</div>
+								<div class="help_vpe">
+									Per Part
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[39].value" placeholder="30" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Inspect Time
+
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('xray')">X-Ray Machine</a></h3>
+			<div ng-show="xray" class="isActive">
+				<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
+				<div ng-show="newForm" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input type="text" placeholder="Ex: Labor Rate">
+					<p>
+					<label>Value: </label>
+					<input type="text" placeholder="10">
+					<p>
+					<label>Unit: </label>
+					<input type="text" placeholder="Dollars / Hour">
+					<p>
+					<label>Help: </label>
+					<input type="text" placeholder="Per Worker">
+				</div>
+				<div class="col-sm-6">
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Cost
+								</div>
+								<div class="help_vpe">
+									Per usage
+								</div>
+							</div>
 						</div>
-						<div class="help_vpe">
-							Per cubic Inch of removal volume - as a proxy for part complexity
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[40].value" placeholder="10" type="text">
+							<div class="unit_vpe">
+								Unit: Dollars
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[4].value" placeholder="5" type="text">
-					<div class="unit_vpe">
-						Unit: Seconds
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Setup Time
+								</div>
+								<div class="help_vpe">
+									Per usage
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[41].value" placeholder="10" type="text">
+							<div class="unit_vpe">
+								Unit: Minutes
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Scan Time
+								</div>
+								<div class="help_vpe">
+									Per Inch of weld
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[42].value" placeholder="5" type="text">
+							<div class="unit_vpe">
+								Unit: Seconds
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
+
+			<hr>
+			<h2><span style="color:#65af3f">Materials</span></h2>
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('material')">Material Cost</a></h3>
+			<div ng-show="material" class="isActive">
+				<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
+				<div ng-show="newForm" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input type="text" placeholder="Ex: Labor Rate">
+					<p>
+					<label>Value: </label>
+					<input type="text" placeholder="10">
+					<p>
+					<label>Unit: </label>
+					<input type="text" placeholder="Dollars / Hour">
+					<p>
+					<label>Help: </label>
+					<input type="text" placeholder="Per Worker">
+				</div>
+				<div class="col-sm-6">
+						<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Steel
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[43].value" placeholder="0.5" type="text">
+							<div class="unit_vpe">
+								Unit: Dollars / Inch<sup>3</sup>
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Aluminum
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[44].value" placeholder="0.8" type="text">
+							<div class="unit_vpe">
+								Unit: Dollars / Inch<sup>3</sup>
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Paint
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[45].value" placeholder="0.2" type="text">
+							<div class="unit_vpe">
+								Unit: Dollars / Inch<sup>2</sup>
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Powder
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[46].value" placeholder="0.3" type="text">
+							<div class="unit_vpe">
+								Unit: Dollars / Inch<sup>2</sup>
+							</div>
+						</div>
+					</div>
+					<div class="item_vpe column">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="title_vpe">
+									Weld Filler
+								</div>
+							</div>
+						</div>
+						<div class="column">
+							<input class="input_vpe" ng-model="myForm[47].value" placeholder="2" type="text">
+							<div class="unit_vpe">
+								Unit: Dollars / Inch
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<button class="md-raised md-primary save-button md-button md-default-theme" ng-click ="submitMyForm()">Submit</button>
 		</div>
 	</div>
-
-
-	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('casting')">Casting</a></h3>
-	<div ng-show = "casting" class="isActive">
-		<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
-		<div ng-show="newForm" class="item_vpe column">
-			<label>Cost Item: </label>
-			<input type="text" placeholder="Ex: Labor Rate">
-			<p>
-			<label>Value: </label>
-			<input type="text" placeholder="10">
-			<p>
-			<label>Unit: </label>
-			<input type="text" placeholder="Dollars / Hour">
-			<p>
-			<label>Help: </label>
-			<input type="text" placeholder="Per Worker">
-		</div>
-		<div class="col-sm-6">
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Labor Rate
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[5].value" placeholder="30" type="text">
-					<div class="unit_vpe">
-						Unit: Dollars / Hour
-					</div>
-				</div>
-			</div>
-
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Melting Time
-						</div>
-						<div class="help_vpe">
-							Per cubic Inch of material
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model=myForm[6].value placeholder="2" type="text">
-					<div class="unit_vpe">
-						Unit: Seconds
-					</div>
-				</div>
-			</div>
-
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Molding Time
-						</div>
-						<div class="help_vpe">
-							Per cubic Inch of material, investment casting only
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[7].value" placeholder="90" type="text">
-					<div class="unit_vpe">
-						Unit: Seconds
-					</div>
-				</div>
-			</div>
-
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Holding Time
-						</div>
-						<div class="help_vpe">
-							Per cubic Inch of material, non-cored greensand casting only
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[8].value" placeholder="90" type="text">
-					<div class="unit_vpe">
-						Unit: Seconds
-					</div>
-				</div>
-			</div>
-
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Shakeout Time
-						</div>
-						<div class="help_vpe">
-							Per Part
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[9].value" placeholder="1" type="text">
-					<div class="unit_vpe">
-						Unit: Minute
-					</div>
-				</div>
-			</div>
-
-
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Cooling Time
-						</div>
-						<div class="help_vpe">
-							Per cubic Inch of material
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[10].value" placeholder="10" type="text">
-					<div class="unit_vpe">
-						Unit: Seconds
-					</div>
-				</div>
-			</div>
-
-
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Finishing Time
-						</div>
-						<div class="help_vpe">
-							Per Part
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[11].value" placeholder="5" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('invCasting')">Investment Casting</a></h3>
-	<div ng-show="invCasting" class="isActive">
-		<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
-		<div ng-show="newForm" class="item_vpe column">
-			<label>Cost Item: </label>
-			<input type="text" placeholder="Ex: Labor Rate">
-			<p>
-			<label>Value: </label>
-			<input type="text" placeholder="10">
-			<p>
-			<label>Unit: </label>
-			<input type="text" placeholder="Dollars / Hour">
-			<p>
-			<label>Help: </label>
-			<input type="text" placeholder="Per Worker">
-		</div>
-		<div class="col-sm-6">
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Batch Volume
-						</div>
-						<div class="help_vpe">
-							To estimate the number of castings Performed in a single batch
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model=myForm[12].value placeholder="5" type="text">
-					<div class="unit_vpe">
-						Unit: Feet<sup>3</sup>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('welding')">Welding</a></h3>
-	<div ng-show ="welding" class="isActive">
-		<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
-		<div ng-show="newForm" class="item_vpe column">
-			<label>Cost Item: </label>
-			<input type="text" placeholder="Ex: Labor Rate">
-			<p>
-			<label>Value: </label>
-			<input type="text" placeholder="10">
-			<p>
-			<label>Unit: </label>
-			<input type="text" placeholder="Dollars / Hour">
-			<p>
-			<label>Help: </label>
-			<input type="text" placeholder="Per Worker">
-		</div>
-		<div class="col-sm-6">
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Labor Rate
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[18].value" placeholder="40" type="text">
-					<div class="unit_vpe">
-						Unit: Dollars / Hour
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Prepare Time
-						</div>
-						<div class="help_vpe">
-							Per Inch of weld
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[19].value" placeholder="30" type="text">
-					<div class="unit_vpe">
-						Unit: Seconds
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Weld Time
-						</div>
-						<div class="help_vpe">
-							Per Inch of weld
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[20].value" placeholder="2" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Visual Inspection Time
-						</div>
-						<div class="help_vpe">
-							Per Inch of weld
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[21].value" placeholder="2" type="text">
-					<div class="unit_vpe">
-						Unit: Seconds
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<hr>
-	<h2><span style="color:#65af3f">Labor</span></h2>
-	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('genLabor')">General Labor</a></h3>
-	<div ng-show="genLabor" class="isActive">
-		<button class="md-raised md-button" ng-click="addForm()">Add Input</button>
-		<div ng-show="newForm" class="item_vpe column">
-			<label>Cost Item: </label>
-			<input type="text" placeholder="Ex: Labor Rate">
-			<p>
-			<label>Value: </label>
-			<input type="text" placeholder="10">
-			<p>
-			<label>Unit: </label>
-			<input type="text" placeholder="Dollars / Hour">
-			<p>
-			<label>Help: </label>
-			<input type="text" placeholder="Per Worker">
-		</div>
-		<div class="col-sm-6">
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Labor Rate
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[13].value" placeholder="25" type="text">
-					<div class="unit_vpe">
-						Unit: Dollars / Hour
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Bolt Time
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[14].value" placeholder="30" type="text">
-					<div class="unit_vpe">
-						Unit: Seconds
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Order Time
-						</div>
-						<div class="help_vpe">
-							Time to place a single or bulk order
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[15].value" placeholder="5" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Receive Time
-						</div>
-						<div class="help_vpe">
-							Time to receive a single or bulk order at the facility (unload truck, check manifest, etc.)
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[16].value" placeholder="10" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Unbox Time
-						</div>
-						<div class="help_vpe">
-							Time to unbox a single or bulk order
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[17].value" placeholder="15" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<hr>
-	<h2><span style="color:#65af3f">Finishing Processes</span></h2>
-	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('plating')">Plating</a></h3>
-	<div ng-show="plating" class="isActive">
-		<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
-		<div ng-show="newForm" class="item_vpe column">
-			<label>Cost Item: </label>
-			<input type="text" placeholder="Ex: Labor Rate">
-			<p>
-			<label>Value: </label>
-			<input type="text" placeholder="10">
-			<p>
-			<label>Unit: </label>
-			<input type="text" placeholder="Dollars / Hour">
-			<p>
-			<label>Help: </label>
-			<input type="text" placeholder="Per Worker">
-		</div>
-		<div class="col-sm-6">
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Labor Rate
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[22].value" placeholder="30" type="text">
-					<div class="unit_vpe">
-						Unit: Dollars / Hour
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Setup Time
-						</div>
-						<div class="help_vpe">
-							Per Part
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[23].value" placeholder="5" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Stripping Time
-						</div>
-						<div class="help_vpe">
-							Per square Inch of surface area
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[24].value" placeholder="30" type="text">
-					<div class="unit_vpe">
-						Unit: Seconds
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Blasting Time
-						</div>
-						<div class="help_vpe">
-							Per square Inch of surface area
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[25].value" placeholder="20" type="text">
-					<div class="unit_vpe">
-						Unit: Seconds
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Plating Time
-						</div>
-						<div class="help_vpe">
-							Per Part
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[26].value" placeholder="60" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Phosphate Coating :: Preparation Time
-						</div>
-						<div class="help_vpe">
-							Per Part
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[27].value" placeholder="15" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Phosphate Coating :: Cleaning Time
-						</div>
-						<div class="help_vpe">
-							Per Part
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[28].value" placeholder="10" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Phosphate Coating :: Activation Time
-						</div>
-						<div class="help_vpe">
-							Per Part
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[29].value" placeholder="20" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Phosphate Coating :: Phosphating Time
-						</div>
-						<div class="help_vpe">
-							Per Part
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[30].value" placeholder="60" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Phosphate Coating :: Treatment Time
-						</div>
-						<div class="help_vpe">
-							Per Part
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[31].value" placeholder="20" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('painting')">Painting</a></h3>
-	<div ng-show="painting" class="isActive">
-		<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
-		<div ng-show="newForm" class="item_vpe column">
-			<label>Cost Item: </label>
-			<input type="text" placeholder="Ex: Labor Rate">
-			<p>
-			<label>Value: </label>
-			<input type="text" placeholder="10">
-			<p>
-			<label>Unit: </label>
-			<input type="text" placeholder="Dollars / Hour">
-			<p>
-			<label>Help: </label>
-			<input type="text" placeholder="Per Worker">
-		</div>
-		<div class="col-sm-6">
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Labor Rate
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[32].value" placeholder="30" type="text">
-					<div class="unit_vpe">
-						Unit: Dollars / Hour
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Washing Time
-						</div>
-						<div class="help_vpe">
-							Per square Inch of surface area
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[33].value" placeholder="6" type="text">
-					<div class="unit_vpe">
-						Unit: Seconds
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Masking Time
-						</div>
-						<div class="help_vpe">
-							Per square Inch of surface area
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[34].value" placeholder="6" type="text">
-					<div class="unit_vpe">
-						Unit: Seconds
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Apply Time
-						</div>
-						<div class="help_vpe">
-							Per square Inch of surface area
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[35].value" placeholder="3" type="text">
-					<div class="unit_vpe">
-						Unit: Seconds
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Curing Time
-						</div>
-						<div class="help_vpe">
-							Per Part
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[36].value" placeholder="30" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Drying Time
-						</div>
-						<div class="help_vpe">
-							Per Part
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[37].value" placeholder="60" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Inspecting Time
-						</div>
-						<div class="help_vpe">
-							Per Part
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[38].value" placeholder="10" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Finishing Time
-						</div>
-						<div class="help_vpe">
-							Per Part
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[39].value" placeholder="30" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('xray')">X-Ray Machine</a></h3>
-	<div ng-show="xray" class="isActive">
-		<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
-		<div ng-show="newForm" class="item_vpe column">
-			<label>Cost Item: </label>
-			<input type="text" placeholder="Ex: Labor Rate">
-			<p>
-			<label>Value: </label>
-			<input type="text" placeholder="10">
-			<p>
-			<label>Unit: </label>
-			<input type="text" placeholder="Dollars / Hour">
-			<p>
-			<label>Help: </label>
-			<input type="text" placeholder="Per Worker">
-		</div>
-		<div class="col-sm-6">
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Cost
-						</div>
-						<div class="help_vpe">
-							Per usage
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[40].value" placeholder="10" type="text">
-					<div class="unit_vpe">
-						Unit: Dollars
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Setup Time
-						</div>
-						<div class="help_vpe">
-							Per usage
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[41].value" placeholder="10" type="text">
-					<div class="unit_vpe">
-						Unit: Minutes
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Scan Time
-						</div>
-						<div class="help_vpe">
-							Per Inch of weld
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[42].value" placeholder="5" type="text">
-					<div class="unit_vpe">
-						Unit: Seconds
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<hr>
-	<h2><span style="color:#65af3f">Materials</span></h2>
-	<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('material')">Material Cost</a></h3>
-	<div ng-show="material" class="isActive">
-		<button class="md-raised md-button" ng-click="addForm()" >Add Input</button>
-		<div ng-show="newForm" class="item_vpe column">
-			<label>Cost Item: </label>
-			<input type="text" placeholder="Ex: Labor Rate">
-			<p>
-			<label>Value: </label>
-			<input type="text" placeholder="10">
-			<p>
-			<label>Unit: </label>
-			<input type="text" placeholder="Dollars / Hour">
-			<p>
-			<label>Help: </label>
-			<input type="text" placeholder="Per Worker">
-		</div>
-		<div class="col-sm-6">
-				<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Steel
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[43].value" placeholder="0.5" type="text">
-					<div class="unit_vpe">
-						Unit: Dollars / Inch<sup>3</sup>
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Aluminum
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[44].value" placeholder="0.8" type="text">
-					<div class="unit_vpe">
-						Unit: Dollars / Inch<sup>3</sup>
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Paint
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[45].value" placeholder="0.2" type="text">
-					<div class="unit_vpe">
-						Unit: Dollars / Inch<sup>2</sup>
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Powder
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[46].value" placeholder="0.3" type="text">
-					<div class="unit_vpe">
-						Unit: Dollars / Inch<sup>2</sup>
-					</div>
-				</div>
-			</div>
-			<div class="item_vpe column">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="title_vpe">
-							Weld Filler
-						</div>
-					</div>
-				</div>
-				<div class="column">
-					<input class="input_vpe" ng-model="myForm[47].value" placeholder="2" type="text">
-					<div class="unit_vpe">
-						Unit: Dollars / Inch
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<hr>
-	<button class="md-raised md-primary save-button md-button md-default-theme" ng-click ="submitMyForm()">Submit</button>
 </div>
