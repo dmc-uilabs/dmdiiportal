@@ -85,6 +85,9 @@ angular.module('dmc.project')
                     if('inputTemplate' in $scope.service.interfaceModel.inParams){
                       updateCustomUIForInputs();
                     }
+                    if('companyVPC' in $scope.service.interfaceModel.inParams){
+                      setVPCData('companyVPC');
+                    }
                 }
                     updatePositionInputs();
                     // get current status
@@ -487,6 +490,12 @@ angular.module('dmc.project')
               } else {
                 $scope.service.interfaceModel.inParams["inputFile"].value = file.documentUrl;
               }
+            }
+
+            function setVPCData(fieldId){
+              ajax.get(dataFactory.getMyVPC(), {}, function(response){
+                document.getElementById(fieldId).value = response.data.myVPC;
+              });
             }
 
         }
