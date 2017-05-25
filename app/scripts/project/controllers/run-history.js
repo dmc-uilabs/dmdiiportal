@@ -97,6 +97,8 @@ angular.module('dmc.project')
                       url = $scope.history.interface.outParams.outputFile.value
                   if($scope.history.interface.outParams.fileOutput)
                       url = $scope.history.interface.outParams.fileOutput.value
+                  if($scope.history.interface.outParams.TDP)
+                          url = $scope.history.interface.outParams.TDP.value
 
                   ajax.get(dataFactory.documentsUrl($scope.history.project.id,url).saveSr,{},function(resp){
 									            toastModel.showToast("success", file.documentName+" saved to your workspace "+toastUser+".");
