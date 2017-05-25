@@ -13,7 +13,6 @@
 </form>
 <button ng-click="submitMyForm()">Submit</button> -->
 <div layout="row">
-
 	<div ng-if="vpc.length > 0" layout="column" class="vpc vpc-padding margin-right8">
 		<div ng-repeat="vpcItem in vpc" layout="row">
 			<div class="item_vpe my-vpc-item">
@@ -35,6 +34,7 @@
 				</div>
 			</div>
 		</div>
+		<button class="md-raised md-primary save-button md-button md-default-theme update-vpc-button" ng-click ="updateVPC()">Update</button>
 	</div>
 	<div class="col-sm-6" ng-class="(vpc.length > 0) ? 'vpc' : ''">
 		<button ng-if="!defaults" class="md-raised md-primary save-button md-button md-default-theme margin-top-25" ng-click ="toggleDefaults()">Show Defaults</button>
@@ -50,7 +50,7 @@
 					<input type="text" placeholder="Ex: Labor Rate">
 					<p>
 					<label>Value: </label>
-					<input type="text" placeholder="10">
+					<input type="number" placeholder="10">
 					<p>
 					<label>Unit: </label>
 					<input type="text" placeholder="Dollars / Hour">
@@ -69,7 +69,7 @@
 							</div>
 						</div>
 						<div class="col-sm-6">
-							<input class="input_vpe" ng-model='myForm[0].value' placeholder="59" type="text">
+							<input class="input_vpe" ng-model='myForm[0].value' placeholder="59" type="number">
 								<div class="unit_vpe">
 								Unit: Dollars / Hour
 							</div>
@@ -86,7 +86,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[1].value" placeholder="5" type="text">
+							<input class="input_vpe" ng-model="myForm[1].value" placeholder="5" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -107,7 +107,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model ="myForm[2].value" placeholder="2" type="text">
+							<input class="input_vpe" ng-model ="myForm[2].value" placeholder="2" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -129,7 +129,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[3].value" placeholder="25" type="text">
+							<input class="input_vpe" ng-model="myForm[3].value" placeholder="25" type="number">
 							<div class="unit_vpe">
 								Unit: Seconds
 							</div>
@@ -147,7 +147,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[4].value" placeholder="5" type="text">
+							<input class="input_vpe" ng-model="myForm[4].value" placeholder="5" type="number">
 							<div class="unit_vpe">
 								Unit: Seconds
 							</div>
@@ -165,7 +165,7 @@
 					<input type="text" placeholder="Ex: Labor Rate">
 					<p>
 					<label>Value: </label>
-					<input type="text" placeholder="10">
+					<input type="number" placeholder="10">
 					<p>
 					<label>Unit: </label>
 					<input type="text" placeholder="Dollars / Hour">
@@ -183,7 +183,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[5].value" placeholder="30" type="text">
+							<input class="input_vpe" ng-model="myForm[5].value" placeholder="30" type="number">
 							<div class="unit_vpe">
 								Unit: Dollars / Hour
 							</div>
@@ -202,7 +202,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model=myForm[6].value placeholder="2" type="text">
+							<input class="input_vpe" ng-model=myForm[6].value placeholder="2" type="number">
 							<div class="unit_vpe">
 								Unit: Seconds
 							</div>
@@ -221,7 +221,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[7].value" placeholder="90" type="text">
+							<input class="input_vpe" ng-model="myForm[7].value" placeholder="90" type="number">
 							<div class="unit_vpe">
 								Unit: Seconds
 							</div>
@@ -240,7 +240,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[8].value" placeholder="90" type="text">
+							<input class="input_vpe" ng-model="myForm[8].value" placeholder="90" type="number">
 							<div class="unit_vpe">
 								Unit: Seconds
 							</div>
@@ -259,7 +259,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[9].value" placeholder="1" type="text">
+							<input class="input_vpe" ng-model="myForm[9].value" placeholder="1" type="number">
 							<div class="unit_vpe">
 								Unit: Minute
 							</div>
@@ -279,7 +279,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[10].value" placeholder="10" type="text">
+							<input class="input_vpe" ng-model="myForm[10].value" placeholder="10" type="number">
 							<div class="unit_vpe">
 								Unit: Seconds
 							</div>
@@ -299,7 +299,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[11].value" placeholder="5" type="text">
+							<input class="input_vpe" ng-model="myForm[11].value" placeholder="5" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -316,7 +316,7 @@
 					<input type="text" placeholder="Ex: Labor Rate">
 					<p>
 					<label>Value: </label>
-					<input type="text" placeholder="10">
+					<input type="number" placeholder="10">
 					<p>
 					<label>Unit: </label>
 					<input type="text" placeholder="Dollars / Hour">
@@ -337,7 +337,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model=myForm[12].value placeholder="5" type="text">
+							<input class="input_vpe" ng-model=myForm[12].value placeholder="5" type="number">
 							<div class="unit_vpe">
 								Unit: Feet<sup>3</sup>
 							</div>
@@ -354,7 +354,7 @@
 					<input type="text" placeholder="Ex: Labor Rate">
 					<p>
 					<label>Value: </label>
-					<input type="text" placeholder="10">
+					<input type="number" placeholder="10">
 					<p>
 					<label>Unit: </label>
 					<input type="text" placeholder="Dollars / Hour">
@@ -372,7 +372,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[18].value" placeholder="40" type="text">
+							<input class="input_vpe" ng-model="myForm[18].value" placeholder="40" type="number">
 							<div class="unit_vpe">
 								Unit: Dollars / Hour
 							</div>
@@ -390,7 +390,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[19].value" placeholder="30" type="text">
+							<input class="input_vpe" ng-model="myForm[19].value" placeholder="30" type="number">
 							<div class="unit_vpe">
 								Unit: Seconds
 							</div>
@@ -408,7 +408,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[20].value" placeholder="2" type="text">
+							<input class="input_vpe" ng-model="myForm[20].value" placeholder="2" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -426,7 +426,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[21].value" placeholder="2" type="text">
+							<input class="input_vpe" ng-model="myForm[21].value" placeholder="2" type="number">
 							<div class="unit_vpe">
 								Unit: Seconds
 							</div>
@@ -446,7 +446,7 @@
 					<input type="text" placeholder="Ex: Labor Rate">
 					<p>
 					<label>Value: </label>
-					<input type="text" placeholder="10">
+					<input type="number" placeholder="10">
 					<p>
 					<label>Unit: </label>
 					<input type="text" placeholder="Dollars / Hour">
@@ -464,7 +464,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[13].value" placeholder="25" type="text">
+							<input class="input_vpe" ng-model="myForm[13].value" placeholder="25" type="number">
 							<div class="unit_vpe">
 								Unit: Dollars / Hour
 							</div>
@@ -479,7 +479,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[14].value" placeholder="30" type="text">
+							<input class="input_vpe" ng-model="myForm[14].value" placeholder="30" type="number">
 							<div class="unit_vpe">
 								Unit: Seconds
 							</div>
@@ -497,7 +497,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[15].value" placeholder="5" type="text">
+							<input class="input_vpe" ng-model="myForm[15].value" placeholder="5" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -515,7 +515,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[16].value" placeholder="10" type="text">
+							<input class="input_vpe" ng-model="myForm[16].value" placeholder="10" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -533,7 +533,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[17].value" placeholder="15" type="text">
+							<input class="input_vpe" ng-model="myForm[17].value" placeholder="15" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -552,7 +552,7 @@
 					<input type="text" placeholder="Ex: Labor Rate">
 					<p>
 					<label>Value: </label>
-					<input type="text" placeholder="10">
+					<input type="number" placeholder="10">
 					<p>
 					<label>Unit: </label>
 					<input type="text" placeholder="Dollars / Hour">
@@ -570,7 +570,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[22].value" placeholder="30" type="text">
+							<input class="input_vpe" ng-model="myForm[22].value" placeholder="30" type="number">
 							<div class="unit_vpe">
 								Unit: Dollars / Hour
 							</div>
@@ -588,7 +588,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[23].value" placeholder="5" type="text">
+							<input class="input_vpe" ng-model="myForm[23].value" placeholder="5" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -606,7 +606,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[24].value" placeholder="30" type="text">
+							<input class="input_vpe" ng-model="myForm[24].value" placeholder="30" type="number">
 							<div class="unit_vpe">
 								Unit: Seconds
 							</div>
@@ -624,7 +624,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[25].value" placeholder="20" type="text">
+							<input class="input_vpe" ng-model="myForm[25].value" placeholder="20" type="number">
 							<div class="unit_vpe">
 								Unit: Seconds
 							</div>
@@ -642,7 +642,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[26].value" placeholder="60" type="text">
+							<input class="input_vpe" ng-model="myForm[26].value" placeholder="60" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -660,7 +660,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[27].value" placeholder="15" type="text">
+							<input class="input_vpe" ng-model="myForm[27].value" placeholder="15" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -678,7 +678,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[28].value" placeholder="10" type="text">
+							<input class="input_vpe" ng-model="myForm[28].value" placeholder="10" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -696,7 +696,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[29].value" placeholder="20" type="text">
+							<input class="input_vpe" ng-model="myForm[29].value" placeholder="20" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -714,7 +714,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[30].value" placeholder="60" type="text">
+							<input class="input_vpe" ng-model="myForm[30].value" placeholder="60" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -732,7 +732,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[31].value" placeholder="20" type="text">
+							<input class="input_vpe" ng-model="myForm[31].value" placeholder="20" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -749,7 +749,7 @@
 					<input type="text" placeholder="Ex: Labor Rate">
 					<p>
 					<label>Value: </label>
-					<input type="text" placeholder="10">
+					<input type="number" placeholder="10">
 					<p>
 					<label>Unit: </label>
 					<input type="text" placeholder="Dollars / Hour">
@@ -767,7 +767,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[32].value" placeholder="30" type="text">
+							<input class="input_vpe" ng-model="myForm[32].value" placeholder="30" type="number">
 							<div class="unit_vpe">
 								Unit: Dollars / Hour
 							</div>
@@ -785,7 +785,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[33].value" placeholder="6" type="text">
+							<input class="input_vpe" ng-model="myForm[33].value" placeholder="6" type="number">
 							<div class="unit_vpe">
 								Unit: Seconds
 							</div>
@@ -803,7 +803,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[34].value" placeholder="6" type="text">
+							<input class="input_vpe" ng-model="myForm[34].value" placeholder="6" type="number">
 							<div class="unit_vpe">
 								Unit: Seconds
 							</div>
@@ -821,7 +821,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[35].value" placeholder="3" type="text">
+							<input class="input_vpe" ng-model="myForm[35].value" placeholder="3" type="number">
 							<div class="unit_vpe">
 								Unit: Seconds
 							</div>
@@ -839,7 +839,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[36].value" placeholder="30" type="text">
+							<input class="input_vpe" ng-model="myForm[36].value" placeholder="30" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -857,7 +857,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[37].value" placeholder="60" type="text">
+							<input class="input_vpe" ng-model="myForm[37].value" placeholder="60" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -875,7 +875,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[38].value" placeholder="10" type="text">
+							<input class="input_vpe" ng-model="myForm[38].value" placeholder="10" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -893,7 +893,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[39].value" placeholder="30" type="text">
+							<input class="input_vpe" ng-model="myForm[39].value" placeholder="30" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -910,7 +910,7 @@
 					<input type="text" placeholder="Ex: Labor Rate">
 					<p>
 					<label>Value: </label>
-					<input type="text" placeholder="10">
+					<input type="number" placeholder="10">
 					<p>
 					<label>Unit: </label>
 					<input type="text" placeholder="Dollars / Hour">
@@ -931,7 +931,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[40].value" placeholder="10" type="text">
+							<input class="input_vpe" ng-model="myForm[40].value" placeholder="10" type="number">
 							<div class="unit_vpe">
 								Unit: Dollars
 							</div>
@@ -949,7 +949,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[41].value" placeholder="10" type="text">
+							<input class="input_vpe" ng-model="myForm[41].value" placeholder="10" type="number">
 							<div class="unit_vpe">
 								Unit: Minutes
 							</div>
@@ -967,7 +967,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[42].value" placeholder="5" type="text">
+							<input class="input_vpe" ng-model="myForm[42].value" placeholder="5" type="number">
 							<div class="unit_vpe">
 								Unit: Seconds
 							</div>
@@ -986,7 +986,7 @@
 					<input type="text" placeholder="Ex: Labor Rate">
 					<p>
 					<label>Value: </label>
-					<input type="text" placeholder="10">
+					<input type="number" placeholder="10">
 					<p>
 					<label>Unit: </label>
 					<input type="text" placeholder="Dollars / Hour">
@@ -1004,7 +1004,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[43].value" placeholder="0.5" type="text">
+							<input class="input_vpe" ng-model="myForm[43].value" placeholder="0.5" type="number">
 							<div class="unit_vpe">
 								Unit: Dollars / Inch<sup>3</sup>
 							</div>
@@ -1019,7 +1019,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[44].value" placeholder="0.8" type="text">
+							<input class="input_vpe" ng-model="myForm[44].value" placeholder="0.8" type="number">
 							<div class="unit_vpe">
 								Unit: Dollars / Inch<sup>3</sup>
 							</div>
@@ -1034,7 +1034,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[45].value" placeholder="0.2" type="text">
+							<input class="input_vpe" ng-model="myForm[45].value" placeholder="0.2" type="number">
 							<div class="unit_vpe">
 								Unit: Dollars / Inch<sup>2</sup>
 							</div>
@@ -1049,7 +1049,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[46].value" placeholder="0.3" type="text">
+							<input class="input_vpe" ng-model="myForm[46].value" placeholder="0.3" type="number">
 							<div class="unit_vpe">
 								Unit: Dollars / Inch<sup>2</sup>
 							</div>
@@ -1064,7 +1064,7 @@
 							</div>
 						</div>
 						<div class="column">
-							<input class="input_vpe" ng-model="myForm[47].value" placeholder="2" type="text">
+							<input class="input_vpe" ng-model="myForm[47].value" placeholder="2" type="number">
 							<div class="unit_vpe">
 								Unit: Dollars / Inch
 							</div>
