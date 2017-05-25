@@ -1,6 +1,6 @@
 'use strict';
 angular.module('dmc.company-profile').
-    directive('tabVpc', ['$parse', function ($parse) {
+    directive('tabVpc', ['$parse', 'toastModel', function ($parse, toastModel) {
         return {
             restrict: 'A',
             templateUrl: 'templates/company-profile/tabs/tab-vpc.html',
@@ -339,6 +339,18 @@ angular.module('dmc.company-profile').
                     $scope.material =!$scope.material;
                   }
                 }
+                
+                var closeCategories = function() {
+                    $scope.machining =false;
+                    $scope.casting =false;
+                    $scope.invCasting=false;
+                    $scope.genLabor = false;
+                    $scope.welding=false;
+                    $scope.plating=false;
+                    $scope.painting=false;
+                    $scope.xray=false;
+                    $scope.material=false;
+                };
 
                 $scope.submitMyForm=function(){
                   $scope.contents=[];
@@ -354,8 +366,10 @@ angular.module('dmc.company-profile').
                     }
 
                   }
-                  $scope.contents=angular.toJson($scope.contents);
-                  console.log($scope.contents)
+                  $scope.source.productionCapabilities = angular.toJson($scope.contents);
+	                console.log($scope.source.productionCapabilities);
+                  toastModel.showToast('success', 'VPC submitted, Save organization to complete.');
+                  closeCategories();
                 }
             }
         };
