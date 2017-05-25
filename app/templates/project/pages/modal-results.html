@@ -25,22 +25,45 @@
 				<h2>Inputs</h2>
 				<md-divider></md-divider>
 				<md-content>
-					<md-list>
-						<md-list-item ng-repeat="item in history.interface.inputs track by $index">
-							{{item.name}}: {{item.value}} {{item.unit}}
-						</md-list-item>
-					</md-list>
+	
+
+					<div layout="column">
+						<div layout="row" ng-repeat="item in history.interface.inputs track by $index">
+							<div flex="35"style="margin-right: 10px;">
+							<b>{{item.name}}:</b>
+						</div>
+							<div flex="65" ng-if="!item.name.includes('emplate') && !item.name.includes('companyVPC')">
+								{{item.value}}
+								{{item.unit}}
+							</div>
+							<div flex="65" ng-if="item.name.includes('emplate') || item.name.includes('companyVPC')">
+								template
+							</div>
+						</div>
+					</div>
+
+
 				</md-content>
 			</div>
 			<div flex="45" style="margin-left: -1px">
 				<h2>Outputs</h2>
 				<md-divider></md-divider>
 				<md-content>
-					<md-list>
-						<md-list-item ng-repeat="item in history.interface.outParams track by $index">
-                            {{item.name}}: {{item.value}} {{item.unit}}
-						</md-list-item>
-					</md-list>
+
+					<div layout="column">
+						<div layout="row" ng-repeat="item in history.interface.outParams track by $index">
+							<div flex="35"style="margin-right: 10px;">
+							<b>{{item.name}}:</b>
+						</div>
+							<div flex="65" ng-if="!item.name.includes('emplate') && !item.name.includes('companyVPC')">
+								{{item.value}}
+								{{item.unit}}
+							</div>
+							<div flex="65" ng-if="item.name.includes('emplate') || item.name.includes('companyVPC')">
+								template
+							</div>
+						</div>
+					</div>
 				</md-content>
 			</div>
 		</div>
