@@ -365,7 +365,17 @@ angular.module('dmc.company-profile').
                 };
                 
                 $scope.updateVPC = function() {
-                	$scope.source.productionCapabilities = JSON.stringify($scope.vpc);
+                    var contents=[];
+                	for (var i=0;i<$scope.vpc.length;i++){
+                        contents.push({
+                            name: $scope.vpc[i].name,
+                            unit: $scope.vpc[i].unit,
+                            help: $scope.vpc[i].help,
+                            value:Number($scope.vpc[i].value)
+                        });
+                    }
+                	$scope.source.productionCapabilities = JSON.stringify(contents);
+	                console.log($scope.source.productionCapabilities);
                     toastModel.showToast('success', 'VPC updated, Save organization to complete.');
                 };
 
@@ -378,7 +388,7 @@ angular.module('dmc.company-profile').
                         name: $scope.arr_json[i].name,
                         unit: $scope.arr_json[i].unit,
                         help: $scope.arr_json[i].help,
-                        value:$scope.myForm[i].value
+                        value:Number($scope.myForm[i].value)
                       })
                     }
 
