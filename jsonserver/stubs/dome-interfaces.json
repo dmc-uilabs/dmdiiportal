@@ -1,195 +1,51 @@
-[
-	{
-		 "id":"1",
-		 "version":1,
-		 "modelId":"aff647e4-d82f-1004-8e7b-5de38b2eeb0f",
-		 "interfaceId":"aff647e5-d82f-1004-8e7b-5de38b2eeb0f",
-		 "type":"interface",
-		 "name":"Default Interface",
-		 "path":[
-				30
-		 ],
-		 "serviceId":1,
-		 "domeServer":"http://54.210.84.168:8080/DOMEApiServicesV7/",
-		 "inParams":{
-				"C3":{
-					 "type":"Real",
-					 "name":"C3",
-					 "unit":"no unit",
-					 "category":"no unit",
-					 "value":"1",
-					 "parameterid":"d9f30f15-d800-1004-8f53-704dbfababa8",
-					 "instancename":null
-				},
-				"C4":{
-					 "type":"Real",
-					 "name":"C4",
-					 "unit":"no unit",
-					 "category":"no unit",
-					 "value":"1",
-					 "parameterid":"d9f30f18-d800-1004-8f53-704dbfababa8",
-					 "instancename":null
-				},
-				"SpecimenWidth":{
-					 "type":"Real",
-					 "name":"SpecimenWidth",
-					 "unit":"meter",
-					 "category":"length",
-					 "value":"1",
-					 "parameterid":"d9f30f09-d800-1004-8f53-704dbfababa8",
-					 "instancename":null
-				},
-				"C5":{
-					 "type":"Real",
-					 "name":"C5",
-					 "unit":"no unit",
-					 "category":"no unit",
-					 "value":"1",
-					 "parameterid":"d9f30f1b-d800-1004-8f53-704dbfababa8",
-					 "instancename":null
-				},
-				"Ux":{
-					 "type":"Real",
-					 "name":"Ux",
-					 "unit":"no unit",
-					 "category":"no unit",
-					 "value":"1",
-					 "parameterid":"d9f30f06-d800-1004-8f53-704dbfababa8",
-					 "instancename":null
-				},
-				"C0":{
-					 "type":"Real",
-					 "name":"C0",
-					 "unit":"no unit",
-					 "category":"no unit",
-					 "value":"1",
-					 "parameterid":"d9f30f0c-d800-1004-8f53-704dbfababa8",
-					 "instancename":null
-				},
-				"C1":{
-					 "type":"Real",
-					 "name":"C1",
-					 "unit":"no unit",
-					 "category":"no unit",
-					 "value":"1",
-					 "parameterid":"d9f30f0f-d800-1004-8f53-704dbfababa8",
-					 "instancename":null
-				},
-				"C2":{
-					 "type":"Real",
-					 "name":"C2",
-					 "unit":"no unit",
-					 "category":"no unit",
-					 "value":"1",
-					 "parameterid":"d9f30f12-d800-1004-8f53-704dbfababa8",
-					 "instancename":null
+[{
+    "id": "1174",
+    "version": 1,
+    "modelId": "aff647da-d82f-1004-8e7b-5de38b2eeb0f",
+    "interfaceId": "aff647db-d82f-1004-8e7b-5de38b2eeb0f",
+    "type": "interface",
+    "name": "Default Interface",
+    "path": [30],
+    "serviceId": 1288,
+    "domeServer": "http://10.0.14.8:8080/DOMEApiServicesV7/",
+    "inParams": {
+        "SpecimenWidth": {
+            "type": "Real",
+            "name": "SpecimenWidth",
+            "unit": "meter",
+            "category": "length",
+            "value": "3",
+            "parameterid": "d9f30f3a-d800-1004-8f53-704dbfababa8",
+            "instancename": null
+        },
+        "CrackLength": {
+            "type": "Real",
+            "name": "CrackLength",
+            "unit": "meter",
+            "category": "length",
+            "value": "1",
+            "parameterid": "d9f30f37-d800-1004-8f53-704dbfababa8",
+            "instancename": null
+        },
+				"fileInput": {
+						"type": "String",
+						"name": "fileInput",
+						"unit": "",
+						"category": null,
+						"value": "",
+						"parameterid": "99999-d800-1004-8f53-704dbfababa8",
+						"instancename": null
 				}
-		 },
-		 "outParams":{
-				"CrackLength":{
-					 "type":"Real",
-					 "name":"CrackLength",
-					 "unit":"meter",
-					 "category":"length",
-					 "value":"6",
-					 "parameterid":"d9f30f1e-d800-1004-8f53-704dbfababa8",
-					 "instancename":"CrackLength"
-				}
-		 }
-	},
-	{
-		"version": 1,
-		"modelId": "995f8657-d90a-1004-8438-64281c6cab63",
-		"interfaceId": "995f8658-d90a-1004-8438-64281c6cab63",
-		"type": "interface",
-		"name": "Velocity1 Interface",
-		"path": [
-			33,
-			34,
-			35
-		],
-		"serviceId": 43,
-		"domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-		"id": 2
-	},
-	{
-		"version": 1,
-		"modelId": "aff647dc-d82f-1004-8e7b-5de38b2eeb0f",
-		"interfaceId": "aff647dd-d82f-1004-8e7b-5de38b2eeb0f",
-		"type": "interface",
-		"name": "Default Interface",
-		"path": [
-			30
-		],
-		"serviceId": 44,
-		"domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-		"id": 3
-	},
-	{
-		"version": 1,
-		"modelId": "bd85f846-d8f4-1004-8f94-37c24b788523",
-		"interfaceId": "bd85f847-d8f4-1004-8f94-37c24b788523",
-		"type": "interface",
-		"name": "Upload a file interface",
-		"path": [
-			31
-		],
-		"serviceId": 41,
-		"domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-		"id": 4
-	},
-	{
-		"version": 1,
-		"modelId": "995f8657-d90a-1004-8438-64281c6cab63",
-		"interfaceId": "995f8658-d90a-1004-8438-64281c6cab63",
-		"type": "interface",
-		"name": "Velocity1 Interface",
-		"path": [
-			33,
-			34,
-			35
-		],
-		"serviceId": 45,
-		"domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-		"id": 5
-	},
-	{
-		"version": 1,
-		"modelId": "12bb9d5e-d8ec-1004-8394-4597bfb6a5f0",
-		"interfaceId": "12bb9d5f-d8ec-1004-8394-4597bfb6a5f0",
-		"type": "interface",
-		"name": "Default Interface",
-		"path": [
-			32
-		],
-		"serviceId": 46,
-		"domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-		"id": 6
-	},
-	{
-		"version": 1,
-		"modelId": "aff647dc-d82f-1004-8e7b-5de38b2eeb0f",
-		"interfaceId": "aff647dd-d82f-1004-8e7b-5de38b2eeb0f",
-		"type": "interface",
-		"name": "Default Interface",
-		"path": [
-			30
-		],
-		"serviceId": 13,
-		"domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-		"id": 9
-	},
-	{
-		"version": 1,
-		"modelId": "aff647dc-d82f-1004-8e7b-5de38b2eeb0f",
-		"interfaceId": "aff647dd-d82f-1004-8e7b-5de38b2eeb0f",
-		"type": "interface",
-		"name": "Default Interface",
-		"path": [
-			30
-		],
-		"serviceId": 49,
-		"domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-		"id": 10
-	}
-]
+    },
+    "outParams": {
+        "Alpha": {
+            "type": "Real",
+            "name": "Alpha",
+            "unit": "no unit",
+            "category": "no unit",
+            "value": "0.3333333333333333",
+            "parameterid": "d9f30f3d-d800-1004-8f53-704dbfababa8",
+            "instancename": "Alpha"
+        }
+    }
+}]

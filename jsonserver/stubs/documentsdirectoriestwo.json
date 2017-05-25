@@ -1,7 +1,7 @@
 [{
-    "id": 726,
-    "documentName": "promo_5.png",
-    "documentUrl": "http://promo_5.png.jpg",
+    "id": 800,
+    "documentName": "promo_99.png",
+    "documentUrl": "http://promo_99.png",
     "parentType ": "PROJECT ",
     "parentId ": 102,
     "ownerId": 179,
@@ -15,12 +15,11 @@
     "version": 0,
     "directoryId": 100,
     "baseDocId": 792,
-    "hasVersions": false,
-    "isAccepted": false
+    "hasVersions": false
 }, {
-    "id": 727,
-    "documentName": "promo_10.png",
-    "documentUrl": "http://promo_10.png.jpg",
+    "id": 801,
+    "documentName": "promo_100.png",
+    "documentUrl": "http://promo_100.png",
     "parentType ": "PROJECT ",
     "parentId ": 102,
     "ownerId": 179,
@@ -34,6 +33,5 @@
     "version": 0,
     "directoryId": 100,
     "baseDocId": 792,
-    "hasVersions": false,
-    "isAccepted": true
+    "hasVersions": false
 }]

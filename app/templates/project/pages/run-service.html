@@ -17,10 +17,28 @@
         </div>
     </md-toolbar>
 </div>
+
+<div class="project-run-services padding-10" ng-if="!runHistory" ng-show="hasCustomUI && service.interfaceModel.inParams.inputFile" layout="column">
+	<div layout="row" layout-align="space-between center" style="padding: 0px 15px; margin: 0px 15px;">
+          <h3 flex>Input File From Workspace:</h3>
+          <div flex="40" style="margin: 0px 8px">
+            <md-select placeholder="Select Project" ng-model="inputFile.projectModel" md-on-open="loadProjects()" ng-change="updateFileList(inputFile)">
+                <md-option ng-repeat="p in projects" ng-value="{{p}}">{{p.title}}</md-option>
+            </md-select>
+          </div>
+          <div flex="40">
+            <md-select ng-show="inputFile.projectModel" placeholder="Select File" ng-model="inputFile.projectModelFile" ng-change="setinputFileValue(inputFile.projectModelFile)">
+                <md-option ng-repeat="f in projectFiles" ng-value="{{f}}">{{f.documentName}}</md-option>
+            </md-select>
+          </div>
+  </div>
+</div>
+
 <div ng-show="hasCustomUI" layout = "row">
-  <div class="container">
+  <div class="container" style="width: 100%;">
       <!--Custom UI Content will be displayed here-->
-      <div class="content-placeholder"></div>
+      <div class="content-placeholder">
+      </div>
   </div>
 </div>
 <div ng-if="!service.id" class="project-details-services" layout="column">
@@ -63,6 +81,7 @@
 	<h3>Your Run Time: {{runTime}} s.</h3>
 	<h3>Last Run Time: {{lastRunTime}} s.</h3>
 	<h3>Average Run: {{averageRun}} s.</h3>
+
 	<div layout="row">
 		<div flex="50" class="inputs">
 			<div layout="row" class="margin-bottom-10" layout-align="space-between center">
@@ -79,7 +98,20 @@
 					</md-button>
 				</div>
 			</div>
+
 			<md-content>
+        <div ng-if="service.interfaceModel.inParams.inputFile" layout="row" layout-align="space-between center">
+          <h3>Input File From Workspace:</h3>
+          <div flex="75">
+            <md-select placeholder="Select Project" ng-model="inputFile.projectModel" md-on-open="loadProjects()" ng-change="updateFileList(inputFile)">
+                <md-option ng-repeat="p in projects" ng-value="{{p}}">{{p.title}}</md-option>
+            </md-select>
+            <md-select ng-show="inputFile.projectModel" placeholder="Select File" ng-model="inputFile.projectModelFile" ng-change="setinputFileValue(inputFile.projectModelFile)">
+                <md-option ng-repeat="f in projectFiles" ng-value="{{f}}">{{f.documentName}}</md-option>
+            </md-select>
+          </div>
+        </div>
+
 				<md-list class="list-inputs" ui-sortable="sortableOptions" ng-model="service.interfaceModel.inputs">
 					<md-list-item ng-repeat="item in service.interfaceModel.inputs" layout="row" layout-align="start end">
 						<div flex="50" class="left">

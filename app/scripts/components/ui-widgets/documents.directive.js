@@ -458,24 +458,28 @@ $scope.$watchCollection('selectedVips', function() {
 			$scope.shareOptions=shareOptions;
             $scope.projectId = projectId;
             $scope.shareEmail = '';
-            
+
             $scope.shareType = '';
             $scope.shareTypes = {
                 'dmc_member': 'DMC Member',
                 'organization_member' : 'Organization Member',
-                'external': 'Other (Email)'
+                'external': 'Other (Email)',
+								'dmc_workspace': 'DMC Workspace',
             };
-			
+
 			ajax.get(dataFactory.documentsUrl(file.baseDocId).versioned, {}, function(response){
 				$scope.docs = response.data;
 				$scope.currentDoc = response.data.slice(-1)[0];
 			});
 
 			$scope.search = function(query){
-				
+
 				var getUsersUrl = '';
-				
+
 				switch ($scope.shareOption.type) {
+					case 'dmc_workspace':
+						getUsersUrl = dataFactory.getProjects('all-projects')
+						break;
 					case 'organization_member':
 						getUsersUrl = dataFactory.getUsersByOrganization($rootScope.userData.companyId);
 						break;
@@ -483,7 +487,7 @@ $scope.$watchCollection('selectedVips', function() {
 						getUsersUrl = dataFactory.getUserList();
 						break;
 				}
-				
+
 				return ajax.get(getUsersUrl, {
 						page: 0,
 						pageSize: 500,
@@ -514,7 +518,7 @@ $scope.$watchCollection('selectedVips', function() {
                 projectId : "="
           	},
 			templateUrl: 'templates/components/ui-widgets/documents-workspace.html',
-			controller: function($scope, $element, $attrs, dataFactory, ajax, $mdDialog, $q, fileUpload, $rootScope, toastModel) {
+			controller: function($scope, $element, $attrs, dataFactory, ajax, $mdDialog, $q, fileUpload, $rootScope, toastModel, $http) {
 
 				$scope.selectedDirs = {};
 				$scope.selectedFiles = {};
@@ -712,7 +716,6 @@ $scope.$watchCollection('selectedVips', function() {
 							//handled in modal
 						});
 				};
-				
 				// This is only a placeholder to loosely structure the options around sharing
 				$scope.shareOptions = [
 					{
@@ -732,6 +735,12 @@ $scope.$watchCollection('selectedVips', function() {
 						type: "external",
 						internal: false,
 						email: true
+					},
+					{
+						name: "DMC Workspace",
+						type: "dmc_workspace",
+						internal: true,
+						email: false
 					}
 				];
 
@@ -750,11 +759,36 @@ $scope.$watchCollection('selectedVips', function() {
 						}).then(function(choice){
 							var toastUser = choice.internal ? choice.user.displayName : choice.user.email
 							var user = choice.internal ? choice.user.id : choice.user.email;
-							ajax.create(dataFactory.documentsUrl(choice.doc.id, user, choice.internal, choice.email).share,{},function(resp){
-								toastModel.showToast("success", file.documentName+" shared with "+toastUser+".");
-							});
+
+							if(choice.user.projectManagerId){
+								toastModel.showToast("success", file.documentName+" LOL  "+choice.user.projectManager+".");
+
+								ajax.create(dataFactory.documentsUrl(choice.doc.id, user).shareWs,{},function(resp){
+									toastModel.showToast("success", file.documentName+" shared with "+toastUser+".");
+								});
+							}
+							else {
+								ajax.create(dataFactory.documentsUrl(choice.doc.id, user, choice.internal, choice.email).share,{},function(resp){
+									toastModel.showToast("success", file.documentName+" shared with "+toastUser+".");
+								});
+							}
+
+
 						});
 				}
+				
+				$scope.acceptFile = function(documentId) {
+					$http.patch(dataFactory.documentsUrl(documentId).accept, {}).then(function() {
+                        $scope.changeDir($scope.currentDir.id);
+					});
+				};
+				
+				$scope.declineFile = function(file) {
+                    $http.delete(dataFactory.documentsUrl(file.id).delete, {}).then(function(response) {
+                        $scope.changeDir($scope.currentDir.id);
+                    });
+				};
+				
 
 				$scope.delete = function(ev){
 					confirm('Are you sure you want to delete these files/folders?', ev).then(function(){
