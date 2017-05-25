@@ -13,7 +13,8 @@
    "socialMediaLinkedin":null,
    "socialMediaTwitter":null,
    "socialMediaInthenews":null,
-   "perferedCommMethod":"1",
+    "perferedCommMethod":"1",
+  "productionCapabilities": "[{\"name\":\"Machining :: Labor Rate\",\"unit\":\"dollars / hour\",\"value\":\"20\"}]",
    "address":{
       "id":1,
       "streetAddress1":"1415 N Cherry",

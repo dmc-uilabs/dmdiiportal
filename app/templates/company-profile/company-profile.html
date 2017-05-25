@@ -266,7 +266,17 @@
         </div>
     </md-content>
 </md-tab>
+<md-tab label="VPC" ng-if="userData.isAdmin || userData.isMember || userData.isDmdiiAdmin">
+    <md-content class="tab-projects" layout="row">
+        <div layout="column" flex="100" class="padding-left8">
+            <h3>The url to the document can be found here: </h3>
+        </div>
+    </md-content>
+</md-tab>
 </md-tabs>
+
+
+
 
 <!--MEMBERS -->
 
