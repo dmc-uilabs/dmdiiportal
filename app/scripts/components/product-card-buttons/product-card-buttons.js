@@ -64,6 +64,18 @@ angular.module('dmc.component.product-card-buttons',[
         return false;
       }
 
+
+
+      $scope.searchWorkspace = function(queryWs) {
+        return ajax.get(dataFactory.getWorspaceByName(queryWs)).then(function(response) {
+          if (response.data.content) {
+            return response.data.content;
+          } else {
+            return response.data;
+          }
+        });
+      };
+
       $scope.loadProjects = function() {
           var unfiltered_projects = $scope.$root.projects;
 
