@@ -74,7 +74,8 @@ server.use(jsonServer.rewriter({
     //  info for org 1 (UI Labs)
     '/user/organization/:id': '/userByOrganization',
     '/services/:id/dome-interfaces': '/dome-interfaces',
-    '/organizations/myVPC': '/myVPC'
+    '/organizations/myVPC': '/myVPC',
+    '/searchworkspace/:id': '/searchworkspace'
     // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
 
