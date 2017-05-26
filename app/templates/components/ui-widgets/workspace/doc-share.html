@@ -33,6 +33,9 @@
               <md-item-template>
                   <span md-highlight-text="searchText">{{item.displayName}}</span>
               </md-item-template>
+              <md-not-found>
+                  No matches found for "{{item.displayName}}".
+              </md-not-found>
           </md-autocomplete>
 
 
@@ -42,16 +45,17 @@
               md-no-cache="true"
               md-selected-item="user"
               md-search-text="query"
-              md-items="item in search(query)"
+              md-items="item in searchWs(query)"
               md-item-text="item.title"
               md-floating-label="Select DMC Workspace"
               ng-show="shareOption.type == 'dmc_workspace'">
               <md-item-template>
                   <span md-highlight-text="searchText">{{item.title}}</span>
               </md-item-template>
+              <md-not-found>
+                  No matches found for "{{item.title}}".
+              </md-not-found>
           </md-autocomplete>
-
-
 
           <md-input-container ng-hide="!shareOption || shareOption.internal">
       			<label>Email</label>
