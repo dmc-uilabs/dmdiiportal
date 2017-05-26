@@ -19,6 +19,21 @@
 </div>
 
 <div class="project-run-services padding-10" ng-if="!runHistory" ng-show="hasCustomUI && service.interfaceModel.inParams.inputFile" layout="column">
+  <div layout="row" layout-align="space-between center" style="padding: 15px; margin: 0px 15px; border-bottom: solid 1px lightgrey;">
+
+    <div layout="column">
+      <h2><a ui-sref="project.services-detail({ServiceId: ServiceId})" >{{service.title}}</a></h2>
+      <a ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/run/run-history'}}" class="link margin-top8">
+        Run History
+      </a>
+    </div>
+
+    <md-button ng-disabled="isRunning()" ng-click="run()" class="md-raised md-primary">
+      Run
+    </md-button>
+
+
+  </div>
 	<div layout="row" layout-align="space-between center" style="padding: 0px 15px; margin: 0px 15px;">
           <h3 flex>Input File From Workspace:</h3>
           <div flex="40" style="margin: 0px 8px">
