@@ -6,7 +6,7 @@
 				<ng-md-icon icon="close" fill="#fff" size="32" aria-label="Close dialog"></ng-md-icon>
 			</md-button>
 		</div>
-		<h3>Results: {{(history.status == 1 ? 'success' : 'error')}}</h3>
+		<h3>Results: {{(history.status == 1 ? 'success' : (history.status == -1 ? 'error' : 'running' ))}}</h3>
 		<div layout="row" layout-align="space-between center">
 			<div flex="45">
 			<md-button class="md-primary md-raised" ng-click="rerun()">
@@ -25,7 +25,7 @@
 				<h2>Inputs</h2>
 				<md-divider></md-divider>
 				<md-content>
-	
+
 
 					<div layout="column">
 						<div layout="row" ng-repeat="item in history.interface.inputs track by $index">
