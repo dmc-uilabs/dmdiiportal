@@ -526,7 +526,8 @@ directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function($pa
         user: $scope.user,
         doc: $scope.currentDoc,
         internal: $scope.shareOption.internal,
-        email: $scope.shareOption.email
+        email: $scope.shareOption.email,
+        selectedworkspace: $scope.selectedworkspace
       });
     }
   }])
@@ -796,10 +797,16 @@ directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function($pa
             },
             clickOutsideToClose: true
           }).then(function(choice) {
-            var toastUser = choice.internal ? choice.user.displayName : choice.user.email
-            var user = choice.internal ? choice.user.id : choice.user.email;
+            if (choice.selectedworkspace) {
+              choice.user = choice.selectedworkspace
+              var user = choice.selectedworkspace.id;
+            } else {
+              var toastUser = choice.internal ? choice.user.displayName : choice.user.email
+              var user = choice.internal ? choice.user.id : choice.user.email;
+            }
 
-            if (choice.user.projectManagerId) {
+
+            if (choice.selectedworkspace) {
               toastModel.showToast("success", file.documentName + " LOL  " + choice.user.projectManager + ".");
 
               ajax.create(dataFactory.documentsUrl(choice.doc.id, user).shareWs, {}, function(resp) {
