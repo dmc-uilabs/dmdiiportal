@@ -371,7 +371,7 @@ angular.module('dmc.company-profile').
                             name: $scope.vpc[i].name,
                             unit: $scope.vpc[i].unit,
                             help: $scope.vpc[i].help,
-                            value:Number($scope.vpc[i].value)
+                            value:parseFloat($scope.vpc[i].value)
                         });
                     }
                 	$scope.source.productionCapabilities = JSON.stringify(contents);
@@ -413,7 +413,7 @@ angular.module('dmc.company-profile').
                         name: $scope.arr_json[i].name,
                         unit: $scope.arr_json[i].unit,
                         help: $scope.arr_json[i].help,
-                        value:Number($scope.myForm[i].value)
+                        value:parseFloat($scope.myForm[i].value)
                       });
                       //clear values in default form when submitted
                       $scope.myForm[i] = undefined;
