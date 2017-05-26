@@ -637,7 +637,8 @@ angular.module('dmc.data', [])
           share: localhost + 'documents/' + id + '/share?user=' + user + '&internal=' + internal + '&email=' + email,
           accept: localhost + 'documents/' + id + '/accept',
           shareWs: localhost + 'documents/' + id + '/shareWs?ws=' + user,
-          saveSr: localhost + 'documents/' + id + '/saveSr?url=' + user
+          // saveSr: localhost + 'documents/' + id + '/saveSr?url=' + user
+          saveSr: localhost + 'documents/' + id + '/saveSr'
         }
       },
       directoriesUrl: function(id) {
