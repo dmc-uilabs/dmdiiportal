@@ -378,6 +378,31 @@ angular.module('dmc.company-profile').
 	                console.log($scope.source.productionCapabilities);
                     toastModel.showToast('success', 'VPC updated, Save organization to complete.');
                 };
+                
+                $scope.deleteFromVPC = function(vpcName, index) {
+                	if (vpcName === $scope.vpc[index].name) {
+                		$scope.vpc.splice(index, 1);
+                		$scope.source.productionCapabilities = JSON.stringify($scope.vpc);
+	                }
+                };
+                
+                var addToVPC = function(contents, oldArray) {
+                    var newArray = oldArray;
+                	for (var i=0; i < contents.length; i++) {
+                		var found = false;
+                		for(var j=0; j < oldArray.length; j++) {
+                    		if (contents[i].name === oldArray[j].name) {
+                    			newArray[j].value = contents[i].value;
+			                    found = true;
+                    			break;
+		                    }
+	                    }
+	                    if (found === false) {
+                			newArray.push(contents[i]);
+	                    }
+                    }
+	                return newArray;
+                };
 
                 $scope.submitMyForm=function(){
                   $scope.contents=[];
@@ -389,11 +414,13 @@ angular.module('dmc.company-profile').
                         unit: $scope.arr_json[i].unit,
                         help: $scope.arr_json[i].help,
                         value:Number($scope.myForm[i].value)
-                      })
+                      });
+                      //clear values in default form when submitted
+                      $scope.myForm[i] = undefined;
                     }
-
+                    $scope.vpc = addToVPC($scope.contents, $scope.vpc);
                   }
-                  $scope.source.productionCapabilities = JSON.stringify($scope.contents);
+                  $scope.source.productionCapabilities = JSON.stringify($scope.vpc);
 	                console.log($scope.source.productionCapabilities);
                   toastModel.showToast('success', 'VPC submitted, Save organization to complete.');
                   closeCategories();
