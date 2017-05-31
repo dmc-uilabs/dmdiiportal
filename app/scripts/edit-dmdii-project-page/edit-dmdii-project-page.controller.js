@@ -293,6 +293,17 @@ angular.module('dmc.edit-project')
                 }
             };
 
+
+            $scope.searchMembers = function(query) {
+              return ajax.get(dataFactory.getUserList(), {page: 0, pageSize: 100, displayName: query}).then(function(response) {
+                if (response.data.content) {
+                  return response.data.content;
+                } else {
+                  return response.data;
+                }
+              });
+            };
+
             function apply(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             }
