@@ -8,7 +8,7 @@
             <md-autocomplete flex
                 md-input-name="autocomplete"
                 md-no-cache="true"
-                md-selected-item="user"
+                md-selected-item="projectModel"
                 md-search-text="queryWs"
                 md-items="item in searchWorkspace(queryWs)"
                 md-item-text="item.title"
@@ -29,7 +29,7 @@
                      ng-disabled="!projectModel"
                      class="close"
                      style="margin-left:6px"
-                     ng-click="saveToProject(projectModel)">Add
+                     ng-click="loadProjects();saveToProject(projectModel.id)">Add
           </md-button>
       </div>
   </div>

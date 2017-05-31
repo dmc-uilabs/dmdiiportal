@@ -5,10 +5,10 @@
                 <ng-md-icon icon="close" size="17"></ng-md-icon>
             </md-button>
             <div layout="column" class="select-block" flex>
-              <md-autocomplete flex 
+              <md-autocomplete flex
                   md-input-name="autocomplete"
                   md-no-cache="true"
-                  md-selected-item="user"
+                  md-selected-item="projectModel"
                   md-search-text="queryWs"
                   md-items="item in searchWorkspace(queryWs)"
                   md-item-text="item.title"
@@ -27,7 +27,7 @@
             <md-button aria-label="Add"
                        layout="column"
                        class="close"
-                       ng-click="saveToProject(projectModel)">Add
+                       ng-click="loadProjects();saveToProject(projectModel.id)">Add
             </md-button>
         </div>
     </div>
