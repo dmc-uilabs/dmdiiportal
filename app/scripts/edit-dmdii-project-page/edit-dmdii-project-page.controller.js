@@ -306,7 +306,7 @@ angular.module('dmc.edit-project')
 
             function filterToUILABSOnly(data) {
               return data.filter(function(contact){
-                return contact.email.indexOf('uilabs') != -1 && contact.companyName.toUpperCase().indexOf('UI LABS') != -1
+                return contact.email.toUpperCase().indexOf('UILABS') != -1 || contact.companyId == 1;
               })
             };
 
