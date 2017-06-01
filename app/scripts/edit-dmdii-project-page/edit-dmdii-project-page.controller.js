@@ -297,11 +297,17 @@ angular.module('dmc.edit-project')
             $scope.searchMembers = function(query) {
               return ajax.get(dataFactory.getUserList(), {page: 0, pageSize: 100, displayName: query}).then(function(response) {
                 if (response.data.content) {
-                  return response.data.content;
+                  return filterToUILABSOnly(response.data.content);
                 } else {
-                  return response.data;
+                  return filterToUILABSOnly(response.data);
                 }
               });
+            };
+
+            function filterToUILABSOnly(data) {
+              return data.filter(function(contact){
+                return contact.email.indexOf('uilabs') != -1 && contact.companyName.toUpperCase().indexOf('UI LABS') != -1
+              })
             };
 
             function apply(){
