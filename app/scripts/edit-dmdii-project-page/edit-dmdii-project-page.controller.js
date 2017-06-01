@@ -299,9 +299,11 @@ angular.module('dmc.edit-project')
                 if (response.data.content) {
                   var matchingMembers = filterToUILABSOnly(response.data.content);
                   return matchingMembers;
+                  // return response.data.content;
                 } else {
                   var matchingMembers = filterToUILABSOnly(response.data);
                   return matchingMembers;
+                  // return response.data;
                 }
               });
             };
