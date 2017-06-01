@@ -285,6 +285,13 @@ $lines-to-show-title: 2;
   //   border-color:grey;
   //   // width:150px;
   // }
+  input {
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+  }
+
+  md-autocomplete input:not(.md-input) {
+    font-size:10px;
+  }
 
   md-select,
   md-select:not([disabled]):focus {
