@@ -195,7 +195,7 @@ $lines-to-show-title: 2;
       line-height: 47px;
     }
     .back-to-add{
-      min-width: 20px;
+      min-width: 40px;
       fill: #fff;
     }
     a.page-href {
@@ -243,15 +243,16 @@ $lines-to-show-title: 2;
 .adding-to-project{
   width: 100%;
 
-  .close{
+  .atulclose{
     width: 36px;
     min-width: 36px;
-    height: 36px;
-    min-height: 36px;
-    line-height: 36px;
+    // height: 36px;
+    // min-height: 36px;
+    // line-height: 36px;
+    background-color:#777;
   }
   .close:hover{
-    background-color: #777;
+    background-color: #65AF3F;
   }
   .add{
     width: 36px;
@@ -263,9 +264,28 @@ $lines-to-show-title: 2;
   ng-md-icon{
     fill: #fff;
   }
-  md-input-container{
-    padding: 0;
-  }
+  // md-input-container{
+  //   padding: 0;
+  // }
+  //
+  // md-autocomplete input:not(.md-input) {
+  //   background: #909090 none repeat scroll 0 0;
+  //   border: medium none;
+  //   box-shadow: none;
+  //   box-sizing: border-box;
+  //   font-size: 14px;
+  //   height: 40px;
+  //   line-height: 40px;
+  //   outline: medium none;
+  //   padding: 0 18px;
+  //   width: 100%;
+  // }
+
+  // md-input-container:not([disabled]) .md-input{
+  //   border-color:grey;
+  //   // width:150px;
+  // }
+
   md-select,
   md-select:not([disabled]):focus {
     @include borderRadius(3px);

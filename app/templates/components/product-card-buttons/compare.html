@@ -29,13 +29,13 @@
                      ng-disabled="!projectModel"
                      class="close"
                      style="margin-left:6px"
-                     ng-click="loadProjects();saveToProject(projectModel.id)">Add
+                     ng-click="saveToProject(projectModel.id)">Add
           </md-button>
       </div>
   </div>
 
   <md-button aria-label="Back to Add"
-             class="back-to-add"
+             class="md-raised"
              ng-click="backToAdd()"
              ng-show="addingToProject == false && cardSource.added">
       <ng-md-icon icon="close" size="17"></ng-md-icon>

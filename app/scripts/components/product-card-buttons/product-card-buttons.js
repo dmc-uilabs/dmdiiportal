@@ -65,27 +65,29 @@ angular.module('dmc.component.product-card-buttons',[
       }
 
 
+      $scope.searchWorkspace=function(queryWs){
+        var unfiltered_projects = $scope.$root.projects;
+        // $scope.projects=unfiltered_projects;
 
-      $scope.searchWorkspace = function(queryWs) {
-        return ajax.get(dataFactory.getWorspaceByName(queryWs)).then(function(response) {
-          if (response.data.content) {
-            return response.data.content;
-          } else {
-            return response.data;
-          }
+        // Filter projects for only projects that user is a member of
+        ajax.get(dataFactory.getMembersToProject(),{
+            profileId : $scope.userData.profileId
+        },function(response){
+          $scope.filtered_response = response.data.filter(acceptedInvite);
+          $scope.projects = unfiltered_projects.filter(isMember);
         });
-      };
 
-      $scope.loadProjects = function() {
-          var unfiltered_projects = $scope.$root.projects;
-          // Filter projects for only projects that user is a member of
-          ajax.get(dataFactory.getMembersToProject(),{
-              profileId : $scope.userData.profileId
-          },function(response){
-            $scope.filtered_response = response.data.filter(acceptedInvite);
-            $scope.projects = unfiltered_projects.filter(isMember);
-          });
-      };
+        //Filtering Done Here
+        queryWs=queryWs.toLowerCase();
+        var item =$scope.projects.filter(function (obj){
+          if (obj.title.toLowerCase().includes(queryWs)){
+            return obj;
+          }
+          // return obj.title.includes(queryWs);
+        });
+        return item;
+      }
+
 
       $scope.addToProject = function(){
         if (!$rootScope.projects) {
