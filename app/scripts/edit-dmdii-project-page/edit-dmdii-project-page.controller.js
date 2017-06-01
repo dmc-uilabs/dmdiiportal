@@ -297,13 +297,9 @@ angular.module('dmc.edit-project')
             $scope.searchMembers = function(query) {
               return ajax.get(dataFactory.getUserList(), {page: 0, pageSize: 100, displayName: query}).then(function(response) {
                 if (response.data.content) {
-                  var matchingMembers = filterToUILABSOnly(response.data.content);
-                  return matchingMembers;
-                  // return response.data.content;
+                  return response.data.content;
                 } else {
-                  var matchingMembers = filterToUILABSOnly(response.data);
-                  return matchingMembers;
-                  // return response.data;
+                  return response.data;
                 }
               });
             };
