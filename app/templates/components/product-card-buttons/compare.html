@@ -1,7 +1,7 @@
 <div class="block-buttons" layout="row">
   <div class="adding-to-project" ng-show="addingToProject">
       <div layout="row" layout-align="center center" class="inner-add-to-project" flex>
-          <md-button aria-label="Cancel" layout="column" class="close" style="margin-right:6px" ng-click="cancelAddToProject()">
+          <md-button aria-label="Cancel" layout="column" class="workspaceclose" style="margin-right:6px" ng-click="cancelAddToProject()">
               <ng-md-icon icon="close" size="17"></ng-md-icon>
           </md-button>
           <div layout="column" class="select-block" flex>
@@ -27,7 +27,7 @@
           <md-button aria-label="Add"
                      layout="column"
                      ng-disabled="!projectModel"
-                     class="close"
+                     class="workspaceclose"
                      style="margin-left:6px"
                      ng-click="saveToProject(projectModel.id)">Add
           </md-button>

@@ -240,10 +240,11 @@ $lines-to-show-title: 2;
   }
 }
 
+
 .adding-to-project{
   width: 100%;
 
-  .atulclose{
+  .workspaceclose{
     width: 36px;
     min-width: 36px;
     // height: 36px;
@@ -251,9 +252,11 @@ $lines-to-show-title: 2;
     // line-height: 36px;
     background-color:#777;
   }
-  .close:hover{
+  .workspaceclose:hover{
     background-color: #65AF3F;
   }
+
+
   .add{
     width: 36px;
     min-width: 36px;

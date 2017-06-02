@@ -1,7 +1,7 @@
 <div class="product-card-container product-card__footer" ng-if="cardStyle != 'included' && !removeFeatured && !addFeatured">
     <div class="adding-to-project" ng-show="addingToProject">
         <div layout="row" layout-align="center center" class="inner-add-to-project" flex>
-            <md-button aria-label="Cancel" layout="column" class="close atulclose" ng-click="cancelAddToProject()">
+            <md-button aria-label="Cancel" layout="column" class="workspaceclose" ng-click="cancelAddToProject()">
                 <ng-md-icon icon="close" size="17"></ng-md-icon>
             </md-button>
             <div layout="column" class="select-block" flex>
@@ -10,6 +10,7 @@
                   md-no-cache="true"
                   md-selected-item="projectModel"
                   md-search-text="queryWs"
+                  md-clear-button="false"
                   md-items="item in searchWorkspace(queryWs)"
                   md-item-text="item.title"
                   placeholder="Search for Workspace">
@@ -26,7 +27,7 @@
             </div>
             <md-button aria-label="Add"
                        layout="column"
-                       class="close atulclose"
+                       class="workspaceclose"
                        ng-click="saveToProject(projectModel.id)">Add
             </md-button>
         </div>
