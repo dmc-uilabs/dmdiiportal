@@ -145,6 +145,16 @@
                                                   "class": "release-bug"
                                                 }
                                               ]
+                                            },
+                                            {
+                                              "content": "Organization Tagging",
+                                              "notes":
+                                              [
+                                                {
+                                                  "content": "Organization Administrators can now tag other organizations with their relationship status, which are only viewable by members of your organization. The tags at this moment will allow administrators to tag organization with anything they wish, but in a future update the tag names will be predefined. Additionally these tags are not yet something that can be viewed after they are saved but will be in a future update. In the future, these tag will allow organizations to do things such as invite all of organizations with a particular tag to a workspace they wish for them to participate in.",
+                                                  "class": "release-feature"
+                                                }
+                                              ]
                                             }
                                           ]
                                     }
@@ -158,9 +168,45 @@
                               "notes":
                               [
                                 {
+                                  "content": "Sorting in Workspace Directory",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "In a previous release, we updated the user interface for workspaces as well as provided the ability for users to sort workpspaces they are viewing in the directory list. After that release, when workspaces were being sorted by the date of workspace creation or by the name of the workspace, results at times would be repeated and each page visited would return only sorted information for what that page number would display before. Now when sorting results, what one wold expect to be returned is now being returned.",
+                                      "class": "release-bug"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": "Filtering in Workspace Directory",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "In a previous release, we updated the user interface for workspaces as well as provided the ability for users to filter workspaces they are viewing in the directory. In that release, filtering would only filter workspaces found on that particular page list, so each next page a user would visit would have a different amount of results depending on the amount of matching results. Now each page a user visits has the same number of results and does not repeat information that has been shown to the user on previous pages.",
+                                      "class": "release-bug"
+                                    }
+                                  ]
+                                },
+                                {
                                   "content": "Workspace Profile",
                                   "notes":
                                   [
+                                        {
+                                              "content": "Edit Workspace",
+                                              "notes":
+                                              [
+                                                {
+                                                  "content": "Workspace Delete Re-implemented",
+                                                  "notes":
+                                                  [
+                                                    {
+                                                      "content": "In a previous release, we implemented the ability for owners of workspaces to delete their workspaces. In a more recent update, that feature was lost in our deployment. Once we found this had happened, we reintroduced the code for this feature in this release.",
+                                                      "class": "release-bug"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                        },
                                         {
                                               "content": "Home"
                                         },
@@ -181,6 +227,26 @@
                                                     {
                                                       "content": "Early users of our website would have noticed that at times when they would upload files to their workspaces' documents page, or pictures to their profile pages, those files at time would not pass our file scanning process and those files would not be retrievable. We found that the reason for this was due to special characters being contained in the file name that would not work well with our file storage solution. Characters such as: ? , | * & ^ etc, would during upload time cause the file to be considered malicious or unsafe. We've updated our upload process to now removed all special characters that could cause files to be tagged as unsafe by our platform before being scanned by our platform. False positives for dangerous files should no longer happen going forward.",
                                                       "class": "release-bug"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "content": "Last Scan Date for Uploaded Documents",
+                                                  "notes":
+                                                  [
+                                                    {
+                                                      "content": "Files that get uploaded to the website, be that on a workspace's document page or on a DMDII Project's Profile page, that file now include a property that shows when the file was scanned and passed our infrastructure's scans. Files that were uploaded previous to this will all be tagged as having been last scanned on the same day.",
+                                                      "class": "release-feature"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "content": "Encryption Type for Uploaded Files",
+                                                  "notes":
+                                                  [
+                                                    {
+                                                      "content": "Files that get uploaded to our website always get encrypted when stored. Going forward, each time a file is uploaded to our website, we will let you know when encryption method is being used to keep your files safe on our website. The encryption type will be listed in the file properties for workspace documents as well as DMDII Project documents.",
+                                                      "class": "release-feature"
                                                     }
                                                   ]
                                                 },
@@ -298,16 +364,6 @@
                   "notes":
                   [
                         {
-                          "content": "Auto-Complete when Adding Application to Workspace",
-                          "notes":
-                          [
-                            {
-                              "content": "In the past, when users needed to add applications from the DMC Marketplace to their workspaces, they would use a drop-down to do so. Now when users go about adding applications to their workspaces they will type the workspace name into an auto-complete field, making it easier for users with many workspaces to add apps to their workspaces.",
-                              "class": "release-feature"
-                            }
-                          ]
-                        },
-                        {
                           "content": "Application Profile page"
                         }
                   ]
@@ -362,6 +418,26 @@
                                     {
                                       "content": "Early users of our website would have noticed that at times when they would upload files to their workspaces' documents page, or pictures to their profile pages, those files at time would not pass our file scanning process and those files would not be retrievable. We found that the reason for this was due to special characters being contained in the file name that would not work well with our file storage solution. Characters such as: ? , | * & ^ etc, would during upload time cause the file to be considered malicious or unsafe. We've updated our upload process to now removed all special characters that could cause files to be tagged as unsafe by our platform before being scanned by our platform. False positives for dangerous files should no longer happen going forward.",
                                       "class": "release-bug"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": "Last Scan Date for Uploaded Documents",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "Files that get uploaded to the website, be that on a workspace's document page or on a DMDII Project's Profile page, that file now include a property that shows when the file was scanned and passed our infrastructure's scans. Files that were uploaded previous to this will all be tagged as having been last scanned on the same day.",
+                                      "class": "release-feature"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": "Encryption Type for Uploaded Files",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "Files that get uploaded to our website always get encrypted when stored. Going forward, each time a file is uploaded to our website, we will let you know when encryption method is being used to keep your files safe on our website. The encryption type will be listed in the file properties for workspace documents as well as DMDII Project documents.",
+                                      "class": "release-feature"
                                     }
                                   ]
                                 }
