@@ -22,7 +22,7 @@
         <h2>Services</h2>
         <div layout="row">
             <a class="link" href="marketplace.php">Browse Services</a>
-            <a ng-if="userData.isDmdiiAdmin || ([158, 191, 339].includes(userData.companyId))" class="link margin-left16" ng-href="{{'project.php#/' + projectData.id + '/upload-service'}}">Register Services</a>
+            <a ng-if="userData.isDmdiiAdmin || ([158, 191, 339, 237].includes(userData.companyId))" class="link margin-left16" ng-href="{{'project.php#/' + projectData.id + '/upload-service'}}">Register Services</a>
         </div>
     </div>
     <md-content ng-if="projectData.services.data.length">
