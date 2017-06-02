@@ -129,7 +129,7 @@
                               ]
                         },
                         {
-                              "content": "Organization",
+                              "content": "Organizations",
                               "notes":
                               [
                                     {
@@ -255,8 +255,14 @@
                                                   "notes":
                                                   [
                                                     {
-                                                      "content": "Avid users of our website know that workspaces allow users to do team management, task management, application management, discussions and much more. Many users also use workspaces to store important documents for projects they are working on. Users now have the ability to share documents they've uploaded to their workspaces to other workspace (applicable to public and private workspaces). Workspace owners will be notified that someone is attempting to share a file with them and will need to decide whether to accept or decline the file being accessible to users and themselves in the workspace.",
-                                                      "class": "release-feature"
+                                                      "content": "Avid users of our website know that workspaces allow users to do team management, task management, application management, discussions and much more. Many users also use workspaces to store important documents for projects they are working on. With this release users now have the ability to share documents they've uploaded to their workspaces to other workspace (applicable to public and private workspaces). Workspace owners will be notified that someone is attempting to share a file with them and will need to decide whether to accept or decline whether the file should be accessible to members of the workspace.",
+                                                      "class": "release-feature",
+                                                      "notes":
+                                                      [
+                                                        {
+                                                          "content": "Always make sure that after the file has been accepted, that the access leve for the file has been set, otherwise, team members may still not be able to access the files. The access level is changed by clicking the edit button for the particular file, click on the Access tab, choosing the access level from the drop-down menu, and finally saving your changes."
+                                                        }
+                                                      ]
                                                     }
                                                   ]
                                                 }
@@ -281,8 +287,17 @@
                                                       "notes":
                                                       [
                                                         {
-                                                          "cotent": "Application now can accept file inputs from applications stored in a workspace. Our marketplace is slowly growing, this being the case, to make users' experience a much less click intensive one as well as to make their experience a better one when running applications that require file input, we have introduced the ability to let users select documents in their workspaces as the input file to an application if an application needs one. This has not yet been rolled out to all applications as we are not yet hosting many applications that require file inputs, but as more applications become available, we want to make sure that applications have this feature already built out and ready to be utilized. In this release we also have introduced an application into the DMC Marketplace that we have created that utilizes this new feature called Should Cost Analysis.",
-                                                          "classs": "release-feature"
+                                                          "content": "Applications now can accept files as application inputs for files saved in workspace. Our marketplace is slowly growing, this being the case, to make user's experience a much less click intensive one as well as to make their experience a better one when running applications that require file input, we have introduced the ability to let users reference documents in their workspaces as the input. This has not yet been rolled out to all applications as we are not yet hosting many applications that require file inputs, but as more applications become available, we want to make sure that applications have this feature already built out and ready to be utilized. In this release we also have introduced two applications into the DMC Marketplace that utilize this very feature.",
+                                                          "class": "release-feature",
+                                                          "notes":
+                                                          [
+                                                            {
+                                                              "content": "These new applications are the Technical Data Packaging Tool and the Manufacturing Should Cost Analysis"
+                                                            },
+                                                            {
+                                                              "content": "To use a file as an input, simply upload it to a workspace document page. Once the file has been scanned and displays a SHA, the file is read to be used. Once the application has been added to a workspace, go to run the application. The interface will show a drop-down allowing the user to chose the workspace they wish to use the input from. Once the workspace has been chosen, a second drop-down menu will appear, this time to choose the file that will be used as an input."
+                                                            }
+                                                          ]
                                                         }
                                                       ]
                                                     },
@@ -291,8 +306,14 @@
                                                       "notes":
                                                       [
                                                         {
-                                                          "cotent": "In a previous release, we introduced a feature to applications that allowed users to see outputs generated by successfully executed applications in their workspaces. Similarly, we now allow users to save the output of applications as a file to the applications respective workspace's documents page which now allows users to be able to download applications' run data to be reviewed at a later time or to be shared with other users.",
-                                                          "classs": "release-feature"
+                                                          "content": "In a previous release, we introduced a feature to applications that allowed users to see outputs generated by successfully executed applications in their workspaces. In this release, we've expanded this functionality to allow users to save the output of those successful runs to thier workspace as long as the application generates a link to a file, which our two new marketplace applicartions actually do.",
+                                                          "class": "release-feature",
+                                                          "notes":
+                                                          [
+                                                            {
+                                                              "content": "To save the run outputs to the application's respective workspace, a user will need to view the application's run history. Then click on the success status. This will bring up a modal showing the inputs and outputs of the application. Find the green Output to Workspace button, and click the ok button to save the output to the Workspace Documents page. The workspace creator, will need to accept the file in order for it to be viewable by other users."
+                                                            }
+                                                          ]
                                                         }
                                                       ]
                                                     }
@@ -317,20 +338,20 @@
                         {
                           "content": "Early users of our website would have noticed that at times when they would upload files to their workspaces' documents page, or pictures to their profile pages, those files at time would not pass our file scanning process and those files would not be retrievable. We found that the reason for this was due to special characters being contained in the file name that would not work well with our file storage solution. Characters such as: ? , | * & ^ etc, would during upload time cause the file to be considered malicious or unsafe. We've updated our upload process to now removed all special characters that could cause files to be tagged as unsafe by our platform before being scanned by our platform. False positives for dangerous files should no longer happen going forward.",
                           "class": "release-bug"
-                        },
+                        }
+                      ]
+                    },
+                    {
+                      "content": "Virtual Production Capabilities (VPC) file for Organizations",
+                      "notes":
+                      [
                         {
-                          "content": "Virtual Production Capabilities (VPC) file for Organizations",
+                          "content": "Organization administrators can now generate what we call a VPC for their organizations. This VPC is summary of what the organization's Virtual Production Capabilities are, and once filled out, allows members of those organizations to use our new Manufacturing Should Cost Analysis application, which is now available in our marketplace. The VPC tab is only available for editing by verified organization administrators of their organizations",
+                          "class": "release-feature",
                           "notes":
                           [
                             {
-                              "cotnent": "Organization administrators can now generate what we call a VPC for their organizations. This VPC is summary of what the organization's virtual Production Capabilities are, and once filled out, allows members of those organizations to use our new Should Cost Tool application now available in our marketplace. The VPC tab is only available for viewing/dowload by verified members of organizations",
-                              "class": "release-feature",
-                              "notes":
-                              [
-                                {
-                                  "content": "To generate the VPC, organizazation admninistrators can can vist their My Organization page and edit their organization's profile page. They will see a VPC tab in the body of the form where this can be done. Click into each category to see the questions. Any question left unanswered will not be saved to their VPC."
-                                }
-                              ]
+                              "content": "To generate the VPC, organizazation admninistrators can can vist their My Organization page and edit their organization's profile page. They will see a VPC tab in the body of the form where this can be done. Click into each category to see the questions. Any question left unanswered will not be saved to their VPC. When complete, click on the green save button at the bottom of the form to save the VPC inputs, and then click on the green save button at the top of the form to save the changes to the organization."
                             }
                           ]
                         }

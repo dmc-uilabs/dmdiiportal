@@ -48,7 +48,7 @@
 						<md-content class="tab-projects">
 							<div layout="column" class="text-row">
 								<div layout="row" style="justify-content:flex-end">
-									<span style="margin-right:40px; margin-top:-11px;"><h4>Released: 5/24/2017</h4></span>
+									<span style="margin-right:40px; margin-top:-11px;"><h4>Released: 6/2/2017</h4></span>
 									<span class="release-bug margin5px" style="margin-right:64px"></span>
 									<span class="release-feature margin5px" style="margin-right:67px"></span>
 									<span class="release-content margin5px"></span>
@@ -72,7 +72,7 @@
 									</h3>
 									<ul>
 										<li>
-											The ability for users to delete workspaces has been a feature on our website for quite a  while but the way this was being handled on the backen of our system is not necessarily the best way to have architecturally done so, as well as many pages that were related to that application would still be accessible which is not very secure. In this release we did some work to implement archiving application in workspaces. When an application is deleted now, the application as well as any other pages such as the run and information pages are no longer accessible. The new feature that we are happy to announce is that in the case a user deletes an application accidentally or realizes they still need that application, they can reach out to us via any of the contact methods listed on our contact us page and we can re-instate that very application in their workspace with the same run history if needed.
+											The ability for users to delete workspaces has been a feature on our website for quite a  while but the way this was being handled on the backen of our system is not necessarily the best way to have architecturally done so. Many pages that were related to that deleted application would still be accessibl, which is not very secure. In this release we did some work to implement archiving applications in workspaces. When an application is deleted now, the application as well as many other pages such as the run and information pages are no longer accessible. In the case a user deletes an application accidentally or realizes they still need that application, they can reach out to us via any of the contact method listed on our contact us page and we can re-instate that very application in their workspace with the same run history if needed.
 										</li>
 									</ul>
 									<h3>
@@ -148,32 +148,55 @@
 									<h3>
 										<strong>Bidding to Build a Part</strong>
 									</h3>
-									During this release we worked to try to transform how manufacturers find the right supplier for a part they wish to incorporate into a piece of equipment they want to build. Larger Manufacturers may have a few hundred to a couple thousand suppliers, which makes it hard to find the right supplier that can machine a particularly new part. The way we envision the DMC can be used in the following way to increase productivity:
+									During this release we worked to try to transform how manufacturers find the right supplier for a part they wish to build. Larger manufacturers may have a few hundred to a couple thousand suppliers, which makes it hard to find the right supplier that can machine a newly designed part. We envision the DMC can be used in the following way to increase productivity:
 									<ol>
 										<li>
-											Manufacturer uses the TDP authoring application in a workspace that they inform their suppliers about a part they want to have made as well as supply them with tokens to run the Should Cost Analysis application.
+											Manufacturer uploads a .stp file to their private workspace documents page.
+										</li>
+										<li>
+											The manufacturer then uses the Technical Data Packaging Tool application in their private workspace choosing to use the file they've uploaded as an input to the application.
 											<ul>
 												<li>
-													This workspace contains a project folder as well as the results from the TDP authoring applications which contains some information about the file CAD file they used as an input to the application originally.
+													They also specify the coating and material type at this stage.
 												</li>
 											</ul>
 										</li>
 										<li>
-											Suppliers update their VPCs on their organization pages if they have made changes to their manufacturing floor, or if they have not filled out their VPCs they do that now.
-										</li>
-										<li>
-											Suppliers who now know of the opportunity create, create a new workspace that they own and run the Should Cost Analysis application which uses their Organization's VPC as well as the TDP file from the Manufacturer's workspace.
+											The manufacturer then creates a new private workspace and invites all their suppliers to it.
 											<ul>
 												<li>
-													The resulting report is then saved using the DMC Infrastructure to the Suppliers private workspace.
+													They will also share authorization tokens with their suppliers, which are used to run the Manufacturing Should Cost Analysis application.
+												</li>
+												<li>
+													The tokens are also used so that suppliers are not able to gain the system.
 												</li>
 											</ul>
 										</li>
 										<li>
-											The supplier now navigates to their workspace's documents page and share the Should Cost Report with the Manufacturer's workspace, which is only viewable by the manufacturer.
+											The manufacturer then shares the output of the TDP application to their new workspace and allows the files to be accessible to team members of the new workspace.
 										</li>
 										<li>
-											The Manufacturer is now able to make an informed decision about which suppliers are interested, have the capabilities to make the part, as well as what the estimated cost of the part should be given the suppliers capabilities noted in their organization's VPC.
+											Newly invited suppliers on the DMC have their organization administrators fill out their organization VPCs.
+										</li>
+										<li>
+											Individual suppliers now created their own private workspaces and add the Manufacturing Should Cost Analysis application to it.
+										</li>
+										<li>
+											Suppliers now run the Manufacturing Should Cost Analysis application and use the Manufacturer's supplied file as an input from that shared workspace.
+											<ul>
+												<li>
+													Suppliers at this time will use their one time use authorization tokens to run the application.
+												</li>
+												<li>
+													This will generate a report that can then be saved to their workspace documents page and can then be reviewed before sharing. Suppliers will be give three authorization tokens that allow them to update their VPC in the case they realize they may have entered some information in incorrectly.
+												</li>
+											</ul>
+										</li>
+										<li>
+											Suppliers now share the Should Cost Report from their workspace to a new workspace the Manufacturer has created that is only accessible to the Manufacturer. This means the reports are not viewable by any other competitor.
+										</li>
+										<li>
+											The manufacturer now can make an informed decision on which suppliers have the actual capabilities to create the part they are looking to have made and also know which suppliers may be to costly to use in this case. They can now figure out which suppliers they may want talk to before making their final decision.
 										</li>
 									</ol>
 								</div>
