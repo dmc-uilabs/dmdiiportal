@@ -67,6 +67,7 @@ angular.module('dmc.widgets.projects', [
                 return vm.getProjectsFlag;
             }, function (newValue, oldValue) {
                 if (newValue !== oldValue || vm.getProjectsOnReady === true || (newValue === oldValue && vm.widgetFormat === 'my-projects')) {
+                    vm.activeFilter = null;
                     vm.getProjects();
                 }
             }, true);
