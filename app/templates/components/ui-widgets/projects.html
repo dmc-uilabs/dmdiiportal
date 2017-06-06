@@ -137,13 +137,13 @@
       </div>
         <div ng-if="$ctrl.widgetShowAllBlocks" class="row page-container">
             <div class="col-xs-6">
-                <button id="prevPage" ng-disabled="$ctrl.start == 0" ng-click="$ctrl.getPreviousPage()" class="btn btn-next pull-right">
+                <button id="prevPage" ng-disabled="$ctrl.first" ng-click="$ctrl.getPreviousPage()" class="btn btn-next pull-right">
                     PREV
                 </button>
             </div>
 
             <div class="col-xs-6">
-                <button id="nextPage" ng-disabled="$ctrl.projects.length < $ctrl.limit" ng-click="$ctrl.getNextPage()" class="btn btn-next pull-left">
+                <button id="nextPage" ng-disabled="$ctrl.last" ng-click="$ctrl.getNextPage()" class="btn btn-next pull-left">
                     NEXT
                 </button>
             </div>
