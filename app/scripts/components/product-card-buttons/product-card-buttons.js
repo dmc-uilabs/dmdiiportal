@@ -78,21 +78,23 @@ angular.module('dmc.component.product-card-buttons',[
 
       var addCardProjects = function(projects) {
         var unfiltered_projects = projects;
-
+        $scope.projects=projects;
         // Filter projects for only projects that user is a member of
-        ajax.get(dataFactory.getMembersToProject(),{
-            profileId : $scope.userData.profileId
-        },function(response){
-          $scope.filtered_response = response.data.filter(acceptedInvite);
-          $scope.projects = unfiltered_projects.filter(isMember);
-        });
+        // ajax.get(dataFactory.getMembersToProject(),{
+        //     profileId : $scope.userData.profileId
+        // },function(response){
+        //   $scope.filtered_response = response.data.filter(acceptedInvite);
+        //   $scope.projects = unfiltered_projects.filter(isMember);
+        // });
       }
 
       $scope.addToProject = function(){
-        // if (!$rootScope.projects) {
-        //   ajax.loadProjects(addCardProjects);
-        // }
-        ajax.loadProjects(addCardProjects);
+        if (!$rootScope.projects) {
+          ajax.loadProjects(addCardProjects);
+        }
+        else{
+          addCardProjects($rootScope.projects);
+        }
         $scope.addingToProject = true;
       };
 
