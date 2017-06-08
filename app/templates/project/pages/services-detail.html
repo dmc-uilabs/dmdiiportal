@@ -17,7 +17,19 @@
         </div>
     </md-toolbar>
 </div>
-<div class="project-details-services" layout="column">
+<div ng-if="!service.id" class="project-details-services" layout="column">
+	<div layout="row" layout-align="space-between start">
+		<div layout="column" class="header">
+			<div class="margin-bottom8">
+				<a class="link" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
+					Return to Services
+				</a>
+        <h3 style="font-size:12px">Service not found!</h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-if="service.id" class="project-details-services" layout="column">
 	<div layout="row" layout-align="space-between start">
 		<div layout="column" class="header">
 			<div class="margin-bottom8">
@@ -41,7 +53,7 @@
 				<md-button ng-if="service.from == 'marketplace'" aria-label="reply" ng-click="share(ev)" class="md-icon-button reply header-icon">
 					<ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
 				</md-button>
-				<md-button aria-label="create" ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/edit'}}" class="md-icon-button header-icon margin-left20">
+				<md-button ng-if="userData.isDmdiiAdmin || (service.owner == userData.id && service.from == 'project' && !service.published)" aria-label="create" ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/edit'}}" class="md-icon-button header-icon margin-left20">
 					<ng-md-icon icon="create" style="fill: grey;" size="25"></ng-md-icon>
 				</md-button>
 				<md-button aria-label="delete" ng-click="delete()" class="md-icon-button header-icon margin-left20">

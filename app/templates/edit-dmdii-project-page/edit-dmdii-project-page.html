@@ -191,7 +191,7 @@
                     <md-input-container>
                         <label>First Name</label>
                         <input id="contactFirstName"
-                           
+
                             ng-required="project.projectStatus.id !== 1"
                             ng-model="project.principalInvestigator.firstName">
                     </md-input-container>
@@ -215,9 +215,9 @@
         </div>
 
         <div layout="column" ng-show="user.isDmdiiAdmin">
-            <h3 class="no-bottom">Principal Point of Contact</h3>
+            <h3 class="no-bottom">DMDII Point of Contact</h3>
             <div layout="row">
-                <div layout="column" flex="20">
+                <!-- <div layout="column" flex="20">
                     <md-input-container>
                         <label>First Name</label>
                         <input id="contactFirstName"
@@ -234,7 +234,22 @@
                             ng-model="project.principalPointOfContact.email">
                     </md-input-container>
                 </div>
-                <span flex></span>
+                <span flex></span> -->
+                <md-autocomplete flex
+                    md-input-name="selectDmdiiPOC"
+                    md-no-cache="true"
+                    md-selected-item="project.principalPointOfContact"
+                    md-search-text="query"
+                    md-items="dmdiiPOC in searchMembers(query)"
+                    md-item-text="dmdiiPOC.displayName"
+                    md-floating-label="Search DMC Users">
+                    <md-item-template>
+                        <span md-highlight-text="query">{{dmdiiPOC.displayName}} - {{dmdiiPOC.companyName}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No matches found for "{{query}}".
+                    </md-not-found>
+                </md-autocomplete>
             </div>
         </div>
     </md-content>

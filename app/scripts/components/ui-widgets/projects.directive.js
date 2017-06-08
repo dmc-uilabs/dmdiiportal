@@ -41,7 +41,9 @@ angular.module('dmc.widgets.projects', [
                 limit: '=',
                 getProjectsFlag: '=',
                 getProjectsOnReady: '=',
-                filters: '='
+                filters: '=',
+                activeFilter: '=',
+                activeTab: '='
             },
             controller: UiWidgetProjectsController,
             controllerAs: '$ctrl'
@@ -70,10 +72,20 @@ angular.module('dmc.widgets.projects', [
             }, true);
             
             $scope.$watch(function () {
-                return vm.sortProjects
+                return vm.sortProjects;
             }, function (newValue, oldValue) {
-                if (newValue !== oldValue) {
-                    vm.sortAllProjects(vm.sortProjects);
+                if (newValue !== oldValue && vm.widgetFormat === vm.activeTab) {
+                    vm.start = 0;
+                    vm.getProjects();
+                }
+            }, true);
+    
+            $scope.$watch(function () {
+                return vm.activeFilter;
+            }, function (newValue, oldValue) {
+                if (newValue !== oldValue && vm.widgetFormat === vm.activeTab) {
+                    vm.start = 0;
+                    vm.getProjects();
                 }
             }, true);
             
@@ -93,8 +105,8 @@ angular.module('dmc.widgets.projects', [
                     _sort: vm.sortProjects,
                     _order: vm.order,
                     _start: vm.start,
-                    _limit: vm.limit
-                    
+                    _limit: vm.limit,
+                    _filter: vm.activeFilter
                 };
                 var getProjectsUrl = '';
                 
@@ -108,15 +120,12 @@ angular.module('dmc.widgets.projects', [
                     vm.userCompanyId = $rootScope.userData.companyId;
                     vm.projects = response.data;
                     vm.totalItems = response.data.length;
-                    console.log(response.data);
                     var ids = [];
                     for (var i in vm.projects) {
 
                         if (vm.widgetFormat == 'all-projects') {
                             if (!vm.projects[i].isPublic && vm.projects[i].projectManagerId != $rootScope.userData.accountId) {
                                 if (vm.projects[i].companyId != $rootScope.userData.companyId) {
-                                    console.log(vm.projects[i]);
-                                    console.log('splicing for not public or not manager and not company');
                                     vm.projects.splice(i, 1);
                                     continue;
                                 }
@@ -200,7 +209,6 @@ angular.module('dmc.widgets.projects', [
                     }
                     vm.total = vm.projects.length;
                     if (limit && vm.total > limit) vm.projects.splice(limit, vm.total);
-                    vm.sortAllProjects(vm.sortProjects);
                     apply();
                 });
             }
@@ -218,35 +226,6 @@ angular.module('dmc.widgets.projects', [
                     apply();
                 });
             }
-    
-            vm.sortAllProjects = function (sortTag) {
-                console.log(sortTag);
-                switch (sortTag) {
-                    case 'id':
-                        vm.projects.sort(function (a, b) {
-                            return a.id - b.id;
-                        });
-                        break;
-                    case 'title':
-                        vm.projects.sort(function (a, b) {
-                            return a.title.toLowerCase() > b.title.toLowerCase();
-                        });
-                        break;
-                    case 'most_recent':
-                        vm.projects.sort(function (a, b) {
-                            return b.id - a.id;
-                        });
-                        break;
-                    default:
-                        break;
-                }
-                apply();
-            };
-
-            $rootScope.filterMAProjects = function (filterTag) {
-                vm.filterTag = filterTag;
-                vm.getProjects();
-            };
 
             vm.join = function (item) {
                 if (!item.requiresAdminApprovalToJoin) {

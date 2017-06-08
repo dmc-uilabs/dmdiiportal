@@ -29,6 +29,6 @@ angular.module('dmc.release-notes')
                   $scope.notesV018 = response.data;
               });
           }
-          getV018();
+          getV018(); 
     }]
 );

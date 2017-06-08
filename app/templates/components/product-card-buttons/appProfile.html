@@ -1,6 +1,6 @@
 <div ng-if="!adding_to_project" layout="row" layout-align="center center">
   <md-button ng-click="addToProject()" ng-hide="addingToProject || cardSource.added" class="md-raised add dmc-button margin-left20">Add to Workspace</md-button>
-        
+
   <div ng-if="addingToProject == false && cardSource.added" layout="row" layout-align="center center" class="add-to-project">
     <md-button aria-label="Back to Add"
                class="md-raised cancelProject"
@@ -8,7 +8,7 @@
                ng-show="addingToProject == false && cardSource.added">
         <ng-md-icon icon="close" size="17"></ng-md-icon>
     </md-button>
-    
+
     <md-button aria-label="Project Link"
                flex
                class="md-raised cancelProject"
@@ -21,7 +21,7 @@
         <ng-md-icon icon="keyboard_arrow_right" style="fill: #000" size="20"></ng-md-icon>
     </md-button>
   </div>
-  
+
   <md-button
       ng-click="addToCompare()"
       class="md-raised add dmc-button margin-left20"
@@ -37,13 +37,29 @@
   </md-button>
 
     <div ng-if="addingToProject" layout="row" layout-align="center center" class="add-to-project">
-        <md-button class="md-raised cancelProject" ng-click="cancelAddToProject()">
+        <md-button class="md-raised workspaceclose" ng-click="cancelAddToProject()">
             <ng-md-icon icon="close" size="17"></ng-md-icon>
         </md-button>
-        <md-select placeholder="Select Project" ng-model="projectModel" md-on-open="loadProjects()">
+        <md-autocomplete flex style="padding:0px"
+            md-input-name="autocomplete"
+            md-no-cache="true"
+            md-selected-item="projectModel"
+            md-clear-button="false"
+            md-search-text="queryWs"
+            md-items="item in searchWorkspace(queryWs)"
+            md-item-text="item.title"
+            md-label="Search for Workspace">
+            <md-item-template>
+                <span md-highlight-text="searchText">{{item.title}}</span>
+            </md-item-template>
+            <md-not-found>
+                No matches found for "{{item.title}}".
+            </md-not-found>
+          </md-autocomplete>
+        <!-- <md-select placeholder="Select Project" ng-model="projectModel" md-on-open="loadProjects()">
             <md-option ng-repeat="p in projects" value="{{p.id}}">{{p.title}}</md-option>
-        </md-select>
-        <md-button ng-disabled="!projectModel" class="md-raised addProject" ng-click="saveToProject(projectModel)">
+        </md-select> -->
+        <md-button ng-disabled="!projectModel" class="workspaceclose" ng-click="saveToProject(projectModel.id)">
             Add
         </md-button>
     </div>
