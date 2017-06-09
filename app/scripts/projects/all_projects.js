@@ -32,6 +32,7 @@ angular.module('dmc.all_projects', [
         $scope.sortProjects = "most_recent";
         $scope.isActive = false;
         $scope.activeTab = 'my-projects';
+        $scope.searchTerm = null;
 
         $scope.submit = function(text){
             var dataSearch = $.extend(true, {}, $stateParams);
@@ -121,5 +122,9 @@ angular.module('dmc.all_projects', [
         $scope.rotate = function () {
             $scope.isActive = !$scope.isActive;
         };
+        
+        $scope.clearSearch = function() {
+            $scope.searchTerm = null;
+        }
 
     });

@@ -5,8 +5,8 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4 col-sm-4">
-                <div class="col-md-7">
+            <div class="col-md-3 col-sm-3">
+                <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading padding-right-none">
                             <h4 class="panel-title">
@@ -39,15 +39,27 @@
             </div>
 
             <!-- fill up the space between left and right area -->
-            <div class="col-md-4 col-sm-4 margin-bottom-15">
-                <div class="col-md-8">
+            <div class="col-md-2 col-sm-2 margin-bottom-15">
+                <div class="col-md-12">
                     <md-select placeholder="Sort" class="sort sort-select" ng-model="sortModel" ng-change="selectItemDropDown('sort')" md-container-class="margin-dropdown">
                         <md-option ng-click="updateSort()" ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-option>
                     </md-select>
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-4">
+            <div class="col-md-4 col-sm-4 margin-bottom-15">
+                <div class="col-md-9 col-sm-9 margin-right-none">
+                    <div class="search-input-div">
+                        <input class="search-input" type="text" ng-model="searchTerm" placeholder="Search">
+                        <ng-md-icon icon="clear" size="15" class="pull-right clear-icon" ng-click="clearSearch()"></ng-md-icon>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <button class="btn search-button no-click-border">Search</button>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-3">
                <div class="col-md-12 col-sm-12">
                     <md-button class="add-button pull-right" md-no-ink
                                href="/add-project.php">
@@ -76,7 +88,8 @@
                          filters="filters"
                          limit="10"
                          active-filter="activeFilter"
-                         active-tab="activeTab"></div>
+                         active-tab="activeTab"
+                         search-term="searchTerm"></div>
                 </div>
                 <div role="tabpanel" class="tab-pane fade in" id="all-workspaces">
                     <div id="allProjectsList"
@@ -90,7 +103,8 @@
                          filters="filters"
                          limit="10"
                          active-filter="activeFilter"
-                         active-tab="activeTab"></div>
+                         active-tab="activeTab"
+                         search-term="searchTerm"></div>
                 </div>
             </div>
         </section>

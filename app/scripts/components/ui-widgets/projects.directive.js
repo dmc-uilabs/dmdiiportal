@@ -43,7 +43,8 @@ angular.module('dmc.widgets.projects', [
                 getProjectsOnReady: '=',
                 filters: '=',
                 activeFilter: '=',
-                activeTab: '='
+                activeTab: '=',
+                searchTerm: '='
             },
             controller: UiWidgetProjectsController,
             controllerAs: '$ctrl'
@@ -68,6 +69,15 @@ angular.module('dmc.widgets.projects', [
             }, function (newValue, oldValue) {
                 if (newValue !== oldValue || vm.getProjectsOnReady === true || (newValue === oldValue && vm.widgetFormat === 'my-projects')) {
                     vm.activeFilter = null;
+                    vm.searchTerm = null;
+                    vm.getProjects();
+                }
+            }, true);
+    
+            $scope.$watch(function () {
+                return vm.searchTerm;
+            }, function (newValue, oldValue) {
+                if (newValue !== oldValue && vm.widgetFormat === vm.activeTab && searchTerm === null) {
                     vm.getProjects();
                 }
             }, true);
@@ -110,7 +120,8 @@ angular.module('dmc.widgets.projects', [
                     _start: vm.start,
                     _limit: vm.limit,
                     _page: vm.currentPage,
-                    _filter: vm.activeFilter
+                    _filter: vm.activeFilter,
+                    _search: vm.searchTerm
                 };
                 var getProjectsUrl = '';
                 
