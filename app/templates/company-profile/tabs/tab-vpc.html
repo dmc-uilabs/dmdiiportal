@@ -22,7 +22,7 @@
 				</div>
 
 				<div class="col-sm-12">
-					<div class="item_vpe column" ng-repeat="machiningItem in vpc.Machining">
+					<div class="item_vpe column" ng-repeat="machiningItem in vpc.Machining track by $index">
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="title_vpe">
@@ -38,6 +38,9 @@
 								<div class="unit_vpe">
 								Unit: {{machiningItem.unit}}
 							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('Machining', $index)">Delete</md-button>
 						</div>
 					</div>
 				</div>
@@ -61,7 +64,7 @@
 						<button class="md-raised md-button" ng-click="addItem('Casting', newCastingName, newCastingValue, newCastingUnit, newCastingHelp)">Add</button>
 				</div>
 				<div class="col-sm-6">
-					<div class="item_vpe column" ng-repeat="castingItem in vpc.Casting">
+					<div class="item_vpe column" ng-repeat="castingItem in vpc.Casting track by $index">
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="title_vpe">
@@ -77,6 +80,9 @@
 							<div class="unit_vpe">
 								Unit: {{castingItem.unit}}
 							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('Casting', $index)">Delete</md-button>
 						</div>
 					</div>
 				</div>
@@ -100,7 +106,7 @@
 						<button class="md-raised md-button" ng-click="addItem('Investment Casting', newInvCastingName, newInvCastingValue, newInvCastingUnit, newInvCastingHelp)">Add</button>
 				</div>
 				<div class="col-sm-6">
-					<div class="item_vpe column" ng-repeat="invCastingItem in vpc['Investment Casting']">
+					<div class="item_vpe column" ng-repeat="invCastingItem in vpc['Investment Casting'] track by $index">
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="title_vpe">
@@ -116,6 +122,9 @@
 							<div class="unit_vpe">
 								Unit: {{invCastingItem.unit}}
 							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('Investment Casting', $index)">Delete</md-button>
 						</div>
 					</div>
 				</div>
@@ -139,7 +148,7 @@
 						<button class="md-raised md-button" ng-click="addItem('Welding', newWeldingName, newWeldingValue, newWeldingUnit, newWeldingHelp)">Add</button>
 				</div>
 				<div class="col-sm-6">
-					<div class="item_vpe column" ng-repeat="weldingItem in vpc.Welding">
+					<div class="item_vpe column" ng-repeat="weldingItem in vpc.Welding track by $index">
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="title_vpe">
@@ -155,6 +164,9 @@
 							<div class="unit_vpe">
 								Unit: {{weldingItem.unit}}
 							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('Welding', $index)">Delete</md-button>
 						</div>
 					</div>
 				</div>
@@ -180,7 +192,7 @@
 						<button class="md-raised md-button" ng-click="addItem('General Labor', newGeneralLaborName, newGeneralLaborValue, newGeneralLaborUnit, newGeneralLaborHelp)">Add</button>
 				</div>
 				<div class="col-sm-6">
-					<div class="item_vpe column" ng-repeat="generalLaborItem in vpc['General Labor']">
+					<div class="item_vpe column" ng-repeat="generalLaborItem in vpc['General Labor'] track by $index">
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="title_vpe">
@@ -196,6 +208,9 @@
 							<div class="unit_vpe">
 								Unit: {{generalLaborItem.unit}}
 							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('General Labor', $index)">Delete</md-button>
 						</div>
 					</div>
 				</div>
@@ -221,7 +236,7 @@
 						<button class="md-raised md-button" ng-click="addItem('Plating', newPlatingName, newPlatingValue, newPlatingUnit, newPlatingHelp)">Add</button>
 				</div>
 				<div class="col-sm-6">
-					<div class="item_vpe column" ng-repeat="platingItem in vpc.Plating">
+					<div class="item_vpe column" ng-repeat="platingItem in vpc.Plating track by $index">
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="title_vpe">
@@ -237,6 +252,9 @@
 							<div class="unit_vpe">
 								Unit: {{platingItem.unit}}
 							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('Plating', $index)">Delete</md-button>
 						</div>
 					</div>
 				</div>
@@ -260,7 +278,7 @@
 						<button class="md-raised md-button" ng-click="addItem('Painting', newPaintingName, newPaintingValue, newPaintingUnit, newPaintingHelp)">Add</button>
 				</div>
 				<div class="col-sm-6">
-					<div class="item_vpe column" ng-repeat="paintingItem in vpc.Painting">
+					<div class="item_vpe column" ng-repeat="paintingItem in vpc.Painting track by $index">
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="title_vpe">
@@ -276,6 +294,9 @@
 							<div class="unit_vpe">
 								Unit: {{paintingItem.unit}}
 							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('Painting', $index)">Delete</md-button>
 						</div>
 					</div>
 				</div>
@@ -299,7 +320,7 @@
 						<button class="md-raised md-button" ng-click="addItem('X-Ray Machine', newXRayMachineName, newXRayMachineValue, newXRayMachineUnit, newXRayMachineHelp)">Add</button>
 				</div>
 				<div class="col-sm-6">
-					<div class="item_vpe column" ng-repeat="xRayItem in vpc['X-Ray Machine']">
+					<div class="item_vpe column" ng-repeat="xRayItem in vpc['X-Ray Machine'] track by $index">
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="title_vpe">
@@ -315,6 +336,9 @@
 							<div class="unit_vpe">
 								Unit: {{xRayItem.unit}}
 							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('X-Ray Machine', $index)">Delete</md-button>
 						</div>
 					</div>
 				</div>
@@ -340,7 +364,7 @@
 						<button class="md-raised md-button" ng-click="addItem('Material', newMaterialName, newMaterialValue, newMaterialUnit, newMaterialHelp)">Add</button>
 				</div>
 				<div class="col-sm-6">
-					<div class="item_vpe column" ng-repeat="materialCostItem in vpc.Material">
+					<div class="item_vpe column" ng-repeat="materialCostItem in vpc.Material track by $index">
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="title_vpe">
@@ -356,6 +380,9 @@
 							<div class="unit_vpe">
 								Unit: {{materialCostItem.unit}}
 							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('Material', $index)">Delete</md-button>
 						</div>
 					</div>
 				</div>

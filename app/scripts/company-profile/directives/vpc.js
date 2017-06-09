@@ -153,14 +153,27 @@ angular.module('dmc.company-profile').
                         unit: unit,
                         help: help
                     };
-                    var found = false;
-                    for (var i=0; i < $scope.vpc[vpcCategory].length; i++) {
-                        if ($scope.vpc[vpcCategory][i].name === vpcCategory + ' :: ' + name) {
-                            found = true;
+                    
+                    if ($scope.vpc[vpcCategory]) {
+                        var found = false;
+                    	for (var i = 0; i < $scope.vpc[vpcCategory].length; i++) {
+                            if ($scope.vpc[vpcCategory][i].name === vpcCategory + ' :: ' + name) {
+                                found = true;
+                            }
                         }
+                        if (!found) {
+                            $scope.vpc[vpcCategory].push(objectToAdd);
+                        }
+                    } else {
+                    	$scope.vpc[vpcCategory] = [objectToAdd];
                     }
-                	if (!found) {
-                        $scope.vpc[vpcCategory].push(objectToAdd);
+                	
+                };
+                
+                $scope.deleteFromVPC = function(category, index) {
+                    if ($scope.vpc[category]) {
+                        $scope.vpc[category].splice(index, 1);
+                        $scope.source.productionCapabilities = JSON.stringify(unFormatCategories($scope.vpc));
                     }
                 };
                 
