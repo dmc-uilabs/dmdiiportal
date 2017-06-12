@@ -39,7 +39,10 @@ angular.module('dmc.all_projects', [
             dataSearch.text = text;
             $state.go('all-projects', dataSearch, {reload: true});
         };
-
+        
+        $scope.search = function() {
+            $scope.$broadcast('searchProjects');
+        };
 
         $scope.sortList = [
             {

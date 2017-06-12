@@ -77,7 +77,7 @@ angular.module('dmc.widgets.projects', [
             $scope.$watch(function () {
                 return vm.searchTerm;
             }, function (newValue, oldValue) {
-                if (newValue !== oldValue && vm.widgetFormat === vm.activeTab && searchTerm === null) {
+                if (newValue !== oldValue && vm.widgetFormat === vm.activeTab && vm.searchTerm === null) {
                     vm.getProjects();
                 }
             }, true);
@@ -101,6 +101,10 @@ angular.module('dmc.widgets.projects', [
                     vm.getProjects();
                 }
             }, true);
+            
+            $scope.$on('searchProjects', function(event) {
+                vm.getProjects();
+            });
             
             var limit = (vm.limit ? vm.limit : (vm.widgetShowAllBlocks === true ? null : 2));
 
