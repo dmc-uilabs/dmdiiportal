@@ -41,6 +41,7 @@ server.use(jsonServer.rewriter({
     '/market/new_services': '/services',
     '/market/services': '/services',
     '/market/components': '/services',
+    '/companies/short' : '/companies_short',
     '/companies/:id/new': '/companies/:id/services',
     '/company/follow': '/following_companies',
     '/company/unfollow/:id': '/following_companies/:id',
