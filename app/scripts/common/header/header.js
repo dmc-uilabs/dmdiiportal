@@ -36,6 +36,10 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
           return $mdMedia('(max-width: 868px)');
         }
 
+        $scope.screenVerySmall = function(){
+          return $mdMedia('(max-width: 710px)');
+        }
+
         var initUserData = function(data) {
           $scope.userData = data;
           $scope.userProfileId = $scope.userData.profileId;
