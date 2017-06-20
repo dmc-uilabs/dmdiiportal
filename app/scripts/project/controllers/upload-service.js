@@ -60,7 +60,7 @@ angular.module('dmc.project')
 
             // get servers
             function getServers(){
-                serviceModel.get_servers(function(data){
+                serviceModel.get_servers_secure(function(data){
                     $scope.servers = data;
                     apply();
                 });
@@ -79,7 +79,7 @@ angular.module('dmc.project')
             $scope.selectItemDropDown = function(value){
                 if(value != 0 || $scope.serverModel !== 0) {
                     var item = $scope.servers[value];
-                    $scope.selectedServerIp = item.ip;
+                    $scope.selectedServerIp = item.id;
                     $scope.servers.splice(value, 1);
                     $scope.servers = $scope.servers.sort(function(a,b){return a.id - b.id});
                     if ($scope.servers.unshift(item)) this.serverModel = 0;

@@ -1047,14 +1047,14 @@ angular.module('dmc.project', [
             };
 
             this.get_service_run_history = function(id, params, callback){
-                
+
                 return $http.get(dataFactory.services(id).get_run_history, (params)? params : {
                     _sort: 'id',
                     _order: 'DESC',
                     status_ne : 'running'
                 }, {}).then(function(response){
                     var history = response.data;
-                    
+
                     for (var i = 0; i < history.length; i++) {
                         history[i].runTime = calcRunTime(history[i]);
                         history[i].date = moment(new Date(history[i].startDate+' '+history[i].startTime)).format('MM/DD/YYYY hh:mm A');
@@ -1066,9 +1066,9 @@ angular.module('dmc.project', [
                         };
                         userName(i);
                     }
-                    
+
                     return history;
-                    
+
                 });
             };
 
@@ -1076,6 +1076,15 @@ angular.module('dmc.project', [
 
             this.get_servers = function(callback){
                 return ajax.get(dataFactory.getAccountServersUrl($rootScope.userData.accountId),
+                    {},
+                    function(response){
+                        callback(response.data)
+                    }
+                )
+            };
+
+            this.get_servers_secure = function(callback){
+                return ajax.get(dataFactory.getServerSecureUrl($rootScope.userData.accountId),
                     {},
                     function(response){
                         callback(response.data)
