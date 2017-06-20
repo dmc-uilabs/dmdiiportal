@@ -70,33 +70,11 @@
                               </a>
 
                         </md-menu-item>
-                        <!-- <md-menu-item class="all-link">
-                            <a ng-click="markAllRead()">Mark all as read</a>
-                        </md-menu-item> -->
+                        <div class="zone-top" style="padding-top: 8px;" layout="row" layout-align="space-between center">
+                            <md-button ng-click="markAllRead()" class="view-all-link">Mark all as read</md-button>
+                        </div>
                     </md-menu-content>
                 </md-menu>
-                <!-- Messages -->
-                <!-- <md-menu md-offset="0 64" ng-hide="screenSmall()">
-                    <md-button class="md-button"
-                               aria-label="Messages"
-                               ng-click="closeMenu(); $mdOpenMenu($event)">
-                        <ng-md-icon icon="email" size="25"></ng-md-icon>
-                        <span class="count-message" ng-show="message_alert > 0">{{message_alert}}</span>
-                    </md-button>
-                    <md-menu-content class="message-container header-menu-content messages-list">
-                        <div class="zone-top" layout="row" layout-align="space-between center">
-                            <h3>Invitations</h3>
-                            <md-button md-no-ink href="/all.php#/invitations" class="view-all-link">View All</md-button>
-                        </div>
-                        <md-menu-item ng-repeat="item in invitations track by $index">
-                            <a ng-href="/all.php#/invitations">
-                                <img ng-src="{{item.profileImage}}" alt="{{item.from}}"/>
-                                <i class="user-name">{{item.from}}</i>
-                                <i class="text">Invited you to {{item.title || "a project"}}</i>
-                            </a>
-                        </md-menu-item>
-                    </md-menu-content>
-                </md-menu> -->
             </div>
 
             <!-- User Account -->
