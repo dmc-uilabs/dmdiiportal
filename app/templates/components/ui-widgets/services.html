@@ -67,7 +67,7 @@
         <div class="running-services-list">
             <md-data-table-container>
                 <table md-data-table>
-                    <thead md-order="sort" md-trigger="onOrderChange" ng-if="services.length > 0">
+                    <thead md-order="sort" md-trigger="onOrderChange">
                     <tr>
                         <th ng-show="columns.indexOf('run') > -1" name="Run"></th>
                         <th ng-show="columns.indexOf('name') > -1" name="Name" order-by="title"></th>
@@ -132,7 +132,7 @@
                         </td>
                     </tr>
                     <tr ng-if="services.length == 0">
-                        <td class="empty" colspan="{{columns.length}}">No services</td>
+                        <td colspan="{{columns.length}}">No services</td>
                     </tr>
                     </tbody>
                 </table>

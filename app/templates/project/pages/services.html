@@ -19,14 +19,20 @@
 </div> -->
 <workspace-header class="workspace-header" ng-init="currentPage='7'"></workspace-header>
 <div class="project-services" layout="column">
-    <div layout="row" layout-align="space-between center" class="project-services-top">
+    <!-- <div layout="row" layout-align="space-between center" class="project-services-top">
         <h2>Services</h2>
         <div layout="row">
             <a class="link" href="marketplace.php">Browse Services</a>
             <a ng-if="userData.isDmdiiAdmin || ([158, 191, 339, 237].includes(userData.companyId))" class="link margin-left16" ng-href="{{'project.php#/' + projectData.id + '/upload-service'}}">Register Services</a>
         </div>
-    </div>
-    <md-content ng-if="projectData.services.data.length">
+    </div> -->
+    <md-content >
+      <div layout="row" layout-align="space-between center" class="project-services-top">
+          <span flex></span>
+          <a class="link" href="marketplace.php">Browse Services</a>
+          <a ng-if="userData.isDmdiiAdmin || ([158, 191, 339, 237].includes(userData.companyId))" class="link margin-left16" ng-href="{{'project.php#/' + projectData.id + '/upload-service'}}">Register Services</a>
+      </div>
+
         <div class="content-panel content-panel-dashboard"
              ui-widget-services
              project-id="projectData.id"

@@ -31,11 +31,11 @@
   </div>
 </div>
 <div ng-if="!edit || interface" class="project-upload-services" layout="column">
-    <div layout="row" layout-align="start center">
-        <h2>{{(edit)? 'Edit': 'Register'}} Service</h2>
-    </div>
     <div class="content padding-10">
-        <h2 flex>All fields are required</h2>
+			<div layout="row" layout-align="start center">
+				<h2>{{(edit)? 'Edit': 'Register'}} Service</h2>
+			</div>
+        <div flex>All fields are required</div>
         <div layout="row" ng-show="page1" class="page1">
             <div flex="70" layout="column">
                 <div layout="row" layout-align="start center" ng-if="!flagAddServer">
