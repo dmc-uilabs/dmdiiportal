@@ -1,79 +1,60 @@
+<workspace-header class="workspace-header" ng-init="currentPage='3'"></workspace-header>
+
 <div class="page-header margin-bottom-35">
+
     <md-toolbar>
-        <h1 class="project-title" ng-class="{'preview-page' : isPreview}" layout="row" layout-align="start end">
-            <div class="title" layout="column">
-                <a href="/project.php#/{{projectCtrl.projectData.id}}/home">{{projectCtrl.projectData.title}}</a>
-            </div>
-            <span ng-if="projectCtrl.projectData.dueDate"
-                  class="small-text due-date-project small-text--grey">
-                Due in {{projectCtrl.projectData.dueDate}}
-            </span>
-            <span flex></span>
-            <!-- buttons for preview -->
-            <md-button ng-if="isPreview && invitation"
-                       ng-click="decline()"
-                       class="md-raised dmc-button margin-right15" >
-                <ng-md-icon icon="close" size="18"></ng-md-icon>
-                Decline Invitation
-            </md-button>
-            <md-button ng-if="isPreview && invitation"
-                       ng-click="accept()"
-                       class="md-raised md-primary dmc-button" >
-                <ng-md-icon icon="done" style="fill: #fff;" size="18"></ng-md-icon>
-                Accept Invitation
-            </md-button>
-        </h1>
-        <div class="md-toolbar-tools">
-            <div layout="column" flex="65" class="margin-right12-5">
-                <div layout="row" ng-if="!isPreview" class="name-project" flex>
-                    <div sub-nav-menu-button current-page="1"></div>
-                </div>
-                <span ng-if="isPreview" class="project-manager">Invited to {{projectCtrl.projectData.type}} Project by <a ng-href="/profile.php#/{{invitation.fromProfileId}}">{{invitation.from}}</a> <ng-md-icon ng-if="version1" icon="mail" size="20"></ng-md-icon></span>
-            </div>
-            <!-- fill up the space between left and right area -->
-            <span flex></span>
+      <div layout="row" layout-align="start center">
+        <h2><a href="/project.php#/{{projectCtrl.projectData.id}}/home">{{projectCtrl.projectData.title}}</a></h2>
+        <span flex></span>
 
-            <!-- buttons for submission -->
-            <md-button ng-if="isSubmission" class="md-raised dmc-button" href="/project.php#/submit/{{projectCtrl.projectData.id}}"><ng-md-icon icon="send" size="18"></ng-md-icon> Submit</md-button>
-
-            <a ng-if="!isPreview && ($root.userData.accountId === projectCtrl.projectData.projectManagerId || $root.userData.isDmdiiAdmin)"
-               ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/edit'}}"
-               class="link-button uppercase edit-button margin-left20">
-                <ng-md-icon icon="edit" size="18"></ng-md-icon>Edit
-            </a>
-            <!-- <a ng-if="!isPreview && ($root.userData.accountId === projectCtrl.projectData.projectManagerId || $root.userData.isDmdiiAdmin)"
-               ng-href="{{'/add-members.php#/'+projectCtrl.projectData.id}}"
-               class="link-button uppercase invite-button margin-left20">
-                <ng-md-icon icon="group_add" size="22"></ng-md-icon>Invite
-            </a> -->
-            <md-button ng-if="isPreview && !invitation && projectCtrl.projectData.isPublic && !projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId !== projectCtrl.projectData.projectManagerId"
-                       ng-click="joinProject()"
-                       class="md-raised md-primary dmc-button" >
-                Join Project
-            </md-button>
-            <md-button ng-if="isPreview && !invitation && projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId !== projectCtrl.projectData.projectManagerId"
-                       ng-click="requestJoinProject()"
-                       class="md-raised md-primary dmc-button" >
-                Request to Join Project
-            </md-button>
-            <md-button ng-if="!isPreview && projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId === projectCtrl.projectData.projectManagerId"
-                       ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/requests'}}"
-                       class="md-raised md-primary dmc-button" >
-                Manage Join Requests
-            </md-button>
-            <!--<md-menu  ng-if="!isPreview"> -->
-                <!--<md-button class="md-raised dmc-button" ng-click="$mdOpenMenu($event) "><ng-md-icon icon="share" size="18"></ng-md-icon> Invite</md-button>-->
-                <!--<md-menu-content>-->
-                    <!--<md-menu-item>-->
-                        <!--<md-button>Team</md-button>-->
-                    <!--</md-menu-item>-->
-                    <!--<md-menu-item>-->
-                        <!--<md-button href="/invite-challenge.php">Challenge</md-button>-->
-                    <!--</md-menu-item>-->
-                <!--</md-menu-content>-->
-            <!--</md-menu>-->
-        </div>
+        <!-- ng-if="!isPreview && projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId === projectCtrl.projectData.projectManagerId" -->
+        <a
+           ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/requests'}}"
+           class="link-button uppercase edit-button margin-left20">
+            <ng-md-icon icon="person_add" size="18"></ng-md-icon>Manage Join Requests
+        </a>
+        <a ng-if="!isPreview && ($root.userData.accountId === projectCtrl.projectData.projectManagerId || $root.userData.isDmdiiAdmin)"
+           ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/edit'}}"
+           class="link-button uppercase edit-button margin-left20">
+            <ng-md-icon icon="edit" size="18"></ng-md-icon>Edit
+        </a>
+        <!-- ng-if="isSubmission"  -->
+        <a
+          class="link-button uppercase edit-button margin-left20"
+          ng-href="/project.php#/submit/{{projectCtrl.projectData.id}}">
+          <ng-md-icon icon="send" size="18"></ng-md-icon> Submit
+        </a>
+      </div>
     </md-toolbar>
+
+
+
+
+
+
+    <div class="container project-page-container">
+
+        <md-tabs md-dynamic-height md-border-bottom>
+          <md-tab ng-repeat="p in pages" label="{{p.title}}"
+            ng-attr-md-selected="{{true}}"
+          >
+          </md-tab>
+        </md-tabs>
+
+        <!-- <md-button ng-repeat="p in pages"
+                   ui-sref="{{p.state}}"
+                   ng-click="openPage()"
+                   ng-class="{'selected' : p.id === currentPage}">
+          <ng-md-icon icon="{{p.icon}}" size="18"></ng-md-icon>
+          <div class="dmc-project-subnav-dialog-btn__caption">
+            {{p.title}}
+          </div>
+        </md-button> -->
+
+
+    </div>
+
+
 </div>
 <div class="container project-page-container">
     <div layout="row" >
