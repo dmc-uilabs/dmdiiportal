@@ -7,10 +7,6 @@ angular.module('dmc.workspace-header', [])
       templateUrl: 'templates/components/workspace-header/workspace-header-tpl.html',
       controller: ['$scope', function($scope) {
 
-        $scope.$watch('currentPage', function() {
-
-        })
-
         $scope.pages = [
             {
                 id : 1,

@@ -27,16 +27,16 @@
 
 
 
-    <div class="wh-links" layout="row">
+    <div layout="row">
 
         <!-- <md-tabs md-dynamic-height md-border-bottom>
           <md-tab ng-repeat="p in pages" label="{{p.title}}">
           </md-tab>
         </md-tabs> -->
 
-        <div class="wh-link" ui-sref="{{p.state}}" ng-repeat="p in pages" ng-class="{selected: p.id == currentPage}">
+        <a class="wh-link" ui-sref="{{p.state}}" ng-repeat="p in pages" ng-class="{selected: p.id == currentPage}">
           {{p.title}}
-        </div>
+        </a>
 
         <!-- <md-button ng-repeat="p in pages"
                    ui-sref="{{p.state}}"
