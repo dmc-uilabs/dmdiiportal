@@ -7,6 +7,11 @@ angular.module('dmc.workspace-header', [])
       templateUrl: 'templates/components/workspace-header/workspace-header-tpl.html',
       controller: ['$scope', function($scope) {
 
+        // workaround for inconsistency in project data location
+        if (!$scope.projectCtrl.projectData && $scope.projectData) {
+          $scope.projectCtrl.projectData = $scope.projectData;
+        }
+
         $scope.pages = [
             {
                 id : 1,
