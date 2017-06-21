@@ -4,9 +4,7 @@
       <div layout="row" layout-align="start center">
         <h2><a href="/project.php#/{{projectCtrl.projectData.id}}/home">{{projectCtrl.projectData.title}}</a></h2>
         <span flex></span>
-
-        <!-- ng-if="!isPreview && projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId === projectCtrl.projectData.projectManagerId" -->
-        <a
+        <a ng-if="!isPreview && projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId === projectCtrl.projectData.projectManagerId"
            ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/requests'}}"
            class="link-button uppercase edit-button margin-left20">
             <ng-md-icon icon="person_add" size="18"></ng-md-icon>Manage Join Requests
@@ -16,8 +14,7 @@
            class="link-button uppercase edit-button margin-left20">
             <ng-md-icon icon="edit" size="18"></ng-md-icon>Edit
         </a>
-        <!-- ng-if="isSubmission"  -->
-        <a
+        <a ng-if="isSubmission"
           class="link-button uppercase edit-button margin-left20"
           ng-href="/project.php#/submit/{{projectCtrl.projectData.id}}">
           <ng-md-icon icon="send" size="18"></ng-md-icon> Submit
@@ -25,31 +22,9 @@
       </div>
     </md-toolbar>
 
-
-
     <div layout="row">
-
-        <!-- <md-tabs md-dynamic-height md-border-bottom>
-          <md-tab ng-repeat="p in pages" label="{{p.title}}">
-          </md-tab>
-        </md-tabs> -->
-
         <a class="wh-link" ui-sref="{{p.state}}" ng-repeat="p in pages" ng-class="{selected: p.id == currentPage}">
           {{p.title}}
         </a>
-
-        <!-- <md-button ng-repeat="p in pages"
-                   ui-sref="{{p.state}}"
-                   ng-click="openPage()"
-                   ng-class="{'selected' : p.id === currentPage}">
-          <ng-md-icon icon="{{p.icon}}" size="18"></ng-md-icon>
-          <div class="dmc-project-subnav-dialog-btn__caption">
-            {{p.title}}
-          </div>
-        </md-button> -->
-
-
     </div>
-
-
 </div>
