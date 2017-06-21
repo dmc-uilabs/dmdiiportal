@@ -1,16 +1,51 @@
+<div class="home">
+<!-- Template for logged in verified users -->
 <div ng-if="$root.isLogged && userData.roles && userData.roles[userData.companyId]" layout="row" layout-align="center center" layout-padding>
-  	<div class="content-column" layout="column" ng-repeat="p in pages">
-    	<a href="{{p.href}}" class="home-feature">
-      		<img ng-src="images/{{p.img}}" class="md-card-image" alt="{{p.name}}">
-       		<h2>{{p.name}}</h2>
-       		<p>{{p.text}}</p>
-       		<md-button class="md-raised md-primary">View</md-button>
-   		</a>
-  	</div>
-</div>
-<div ng-if="!$root.isLogged || ($root.isLogged && (userData.displayName == 'testUserFullName' || !(userData.roles && userData.roles[userData.companyId])))" layout="column">
+  <div layout="column" flex>
 
-<!--     <div layout="row" layout-align="center center" class="home-header">
+    <div class="home-header" flex layout="row" layout-align="space between center" layout-fills>
+      <h1>DIGITAL MANUFACTURING COMMONS</h1>
+      <!-- <img style="height:80px; width:80px;" ng-src="images/dmcLogo.png"> -->
+      <div layout="row">
+        <a class="follow-button" href="http://www.uilabs.org/news-blog/blog/" target="_blank"><img src="images/comment-text-outline.svg" title="DMDII Blog"></a>
+        <a class="follow-button" href="https://twitter.com/DMDII_" target="_blank"><img src="images/twitter.svg" title="DMDII Twitter"></a>
+        <a class="follow-button" href="https://www.linkedin.com/company/ui-labs" target="_blank"><img src="images/linkedin-box.svg" title="UI Labs LinkedIn"></a>
+        <a class="follow-button" href="https://www.instagram.com/uilabs_/" target="_blank"><img src="images/instagram.svg" title="UI Labs Instagram"></a>
+      </div>
+    </div>
+
+<md-divider></md-divider>
+
+    <!-- Feeds -->
+    <div layout-wrap layout-align="space-between start" layout="row" style="padding-bottom:20px">
+      <!-- Recent updates -->
+      <div class="flexrow-left" flex="60">
+        <h2 class="flexrow-header">Recent Updates</h2>
+        <div class="content-panel project margin-right12-5" dmc-recent-updates></div>
+
+      </div>
+      <!-- Twitter -->
+      <div class="flexrow-right" flex="35">
+        <h2 class="flexrow-header">Tweets from DMDII</h2>
+        <twitter-timeline>
+          <a class="twitter-timeline" data-chrome="noheader nofooter" data-height="500" href="https://twitter.com/DMDII_">Tweets from DMDII</a>
+        </twitter-timeline>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <md-divider></md-divider> -->
+
+<!-- Youtube -->
+<div class="home-theater">
+  <ng-youtube-embed listType="playlist" list="UUB9yv90uJXvKnCY-0vpjvtw" width="100%"></ng-youtube-embed>
+</div>
+
+<!-- Template for not logged in/ unverified users -->
+<div ng-if="!($root.isLogged && userData.roles && userData.roles[userData.companyId])" layout="column">
+
+    <!-- <div layout="row" layout-align="center center" class="home-header">
 	  	<h2>DMC: Digital Manufacturing Commons</h2>
 	  	<md-button class="dmc-button md-raised md-primary" ng-href="onboarding.php">
 	  		JOIN DMC
@@ -37,7 +72,6 @@
 		    </div>
 	  	</div>
 	</div>
-
-
+</div>
 
 </div>
