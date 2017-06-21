@@ -1,4 +1,4 @@
-<div class="page-header margin-bottom-35 ws-header">
+<div class="page-header margin-bottom-20 ws-header">
 
     <md-toolbar>
       <div layout="row" layout-align="start center">
@@ -22,7 +22,7 @@
       </div>
     </md-toolbar>
 
-    <div layout="row">
+    <div layout="row" layout-wrap>
         <a class="wh-link" ui-sref="{{p.state}}" ng-repeat="p in pages" ng-class="{selected: p.id == currentPage}">
           {{p.title}}
         </a>
