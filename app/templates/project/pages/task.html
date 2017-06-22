@@ -1,4 +1,12 @@
-<div class="page-header">
+<workspace-header class="workspace-header" ng-init="currentPage='4'"></workspace-header>
+
+
+<div class="container project-page-container">
+
+
+  <md-content class="content-panel-body">
+
+<!-- <div class="page-header">
     <md-toolbar>
         <h1 class="project-title" layout="row" layout-align="start end">
             <div class="title">
@@ -9,28 +17,46 @@
             </span>
         </h1>
     </md-toolbar>
-</div>
+</div> -->
 <div class="margin-bottom-35" layout="row" layout-align="start center">
-    <a href="/project.php#/{{projectCtrl.projectData.id}}/home">Back to Project</a>
+    <!-- <a href="/project.php#/{{projectCtrl.projectData.id}}/home">Back to Project</a> -->
     <span flex></span>
 
     <!-- Edit and Delete buttons-->
-    <md-button ng-click="editTask()" class="md-raised dmc-button task-edit-btn" ng-show="!isEditing && task">
+    <!-- <md-button ng-click="editTask()" class="md-raised dmc-button task-edit-btn" ng-show="!isEditing && task">
         <ng-md-icon icon="edit" size="18"></ng-md-icon>
         Edit
-    </md-button>
-    <md-button ng-click="deleteTask($event)" class="md-raised dmc-button task-delete-btn" ng-show="!isEditing && task">
+    </md-button> -->
+
+    <a class="link-button uppercase edit-button margin-left20" ng-click="editTask()" ng-show="!isEditing && task">
+        <ng-md-icon icon="edit" size="18"></ng-md-icon>Edit
+    </a>
+
+    <!-- <md-button ng-click="deleteTask($event)" class="md-raised dmc-button task-delete-btn" ng-show="!isEditing && task">
         <ng-md-icon icon="delete" size="18"></ng-md-icon>
         Delete
-    </md-button>
+    </md-button> -->
+
+    <a class="link-button uppercase edit-button margin-left20" ng-click="deleteTask($event)" ng-show="!isEditing && task">
+        <ng-md-icon icon="delete" size="18"></ng-md-icon>Delete
+    </a>
 
     <!-- Save and Cancel buttons -->
-    <md-button ng-click="cancelEditTask()" class="md-raised dmc-button cancel-edit-task" ng-show="isEditing">
+    <!-- <md-button ng-click="cancelEditTask()" class="md-raised dmc-button cancel-edit-task" ng-show="isEditing">
         Cancel
-    </md-button>
-    <md-button ng-click="saveChanges()" class="md-raised dmc-button md-primary" ng-show="isEditing">
+    </md-button> -->
+
+    <a class="link-button uppercase edit-button margin-left20" ng-click="cancelEditTask()" ng-show="isEditing">
+        <ng-md-icon icon="cancel" size="18"></ng-md-icon>Cancel
+    </a>
+
+    <!-- <md-button ng-click="saveChanges()" class="md-raised dmc-button md-primary" ng-show="isEditing">
         Save
-    </md-button>
+    </md-button> -->
+
+    <a class="link-button uppercase edit-button margin-left20" ng-click="saveChanges()" ng-show="isEditing">
+        <ng-md-icon icon="save" size="18"></ng-md-icon>Save
+    </a>
 </div>
 
 <div class="container project-task-container" ng-if="!task">
@@ -123,4 +149,7 @@
             </div>
         </div>
     </div>
+</div>
+
+</md-content>
 </div>
