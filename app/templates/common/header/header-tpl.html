@@ -84,8 +84,10 @@
                     <md-button class="user-button"
                                aria-label="Open Latest Services Menu"
                                ng-click="closeMenu(); $mdOpenMenu($event)">
-                        <ng-md-icon ng-hide="screenVerySmall()" icon="person" size="20"></ng-md-icon>
-                        <ng-md-icon ng-if="screenVerySmall()" icon="person" size="25"></ng-md-icon>
+                        <ng-md-icon ng-hide="userData.isDmdiiAdmin || screenVerySmall()" icon="person" size="20"></ng-md-icon>
+                        <ng-md-icon ng-if="!userData.isDmdiiAdmin && screenVerySmall()" icon="person" size="25"></ng-md-icon>
+                        <md-icon ng-hide="!userData.isDmdiiAdmin || screenVerySmall()" md-svg-src="images/superadmin.svg"></md-icon>
+                        <md-icon ng-if="userData.isDmdiiAdmin && screenVerySmall()" md-svg-src="images/superadmin.svg"></md-icon>
                         <span ng-hide="screenVerySmall()">Hi, {{userData.displayName}}</span>
                     </md-button>
                     <md-menu-content class="header-menu-content">
@@ -272,7 +274,7 @@
                     <md-button href="/all-projects.php">Workspaces</md-button>
                 </md-menu-item>
 
-                    <md-menu ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" md-offset="0 57" class="item" ng-init="dropDownWidth = 200">
+                    <md-menu ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" md-offset="0 57" class="item" ng-init="dropDownWidth = 230">
                         <md-button
                                 aria-label="Open Latest Services Menu"
                                 ng-click="closeMenu(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);"
@@ -298,6 +300,15 @@
                               <md-button ng-click="$mdCloseMenu($event);" href="/dmdii-projects.php"
                                          ng-class="{'active-page' : activePage.indexOf('member') > -1,
                                              	'member-portal': membersOnly}">Events</md-button>
+                            </md-menu-item>
+                            <md-menu-item ng-if="userData.isDmdiiAdmin">
+                                <md-button href="/add-dmdii-content.php"><ng-md-icon icon="settings"></ng-md-icon>Add DMDII Content</md-button>
+                            </md-menu-item>
+                            <md-menu-item ng-if="userData.isDmdiiAdmin">
+                                <md-button href="/edit-member-page.php"><ng-md-icon icon="settings"></ng-md-icon>Create DMDII Member</md-button>
+                            </md-menu-item>
+                            <md-menu-item ng-if="userData.isDmdiiAdmin">
+                                <md-button href="/edit-dmdii-project-page.php"><ng-md-icon icon="settings"></ng-md-icon>Create DMDII Project</md-button>
                             </md-menu-item>
                         </md-menu-content>
                     </md-menu>

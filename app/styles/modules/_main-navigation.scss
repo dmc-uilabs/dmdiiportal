@@ -118,7 +118,14 @@ div[dmc-top-header]{
       ng-md-icon{
         fill: $topHeaderIcon;
       }
-
+      md-icon{
+        padding-right: 5px;
+        padding-bottom: 5px;
+        svg{
+          fill: map-get($colors, secondary);
+          //fill: white;
+        }
+      }
     }
   }
 
@@ -274,6 +281,17 @@ div[dmc-top-header]{
 .header-menu-content.md-default-theme{
   a.md-button {
     line-height: 3.2;
+  }
+  ng-md-icon{
+    margin-right:10px;
+    fill: map-get($colors, secondary);
+  }
+  md-icon{
+    margin-right:10px;
+    svg{
+      fill: map-get($colors, secondary);
+      //fill: white;
+    }
   }
   &.messages-list{
     width: 350px;
