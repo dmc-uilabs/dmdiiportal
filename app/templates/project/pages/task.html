@@ -2,154 +2,110 @@
 
 
 <div class="container project-page-container">
-
-
   <md-content class="content-panel-body">
+    <div layout="row" layout-align="start center" ng-show="task">
+      <span flex></span>
+      <!-- Edit and Delete buttons-->
+      <a class="link-button uppercase edit-button margin-left20" ng-click="editTask()" ng-show="!isEditing && task">
+          <ng-md-icon icon="edit" size="18"></ng-md-icon>Edit
+      </a>
+      <a class="link-button uppercase edit-button margin-left20" ng-click="deleteTask($event)" ng-show="!isEditing && task">
+          <ng-md-icon icon="delete" size="18"></ng-md-icon>Delete
+      </a>
 
-<!-- <div class="page-header">
-    <md-toolbar>
-        <h1 class="project-title" layout="row" layout-align="start end">
-            <div class="title">
-                <a href="/project.php#/{{projectCtrl.projectData.id}}/home">{{projectCtrl.projectData.title}}</a>
-            </div>
-            <span ng-if="projectCtrl.projectData.dueDate" class="small-text due-date-project small-text--grey">
-                Due in {{projectCtrl.projectData.dueDate}}
-            </span>
-        </h1>
-    </md-toolbar>
-</div> -->
-<div class="margin-bottom-35" layout="row" layout-align="start center">
-    <!-- <a href="/project.php#/{{projectCtrl.projectData.id}}/home">Back to Project</a> -->
-    <span flex></span>
-
-    <!-- Edit and Delete buttons-->
-    <!-- <md-button ng-click="editTask()" class="md-raised dmc-button task-edit-btn" ng-show="!isEditing && task">
-        <ng-md-icon icon="edit" size="18"></ng-md-icon>
-        Edit
-    </md-button> -->
-
-    <a class="link-button uppercase edit-button margin-left20" ng-click="editTask()" ng-show="!isEditing && task">
-        <ng-md-icon icon="edit" size="18"></ng-md-icon>Edit
-    </a>
-
-    <!-- <md-button ng-click="deleteTask($event)" class="md-raised dmc-button task-delete-btn" ng-show="!isEditing && task">
-        <ng-md-icon icon="delete" size="18"></ng-md-icon>
-        Delete
-    </md-button> -->
-
-    <a class="link-button uppercase edit-button margin-left20" ng-click="deleteTask($event)" ng-show="!isEditing && task">
-        <ng-md-icon icon="delete" size="18"></ng-md-icon>Delete
-    </a>
-
-    <!-- Save and Cancel buttons -->
-    <!-- <md-button ng-click="cancelEditTask()" class="md-raised dmc-button cancel-edit-task" ng-show="isEditing">
-        Cancel
-    </md-button> -->
-
-    <a class="link-button uppercase edit-button margin-left20" ng-click="cancelEditTask()" ng-show="isEditing">
-        <ng-md-icon icon="cancel" size="18"></ng-md-icon>Cancel
-    </a>
-
-    <!-- <md-button ng-click="saveChanges()" class="md-raised dmc-button md-primary" ng-show="isEditing">
-        Save
-    </md-button> -->
-
-    <a class="link-button uppercase edit-button margin-left20" ng-click="saveChanges()" ng-show="isEditing">
-        <ng-md-icon icon="save" size="18"></ng-md-icon>Save
-    </a>
-</div>
-
-<div class="container project-task-container" ng-if="!task">
-    Task does not exist
-</div>
-<div class="container project-task-container" ng-if="task">
-    <div layout="row" >
-        <!-- Left Content Column -->
-        <div class="content-column" layout="column" flex="70">
-            <!-- Overview -->
-            <div class="content-panel margin-right12-5">
-                <div class="content-panel-header">
-                    <md-toolbar>
-                        <h2>Task</h2>
-                    </md-toolbar>
-                </div>
-                <div class="content-panel-body">
-                    <md-content layout="row">
-                        <div flex layout="column">
-                            <div class="title-task-block" flex layout="row" layout-align="start center" ng-show="!isEditing">
-                                <p flex ng-bind-html="task.title"></p>
-                                <md-button class="md-raised dmc-button" ng-click="setStatus()">{{task.status == "InProgress" ? "Mark As Completed" : (task.status == "Open" ? "Start Progress" : "Reopen")}}</md-button>
-                            </div>
-                            <div class="additional-details" flex layout="row" ng-show="!isEditing">
-                                <p ng-show="task.additionalDetails && task.additionalDetails.length > 0" ng-bind-html="task.additionalDetails"></p>
-                                <p ng-show="!task.additionalDetails || task.additionalDetails.length == 0">Additional details is empty</p>
-                            </div>
-                            <md-input-container class="md-block" ng-if="isEditing" flex="100">
-                                <label>Description</label>
-                                <textarea ng-model="task.title"></textarea>
-                            </md-input-container>
-                            <md-input-container class="md-block" ng-if="isEditing" flex="100">
-                                <label>Additional Details</label>
-                                <textarea ng-model="task.additionalDetails" md-maxlength="1000"></textarea>
-                            </md-input-container>
-                        </div>
-                    </md-content>
-                </div>
-            </div>
-        </div>
-        <!-- Right Content Column -->
-        <div class="content-column" layout="column" flex>
-            <div class="content-panel margin-left12-5">
-                <div class="content-panel-header">
-                    <md-toolbar>
-                        <h2>Details</h2>
-                    </md-toolbar>
-                </div>
-                <div class="content-panel-body">
-                    <md-content layout="row" class="task-details-container">
-                        <ul ng-show="!isEditing">
-                            <li>Status: {{task.status == "InProgress" ? "In Progress" : (task.status == "Open" ? "To Do" : "Completed")}}</li>
-                            <li>Due Date:
-                              <span ng-if="task.status=='Open' || task.status=='InProgress'" ng-bind-html="task.formatedDueDate[1]" class="label" ng-class="task.formatedDueDate[0] == 'date' ? 'label--date' : (task.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (task.formatedDueDate[0] == 'today' || task.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
-                              <div ng-if="task.status=='Closed' || task.status=='Completed'">
-                                <strike ng-bind-html="task.formatedDueDate[1]" class="label--done"></strike>
-                              </div>
-                            </li>
-                            <li>Priority: {{task.priorityName}}</li>
-                            <li>Assigned To: <a href="/profile.php#/{{task.assigneeId}}">{{task.assignee}}</a></li>
-                            <li>Created By: <a href="/profile.php#/{{task.reporterId}}">{{task.reporter}}</a></li>
-                        </ul>
-                        <div layout="column" ng-show="isEditing" class="edit-details-block" flex="80">
-                            <div layout="row" flex="80">
-                                <span class="dueDate-label" ng-show="task.dueDateForEdit">Due Date</span>
-                                <md-datepicker flex class="dueDatePicker"
-                                               ng-model="task.dueDateForEdit" md-placeholder="Due Date"
-                                               ng-init="setDatePickerFocus()">
-                                </md-datepicker>
-                            </div>
-                            <div layout="row" flex="80">
-                                <md-input-container flex>
-                                    <label>Priority</label>
-                                    <md-select ng-model="task.priority">
-                                        <md-option ng-repeat="p in priorities" value="{{p.id}}">{{p.name}}</md-option>
-                                    </md-select>
-                                </md-input-container>
-                            </div>
-                            <div layout="row" flex="80">
-                                <md-input-container flex>
-                                    <label>Assigned To </label>
-                                    <md-select ng-model="task.assigneeId">
-                                        <md-option ng-value="user.id" ng-repeat="user in users | orderBy:'user.member.displayName'">{{user.member.displayName}}</md-option>
-                                    </md-select>
-                                </md-input-container>
-                            </div>
-                        </div>
-                    </md-content>
-                </div>
-            </div>
-        </div>
+      <!-- Save and Cancel buttons -->
+      <a class="link-button uppercase edit-button margin-left20" ng-click="cancelEditTask()" ng-show="isEditing">
+          <ng-md-icon icon="cancel" size="18"></ng-md-icon>Cancel
+      </a>
+      <a class="link-button uppercase edit-button margin-left20" ng-click="saveChanges()" ng-show="isEditing">
+          <ng-md-icon icon="save" size="18"></ng-md-icon>Save
+      </a>
     </div>
-</div>
+
+
+    <div layout="row" ng-show="task">
+      <!-- Left Content Column -->
+      <div class="content-column" layout="column" flex="65">
+        <div class="content-panel margin-right12-5">
+          <div flex layout="column">
+
+            <h2 style="font-weight: 100;">Summary</h2>
+
+              <div class="title-task-block" flex layout="row" layout-align="start center" ng-show="!isEditing">
+                  <h3 flex ng-bind-html="task.title"></h3>
+                  <md-button class="md-raised dmc-button" ng-click="setStatus()">{{task.status == "InProgress" ? "Mark As Completed" : (task.status == "Open" ? "Start Progress" : "Reopen")}}</md-button>
+              </div>
+              <div class="additional-details" flex layout="row" ng-show="!isEditing">
+                  <p ng-show="task.additionalDetails && task.additionalDetails.length > 0" ng-bind-html="task.additionalDetails"></p>
+                  <p ng-show="!task.additionalDetails || task.additionalDetails.length == 0">Additional details is empty</p>
+              </div>
+              <md-input-container class="md-block" ng-if="isEditing" flex="100">
+                  <label>Description</label>
+                  <textarea ng-model="task.title"></textarea>
+              </md-input-container>
+              <md-input-container class="md-block" ng-if="isEditing" flex="100">
+                  <label>Additional Details</label>
+                  <textarea ng-model="task.additionalDetails" md-maxlength="1000"></textarea>
+              </md-input-container>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-column" layout="column" flex>
+        <div class="content-panel margin-left12-5 project-task-container">
+          <h2 style="font-weight: 100;">Details</h2>
+          <md-content layout="row" class="task-details-container">
+              <ul ng-show="!isEditing">
+                  <li>Status: {{task.status == "InProgress" ? "In Progress" : (task.status == "Open" ? "To Do" : "Completed")}}</li>
+                  <li>Due Date:
+                    <span ng-if="task.status=='Open' || task.status=='InProgress'" ng-bind-html="task.formatedDueDate[1]" class="label" ng-class="task.formatedDueDate[0] == 'date' ? 'label--date' : (task.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (task.formatedDueDate[0] == 'today' || task.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
+                    <div ng-if="task.status=='Closed' || task.status=='Completed'">
+                      <strike ng-bind-html="task.formatedDueDate[1]" class="label--done"></strike>
+                    </div>
+                  </li>
+                  <li>Priority: {{task.priorityName}}</li>
+                  <li>Assigned To: <a href="/profile.php#/{{task.assigneeId}}">{{task.assignee}}</a></li>
+                  <li>Created By: <a href="/profile.php#/{{task.reporterId}}">{{task.reporter}}</a></li>
+              </ul>
+              <div layout="column" ng-show="isEditing" class="edit-details-block">
+                  <div layout="column">
+                      <span ng-show="task.dueDateForEdit">Due Date</span>
+                      <md-datepicker flex class="dueDatePicker"
+                                     ng-model="task.dueDateForEdit" md-placeholder="Due Date"
+                                     ng-init="setDatePickerFocus()">
+                      </md-datepicker>
+                  </div>
+                  <div layout="row">
+                      <md-input-container flex>
+                          <label>Priority</label>
+                          <md-select ng-model="task.priority">
+                              <md-option ng-repeat="p in priorities" value="{{p.id}}">{{p.name}}</md-option>
+                          </md-select>
+                      </md-input-container>
+                  </div>
+                  <div layout="row">
+                      <md-input-container flex>
+                          <label>Assigned To </label>
+                          <md-select ng-model="task.assigneeId">
+                              <md-option ng-value="user.id" ng-repeat="user in users | orderBy:'user.member.displayName'">{{user.member.displayName}}</md-option>
+                          </md-select>
+                      </md-input-container>
+                  </div>
+              </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div layuot="row" ng-show="!task">
+      <div class="container project-task-container">
+        <md-content class="content-panel-body">
+          Task does not exist
+        </md-content>
+      </div>
+    </div>
+
+
 
 </md-content>
 </div>
