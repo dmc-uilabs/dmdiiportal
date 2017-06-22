@@ -1,0 +1,140 @@
+<div class="container container-account" layout="row" ng-if="accountData.id">
+    <div class="content-column left-content margin-right12-5" layout="column" flex="20">
+        <div class="content-panel" account-menu account-id="accountId" page="page"></div>
+    </div>
+    <div class="content-column right-content margin-left12-5" layout="column" flex>
+        <div class="content-panel">
+            <div class="content-panel-body">
+                <md-content>
+                  <div ng-if="!not_found" class="profile">
+                      <md-content class="profile-padding">
+                          <div layout="row">
+                              <div flex="30">
+                                  <div class="image-profile-box" ng-show="!isChangingPicture">
+                                      <img ng-show="profile.image" ng-init="changes.image = profile.image" class="profile-image" ng-show="!isChangingPicture" ng-src="{{profile.image}}">
+                                      <md-button ng-show="profile.image" ng-click="removeMainPicture($event)" class="md-fab md-mini md-warn remove-picture" aria-label="Remove Picture">
+                                          <ng-md-icon icon="delete" size="18"></ng-md-icon>
+                                      </md-button>
+                                  </div>
+
+                                  <div layout="column" ng-show="isChangingPicture || !profile.image">
+                      	            <div class="content-panel"
+                      	                source="file"
+                      	                ui-widget-upload-documents
+                      	                widget-type="'row'"
+                      	                auto-upload="false"
+                      	                widget-title="'Profile Image'"
+                      	                allow-tagging="false"
+                      	                file-limit="1">
+                      	            </div>
+                                      <!-- <md-button ng-click="cancelChangePicture()">Cancel</md-button> -->
+                                  </div>
+
+                                  <md-button flex="100" ng-show="!isChangingPicture && profile.image" class="md-raised" ng-click="changePicture()">
+                                      <ng-md-icon icon="camera_alt" style="fill: grey;" size="25"></ng-md-icon>
+                                      Change Photo
+                                  </md-button>
+
+                              </div>
+
+                              <div class="profile-header" flex="70" layout="row">
+                                  <div flex="50" layout="column">
+                                      <md-input-container>
+                                          <label>Display Name</label>
+                                          <input id="editDisplayNameProfile"
+                                                 ng-change="change()"
+                                                 ng-init="changes.displayName = profile.displayName"
+                                                 ng-model="profile.displayName">
+                                      </md-input-container>
+                                      <md-input-container>
+                                          <label>Job Title</label>
+                                          <input ng-model="profile.title"
+                                                 ng-change="change()"
+                                                 ng-init="changes.title = profile.title">
+                                      </md-input-container>
+                                      <md-input-container ng-if="!isVerified">
+                                          <label>Company</label>
+                                          <md-select ng-model="profile.companyId" ng-required="!isVerified" ng-disabled="isVerified">
+                                              <md-option ng-repeat="company in companies" value="{{company.id}}">
+                                                  {{company.name}}
+                                              </md-option>
+                                          </md-select>
+                                          <div class="request-to-join">
+                                              <md-button class="md-raised dmc-button"
+                                                         ng-disabled="isVerified"
+                                                         ng-click="resendNotification()"
+                                                         ng-show="!isVerified && profile.companyId">Resend Notification</md-button>
+                                          </div>
+                                      </md-input-container>
+
+                                      <md-input-container ng-if="isVerified">
+                                          <label>Company</label>
+                                          <input ng-model="profile.companyName" ng-disabled="isVerified"></input>
+                                      </md-input-container>
+
+                                      <!-- <md-input-container class="md-icon-float title-input-left">
+                                          <label>Location</label>
+                                          <md-icon class="location-gps" ng-click="getLocation()">
+                                              <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
+                                          </md-icon>
+                                          <input ng-model="profile.address"
+                                                 ng-init="changes.address = profile.address"
+                                                 ng-change="change()"
+                                                 type="text">
+                                      </md-input-container> -->
+
+                                  </div>
+                                  <div flex="50" layout="row" layout-align="end start">
+                                      <!-- <md-button ng-click="cancelEdit()" class="md-raised dmc-button">Cancel</md-button> -->
+                                      <md-button ng-click="saveEdit()" class="md-raised dmc-button md-primary">Save</md-button>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <md-tabs md-dynamic-height md-border-bottom>
+                              <md-tab label="About Me">
+                                  <md-content class="md-padding">
+
+                                        <div layout="column"
+                                        ui-widget-rich-text
+                                        field-name="message"
+                                        is-required="false"
+                                        model="profile.aboutMe"
+                                        limit="3000"
+                                        is-saved="isSaved"
+                                        is-valid="isValid">
+                                      </div>
+
+                                  </md-content>
+                              </md-tab>
+                              <md-tab label="My Skills">
+                                  <md-content class="md-padding">
+                                      <div layout="column">
+                                          <form ng-submit="addSkill(inputSkill)" class="add-skills-form" layout="row" layout-align="start center">
+                                              <md-input-container>
+                                                  <label>Enter skill</label>
+                                                  <input ng-model="inputSkill">
+                                              </md-input-container>
+                                              <md-button ng-disabled="!inputSkill" class="md-raised md-primary add-skill">Add</md-button>
+                                          </form>
+                                          <div layout="row" class="tabs-content" layout-wrap>
+                                              <md-chips ng-repeat="skill in profile.skills track by $index">
+                                                  <md-chip class="skills-chip">
+                                                      {{skill.skillName}}
+                                                      <md-button aria-label="close" ng-click="deleteSkill($index,$event)" class="md-icon-button">
+                                                          <ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
+                                                      </md-button>
+                                                  </md-chip>
+                                              </md-chips>
+                                          </div>
+                                      </div>
+                                  </md-content>
+                              </md-tab>
+                          </md-tabs>
+                      </md-content>
+                  </div>
+                </md-content>
+            </div>
+        </div>
+    </div>
+</div>
