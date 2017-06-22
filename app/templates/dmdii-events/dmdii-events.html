@@ -3,44 +3,98 @@
 			<h2>Events</h2>
 		</section>
 
-		<!-- TODO this needs to be made in to a module suitable for members, projects and ideally services -->
 		<section class="container content-padding">
 			<div class="row content-row">
-				<div class="col-lg-6">
-				<tien-clndr class="clndr events" tien-clndr-object="clndr" tien-clndr-events="events" tien-clndr-options="options">
-						<div class="clndr-controls">
-								<div class="clndr-previous-button" ng-click="clndr.back()">
-										&lsaquo;
-								</div>
-								<div class="month">
-									{{month}}
-								</div>
-								<div class="clndr-next-button" ng-click="clndr.forward()">
-									&rsaquo;
-								</div>
-						</div>
-						<div class="clndr-grid">
-								<div class="days-of-the-week">
-									<div class="header-day" ng-repeat="day in daysOfTheWeek track by $index">
-										{{day}}
+				<!-- inline style below needed to workaround calendar sizing on mobile -->
+				<div class="col-md-6" style="min-height: 500px;">
+					
+								<!-- Desktop controls -->
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs event-tabs" role="tablist">
+									<!-- <li class="hidden-xs tab-label">Events</li> -->
+									<li role="presentation" class="active hidden-xs"><a data-target="#calendar" aria-controls="calendar" role="tab" data-toggle="tab">Calendar</a></li>
+									<li role="presentation" class="hidden-xs"><a data-target="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">Event List</a></li>
+
+
+
+									<!-- Mobile controls -->
+									<li role="presentation" class="dropdown xs-tab-control visible-xs">
+										<a href="#" class="dropdown-toggle" id="myTabDrop1" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false"><span class="tab-section-label">Section</span> <span class="caret"></span></a>
+										<ul class="dropdown-menu" aria-labelledby="myTabDrop1"
+														id="myTabDrop1-contents">
+											<li class=""><a href="#calendar" role="tab" data-toggle="tab" aria-controls="dropdown2" aria-expanded="false">Calendar</a></li>
+											<li class="">
+												<a href="#schedule" role="tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">Event List</a></li>
+										</ul>
+
+									</li>
+								</ul>
+
+
+
+								<!-- Tab panes -->
+								<div class="tab-content">
+
+									<div role="tabpanel" class="tab-pane fade in active" id="calendar">
+
+										<tien-clndr class="clndr events" tien-clndr-object="clndr" tien-clndr-events="events" tien-clndr-options="options">
+												<div class="clndr-controls">
+														<div class="clndr-previous-button" ng-click="clndr.back()">
+																&lsaquo;
+														</div>
+														<div class="month">
+															{{month}}
+														</div>
+														<div class="clndr-next-button" ng-click="clndr.forward()">
+															&rsaquo;
+														</div>
+												</div>
+												<div class="clndr-grid">
+														<div class="days-of-the-week">
+															<div class="header-day" ng-repeat="day in daysOfTheWeek track by $index">
+																{{day}}
+															</div>
+														</div>
+														<div class="days">
+															<div class="{{day.classes}}" ng-repeat="day in days" ng-click="dayClicked($event, day)">
+																<div class="event-indicator" ng-show="day.events.length" ng-click="showEvents(day.events)">{{day.events.length}}</div>
+																{{day.day}}
+															</div>
+														</div>
+												</div>
+										</tien-clndr>
+
+									</div>
+									<div role="tabpanel" class="tab-pane fade " id="schedule">
+
+										<div class="event-list" ng-repeat="event in events track by $index| limitTo:3">
+
+										<div class="event-block">
+										<div class="row">
+											<h2 class="col-sm-6">{{event.name}}</h2><time datetime="2011-01-12" class="col-sm-6 text-right">{{event.date}}</time>
+										</div>
+
+											<p markdown-to-html="event.description"></p>
+											<a ng-if="userData.isDmdiiAdmin" flex="10" href ng-click="deleteEvent($index, event.id)" class="delete-icon">delete <ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon></a>
+
+										</div>
+
+
+										</div>
+
 									</div>
 								</div>
-								<div class="days">
-									<div class="{{day.classes}}" ng-repeat="day in days" ng-click="dayClicked($event, day)">
-										<div class="event-indicator" ng-show="day.events.length" ng-click="showEvents(day.events)">{{day.events.length}}</div>
-										{{day.day}}
-									</div>
-								</div>
-						</div>
-				</tien-clndr>
+
+
 				</div>
 
-				<div class="col-lg-6">
+				<div class="col-md-6">
+					<h4 class="col-label">Event Detail</h4>
 					<div class="event-list" ng-repeat="event in events track by $index| limitTo:3">
 
 					<div class="event-block">
 					<div class="row">
-						<h2 class="col-sm-6">{{event.name}}</h2><time datetime="2011-01-12" class="col-sm-6 text-right">{{event.date}}</time>
+						<h2 class="col-sm-9">{{event.name}}</h2><time datetime="2011-01-12" class="col-sm-3 text-right">{{event.date}}</time>
 					</div>
 
 						<p markdown-to-html="event.description"></p>

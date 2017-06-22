@@ -65,28 +65,33 @@ angular.module('dmc.dmdiiEvents')
 
             $scope.endDate = year + '-' + month + '-' + day;
 
+            // var eventsCallbackFunction = function(response) {
+            //     $scope.events = [];
+            //     angular.forEach(response.data, function(event) {
+            //         if(moment(event.eventDate).isBefore(moment($scope.startDate)) || moment(event.eventDate).isAfter(moment($scope.endDate))){
+            //             return;
+            //         }
+            //         var e = {
+            //             id: event.id,
+            //             date: event.eventDate,
+            //             content: {
+            //               name: event.eventName,
+            //               date: moment(event.eventDate).format("MMMM DD, YYYY"),
+            //               description: event.eventDescription
+            //             }
+            //         }
+            //         $scope.events.push(e);
+            //     });
+            // }
+
             var eventsCallbackFunction = function(response) {
-                $scope.events = [];
-                angular.forEach(response.data, function(event) {
-                    if(moment(event.eventDate).isBefore(moment($scope.startDate)) || moment(event.eventDate).isAfter(moment($scope.endDate))){
-                        return;
-                    }
-                    var e = {
-                        id: event.id,
-                        date: event.eventDate,
-                        content: {
-                          name: event.eventName,
-                          date: moment(event.eventDate).format("MMMM DD, YYYY"),
-                          description: event.eventDescription
-                        }
-                    }
-                    $scope.events.push(e);
-                });
+                $scope.events = response.data;
             }
 
             $scope.getEvents = function(){
-                ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 10000}, eventsCallbackFunction);
+                ajax.get(dataFactory.dmdiiMemberEventUrl().get, {limit: 1000}, eventsCallbackFunction);
             };
+
             $scope.getEvents();
 
             var truncateText = function(text,length) {
@@ -95,6 +100,25 @@ angular.module('dmc.dmdiiEvents')
               } else {
                 return text;
               }
+            }
+
+            $scope.eventClicked = function(event) {
+                if (!$scope.showCalendar) {
+                    $scope.showCalendar = true;
+                }
+                $('.is-selected').removeClass('is-selected');
+
+                $('.calendar-day-'+event.date).addClass('is-selected');
+                $scope.showEvents([event]);
+            }
+            $scope.dayClicked = function($event, day) {
+                $('.is-selected').removeClass('is-selected');
+                $($event.target).addClass('is-selected');
+                $scope.showEvents(day.events)
+            }
+
+            $scope.showEvents = function(events) {
+                $scope.dayEvents = events;
             }
 
         }
