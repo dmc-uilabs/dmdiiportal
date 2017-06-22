@@ -1,22 +1,3 @@
-<!-- <div class="page-header margin-bottom-35">
-    <md-toolbar>
-        <h1 class="project-title" layout="row" layout-align="start end">
-            <div class="title">
-                <a href="/project.php#/{{projectData.id}}/home">{{projectData.title}}</a>
-            </div>
-            <span class="small-text due-date-project small-text--grey">
-                Due in 20 days
-            </span>
-        </h1>
-        <div class="md-toolbar-tools">
-            <div layout="column" flex="65" class="margin-right12-5">
-                <div layout="row" class="name-project" flex>
-                    <div sub-nav-menu-button current-page="7"></div>
-                </div>
-            </div>
-        </div>
-    </md-toolbar>
-</div> -->
 <workspace-header class="workspace-header" ng-init="currentPage='7'"></workspace-header>
 
 <div class="project-run-services" ng-if="!runHistory" ng-show="hasCustomUI && service.interfaceModel.inParams.inputFile" layout="column">

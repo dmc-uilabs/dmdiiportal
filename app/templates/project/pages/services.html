@@ -1,31 +1,5 @@
-<!-- <div class="page-header margin-bottom-35">
-    <md-toolbar>
-        <h1 class="project-title" layout="row" layout-align="start end">
-            <div class="title">
-                <a href="/project.php#/{{projectData.id}}/home">{{projectData.title}}</a>
-            </div>
-            <span ng-if="projectData.dueDate" class="small-text due-date-project small-text--grey">
-                Due in {{projectData.dueDate}}
-            </span>
-        </h1>
-        <div class="md-toolbar-tools">
-            <div layout="column" flex="65" class="margin-right12-5">
-                <div layout="row" class="name-project" flex>
-                    <div sub-nav-menu-button current-page="7"></div>
-                </div>
-            </div>
-        </div>
-    </md-toolbar>
-</div> -->
 <workspace-header class="workspace-header" ng-init="currentPage='7'"></workspace-header>
 <div class="project-services" layout="column">
-    <!-- <div layout="row" layout-align="space-between center" class="project-services-top">
-        <h2>Services</h2>
-        <div layout="row">
-            <a class="link" href="marketplace.php">Browse Services</a>
-            <a ng-if="userData.isDmdiiAdmin || ([158, 191, 339, 237].includes(userData.companyId))" class="link margin-left16" ng-href="{{'project.php#/' + projectData.id + '/upload-service'}}">Register Services</a>
-        </div>
-    </div> -->
     <md-content >
       <div layout="row" layout-align="space-between center" class="project-services-top">
           <span flex></span>
