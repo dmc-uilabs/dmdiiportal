@@ -86,6 +86,8 @@ angular.module('dmc.dmdiiEvents')
 
             var eventsCallbackFunction = function(response) {
                 $scope.events = response.data;
+                sortEvents($scope.events);
+                setInitialSelectedDay($scope.events);
             }
 
             $scope.getEvents = function(){
@@ -111,14 +113,46 @@ angular.module('dmc.dmdiiEvents')
                 $('.calendar-day-'+event.date).addClass('is-selected');
                 $scope.showEvents([event]);
             }
+
             $scope.dayClicked = function($event, day) {
                 $('.is-selected').removeClass('is-selected');
                 $($event.target).addClass('is-selected');
                 $scope.showEvents(day.events)
             }
 
+            var setSelectedDay = function(dateString) {
+              console.log(dateString)
+              $('.is-selected').removeClass('is-selected');
+              $('.calendar-day-'+dateString).addClass('is-selected');
+            }
+
             $scope.showEvents = function(events) {
                 $scope.dayEvents = events;
+            }
+
+            var setInitialSelectedDay = function(events) {
+              var today = new Date();
+              var selectedDay;
+              var selectedEvents = [];
+
+              for (var i=0; i<events.length; i++) {
+                var eventDate = new Date(events[i].date)
+                if (!selectedDay && eventDate > today) {
+                  selectedDay = eventDate
+                  selectedEvents.push(events[i])
+                } else if (eventDate == selectedDay) {
+                  selectedEvents.push(events[i])
+                }
+              }
+
+              $scope.showEvents(selectedEvents);
+
+            }
+
+            var sortEvents = function(events) {
+              return events.sort(function(a,b){
+                return new Date(a.date) - new Date(b.date);
+              });
             }
 
         }

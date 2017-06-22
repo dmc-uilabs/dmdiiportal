@@ -18,13 +18,20 @@
     "name": "mHUB Presents, First Industrial Responders Emerge (FIRE) Panel Discussion: Trends in Product Innovation",
     "description": "Join industry leaders for an evening of discussions, networking and tours of mHUB! First Industrial Responders Emerge panelists will address innovation, product sourcing, business best practices and supplier networks and lead breakout discussions.",
     "location": "1161 Oak Valley Drive, Ann Arbor, MI",
-    "date": "2017-6-13"
+    "date": "2017-06-13"
   },
   {
     "id": 4,
     "name": "City Digital’s David Leopold will give a keynote talk about “Mapping the Street of the Future,” featuring insights, opportunities, and lessons learned from City Digital’s underground infrastructure mapping pilot and other related projects.",
     "description": "The first in a three-part series, this one-day workshop, hosted by Boston University, will bring together city leaders, utilities, planners and academic researchers to identify barriers and challenges to coordinated infrastructure management in aging cities, and explore emerging solutions. Together, attendees will consider both above and below ground infrastructure, from lights, lanes and greenery to pipes, roots and soil.",
     "location": "1161 Oak Valley Drive, Ann Arbor, MI",
-    "date": "2017-6-13"
+    "date": "2017-06-13"
+  },
+  {
+    "id": 5,
+    "name": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi ",
+    "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. ",
+    "location": "1161 Oak Valley Drive, Ann Arbor, MI",
+    "date": "2017-06-23"
   }
 ]

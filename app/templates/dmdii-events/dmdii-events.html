@@ -7,7 +7,7 @@
 			<div class="row content-row">
 				<!-- inline style below needed to workaround calendar sizing on mobile -->
 				<div class="col-md-6" style="min-height: 500px;">
-					
+
 								<!-- Desktop controls -->
 								<!-- Nav tabs -->
 								<ul class="nav nav-tabs event-tabs" role="tablist">
@@ -71,10 +71,10 @@
 
 										<div class="event-block">
 										<div class="row">
-											<h2 class="col-sm-6">{{event.name}}</h2><time datetime="2011-01-12" class="col-sm-6 text-right">{{event.date}}</time>
+											<h5 style="outline: 0;"ng-click="eventClicked(event)" class="col-sm-9">{{event.name}}</h5><time datetime="2011-01-12" class="col-sm-3 text-right">{{event.date}}</time>
 										</div>
 
-											<p markdown-to-html="event.description"></p>
+											<!-- <p markdown-to-html="event.description"></p> -->
 											<a ng-if="userData.isDmdiiAdmin" flex="10" href ng-click="deleteEvent($index, event.id)" class="delete-icon">delete <ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon></a>
 
 										</div>
@@ -89,8 +89,8 @@
 				</div>
 
 				<div class="col-md-6">
-					<h4 class="col-label">Event Detail</h4>
-					<div class="event-list" ng-repeat="event in events track by $index| limitTo:3">
+					<h4 class="col-label" style="margin-bottom: 20px;">Events Detail</h4>
+					<div class="event-list" ng-repeat="event in dayEvents track by $index| limitTo:3">
 
 					<div class="event-block">
 					<div class="row">
