@@ -107,7 +107,8 @@ server.get('/dmdiiprojects', function (req, res) {
   var start = page*size
   var end = (page+1)*size
 
-  projectsOrig = {"count": projectsData.length ,"data" : projectsData.slice(start,end) }
+  // projectsOrig = {"count": projectsData.length ,"data" : projectsData.slice(start,end) }
+  projectsOrig = {"count": projectsData.length ,"data" : projectsData }
 
   res.jsonp(projectsOrig)
 })

@@ -90,8 +90,27 @@ angular.module('dmc.dmdiiEvents')
                 setInitialSelectedDay($scope.events);
             }
 
+            var addMemEvents = function(events) {
+              console.log(events)
+            }
+
+            var addProjEvents = function(events) {
+              events = events.data;
+              console.log(events)
+            }
+
+            var addDMDIIEvents = function(events) {
+              events = events.data.data.data;
+              events = events.filter(function(event){
+                return (event.dmdiiFunding == 5983) && (event.costShare == 8395)
+              })
+              console.log(events)
+            }
+
             $scope.getEvents = function(){
                 ajax.get(dataFactory.dmdiiMemberEventUrl().get, {limit: 1000}, eventsCallbackFunction);
+                ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 1000}, addProjEvents);
+                ajax.get(dataFactory.getDMDIIProject().all, {limit: 1000}, addDMDIIEvents);
             };
 
             $scope.getEvents();
