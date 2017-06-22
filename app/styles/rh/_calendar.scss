@@ -6,7 +6,12 @@
     margin-right: auto;
     margin-top: 0;
     max-width: 400px;
+    &.events {
+      max-width: 500px;
+      width: 500px;
+    }
 }
+
 .clndr .clndr-controls {
     border-bottom-color: #ccc;
     border-bottom-style: solid;
@@ -56,6 +61,11 @@
     text-align: center;
     width: 14.2857%;
 }
+
+.clndr.events .days .day, .clndr.events .days .empty {
+    padding: 24px 0px;
+}
+
 .clndr .days .day.is-selected {
     // background-color: $gray-dark !important;
     // color: $white;

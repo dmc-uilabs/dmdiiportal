@@ -1,70 +1,61 @@
 <main>
 		<section class="container projects-head">
-			<h2>Projects</h2>
-			<div class="row status-row">
-				<div class="col-sm-4">
-					<h4>Projects Overview</h4>
-					<img ng-src="{{projectOverview.documentUrl}}" class="img-responsive">
-					<a class="delete-button" href ng-click="deleteDocument(projectOverview.id, 'projectOverview')" ng-show="userData.isDmdiiAdmin"><ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon> Delete</a>
-				</div>
-
-				<div class="col-sm-4">
-					<h4>Projects Status</h4>
-					<img ng-src="{{projectStatus.documentUrl}}" class="img-responsive">
-				<a class="delete-button" href ng-click="deleteDocument(projectStatus.id, 'projectStatus')" ng-show="userData.isDmdiiAdmin"><ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon> Delete</a>
-				</div>
-				<div class="col-sm-4">
-					<h4>Quick Links</h4>
-					<ul class="quick-links">
-
-						<li ng-repeat="doc in docs track by $index">
-							<a href ng-click="quickLinkAction(doc)">{{doc.displayName}}</a>
-							<a href ng-click="deleteQuicklink($index, doc.id)" ng-show="userData.isDmdiiAdmin" class="delete-icon"><ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon></a>
-						</li>
-
-					</ul>
-			</div>
-			</div>
-			<div class="row timeline-row">
-			<div class="col-xs-12">
-
-				<div>
-						<horizontal-timeline
-								start-date="{{startDate}}"
-								end-date="{{endDate}}"
-								events="events"
-								user="userData">
-						</horizontal-timeline>
-				</div>
-
-			</div>
-			</div>
-
+			<h2>Events</h2>
 		</section>
 
 		<!-- TODO this needs to be made in to a module suitable for members, projects and ideally services -->
 		<section class="container content-padding">
-        <div class="row">
-            <div class="col-md-12 project-main">
-								<div class="top-border"></div>
-                <div layout="row">
-									<div class="status status-complete">FEATURED PROJECT</div>
-									<div class="status">{{randProject.projectStatus.name}}</div>
+			<div class="row content-row">
+				<div class="col-lg-6">
+				<tien-clndr class="clndr events" tien-clndr-object="clndr" tien-clndr-events="events" tien-clndr-options="options">
+						<div class="clndr-controls">
+								<div class="clndr-previous-button" ng-click="clndr.back()">
+										&lsaquo;
 								</div>
-								<!-- <time>{{randProject.rootNumber | numberFixedLen:2}}-{{randProject.callNumber | numberFixedLen:2}}-{{randProject.projectNumber | numberFixedLen:2}}</time> -->
-                <h1><a ng-href="{{'/dmdii-project-page.php#/'+randProject.id}}">{{randProject.projectTitle}}</a></h1>
-								<!-- <h4>Summary</h4> -->
-								<div class="sublabels" layout="row">
-									<div>{{randProject.projectFocusArea.name}}</div>
-									<div>{{randProject.projectThrust.name}}</div>
+								<div class="month">
+									{{month}}
 								</div>
-								<div class="slim-margin" markdown-to-html="randProject.projectSummary"></div>
-            </div>
-            </div>
-        </div>
+								<div class="clndr-next-button" ng-click="clndr.forward()">
+									&rsaquo;
+								</div>
+						</div>
+						<div class="clndr-grid">
+								<div class="days-of-the-week">
+									<div class="header-day" ng-repeat="day in daysOfTheWeek track by $index">
+										{{day}}
+									</div>
+								</div>
+								<div class="days">
+									<div class="{{day.classes}}" ng-repeat="day in days" ng-click="dayClicked($event, day)">
+										<div class="event-indicator" ng-show="day.events.length" ng-click="showEvents(day.events)">{{day.events.length}}</div>
+										{{day.day}}
+									</div>
+								</div>
+						</div>
+				</tien-clndr>
+				</div>
+
+				<div class="col-lg-6">
+					<div class="event-list" ng-repeat="event in events track by $index| limitTo:3">
+
+					<div class="event-block">
+					<div class="row">
+						<h2 class="col-sm-6">{{event.name}}</h2><time datetime="2011-01-12" class="col-sm-6 text-right">{{event.date}}</time>
+					</div>
+
+						<p markdown-to-html="event.description"></p>
+						<a ng-if="userData.isDmdiiAdmin" flex="10" href ng-click="deleteEvent($index, event.id)" class="delete-icon">delete <ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon></a>
+
+					</div>
+
+
+					</div>
+				</div>
+
+			</div>
 		</section>
 
-
+<!--
 		<section class="container">
       <dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu>
 
@@ -113,7 +104,6 @@
 					<tr ng-repeat="project in projects.arr">
 						<td>
 							<a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a>
-							<!-- <time datetime="2011-01-12">January 12th, 2011</time> -->
 							<a ng-href="{{'member-page.php#/'+project.primeOrganization.id}}"><h6>{{project.primeOrganization.name}}</h6></a>
 							<div ng-if="project.kind != 'dmdiiEvent'" class="sublabel">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</div>
 							<div ng-if="project.kind == 'dmdiiEvent'" class="sublabel">EVENT</div>
@@ -145,6 +135,6 @@
 			</div>
 		</section>
 
-	<recent-news news="news"></recent-news>
+	<recent-news news="news"></recent-news> -->
 
 </main>
