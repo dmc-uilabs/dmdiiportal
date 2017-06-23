@@ -31,8 +31,6 @@ angular.module('dmc.dmdiiEvents')
                  $mdDialog,
                  $window){
 
-            console.log('controller instantiated')
-
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
@@ -168,9 +166,10 @@ angular.module('dmc.dmdiiEvents')
                   selectedEvents.push(events[i])
                 }
                 // if we want to remove previous events
-                // if (eventDate > today) {
-                //   $scope.events.push(events[i])
-                // }
+                if (eventDate >= today) {
+                  // $scope.events.push(events[i])
+                  events[i].future=true;
+                }
               }
 
               $scope.showEvents(selectedEvents);
