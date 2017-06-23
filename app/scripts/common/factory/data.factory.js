@@ -629,10 +629,12 @@ angular.module('dmc.data', [])
         return {
           getSingle: localhost + 'documents/' + id,
           getList: localhost + 'documents',
+          download: localhost + 'documents/' + id + '/download',
           save: localhost + 'documents',
           update: localhost + 'documents/' + id,
           delete: localhost + 'documents/' + id,
           versioned: localhost + 'documents/versions/' + id,
+          s_versioned: localhost + 'documents/s_versions/' + id,
           // share: localhost + 'documents/'+id+'/user/'+userid
           share: localhost + 'documents/' + id + '/share?user=' + user + '&internal=' + internal + '&email=' + email,
           accept: localhost + 'documents/' + id + '/accept',
@@ -645,6 +647,7 @@ angular.module('dmc.data', [])
         var endpoint = 'directories/';
         return {
           get: localhost + endpoint + id,
+          s_get: localhost + "s_"+endpoint +id,
           list: localhost + endpoint,
           save: localhost + endpoint,
           update: localhost + endpoint + id,

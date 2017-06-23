@@ -12,6 +12,7 @@ server.use(jsonServer.rewriter({
     '/documents/directories/26': '/documentsdirectories',
     '/documents/directories/29': '/documentsdirectoriestwo',
     '/documents/versions/:id': '/documentversions',
+    '/documents/s_versions/:id': '/documentSversions',
     '/user/createtoken':'/createtoken',
     '/project/:pid/invite/:uid': '/projects_members/:uid',
     '/mark-read-notifications': '/user',
