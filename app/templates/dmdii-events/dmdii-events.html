@@ -7,14 +7,14 @@
 		<section class="container content-padding">
 			<div class="row content-row">
 				<!-- inline style below needed to workaround calendar sizing on mobile -->
-				<div class="col-md-6" style="min-height: 500px;">
+				<div class="col-md-6" style="min-height: 500px; margin-bottom: 30px;">
 
 								<!-- Desktop controls -->
 								<!-- Nav tabs -->
 								<ul class="nav nav-tabs event-tabs" role="tablist">
 									<!-- <li class="hidden-xs tab-label">Events</li> -->
 									<li role="presentation" class="active hidden-xs"><a data-target="#calendar" aria-controls="calendar" role="tab" data-toggle="tab">Calendar</a></li>
-									<li role="presentation" class="hidden-xs"><a data-target="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">Event List</a></li>
+									<li role="presentation" class="hidden-xs"><a data-target="#event-list" aria-controls="event-list" role="tab" data-toggle="tab">Event List</a></li>
 
 
 
@@ -25,7 +25,7 @@
 														id="myTabDrop1-contents">
 											<li class=""><a href="#calendar" role="tab" data-toggle="tab" aria-controls="dropdown2" aria-expanded="false">Calendar</a></li>
 											<li class="">
-												<a href="#schedule" role="tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">Event List</a></li>
+												<a href="#event-list" role="tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">Event List</a></li>
 										</ul>
 
 									</li>
@@ -66,13 +66,17 @@
 										</tien-clndr>
 
 									</div>
-									<div role="tabpanel" class="tab-pane fade " id="schedule">
+									<div role="tabpanel" class="tab-pane fade " id="event-list" style="max-height: 500px; overflow-y: scroll;">
 
-										<div class="event-list" ng-repeat="event in events track by $index| limitTo:3">
+										<div class="event-list" ng-repeat="event in events">
 
 										<div class="event-block">
 										<div class="row">
-											<h5 style="outline: 0;"ng-click="eventClicked(event)" class="col-sm-9">{{event.name}}</h5><time datetime="2011-01-12" class="col-sm-3 text-right">{{event.date}}</time>
+											<h5 style="outline: 0;"ng-click="eventClicked(event)" class="col-sm-9">{{event.name}}</h5>
+											<div class="column col-sm-3">
+												<time datetime="2011-01-12">{{event.date}}</time>
+												<!-- <a ng-click="selectEvent(event)"><h6>EVENT DETAILS</h6></a> -->
+											</div>
 										</div>
 
 											<!-- <p markdown-to-html="event.description"></p> -->
@@ -90,13 +94,17 @@
 				</div>
 
 				<div class="col-md-6">
-					<h4 class="col-label" style="margin-bottom: 20px;">Events Detail</h4>
-					<div class="event-list" ng-repeat="event in dayEvents track by $index| limitTo:3">
+					<h4 class="col-label" style="margin-bottom: 55px;">Events Detail</h4>
+					<div class="event-list" ng-repeat="event in dayEvents">
 
 					<div class="event-block">
 					<div class="row">
-						<h2 class="col-sm-9">{{event.name}}</h2><time datetime="2011-01-12" class="col-sm-3 text-right">{{event.date}}</time>
-						<a ng-click="selectEvent(event)">EVENT DETAILS</a>
+						<h2 class="col-sm-9" ng-click="selectEvent(event)" style="outline: 0;">{{event.name}}</h2>
+
+						<div class="column col-sm-3">
+							<time>{{event.date}}</time>
+							<a ng-click="selectEvent(event)"><h6>EVENT DETAILS</h6></a>
+						</div>
 					</div>
 
 						<p markdown-to-html="event.description"></p>
@@ -134,19 +142,19 @@
 
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active hidden-xs"><a data-target="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">Schedule</a></li>
-						<li role="presentation" class="hidden-xs"><a data-target="#documents" aria-controls="documents" role="tab" data-toggle="tab">Docs &amp; Presentations</a></li>
+						<li ng-show="selectedEvent.projectSchedule" role="presentation" class="hidden-xs active"><a data-target="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">Schedule</a></li>
+						<li ng-class="[{active: !selectedEvent.projectSchedule}]" ng-show="selectedEvent.documents" role="presentation" class="hidden-xs"><a data-target="#documents" aria-controls="documents" role="tab" data-toggle="tab">Docs &amp; Presentations</a></li>
 
 
-						<li role="presentation" class="dropdown xs-tab-control visible-xs">
+						<li ng-show="selectedEvent.projectSchedule || selectedEvent.documents" role="presentation" class="dropdown xs-tab-control visible-xs">
 								<a data-target="#" class="dropdown-toggle" id="myTabDrop1" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false">
 									<span class="tab-section-label">Section</span>
 									<span class="caret"></span></a>
 								<ul class="dropdown-menu"
 										aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
-										<li class="">
+										<li ng-show="selectedEvent.projectSchedule" class="">
 												<a data-target="#schedule" role="tab" data-toggle="tab" aria-controls="dropdown2" aria-expanded="false">Schedule</a></li>
-										<li class="">
+										<li ng-show="selectedEvent.documents" class=""class="">
 												<a data-target="#documents" role="tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">Docs &amp; Presentations</a>
 											</li>
 								</ul>
@@ -157,14 +165,14 @@
 
 			</section>
 
-			<section class="gray">
+			<section class="gray" ng-show="selectedEvent.projectSchedule || selectedEvent.documents">
 					<div class="container">
 							<!-- Tab panes -->
 							<div class="tab-content">
-									<div role="tabpanel" class="tab-pane fade in active" id="schedule">
+									<div ng-show="selectedEvent.projectSchedule" role="tabpanel" class="tab-pane fade in active" id="schedule">
 										<tab-schedule project-schedule="selectedEvent.projectSchedule" user-data="userData"></tab-schedule>
 									</div>
-									<div role="tabpanel" class="tab-pane fade " id="documents">
+									<div ng-class="[{in: !selectedEvent.projectSchedule}, {active: !selectedEvent.projectSchedule}]" ng-show="selectedEvent.documents" role="tabpanel" class="tab-pane fade " id="documents">
 										<tab-documents documents="selectedEvent.documents" user-data="userData" project="project"></tab-documents>
 									</div>
 							</div>

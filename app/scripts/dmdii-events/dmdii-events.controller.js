@@ -65,36 +65,19 @@ angular.module('dmc.dmdiiEvents')
 
             $scope.endDate = year + '-' + month + '-' + day;
 
-            // var eventsCallbackFunction = function(response) {
-            //     $scope.events = [];
-            //     angular.forEach(response.data, function(event) {
-            //         if(moment(event.eventDate).isBefore(moment($scope.startDate)) || moment(event.eventDate).isAfter(moment($scope.endDate))){
-            //             return;
-            //         }
-            //         var e = {
-            //             id: event.id,
-            //             date: event.eventDate,
-            //             content: {
-            //               name: event.eventName,
-            //               date: moment(event.eventDate).format("MMMM DD, YYYY"),
-            //               description: event.eventDescription
-            //             }
-            //         }
-            //         $scope.events.push(e);
-            //     });
-            // }
-
             var eventSourcesLoaded = 0
 
-            var eventsCallbackFunction = function(response) {
-                $scope.events = $scope.events.concat(response.data);
-                sortEvents($scope.events);
-                setInitialSelectedDay($scope.events);
-                eventSourcesLoaded++;
-            }
+            // var eventsCallbackFunction = function(response) {
+            //     $scope.events = $scope.events.concat(response.data);
+            //     sortEvents($scope.events);
+            //     setInitialSelectedDay($scope.events);
+            //     eventSourcesLoaded++;
+            // }
 
-            var addMemEvents = function(events) {
-              console.log(events)
+            var addMemEvents = function(response) {
+              $scope.events = $scope.events.concat(response.data);
+              eventSourcesLoaded++;
+              sortEvents($scope.events);
             }
 
             var addProjEvents = function(events) {
@@ -106,6 +89,7 @@ angular.module('dmc.dmdiiEvents')
               }
               $scope.events = $scope.events.concat(events);
               eventSourcesLoaded++;
+              sortEvents($scope.events);
             }
 
             var addDMDIIEvents = function(events) {
@@ -120,10 +104,11 @@ angular.module('dmc.dmdiiEvents')
               }
               $scope.events = $scope.events.concat(events);
               eventSourcesLoaded++;
+              sortEvents($scope.events);
             }
 
             $scope.getEvents = function(){
-                ajax.get(dataFactory.dmdiiMemberEventUrl().get, {limit: 1000}, eventsCallbackFunction);
+                ajax.get(dataFactory.dmdiiMemberEventUrl().get, {limit: 1000}, addMemEvents);
                 ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 1000}, addProjEvents);
                 ajax.get(dataFactory.getDMDIIProject().all, {limit: 1000}, addDMDIIEvents);
             };
@@ -155,7 +140,6 @@ angular.module('dmc.dmdiiEvents')
             }
 
             var setSelectedDay = function(dateString) {
-              console.log(dateString)
               $('.is-selected').removeClass('is-selected');
               $('.calendar-day-'+dateString).addClass('is-selected');
             }
@@ -168,15 +152,21 @@ angular.module('dmc.dmdiiEvents')
               var today = new Date();
               var selectedDay;
               var selectedEvents = [];
+              // if we want to remove previous events
+              // $scope.events = [];
 
               for (var i=0; i<events.length; i++) {
                 var eventDate = new Date(events[i].date)
-                if (!selectedDay && eventDate > today) {
+                if (!selectedDay && eventDate >= today) {
                   selectedDay = eventDate
                   selectedEvents.push(events[i])
                 } else if (eventDate == selectedDay) {
                   selectedEvents.push(events[i])
                 }
+                // if we want to remove previous events
+                // if (eventDate > today) {
+                //   $scope.events.push(events[i])
+                // }
               }
 
               $scope.showEvents(selectedEvents);
@@ -184,9 +174,13 @@ angular.module('dmc.dmdiiEvents')
             }
 
             var sortEvents = function(events) {
-              return events.sort(function(a,b){
-                return new Date(a.date) - new Date(b.date);
-              });
+              if (eventSourcesLoaded == 3) {
+                $scope.events.sort(function(a,b){
+                  return new Date(a.date) - new Date(b.date);
+                });
+
+                setInitialSelectedDay($scope.events);
+              }
             }
 
             $scope.selectEvent = function(event) {
