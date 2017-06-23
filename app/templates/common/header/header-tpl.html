@@ -53,13 +53,14 @@
                               </div>
                             </a>
 
-                            <a ng-if="item.type == 'DOCUMENT_SHARED' || item.type == 'INVITATION_TO_WORKSPACE'" ng-href="{{item.message}}">
+                            <a ng-if="item.type == 'DOCUMENT_SHARED' || item.type == 'INVITATION_TO_WORKSPACE' || item.type == 'DOCUMENT_SHARED_WITH_WORKSPACE'" ng-href="{{item.message}}">
                               <div layout="row" layout-align="space-between center">
-                                <ng-md-icon ng-if="item.type == 'DOCUMENT_SHARED'" icon="insert_drive_file" size="30"></ng-md-icon>
+                                <ng-md-icon ng-if="item.type == 'DOCUMENT_SHARED' || item.type == 'DOCUMENT_SHARED_WITH_WORKSPACE'" icon="insert_drive_file" size="30"></ng-md-icon>
                                 <ng-md-icon ng-if="item.type == 'INVITATION_TO_WORKSPACE'" icon="folder_open" size="30"></ng-md-icon>
                                 <div layout="column" layout-align="start">
                                   <i class="user-name">{{item.createdBy.displayName}}</i>
                                   <i ng-if="item.type == 'DOCUMENT_SHARED'" class="notifications-text">Sent you a document.</i>
+                                  <i ng-if="item.type == 'DOCUMENT_SHARED_WITH_WORKSPACE'" class="notifications-text">Shared a document with your workspace.</i>
                                   <i ng-if="item.type == 'INVITATION_TO_WORKSPACE'" class="notifications-text">Invited you to a workspace.</i>
                                 </div>
                                   <!-- clear notification -->
@@ -68,6 +69,19 @@
                                   </md-button>
                                 </div>
                               </a>
+                            <a ng-if="item.type == 'DOCUMENT_SHARED_WITH_WORKSPACE'" ng-href="{{item.message}}">
+                                <div layout="row" layout-align="space-between center">
+                                    <ng-md-icon icon="insert_drive_file" size="30"></ng-md-icon>
+                                    <div ng-if="item.type == 'DOCUMENT_SHARED_WITH_WORKSPACE'" layout="column" layout-align="start">
+                                        <i class="user-name">{{item.createdBy.displayName}}</i>
+                                        <i class="notifications-text">Has shared a document with your workspace.</i>
+                                    </div>
+                                    <!-- clear notification -->
+                                    <md-button class="md-icon-button clear-notification" aria-label="Clear" md-no-ink ng-click="clearNotification(item,$event);$event.stopPropagation();">
+                                        <ng-md-icon icon="close" size="18"></ng-md-icon>
+                                    </md-button>
+                                </div>
+                            </a>
 
                         </md-menu-item>
                         <div class="zone-top" style="padding-top: 8px;" layout="row" layout-align="space-between center">
