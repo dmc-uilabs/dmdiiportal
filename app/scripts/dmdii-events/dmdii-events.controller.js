@@ -189,8 +189,17 @@ angular.module('dmc.dmdiiEvents')
               });
             }
 
-            $scope.selectEvent =  function(event) {
+            $scope.selectEvent = function(event) {
+              if (event && event.dmdiiFunding) {
+                addDocuments(event);
+              }
               $scope.selectedEvent = event;
+            }
+
+            var addDocuments = function(dmdiiEvent) {
+              ajax.get(dataFactory.getDMDIIDocuments().project, {page: 0, pageSize: 15, dmdiiProjectId: dmdiiEvent.id}, function(response) {
+                dmdiiEvent.documents = response.data;
+              });
             }
 
         }

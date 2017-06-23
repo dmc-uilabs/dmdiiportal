@@ -46,4 +46,50 @@ angular.module('dmc.dmdiiEvents', [
     //     }
     // });
     $urlRouterProvider.otherwise('/dmdii_events');
-});
+}).directive('tabSchedule', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/dmdii-project-page/tab-schedule.html',
+        scope:{
+          projectSchedule: '=',
+          userData: '='
+        },
+        controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
+
+          $scope.deleteDocument = function(id, type, index) {
+              ajax.delete(dataFactory.deleteDMDIIDocument(id), {}, function() {
+                  if (type != 'doc') {
+                  } else {
+                      $scope.documents.splice(index, 1);
+                  }
+              });
+          };
+
+        }
+      }
+    }
+).directive('tabDocuments', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/dmdii-project-page/tab-documents.html',
+        scope:{
+          documents: '=',
+          userData: '=',
+          project: '='
+        },
+        controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
+
+          $scope.deleteDocument = function(id, type, index) {
+              ajax.delete(dataFactory.deleteDMDIIDocument(id), {}, function() {
+                  if (type != 'doc') {
+                  } else {
+                      $scope.documents.splice(index, 1);
+                  }
+              });
+          };
+
+        }
+      }
+    }
+)
+;
