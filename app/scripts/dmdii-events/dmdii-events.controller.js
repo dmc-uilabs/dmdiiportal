@@ -12,7 +12,7 @@ angular.module('dmc.dmdiiEvents')
         'dataFactory',
         'socketFactory',
         '$location',
-        'is_search',
+        // 'is_search',
         'DMCUserModel',
         '$mdDialog',
         '$window',
@@ -26,7 +26,7 @@ angular.module('dmc.dmdiiEvents')
                  dataFactory,
                  socketFactory,
                  $location,
-                 is_search,
+                //  is_search,
                  DMCUserModel,
                  $mdDialog,
                  $window){
@@ -40,7 +40,7 @@ angular.module('dmc.dmdiiEvents')
                 userData = res;
             });
 
-
+            $scope.events = $scope.events || [];
             $scope.startDate = new Date();
             $scope.startDate.setDate(1);
             $scope.startDate.setMonth($scope.startDate.getMonth()-4);
@@ -84,10 +84,13 @@ angular.module('dmc.dmdiiEvents')
             //     });
             // }
 
+            var eventSourcesLoaded = 0
+
             var eventsCallbackFunction = function(response) {
-                $scope.events = response.data;
+                $scope.events = $scope.events.concat(response.data);
                 sortEvents($scope.events);
                 setInitialSelectedDay($scope.events);
+                eventSourcesLoaded++;
             }
 
             var addMemEvents = function(events) {
@@ -96,7 +99,13 @@ angular.module('dmc.dmdiiEvents')
 
             var addProjEvents = function(events) {
               events = events.data;
-              console.log(events)
+              for (var i=0; i<events.length; i++) {
+                events[i].date = events[i].eventDate;
+                events[i].name = events[i].eventName;
+                events[i].description = events[i].eventDescription;
+              }
+              $scope.events = $scope.events.concat(events);
+              eventSourcesLoaded++;
             }
 
             var addDMDIIEvents = function(events) {
@@ -104,7 +113,13 @@ angular.module('dmc.dmdiiEvents')
               events = events.filter(function(event){
                 return (event.dmdiiFunding == 5983) && (event.costShare == 8395)
               })
-              console.log(events)
+              for (var i=0; i<events.length; i++) {
+                events[i].date = events[i].awardedDate;
+                events[i].name = events[i].projectTitle;
+                events[i].description = events[i].projectSummary;
+              }
+              $scope.events = $scope.events.concat(events);
+              eventSourcesLoaded++;
             }
 
             $scope.getEvents = function(){
@@ -172,6 +187,10 @@ angular.module('dmc.dmdiiEvents')
               return events.sort(function(a,b){
                 return new Date(a.date) - new Date(b.date);
               });
+            }
+
+            $scope.selectEvent =  function(event) {
+              $scope.selectedEvent = event;
             }
 
         }

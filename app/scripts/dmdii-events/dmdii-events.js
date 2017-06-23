@@ -33,12 +33,7 @@ angular.module('dmc.dmdiiEvents', [
     $stateProvider.state('dmdii_events', {
         url: '/dmdii_events?status?rootNumber?callNumber?statusId?focusId?thrustId',
         templateUrl: 'templates/dmdii-events/dmdii-events.html',
-        controller: 'DMCDmdiiEventsController',
-        resolve: {
-            is_search: function() {
-                return false;
-            }
-        }
+        controller: 'DMCDmdiiEventsController'
     })
     // .state('dmdii_events_search', {
 		// url: '/dmdii_events/search?status?rootNumber?callNumber?statusId?focusId?thrustId',

@@ -3,6 +3,7 @@
 			<h2>Events</h2>
 		</section>
 
+		<div ng-if="!selectedEvent">
 		<section class="container content-padding">
 			<div class="row content-row">
 				<!-- inline style below needed to workaround calendar sizing on mobile -->
@@ -95,6 +96,7 @@
 					<div class="event-block">
 					<div class="row">
 						<h2 class="col-sm-9">{{event.name}}</h2><time datetime="2011-01-12" class="col-sm-3 text-right">{{event.date}}</time>
+						<a ng-click="selectEvent(event)">EVENT DETAILS</a>
 					</div>
 
 						<p markdown-to-html="event.description"></p>
@@ -108,87 +110,65 @@
 
 			</div>
 		</section>
+	</div>
 
-<!--
+	<div ng-if="selectedEvent">
+
 		<section class="container">
-      <dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu>
-
-			<div class="row content-row">
-				<div class="col-xs-4">
-					<div class="form-group has-feedback">
-						<form ng-submit="submit(searchModel)">
-							<input ng-model="searchModel" type="text" class="form-control " placeholder="Search Projects">
-						</form>
+				<div class="row">
+					<div class="col">
+						<a ng-click="selectedEvent=null">BACK TO EVENTS</a>
 					</div>
 				</div>
-				<div class="col-xs-1" style="padding-left: 0px; margin-left: -10px;">
-					<ng-md-icon ng-click="submit(searchModel)" icon="search" style="fill: #999" size="30"></ng-md-icon>
+				<div class="row align-items-center">
+					<h3 class="col-md-9">{{selectedEvent.name}}</h3>
+					<time class="col-md-3">{{selectedEvent.date}}</time>
 				</div>
-				<div class="col-xs-4 col-xs-offset-3 ">
 
-				<div class="dropdown">
-
-
-						<div class="dropdown pull-right">
-							<button class="btn btn-default dropdown-toggle" type="button" id="itemstoshowdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-									{{showArray[sizeModule].name}}<span class="caret"></span>
-									</button>
-							<ul class="dropdown-menu" aria-labelledby="itemstoshowdropdown">
-								<li ng-repeat="item in showArray track by $index">
-									<a ng-click="selectItemDropDown($index)">{{item.name}}</a>
-								</li>
-							</ul>
+				<div class="row ">
+						<div class="col-xs-12">
+								<h4>Summary</h4>
+								<div class="slim-margin" markdown-to-html="selectedEvent.description"></div>
 						</div>
-
-					</div>
 				</div>
+
+				<!-- Nav tabs -->
+				<!-- <ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active hidden-xs"><a data-target="#contributors" aria-controls="contributors" role="tab" data-toggle="tab">Contributors</a></li>
+						<li role="presentation" class="hidden-xs"><a data-target="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">Schedule</a></li>
+						<li ng-if="project.kind != 'dmdiiEvent'" role="presentation" class="hidden-xs"><a data-target="#updates" aria-controls="updates" role="tab" data-toggle="tab">Updates</a></li>
+						<li role="presentation" class="hidden-xs">
+							<a ng-if="project.kind != 'dmdiiEvent'" data-target="#documents" aria-controls="documents" role="tab" data-toggle="tab">Documents</a>
+							<a ng-if="project.kind == 'dmdiiEvent'" data-target="#documents" aria-controls="documents" role="tab" data-toggle="tab">Docs &amp; Presentations</a>
+						</li>
+
+
+						<li role="presentation" class="dropdown xs-tab-control visible-xs">
+								<a data-target="#" class="dropdown-toggle" id="myTabDrop1" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false">
+									<span class="tab-section-label">Section</span>
+									<span class="caret"></span></a>
+								<ul class="dropdown-menu"
+										aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
+										<li class="">
+												<a data-target="#contributors" role="tab" data-toggle="tab" aria-controls="dropdown1" aria-expanded="false">Contrubutors</a></li>
+										<li class="">
+												<a data-target="#schedule" role="tab" data-toggle="tab" aria-controls="dropdown2" aria-expanded="false">Schedule</a></li>
+										<li ng-if="project.kind != 'dmdiiEvent'" class="">
+												<a data-target="#updates" role="tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">Updates</a></li>
+										<li class="">
+												<a ng-if="project.kind != 'dmdiiEvent'" data-target="#documents" role="tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">Documents</a>
+												<a ng-if="project.kind == 'dmdiiEvent'" data-target="#documents" role="tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">Docs &amp; Presentations</a>
+											</li>
+								</ul>
+
+						</li>
+				</ul> -->
+
+
+			</section>
 			</div>
-			<div class="projects-table">			<div class="table-responsive ">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Status</th>
-						<th>Focus</th>
-						<th>Thrust Area</th>
-					</tr>
-				</thead>
-				<tbody>
-
-					<tr ng-repeat="project in projects.arr">
-						<td>
-							<a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a>
-							<a ng-href="{{'member-page.php#/'+project.primeOrganization.id}}"><h6>{{project.primeOrganization.name}}</h6></a>
-							<div ng-if="project.kind != 'dmdiiEvent'" class="sublabel">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</div>
-							<div ng-if="project.kind == 'dmdiiEvent'" class="sublabel">EVENT</div>
-						</td>
-
-						<td>{{project.projectStatus.name}}</td>
-						<td>{{project.projectFocusArea.name}}</td>
-						<td>{{project.projectThrust.name}}</td>
-					</tr>
-
-				</tbody>
-			</table>
-			</div>
-
-						<div class="row">
-							<div class="col-xs-6">
-								<button id="prevPage" ng-if="hasPrev()" class="btn btn-next pull-right" ng-click="getPrev()">
-										PREV
-								</button>
-							</div>
-
-							<div class="col-xs-6">
-								<button id="nextPage" ng-if="hasNext()" class="btn btn-next pull-left" ng-click="getNext()">
-										NEXT
-								</button>
-							</div>
-						</div>
-
-			</div>
-		</section>
-
-	<recent-news news="news"></recent-news> -->
 
 </main>
+
+<!-- Temporary template for events detail. This will change once the event object is normalized/consolidated -->
+
