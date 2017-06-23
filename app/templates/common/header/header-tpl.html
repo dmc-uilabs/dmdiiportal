@@ -108,8 +108,8 @@
                         <md-menu-item>
                             <md-button ng-href='/account.php#/{{userAccountId}}/basics'>My Account</md-button>
                         </md-menu-item>
-                        <md-menu-item>
-                            <md-button ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" href="/company-profile.php#/profile/{{userCompanyId}}">My Organization</md-button>
+                        <md-menu-item ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin">
+                            <md-button href="/company-profile.php#/profile/{{userCompanyId}}">My Organization</md-button>
                         </md-menu-item>
                         <!-- <md-menu-item>
                             <md-button ng-href='/profile.php#/{{userProfileId}}'>My Profile</md-button>
