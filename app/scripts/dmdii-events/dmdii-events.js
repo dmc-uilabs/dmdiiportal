@@ -45,6 +45,11 @@ angular.module('dmc.dmdiiEvents', [
     //         }
     //     }
     // });
+    .state('view_event', {
+      url: '/dmdii_events/view_event',
+      templateUrl: 'templates/dmdii-events/view-event.html',
+      controller: 'DMCDmdiiEventsController'
+    })
     $urlRouterProvider.otherwise('/dmdii_events');
 }).directive('tabSchedule', function () {
     return {

@@ -31,9 +31,13 @@ angular.module('dmc.dmdiiEvents')
                  $mdDialog,
                  $window){
 
+            console.log('controller instantiated')
+
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             };
+
+            $scope.selectedEvent = $rootScope.selectedEvent;
 
             var userData = null;
             DMCUserModel.getUserData().then(function(res){
@@ -187,7 +191,7 @@ angular.module('dmc.dmdiiEvents')
               if (event && event.dmdiiFunding) {
                 addDocuments(event);
               }
-              $scope.selectedEvent = event;
+              $rootScope.selectedEvent = event;
             }
 
             var addDocuments = function(dmdiiEvent) {
