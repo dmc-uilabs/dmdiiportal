@@ -886,7 +886,7 @@ directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function($pa
             resetSelection();
             ajax.get(dataFactory.getProject($scope.projectId), {}, function(projResp) {
               $scope.projectHome = projResp.data.directoryId;
-              ajax.get(dataFactory.directoriesUrl($scope.projectHome).s_get, {}, function(dirResp) {
+              ajax.get(dataFactory.directoriesUrl($scope.projectHome).get, {}, function(dirResp) {
                 $scope.directories = dirResp.data;
                 $scope.changeDir($scope.directoryId || $scope.directories.id);
               }, function(response) {
@@ -935,7 +935,7 @@ directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function($pa
         }
 
         function getFiles() {
-          ajax.get(dataFactory.directoriesUrl($scope.currentDir.id).files, {}, function(docResp) {
+          ajax.get(dataFactory.directoriesUrl($scope.currentDir.id).s_files, {}, function(docResp) {
             $scope.dirFiles = docResp.data || [];
           });
         }

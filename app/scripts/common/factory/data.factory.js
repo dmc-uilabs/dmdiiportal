@@ -647,12 +647,12 @@ angular.module('dmc.data', [])
         var endpoint = 'directories/';
         return {
           get: localhost + endpoint + id,
-          s_get: localhost + "s_"+endpoint +id,
           list: localhost + endpoint,
           save: localhost + endpoint,
           update: localhost + endpoint + id,
           delete: localhost + endpoint + id,
-          files: localhost + 'documents/' + endpoint + id
+          files: localhost + 'documents/' + endpoint + id,
+          s_files: localhost + 'documents/' + 's_' + endpoint + id
         }
       },
       getApplicationTags: function() {
