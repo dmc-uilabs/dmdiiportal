@@ -331,11 +331,9 @@ md-select:not([disabled]):focus .md-select-value {
 }
 
 .content-border {
-    padding: 0px;
     margin-top: 100px;
-    margin-bottom: 15px;
-    background-color: #fff;
-    border-top: 5px solid green;
+    margin-bottom: -2px;
+    border-top: 2px solid green;
 }
 
 .my-projects-container {
