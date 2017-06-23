@@ -277,6 +277,12 @@ div[dmc-top-header]{
   }
 }
 
+.sub-menu-content{
+  ng-md-icon{
+    margin-right:10px;
+    fill: map-get($colors, secondary);
+  }
+}
 
 .header-menu-content.md-default-theme{
   a.md-button {
