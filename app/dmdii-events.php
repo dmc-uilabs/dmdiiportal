@@ -21,7 +21,7 @@
 
     <?php include 'build-vendor-rh.php' ?>
 
-    <!-- build:js scripts/dmdii-projects/index.js -->
+    <!-- build:js scripts/dmdii-events/index.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
