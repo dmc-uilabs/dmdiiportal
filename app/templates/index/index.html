@@ -1,6 +1,7 @@
 <div class="home">
 <!-- Template for logged in verified users -->
-<div ng-if="$root.isLogged && userData.roles && userData.roles[userData.companyId]" layout="row" layout-align="center center" layout-padding>
+<div ng-if="($root.isLogged && userData.roles && userData.roles[userData.companyId]) || ($root.isLogged && userData.isDmdiiAdmin)">
+<div layout="row" layout-align="center center" layout-padding>
   <div layout="column" flex>
 
     <div class="home-header" flex layout="row" layout-align="space between center" layout-fills>
@@ -35,15 +36,16 @@
   </div>
 </div>
 
-<!-- <md-divider></md-divider> -->
-
-<!-- Youtube -->
-<div class="home-theater">
-  <ng-youtube-embed listType="playlist" list="UUB9yv90uJXvKnCY-0vpjvtw" width="100%"></ng-youtube-embed>
+  <!-- Youtube -->
+  <div class="home-theater">
+    <ng-youtube-embed listType="playlist" list="UUB9yv90uJXvKnCY-0vpjvtw" width="100%"></ng-youtube-embed>
+  </div>
 </div>
 
+<!-- <md-divider></md-divider> -->
+
 <!-- Template for not logged in/ unverified users -->
-<div ng-if="!($root.isLogged && userData.roles && userData.roles[userData.companyId])" layout="column">
+<div ng-if="!(($root.isLogged && userData.roles && userData.roles[userData.companyId]) || ($root.isLogged && userData.isDmdiiAdmin))" layout="column">
 
     <!-- <div layout="row" layout-align="center center" class="home-header">
 	  	<h2>DMC: Digital Manufacturing Commons</h2>
