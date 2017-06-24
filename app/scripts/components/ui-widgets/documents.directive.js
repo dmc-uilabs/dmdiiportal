@@ -407,10 +407,7 @@ directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function($pa
     }
 
     $scope.downloadFile = function(id) {
-      return $http.get(dataFactory.documentsUrl(id).download,
-        {
-          responseType: 'blob'
-        });
+      window.location = dataFactory.documentsUrl(id).download;
     }
 
   }])
