@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <h2 class="margin-bottom-30">
-                        <a ng-href="project.php#/{{ item.id }}" class="link-button" ng-class="{ 'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept) }">{{item.title}}</a>
+                        <a ng-href="project.php#/{{ item.id }}/home" class="link-button" ng-class="{ 'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept) }">{{item.title}}</a>
                     </h2>
                     <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
                                 !item.isMember && !item.requiresAdminApprovalToJoin && !item.joinRequest"
