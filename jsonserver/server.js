@@ -98,6 +98,11 @@ server.get('/dmdiiMember', function (req, res) {
   res.jsonp(membersOrig)
 })
 
+server.get('/projects_tags', function (req, res) {
+  var projectTags = JSON.parse(fs.readFileSync('stubs/project_tags.json'));
+  res.jsonp(projectTags)
+})
+
 server.get('/dmdiiprojects', function (req, res) {
   var projectsOrig = JSON.parse(fs.readFileSync('stubs/dmdiiprojects.json'));
   var projectsData = projectsOrig;
