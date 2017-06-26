@@ -21,13 +21,11 @@
 .ws-infobox {
   padding-left: 0px;
   &.tags {
-    .title {
-      margin-bottom: 10px;
-    }
     .info {
       margin-right: 5px;
+      margin-top: 10px;
       background: #eee;
-      display: inline;
+      display: inline-block;
       font-weight: normal;
       padding: 5px;
       font-size: .8em;
