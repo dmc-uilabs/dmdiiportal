@@ -138,7 +138,7 @@
               <div class="col-md-6">
                 <div class="col-xs-4 ws-infobox">
                   <div class="title">Created On</div>
-                  <div class="info">{{item.createdOn * 1000 | date:'MM/div/yyyy'}}</div>
+                  <div class="info">{{item.createdOn === 0 ? '--' : item.createdOn * 1000 | date:'MM/d/yyyy'}}</div>
                 </div>
                 <div class="col-xs-4 ws-infobox">
                   <div class="title">Created By</div>
