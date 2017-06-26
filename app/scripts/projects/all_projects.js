@@ -95,8 +95,8 @@ angular.module('dmc.all_projects', [
         };
 
         $scope.toggleProjectsFlag = function(flag) {
-            $scope.setFilter('clear');
-            $scope.sortModel = 0;
+            // $scope.setFilter('clear');
+            // $scope.sortModel = 0;
             if (flag === "myProjectsFlag" ) {
                 $scope.myProjectsFlag = !$scope.myProjectsFlag;
                 $scope.activeTab = 'my-projects';
