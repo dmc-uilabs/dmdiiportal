@@ -23,7 +23,7 @@ angular.module('dmc.all_projects', [
         $urlRouterProvider.otherwise('/');
     })
     .controller('DMCAllProjectsController', function ($scope,$rootScope,$element,$stateParams,$state, dataFactory, ajax, toastModel, DMCUserModel) {
-        
+
         $scope.myProjectsFlag = true;
         $scope.allProjectsFlag = false;
         $scope.searchText = angular.isDefined($stateParams.text) ? $stateParams.text : null;
@@ -47,12 +47,12 @@ angular.module('dmc.all_projects', [
                 id : 2, tag : "title", name : "Name"
             }
         ];
-        
+
         $scope.filters = {
             private: false,
             public: false
         };
-        
+
         $scope.activeFilter = null;
 
         $scope.selectItemDropDown = function(type){
@@ -65,11 +65,11 @@ angular.module('dmc.all_projects', [
                 }
             }else{
                 var item = $scope.sortList[$scope.sortModel];
-                if($scope.sortModel != 0) {
-                    $scope.sortList.splice($scope.sortModel, 1);
-                    $scope.sortList = $scope.sortList.sort(function(a,b){return a.id - b.id});
-                    if ($scope.sortList.unshift(item)) $scope.sortModel = 0;
-                }
+                // if($scope.sortModel != 0) {
+                //     $scope.sortList.splice($scope.sortModel, 1);
+                //     $scope.sortList = $scope.sortList.sort(function(a,b){return a.id - b.id});
+                //     if ($scope.sortList.unshift(item)) $scope.sortModel = 0;
+                // }
                 $scope.sortProjects = item.tag;
             }
         };
@@ -81,15 +81,15 @@ angular.module('dmc.all_projects', [
         $scope.updateFilter = function(){
             var item = $scope.filterList[$scope.filterModel];
         };
-    
+
         $scope.oneAtATime = true;
-    
+
         $scope.status = {
             isCustomHeaderOpen: false,
             isFirstOpen: true,
             isFirstDisabled: false
         };
-        
+
         $scope.toggleProjectsFlag = function(flag) {
             if (flag === "myProjectsFlag" ) {
                 $scope.myProjectsFlag = !$scope.myProjectsFlag;
@@ -99,7 +99,7 @@ angular.module('dmc.all_projects', [
                 $scope.activeTab = 'all-projects';
             }
         };
-        
+
         $scope.setFilter = function(filter) {
             if (filter === 'public') {
                 $scope.filters.public = !$scope.filters.public;
@@ -114,9 +114,9 @@ angular.module('dmc.all_projects', [
                 $scope.activeFilter = null;
                 $scope.filters.private = false;
             }
-            
+
         };
-    
+
         $scope.rotate = function () {
             $scope.isActive = !$scope.isActive;
         };
