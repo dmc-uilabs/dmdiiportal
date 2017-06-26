@@ -135,7 +135,7 @@
             <div class="workspace-divider"></div>
 
             <div ng-if="$ctrl.widgetShowAllBlocks" class="row workspace-totals-row">
-              <div class="col-md-6">
+              <div class="col-sm-6">
                 <div class="col-xs-4 ws-infobox">
                   <div class="title">Created On</div>
                   <div class="info">{{item.createdOn === 0 ? '--' : item.createdOn * 1000 | date:'MM/d/yyyy'}}</div>
@@ -150,7 +150,7 @@
                 </div>
               </div>
 
-              <div class="col-md-6">
+              <div class="col-sm-6">
                 <div class="col-xs-4 ws-infobox">
                   <a ng-href="{{'/project.php#/'+ item.id +'/tasks'}}" ng-class="{'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept)}" ng-click="previousPage.save($event)">
                     <div class="title">Tasks</div>
@@ -178,8 +178,18 @@
               </div>
             </div>
 
+            <div class="workspace-divider" ng-if="item.tags.length"></div>
 
-
+            <div class="row workspace-totals-row" ng-if="item.tags.length">
+              <div class="col-xs-12">
+                <div class="col-xs-12 ws-infobox tags">
+                    <div class="title">Tags</div>
+                    <div ng-repeat="tag in item.tags track by $index" class="info">
+                      {{tag.name}}
+                    </div>
+                </div>
+              </div>
+            </div>
 
             <!-- <div ng-if="$ctrl.widgetShowAllBlocks" class="row totals-row">
 
@@ -194,7 +204,7 @@
                 </div>
             </div> -->
 
-            <div ng-if="$ctrl.widgetShowAllBlocks" class="tags row">
+            <!-- <div ng-if="$ctrl.widgetShowAllBlocks" class="tags row">
                 <div class="project-tags-list margin-left-8">
                     <div class="tag without-delete inline-block" ng-repeat="tag in item.tags track by $index">
                         <div>
@@ -202,7 +212,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
 
             <md-content ng-if="!$ctrl.widgetShowAllBlocks">
