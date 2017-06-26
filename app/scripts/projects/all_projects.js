@@ -39,7 +39,7 @@ angular.module('dmc.all_projects', [
             dataSearch.text = text;
             $state.go('all-projects', dataSearch, {reload: true});
         };
-        
+
         $scope.search = function() {
             $scope.$broadcast('searchProjects');
         };
@@ -96,6 +96,7 @@ angular.module('dmc.all_projects', [
 
         $scope.toggleProjectsFlag = function(flag) {
             $scope.setFilter('clear');
+            $scope.sortModel = 0;
             if (flag === "myProjectsFlag" ) {
                 $scope.myProjectsFlag = !$scope.myProjectsFlag;
                 $scope.activeTab = 'my-projects';
@@ -125,7 +126,7 @@ angular.module('dmc.all_projects', [
         $scope.rotate = function () {
             $scope.isActive = !$scope.isActive;
         };
-        
+
         $scope.clearSearch = function() {
             $scope.searchTerm = null;
         }
