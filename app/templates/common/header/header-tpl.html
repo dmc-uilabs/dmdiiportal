@@ -39,7 +39,7 @@
                         <md-menu-item ng-repeat="item in userData.notifications track by $index" ng-if="!item.cleared && !item.deleted" ng-class="{'not-read' : item.unread}">
                         <!-- <md-menu-item ng-repeat="item in userData.notifications | limitTo:5 track by $index" ng-if="!item.cleared && !item.deleted" ng-class="{'not-read' : item.unread}">   -->
                           <a ng-if="item.type == 'NEW_USER_JOINED_ORGANIZATION' || item.type == 'USER_REQUESTS_VERIFICATION'" ng-href='/company-profile.php#/profile/{{userData.companyId}}'>
-                            <div layout="row" layout-align="space-between center">
+                            <div layout="row">
                               <ng-md-icon icon="person_add" size="30" ng-if="item.type == 'NEW_USER_JOINED_ORGANIZATION'"></ng-md-icon>
                               <ng-md-icon icon="check_circle" size="30" ng-if="item.type == 'USER_REQUESTS_VERIFICATION'"></ng-md-icon>
                               <div  layout="column" layout-align="start">
@@ -54,7 +54,7 @@
                             </a>
 
                             <a ng-if="item.type == 'DOCUMENT_SHARED' || item.type == 'INVITATION_TO_WORKSPACE' || item.type == 'DOCUMENT_SHARED_WITH_WORKSPACE'" ng-href="{{item.message}}">
-                              <div layout="row" layout-align="space-between center">
+                              <div layout="row">
                                 <ng-md-icon ng-if="item.type == 'DOCUMENT_SHARED' || item.type == 'DOCUMENT_SHARED_WITH_WORKSPACE'" icon="insert_drive_file" size="30"></ng-md-icon>
                                 <ng-md-icon ng-if="item.type == 'INVITATION_TO_WORKSPACE'" icon="folder_open" size="30"></ng-md-icon>
                                 <div layout="column" layout-align="start">
@@ -69,19 +69,6 @@
                                   </md-button>
                                 </div>
                               </a>
-                            <a ng-if="item.type == 'DOCUMENT_SHARED_WITH_WORKSPACE'" ng-href="{{item.message}}">
-                                <div layout="row" layout-align="space-between center">
-                                    <ng-md-icon icon="insert_drive_file" size="30"></ng-md-icon>
-                                    <div ng-if="item.type == 'DOCUMENT_SHARED_WITH_WORKSPACE'" layout="column" layout-align="start">
-                                        <i class="user-name">{{item.createdBy.displayName}}</i>
-                                        <i class="notifications-text">Has shared a document with your workspace.</i>
-                                    </div>
-                                    <!-- clear notification -->
-                                    <md-button class="md-icon-button clear-notification" aria-label="Clear" md-no-ink ng-click="clearNotification(item,$event);$event.stopPropagation();">
-                                        <ng-md-icon icon="close" size="18"></ng-md-icon>
-                                    </md-button>
-                                </div>
-                            </a>
 
                         </md-menu-item>
                         <div class="zone-top" style="padding-top: 8px;" layout="row" layout-align="space-between center">
@@ -205,13 +192,28 @@
                                   <md-button ng-click="$mdCloseMenu($event);" href="/dmdii-projects.php">Events</md-button>
                                 </md-menu-item>
                                 <md-menu-item ng-if="userData.isDmdiiAdmin">
-                                    <md-button href="/add-dmdii-content.php"><ng-md-icon icon="settings"></ng-md-icon>Add DMDII Content</md-button>
+                                    <md-button href="/add-dmdii-content.php">
+                                      <div layout="row" layout-align="space-between center">
+                                        Add DMDII Content
+                                        <ng-md-icon icon="settings"></ng-md-icon>
+                                      </div>
+                                    </md-button>
                                 </md-menu-item>
                                 <md-menu-item ng-if="userData.isDmdiiAdmin">
-                                    <md-button href="/edit-member-page.php"><ng-md-icon icon="settings"></ng-md-icon>Create DMDII Member</md-button>
+                                    <md-button href="/edit-member-page.php">
+                                      <div layout="row" layout-align="space-between center">
+                                        Create DMDII Member
+                                        <ng-md-icon icon="settings"></ng-md-icon>
+                                      </div>
+                                    </md-button>
                                 </md-menu-item>
                                 <md-menu-item ng-if="userData.isDmdiiAdmin">
-                                    <md-button href="/edit-dmdii-project-page.php"><ng-md-icon icon="settings"></ng-md-icon>Create DMDII Project</md-button>
+                                    <md-button href="/edit-dmdii-project-page.php">
+                                      <div layout="row" layout-align="space-between center">
+                                        Create DMDII Project
+                                        <ng-md-icon icon="settings"></ng-md-icon>
+                                      </div>
+                                    </md-button>
                                 </md-menu-item>
                               </md-menu-content>
                           </md-menu>
@@ -327,13 +329,28 @@
                                              	'member-portal': membersOnly}">Events</md-button>
                             </md-menu-item>
                             <md-menu-item ng-if="userData.isDmdiiAdmin">
-                                <md-button href="/add-dmdii-content.php"><ng-md-icon icon="settings"></ng-md-icon>Add DMDII Content</md-button>
+                                <md-button href="/add-dmdii-content.php">
+                                  <div layout="row" layout-align="space-between center">
+                                    Add DMDII Content
+                                    <ng-md-icon icon="settings"></ng-md-icon>
+                                  </div>
+                                </md-button>
                             </md-menu-item>
                             <md-menu-item ng-if="userData.isDmdiiAdmin">
-                                <md-button href="/edit-member-page.php"><ng-md-icon icon="settings"></ng-md-icon>Create DMDII Member</md-button>
+                                <md-button href="/edit-member-page.php">
+                                  <div layout="row" layout-align="space-between center">
+                                    Create DMDII Member
+                                    <ng-md-icon icon="settings"></ng-md-icon>
+                                  </div>
+                                </md-button>
                             </md-menu-item>
                             <md-menu-item ng-if="userData.isDmdiiAdmin">
-                                <md-button href="/edit-dmdii-project-page.php"><ng-md-icon icon="settings"></ng-md-icon>Create DMDII Project</md-button>
+                                <md-button href="/edit-dmdii-project-page.php">
+                                  <div layout="row" layout-align="space-between center">
+                                    Create DMDII Project
+                                    <ng-md-icon icon="settings"></ng-md-icon>
+                                  </div>
+                                </md-button>
                             </md-menu-item>
                         </md-menu-content>
                     </md-menu>

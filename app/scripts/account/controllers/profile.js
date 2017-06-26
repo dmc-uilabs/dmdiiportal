@@ -209,7 +209,8 @@ angular.module('dmc.account')
                       function(data){
                           $scope.save = true;
                           $scope.isChangingPicture = false;
-                          $state.go('profile',{profileId: $scope.profile.id})
+                          //$state.go('profile',{profileId: $scope.profile.id})
+                          toastModel.showToast('success', 'Profile saved!');
                       }
                   );
               })

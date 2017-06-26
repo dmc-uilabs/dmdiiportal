@@ -279,7 +279,7 @@ div[dmc-top-header]{
 
 .sub-menu-content{
   ng-md-icon{
-    margin-right:10px;
+    //margin-right:10px;
     fill: map-get($colors, secondary);
   }
 }
@@ -289,7 +289,7 @@ div[dmc-top-header]{
     line-height: 3.2;
   }
   ng-md-icon{
-    margin-right:10px;
+    //margin-right:0px;
     fill: map-get($colors, secondary);
   }
   md-icon{
