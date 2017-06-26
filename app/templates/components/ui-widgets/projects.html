@@ -152,19 +152,30 @@
 
               <div class="col-md-6">
                 <div class="col-xs-4 ws-infobox">
-                  <div class="title">Tasks</div>
-                  <div class="info">{{item.tasks.totalItems}}</div>
+                  <a ng-href="{{'/project.php#/'+ item.id +'/tasks'}}" ng-class="{'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept)}" ng-click="previousPage.save($event)">
+                    <div class="title">Tasks</div>
+                    <div class="info">
+                        {{item.tasks.totalItems}}
+                    </div>
+                  </a>
                 </div>
                 <div class="col-xs-4 ws-infobox">
-                  <div class="title">Discussions</div>
-                  <div class="info">{{item.discussions.totalItems}}</div>
+                  <a href="{{'/project.php#/'+ item.id +'/discussions'}}" ng-class="{'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept)}" ng-click="previousPage.save($event)">
+                    <div class="title">Discussions</div>
+                    <div class="info">
+                        {{item.discussions.totalItems}}
+                    </div>
+                  </a>
                 </div>
                 <div class="col-xs-4 ws-infobox">
-                  <div class="title">Services</div>
-                  <div class="info">{{item.services.totalItems}}</div>
+                  <a href="{{'/project.php#/'+ item.id +'/services'}}" ng-class="{'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept)}" ng-click="previousPage.save($event)">
+                    <div class="title">Services</div>
+                    <div class="info">
+                      {{item.services.totalItems}}
+                    </div>
+                  </a>
                 </div>
               </div>
-
             </div>
 
 
