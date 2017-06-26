@@ -137,8 +137,8 @@ angular.module('dmc.widgets.projects', [
                 }
                 ajax.get(getProjectsUrl, requestData, function (response) {
                     vm.userCompanyId = $rootScope.userData.companyId;
-                    // vm.projects = response.data.content;
-                    vm.projects = response.data;
+                    vm.projects = response.data.content;
+                    // vm.projects = response.data;
                     vm.last = response.data.last;
                     vm.first = response.data.number == 1 || response.data.first ? true : false;
                     vm.totalItems = response.data.length;
