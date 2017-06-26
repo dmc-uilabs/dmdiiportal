@@ -114,30 +114,30 @@
 
             <div ng-if="$ctrl.widgetShowAllBlocks" class="row workspace-totals-row">
               <div class="col-md-6">
-                <div class="col-sm-4">
+                <div class="col-xs-4 ws-infobox">
                   <div class="title">Created On</div>
                   <div class="info">{{item.createdOn * 1000 | date:'MM/div/yyyy'}}</div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-xs-4 ws-infobox">
                   <div class="title">Created By</div>
                   <div class="info">{{item.projectManager}}</div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-xs-4 ws-infobox">
                   <div class="title">Due Date</div>
                   <div class="info">{{item.dueDate}}</div>
                 </div>
               </div>
 
               <div class="col-md-6">
-                <div class="col-sm-4">
+                <div class="col-xs-4 ws-infobox">
                   <div class="title">Tasks</div>
                   <div class="info">{{item.tasks.totalItems}}</div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-xs-4 ws-infobox">
                   <div class="title">Discussions</div>
                   <div class="info">{{item.discussions.totalItems}}</div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-xs-4 ws-infobox">
                   <div class="title">Services</div>
                   <div class="info">{{item.services.totalItems}}</div>
                 </div>
