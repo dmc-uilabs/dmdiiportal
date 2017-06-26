@@ -189,7 +189,7 @@
                                   <md-button ng-click="$mdCloseMenu($event);" href="/dmdii-projects.php">Projects</md-button>
                                 </md-menu-item>
                                 <md-menu-item>
-                                  <md-button ng-click="$mdCloseMenu($event);" href="/dmdii-projects.php">Events</md-button>
+                                  <md-button ng-click="$mdCloseMenu($event);" href="/dmdii-events.php">Events</md-button>
                                 </md-menu-item>
                                 <md-menu-item ng-if="userData.isDmdiiAdmin">
                                     <md-button href="/add-dmdii-content.php">
@@ -324,7 +324,7 @@
                                              	'member-portal': membersOnly}">Projects</md-button>
                             </md-menu-item>
                             <md-menu-item ng-if="userData.isDMDIIMember || userData.isDmdiiAdmin">
-                              <md-button ng-click="$mdCloseMenu($event);" href="/dmdii-projects.php"
+                              <md-button ng-click="$mdCloseMenu($event);" href="/dmdii-events.php"
                                          ng-class="{'active-page' : activePage.indexOf('member') > -1,
                                              	'member-portal': membersOnly}">Events</md-button>
                             </md-menu-item>
