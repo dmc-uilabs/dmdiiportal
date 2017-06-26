@@ -23,7 +23,7 @@
           <div style="float: right;">
             <h4>SORT</h4>
             <md-radio-group ng-model="sortModel" ng-change="selectItemDropDown('sort')">
-              <md-radio-button class="md-primary" ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-radio-button>
+              <md-radio-button ng-click="updateSort()" class="md-primary" ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-radio-button>
             </md-radio-group>
           </div>
         </div>
