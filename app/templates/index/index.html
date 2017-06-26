@@ -18,7 +18,7 @@
 <md-divider></md-divider>
 
     <!-- Feeds -->
-    <div layout-wrap layout-align="space-between start" layout="row" style="padding-bottom:20px">
+    <div layout-wrap layout-align="space-between start" layout="row" style="padding:20px 0px 45px">
       <!-- Recent updates -->
       <div class="flexrow-left" flex="60">
         <h2 class="flexrow-header">Recent Updates</h2>
@@ -29,7 +29,7 @@
       <div class="flexrow-right" flex="35">
         <h2 class="flexrow-header">Tweets from DMDII</h2>
         <twitter-timeline>
-          <a class="twitter-timeline" data-chrome="noheader nofooter" data-height="500" href="https://twitter.com/DMDII_">Tweets from DMDII</a>
+          <a class="twitter-timeline" data-chrome="noheader nofooter" data-height="502" href="https://twitter.com/DMDII_">Tweets from DMDII</a>
         </twitter-timeline>
       </div>
     </div>
@@ -37,9 +37,20 @@
 </div>
 
   <!-- Youtube -->
-  <div class="home-theater">
-    <ng-youtube-embed listType="playlist" list="UUB9yv90uJXvKnCY-0vpjvtw" width="100%"></ng-youtube-embed>
+<div layout="row" layout-align="center center" layout-padding>
+  <div layout="column" flex>
+    <div class="home-theater">
+      <!-- <md-divider></md-divider> -->
+      <!-- <div layout="row" layout-align="center"> -->
+        <h2 class="flexrow-header">Videos from DMDII</h2>
+      <!-- </div> -->
+      <md-divider></md-divider>
+      <div style="padding-top: 15px">
+        <ng-youtube-embed listType="playlist" list="UUB9yv90uJXvKnCY-0vpjvtw" width="100%"></ng-youtube-embed>
+      </div>
+    </div>
   </div>
+</div>
 </div>
 
 <!-- <md-divider></md-divider> -->
