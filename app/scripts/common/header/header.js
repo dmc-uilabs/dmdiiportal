@@ -33,7 +33,7 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
         );
 
         $scope.screenSmall = function(){
-          return $mdMedia('(max-width: 868px)');
+          return $mdMedia('(max-width: 900px)');
         }
 
         $scope.screenVerySmall = function(){
@@ -176,6 +176,28 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
 
         $scope.bannerMessage = angular.element('#bannerMsg')[0].innerText;
         $scope.showBanner = $scope.bannerMessage && $scope.bannerMessage != '_';
+
+        $scope.searchFilters = [
+            {
+                id : 1, name: 'All'
+            },
+            {
+                id : 2, name: 'Organizations'
+            },
+            {
+                id : 3, name: 'People'
+            }
+        ];
+
+        $scope.submitSearch = function(text, filter){
+          if (filter == 1){
+              $window.location.href='/search-v2.php#/companies';
+          }
+          else if (filter == 2){
+            $window.location.href='/search-v2.php#/members';
+          }
+          //$window.location.href='/search-v2.php#/companies';
+        }
 
     }
   };

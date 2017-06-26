@@ -360,10 +360,15 @@
             <!-- End large screen header -->
 
             <!-- Search Toolbar -->
-            <form ng-submit="submitSearch(searchModel)" class="search" layout="row" layout-align="center center">
+            <form ng-submit="submitSearch(searchModel, filterModel)" class="search" layout="row" layout-align="center center">
                 <md-input-container md-no-float>
                     <input type="text" placeholder="Search" ng-model="searchModel">
                 </md-input-container>
+
+                  <md-select placeholder="All" md-container-class="my-search-filter-list" ng-model="filterModel">
+                      <md-option ng-repeat="filter in searchFilters track by $index" ng-value="$index">{{filter.name}}</md-option>
+                  </md-select>
+
                 <md-button class="md-raised" type="submit" aria-label="Search" ng-class="{'member-portal': membersOnly}">
                     <ng-md-icon icon="search" size="21"></ng-md-icon>
                 </md-button>

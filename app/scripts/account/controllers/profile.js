@@ -18,6 +18,7 @@ angular.module('dmc.account')
         'dataFactory',
         'profileData',
         'profileModel',
+        'fileUpload',
         function ($stateParams,
                   $state,
                   $scope,
