@@ -20,3 +20,23 @@
 .ws-infobox {
   padding-left: 0px;
 }
+
+.ws-invite-controls {
+  a {
+    margin-top: 5px;
+    color: #676767;
+    ng-md-icon {
+      padding: 7px;
+    }
+  }
+  margin-top: 10px;
+}
+
+
+@media (min-width: 992px) {
+  .ws-invite-controls {
+    .row {
+      float: right;
+    }
+  }
+}
