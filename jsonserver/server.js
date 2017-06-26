@@ -11,6 +11,8 @@ server.use(jsonServer.defaults());
 server.use(jsonServer.rewriter({
     '/documents/directories/26': '/documentsdirectories',
     '/documents/directories/29': '/documentsdirectoriestwo',
+    '/documents/s_directories/26': '/documentsSdirectories',
+    '/documents/s_directories/29': '/documentsSdirectories',
     '/documents/versions/:id': '/documentversions',
     '/documents/s_versions/:id': '/documentSversions',
     '/user/createtoken':'/createtoken',
