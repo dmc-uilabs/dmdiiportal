@@ -162,11 +162,13 @@ angular.module('dmc.company-profile').
                             }
                         }
                         if (!found) {
-                            $scope.vpc[vpcCategory].push(objectToAdd);
+                            $scope.vpc[vpcCategory].unshift(objectToAdd);
                         }
                     } else {
                     	$scope.vpc[vpcCategory] = [objectToAdd];
                     }
+                    
+                    clearAddItemInputs(vpcCategory);
 
                 };
 
@@ -188,6 +190,8 @@ angular.module('dmc.company-profile').
                     $scope.xray=false;
                     $scope.material=false;
                 };
+                
+                
 
                 $scope.submit = function(){
 
@@ -211,6 +215,68 @@ angular.module('dmc.company-profile').
                           }
                       }
                   });
+                };
+                
+                //Clears input form when a new item is added to a category.
+                var clearAddItemInputs = function(category) {
+                    switch (category) {
+                        case 'Machining':
+                            $scope.newMachiningName = null;
+                            $scope.newMachiningValue = null;
+                            $scope.newMachiningUnit = null;
+                            $scope.newMachiningHelp = null;
+                            break;
+                        case 'Casting':
+                            $scope.newCastingName = null;
+                            $scope.newCastingValue = null;
+                            $scope.newCastingUnit = null;
+                            $scope.newCastingHelp = null;
+                            break;
+                        case 'Investment Casting':
+                            $scope.newInvCastingName = null;
+                            $scope.newInvCastingValue = null;
+                            $scope.newInvCastingUnit = null;
+                            $scope.newInvCastingHelp = null;
+                            break;
+                        case 'Welding':
+                            $scope.newWeldingName = null;
+                            $scope.newWeldingValue = null;
+                            $scope.newWeldingUnit = null;
+                            $scope.newWeldingHelp = null;
+                            break;
+                        case 'General Labor':
+                            $scope.newGeneralLaborName = null;
+                            $scope.newGeneralLaborValue = null;
+                            $scope.newGeneralLaborUnit = null;
+                            $scope.newGeneralLaborHelp = null;
+                            break;
+                        case 'Plating':
+                            $scope.newPlatingName = null;
+                            $scope.newPlatingValue = null;
+                            $scope.newPlatingUnit = null;
+                            $scope.newPlatingHelp = null;
+                            break;
+                        case 'Painting':
+                            $scope.newPaintingName = null;
+                            $scope.newPaintingValue = null;
+                            $scope.newPaintingUnit = null;
+                            $scope.newPaintingHelp = null;
+                            break;
+                        case 'X-Ray Machine':
+                            $scope.newXRayMachineName = null;
+                            $scope.newXRayMachineValue = null;
+                            $scope.newXRayMachineUnit = null;
+                            $scope.newXRayMachineHelp = null;
+                            break;
+                        case 'Material':
+                            $scope.newMaterialName = null;
+                            $scope.newMaterialValue = null;
+                            $scope.newMaterialUnit = null;
+                            $scope.newMaterialHelp = null;
+                            break;
+                        default:
+                            break;
+                    }
                 };
             }
         };
