@@ -365,7 +365,7 @@
                     <input type="text" placeholder="Search" ng-model="searchModel">
                 </md-input-container>
 
-                  <md-select placeholder="All" md-container-class="my-search-filter-list" ng-model="filterModel">
+                  <md-select class="search" placeholder="All" md-container-class="my-search-filter-list" ng-model="filterModel">
                       <md-option ng-repeat="filter in searchFilters track by $index" ng-value="$index">{{filter.name}}</md-option>
                   </md-select>
 

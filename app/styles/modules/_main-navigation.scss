@@ -232,7 +232,7 @@ div[dmc-top-header]{
           fill: #fff;
         }
       }
-      md-select{
+      md-select {
         margin: 0 0 0 5px;
         //@include borderRadius(0 0 0 0);
         border-style: solid;
@@ -246,7 +246,7 @@ div[dmc-top-header]{
           margin-left:4px;
         }
         .md-select-value .md-select-icon{
-          margin-left:-5px;
+          margin-left:-6px;
           margin-bottom:3px;
         }
       }
@@ -485,19 +485,26 @@ div[dmc-top-header]{
   }
 }
 
-.my-search-filter-list md-select-menu {
-  position: absolute;
-  top:55px;
-  width: 100px;
-  md-content{
-    //background-color: #5E5E5E;
-    padding: 0;
-    margin-left: -5px;
-    md-option{
-      height: 35px;
-      .md-text{
-        font-size: 12px;
+.md-select-menu-container.my-search-filter-list{
+    top: 85px !important;
+    padding-left: 15px;
+    md-select-menu{
+      position: relative;
+      width: 100px;
+      overflow: hidden;
+      md-content{
+        padding: 0;
+        margin-left: -5px;
+        md-option{
+          height: 35px;
+          .md-text{
+            font-size: 12px;
+          }
+        }
       }
     }
-  }
+    .md-select-value .md-select-icon{
+      margin-left:-5px;
+      margin-bottom:3px;
+    }
 }
