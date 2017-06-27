@@ -68,7 +68,7 @@ angular.module('dmc.widgets.projects', [
                 return vm.getProjectsFlag;
             }, function (newValue, oldValue) {
                 if (newValue !== oldValue || vm.getProjectsOnReady === true || (newValue === oldValue && vm.widgetFormat === 'my-projects')) {
-                    vm.activeFilter = null;
+                    // vm.activeFilter = null;
                     vm.searchTerm = null;
                     vm.getProjects();
                 }
@@ -117,6 +117,7 @@ angular.module('dmc.widgets.projects', [
 
             // function for get all projects from DB
             vm.getProjects = function () {
+
 
                 var requestData = {
                     _sort: vm.sortProjects,
@@ -306,6 +307,7 @@ angular.module('dmc.widgets.projects', [
                 vm.getProjects();
                 $window.scrollTo(0, 0);
             };
+
         }
 
     }]);
