@@ -24,6 +24,25 @@ angular.module('dmc.notifications')
                 $scope.userData = res;
             });
 
+            //$scope.notificationList = $scope.userData.notifications;
+
+            $scope.currentPage = 1;
+
+            $scope.changePage = function(id){
+              $scope.currentPage = id;
+            }
+
+            $scope.pages = [
+              {
+                  id : 1,
+                  title : 'All'
+              },
+              {
+                  id : 2,
+                  title : 'Unread'
+              }
+            ];
+
             $scope.notifications = notificationsStatistic;
 
             $scope.notificationsData = [];

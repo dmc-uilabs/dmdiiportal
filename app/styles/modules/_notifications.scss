@@ -4,6 +4,11 @@
 	md-content{
 		background-color: transparent;
 	}
+	h1{
+		font-size: 32px;
+    color: map-get($colors, primary);
+    font-weight: lighter;
+	}
 	h2{
 		margin: 16px 0 24px;
 	}
@@ -46,7 +51,20 @@
 		}
 	}
 	.block{
-		padding-top: 48px;
+		//padding-top: 48px;
+		.notification-item{
+			&:hover{
+				background: #ebedef;
+			}
+		}
+		.unread{
+			border-left: 3px solid  map-get($colors, secondary);
+		}
+		.clear-notification{
+			&:hover{
+				color: map-get($colors, secondary);
+			}
+		}
 		h4{
 			margin: 0px 10px;
 		}
