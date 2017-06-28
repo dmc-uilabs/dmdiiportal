@@ -464,7 +464,7 @@ angular.module('dmc.project')
                 ajax.get(dataFactory.getMyProjects(),{
                   _limit: 300
                 },function(response){
-                  $scope.projects = response.data;
+                  $scope.projects = response.data.content;
                 });
               }
             };
