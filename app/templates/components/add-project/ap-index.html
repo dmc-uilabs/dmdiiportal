@@ -12,7 +12,7 @@
         <md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom md-autoselect>
           <!--Tab -->
           <div layout="row" layout-align="space-between center">
-            <md-tab label="1 ENTER WORKSPACE INFORMATION">
+            <md-tab label="ENTER WORKSPACE INFORMATION">
               <md-content>
                 <ap-tab-one go-to-tab="goToNextTab"
                             documents="documents"
@@ -20,11 +20,15 @@
                             disable-enable-tab="disableEnable"></ap-tab-one>
               </md-content>
             </md-tab>
-            <md-tab label="2 SELECT MEMBERS TO INVITE" ng-disabled="data.secondLocked">
+
+
+            <!-- <md-tab label="SELECT MEMBERS TO INVITE" ng-disabled="data.secondLocked"> -->
+            <!-- <md-tab label="SELECT MEMBERS TO INVITE">
               <md-content>
                 <ap-tab-two go-to-tab="goToNextTab" project-details="projectData" invitees="invitees" disable-enable-tab="disableEnable" submit-project-details="createNewProject" ></ap-tab-two>
               </md-content>
-            </md-tab>
+            </md-tab> -->
+
             <!--
             <md-tab label="3 SEND MESSAGE TO INVITED MEMBERS" ng-disabled="data.thirdLocked">
               <md-content class="md-padding">
@@ -34,6 +38,7 @@
             -->
           </div>
         </md-tabs>
+
       </md-content>
     </div>
   </div>

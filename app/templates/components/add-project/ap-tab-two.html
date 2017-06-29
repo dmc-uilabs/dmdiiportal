@@ -40,7 +40,7 @@
                             </div>
                         </form>
                         <span flex></span>
-                        <md-button class="md-raised dmc-button" ng-click="resetMembers()">Reset</md-button>
+                        <!-- <md-button class="md-raised dmc-button" ng-click="resetMembers()">Reset</md-button> -->
                         <span flex></span>
                         <md-button class="md-raised dmc-button" ng-click="showFavorites()" ng-disabled="favorites.length == 0 && !showFavoritesFlag">
                             {{(showFavoritesFlag == false) ? 'Favorites(' + favorites.length + ')' : 'All'}}
@@ -82,13 +82,14 @@
         <div class="content-column" layout="column" flex="29">
             <div dmc-selected-invitees class="content-panel invitees" invitees="invitees"></div>
             <div layout="row" class="btn-next-block" layout-padding layout-align="center center">
-                <md-button class="md-raised" ng-click="goToTab(1)">Back</md-button>
-                <md-button class="md-raised md-primary" ng-click="submitProjectDetails(invitees)">{{isUpdate ? 'Save' : 'Create' }}</md-button>
+                <md-button class="md-raised md-primary" ng-click="exit(invitees)">{{isUpdate ? 'Save' : 'Invite' }}</md-button>
+                <!-- <md-button class="md-raised" ng-click="goToTab(1)">Back</md-button> -->
+                <!-- <md-button class="md-raised md-primary" ng-click="submitProjectDetails(invitees)">{{isUpdate ? 'Save' : 'Create' }}</md-button> -->
             </div>
         </div>
     </div>
-    <div layout="row" class="btn-next-block" layout-padding layout-align="end center">
+    <!-- <div layout="row" class="btn-next-block" layout-padding layout-align="end center">
         <md-button class="md-raised" ng-click="goToTab(1)">Back</md-button>
         <md-button class="md-raised md-primary" ng-click="submitProjectDetails(invitees)">{{isUpdate ? 'Save' : 'Create' }}</md-button>
-    </div>
+    </div> -->
 </div>
