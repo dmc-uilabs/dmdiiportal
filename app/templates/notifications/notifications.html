@@ -23,7 +23,7 @@
 
 	<div class="block" style="height:auto; max-height:600px">
 		<md-list>
-			<md-list-item class="notification-item" ng-repeat="item in userData.notifications | orderBy:'+created'" ng-if="currentPage == 1 || currentPage == 2 && !item.cleared && !item.deleted" ng-class="{unread: (!item.cleared && !item.deleted)}">
+			<md-list-item class="notification-item" ng-repeat="item in userData.notifications | orderBy:'-created'" ng-if="currentPage == 2 || currentPage == 1 && !item.cleared && !item.deleted" ng-class="{unread: (!item.cleared && !item.deleted)}">
 				<div flex="100" layout="row" layout-align="center center">
 					<div class="logo-event" ng-switch on="item.type">
 						<!--<img ng-src="{{item.image}}">-->
@@ -42,9 +42,13 @@
 						<a ng-switch-when="DOCUMENT_SHARED_WITH_WORKSPACE" ng-href="{{item.message}}">{{item.createdBy.displayName}} has shared a document with your workspace.</a>
 						<a ng-switch-default>{{item.message}}</a>
 					</h4>
-					<h4>{{item.created | date:'medium'}}</h4>
+					<div layout="column" style="text-align: right">
+						<h4>{{item.created | date:'mediumDate'}}</h4>
+						<span style="height: 5px"/>
+						<h4>{{item.created | date:'mediumTime'}}</h4>
+					</div>
 					<md-button class="md-icon-button clear-notification" aria-label="Clear" md-no-ink ng-click="clearNotification(item.createdFor.id, item.id)">
-							<ng-md-icon icon="close" size="18" style="margin-bottom:4px"></ng-md-icon>
+							<ng-md-icon icon="drafts" size="24" style="margin-bottom:4px"></ng-md-icon>
 					</md-button>
 				</div>
 			</md-list-item>

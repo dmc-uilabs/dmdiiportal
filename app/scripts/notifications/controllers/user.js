@@ -35,11 +35,11 @@ angular.module('dmc.notifications')
             $scope.pages = [
               {
                   id : 1,
-                  title : 'All'
+                  title : 'Unread'
               },
               {
                   id : 2,
-                  title : 'Unread'
+                  title : 'All'
               }
             ];
 

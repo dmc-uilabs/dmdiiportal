@@ -53,11 +53,16 @@
 	.block{
 		//padding-top: 48px;
 		.notification-item{
+			border-left: 3px solid white;
+			border-top: 2px solid white;
+			border-bottom: 2px solid white;
+			color: grey;
 			&:hover{
 				background: #ebedef;
 			}
 		}
 		.unread{
+			color: map-get($colors, primary);
 			border-left: 3px solid  map-get($colors, secondary);
 		}
 		.clear-notification{
