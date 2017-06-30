@@ -42,7 +42,9 @@ angular.module('dmc.project', [
     'dmc.widgets.project-tags',
     'dmc.sub-nav-menu',
     'dmc.input-file.directive',
-    'dmc.workspace-header'
+    'dmc.workspace-header',
+    'dmc.add_members',
+    'dmc.add_project.directive'
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider){
 

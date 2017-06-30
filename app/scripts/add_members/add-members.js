@@ -30,7 +30,6 @@ angular.module('dmc.add_members', [
             invitees: '='
         },
         controller: function ($scope) {
-
             $scope.removeInvite = function(item){
                 for(var i in $scope.invitees){
                     if($scope.invitees[i].id === item.id){

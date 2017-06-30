@@ -72,6 +72,7 @@ angular.module('dmc.add_project.directive', [
             });
 
             $scope.createNewProject = function(data) {
+                console.log(data)
                 $scope.goSaveProject = true;
 
                 if(newProject.dueDate){
@@ -937,7 +938,7 @@ angular.module('dmc.add_project.directive', [
             };
 
             $scope.exit = function(listInvitees){
-              console.log(listInvitees);
+              console.log(listInvitees)
             }
 
             $scope.send = function(){
