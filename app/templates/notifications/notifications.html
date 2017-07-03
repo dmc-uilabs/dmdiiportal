@@ -23,7 +23,7 @@
 
 	<div class="block" style="height:auto; max-height:600px">
 		<md-list>
-			<md-list-item class="notification-item" ng-repeat="item in userData.notifications | orderBy:'-created'" ng-if="currentPage == 2 || currentPage == 1 && !item.cleared && !item.deleted" ng-class="{unread: (!item.cleared && !item.deleted)}">
+			<md-list-item class="notification-item" ng-repeat="item in getNotifications() | orderBy:'-created'" ng-if="currentPage == 2 || currentPage == 1 && item.unread" ng-class="{unread: (item.unread)}">
 				<div flex="100" layout="row" layout-align="center center">
 					<div class="logo-event" ng-switch on="item.type">
 						<!--<img ng-src="{{item.image}}">-->
@@ -34,7 +34,7 @@
 						<ng-md-icon ng-switch-when="DOCUMENT_SHARED_WITH_WORKSPACE" icon="insert_drive_file" size="40"></ng-md-icon>
             <ng-md-icon ng-switch-default icon="notifications" size="40"></ng-md-icon>
 					</div>
-					<h4 flex ng-switch on="item.type">
+					<h4 ng-click="clearNotification(item.createdFor.id, item.id)" flex ng-switch on="item.type">
 						<a ng-switch-when="USER_REQUESTS_VERIFICATION" ng-href='/company-profile.php#/profile/{{userData.companyId}}'>{{item.createdBy.displayName}} has requested to be verified with your organization.</a>
 						<a ng-switch-when="NEW_USER_JOINED_ORGANIZATION" ng-href='/company-profile.php#/profile/{{userData.companyId}}'>{{item.createdBy.displayName}} has requested to join your organization.</a>
 						<a ng-switch-when="INVITATION_TO_WORKSPACE" ng-href="{{item.message}}">{{item.createdBy.displayName}} has invited you to a workspace.</a>

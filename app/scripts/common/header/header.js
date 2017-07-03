@@ -82,17 +82,26 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
 
 
           if ($scope.userData.notifications) {
-              $scope.notification_alert = 0;
+              var notification_alert = 0;
 
               angular.forEach($scope.userData.notifications, function(item) {
                   if (item.unread === true && !item.cleared && !item.deleted){
-                      $scope.notification_alert++;
+                      notification_alert++;
                   }
               });
-              notificationsMessages.setNotificationAlerts($scope.notification_alert);
+              notificationsMessages.setNotificationAlerts(notification_alert);
+              notificationsMessages.setNotifications($scope.userData.notifications);
           }
             apply();
         };
+
+        $scope.getAlertCount = function(){
+          return notificationsMessages.getNotificationAlerts();
+        };
+
+        $scope.getNotifications = function(){
+          return notificationsMessages.getNotifications();
+        }
 
 
         // var getProfile = function(invitation){
@@ -139,8 +148,11 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
 
         $scope.markAllRead = function(){
             ajax.get(dataFactory.markAllNotificationsRead($scope.userData.id), {}, function() {
-                $scope.notification_alert = 0;
-                $scope.userData.notifications = [];
+                for(var i in $scope.userData.notifications){
+                  $scope.userData.notifications[i].unread = false;
+                }
+                notificationsMessages.setNotificationAlerts(0);
+                notificationsMessages.setNotifications($scope.userData.notifications);
             });
         };
 
@@ -155,19 +167,30 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
             for(var i in $scope.userData.notifications){
                 if($scope.userData.notifications[i].id == item.id) {
                   if($scope.userData.notifications[i].unread){
-                    $scope.notification_alert--;
+                    notificationsMessages.setNotificationAlerts(notificationsMessages.getNotificationAlerts()-1);
                     $scope.userData.notifications[i].unread = false;
                   }
-                  $scope.userData.notifications[i].cleared = true;
                 }
             }
+            notificationsMessages.setNotifications($scope.userData.notifications);
             ajax.get(dataFactory.markNotificationRead(item.createdFor.id, item.id),function(response){
             });
         };
 
+        // $scope.clearNotification = function(id, notification_id){
+        //     for(var i in $scope.userData.notifications){
+        //         if($scope.userData.notifications[i].id == notification_id) {
+        //           $scope.userData.notifications[i].unread = false;
+        //           $scope.userData.notifications[i].cleared = true;
+        //           notificationsMessages.setNotificationAlerts(notificationsMessages.getNotificationAlerts() - 1);
+        //         }
+        //     }
+        //     ajax.get(dataFactory.markNotificationRead(id, notification_id),function(response){
+        //     });
+        // };
+
         $scope.$on('notificationCleared', function (event, notificationId) {
-          $scope.notification_alert--;
-          notificationsMessages.setNotificationAlerts($scope.notification_alert);
+          notificationsMessages.setNotificationAlerts(notificationsMessages.getNotificationAlerts()-1);
         });
 
         function apply() {

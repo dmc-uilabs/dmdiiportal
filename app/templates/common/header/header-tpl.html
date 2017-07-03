@@ -29,14 +29,14 @@
                                aria-label="Notifications"
                                ng-click="closeMenu(); $mdOpenMenu($event)">
                         <ng-md-icon icon="notifications" size="25"></ng-md-icon>
-                        <span class="count-message" ng-show="notification_alert > 0">{{notification_alert}}</span>
+                        <span class="count-message" ng-show="getAlertCount() > 0">{{getAlertCount()}}</span>
                     </md-button>
                     <md-menu-content class="message-container header-menu-content notifications-list">
                         <div class="zone-top" layout="row" layout-align="space-between center">
                             <h3>Notifications</h3>
                             <md-button md-no-ink href="/notifications.php#/user" ng-click="viewAll" class="view-all-link">VIEW ALL</md-button>
                         </div>
-                        <md-menu-item ng-repeat="item in userData.notifications track by $index" ng-if="!item.cleared && !item.deleted" ng-class="{'not-read' : item.unread}">
+                        <md-menu-item ng-repeat="item in getNotifications() | orderBy:'-created' track by $index" ng-if="item.unread" ng-class="{'not-read' : item.unread}">
                         <!-- <md-menu-item ng-repeat="item in userData.notifications | limitTo:5 track by $index" ng-if="!item.cleared && !item.deleted" ng-class="{'not-read' : item.unread}">   -->
                           <a ng-if="item.type == 'NEW_USER_JOINED_ORGANIZATION' || item.type == 'USER_REQUESTS_VERIFICATION'" ng-href='/company-profile.php#/profile/{{userData.companyId}}'>
                             <div layout="row">
@@ -71,7 +71,7 @@
                               </a>
 
                         </md-menu-item>
-                        <div class="zone-top" style="padding-top: 8px;" layout="row" layout-align="space-between center">
+                        <div ng-if="getAlertCount() > 0" class="zone-top" style="padding-top: 8px;" layout="row" layout-align="space-between center">
                             <md-button ng-click="markAllRead()" class="view-all-link">Mark all as read</md-button>
                         </div>
                     </md-menu-content>

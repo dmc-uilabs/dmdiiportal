@@ -47,31 +47,36 @@ angular.module('dmc.notifications')
 
             $scope.notificationsData = [];
 
-            notificationsModel.get_notifications_user(
-                {
-                    'period': 'today'
-                },
-                function(data){
-                    for(var i in data){
-                        data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A')
-                    }
-                    $scope.notificationsData = data;
-                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-                }
-            )
+            // notificationsModel.get_notifications_user(
+            //     {
+            //         'period': 'today'
+            //     },
+            //     function(data){
+            //         for(var i in data){
+            //             data[i].date = moment(data[i].date).format('MM/DD/YYYY hh:mm A')
+            //         }
+            //         $scope.notificationsData = data;
+            //         if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+            //     }
+            // )
 
             $scope.getItemDetails = function(item) {
                 return notificationsMessages.getLinkDetails(item);
+            }
+
+            $scope.getNotifications = function(){
+              $scope.userData.notifications = notificationsMessages.getNotifications();
+              return $scope.userData.notifications;
             }
 
             $scope.clearNotification = function(id, notification_id){
                 for(var i in $scope.userData.notifications){
                     if($scope.userData.notifications[i].id == notification_id) {
                       $scope.userData.notifications[i].unread = false;
-                      $scope.userData.notifications[i].cleared = true;
                       notificationsMessages.setNotificationAlerts(notificationsMessages.getNotificationAlerts() - 1);
                     }
                 }
+                notificationsMessages.setNotifications($scope.userData.notifications);
                 ajax.get(dataFactory.markNotificationRead(id, notification_id),function(response){
                 });
             };
