@@ -1,4 +1,4 @@
-<main>
+node server.js<main>
     <section class="container">
         <div class="row">
             <div class="col-xs-3">
@@ -26,25 +26,34 @@
                     <p class="slim-margin">In fulfilling our mission of sharing and collaboration, we endeavor to share these materials as a guide so that others may have an easier time learning and creating.</p>
                 </div>
             </div>
-
         </div>
 
     </section>
 
     <script>
+
     jQuery(document).ready(function(){
         jQuery('#hideshowUni').on('click', function(event) {
              jQuery('#uniContent').toggle('show');
               jQuery('#courseraContent').hide();
+              jQuery('#iMECContent').hide();
 
         });
         jQuery('#hideshowCou').on('click', function(event) {
              jQuery('#courseraContent').toggle('show');
               jQuery('#uniContent').hide();
+              jQuery('#iMECContent').hide();
+        });
+
+        jQuery('#hideshowIMEC').on('click', function(event) {
+             jQuery('#iMECContent').toggle('show');
+              jQuery('#uniContent').hide();
+              jQuery('#courseraContent').hide();
         });
 
     });
     </script>
+
 
 
     <section class="container">
@@ -52,32 +61,36 @@
             <h2>Pathways for learners</h2>
             <h3>Ensuring the DMC meets you where you need it</h3>
             <div class="row">
-              <div class="col-xs-2">
+              <div class="col-xs-3">
               </div>
-              <div class="col-xs-10">
-                <div class="apps col-md-4">
-                    <h3><span style="color:green">For Students</span></h3>
-                    <img class="img-responsive" ng-src="images/DIMELABS.png">
-                    <br>
-                    <p>Students or members of the academic community can follow the link below to learn more about how to use the DMC in the classroom.</p>
-                    <h4><a id="hideshowUni"> View Academic Content</a></h4>
-                </div>
-                <div class="apps col-md-4">
-                    <h3><span style="color:green">Seeking Certification</span></h3>
-                    <img class="img-responsive" ng-src="images/coursera.png">
-                    <br>
-                    <p> Looking for a certification, the link below describes the Coursera MOOC (Massive Open Online Course). Improve your career with a Digital Manufacturing Specialization.</p>
-                    <h4><a id="hideshowCou">View  Coursera Certification</a></h4>
-                </div>
-                <div class="apps col-md-4">
-                  <h3><span style="color:green">About IMEC</span></h3>
-                  <img class="img-responsive" ng-src="images/IMEC.png" width="200" height="300">
-                  <br>
-                  <p>For customized training, hands on technical assistance, and leadership advisement to help manufacturers improve bottom line results click the link below.</p>
-                  <h4><a id="hideshowCou">View  IMEC Content</a></h4>
+              <div class="col-xs-12">
+              <div layout="row" layout-align="center center">
+                  <div class="apps col-md-3">
+                      <h3><span style="color:green">For Students</span></h3>
+                      <img class="img-responsive" ng-src="images/DIMELABS.png">
+                      <br>
+                      <p>Students or members of the academic community can follow the link below to learn more about how to use the DMC in the classroom.</p>
+                      <h4><a id="hideshowUni"> View Academic Content</a></h4>
+                  </div>
+                  <div class="apps col-md-3">
+                      <h3><span style="color:green">Seeking Certification</span></h3>
+                      <img class="img-responsive" ng-src="images/coursera.png">
+                      <br>
+                      <p> Looking for a certification, the link below describes the Coursera MOOC (Massive Open Online Course). Improve your career with a Digital Manufacturing Specialization.</p>
+                      <h4><a id="hideshowCou">View  Coursera Certification</a></h4>
+                  </div>
+                  <div class="apps col-md-3">
+                      <h3><span style="color:green">About IMEC</span></h3>
+                      <img class="img-responsive" ng-src="images/IMEC.png">
+                      <br>
+                      <p> For customized training, hands on technical assistance, and leadership advisement to help manufacturers improve bottom line results click the link below.</p>
+                      <h4><a id="hideshowIMEC"> View IMEC Content</a></h4>
+                  </div>
                 </div>
 
               </div>
+              <!-- End of the table code for "row " -->
+
               <div class="col-xs-1">
               </div>
             </div>
@@ -91,7 +104,7 @@
 
 
 
-
+<!--start copy-->
     <section class="container">
         <div class="row">
             <div class="col-xs-6">
@@ -298,6 +311,7 @@
         </div>
     </div>
 </section>
+<!--Bottom stuff starts here-->
 
 <section class="container">
     <div class="row ">
@@ -430,14 +444,13 @@
                 </div>
             </div>
 
-        </div>
-
-    </section>
-
-
 
 </div>
+    </section>
+
 <div id="courseraContent" style="display:none">
+<!-- Bottom stuff ends here -->
+<!-- End copy -->
 
 
 <!-- This is the split between the NCSU section and the Coursera section -->
@@ -463,7 +476,8 @@
           </h4>
           <h4>
 						<p  style="border-left: 6px solid green; border-right: 6px solid green; color: gray; margin-left: 26px; margin-right: 32px; padding-left: 26px; padding-right: 50px;">
-            DMDII partnered with some of our members to create a “Specialization” on Coursera. This consists of 9 courses and a capstone. <br />
+            DMDII partnered with some of our members
+            a “Specialization” on Coursera. This consists of 9 courses and a capstone. <br />
 <br />
 A full set of course descriptions including their content can be found at <a href="https://www.coursera.org/specializations/digital-manufacturing-design-technology">https://www.coursera.org/specializations/digital-manufacturing-design-technology</a>. They chose to break courses into individual 7-10 minute lessons, they found this approach encourages learners to work through material in convenient chunks (think while on lunch break, waiting for a bus, some quiet time in the evening, etc.)
 <br /><br />
@@ -986,15 +1000,58 @@ The first 6 courses of the specialization are live! Under each courses webpage y
 </section>
 </div>
 
-<!-- IMEC Section -->
+<!-- IMECContent -->
+
 <div id="iMECContent" style="display:none">
-    <section class="container">
+  <section class="container">
       <div class="row">
       </div>
-    </section>
+  </section>
+
+  <section class="container">
+      <div class="project-summary-container">
+          <div class="row ">
+              <div class="col-xs-12">
+                  <h2>DMDII Project Roots</h2>
+                  <h4>IMEC Program Summary</h4>
+                  <p class="dmc-blockquote">
+                    The mission of IMEC is to be a catalyst for transforming the state of manufacturing. <br>
+                    Thrid-party survey's are conducted to evaluate results. <br> </br>
+
+                    <strong> <u>2015 Impact for IMEC Clients:</u></strong> <br>
+                    540 companies assisted <br>
+                    $317,000 new and retained sals per project <br>
+                    1,082 jobs retained and created <br>
+                    $179,000 investment spending per client <br>
+                    $147,870,000 <br> <br>
+
+                    To View the Impact of U.S. Manufacturing and MEP
+                    <a href="https://www.youtube.com/watch?v=3oXI-qE9WfY&feature=youtu.be&list=UUEjU5U_AkLq9XT0LEFxcoyw"> Click Here </a>
+                  </p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="container">
+      <div class="project-summary-container">
+          <div class="row ">
+              <h2>Together We Can Achieve Excellence</h2>
+              <div class="col-xs-1">
+              </div>
+              <img class="col-xs-10 image-responsive" ng-src="images/IMECTogetherWeCan.png">
+              <div class="col-xs-1">
+              </div>
+          </div>
+      </div>
+  </section>
+
+
+
 
 
 </div>
-
+</div>
+</div>
 
 </main>
