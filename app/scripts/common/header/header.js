@@ -191,10 +191,10 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
 
         $scope.submitSearch = function(text, filter){
           if (filter == 1){
-              $window.location.href='/search-v2.php#/companies';
+              $window.location.href='/search-v2.php#/companies'+(text ? '?text='+text : '');
           }
           else if (filter == 2){
-            $window.location.href='/search-v2.php#/members';
+              $window.location.href='/search-v2.php#/members'+(text ? '?text='+text : '');
           }
           //$window.location.href='/search-v2.php#/companies';
         }
