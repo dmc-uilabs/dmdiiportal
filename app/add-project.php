@@ -43,9 +43,8 @@
     <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/common/models/member-model.js"></script>
     <script src="scripts/add_project/add_project.js"></script>
-
+    <script src="scripts/components/add_project/workspace-form.js"></script>
     <script src="scripts/add_members/add-members.js"></script>
-
     <script src="scripts/common/models/toast-model.js"></script>
     <script src="scripts/components/members-card/members-card.js"></script>
     <script src="scripts/components/ui-widgets/stars.directive.js"></script>
