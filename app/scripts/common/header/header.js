@@ -202,24 +202,20 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
 
         $scope.searchFilters = [
             {
-                id : 1, name: 'All'
+                id : 1, name: 'Organizations'
             },
             {
-                id : 2, name: 'Organizations'
-            },
-            {
-                id : 3, name: 'People'
+                id : 2, name: 'Individuals'
             }
         ];
 
         $scope.submitSearch = function(text, filter){
-          if (filter == 1){
+          if ($scope.searchFilters[filter].name == 'Organizations'){
               $window.location.href='/search-v2.php#/companies'+(text ? '?text='+text : '');
           }
-          else if (filter == 2){
+          else if ($scope.searchFilters[filter].name == 'Individuals'){
               $window.location.href='/search-v2.php#/members'+(text ? '?text='+text : '');
           }
-          //$window.location.href='/search-v2.php#/companies';
         }
 
     }
