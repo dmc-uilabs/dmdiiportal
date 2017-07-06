@@ -4,6 +4,11 @@
 	md-content{
 		background-color: transparent;
 	}
+	h1{
+		font-size: 32px;
+    color: map-get($colors, primary);
+    font-weight: lighter;
+	}
 	h2{
 		margin: 16px 0 24px;
 	}
@@ -46,7 +51,25 @@
 		}
 	}
 	.block{
-		padding-top: 48px;
+		//padding-top: 48px;
+		.notification-item{
+			border-left: 3px solid white;
+			border-top: 2px solid white;
+			border-bottom: 2px solid white;
+			color: grey;
+			&:hover{
+				background: #ebedef;
+			}
+		}
+		.unread{
+			color: map-get($colors, primary);
+			border-left: 3px solid  map-get($colors, secondary);
+		}
+		.clear-notification{
+			&:hover{
+				color: map-get($colors, secondary);
+			}
+		}
 		h4{
 			margin: 0px 10px;
 		}
