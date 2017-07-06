@@ -36,6 +36,7 @@ server.use(jsonServer.rewriter({
     '/tasks/create' : '/tasks',
     '/members' : '/profiles',
     '/my-tasks' : '/tasks',
+    '/projects/:projectID/tasks': '/tasks',
     '/my-services' : '/services',
     '/follow-company-services' : '/services',
     '/market/popular_services': '/services',

@@ -172,6 +172,28 @@
   color: #ADADAD;
 }
 
+
+.project-home {
+  .content-panel {
+    border: 1px solid lightgrey;
+    padding: 15px;
+  }
+}
+
+.ws-header {
+  background: white;
+  .layout-row {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  h2 {
+    padding-left: 5px;
+    a {
+      font-weight: 100;
+    }
+  }
+}
+
 .wh-nav {
   border-bottom: 1px solid lightgrey;
 }
@@ -197,3 +219,4 @@
   /* ...and now for the proper property */
   transition:.5s;
 }
+

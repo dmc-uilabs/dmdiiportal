@@ -1,136 +1,64 @@
-<div class="page-header margin-bottom-35">
-    <md-toolbar>
-        <h1 class="project-title" ng-class="{'preview-page' : isPreview}" layout="row" layout-align="start end">
-            <div class="title" layout="column">
-                <a href="/project.php#/{{projectCtrl.projectData.id}}/home">{{projectCtrl.projectData.title}}</a>
-            </div>
-            <span ng-if="projectCtrl.projectData.dueDate"
-                  class="small-text due-date-project small-text--grey">
-                Due in {{projectCtrl.projectData.dueDate}}
-            </span>
-            <span flex></span>
-            <!-- buttons for preview -->
-            <md-button ng-if="isPreview && invitation"
-                       ng-click="decline()"
-                       class="md-raised dmc-button margin-right15" >
-                <ng-md-icon icon="close" size="18"></ng-md-icon>
-                Decline Invitation
-            </md-button>
-            <md-button ng-if="isPreview && invitation"
-                       ng-click="accept()"
-                       class="md-raised md-primary dmc-button" >
-                <ng-md-icon icon="done" style="fill: #fff;" size="18"></ng-md-icon>
-                Accept Invitation
-            </md-button>
-        </h1>
-        <div class="md-toolbar-tools">
-            <div layout="column" flex="65" class="margin-right12-5">
-                <div layout="row" ng-if="!isPreview" class="name-project" flex>
-                    <div sub-nav-menu-button current-page="1"></div>
-                </div>
-                <span ng-if="isPreview" class="project-manager">Invited to {{projectCtrl.projectData.type}} Project by <a ng-href="/profile.php#/{{invitation.fromProfileId}}">{{invitation.from}}</a> <ng-md-icon ng-if="version1" icon="mail" size="20"></ng-md-icon></span>
-            </div>
-            <!-- fill up the space between left and right area -->
-            <span flex></span>
+<workspace-header class="workspace-header" ng-init="currentPage='1'"></workspace-header>
 
-            <!-- buttons for submission -->
-            <md-button ng-if="isSubmission" class="md-raised dmc-button" href="/project.php#/submit/{{projectCtrl.projectData.id}}"><ng-md-icon icon="send" size="18"></ng-md-icon> Submit</md-button>
-
-            <a ng-if="!isPreview && ($root.userData.accountId === projectCtrl.projectData.projectManagerId || $root.userData.isDmdiiAdmin)"
-               ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/edit'}}"
-               class="link-button uppercase edit-button margin-left20">
-                <ng-md-icon icon="edit" size="18"></ng-md-icon>Edit
-            </a>
-            <!-- <a ng-if="!isPreview && ($root.userData.accountId === projectCtrl.projectData.projectManagerId || $root.userData.isDmdiiAdmin)"
-               ng-href="{{'/add-members.php#/'+projectCtrl.projectData.id}}"
-               class="link-button uppercase invite-button margin-left20">
-                <ng-md-icon icon="group_add" size="22"></ng-md-icon>Invite
-            </a> -->
-            <md-button ng-if="isPreview && !invitation && projectCtrl.projectData.isPublic && !projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId !== projectCtrl.projectData.projectManagerId"
-                       ng-click="joinProject()"
-                       class="md-raised md-primary dmc-button" >
-                Join Project
-            </md-button>
-            <md-button ng-if="isPreview && !invitation && projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId !== projectCtrl.projectData.projectManagerId"
-                       ng-click="requestJoinProject()"
-                       class="md-raised md-primary dmc-button" >
-                Request to Join Project
-            </md-button>
-            <md-button ng-if="!isPreview && projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId === projectCtrl.projectData.projectManagerId"
-                       ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/requests'}}"
-                       class="md-raised md-primary dmc-button" >
-                Manage Join Requests
-            </md-button>
-            <!--<md-menu  ng-if="!isPreview"> -->
-                <!--<md-button class="md-raised dmc-button" ng-click="$mdOpenMenu($event) "><ng-md-icon icon="share" size="18"></ng-md-icon> Invite</md-button>-->
-                <!--<md-menu-content>-->
-                    <!--<md-menu-item>-->
-                        <!--<md-button>Team</md-button>-->
-                    <!--</md-menu-item>-->
-                    <!--<md-menu-item>-->
-                        <!--<md-button href="/invite-challenge.php">Challenge</md-button>-->
-                    <!--</md-menu-item>-->
-                <!--</md-menu-content>-->
-            <!--</md-menu>-->
-        </div>
-    </md-toolbar>
-</div>
 <div class="container project-page-container">
-    <div layout="row" >
-        <!-- Left Content Column -->
-        <div class="content-column" layout="column" flex="65">
-            <!-- Overview -->
-            <div class="content-panel margin-right12-5">
-                <div class="content-panel-header">
-                    <md-toolbar>
-                        <h2>OVERVIEW</h2>
-                        <span style="font-size:10px">Workspace Creator: {{projectCtrl.projectData.projectManager}}</span>
-                    </md-toolbar>
-                </div>
-                <div class="content-panel-body">
-                    <md-content layout="row">
-                        <div flex="25" style="display: none">
-                            <img ng-src="{{projectCtrl.projectData.featureImage.thumbnail}}">
-                        </div>
-                        <div flex>
-                            <p class="project-description" markdown-to-html="projectCtrl.projectData.description"></p>
-                        </div>
-                    </md-content>
-                </div>
-            </div>
-            <!-- Requirement Documents -->
-            <div ng-if="isPreview" class="content-panel margin-top-25 margin-right12-5"
-                 ui-widget-documents
-                 project-id="projectCtrl.currentProjectId"
-                 widget-title="'DOCUMENTS'"></div>
-            <!-- Discussion -->
-            <div ng-if="!isPreview" class="content-panel margin-right12-5 margin-top-25"
-                 ui-widget-discussions project-id="projectCtrl.currentProjectId"
-                 widget-title="'DISCUSSIONS'"></div>
-            <!-- Tasks -->
-            <div ng-if="!isPreview" class="content-panel margin-right12-5 margin-top-25"
-                 ui-widget-tasks project-id="projectCtrl.currentProjectId"
-                 columns="['title','assignee','dueDate','priority']"
-                 widget-title="'TASKS'" show-task-modal="showTaskModal"></div>
-        </div>
-        <!-- Right Content Column -->
-        <div class="content-column" layout="column" flex>
-            <!-- Project tags -->
-            <div class="content-panel margin-left12-5"
-                 ui-widget-project-tags
-                 tags="projectCtrl.projectData.tags"
-                 widget-title="'TAGS'"></div>
-            <!-- Running Services -->
-            <div ng-if="!isPreview" class="content-panel margin-left12-5 margin-top-25"
-                 ui-widget-services
-                 view-all-href="'https://test.projectdmc.org/services/?group_id=7'"
-                 title-href="'https://test.projectdmc.org/services/index.php?group_id=7&diid=4'"
-                 project-id="projectCtrl.currentProjectId"
-                 widget-title="'SERVICES'"
-                 limit="5"
-                 columns="['name','status']"></div>
-            <!-- Components -->
-            <!--<div ng-if="!isPreview" class="content-panel project-review" ui-widget-components project-id="projectCtrl.currentProjectId" widget-title="'COMPONENTS'" columns="['name']"></div>-->
-        </div>
+
+
+  <md-content class="content-panel-body">
+    <div layout="row" layout-align="space-between start">
+      <span flex></span>
+      <span style="font-size:10px">Workspace Creator: {{projectCtrl.projectData.projectManager}}</span>
     </div>
+    <div layout="row">
+      <div flex="25" style="display: none">
+        <img ng-src="{{projectCtrl.projectData.featureImage.thumbnail}}">
+      </div>
+      <div flex>
+        <p class="project-description" markdown-to-html="projectCtrl.projectData.description"></p>
+      </div>
+    </div>
+
+
+
+
+    <div layout="row" class="project-home">
+      <!-- Left Content Column -->
+      <div class="content-column" layout="column" flex="65">
+
+        <!-- Requirement Documents -->
+        <div ng-if="isPreview" class="content-panel margin-top-25 margin-right12-5"
+        ui-widget-documents
+        project-id="projectCtrl.currentProjectId"
+        widget-title="'DOCUMENTS'"></div>
+        <!-- Discussion -->
+        <div ng-if="!isPreview" class="content-panel margin-right12-5 margin-top-25"
+        ui-widget-discussions project-id="projectCtrl.currentProjectId"
+        widget-title="'DISCUSSIONS'"></div>
+        <!-- Tasks -->
+        <div ng-if="!isPreview" class="content-panel margin-right12-5 margin-top-25"
+        ui-widget-tasks project-id="projectCtrl.currentProjectId"
+        columns="['title','assignee','dueDate','priority']"
+        widget-title="'TASKS'" show-task-modal="showTaskModal"></div>
+      </div>
+      <!-- Right Content Column -->
+      <div class="content-column" layout="column" flex>
+        <!-- Project tags -->
+        <div class="content-panel margin-top-25 margin-left12-5"
+        ui-widget-project-tags
+        tags="projectCtrl.projectData.tags"
+        widget-title="'TAGS'"></div>
+        <!-- Running Services -->
+        <div ng-if="!isPreview" class="content-panel margin-left12-5 margin-top-25"
+        ui-widget-services
+        view-all-href="'https://test.projectdmc.org/services/?group_id=7'"
+        title-href="'https://test.projectdmc.org/services/index.php?group_id=7&diid=4'"
+        project-id="projectCtrl.currentProjectId"
+        widget-title="'SERVICES'"
+        limit="5"
+        columns="['name','status']"></div>
+        <!-- Components -->
+        <!--<div ng-if="!isPreview" class="content-panel project-review" ui-widget-components project-id="projectCtrl.currentProjectId" widget-title="'COMPONENTS'" columns="['name']"></div>-->
+      </div>
+    </div>
+  </md-content>
+
 </div>

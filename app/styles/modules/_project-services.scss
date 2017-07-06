@@ -1,6 +1,6 @@
 .project-services{
   &-top{
-    margin-bottom: 10px;
+    margin-bottom: 30px;
   }
   h2{
     font-weight: normal;
@@ -69,7 +69,7 @@
   }
   .content{
     background-color: #fff;
-    padding: 10px;
+    padding: 15px;
 
     .view-interface{
       h2 {
@@ -245,6 +245,7 @@
 
 .project-run-services{
   background-color: #fff;
+  padding: 15px;
   h2{
     margin: 0;
     font-weight: normal;
@@ -398,7 +399,7 @@
 .project-details-services{
   background-color: #fff;
   @include borderRadius(2px);
-  padding: 10px;
+  padding: 15px;
   h2 {
     font-size: 21px;
     margin: 0;
