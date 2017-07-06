@@ -27,7 +27,8 @@ angular.module('dmc.notifications', [
 			controller: 'notificationsUserController',
 			resolve: {
 				notificationsStatistic: ['notificationsModel', function(notificationsModel){
-					return notificationsModel.get_notifications_user_statistic();
+					//return notificationsModel.get_notifications_user_statistic();
+					return null;
 				}]
 			}
 		});
