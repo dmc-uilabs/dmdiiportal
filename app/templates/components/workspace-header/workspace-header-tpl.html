@@ -1,24 +1,27 @@
 <div class="page-header margin-bottom-0 ws-header">
 
     <md-toolbar>
-      <div layout="row" layout-align="start center">
-        <h2><a href="/project.php#/{{projectCtrl.projectData.id}}/home">{{projectCtrl.projectData.title}}</a></h2>
+      <div layout="row" layout-align="end end" style="margin-top: 15px;">
+        <a href="/all-projects.php" style="color: darkgrey; margin-left: 5px; font-size: 12px;"><ng-md-icon icon="keyboard_arrow_left" size="16"></ng-md-icon>BACK TO PROJECTS</a>
         <span flex></span>
         <a ng-if="!isPreview && projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId === projectCtrl.projectData.projectManagerId"
-           ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/requests'}}"
-           class="link-button uppercase edit-button margin-left20">
-            <ng-md-icon icon="person_add" size="18"></ng-md-icon>Manage Join Requests
+          ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/requests'}}"
+          class="link-button uppercase edit-button margin-left20">
+        <ng-md-icon icon="person_add" size="18"></ng-md-icon>Manage Join Requests
         </a>
         <a ng-if="!isPreview && ($root.userData.accountId === projectCtrl.projectData.projectManagerId || $root.userData.isDmdiiAdmin)"
-           ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/edit'}}"
-           class="link-button uppercase edit-button margin-left20">
-            <ng-md-icon icon="edit" size="18"></ng-md-icon>Edit
+          ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/edit'}}"
+          class="link-button uppercase edit-button margin-left20">
+        <ng-md-icon icon="edit" size="18"></ng-md-icon>Edit
         </a>
         <a ng-if="isSubmission"
           class="link-button uppercase edit-button margin-left20"
           ng-href="/project.php#/submit/{{projectCtrl.projectData.id}}">
           <ng-md-icon icon="send" size="18"></ng-md-icon> Submit
         </a>
+      </div>
+      <div layout="row" layout-align="start center">
+        <h2><a href="/project.php#/{{projectCtrl.projectData.id}}/home">{{projectCtrl.projectData.title}}</a></h2>
       </div>
     </md-toolbar>
 
