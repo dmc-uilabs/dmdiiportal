@@ -1,65 +1,341 @@
-[{
-    "id": 56,
-    "title": "Project with Manager 1",
-    "projectManager": "J Doe",
-    "projectManagerId": 1,
-    "comapanyId": "",
-    "featureImage": {
-        "thumbnail": "",
-        "large": ""
-    },
-    "images": "",
-    "description": "Description of a project",
-    "dueDate": 1479272400000,
-    "requiresAdminApprovalToJoin": false,
-    "isPublic": true,
-    "directoryId": 26,
-    "discussions": {
-        "totalItems": 0,
-        "link": "/projects/56/discussions"
-    },
-    "tasks": {
-        "totalItems": 0,
-        "link": "/projects/56/tasks"
-    },
-    "services": {
-        "totalItems": 2,
-        "link": "/projects/56/services"
-    },
-    "components": {
-        "totalItems": 0,
-        "link": "/projects/56/tasks"
-    }
-}, {
-    "id": 59,
-    "title": "Title of a project",
-    "projectManager": "J Doe",
-    "projectManagerId": 2,
-    "comapanyId": "",
-    "featureImage": {
-        "thumbnail": "",
-        "large": ""
-    },
-    "images": "",
-    "description": "Description of a project",
-    "dueDate": 1479794400000,
-    "requiresAdminApprovalToJoin": false,
-    "isPublic": true,
-    "directoryId": 29,
-    "discussions": {
-        "totalItems": 0,
-        "link": "/projects/59/discussions"
-    },
-    "tasks": {
-        "totalItems": 0,
-        "link": "/projects/59/tasks"
-    },
-    "services": {
-        "totalItems": 0,
-        "link": "/projects/59/services"
-    },
-    "components": {
-        "totalItems": 0,
-        "link": "/projects/59/tasks"
-    }
-}]
+{
+    "content": [{
+        "id": 231,
+        "title": "maz public w/ admin",
+        "projectManager": "Joe Mazrimas.",
+        "projectManagerId": 179,
+        "comapanyId": "",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        },
+        "images": "",
+        "description": "<p>maz public w/ admin</p>",
+        "dueDate": 1498499967000,
+        "requiresAdminApprovalToJoin": true,
+        "isPublic": true,
+        "directoryId": 269,
+        "createdOn": 1498499830,
+        "discussions": {
+            "totalItems": 0,
+            "link": "/projects/231/discussions"
+        },
+        "tasks": {
+            "totalItems": 0,
+            "link": "/projects/231/tasks"
+        },
+        "services": {
+            "totalItems": 0,
+            "link": "/projects/231/services"
+        },
+        "components": {
+            "totalItems": 0,
+            "link": "/projects/231/tasks"
+        }
+    }, {
+        "id": 223,
+        "title": "maz public project",
+        "projectManager": "Joseph Mazrimas",
+        "projectManagerId": 171,
+        "comapanyId": "",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        },
+        "images": "",
+        "description": "<p>abc</p>",
+        "dueDate": 0,
+        "requiresAdminApprovalToJoin": false,
+        "isPublic": true,
+        "directoryId": 261,
+        "createdOn": 1497052007,
+        "discussions": {
+            "totalItems": 1,
+            "link": "/projects/223/discussions"
+        },
+        "tasks": {
+            "totalItems": 0,
+            "link": "/projects/223/tasks"
+        },
+        "services": {
+            "totalItems": 0,
+            "link": "/projects/223/services"
+        },
+        "components": {
+            "totalItems": 0,
+            "link": "/projects/223/tasks"
+        }
+    }, {
+        "id": 222,
+        "title": "Re-adding the title to this WS",
+        "projectManager": "Joe Mazrimas.",
+        "projectManagerId": 179,
+        "comapanyId": "",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        },
+        "images": "",
+        "description": "",
+        "dueDate": 1498499646000,
+        "requiresAdminApprovalToJoin": true,
+        "isPublic": false,
+        "directoryId": 260,
+        "createdOn": 1497047821,
+        "discussions": {
+            "totalItems": 0,
+            "link": "/projects/222/discussions"
+        },
+        "tasks": {
+            "totalItems": 0,
+            "link": "/projects/222/tasks"
+        },
+        "services": {
+            "totalItems": 0,
+            "link": "/projects/222/services"
+        },
+        "components": {
+            "totalItems": 0,
+            "link": "/projects/222/tasks"
+        }
+    }, {
+        "id": 221,
+        "title": "workspace from reg user maz",
+        "projectManager": "Joe Mazrimas.",
+        "projectManagerId": 179,
+        "comapanyId": "",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        },
+        "images": "",
+        "description": "<p>adfasdf</p>",
+        "dueDate": 0,
+        "requiresAdminApprovalToJoin": true,
+        "isPublic": false,
+        "directoryId": 259,
+        "createdOn": 1497047792,
+        "discussions": {
+            "totalItems": 1,
+            "link": "/projects/221/discussions"
+        },
+        "tasks": {
+            "totalItems": 1,
+            "link": "/projects/221/tasks"
+        },
+        "services": {
+            "totalItems": 0,
+            "link": "/projects/221/services"
+        },
+        "components": {
+            "totalItems": 0,
+            "link": "/projects/221/tasks"
+        }
+    }, {
+        "id": 219,
+        "title": "DW2 test ws",
+        "projectManager": "Joseph Mazrimas",
+        "projectManagerId": 171,
+        "comapanyId": "",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        },
+        "images": "",
+        "description": "<p>abc</p>",
+        "dueDate": 0,
+        "requiresAdminApprovalToJoin": true,
+        "isPublic": false,
+        "directoryId": 257,
+        "createdOn": 1496957121,
+        "discussions": {
+            "totalItems": 0,
+            "link": "/projects/219/discussions"
+        },
+        "tasks": {
+            "totalItems": 0,
+            "link": "/projects/219/tasks"
+        },
+        "services": {
+            "totalItems": 2,
+            "link": "/projects/219/services"
+        },
+        "components": {
+            "totalItems": 0,
+            "link": "/projects/219/tasks"
+        }
+    }, {
+        "id": 217,
+        "title": "WHy does this thing have no title?",
+        "projectManager": "Joseph Mazrimas",
+        "projectManagerId": 171,
+        "comapanyId": "",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        },
+        "images": "",
+        "description": "",
+        "dueDate": 1497047701000,
+        "requiresAdminApprovalToJoin": true,
+        "isPublic": false,
+        "directoryId": 250,
+        "createdOn": 1496245281,
+        "discussions": {
+            "totalItems": 0,
+            "link": "/projects/217/discussions"
+        },
+        "tasks": {
+            "totalItems": 0,
+            "link": "/projects/217/tasks"
+        },
+        "services": {
+            "totalItems": 0,
+            "link": "/projects/217/services"
+        },
+        "components": {
+            "totalItems": 0,
+            "link": "/projects/217/tasks"
+        }
+    }, {
+        "id": 206,
+        "title": "3. Run Should Cost Tool",
+        "projectManager": "Digital Manufacturing Commons",
+        "projectManagerId": 206,
+        "comapanyId": "",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        },
+        "images": "",
+        "description": "<p>Users should act as the supplier getting a TDP from RR to then use in their own workspace (this workspace) to generate a should cost report. Once the report is created share this report to the fourth step workspace (<b>4. Save Should Cost Analysis app Results</b>)<br></p>",
+        "dueDate": 1498798800000,
+        "requiresAdminApprovalToJoin": true,
+        "isPublic": false,
+        "directoryId": 237,
+        "createdOn": 1495659557,
+        "discussions": {
+            "totalItems": 1,
+            "link": "/projects/206/discussions"
+        },
+        "tasks": {
+            "totalItems": 1,
+            "link": "/projects/206/tasks"
+        },
+        "services": {
+            "totalItems": 1,
+            "link": "/projects/206/services"
+        },
+        "components": {
+            "totalItems": 0,
+            "link": "/projects/206/tasks"
+        }
+    }, {
+        "id": 205,
+        "title": "2. Save TDP Here",
+        "projectManager": "Digital Manufacturing Commons",
+        "projectManagerId": 206,
+        "comapanyId": "",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        },
+        "images": "",
+        "description": "<p>Users should save the TDP.zip file they generated with the TDP Authoring Tool to this workspace.<br><br>Users will use this workspace to share the document to the third step workspace (<b>3. Run Should Cost Tool</b>)<br></p>",
+        "dueDate": 1498798800000,
+        "requiresAdminApprovalToJoin": true,
+        "isPublic": false,
+        "directoryId": 236,
+        "createdOn": 1495654391,
+        "discussions": {
+            "totalItems": 0,
+            "link": "/projects/205/discussions"
+        },
+        "tasks": {
+            "totalItems": 0,
+            "link": "/projects/205/tasks"
+        },
+        "services": {
+            "totalItems": 0,
+            "link": "/projects/205/services"
+        },
+        "components": {
+            "totalItems": 0,
+            "link": "/projects/205/tasks"
+        }
+    }, {
+        "id": 204,
+        "title": "1. Authoring WS",
+        "projectManager": "Digital Manufacturing Commons",
+        "projectManagerId": 206,
+        "comapanyId": "",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        },
+        "images": "",
+        "description": "In this Workspace, users should run the Technical Data Package Authoring Tool (found in the marketplace) to generate a TDP zip file.<br><br>The resulting .zip file needs to then be shared to the second workspace (<b>2. Save TDP Here</b>) in the new workflow.<br>",
+        "dueDate": 1501477200000,
+        "requiresAdminApprovalToJoin": true,
+        "isPublic": false,
+        "directoryId": 235,
+        "createdOn": 1495654316,
+        "discussions": {
+            "totalItems": 0,
+            "link": "/projects/204/discussions"
+        },
+        "tasks": {
+            "totalItems": 1,
+            "link": "/projects/204/tasks"
+        },
+        "services": {
+            "totalItems": 7,
+            "link": "/projects/204/services"
+        },
+        "components": {
+            "totalItems": 0,
+            "link": "/projects/204/tasks"
+        }
+    }, {
+        "id": 178,
+        "title": "Def Portal",
+        "projectManager": "Joseph Mazrimas",
+        "projectManagerId": 171,
+        "comapanyId": "",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        },
+        "images": "",
+        "description": "<p>abc</p>",
+        "dueDate": 0,
+        "requiresAdminApprovalToJoin": true,
+        "isPublic": false,
+        "directoryId": 206,
+        "createdOn": 0,
+        "discussions": {
+            "totalItems": 0,
+            "link": "/projects/178/discussions"
+        },
+        "tasks": {
+            "totalItems": 0,
+            "link": "/projects/178/tasks"
+        },
+        "services": {
+            "totalItems": 1,
+            "link": "/projects/178/services"
+        },
+        "components": {
+            "totalItems": 0,
+            "link": "/projects/178/tasks"
+        }
+    }],
+    "last": true,
+    "totalElements": 20,
+    "totalPages": 2,
+    "sort": null,
+    "numberOfElements": 10,
+    "first": false,
+    "size": 10,
+    "number": 1
+}

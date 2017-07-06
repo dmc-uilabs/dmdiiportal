@@ -111,14 +111,21 @@ div[dmc-top-header]{
       min-height: 55px;
       height: 55px;
       line-height: 55px;
-      margin: 0 0 0 20px;
+      margin: 0 0 0 10px;
       padding: 0;
       text-transform: none;
       color: $HeaderButtonText;
       ng-md-icon{
         fill: $topHeaderIcon;
       }
-
+      md-icon{
+        padding-right: 5px;
+        padding-bottom: 5px;
+        svg{
+          fill: map-get($colors, secondary);
+          //fill: white;
+        }
+      }
     }
   }
 
@@ -192,7 +199,10 @@ div[dmc-top-header]{
     .search{
       md-input-container{
         padding: 0;
-        width: 240px;
+        width: 200px;
+        border-style: solid;
+        border-width: 0px 1px 0px 0px;
+        border-color: map-get($colors, secondary);
         &:not(.md-input-invalid).md-input-focused md-icon{
           color: #fff;
         }
@@ -200,8 +210,11 @@ div[dmc-top-header]{
           background-color: #5E5E5E;
           @include borderRadius(3px 0 0 3px);
           padding-left: 8px;
-          font-size: 15px;
+          font-size: 12px;
           color: #fff;
+        }
+        md-select-menu{
+          margin-top: 55px;
         }
       }
       .md-button{
@@ -214,9 +227,29 @@ div[dmc-top-header]{
         font-size: 15px;
         width: 30px;
         min-width: 30px;
-        background-color: #64B045;
+        background-color: map-get($colors, secondary);
         ng-md-icon{
           fill: #fff;
+        }
+      }
+      md-select {
+        margin: 0 0 0 5px;
+        //@include borderRadius(0 0 0 0);
+        border-style: solid;
+        border-width: 0px 0px 0px 1px;
+        border-color: map-get($colors, secondary);
+        width: 100px;
+        background-color: #5E5E5E;
+        font-size: 11px;
+        color: #fff;
+        span{
+          color: #fff;
+          opacity: .7;
+          margin-left:4px;
+        }
+        .md-select-value .md-select-icon{
+          margin-left:-6px;
+          margin-bottom:3px;
         }
       }
     }
@@ -270,16 +303,35 @@ div[dmc-top-header]{
   }
 }
 
+.sub-menu-content{
+  ng-md-icon{
+    //margin-right:10px;
+    fill: map-get($colors, secondary);
+  }
+}
 
 .header-menu-content.md-default-theme{
   a.md-button {
     line-height: 3.2;
+  }
+  ng-md-icon{
+    //margin-right:0px;
+    fill: map-get($colors, secondary);
+  }
+  md-icon{
+    margin-right:10px;
+    svg{
+      fill: map-get($colors, secondary);
+      //fill: white;
+    }
   }
   &.messages-list{
     width: 350px;
   }
   &.notifications-list{
     width: 400px;
+    height: auto;
+    max-height: 277px;
   }
   &.service-status-list{
     width: 250px;
@@ -433,4 +485,28 @@ div[dmc-top-header]{
       }
     }
   }
+}
+
+.md-select-menu-container.my-search-filter-list{
+    top: 85px !important;
+    padding-left: 15px;
+    md-select-menu{
+      position: relative;
+      width: 100px;
+      overflow: hidden;
+      md-content{
+        padding: 0;
+        margin-left: -5px;
+        md-option{
+          height: 35px;
+          .md-text{
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    .md-select-value .md-select-icon{
+      margin-left:-5px;
+      margin-bottom:3px;
+    }
 }
