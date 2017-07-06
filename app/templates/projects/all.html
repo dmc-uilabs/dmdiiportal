@@ -1,6 +1,6 @@
 <main>
     <section class="container">
-      <div class="row">
+      <div class="row" style="margin-bottom: 30px;">
         <h1 class="col-xs-8">Workspaces</h1>
         <div class="col-xs-4"style="text-align: right;" >
           <a href="/add-project.php">
@@ -8,6 +8,20 @@
           </a>
         </div>
       </div>
+
+
+      <div class="row">
+        <div class="col-xs-12">
+            <div class="search-input-div col-xs-10">
+                <input class="search-input" type="text" ng-model="searchTerm" placeholder="Search">
+                <ng-md-icon icon="clear" size="15" class="pull-right clear-icon" ng-click="clearSearch()"></ng-md-icon>
+            </div>
+            <button class="btn search-button no-click-border col-xs-2" ng-click="search()">
+              <ng-md-icon icon="search" size="20"></ng-md-icon>
+            </button>
+        </div>
+      </div>
+
     </section>
     <section class="container">
       <div class="row ws-filters">
@@ -19,6 +33,7 @@
             <md-radio-button ng-click="setFilter('private')" value="private" class="md-primary">Private</md-radio-button>
           </md-radio-group>
         </div>
+
         <div class="col-xs-6">
           <div style="float: right;">
             <h4>SORT</h4>
@@ -26,6 +41,7 @@
               <md-radio-button ng-click="updateSort()" class="md-primary" ng-repeat="sort in sortList track by $index" ng-value="$index">{{sort.name}}</md-radio-button>
             </md-radio-group>
           </div>
+
         </div>
       </div>
 

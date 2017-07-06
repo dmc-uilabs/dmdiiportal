@@ -68,8 +68,20 @@ angular.module('dmc.widgets.projects', [
                 return vm.getProjectsFlag;
             }, function (newValue, oldValue) {
                 if (newValue !== oldValue || vm.getProjectsOnReady === true || (newValue === oldValue && vm.widgetFormat === 'my-projects')) {
+
                     // vm.activeFilter = null;
+
+                    vm.activeFilter = null;
                     vm.searchTerm = null;
+                    vm.getProjects();
+                }
+            }, true);
+
+            $scope.$watch(function () {
+                return vm.searchTerm;
+            }, function (newValue, oldValue) {
+                if (newValue !== oldValue && vm.widgetFormat === vm.activeTab && vm.searchTerm === null) {
+
                     vm.getProjects();
                 }
             }, true);
@@ -101,6 +113,7 @@ angular.module('dmc.widgets.projects', [
                     vm.getProjects();
                 }
             }, true);
+
 
             $scope.$on('searchProjects', function(event) {
                 vm.getProjects();
@@ -139,7 +152,7 @@ angular.module('dmc.widgets.projects', [
                 ajax.get(getProjectsUrl, requestData, function (response) {
                     vm.userCompanyId = $rootScope.userData.companyId;
                     vm.projects = response.data.content;
-                    // vm.projects = response.data;
+
                     vm.last = response.data.last;
                     vm.first = response.data.number == 1 || response.data.first ? true : false;
                     vm.totalItems = response.data.length;
