@@ -99,6 +99,25 @@ server.get('/dmdiiMember', function (req, res) {
   res.jsonp(membersOrig)
 })
 
+server.get('/projects_tags', function (req, res) {
+  var projectTags = JSON.parse(fs.readFileSync('stubs/project_tags.json'));
+  res.jsonp(projectTags)
+})
+
+server.get('/projects/:projectId', function (req, res) {
+  var allProjects = JSON.parse(fs.readFileSync('stubs/projects.json'));
+  allProjects = allProjects.content;
+  var project = {}
+
+  for (var i = 0; i<allProjects.length; i++) {
+    if (allProjects[i].id == req.params.projectId) {
+      project = allProjects[i];
+      break;
+    }
+  }
+  res.jsonp(project)
+})
+
 server.get('/dmdiiprojects', function (req, res) {
   var projectsOrig = JSON.parse(fs.readFileSync('stubs/dmdiiprojects.json'));
   var projectsData = projectsOrig;
