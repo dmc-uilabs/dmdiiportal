@@ -33,6 +33,11 @@
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/previous-page.js"></script>
     <script src="scripts/home/home.js"></script>
+    <script src="scripts/home/directives/dmc-recent-updates.js"></script>
+
+    <!-- for social media feeds -->
+    <script src="bower_components/ngtweet/dist/ngtweet.min.js"></script>
+    <script src="bower_components/ng-youtube-embed/build/ng-youtube-embed.min.js"></script>
     <!-- endbuild -->
 
     <script type="text/javascript">

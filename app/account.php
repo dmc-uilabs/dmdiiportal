@@ -36,12 +36,18 @@
     <script src="scripts/common/models/toast-model.js"></script>
     <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/common/models/previous-page.js"></script>
+    <script src="scripts/common/models/profile-model.js"></script>
+
+    <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
+    <script src="scripts/components/ui-widgets/documents.directive.js"></script>
+    <script src="scripts/components/dropzone/dropzone.directive.js"></script>
 
     <script src="scripts/account/account.js"></script>
     <script src="scripts/account/account-menu.directive.js"></script>
     <script src="scripts/account/controllers/basics.js"></script>
     <script src="scripts/account/controllers/privacy.js"></script>
     <script src="scripts/account/controllers/notifications.js"></script>
+    <script src="scripts/account/controllers/profile.js"></script>
     <script src="scripts/account/controllers/servers.js"></script>
     <script src="scripts/common/models/phone-model.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
