@@ -85,6 +85,20 @@ server.post('/dmdiidocument', function(req,res) {
   res.jsonp(req.query)
 })
 
+server.post('/model_run', function(req,res) {
+  res.jsonp({"runId":9999})
+})
+
+var modelPollCount = 0
+server.get('/model_poll/:id', function(req,res) {
+  modelPollCount++
+  if (modelPollCount < 5) {
+    res.jsonp({"outParams":{},"status":0})
+  } else {
+    res.jsonp({"outParams":{"outputFile":{"type":"String","name":"outputFile","unit":"","category":null,"value":"https://psubucket01.s3.amazonaws.com/TDP_1496950468.zip?Signature=KcDIjOLmMxU9oVFcGOQbZxliEfs%3D&Expires=1498160069&AWSAccessKeyId=AKIAJAPMB5APBIC6STKQ","parameterid":"20984","instancename":null},"outputTemplate":{"type":"String","name":"outputTemplate","unit":"","category":null,"value":"<div class=\"project-run-services padding-10\" ng-if=\"!runHistory\" layout=\"column\">          <style>            #custom-dome-UI {             margin-top: -30px;           }          </style>            <div id=\"custom-dome-UI\">             <div layout=\"row\" layout-wrap style=\"padding: 0px 30px\">               <h2>Technical Data Package Created Successfully:</h2>               <p><a href=\"{{outputFile}}\">{{outputFile}}</a></p>             </div>           </div>        </div>   <script> </script>","parameterid":"20985","instancename":null}},"status":1})
+  }
+})
+
 server.get('/dmdiiMember', function (req, res) {
   var membersOrig = JSON.parse(fs.readFileSync('stubs/dmdiiMember.json'));
   var membersData = membersOrig;
