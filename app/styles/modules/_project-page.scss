@@ -171,3 +171,29 @@
   font-size: 12px;
   color: #ADADAD;
 }
+
+.wh-nav {
+  border-bottom: 1px solid lightgrey;
+}
+
+.wh-link {
+  outline: 0;
+  text-transform: uppercase;
+  padding: 15px;
+  border-bottom: 3px solid white;
+  &.selected {
+    border-bottom: 3px solid map-get($colors, secondary);
+    font-weight: normal;
+  }
+  &:hover {
+    text-decoration: none;
+    border-bottom: 3px solid #b5dda1;
+    color: map-get($colors, secondary);
+  }
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  /* ...and now for the proper property */
+  transition:.5s;
+}

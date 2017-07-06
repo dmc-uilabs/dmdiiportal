@@ -203,16 +203,17 @@ h3.row {
     width: 100%;
     margin: 2px 0 0 0;
     padding-left: 5px;
+
+    md-select:not([disabled]):focus .md-select-value {
+        border: none;
+    }
+
+    .md-select-value {
+        border: none;
+        font-size: 16px;
+    }
 }
 
-md-select:not([disabled]):focus .md-select-value {
-    border: none;
-}
-
-.md-select-value {
-    border: none;
-    font-size: 16px;
-}
 
 .align-left {
     margin-right: auto;
@@ -447,6 +448,4 @@ md-select:not([disabled]):focus .md-select-value {
 .margin-right-none {
     margin-right: 0px;
 }
-
-
 
