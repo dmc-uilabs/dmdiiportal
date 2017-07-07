@@ -1,24 +1,6 @@
-<div class="page-header margin-bottom-35">
-    <md-toolbar>
-        <h1 class="project-title" layout="row" layout-align="start end">
-            <div class="title">
-                <a href="/project.php#/{{projectData.id}}/home">{{projectData.title}}</a>
-            </div>
-            <span class="small-text due-date-project small-text--grey">
-                Due in 20 days
-            </span>
-        </h1>
-        <div class="md-toolbar-tools">
-            <div layout="column" flex="65" class="margin-right12-5">
-                <div layout="row" class="name-project" flex>
-                    <div sub-nav-menu-button current-page="7"></div>
-                </div>
-            </div>
-        </div>
-    </md-toolbar>
-</div>
+<workspace-header class="workspace-header" ng-init="currentPage='7'"></workspace-header>
 
-<div class="project-run-services padding-10" ng-if="!runHistory" ng-show="hasCustomUI && service.interfaceModel.inParams.inputFile" layout="column">
+<div class="project-run-services" ng-if="!runHistory" ng-show="hasCustomUI && service.interfaceModel.inParams.inputFile" layout="column">
   <div layout="row" layout-align="space-between center" style="padding: 15px; margin: 0px 15px; border-bottom: solid 1px lightgrey;">
 
     <div layout="column">
@@ -32,26 +14,31 @@
       Run
     </md-button>
 
-
-  </div>
-	<div layout="row" layout-align="space-between center" style="padding: 0px 15px; margin: 0px 15px;">
-          <h3 flex>Input File From Workspace:</h3>
-          <div flex="40" style="margin: 0px 8px">
-            <md-select placeholder="Select Project" ng-model="inputFile.projectModel" md-on-open="loadProjects()" ng-change="updateFileList(inputFile)">
-                <md-option ng-repeat="p in projects" ng-value="{{p}}">{{p.title}}</md-option>
-            </md-select>
-          </div>
-          <div flex="40">
-            <md-select ng-show="inputFile.projectModel" placeholder="Select File" ng-model="inputFile.projectModelFile" ng-change="setinputFileValue(inputFile.projectModelFile)">
-                <md-option ng-repeat="f in projectFiles" ng-value="{{f}}">{{f.documentName}}</md-option>
-            </md-select>
-          </div>
   </div>
 </div>
 
-<div ng-show="hasCustomUI" layout = "row">
+<div ng-show="hasCustomUI" layout = "column" style="position: relative;">
+  <div class="greyout" ng-show="isRunning()">
+    <div class="loader"></div>
+  </div>
+
+  <div ng-show="service.interfaceModel.inParams.inputFile" layout="row" layout-align="space-between center" style="padding: 0px 40px; margin: 0px; background: white;">
+    <h3 flex>Input File From Workspace:</h3>
+    <div flex="40" style="margin: 0px 8px">
+      <md-select placeholder="Select Project" ng-model="inputFile.projectModel" md-on-open="loadProjects()" ng-change="updateFileList(inputFile)">
+        <md-option ng-repeat="p in projects" ng-value="{{p}}">{{p.title}}</md-option>
+      </md-select>
+    </div>
+    <div flex="40">
+      <md-select ng-show="inputFile.projectModel" placeholder="Select File" ng-model="inputFile.projectModelFile" ng-change="setinputFileValue(inputFile.projectModelFile)">
+        <md-option ng-repeat="f in projectFiles" ng-value="{{f}}">{{f.documentName}}</md-option>
+      </md-select>
+    </div>
+  </div>
   <div class="container" style="width: 100%;">
       <!--Custom UI Content will be displayed here-->
+
+
       <div class="content-placeholder">
       </div>
   </div>
@@ -68,7 +55,7 @@
     </div>
   </div>
 </div>
-<div ng-if="service.id" class="project-run-services padding-10" ng-if="!runHistory" ng-show="!hasCustomUI" layout="column">
+<div ng-if="service.id" class="project-run-services" ng-if="!runHistory" ng-show="!hasCustomUI" layout="column">
 
 	<h2><a ui-sref="project.services-detail({ServiceId: ServiceId})" >{{service.title}}</a></h2>
 	<div layout="row" layout-align="space-between center">
@@ -95,9 +82,12 @@
   </h3>
 	<h3>Your Run Time: {{runTime}} s.</h3>
 	<h3>Last Run Time: {{lastRunTime}} s.</h3>
-	<h3>Average Run: {{averageRun}} s.</h3>
+	<h3 style="margin-bottom: 10px;">Average Run: {{averageRun}} s.</h3>
 
-	<div layout="row">
+	<div layout="row" style="position: relative; padding-top: 10px;">
+    <div class="greyout standard-UI" ng-show="isRunning()">
+      <div class="loader"></div>
+    </div>
 		<div flex="50" class="inputs">
 			<div layout="row" class="margin-bottom-10" layout-align="space-between center">
 				<h2>Inputs</h2>

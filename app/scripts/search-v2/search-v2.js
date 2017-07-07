@@ -27,7 +27,7 @@ angular.module('dmc.search_v2', [
 ]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
 	$stateProvider
         .state('search-v2', {
-    		url: '/:type',
+    		url: '/:type?text',
     		controller: 'SearchV2Controller',
     		templateUrl: 'templates/search-v2/search-v2.html'
 	    });

@@ -147,6 +147,8 @@ angular.module('dmc.common.notifications',[])
 
         var _notificationAlerts = 0;
 
+        var _notifications = [];
+
         return {
             getLinkDetails: _getItemDetails,
             setNotificationAlerts: function (numAlerts) {
@@ -154,6 +156,12 @@ angular.module('dmc.common.notifications',[])
             },
             getNotificationAlerts: function(){
               return _notificationAlerts;
+            },
+            setNotifications: function(notificationsIn){
+              _notifications = notificationsIn;
+            },
+            getNotifications: function(){
+              return _notifications;
             }
         }
 

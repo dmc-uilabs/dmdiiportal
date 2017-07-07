@@ -6,7 +6,7 @@
 
 .flexrow{
   &-header{
-    color: map-get($colors, secondary);
+    color: map-get($colors, primary);
     font-weight: normal;
   }
   &-left{
