@@ -10,68 +10,62 @@
         </md-toolbar>
     </div>
     <section>
-        <div ng-class="{ 'content-border': $ctrl.widgetShowAllBlocks }" ng-repeat="item in $ctrl.projects">
-            <div class="row" ng-if="$ctrl.widgetShowAllBlocks">
-                <div class="col-md-6">
+        <div ng-repeat="item in $ctrl.projects">
+          <div ng-class="{ 'content-border': $ctrl.widgetShowAllBlocks }"></div>
+            <div class="row margin-bottom-30" ng-if="$ctrl.widgetShowAllBlocks">
+                <div class="col-md-9">
+
+
                     <div ng-if="item.isPublic">
                         <div class="status">Public</div>
-                        <div class="status-icon">
-                            <ng-md-icon icon="public" style="fill: #666" size="30"></ng-md-icon>
-                        </div>
+
                     </div>
                     <div ng-if="!item.isPublic">
                         <div class="status">Private</div>
-                        <div class="status-icon">
-                            <ng-md-icon class="status-icon" icon="lock" style="fill: #666" size="30"></ng-md-icon>
-                        </div>
-                    </div>
-                    <h2 class="margin-bottom-30">
-                        <a ng-href="project.php#/{{ item.id }}" class="link-button" ng-class="{ 'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept) }">{{item.title}}</a>
-                    </h2>
-                    <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
-                                !item.isMember && !item.requiresAdminApprovalToJoin && !item.joinRequest"
-                               ng-click="$ctrl.join(item)"
-                               class="md-raised dmc-button join">
-                        <ng-md-icon icon="group_add" size="22"></ng-md-icon>
-                        Join
-                    </md-button>
-                    <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
-                                !item.isMember && item.requiresAdminApprovalToJoin"
-                               ng-click="$ctrl.join(item)"
-                               ng-disabled="item.joinRequest"
-                               class="md-raised dmc-button request-to-join">
-                        <ng-md-icon icon="group_add" size="22" ng-if="!item.joinRequest"></ng-md-icon>
-                        {{item.joinRequest ? 'Pending Approval' : 'Request to Join'}}
-                    </md-button>
-                    <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
-                                item.isMember && !item.isMember.accept"
-                               ng-click="$ctrl.accept(item)"
-                               class="md-raised md-primary dmc-button accept">Accept
-                    </md-button>
-                    <md-button ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' &&
-                                item.isMember && !item.isMember.accept"
-                               ng-click="$ctrl.decline(item)"
-                               class="md-raised md-warn dmc-button decline">Decline
-                    </md-button>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-xs-6 pull-right">
 
-                            <dl class="project-stats">
-                                <dt ng-if="item.createdOn">Created On</dt>
-                                <dd ng-if="item.createdOn">{{item.createdOn * 1000 | date:'MM/dd/yyyy'}}</dd>
-                                <dt ng-if="item.projectManager">Created By</dt>
-                                <dd ng-if="item.projectManager">{{item.projectManager}}</dd>
-                                <dt ng-if="item.dueDate">Due Date</dt>
-                                <dd ng-if="item.dueDate">{{item.dueDate}}</dd>
-                            </dl>
-                        </div>
+                    </div>
+
+                    <h2>
+                        <a ng-href="project.php#/{{ item.id }}/home" class="link-button" ng-class="{ 'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept) }">{{item.title}}</a>
+                    </h2>
+
+                  </div>
+                  <div class="col-md-3 ws-invite-controls">
+
+                    <div class="row">
+                      <div class="col-sm-12">
+
+
+
+                      <a href="" ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' && !item.isMember && !item.requiresAdminApprovalToJoin && !item.joinRequest"
+                        ng-click="$ctrl.join(item)">
+                        <ng-md-icon icon="group_add" size="18"></ng-md-icon>Join
+                      </a>
+
+                      <a href="" ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' && !item.isMember && item.requiresAdminApprovalToJoin"
+                        ng-click="$ctrl.join(item)"
+                        ng-disabled="item.joinRequest">
+                        <ng-md-icon icon="group_add" size="18"></ng-md-icon>{{item.joinRequest ? 'Pending Approval' : 'Request to Join'}}
+                      </a>
+
+                      <a href="" ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' && item.isMember && !item.isMember.accept"
+                        ng-click="$ctrl.accept(item)">
+                        <ng-md-icon icon="check" size="18"></ng-md-icon>Accept Invitation
+                      </a>
+
+                      <a href="" ng-if="$ctrl.widgetShowAllBlocks && $ctrl.widgetFormat == 'all-projects' && item.isMember && !item.isMember.accept"
+                        ng-click="$ctrl.decline(item)">
+                        <ng-md-icon icon="close" size="18"></ng-md-icon>Decline Invitation
+                      </a>
+
+                    </div>
+
                     </div>
                 </div>
+
             </div>
 
-            <div ng-if="$ctrl.widgetShowAllBlocks" class="project-summary-container project-description">
+            <div ng-if="$ctrl.widgetShowAllBlocks">
                 <div class="row">
                     <div class="col-xs-12">
                         <h4>Summary</h4>
@@ -80,28 +74,64 @@
                 </div>
             </div>
 
-            <div ng-if="$ctrl.widgetShowAllBlocks" class="row totals-row">
-                <div class="col-md-4" align="center">
-                    <h4 class="total"><a ng-href="{{'/project.php#/'+ item.id +'/tasks'}}" ng-class="{'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept)}" ng-click="previousPage.save($event)">Tasks <span class="font-black">{{item.tasks.totalItems}}</span></a></h4>
+            <div class="workspace-divider"></div>
+
+            <div ng-if="$ctrl.widgetShowAllBlocks" class="row workspace-totals-row">
+              <div class="col-sm-6">
+                <div class="col-xs-4 ws-infobox">
+                  <div class="title">Created On</div>
+                  <div class="info">{{item.createdOn === 0 ? '--' : item.createdOn * 1000 | date:'MM/d/yyyy'}}</div>
                 </div>
-                <div class="col-md-4" align="center">
-                    <h4 class="total"><a href="{{'/project.php#/'+ item.id +'/discussions'}}" ng-class="{'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept)}" ng-click="previousPage.save($event)">Discussions <span class="font-black">{{item.discussions.totalItems}}</span></a></h4>
+                <div class="col-xs-4 ws-infobox">
+                  <div class="title">Created By</div>
+                  <div class="info">{{item.projectManager}}</div>
                 </div>
-                <div class="col-md-4" align="center">
-                    <h4 class="total"><a href="{{'/project.php#/'+ item.id +'/services'}}" ng-class="{'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept)}" ng-click="previousPage.save($event)">Services <span class="font-black">{{item.services.totalItems}}</span></a></h4>
+                <div class="col-xs-4 ws-infobox">
+                  <div class="title">Due Date</div>
+                  <div class="info">{{item.dueDate === 0 ? '--' : item.dueDate}}</div>
                 </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="col-xs-4 ws-infobox">
+                  <a ng-href="{{'/project.php#/'+ item.id +'/tasks'}}" ng-class="{'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept)}" ng-click="previousPage.save($event)">
+                    <div class="title">Tasks</div>
+                    <div class="info">
+                        {{item.tasks.totalItems}}
+                    </div>
+                  </a>
+                </div>
+                <div class="col-xs-4 ws-infobox">
+                  <a href="{{'/project.php#/'+ item.id +'/discussions'}}" ng-class="{'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept)}" ng-click="previousPage.save($event)">
+                    <div class="title">Discussions</div>
+                    <div class="info">
+                        {{item.discussions.totalItems}}
+                    </div>
+                  </a>
+                </div>
+                <div class="col-xs-4 ws-infobox">
+                  <a href="{{'/project.php#/'+ item.id +'/services'}}" ng-class="{'link-disabled' : !item.isMember || (item.isMember && !item.isMember.accept)}" ng-click="previousPage.save($event)">
+                    <div class="title">Services</div>
+                    <div class="info">
+                      {{item.services.totalItems}}
+                    </div>
+                  </a>
+                </div>
+              </div>
             </div>
 
-            <div ng-if="$ctrl.widgetShowAllBlocks" class="tags row">
-                <div class="project-tags-list margin-left-8">
-                    <div class="tag without-delete inline-block" ng-repeat="tag in item.tags track by $index">
-                        <div>
-                            <span>{{tag.name}}</span>
-                        </div>
+            <div class="workspace-divider" ng-if="item.tags.length"></div>
+
+            <div class="row workspace-totals-row" ng-if="item.tags.length">
+              <div class="col-xs-12">
+                <div class="col-xs-12 ws-infobox tags">
+                    <div class="title">Tags</div>
+                    <div ng-repeat="tag in item.tags track by $index" class="info">
+                      {{tag.name}}
                     </div>
                 </div>
+              </div>
             </div>
-
 
             <md-content ng-if="!$ctrl.widgetShowAllBlocks">
                 <div layout="row" flex="100">
@@ -135,15 +165,19 @@
                   </md-tabs>
               </md-content>
       </div>
+
+
+
+
         <div ng-if="$ctrl.widgetShowAllBlocks" class="row page-container">
             <div class="col-xs-6">
-                <button id="prevPage" ng-disabled="$ctrl.start == 0" ng-click="$ctrl.getPreviousPage()" class="btn btn-next pull-right">
+                <button id="prevPage" ng-disabled="$ctrl.first" ng-click="$ctrl.getPreviousPage()" class="btn btn-next pull-right">
                     PREV
                 </button>
             </div>
 
             <div class="col-xs-6">
-                <button id="nextPage" ng-disabled="$ctrl.projects.length < $ctrl.limit" ng-click="$ctrl.getNextPage()" class="btn btn-next pull-left">
+                <button id="nextPage" ng-disabled="$ctrl.last" ng-click="$ctrl.getNextPage()" class="btn btn-next pull-left">
                     NEXT
                 </button>
             </div>
