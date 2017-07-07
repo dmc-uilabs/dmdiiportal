@@ -9,7 +9,8 @@ var server = jsonServer.create();
 server.use(jsonServer.defaults());
 // Add this before server.use(router)
 server.use(jsonServer.rewriter({
-    '/documents/directories/:id': '/documentsdirectories',
+    '/documents/directories/26': '/documentsdirectories',
+    '/documents/directories/29': '/documentsdirectoriestwo',
     '/documents/versions/:id': '/documentversions',
     '/user/createtoken':'/createtoken',
     '/project/:pid/invite/:uid': '/projects_members/:uid',
@@ -35,6 +36,7 @@ server.use(jsonServer.rewriter({
     '/tasks/create' : '/tasks',
     '/members' : '/profiles',
     '/my-tasks' : '/tasks',
+    '/projects/:projectID/tasks': '/tasks',
     '/my-services' : '/services',
     '/follow-company-services' : '/services',
     '/market/popular_services': '/services',
@@ -72,13 +74,30 @@ server.use(jsonServer.rewriter({
     '/user/save': '/user-account',
     // below is not using the :id field, but instead always returning the organization
     //  info for org 1 (UI Labs)
-    '/user/organization/:id': '/userByOrganization'
+    '/user/organization/:id': '/userByOrganization',
+    '/services/:id/dome-interfaces': '/dome-interfaces',
+    '/organizations/myVPC': '/myVPC',
+    '/searchworkspace/:id': '/searchworkspace'
     // '/update-user-notification-item/:id' : '/user-notification-items/:id'
 }));
 
 server.post('/dmdiidocument', function(req,res) {
   console.log('request',req)
   res.jsonp(req.query)
+})
+
+server.post('/model_run', function(req,res) {
+  res.jsonp({"runId":9999})
+})
+
+var modelPollCount = 0
+server.get('/model_poll/:id', function(req,res) {
+  modelPollCount++
+  if (modelPollCount < 5) {
+    res.jsonp({"outParams":{},"status":0})
+  } else {
+    res.jsonp({"outParams":{"outputFile":{"type":"String","name":"outputFile","unit":"","category":null,"value":"https://psubucket01.s3.amazonaws.com/TDP_1496950468.zip?Signature=KcDIjOLmMxU9oVFcGOQbZxliEfs%3D&Expires=1498160069&AWSAccessKeyId=AKIAJAPMB5APBIC6STKQ","parameterid":"20984","instancename":null},"outputTemplate":{"type":"String","name":"outputTemplate","unit":"","category":null,"value":"<div class=\"project-run-services padding-10\" ng-if=\"!runHistory\" layout=\"column\">          <style>            #custom-dome-UI {             margin-top: -30px;           }          </style>            <div id=\"custom-dome-UI\">             <div layout=\"row\" layout-wrap style=\"padding: 0px 30px\">               <h2>Technical Data Package Created Successfully:</h2>               <p><a href=\"{{outputFile}}\">{{outputFile}}</a></p>             </div>           </div>        </div>   <script> </script>","parameterid":"20985","instancename":null}},"status":1})
+  }
 })
 
 server.get('/dmdiiMember', function (req, res) {
@@ -93,6 +112,25 @@ server.get('/dmdiiMember', function (req, res) {
   membersOrig = {"count": membersData.length ,"data" : membersData.slice(start,end) }
 
   res.jsonp(membersOrig)
+})
+
+server.get('/projects_tags', function (req, res) {
+  var projectTags = JSON.parse(fs.readFileSync('stubs/project_tags.json'));
+  res.jsonp(projectTags)
+})
+
+server.get('/projects/:projectId', function (req, res) {
+  var allProjects = JSON.parse(fs.readFileSync('stubs/projects.json'));
+  allProjects = allProjects.content;
+  var project = {}
+
+  for (var i = 0; i<allProjects.length; i++) {
+    if (allProjects[i].id == req.params.projectId) {
+      project = allProjects[i];
+      break;
+    }
+  }
+  res.jsonp(project)
 })
 
 server.get('/dmdiiprojects', function (req, res) {
@@ -117,6 +155,10 @@ server.post('/services', function(req,res) {
  "projectId":"147","from":"marketplace","type":"service","parent":null,"published":false,"averageRun":""})
 
 })
+
+server.patch('/documents/:id/accept', function(req, res) {
+    res.jsonp({"result": "success"});
+});
 
 server.get('/getChildren', function (req, res) {
 

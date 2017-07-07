@@ -1,195 +1,132 @@
-[
-	{
-		 "id":"1",
-		 "version":1,
-		 "modelId":"aff647e4-d82f-1004-8e7b-5de38b2eeb0f",
-		 "interfaceId":"aff647e5-d82f-1004-8e7b-5de38b2eeb0f",
-		 "type":"interface",
-		 "name":"Default Interface",
-		 "path":[
-				30
-		 ],
-		 "serviceId":1,
-		 "domeServer":"http://54.210.84.168:8080/DOMEApiServicesV7/",
-		 "inParams":{
-				"C3":{
-					 "type":"Real",
-					 "name":"C3",
-					 "unit":"no unit",
-					 "category":"no unit",
-					 "value":"1",
-					 "parameterid":"d9f30f15-d800-1004-8f53-704dbfababa8",
-					 "instancename":null
-				},
-				"C4":{
-					 "type":"Real",
-					 "name":"C4",
-					 "unit":"no unit",
-					 "category":"no unit",
-					 "value":"1",
-					 "parameterid":"d9f30f18-d800-1004-8f53-704dbfababa8",
-					 "instancename":null
-				},
-				"SpecimenWidth":{
-					 "type":"Real",
-					 "name":"SpecimenWidth",
-					 "unit":"meter",
-					 "category":"length",
-					 "value":"1",
-					 "parameterid":"d9f30f09-d800-1004-8f53-704dbfababa8",
-					 "instancename":null
-				},
-				"C5":{
-					 "type":"Real",
-					 "name":"C5",
-					 "unit":"no unit",
-					 "category":"no unit",
-					 "value":"1",
-					 "parameterid":"d9f30f1b-d800-1004-8f53-704dbfababa8",
-					 "instancename":null
-				},
-				"Ux":{
-					 "type":"Real",
-					 "name":"Ux",
-					 "unit":"no unit",
-					 "category":"no unit",
-					 "value":"1",
-					 "parameterid":"d9f30f06-d800-1004-8f53-704dbfababa8",
-					 "instancename":null
-				},
-				"C0":{
-					 "type":"Real",
-					 "name":"C0",
-					 "unit":"no unit",
-					 "category":"no unit",
-					 "value":"1",
-					 "parameterid":"d9f30f0c-d800-1004-8f53-704dbfababa8",
-					 "instancename":null
-				},
-				"C1":{
-					 "type":"Real",
-					 "name":"C1",
-					 "unit":"no unit",
-					 "category":"no unit",
-					 "value":"1",
-					 "parameterid":"d9f30f0f-d800-1004-8f53-704dbfababa8",
-					 "instancename":null
-				},
-				"C2":{
-					 "type":"Real",
-					 "name":"C2",
-					 "unit":"no unit",
-					 "category":"no unit",
-					 "value":"1",
-					 "parameterid":"d9f30f12-d800-1004-8f53-704dbfababa8",
-					 "instancename":null
-				}
-		 },
-		 "outParams":{
-				"CrackLength":{
-					 "type":"Real",
-					 "name":"CrackLength",
-					 "unit":"meter",
-					 "category":"length",
-					 "value":"6",
-					 "parameterid":"d9f30f1e-d800-1004-8f53-704dbfababa8",
-					 "instancename":"CrackLength"
-				}
-		 }
-	},
-	{
-		"version": 1,
-		"modelId": "995f8657-d90a-1004-8438-64281c6cab63",
-		"interfaceId": "995f8658-d90a-1004-8438-64281c6cab63",
-		"type": "interface",
-		"name": "Velocity1 Interface",
-		"path": [
-			33,
-			34,
-			35
-		],
-		"serviceId": 43,
-		"domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-		"id": 2
-	},
-	{
-		"version": 1,
-		"modelId": "aff647dc-d82f-1004-8e7b-5de38b2eeb0f",
-		"interfaceId": "aff647dd-d82f-1004-8e7b-5de38b2eeb0f",
-		"type": "interface",
-		"name": "Default Interface",
-		"path": [
-			30
-		],
-		"serviceId": 44,
-		"domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-		"id": 3
-	},
-	{
-		"version": 1,
-		"modelId": "bd85f846-d8f4-1004-8f94-37c24b788523",
-		"interfaceId": "bd85f847-d8f4-1004-8f94-37c24b788523",
-		"type": "interface",
-		"name": "Upload a file interface",
-		"path": [
-			31
-		],
-		"serviceId": 41,
-		"domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-		"id": 4
-	},
-	{
-		"version": 1,
-		"modelId": "995f8657-d90a-1004-8438-64281c6cab63",
-		"interfaceId": "995f8658-d90a-1004-8438-64281c6cab63",
-		"type": "interface",
-		"name": "Velocity1 Interface",
-		"path": [
-			33,
-			34,
-			35
-		],
-		"serviceId": 45,
-		"domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-		"id": 5
-	},
-	{
-		"version": 1,
-		"modelId": "12bb9d5e-d8ec-1004-8394-4597bfb6a5f0",
-		"interfaceId": "12bb9d5f-d8ec-1004-8394-4597bfb6a5f0",
-		"type": "interface",
-		"name": "Default Interface",
-		"path": [
-			32
-		],
-		"serviceId": 46,
-		"domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-		"id": 6
-	},
-	{
-		"version": 1,
-		"modelId": "aff647dc-d82f-1004-8e7b-5de38b2eeb0f",
-		"interfaceId": "aff647dd-d82f-1004-8e7b-5de38b2eeb0f",
-		"type": "interface",
-		"name": "Default Interface",
-		"path": [
-			30
-		],
-		"serviceId": 13,
-		"domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-		"id": 9
-	},
-	{
-		"version": 1,
-		"modelId": "aff647dc-d82f-1004-8e7b-5de38b2eeb0f",
-		"interfaceId": "aff647dd-d82f-1004-8e7b-5de38b2eeb0f",
-		"type": "interface",
-		"name": "Default Interface",
-		"path": [
-			30
-		],
-		"serviceId": 49,
-		"domeServer": "http://ec2-52-37-91-227.us-west-2.compute.amazonaws.com:8080/DOMEApiServicesV7",
-		"id": 10
-	}
-]
+[{
+    "id": "1174",
+    "version": 1,
+    "modelId": "26c40153-df5a-1004-8137-b6add39ad475",
+    "interfaceId": "26c40154-df5a-1004-8137-b6add39ad475",
+    "type": "interface",
+    "name": "Default Interface",
+    "path": [44],
+    "serviceId": 1320,
+    "domeServer": "http://13.84.52.24:8080/DOMEApiServicesV7/",
+    "inParams": {
+        "companyId": {
+            "type": "String",
+            "name": "companyId",
+            "unit": "",
+            "category": null,
+            "value": "",
+            "parameterid": "6c2b6ba0-df51-1004-84b6-42360e02a5cd",
+            "instancename": null
+        },
+        "contactInfo": {
+            "type": "String",
+            "name": "contactInfo",
+            "unit": "",
+            "category": null,
+            "value": "",
+            "parameterid": "6c2b6ba3-df51-1004-84b6-42360e02a5cd",
+            "instancename": null
+        },
+        "displayName": {
+            "type": "String",
+            "name": "displayName",
+            "unit": "",
+            "category": null,
+            "value": "",
+            "parameterid": "6c2b6b9d-df51-1004-84b6-42360e02a5cd",
+            "instancename": null
+        },
+        "companyName": {
+            "type": "String",
+            "name": "companyName",
+            "unit": "",
+            "category": null,
+            "value": "",
+            "parameterid": "95721087-df53-1004-853c-8207a9499fc7",
+            "instancename": null
+        },
+        "authToken": {
+            "type": "String",
+            "name": "authToken",
+            "unit": "",
+            "category": null,
+            "value": "",
+            "parameterid": "6c2b6bac-df51-1004-84b6-42360e02a5cd",
+            "instancename": null
+        },
+        "expireDate": {
+            "type": "String",
+            "name": "expireDate",
+            "unit": "",
+            "category": null,
+            "value": "",
+            "parameterid": "6c2b6ba6-df51-1004-84b6-42360e02a5cd",
+            "instancename": null
+        },
+        "inputFile": {
+            "type": "String",
+            "name": "inputFile",
+            "unit": "",
+            "category": null,
+            "value": "",
+            "parameterid": "06b247a8-df5c-1004-86cf-cb5c2c05cddb",
+            "instancename": null
+        },
+        "inputTemplate": {
+            "type": "String",
+            "name": "inputTemplate",
+            "unit": "",
+            "category": null,
+            "value": "<style>           #VPCstyle .layout-column {               min-width: 500px;               margin: 15px;               padding: 15px;               background: white;               height: 100%;           }       </style>        <div class=\"project-run-services padding-10\" ng-if=\"!runHistory\" ng-show=\"hasCustomUI && service.interfaceModel.inParams.inputFile\" layout=\"column\">           <div id=\"VPCstyle\">            <div layout=\"row\" layout-wrap layout-align=\"center start\">               <div layout=\"column\" ng-hide=\"true\">                    <md-input-container>                       <input id=\"displayName\" type=\"text\">                   </md-input-container>                   <md-input-container>                       <input id=\"companyId\" type=\"text\">                   </md-input-container>                   <md-input-container>                       <input id=\"companyName\" type=\"text\">                   </md-input-container>                   <md-input-container>                       <input id=\"email\" type=\"text\">                   </md-input-container>                 </div>                 <div layout=\"column\" flex>                    <h3>Other Inputs:</h3>                   <md-input-container>                       <label>Auth Token</label>                       <input id=\"authToken\" type=\"text\">                   </md-input-container>                   <md-input-container>                       <label>Contact Info (Email)</label>                       <input id=\"contactInfo\" type=\"text\">                   </md-input-container>                   <md-input-container>                       <label>Expiration Date</label>                       <input id=\"expireDate\" type=\"date\">                   </md-input-container>                    <md-input-container>                       <label>VPC Data as String</label>                       <input id=\"companyVPC\" type=\"text\">                   </md-input-container>                    <md-input-container>                       <input id=\"inputFile\" type=\"text\">                   </md-input-container>                </div>            </div>            <button class=\"md-raised md-primary md-button md-default-theme right\" ng-click='run()'>RUN</button>        </div>         </div>   <script>     $(document).ready(function() {         var scope = angular.element($(\".ng-scope\")[0]).scope();          var userData = scope.userData;         var displayName = userData.displayName;         var companyId = userData.companyId;         var email = userData.email;         var companyName = userData.companyName;          $('#displayName').val(displayName);         $('#companyId').val(companyId);         $('#email').val(email);         $('#companyName').val(companyName);     }); </script>",
+            "parameterid": "6c2b6afe-df51-1004-84b6-42360e02a5cd",
+            "instancename": null
+        },
+        "email": {
+            "type": "String",
+            "name": "email",
+            "unit": "",
+            "category": null,
+            "value": "",
+            "parameterid": "6c2b6ba9-df51-1004-84b6-42360e02a5cd",
+            "instancename": null
+        },
+        "companyVPC": {
+            "type": "String",
+            "name": "companyVPC",
+            "unit": "",
+            "category": null,
+            "value": "",
+            "parameterid": "6c2bdsfsdf6ba9-df51-1004-84b6-42360e02a5cd",
+            "instancename": null
+        }
+    },
+    "outParams": {
+        "outputs": {
+            "type": "String",
+            "name": "outputs",
+            "unit": "",
+            "category": null,
+            "value": "",
+            "parameterid": "fbfdf097-df51-1004-86d2-7ac963ddea2f",
+            "instancename": "outputs"
+        },
+        "finalFileName": {
+            "type": "String",
+            "name": "finalFileName",
+            "unit": "",
+            "category": null,
+            "value": "",
+            "parameterid": "06b2473d-df5c-1004-86cf-cb5c2c05cddb",
+            "instancename": "finalFileName"
+        },
+        "outputTemplate": {
+            "type": "String",
+            "name": "outputTemplate",
+            "unit": "",
+            "category": null,
+            "value": "",
+            "parameterid": "06b2478c-df5c-1004-86cf-cb5c2c05cddb",
+            "instancename": "outputTemplate"
+        }
+    }
+}]

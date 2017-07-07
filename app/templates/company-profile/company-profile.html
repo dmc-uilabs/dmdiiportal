@@ -266,7 +266,24 @@
         </div>
     </md-content>
 </md-tab>
+<md-tab label="VPC" ng-if="userData.isAdmin || userData.isMember || userData.isDmdiiAdmin">
+    <md-content class="tab-projects" layout="row">
+        <div layout="column" flex="100" class="padding-left8">
+            <h3>
+              <div>
+                Organization Administrators are responsible for maintaining Virtual Production Capabilties for their organizations.
+              </div>
+              <div>
+                To view or edit this information, Organization Administrators can click the Edit Company button at the top of the page.
+              </div>
+            </h3>
+        </div>
+    </md-content>
+</md-tab>
 </md-tabs>
+
+
+
 
 <!--MEMBERS -->
 

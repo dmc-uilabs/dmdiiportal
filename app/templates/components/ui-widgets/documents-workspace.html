@@ -74,7 +74,16 @@
 											<span>{{file.documentName}}</span>
 									</a>
               </td>
-              <td><a href="/profile.php#/{{file.ownerId}}">{{file.ownerDisplayName}}</a></td>
+              <td><a href="/profile.php#/{{file.ownerId}}">{{file.ownerDisplayName}}</a>
+			  		<div ng-if="!file.isAccepted" layout="row" class="margin-top-10">
+						<md-button class="md-raised md-primary dmc-button " ng-click="acceptFile(file.id)">
+							Accept
+						</md-button>
+						<md-button class="md-raised dmc-button decline-push-button" ng-click="declineFile(file)">
+							Decline
+						</md-button>
+					</div>
+			  </td>
               <td>{{file.expires|date}}</td>
               <td>{{file.modified|date}}</td>
               <td>{{file.sha256}}</file>

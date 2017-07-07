@@ -1,7 +1,7 @@
 [{
     "id": 726,
     "documentName": "promo_5.png",
-    "documentUrl": "http://i0.kym-cdn.com/entries/icons/original/000/012/221/Jean-Claude-Van-Damme-008.jpg",
+    "documentUrl": "http://promo_5.png.jpg",
     "parentType ": "PROJECT ",
     "parentId ": 102,
     "ownerId": 179,
@@ -15,11 +15,12 @@
     "version": 0,
     "directoryId": 100,
     "baseDocId": 792,
-    "hasVersions": false
+    "hasVersions": false,
+    "isAccepted": false
 }, {
     "id": 727,
     "documentName": "promo_10.png",
-    "documentUrl": "http://i0.kym-cdn.com/entries/icons/original/000/012/221/Jean-Claude-Van-Damme-008.jpg",
+    "documentUrl": "http://promo_10.png.jpg",
     "parentType ": "PROJECT ",
     "parentId ": 102,
     "ownerId": 179,
@@ -33,5 +34,6 @@
     "version": 0,
     "directoryId": 100,
     "baseDocId": 792,
-    "hasVersions": false
+    "hasVersions": false,
+    "isAccepted": true
 }]

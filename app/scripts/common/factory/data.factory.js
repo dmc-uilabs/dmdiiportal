@@ -1,33 +1,33 @@
 'use strict';
 
-angular.module('dmc.data',[])
-    .factory('dataFactory', function ($window,$location) {
-        var baseServer = $window.apiUrl ? $window.apiUrl : '/static/?p=';
-        var baseServerStatic = $window.apiUrl ? $window.apiUrl.substring(0,$window.apiUrl.length - 5)+'/static' : '/static';
-        var localhost = ($location.$$absUrl.indexOf('http://localhost') != -1  || $location.$$absUrl.indexOf(':9000') != -1 ? 'http://localhost:3000/' : '');
-        localhost = $window.apiUrl ? $window.apiUrl + '/' : localhost;
-        var urlSocketServer = 'http://localhost:3000/';
-        var appendId = function(id){
-            return ($window.apiUrl && id ? '/'+id : '');
-        };
-        var webServiceUrl = function(path, action, id){
-            var wsurl;
-            if ($window.apiUrl && id) {
-                wsurl = '/'+path+'/' + id;
-                wsurl += action ? '/' + action : '';
-            } else {
-                wsurl = '/'+action;
-            }
-            return wsurl;
-        };
+angular.module('dmc.data', [])
+  .factory('dataFactory', function($window, $location) {
+    var baseServer = $window.apiUrl ? $window.apiUrl : '/static/?p=';
+    var baseServerStatic = $window.apiUrl ? $window.apiUrl.substring(0, $window.apiUrl.length - 5) + '/static' : '/static';
+    var localhost = ($location.$$absUrl.indexOf('http://localhost') != -1 || $location.$$absUrl.indexOf(':9000') != -1 ? 'http://localhost:3000/' : '');
+    localhost = $window.apiUrl ? $window.apiUrl + '/' : localhost;
+    var urlSocketServer = 'http://localhost:3000/';
+    var appendId = function(id) {
+      return ($window.apiUrl && id ? '/' + id : '');
+    };
+    var webServiceUrl = function(path, action, id) {
+      var wsurl;
+      if ($window.apiUrl && id) {
+        wsurl = '/' + path + '/' + id;
+        wsurl += action ? '/' + action : '';
+      } else {
+        wsurl = '/' + action;
+      }
+      return wsurl;
+    };
 
-        var convertParams = function(params){
-            return $.map(params,function(item,key){
-               return key+'='+item;
-            }).join('&');
-        };
+    var convertParams = function(params) {
+      return $.map(params, function(item, key) {
+        return key + '=' + item;
+      }).join('&');
+    };
 
-        return {
+return {
       get_result: function(data) {
         var obj = {};
         if ($window.apiUrl) {
@@ -167,7 +167,7 @@ angular.module('dmc.data',[])
       },
       getCompanyReviewUrl: function(id) {
         // return baseServer+'/get_review_company';
-        return baseServer + webServiceUrl('companies', 'company_reviews', id);;
+        return baseServer + webServiceUrl('companies', 'company_reviews', id);
       },
       addCompanyReviewUrl: function() {
         return baseServer + '/add_review_company';
@@ -679,7 +679,7 @@ angular.module('dmc.data',[])
           delete: localhost + name + '/' + id,
           create: localhost + name,
           all: localhost + name,
-	  short : localhost+name+'/short',
+	        short : localhost+name+'/short',
           reviews: localhost + name + '/' + id + '/company_reviews?reviewId=0',
           addReviews: localhost + 'company_reviews',
           get_review: localhost + 'company_reviews/' + id,
@@ -777,437 +777,439 @@ angular.module('dmc.data',[])
       // ---------------------------
 
 
-            /// components -----------------
-            components : function(type, id) {
-                var name = type;
-                return {
-                    get : localhost + name + '/' + id,
-                    update : localhost + name + '/' + id,
-                    all: localhost + name,
-                    getReply : localhost + 'product_reviews?reviewId=' + id,
-                    get_review : localhost + 'product_reviews/' + id,
-                    update_review : localhost + 'product_reviews/' + id,
-                    reviews : localhost + 'product/' + id + '/product_reviews?productType=' + type + '&reviewId=0',
-                    addReviews : localhost + 'product_reviews',
-                    getHelpful : localhost + 'product_reviews_helpful',
-                    addHelpful : localhost + 'product_reviews_helpful',
-                    updateHelpful : localhost + 'product_reviews_helpful/' + id,
-                    getFlagged : localhost + 'product_reviews_flagged',
-                    addFlagged : localhost + 'product_reviews_flagged',
-                    get_included : localhost + 'included-services',
-                    remove_included : localhost + 'included-services/' + id,
-                    add_included : localhost + 'included-services',
-                    get_tags : localhost + 'service_tags',
-                    add_tags : localhost + 'service_tags',
-                    get_images : localhost + name + '/' + id + '/service_images',
-                    add_images : localhost + 'service_images',
-                    remove_images : localhost + 'service_images/' + id,
-                    remove_tags : localhost + 'service_tags/' + id,
-                    edit_specifications: localhost + 'specifications/' + id,
-                    get_array_specifications: localhost + 'array_specifications',
-                    add_array_specifications: localhost + 'array_specifications'
-                }
-            },
-            // ---------------------------
+      /// components -----------------
+      components: function(type, id) {
+        var name = type;
+        return {
+          get: localhost + name + '/' + id,
+          update: localhost + name + '/' + id,
+          all: localhost + name,
+          getReply: localhost + 'product_reviews?reviewId=' + id,
+          get_review: localhost + 'product_reviews/' + id,
+          update_review: localhost + 'product_reviews/' + id,
+          reviews: localhost + 'product/' + id + '/product_reviews?productType=' + type + '&reviewId=0',
+          addReviews: localhost + 'product_reviews',
+          getHelpful: localhost + 'product_reviews_helpful',
+          addHelpful: localhost + 'product_reviews_helpful',
+          updateHelpful: localhost + 'product_reviews_helpful/' + id,
+          getFlagged: localhost + 'product_reviews_flagged',
+          addFlagged: localhost + 'product_reviews_flagged',
+          get_included: localhost + 'included-services',
+          remove_included: localhost + 'included-services/' + id,
+          add_included: localhost + 'included-services',
+          get_tags: localhost + 'service_tags',
+          add_tags: localhost + 'service_tags',
+          get_images: localhost + name + '/' + id + '/service_images',
+          add_images: localhost + 'service_images',
+          remove_images: localhost + 'service_images/' + id,
+          remove_tags: localhost + 'service_tags/' + id,
+          edit_specifications: localhost + 'specifications/' + id,
+          get_array_specifications: localhost + 'array_specifications',
+          add_array_specifications: localhost + 'array_specifications'
+        }
+      },
+      // ---------------------------
 
-            /// services -----------------
-            services : function(id) {
-                var name = 'services';
-                return {
-                    get : localhost + name + '/' + id,
-                    add : localhost + name,
-                    get_for_project : localhost + 'projects/' + id + '/' + name,
-                    update : localhost + name + '/' + id,
-                    all: localhost + name,
-                    getReply : localhost + 'product_reviews?reviewId=' + id,
-                    reviews : localhost + 'product/' + id + '/product_reviews?reviewId=0',
-                    get_review : localhost + 'product_reviews/' + id,
-                    update_review : localhost + 'product_reviews/' + id,
-                    addReviews : localhost + 'product_reviews',
-                    getHelpful : localhost + 'product_reviews_helpful',
-                    addHelpful : localhost + 'product_reviews_helpful',
-                    updateHelpful : localhost + 'product_reviews_helpful/' + id,
-                    getFlagged : localhost + 'product_reviews_flagged',
-                    addFlagged : localhost + 'product_reviews_flagged',
-                    get_authors : localhost + 'services/' + id + '/service_authors',
-                    remove_authors : localhost + 'service_authors/' + id,
-                    add_authors : localhost + 'service_authors',
-                    get_tags : localhost + name + '/' + id + '/service_tags',
-                    add_tags : localhost + 'service_tags',
-                    remove_tags : localhost + 'service_tags/' + id,
-                    update_tag : localhost + 'service_tags/' + id,
-                    get_history : localhost + name + '/' + id + '/services_history',
-                    get_run_history : localhost + 'service_runs' + '?serviceId=' + id,
-                    get_servers : localhost + 'account_servers',
-                    add_servers : localhost + 'services_servers',
-                    get_array_specifications: localhost + 'array_specifications',
-                    add_array_specifications: localhost + 'array_specifications',
-                    get_specifications: localhost + name + '/' + id + '/specifications',
-                    add_specifications:  localhost + 'service/' + id + '/specifications',
-                    update_specifications:  localhost + '/specifications/' + id,
-                    get_statistics: localhost + name + '/' + id + '/services_statistic',
-                    add_interface: localhost + 'dome-interfaces',
-                    get_interface: localhost + name + '/' + id + '/dome-interfaces',
-                    update_interface:  localhost + 'dome-interfaces/'+id,
-                    get_position_inputs: localhost + name + '/' + id + '/input-positions',
-                    update_position_inputs: localhost + 'input-positions/' + id,
-                    add_position_inputs: localhost + 'input-positions'
-                }
-            },
-            // ---------------------------
+      /// services -----------------
+      services: function(id) {
+        var name = 'services';
+        return {
+          get: localhost + name + '/' + id,
+          add: localhost + name,
+          get_for_project: localhost + 'projects/' + id + '/' + name,
+          update: localhost + name + '/' + id,
+          all: localhost + name,
+          getReply: localhost + 'product_reviews?reviewId=' + id,
+          reviews: localhost + 'product/' + id + '/product_reviews?reviewId=0',
+          get_review: localhost + 'product_reviews/' + id,
+          update_review: localhost + 'product_reviews/' + id,
+          addReviews: localhost + 'product_reviews',
+          getHelpful: localhost + 'product_reviews_helpful',
+          addHelpful: localhost + 'product_reviews_helpful',
+          updateHelpful: localhost + 'product_reviews_helpful/' + id,
+          getFlagged: localhost + 'product_reviews_flagged',
+          addFlagged: localhost + 'product_reviews_flagged',
+          get_authors: localhost + 'services/' + id + '/service_authors',
+          remove_authors: localhost + 'service_authors/' + id,
+          add_authors: localhost + 'service_authors',
+          get_tags: localhost + name + '/' + id + '/service_tags',
+          add_tags: localhost + 'service_tags',
+          remove_tags: localhost + 'service_tags/' + id,
+          update_tag: localhost + 'service_tags/' + id,
+          get_history: localhost + name + '/' + id + '/services_history',
+          get_run_history: localhost + 'service_runs' + '?serviceId=' + id,
+          get_servers: localhost + 'account_servers',
+          add_servers: localhost + 'services_servers',
+          get_array_specifications: localhost + 'array_specifications',
+          add_array_specifications: localhost + 'array_specifications',
+          get_specifications: localhost + name + '/' + id + '/specifications',
+          add_specifications: localhost + 'service/' + id + '/specifications',
+          update_specifications: localhost + '/specifications/' + id,
+          get_statistics: localhost + name + '/' + id + '/services_statistic',
+          add_interface: localhost + 'dome-interfaces',
+          get_interface: localhost + name + '/' + id + '/dome-interfaces',
+          update_interface: localhost + 'dome-interfaces/' + id,
+          get_position_inputs: localhost + name + '/' + id + '/input-positions',
+          update_position_inputs: localhost + 'input-positions/' + id,
+          add_position_inputs: localhost + 'input-positions'
+        }
+      },
+      // ---------------------------
 
-            uploadServiceImageUrl: function(){
-                return baseServer+'/uploadServiceImage';
-            },
+      uploadServiceImageUrl: function() {
+        return baseServer + '/uploadServiceImage';
+      },
 
-            getFavoriteProducts: function(){
-                return localhost+'favorite_products';
-            },
-            deactivateAccount : function(id){
-                return localhost+'accounts'+(id ? '/'+id : '');
-            },
-            getDiscussions : function(projectId,dataTypeWidget){
-                if(!projectId && !dataTypeWidget) {
-                    return localhost + 'individual-discussions';
-                }else{
-                    if(projectId){
-                        if(dataTypeWidget){
-                            switch(dataTypeWidget){
-                                case 'following':
-                                    return localhost + 'projects/' + projectId + '/following_discussions';
-                                default:
-                                    return localhost + 'projects/' + projectId + '/individual-discussions';
-                            }
-                        }else{
-                            return localhost + 'projects/'+projectId+'/individual-discussion';
-                        }
-                    }else if(dataTypeWidget){
-                        switch(dataTypeWidget){
-                            case 'following':
-                                return localhost + 'following_discussions';
-                            case 'popular':
-                                return localhost + 'popular_discussions';
-                            case 'follow-people':
-                                return localhost + 'follow_people_discussions';
-                            default:
-                                return localhost + 'individual-discussion';
-                        }
-                    }
-                }
-            },
-            deleteCompanyLogo : function(id){
-                return localhost+'companies'+(id ? '/'+id : '');
-            },
-            saveChangedDiscussionComment : function(id){
-                return localhost+'individual-discussion-comments'+(id ? '/'+id : '');
-            },
-            addDiscussionTag : function(){
-                return localhost+'individual-discussion-tags';
-            },
-            getLastDiscussionTagId : function(){
-                return localhost+'individual-discussion-tags';
-            },
-            getDiscussionTags : function(id){
-                return localhost+'individual-discussion/'+id+'/individual-discussion-tags'
-            },
-            deleteDiscussionTag : function(id){
-                return localhost+'individual-discussion-tags'+(id ? '/'+id : '');
-            },
-            deleteDiscussionComment : function(id){
-                return localhost+'individual-discussion-comments'+(id ? '/'+id : '');
-            },
-            getDiscussionComments : function(id){
-                return localhost+'individual-discussion/'+id+'/individual-discussion-comments?commentId=0';
-            },
-            ///
-            getDiscussionsReply : function(id){
-                return localhost + 'individual-discussion-comments?commentId=' + id;
-            },
-            getDiscussionCommentsHelpful : function(){
-                return localhost + 'individual-discussion-comments-helpful';
-            },
-            addDiscussionCommentsHelpful : function(){
-                return localhost + 'individual-discussion-comments-helpful';
-            },
-            updateDiscussionCommentsHelpful : function(id){
-                return localhost + 'individual-discussion-comments-helpful/' + id;
-            },
-            getDiscussionCommentsFlagged : function(){
-                return localhost + 'individual-discussion-comments-flagged';
-            },
-            addDiscussionCommentsFlagged : function(){
-                return localhost + 'individual-discussion-comments-flagged';
-            },
-            ///
-            getIndividualDiscussion: function(id){
-                return localhost+'individual-discussion'+(id ? '/'+id : '');
-            },
-            getIndividualDiscussions: function(){
-                return localhost+'individual-discussion';
-            },
-            addCommentIndividualDiscussion: function(){
-                return localhost+'individual-discussion-comments'
-            },
-            getLastDiscussionCommentId : function(){
-                return localhost+'individual-discussion-comments'
-            },
-            getLastDiscussionId : function(){
-                return localhost+'individual-discussion'
-            },
-            addDiscussion : function(){
-                return localhost+'individual-discussion'
-            },
-            /*
-            getCompanyImages : function(id){
-                return localhost+'companies/'+id+'/company_images'
-            },
-            getCompanySkillsImages: function(id){
-                return localhost+'companies/'+id+'/company_skill_images'
-            },
-            getCompanyVideos : function(id){
-                return localhost+'companies/'+id+'/company_videos'
-            },
-            getCompanySkills : function(id){
-                return localhost+'companies/'+id+'/company_skills'
-            },
-            */
-            getCompanyMembers : function(id){
-                return localhost+'companies/'+id+'/company_members'
-            },
-            getCompanyKeyContacts : function(id){
-                return localhost+'companies/'+id+'/company_key_contacts'
-            },
-            addCompanySkill: function(){
-                return localhost+'company_skills'
-            },
-            getLastCompanySkillId : function(){
-                return localhost+'company_skills'
-            },
-            deleteCompanySkill : function(id){
-                return localhost+'company_skills/'+id;
-            },
-            getLastCompanyContactId : function(){
-                return localhost+'company_key_contacts'
-            },
-            addCompanyContact : function(){
-                return localhost+'company_key_contacts'
-            },
-            updateCompany: function(id){
-                return localhost+'companies/'+id;
-            },
-            updateCompanyProfile: function(id){
-                return localhost+'companies/'+id;
-            },
-            getLastCompanyVideoId: function(){
-                return localhost+'company_videos';
-            },
-            addCompanyVideo: function(){
-                return localhost+'company_videos';
-            },
-            deleteCompanyVideo: function(id){
-                return localhost+'company_videos/'+id;
-            },
-            deleteCompanyContact: function(id){
-                return localhost+'company_key_contacts/'+id;
-            },
-            updateCompanyImage: function(id){
-                return localhost+'company_images/'+id;
-            },
-            deleteCompanyImage: function(id){
-                return localhost+'company_images/'+id;
-            },
-            updateCompanySkillsImage: function(id){
-                return localhost+'company_skill_images/'+id;
-            },
-            deleteCompanySkillsImage: function(id){
-                return localhost+'company_skill_images/'+id;
-            },
-            updateCompanyVideo: function(id){
-                return localhost+'company_videos/'+id;
-            },
-            updateCompanyContact: function(id){
-                return localhost+'company_key_contacts/'+id;
-            },
-            getService: function(id){
-                return localhost+'services'+(id ? '/'+id : '');
-            },
-            getFavorites: function(){
-                return localhost+'favorite_products';
-            },
-            getFavoriteService: function(id){
-                return localhost+'accounts/'+id+'/favorite_products';
-            },
-            getFavorite: function(){
-                return localhost+'favorite_products';
-            },
-            addFavorite: function(){
-                return localhost+'favorite_products';
-            },
-            deleteFavorite: function(id){
-                return localhost+'favorite_products/'+id;
-            },
-            getUserList: function(){
-                return localhost + 'users';
-            },
-            getUserUrl: function(){
-                return localhost+'user';
-            },
-            userAccount: function(id){
-                return {
-                    get: localhost + 'user/' + id
-                }
-            },
-            getUserName: function(id) {
-                return localhost + 'user/' + id + '/userName';
-            },
-            getOnboardingBasicInfoUrl: function() {
-                return localhost+'user-basic-information'
-            },
-            getAccountNotificationCategoryItems: function(){
-                return localhost+'account-notification-category-items';
-            },
-            getAccountNotifications: function(){
-                return localhost+'account-notification-categories';
-            },
-            getUserAccountNotifications: function(account_id){
-                return localhost+'accounts/'+account_id+'/account-notification-settings';
-            },
-            updateUserAccountNotification: function(id){
-                return localhost+'account-notification-settings/'+id;
-            },
-            markNotificationRead: function(id, notification_id) {
-              return localhost + 'users/'+id+'/notifications/'+notification_id+'?action=markNotificationRead';
-            },
-            markAllNotificationsRead: function(id) {
-                return localhost + 'users/' + id + '/notifications?action=markAllRead';
-            },
-            requestVerification: function() {
-                return localhost + 'notifications?action=requestVerification';
-            },
-            getNotificationsUser: function(){
-                return localhost+'notifications-user';
-            },
-            getNotificationsStatisticUser: function(){
-                return localhost+'notifications-user-statistic';
-            },
-            getNotificationsPm: function(){
-                return localhost+'notifications-pm';
-            },
-            addNotificationsPm: function(){
-                return localhost+'notifications-pm';
-            },
-            getNotificationsStatisticPm: function(){
-                return localhost+'notifications-pm-statistic';
-            },
-
-
-            //RESOURCES
-            getAllResourceLabs: function(){
-                return localhost+'resource/lab';
-            },
-            getResourceLab: function(id){
-                return localhost+'resource/lab/'+id;
-            },
-
-
-            getAllResourceBays: function(){
-                return localhost+'resource/bay/';
-            },
-            getResourceBay: function(id){
-                return localhost+'resource/bay/'+id;
-            },
-
-
-            getAllBayMachines: function(id){
-                return localhost+'resource/machine/'+id;
-            },
-
-
-
-            getResourceProject: function(id){
-                return localhost+'resource/project/' + id;
-            },
-
-            getAllResourceProjects: function() {
-              return localhost +'resource/project';
-            },
-
-
-            getAllCourses: function() {
-              return localhost +'resource/course';
-            },
-            getCourse: function(id) {
-              return localhost +'resource/course/' + id;
-            },
-
-
-            getAllJobs: function() {
-              return localhost +'resource/job';
-            },
-
-            getJob: function(id) {
-              return localhost +'resource/job/' + id;
-            },
-
-
-            getAllAssessments: function() {
-              return localhost +'resource/assessment';
-            },
-
-            getAssessment: function(id) {
-              return localhost +'resource/assessment/' + id;
-            },
-
-            //END RESOURCES
-
-            searchMarketplace: function (text) {
-                if($window.apiUrl) {
-                    return localhost + 'searchServices/' + text;
-                }else{
-                    return localhost + 'searchServices';
-                }
-			      },
-
-            searchMembers: function (text) {
-                console.log('data.factory.searchMembers: text=' + text);
-                return localhost + 'searchMembers/' + text;
-            },
-
-            markReadNotifications: function(){
-                return localhost+'mark-read-notifications';
-            },
-            clearNotification: function(id){
-                return localhost+'clear-notification/'+id;
-            },
-            compare: function(id,type){
-                // type - services, members
-                var name = 'compare_'+type;
-                return {
-                    userCompares : localhost + 'profiles/'+id+'/'+name,
-                    get : localhost + name + '/' + id,
-                    delete : localhost + name + '/' + id,
-                    add : localhost + name
-                }
-            },
-            getDateFormat: function(){
-                return 'YYYY-MM-DD';
-            },
-            getTimeFormat: function(){
-                return 'hh:mm:ss A';
-            },
-            getDateAndTimeFormat: function(){
-                return this.getDateFormat() + ' ' + this.getTimeFormat();
-            },
-            // TODO -- make this a REST endpoint
-            getDocAccessLevels: function(){
-              return {
-      					'All Members': 'ALL_MEMBERS',
-      					'Project Participants': 'PROJECT_PARTICIPANTS',
-      					'Project Participants and Upper Tier Members': 'PROJECT_PARTICIPANTS_AND_UPPER_TIER_MEMBERS',
-      					'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS',
-                        'Choose Organizations': 'ORG'
-      				}
+      getFavoriteProducts: function() {
+        return localhost + 'favorite_products';
+      },
+      deactivateAccount: function(id) {
+        return localhost + 'accounts' + (id ? '/' + id : '');
+      },
+      getDiscussions: function(projectId, dataTypeWidget) {
+        if (!projectId && !dataTypeWidget) {
+          return localhost + 'individual-discussions';
+        } else {
+          if (projectId) {
+            if (dataTypeWidget) {
+              switch (dataTypeWidget) {
+                case 'following':
+                  return localhost + 'projects/' + projectId + '/following_discussions';
+                default:
+                  return localhost + 'projects/' + projectId + '/individual-discussions';
+              }
+            } else {
+              return localhost + 'projects/' + projectId + '/individual-discussion';
             }
-        };
-    }
-)
+          } else if (dataTypeWidget) {
+            switch (dataTypeWidget) {
+              case 'following':
+                return localhost + 'following_discussions';
+              case 'popular':
+                return localhost + 'popular_discussions';
+              case 'follow-people':
+                return localhost + 'follow_people_discussions';
+              default:
+                return localhost + 'individual-discussion';
+            }
+          }
+        }
+      },
+      deleteCompanyLogo: function(id) {
+        return localhost + 'companies' + (id ? '/' + id : '');
+      },
+      saveChangedDiscussionComment: function(id) {
+        return localhost + 'individual-discussion-comments' + (id ? '/' + id : '');
+      },
+      addDiscussionTag: function() {
+        return localhost + 'individual-discussion-tags';
+      },
+      getLastDiscussionTagId: function() {
+        return localhost + 'individual-discussion-tags';
+      },
+      getDiscussionTags: function(id) {
+        return localhost + 'individual-discussion/' + id + '/individual-discussion-tags'
+      },
+      deleteDiscussionTag: function(id) {
+        return localhost + 'individual-discussion-tags' + (id ? '/' + id : '');
+      },
+      deleteDiscussionComment: function(id) {
+        return localhost + 'individual-discussion-comments' + (id ? '/' + id : '');
+      },
+      getDiscussionComments: function(id) {
+        return localhost + 'individual-discussion/' + id + '/individual-discussion-comments?commentId=0';
+      },
+      ///
+      getDiscussionsReply: function(id) {
+        return localhost + 'individual-discussion-comments?commentId=' + id;
+      },
+      getDiscussionCommentsHelpful: function() {
+        return localhost + 'individual-discussion-comments-helpful';
+      },
+      addDiscussionCommentsHelpful: function() {
+        return localhost + 'individual-discussion-comments-helpful';
+      },
+      updateDiscussionCommentsHelpful: function(id) {
+        return localhost + 'individual-discussion-comments-helpful/' + id;
+      },
+      getDiscussionCommentsFlagged: function() {
+        return localhost + 'individual-discussion-comments-flagged';
+      },
+      addDiscussionCommentsFlagged: function() {
+        return localhost + 'individual-discussion-comments-flagged';
+      },
+      ///
+      getIndividualDiscussion: function(id) {
+        return localhost + 'individual-discussion' + (id ? '/' + id : '');
+      },
+      getIndividualDiscussions: function() {
+        return localhost + 'individual-discussion';
+      },
+      addCommentIndividualDiscussion: function() {
+        return localhost + 'individual-discussion-comments'
+      },
+      getLastDiscussionCommentId: function() {
+        return localhost + 'individual-discussion-comments'
+      },
+      getLastDiscussionId: function() {
+        return localhost + 'individual-discussion'
+      },
+      addDiscussion: function() {
+        return localhost + 'individual-discussion'
+      },
+      /*
+      getCompanyImages : function(id){
+          return localhost+'companies/'+id+'/company_images'
+      },
+      getCompanySkillsImages: function(id){
+          return localhost+'companies/'+id+'/company_skill_images'
+      },
+      getCompanyVideos : function(id){
+          return localhost+'companies/'+id+'/company_videos'
+      },
+      getCompanySkills : function(id){
+          return localhost+'companies/'+id+'/company_skills'
+      },
+      */
+      getCompanyMembers: function(id) {
+        return localhost + 'companies/' + id + '/company_members'
+      },
+      getCompanyKeyContacts: function(id) {
+        return localhost + 'companies/' + id + '/company_key_contacts'
+      },
+      addCompanySkill: function() {
+        return localhost + 'company_skills'
+      },
+      getLastCompanySkillId: function() {
+        return localhost + 'company_skills'
+      },
+      deleteCompanySkill: function(id) {
+        return localhost + 'company_skills/' + id;
+      },
+      getLastCompanyContactId: function() {
+        return localhost + 'company_key_contacts'
+      },
+      addCompanyContact: function() {
+        return localhost + 'company_key_contacts'
+      },
+      updateCompany: function(id) {
+        return localhost + 'companies/' + id;
+      },
+      updateCompanyProfile: function(id) {
+        return localhost + 'companies/' + id;
+      },
+      getLastCompanyVideoId: function() {
+        return localhost + 'company_videos';
+      },
+      addCompanyVideo: function() {
+        return localhost + 'company_videos';
+      },
+      deleteCompanyVideo: function(id) {
+        return localhost + 'company_videos/' + id;
+      },
+      deleteCompanyContact: function(id) {
+        return localhost + 'company_key_contacts/' + id;
+      },
+      updateCompanyImage: function(id) {
+        return localhost + 'company_images/' + id;
+      },
+      deleteCompanyImage: function(id) {
+        return localhost + 'company_images/' + id;
+      },
+      updateCompanySkillsImage: function(id) {
+        return localhost + 'company_skill_images/' + id;
+      },
+      deleteCompanySkillsImage: function(id) {
+        return localhost + 'company_skill_images/' + id;
+      },
+      updateCompanyVideo: function(id) {
+        return localhost + 'company_videos/' + id;
+      },
+      updateCompanyContact: function(id) {
+        return localhost + 'company_key_contacts/' + id;
+      },
+      getService: function(id) {
+        return localhost + 'services' + (id ? '/' + id : '');
+      },
+      getFavorites: function() {
+        return localhost + 'favorite_products';
+      },
+      getFavoriteService: function(id) {
+        return localhost + 'accounts/' + id + '/favorite_products';
+      },
+      getFavorite: function() {
+        return localhost + 'favorite_products';
+      },
+      addFavorite: function() {
+        return localhost + 'favorite_products';
+      },
+      deleteFavorite: function(id) {
+        return localhost + 'favorite_products/' + id;
+      },
+      getUserList: function() {
+        return localhost + 'users';
+      },
+      getUserUrl: function() {
+        return localhost + 'user';
+      },
+      userAccount: function(id) {
+        return {
+          get: localhost + 'user/' + id
+        }
+      },
+      getUserName: function(id) {
+        return localhost + 'user/' + id + '/userName';
+      },
+      getOnboardingBasicInfoUrl: function() {
+        return localhost + 'user-basic-information'
+      },
+      getAccountNotificationCategoryItems: function() {
+        return localhost + 'account-notification-category-items';
+      },
+      getAccountNotifications: function() {
+        return localhost + 'account-notification-categories';
+      },
+      getUserAccountNotifications: function(account_id) {
+        return localhost + 'accounts/' + account_id + '/account-notification-settings';
+      },
+      updateUserAccountNotification: function(id) {
+        return localhost + 'account-notification-settings/' + id;
+      },
+      markNotificationRead: function(id, notification_id) {
+        return localhost + 'users/' + id + '/notifications/' + notification_id + '?action=markNotificationRead';
+      },
+      markAllNotificationsRead: function(id) {
+        return localhost + 'users/' + id + '/notifications?action=markAllRead';
+      },
+      requestVerification: function() {
+        return localhost + 'notifications?action=requestVerification';
+      },
+      getNotificationsUser: function() {
+        return localhost + 'notifications-user';
+      },
+      getNotificationsStatisticUser: function() {
+        return localhost + 'notifications-user-statistic';
+      },
+      getNotificationsPm: function() {
+        return localhost + 'notifications-pm';
+      },
+      addNotificationsPm: function() {
+        return localhost + 'notifications-pm';
+      },
+      getNotificationsStatisticPm: function() {
+        return localhost + 'notifications-pm-statistic';
+      },
+
+
+      //RESOURCES
+      getAllResourceLabs: function() {
+        return localhost + 'resource/lab';
+      },
+      getResourceLab: function(id) {
+        return localhost + 'resource/lab/' + id;
+      },
+
+
+      getAllResourceBays: function() {
+        return localhost + 'resource/bay/';
+      },
+      getResourceBay: function(id) {
+        return localhost + 'resource/bay/' + id;
+      },
+
+
+      getAllBayMachines: function(id) {
+        return localhost + 'resource/machine/' + id;
+      },
+
+
+
+      getResourceProject: function(id) {
+        return localhost + 'resource/project/' + id;
+      },
+
+      getAllResourceProjects: function() {
+        return localhost + 'resource/project';
+      },
+
+
+      getAllCourses: function() {
+        return localhost + 'resource/course';
+      },
+      getCourse: function(id) {
+        return localhost + 'resource/course/' + id;
+      },
+
+
+      getAllJobs: function() {
+        return localhost + 'resource/job';
+      },
+
+      getJob: function(id) {
+        return localhost + 'resource/job/' + id;
+      },
+
+
+      getAllAssessments: function() {
+        return localhost + 'resource/assessment';
+      },
+
+      getAssessment: function(id) {
+        return localhost + 'resource/assessment/' + id;
+      },
+
+      //END RESOURCES
+
+      searchMarketplace: function(text) {
+        if ($window.apiUrl) {
+          return localhost + 'searchServices/' + text;
+        } else {
+          return localhost + 'searchServices';
+        }
+      },
+
+      searchMembers: function(text) {
+        console.log('data.factory.searchMembers: text=' + text);
+        return localhost + 'searchMembers/' + text;
+      },
+
+      markReadNotifications: function() {
+        return localhost + 'mark-read-notifications';
+      },
+      clearNotification: function(id) {
+        return localhost + 'clear-notification/' + id;
+      },
+      compare: function(id, type) {
+        // type - services, members
+        var name = 'compare_' + type;
+        return {
+          userCompares: localhost + 'profiles/' + id + '/' + name,
+          get: localhost + name + '/' + id,
+          delete: localhost + name + '/' + id,
+          add: localhost + name
+        }
+      },
+      getDateFormat: function() {
+        return 'YYYY-MM-DD';
+      },
+      getTimeFormat: function() {
+        return 'hh:mm:ss A';
+      },
+      getDateAndTimeFormat: function() {
+        return this.getDateFormat() + ' ' + this.getTimeFormat();
+      },
+      // TODO -- make this a REST endpoint
+      getDocAccessLevels: function() {
+        return {
+          'All Members': 'ALL_MEMBERS',
+          'Project Participants': 'PROJECT_PARTICIPANTS',
+          'Project Participants and Upper Tier Members': 'PROJECT_PARTICIPANTS_AND_UPPER_TIER_MEMBERS',
+          'Project Participants VIPS': 'PROJECT_PARTICIPANT_VIPS',
+          'Choose Organizations': 'ORG'
+        }
+      },
+      getMyVPC: function() {
+        return localhost + 'organizations/myVPC'
+      }
+    };
+  })

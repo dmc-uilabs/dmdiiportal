@@ -1,23 +1,17 @@
-<div class="page-header margin-bottom-35">
-    <md-toolbar>
-        <h1 class="project-title" layout="row" layout-align="start end">
-            <div class="title">
-                <a href="/project.php#/{{projectData.id}}/home">{{projectData.title}}</a>
-            </div>
-            <span ng-if="projectData.dueDate" class="small-text due-date-project small-text--grey">
-                Due in {{projectData.dueDate}}
-            </span>
-        </h1>
-        <div class="md-toolbar-tools">
-            <div layout="column" flex="65" class="margin-right12-5">
-                <div layout="row" class="name-project" flex>
-                    <div sub-nav-menu-button current-page="7"></div>
-                </div>
-            </div>
-        </div>
-    </md-toolbar>
+<workspace-header class="workspace-header" ng-init="currentPage='7'"></workspace-header>
+<div ng-if="!service.id" class="project-details-services" layout="column">
+	<div layout="row" layout-align="space-between start">
+		<div layout="column" class="header">
+			<div class="margin-bottom8">
+				<a class="link" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
+					Return to Services
+				</a>
+        <h3 style="font-size:12px">Service not found!</h3>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="project-details-services" layout="column">
+<div ng-if="service.id" class="project-details-services" layout="column">
 	<div layout="row" layout-align="space-between start">
 		<div layout="column" class="header">
 			<div class="margin-bottom8">
@@ -41,7 +35,7 @@
 				<md-button ng-if="service.from == 'marketplace'" aria-label="reply" ng-click="share(ev)" class="md-icon-button reply header-icon">
 					<ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
 				</md-button>
-				<md-button aria-label="create" ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/edit'}}" class="md-icon-button header-icon margin-left20">
+				<md-button ng-if="userData.isDmdiiAdmin || (service.owner == userData.id && service.from == 'project' && !service.published)" aria-label="create" ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/edit'}}" class="md-icon-button header-icon margin-left20">
 					<ng-md-icon icon="create" style="fill: grey;" size="25"></ng-md-icon>
 				</md-button>
 				<md-button aria-label="delete" ng-click="delete()" class="md-icon-button header-icon margin-left20">

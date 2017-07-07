@@ -195,7 +195,7 @@ angular.module('dmc.project')
             function deleteProject(){
                 ajax.delete(dataFactory.deleteProject(projectCtrl.currentProjectId),{},function(){
                     toastModel.showToast('success','Project successfully deleted');
-                    document.location.href = 'my-projects.php';
+                    document.location.href = 'all-projects.php';
                 });
             }
 

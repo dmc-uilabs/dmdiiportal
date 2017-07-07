@@ -50,6 +50,7 @@ angular.module('dmc.project')
         '$stateParams',
         'dataFactory',
         'history',
+        'ajax',
         function (
             $scope,
             $state,
@@ -57,7 +58,7 @@ angular.module('dmc.project')
             $http,
             $stateParams,
             dataFactory,
-            history) {
+            history,ajax) {
 
             $scope.history = history;
 
@@ -79,6 +80,49 @@ angular.module('dmc.project')
                 dataSearch.rerun = history.id;
                 $state.go('project.run-services', dataSearch);
             };
+
+
+
+            $scope.toWorkspace = function(ev){
+                $scope.cancel();
+                console.log("adding to my workspace")
+
+
+                confirm('Are you sure you want to add the output file to your workspace?', ev).then(function(){
+
+                  var url = "";
+                  if($scope.history.interface.outParams.finalFileName)
+                    url = $scope.history.interface.outParams.finalFileName.value
+                  if($scope.history.interface.outParams.outputFile)
+                      url = $scope.history.interface.outParams.outputFile.value
+                  if($scope.history.interface.outParams.fileOutput)
+                      url = $scope.history.interface.outParams.fileOutput.value
+                  if($scope.history.interface.outParams.TDP)
+                          url = $scope.history.interface.outParams.TDP.value
+
+                  ajax.create(dataFactory.documentsUrl($scope.history.project.id).saveSr,{'url': url},function(resp){
+									            toastModel.showToast("success", file.documentName+" saved to your workspace "+toastUser+".");
+						   		});
+
+
+                })
+
+            };
+
+
+            function confirm(message,ev){
+              var confirm = $mdDialog.confirm()
+                .title('Please Confirm')
+                .content(message)
+                .ariaLabel('Confirm')
+                .targetEvent(ev)
+                .ok('Ok')
+                .cancel('Cancel');
+
+                return $mdDialog.show(confirm)
+            }
+
+
 
             $http.get(dataFactory.services($scope.history.serviceId).get_position_inputs).then(function(response){
                 if(response.data && response.data.length > 0){

@@ -1,6 +1,6 @@
 <div class="onboarding-home">
 	<md-content layout layout-align="center center">
-		<div layout="column"  layout-fills>
+		<div layout="column"  layout-fills style="max-width:98%">
 			<div class="section-header" layout="column" layout-align="start start" layout-fills flex class="text">
 				<!-- <h1>Release Notes</h1>
 				<p>Learn about each of our releases, the work that goes into each release, how you may be effected, plans for the future and much more.</p> -->
@@ -11,7 +11,7 @@
 				<div class="logo">
 					<img ng-src="images/Tree-Animation.gif">
 				</div>
-				<div layout="column" flex class="text">
+				<div layout="column" flex class="text" style="min-width:70%">
 					<h1>Digital Manufacturing Commons: Releases </h1>
 					<p>
 					<h3>Learn about each of our releases, the work that goes into each release, how you may be effected, plans for the future and much more.</h3>
@@ -44,18 +44,19 @@
 				<md-tabs md-dynamic-height md-border-bottom>
 
 					<!-- Release V 0.1.8 -->
-					<!-- <md-tab label="V 0.1.8 ">
+					<md-tab label="V 0.1.8 ">
 						<md-content class="tab-projects">
 							<div layout="column" class="text-row">
 								<div layout="row" style="justify-content:flex-end">
+									<span style="margin-right:40px; margin-top:-11px;"><h4>Released: 6/2/2017</h4></span>
 									<span class="release-bug margin5px" style="margin-right:64px"></span>
 									<span class="release-feature margin5px" style="margin-right:67px"></span>
 									<span class="release-content margin5px"></span>
 								</div>
 								<h2 style="font-weight: 300; text-transform: uppercase; font-size:20px;">Introduction</h2>
-								<p>In this release the DMC development team focused most efforts on revamping the many existing workflows around workspaces. As one may be able to guess from looking at our most recent releases, workspaces have received a layout face-lift. There is some new functionality when it come to applications that we think users will make running applications an even smoother experience than before.</p>
+								<p>During this release, our team focused its efforts mainly around creating a brand new workflow that users can now exercise on our website. Read on below to learn more about this and how to use it. Additionally, we worked to fix a few issues issues with our codebase. A few of the items that are featured below such as safer and more anonymized error logging to the frontend.</p>
 								<md-divider></md-divider>
-								<release-tree ng-if="notesV017" notes="notesV017" class="release-tree"></release-tree>
+								<release-tree ng-if="notesV018" notes="notesV018" class="release-tree"></release-tree>
 							</div>
 
 							<md-divider></md-divider>
@@ -67,76 +68,141 @@
 								<div layout="column" flex class="text">
 									<h2>Codebase</h2>
 									<h3>
-										<strong>Vault integration</strong>
+										<strong>Soft Delete for Applications in Workspaces</strong>
 									</h3>
 									<ul>
 										<li>
-											We've integrated Vault into our production website/platform in this release. This change will not effect users directly but makes sure that our team is able to work on the production website as well as our development websites in a much safer capacity. Users as usual can rest assured that only those with the proper access level are working on updating the code base and infrastructure that supports the website.
+											The ability for users to delete workspaces has been a feature on our website for quite a  while but the way this was being handled on the backen of our system is not necessarily the best way to have architecturally done so. Many pages that were related to that deleted application would still be accessibl, which is not very secure. In this release we did some work to implement archiving applications in workspaces. When an application is deleted now, the application as well as many other pages such as the run and information pages are no longer accessible. In the case a user deletes an application accidentally or realizes they still need that application, they can reach out to us via any of the contact method listed on our contact us page and we can re-instate that very application in their workspace with the same run history if needed.
 										</li>
 									</ul>
 									<h3>
-										<strong>Updated Terraform Infrastructure Deployment Scripts</strong>
+										<strong>Out of Service Workspace Applications Removed</strong>
 									</h3>
 									<ul>
 										<li>
-											Users that know our development team's infrastructure deployment methods know that we use Terraform to deploy and build our infrastructure. We've made some updates due to some recent changes that allows us to once more deploy our infrastructure in a more automated way.
-										</li>
-										<li>
-											Along with this update, we now have new code that allows us to now automatically build our ELK Stack/Stack Monitoring Infrastructure in tandem with the rest our our infrastructure.
+											While we were in the past still working on how applications are referenced when new infrastructure is created this cause applications that some users added to their workspaces to become unresponsive. We ave systematically removed all applications from user workspaces that were in an unusable state. Users might have found that these applications were making the site run more slowly for them as well as were unable to remove them from their workspaces. All this should now be fixed.
 										</li>
 									</ul>
-									<h3>
-										<strong>File Signing (SHA256)</strong>
+									<!-- <h3>
+										<strong>New Permissions for Editing Services</strong>
 									</h3>
 									<ul>
 										<li>
-											In order to give users the piece of mind that they are not downloading documents that have been altered after they have been uploaded to our site, we have implemented SHA256 for uploaded files. SHA256 is a cryptographic hash which is like a semi unique signature for a text or a data file. The signature is very difficult to regenerate exactly the same way once created, so our users can know that the files being downloaded are always the original and unaltered versions uploaded to the DMDII Projects' profile pages.
+											In the past users would have had the ability to go to the marketplace, add an application to their workspace and then edit what that application actually ran when executed. We have made changes that now only allow users to edit applications that have registered their own DOME servers applications to their workspaces.
 										</li>
-									</ul>
-									<h3>
-										<strong>Sanitized Error Messages on Frontend</strong>
+									</ul> -->
+									<!-- <h3>
+										<strong>Permissions on User Profile Pictures</strong>
 									</h3>
 									<ul>
 										<li>
-											In an effort to make sure that our website does not expose an proprietary information to users, be that their own information or other users' information we have made changes to the code base to ensure we are not exposing this information. During early development of the platform, we always exposed this information to allow  troubleshooting across the entire platform easier for developers. Going forward, we will be removing sensitive information from being sent to the browser.
+											In a previous release we made front end changes the would keep users from being able to change profile pictures of other users. In this release we introduced backend permissions that will reinforce this to ensure users are not able make these changes in some other ways.
+										</li>
+									</ul> -->
+									<h3>
+										<strong>Safer Error Logging</strong>
+									</h3>
+									<ul>
+										<li>
+											In the past when our infrastructure and code would detect errors that we did not account our code for, the error would be logged to the browser potentially revealing sensitive information thats should not be available to users. We've implemented a change that will catch these unknown errors and anonymize them after the original log is saved to our servers and send the new error message to the browser. We've made this change in order to both keep our users safe as well as to more easily investigate errors that users may run into or report to us.
 										</li>
 									</ul>
 								</div>
 							</div>
 
-								<md-divider></md-divider>
+							<md-divider></md-divider>
 
-								<div class="section" layout="row" layout-align="center start" layout-fills>
-									<div class="image">
-										<img ng-src="images/icon-marketplace-lg.svg"  style="width: 50px">
-									</div>
-									<div layout="column" flex class="text">
-										<h2>Applications</h2>
-										<p>
-											<h3>
-												<strong>Marketplace Applications</strong>
-											</h3>
-											During this release we decided that it was appropriate to remove the applications listed below from the DMC Marketplace, as we could not provide sufficient information to user to explain conceptually what they solved for. Also as we are looking to expand our variety of applications available in the marketplace, we believed these two applications were the least utilized applications as well as estimated to be the least likely to provide value to our users at this time. We have been working to clean up the currently marketplace to ensure users are getting a rich experience an are not overwhelmed with the amount of options in terms of applications.
+	    				<div class="section" layout="row" layout-align="center start" layout-fills>
+	    					<div class="image">
+	    						<img ng-src="images/icon-marketplace-lg.svg"  style="width: 50px">
+	    					</div>
+	    					<div layout="column" flex class="text">
+	    							<h2>Applications</h2>
+	    					<p>In this release, we've added two new application to the DMC Marketplace that help to support the new Workflow were have noted in the Codebase section above. Additionally, for the time being, we have removed the two application that were created by Pennsylvania State University (Welding Model and Conceptual Cost Model) from the DMC Marketplace due to issues with the DOME server on which they are being hosted, while we look to fix this issue.</p>
+	    					<p>The applications listed below have been added to the DMC Marketplace and were created by the DMC team. Learn more about the apps by visiting the DMC Marketplace or at their respective Confluence Wiki pages.</p>
+	    					<ul>
+	    						<li>
+										<strong>Should Cost Tool</strong>:Creates a Should Cost Analysis report which is generated from a supplied Technical Data Package and the Virtual Production Capabilities form that organization administrators have filled out.
+										<ul><li>
+											App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Manufacturing+Should+Cost+Analysis+by+DMC" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Manufacturing+Should+Cost+Analysis+by+DMC style="color:green">Manufacturing Should Cost Analysis by DMC</a></u>
+										</li></ul>
+									</li>
+	    						<li>
+										<strong>Technical Data Package (TDP) Authoring Tool</strong>: Generates an XML formated TDP file based on a .stp CAD file and is used as an input for the Should Cost Analysis.
+										<ul><li>
+											App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Technical+Data+Package+Authoring+Tool+by+DMC" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Technical+Data+Package+Authoring+Tool+by+DMC style="color:green">Technical Data Package Authoring Tool by DMC</a></u>
+										</li></ul>
+									</li>
+	    					</ul>
+	    					</h3>
+	    					</div>
+	    				</div>
+							<md-divider></md-divider>
+
+							<div class="section" layout="row" layout-align="center start" layout-fills>
+								<div class="image">
+									<ng-md-icon icon="assignment" style="fill: #666" size="50"></ng-md-icon>
+								</div>
+								<div layout="column" flex class="text">
+									<h2>New Workflows</h2>
+									<h3>
+										<strong>Bidding to Build a Part</strong>
+									</h3>
+									During this release we worked to try to transform how manufacturers find the right supplier for a part they wish to build. Larger manufacturers may have a few hundred to a couple thousand suppliers, which makes it hard to find the right supplier that can machine a newly designed part. We envision the DMC can be used in the following way to increase productivity:
+									<ol>
+										<li>
+											Manufacturer uploads a .stp file to their private workspace documents page.
+										</li>
+										<li>
+											The manufacturer then uses the Technical Data Packaging Tool application in their private workspace choosing to use the file they've uploaded as an input to the application.
 											<ul>
 												<li>
-													X0OverWp2p8
-												</li>
-												<li>
-													X0OverWp8p1
+													They also specify the coating and material type at this stage.
 												</li>
 											</ul>
-										</p>
-										<p>
-											<h3>
-												<strong>Workspace Applications</strong>
-											</h3>
-											Due to the changes we made that allows users to stop an already running application we have found that there are a few hundred instances of applications that are still "running" in users' workspaces. This has caused our website to begin running very slowly when visiting pages like the workspace directories as workspace services pages. In order to fix the issue, all applications that users have in their workspaces that are no longer in a run-able state due to the necessary server no longer being accessible have been removed from users' workspaces.
-										</p>
-									</div>
+										</li>
+										<li>
+											The manufacturer then creates a new private workspace and invites all their suppliers to it.
+											<ul>
+												<li>
+													They will also share authorization tokens with their suppliers, which are used to run the Manufacturing Should Cost Analysis application.
+												</li>
+												<li>
+													The tokens are also used so that suppliers are not able to gain the system.
+												</li>
+											</ul>
+										</li>
+										<li>
+											The manufacturer then shares the output of the TDP application to their new workspace and allows the files to be accessible to team members of the new workspace.
+										</li>
+										<li>
+											Newly invited suppliers on the DMC have their organization administrators fill out their organization VPCs.
+										</li>
+										<li>
+											Individual suppliers now created their own private workspaces and add the Manufacturing Should Cost Analysis application to it.
+										</li>
+										<li>
+											Suppliers now run the Manufacturing Should Cost Analysis application and use the Manufacturer's supplied file as an input from that shared workspace.
+											<ul>
+												<li>
+													Suppliers at this time will use their one time use authorization tokens to run the application.
+												</li>
+												<li>
+													This will generate a report that can then be saved to their workspace documents page and can then be reviewed before sharing. Suppliers will be give three authorization tokens that allow them to update their VPC in the case they realize they may have entered some information in incorrectly.
+												</li>
+											</ul>
+										</li>
+										<li>
+											Suppliers now share the Should Cost Report from their workspace to a new workspace the Manufacturer has created that is only accessible to the Manufacturer. This means the reports are not viewable by any other competitor.
+										</li>
+										<li>
+											The manufacturer now can make an informed decision on which suppliers have the actual capabilities to create the part they are looking to have made and also know which suppliers may be to costly to use in this case. They can now figure out which suppliers they may want talk to before making their final decision.
+										</li>
+									</ol>
 								</div>
-
+							</div>
 								</md-content>
-					</md-tab> -->
+					</md-tab>
 
 <!-- Release V 0.1.7 -->
 <md-tab label="V 0.1.7">
