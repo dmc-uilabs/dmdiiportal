@@ -12,7 +12,7 @@
           <md-option ng-repeat="doc in docs" ng-value="doc">{{doc.version+1}}</md-option>
         </md-select>
         <section>
-          <a class="md-button md-raised" target="_self" ng-click="downloadFile({{currentDoc.id}})">Download</a>
+          <a class="md-button md-raised" target="_self" ng-click="downloadFile(currentDoc.id)">Download</a>
         </section>
       </section>
   </md-content>
