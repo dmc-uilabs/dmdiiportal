@@ -735,6 +735,7 @@ directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function($pa
                 newVersion = {};
                 angular.copy(file, newVersion);
                 newVersion.documentUrl = response.file.name;
+                newVersion.documentName = response.data.file.name;
                 return ajax.put(dataFactory.documentsUrl().save, newVersion, function(resp) {});
               });
             }
