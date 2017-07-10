@@ -103,6 +103,9 @@ div[dmc-top-header]{
 
       ng-md-icon{
         fill: $topHeaderIcon;
+        display: inline-block;
+        vertical-align: middle;
+        height: 27.5px;
       }
     }
 
@@ -230,6 +233,9 @@ div[dmc-top-header]{
         background-color: map-get($colors, secondary);
         ng-md-icon{
           fill: #fff;
+          display: inline-block;
+          vertical-align: middle;
+          height: 23.5px;
         }
       }
       md-select {
@@ -308,9 +314,22 @@ div[dmc-top-header]{
     //margin-right:10px;
     fill: map-get($colors, secondary);
   }
+  md-menu-item {
+    a{
+      text-align: left;
+    }
+  }
 }
 
 .header-menu-content.md-default-theme{
+  md-menu-item {
+    a{
+      text-align: left;
+    }
+    button{
+      text-align: left;
+    }
+  }
   a.md-button {
     line-height: 3.2;
   }

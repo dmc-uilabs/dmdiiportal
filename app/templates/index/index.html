@@ -1,13 +1,11 @@
 <div class="home">
 <!-- Template for logged in verified users -->
 <div ng-if="($root.isLogged && userData.roles && userData.roles[userData.companyId]) || ($root.isLogged && userData.isDmdiiAdmin)">
-<div layout="row" layout-align="center center" layout-padding>
-  <div layout="column" flex>
 
-    <div class="home-header" flex layout="row" layout-align="space between center" layout-fills>
-      <h1>DIGITAL MANUFACTURING COMMONS</h1>
+    <div class="home-header" flex layout="row" layout-align="space between center" layout-wrap>
+      <h1 flex="70">DIGITAL MANUFACTURING COMMONS</h1>
       <!-- <img style="height:80px; width:80px;" ng-src="images/dmcLogo.png"> -->
-      <div layout="row">
+      <div flex="30" layout="row">
         <a class="social-button" href="http://www.uilabs.org/news-blog/blog/" target="_blank"><md-icon md-svg-src="images/comment-text-outline.svg" title="UILABS Blog"></a>
         <a class="social-button" href="https://twitter.com/DMDII_" target="_blank"><md-icon md-svg-src="images/twitter.svg" title="DMDII Twitter"></a>
         <a class="social-button" href="https://www.linkedin.com/company/ui-labs" target="_blank"><md-icon md-svg-src="images/linkedin-box.svg" title="UILABS LinkedIn"></a>
@@ -33,8 +31,6 @@
         </twitter-timeline>
       </div>
     </div>
-  </div>
-</div>
 
   <!-- Youtube -->
 <div layout="row" layout-align="center center" layout-padding>
