@@ -102,7 +102,7 @@ angular.module('dmc.ajax',[
                 multipart: function(urlAddress, dataObject, successFunction, errorFunction){
                     return multipartRequest(urlAddress,dataObject,successFunction,errorFunction,'POST');
                 },
-                loadProjects: function(){
+                loadProjects: function(callback){
                     this.get(
                         dataFactory.getProjects(), {
                             _order: 'DESC',
@@ -110,6 +110,9 @@ angular.module('dmc.ajax',[
                         },
                         function(response){
                             $rootScope.projects = response.data;
+                            if(callback) {
+                              callback(response.data);
+                            }
                         }
                     );
                 }

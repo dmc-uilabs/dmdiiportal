@@ -2,6 +2,8 @@
 
     <md-toolbar>
       <div layout="row" layout-align="end end" style="margin-top: 15px;">
+        <a href="/all-projects.php" style="color: darkgrey; margin-left: 5px; font-size: 12px;"><ng-md-icon icon="keyboard_arrow_left" size="16"></ng-md-icon>BACK TO PROJECTS</a>
+        <span flex></span>
         <a ng-if="!isPreview && projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin && $root.userData.accountId === projectCtrl.projectData.projectManagerId"
           ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/requests'}}"
           class="link-button uppercase edit-button margin-left20">

@@ -14,7 +14,7 @@ angular.module('dmc.onboarding')
 		$scope.isNotDMDIIMemberStyle = {'color':'lightgrey'};
 
     var getAllCompanies = function() {
-        ajax.get(dataFactory.companyURL().all, {}, function(response){
+        ajax.get(dataFactory.companyURL().short, {}, function(response){
             $scope.ctrl.companies = response.data;
         });
     }

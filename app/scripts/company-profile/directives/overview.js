@@ -14,7 +14,8 @@ angular.module('dmc.company-profile').
                 videos: '=',
                 removedImages: '=',
                 removedVideos: '=',
-                limit: '='
+                limit: '=',
+                userData: '='
             }, controller: function($scope, $element, $attrs, dataFactory, ajax, toastModel, companyProfileModel, fileUpload, questionToastModel) {
                 $element.addClass('tab-overview');
 

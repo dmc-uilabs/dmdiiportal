@@ -43,6 +43,7 @@ server.use(jsonServer.rewriter({
     '/market/new_services': '/services',
     '/market/services': '/services',
     '/market/components': '/services',
+    '/companies/short' : '/companies_short',
     '/companies/:id/new': '/companies/:id/services',
     '/company/follow': '/following_companies',
     '/company/unfollow/:id': '/following_companies/:id',
@@ -85,6 +86,20 @@ server.post('/dmdiidocument', function(req,res) {
   res.jsonp(req.query)
 })
 
+server.post('/model_run', function(req,res) {
+  res.jsonp({"runId":9999})
+})
+
+var modelPollCount = 0
+server.get('/model_poll/:id', function(req,res) {
+  modelPollCount++
+  if (modelPollCount < 5) {
+    res.jsonp({"outParams":{},"status":0})
+  } else {
+    res.jsonp({"outParams":{"outputFile":{"type":"String","name":"outputFile","unit":"","category":null,"value":"https://psubucket01.s3.amazonaws.com/TDP_1496950468.zip?Signature=KcDIjOLmMxU9oVFcGOQbZxliEfs%3D&Expires=1498160069&AWSAccessKeyId=AKIAJAPMB5APBIC6STKQ","parameterid":"20984","instancename":null},"outputTemplate":{"type":"String","name":"outputTemplate","unit":"","category":null,"value":"<div class=\"project-run-services padding-10\" ng-if=\"!runHistory\" layout=\"column\">          <style>            #custom-dome-UI {             margin-top: -30px;           }          </style>            <div id=\"custom-dome-UI\">             <div layout=\"row\" layout-wrap style=\"padding: 0px 30px\">               <h2>Technical Data Package Created Successfully:</h2>               <p><a href=\"{{outputFile}}\">{{outputFile}}</a></p>             </div>           </div>        </div>   <script> </script>","parameterid":"20985","instancename":null}},"status":1})
+  }
+})
+
 server.get('/dmdiiMember', function (req, res) {
   var membersOrig = JSON.parse(fs.readFileSync('stubs/dmdiiMember.json'));
   var membersData = membersOrig;
@@ -97,6 +112,25 @@ server.get('/dmdiiMember', function (req, res) {
   membersOrig = {"count": membersData.length ,"data" : membersData.slice(start,end) }
 
   res.jsonp(membersOrig)
+})
+
+server.get('/projects_tags', function (req, res) {
+  var projectTags = JSON.parse(fs.readFileSync('stubs/project_tags.json'));
+  res.jsonp(projectTags)
+})
+
+server.get('/projects/:projectId', function (req, res) {
+  var allProjects = JSON.parse(fs.readFileSync('stubs/projects.json'));
+  allProjects = allProjects.content;
+  var project = {}
+
+  for (var i = 0; i<allProjects.length; i++) {
+    if (allProjects[i].id == req.params.projectId) {
+      project = allProjects[i];
+      break;
+    }
+  }
+  res.jsonp(project)
 })
 
 server.get('/dmdiiprojects', function (req, res) {

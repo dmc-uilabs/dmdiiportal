@@ -35,7 +35,7 @@
           <span flex></span>
 
           <div layout="row" ng-if="!inviteToProject" layout-align="center center">
-            <md-button class="md-raised" ui-sref="edit({profileId: profile.id})" ng-if="(profile.id == $root.userData.accountId) || userData.isDmdiiAdmin">
+            <md-button class="md-raised" ng-href="{{'account.php#/'+profile.id+'/profile'}}" ng-if="(profile.id == $root.userData.accountId) || userData.isDmdiiAdmin">
               Edit profile
             </md-button>
             <!-- <md-button class="md-raised" ng-click="follow()">

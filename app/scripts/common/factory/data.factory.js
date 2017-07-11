@@ -27,7 +27,7 @@ angular.module('dmc.data', [])
       }).join('&');
     };
 
-    return {
+return {
       get_result: function(data) {
         var obj = {};
         if ($window.apiUrl) {
@@ -162,9 +162,12 @@ angular.module('dmc.data', [])
         var idString = $window.apiUrl ? '' : '&id=' + id;
         return baseServer + '/companies' + appendId(id) + idString;
       },
+      getCompanyShortUrl: function(id){
+          return baseServer+'/companies/short';
+      },
       getCompanyReviewUrl: function(id) {
         // return baseServer+'/get_review_company';
-        return baseServer + webServiceUrl('companies', 'company_reviews', id);;
+        return baseServer + webServiceUrl('companies', 'company_reviews', id);
       },
       addCompanyReviewUrl: function() {
         return baseServer + '/add_review_company';
@@ -676,6 +679,7 @@ angular.module('dmc.data', [])
           delete: localhost + name + '/' + id,
           create: localhost + name,
           all: localhost + name,
+	        short : localhost+name+'/short',
           reviews: localhost + name + '/' + id + '/company_reviews?reviewId=0',
           addReviews: localhost + 'company_reviews',
           get_review: localhost + 'company_reviews/' + id,

@@ -4,7 +4,7 @@
 *
 * Dashboard
 */
-angular.module('dmc.home', ['dmc.configs.ngmaterial', 'ngMdIcons', 'ui.router', 'md.data.table', 'dmc.common.header', 'dmc.common.footer', 'dmc.model.user'])
+angular.module('dmc.home', ['dmc.configs.ngmaterial', 'ngMdIcons', 'ui.router', 'md.data.table', 'dmc.common.header', 'dmc.common.footer', 'dmc.model.user', 'dmc.home.dmc-recent-updates', 'ngtweet', 'ngYoutubeEmbed'])
 .run(['$rootScope', function($rootScope){
       $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
             if (error == 'User not created') {
@@ -20,11 +20,6 @@ angular.module('dmc.home', ['dmc.configs.ngmaterial', 'ngMdIcons', 'ui.router', 
     ]};
   $stateProvider
     .state('home', {
-      onEnter: function($rootScope){
-        if($rootScope.isLogged && $rootScope.userData.roles && $rootScope.userData.roles[$rootScope.userData.companyId]){
-          window.location = '/community.php#/home';
-        }
-      },
      url: '/',
       templateUrl: 'templates/index/index.html',
      resolve: resolver,
