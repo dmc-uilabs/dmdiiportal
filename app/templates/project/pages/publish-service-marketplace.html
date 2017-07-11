@@ -11,12 +11,12 @@
     </div>
   </div>
 </div>
-<div ng-if="serviceData.id" class="publish-service-title">
+<div ng-show="serviceData.id" class="publish-service-title">
 	<div class="content-panel-body">
 		<md-content>Publish Service</md-content>
 	</div>
 </div>
-<div ng-if="serviceData.id" class="container publish-service-marketplace">
+<div ng-show="serviceData.id" class="container publish-service-marketplace">
     <div class="content-panel-body">
         <md-content ng-show="currentPublishPage == 1">
             <div layout="row" flex layout-align="start end" class="service-name">
