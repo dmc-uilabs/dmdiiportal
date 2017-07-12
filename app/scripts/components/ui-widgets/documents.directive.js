@@ -652,16 +652,27 @@ directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function($pa
         }
 
         $scope.allSelected = function() {
-          return $scope.itemsSelected() &&
-            (kCount($scope.selectedDirs) + kCount($scope.selectedFiles) ==
-              $scope.currentDir.children.length + $scope.dirFiles.length);
+          return (kCount($scope.selectedDirs) + kCount($scope.selectedFiles) ==
+                  $scope.currentDir.children.length + $scope.dirFiles.length);
         }
 
         function kCount(obj) {
-          return Object.keys(obj).length;
+          return Object.values(obj).reduce(sumChecked, 0);
         }
 
-        $scope.toggle = function() {
+        function sumChecked(val, sum){
+          return sum + (val == true);
+        }
+
+        $scope.toggleDir = function(id) {
+          selectedDirs[id] = selectedDirs[id] ? false : true;
+        }
+
+        $scope.toggleFile = function(id){
+          selectedFiles[id] = selectedFiles[id] ? false : true;
+        }
+
+        $scope.toggleAll = function() {
           if ($scope.allSelected()) {
             resetSelection();
           } else {
