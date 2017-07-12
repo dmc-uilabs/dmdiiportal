@@ -11,7 +11,7 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
             } else {
                 hasCallback = true;
             }
-            
+
             var sanitizeFilename = function (filename){
               /*//////////////////////////////////
               From Amazon documentation:
@@ -27,16 +27,16 @@ angular.module('dmc.model.fileUpload', ['dmc.data'])
                       ascii 128-255 (non printable)
                       \ ^ ` > < { } [ ] # % " ~ |
               *////////////////////////////////////
-              
+
               // Remove all non printable ascii characters
               var sanitized_filename = filename.replace(/[^ -~]/g, '');
-              
+
               // Remove the special characters given in the avoid list
               sanitized_filename = sanitized_filename.replace(/[\\\^`><{}\[\]#%"~|]/g, '');
-              
+
               // Replace the special characters given in the replace list along with some safe non alphanumeric chars with url encoding
               sanitized_filename = sanitized_filename.replace(/[\s&@:,$=+?;!*'()]/g, function(c) {return c.charCodeAt(0).toString(16);});
-              
+
               return sanitized_filename;
             }
 

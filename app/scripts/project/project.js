@@ -1084,6 +1084,15 @@ angular.module('dmc.project', [
                 )
             };
 
+            this.get_servers_secure = function(callback){
+                return ajax.get(dataFactory.getServerSecureUrl($rootScope.userData.accountId),
+                    {},
+                    function(response){
+                        callback(response.data)
+                    }
+                )
+            };
+
             this.add_servers = function(params,callback){
                 return ajax.create(dataFactory.serverURL().create,
                     params,
