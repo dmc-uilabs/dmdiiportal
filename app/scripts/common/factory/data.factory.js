@@ -728,6 +728,9 @@ return {
       getAccountServersUrl: function(id) {
         return localhost + 'accounts/' + id + '/account_servers';
       },
+      getServerSecureUrl: function(id) {
+        return localhost + 'accounts/' + id + '/servers';
+      },
       // ---------------------------
       getServices: function(projectId) {
         if (projectId) {
