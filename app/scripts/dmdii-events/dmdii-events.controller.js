@@ -111,8 +111,8 @@ angular.module('dmc.dmdiiEvents')
 
             $scope.getEvents = function(){
                 ajax.get(dataFactory.dmdiiMemberEventUrl().get, {limit: 1000}, addMemEvents);
-                ajax.get(dataFactory.dmdiiProjectEventUrl().get, {page: 0, pageSize: 100}, addProjEvents);
-                ajax.get(dataFactory.getDMDIIProject().all, {limit: 1000}, addDMDIIEvents);
+                ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 1000}, addProjEvents);
+                ajax.get(dataFactory.getDMDIIProject().all, {page: 0, pageSize: 100}, addDMDIIEvents);
             };
 
             $scope.getEvents();
