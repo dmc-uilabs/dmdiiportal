@@ -25,6 +25,24 @@ angular.module('dmc.project')
             projectCtrl.projectData = projectData;
 
             $scope.projectData = projectData;
+            $scope.projectData.dueDate=projectData.origDueDate;
+
+
+            $scope.addMembersWp = function(ev){
+              $mdDialog.show({
+                  controller: 'AddMembersController',
+                  locals:{testAtul:$scope.testAtul},
+                  templateUrl:'templates/components/add-project/ap-tab-two.html',
+                  parent: angular.element(document.body),
+                  targetEvent: ev,
+                  fullscreen:true,
+                  clickOutsideToClose:true
+              }).then(function(invitees){
+                $scope.invitees= invitees;
+              })
+
+            }
+
 
             if ($scope.projectData.isPublic) {
                 $scope.projectData.type = 'public';
@@ -42,6 +60,25 @@ angular.module('dmc.project')
                 secondLocked : true,
                 thirdLocked : true,
                 fourthLocked : true
+            };
+
+            $scope.projectState = "EDIT WORKSPACE";
+            $scope.editState = true;
+
+
+            $scope.addTag = function(newTag){
+                $scope.projectData.tags.push({
+                    name : newTag
+                });
+                $scope.newTag = null;
+            };
+
+            $scope.deleteTag = function(index,tag){
+                if(tag.id > 0){
+                    tag.deleted = true;
+                }else{
+                    $scope.projectData.tags.splice(index,1);
+                }
             };
 
             $scope.invitees = [];
@@ -132,7 +169,11 @@ angular.module('dmc.project')
                 return '';
             });
 
-            $scope.updateProject = function(data) {
+            $scope.updateProject = function(details) {
+
+                setProjectDetails(details);
+
+                var new_invitees=$scope.invitees;
                 $scope.goSaveProject = true;
                 $(window).unbind('beforeunload');
 
@@ -143,7 +184,7 @@ angular.module('dmc.project')
                 }
                 newProject.documents = $scope.documents;
 
-                projectModel.update_project(projectCtrl.currentProjectId, projectCtrl.projectData.directoryId, newProject, data, currentMembers, function(data){
+                projectModel.update_project(projectCtrl.currentProjectId, projectCtrl.projectData.directoryId, newProject, new_invitees, currentMembers, function(data){
                     document.location.href = 'project.php#/'+projectCtrl.currentProjectId+'/home';
                 });
             };
@@ -152,33 +193,7 @@ angular.module('dmc.project')
                 $scope.enableNext($(this).index()+2);
             });
 
-            $scope.goToNextTab = function(number, obj){
-                $(window).scrollTop(0);
-                if (obj) {
-                    setProjectDetails(obj);
-                }
-                $scope.selectedIndex = number-1;
-                if(number == 2){
-                    $scope.data.thirdLocked = false;
-                }else if(number == 3){
-                    $scope.data.fourthLocked = false;
-                }
-            };
 
-            $scope.disableEnable = function(number,val){
-                var v = (val ? false : true);
-                switch(number){
-                    case 2 :
-                        $scope.data.secondLocked = v;
-                        break;
-                    case 3 :
-                        $scope.data.thirdLocked = v;
-                        break;
-                    case 4 :
-                        $scope.data.fourthLocked = v;
-                        break;
-                }
-            };
 
             $scope.deleteProject = function(ev){
                 questionToastModel.show({

@@ -111,7 +111,8 @@ angular.module('dmc.project', [
         }).state('project.edit', {
             url: '/edit',
             controller: 'EditProjectCtrl as projectCtrl',
-            templateUrl: 'templates/project/pages/edit.html',
+            // templateUrl: 'templates/project/pages/edit.html',
+            templateUrl: 'templates/components/add-project/ap-index.html',
             resolve: resolve
         }).state('project.documents', {
             url: '/documents',

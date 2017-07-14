@@ -34,6 +34,8 @@
     <script src="scripts/components/ui-widgets/documents.directive.js"></script>
     <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
+    <script src="scripts/add_members/add-members.js"></script>
+    <script src="scripts/add_project/add_project.js"></script>
     <script src="scripts/components/add-project/add-project.directive.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
     <script src="scripts/components/compare/compare.js"></script>
@@ -42,14 +44,12 @@
     <script src="scripts/common/models/project-model.js"></script>
     <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/common/models/member-model.js"></script>
-    <script src="scripts/add_project/add_project.js"></script>
-    <script src="scripts/components/add_project/workspace-form.js"></script>
-    <script src="scripts/add_members/add-members.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
     <script src="scripts/components/members-card/members-card.js"></script>
     <script src="scripts/components/ui-widgets/stars.directive.js"></script>
     <script src="scripts/common/models/file-upload.js"></script>
     <script src="scripts/components/product-card-buttons/product-card-buttons.js"></script>
+    <script src="scripts/components/workspace-header/workspace-header.directive.js"></script>
     <!-- endbuild -->
     <script type="text/javascript">
         <?php
