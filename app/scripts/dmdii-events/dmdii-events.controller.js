@@ -95,7 +95,7 @@ angular.module('dmc.dmdiiEvents')
             }
 
             var addDMDIIEvents = function(events) {
-              events = events.data.data.data;
+              events = events.data.data;
               events = events.filter(function(event){
                 return (event.dmdiiFunding == 5983) && (event.costShare == 8395)
               })
