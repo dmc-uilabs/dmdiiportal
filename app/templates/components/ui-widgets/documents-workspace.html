@@ -68,7 +68,7 @@
 								<md-checkbox ng-model="selectedFiles[file.id]" aria-label="toggle-selections">
 								</md-checkbox>
 							</td>
-              <td ng-click="downloadFile(file, $event)">
+              <td ng-click="showDlDialog(file, $event)">
 									<a href>
 	                    <ng-md-icon icon="insert_drive_file" style="fill: #666" size="35"></ng-md-icon>
 											<span>{{file.documentName}}</span>

@@ -394,10 +394,10 @@ directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function($pa
       $mdDialog.hide($scope.documents);
     }
   }])
-  .controller('DocDlCtrl', ['$scope', '$mdDialog', 'file', 'ajax', 'dataFactory', function($scope, $mdDialog, file, ajax, dataFactory) {
+  .controller('DocDlCtrl', ['$scope', '$mdDialog', 'file', 'ajax', 'dataFactory', '$http', function($scope, $mdDialog, file, ajax, dataFactory, $http) {
     $scope.file = file;
 
-    ajax.get(dataFactory.documentsUrl(file.baseDocId).versioned, {}, function(response) {
+    ajax.get(dataFactory.documentsUrl(file.baseDocId).s_versioned, {}, function(response) {
       $scope.docs = response.data;
       $scope.currentDoc = response.data.slice(-1)[0];
     });
@@ -405,6 +405,11 @@ directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function($pa
     $scope.ok = function() {
       $mdDialog.hide();
     }
+
+    $scope.downloadFile = function(id) {
+      window.location = dataFactory.documentsUrl(id).download;
+    }
+
   }])
   .controller('DocCtrl', ['$scope', '$mdDialog', 'file', 'ajax', 'dataFactory', function($scope, $mdDialog, file, ajax, dataFactory) {
     $scope.file = {};
@@ -474,7 +479,7 @@ directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function($pa
       'dmc_workspace': 'DMC Workspace',
     };
 
-    ajax.get(dataFactory.documentsUrl(file.baseDocId).versioned, {}, function(response) {
+    ajax.get(dataFactory.documentsUrl(file.baseDocId).s_versioned, {}, function(response) {
       $scope.docs = response.data;
       $scope.currentDoc = response.data.slice(-1)[0];
     });
@@ -727,9 +732,11 @@ directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function($pa
 
             if (newVersion) {
               fileUpload.uploadFileToUrl(newVersion.file, {}, newVersion.title + newVersion.type).then(function(response) {
+                var fileName = newVersion.title + newVersion.type;
                 newVersion = {};
                 angular.copy(file, newVersion);
                 newVersion.documentUrl = response.file.name;
+                newVersion.documentName = fileName;
                 return ajax.put(dataFactory.documentsUrl().save, newVersion, function(resp) {});
               });
             }
@@ -743,7 +750,7 @@ directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function($pa
           });
         }
 
-        $scope.downloadFile = function(file, ev) {
+        $scope.showDlDialog = function(file, ev) {
           $mdDialog.show({
             controller: 'DocDlCtrl',
             templateUrl: 'templates/components/ui-widgets/workspace/doc-download.html',
@@ -757,6 +764,7 @@ directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function($pa
             //handled in modal
           });
         };
+
         // This is only a placeholder to loosely structure the options around sharing
         $scope.shareOptions = [{
             name: "DMC Member",
@@ -926,7 +934,7 @@ directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function($pa
         }
 
         function getFiles() {
-          ajax.get(dataFactory.directoriesUrl($scope.currentDir.id).files, {}, function(docResp) {
+          ajax.get(dataFactory.directoriesUrl($scope.currentDir.id).s_files, {}, function(docResp) {
             $scope.dirFiles = docResp.data || [];
           });
         }

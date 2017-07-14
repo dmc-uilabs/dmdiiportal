@@ -15,6 +15,11 @@ angular.module('dmc.account').directive('accountMenu', [function () {
                     url : '/account.php#/'+$scope.accountId+'/basics',
                     selected : ($scope.page == 'basics' ? true : false)
                 },
+                profile : {
+                    title : pageTitles.profile,
+                    url : '/account.php#/'+$scope.accountId+'/profile',
+                    selected : ($scope.page == 'profile' ? true : false)
+                },
                 privacy : {
                     title : pageTitles.privacy,
                     url : '/account.php#/'+$scope.accountId+'/privacy',

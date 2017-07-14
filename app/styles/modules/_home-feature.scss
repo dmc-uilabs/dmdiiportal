@@ -58,6 +58,43 @@
   }
 }
 
+.home{
+  background: white;
+	padding: 40px;
+  padding-top: 0px;
+}
+
 .home-header{
-  height: 100px;
+  h1{
+    font-size: 42px;
+    color: map-get($colors, secondary);
+    font-weight: lighter;
+  }
+  .social-button{
+    md-icon{
+      width: 40px;
+      height: 40px;
+      padding-left: 5px;
+      svg{
+        fill: map-get($colors, secondary);
+      }
+    }
+    &:hover{
+      md-icon svg{
+        fill: map-get($colors, primary);
+      }
+    }
+  }
+}
+
+.home-theater{
+  margin-top: -40px;
+  //max-width: 900px;
+  //min-height: 300px;
+  //background: #000000;
+}
+
+.md-padding{
+  padding-top: 0;
+  padding-bottom: 0;
 }

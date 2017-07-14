@@ -1337,4 +1337,3 @@ function upload_edit_profile_picture($params,$file){
 }
 
 ?>
-
