@@ -302,6 +302,9 @@ angular.module('dmc.project')
                     if('outputTemplate' in $scope.service.interfaceModel.outParams){
                       updateCustomUIForOutputs();
                     }
+                } else if (response.data.status == 2) {
+                  // run has been cancelled
+                  stopPolling();
                 } else {
                     // model still running
                 }
