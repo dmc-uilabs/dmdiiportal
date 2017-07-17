@@ -27,7 +27,8 @@ angular.module('dmc.project')
                   $rootScope,
                   domeModel,
                   $state,
-                  $compile) {
+                  $compile,
+                  questionToastModel) {
 
             $scope.ServiceId = $stateParams.ServiceId;
             $scope.rerun = (angular.isDefined($stateParams.rerun) ? $stateParams.rerun : null);
@@ -247,22 +248,22 @@ angular.module('dmc.project')
             };
 
             // TODO add logic to get the most recent (prior) status
-            // function getStatus(status){
-            //     switch(status){
-            //         case 0:
-            //             return 'running';
-            //             break;
-            //         case 1:
-            //             return 'success';
-            //             break;
-            //         case -1:
-            //             return 'error';
-            //             break;
-            //         default:
-            //             return status;
-            //             break;
-            //     }
-            // }
+            function getStatus(status){
+                switch(status){
+                    case 0:
+                        return 'running';
+                        break;
+                    case 1:
+                        return 'success';
+                        break;
+                    case -1:
+                        return 'error';
+                        break;
+                    default:
+                        return status;
+                        break;
+                }
+            }
 
             $scope.isRunning = function() {
                 return angular.isDefined(pollingInterval) ? true : false;
@@ -497,6 +498,25 @@ angular.module('dmc.project')
                 document.getElementById(fieldId).value = response.data.myVPC;
               });
             }
+
+            $scope.cancelServiceRun = function(event,item){
+                questionToastModel.show({
+                    question: "Are you sure you want to cancel this service run?",
+                    buttons: {
+                        ok: function(){
+                          ajax.create(dataFactory.cancelServiceRun(item.currentStatus.id), {}, function(response){
+                              updateServiceStatus(item, response.data);
+                              toastModel.showToast("success", "Service run cancelled");
+                          }, function(response){
+                            console.log(response)
+                            toastModel.showToast("error", response.data ? response.data : response.statusText)
+                          });
+                        },
+                        cancel: function(){}
+                    }
+                }, event);
+
+            };
 
         }
     ]
