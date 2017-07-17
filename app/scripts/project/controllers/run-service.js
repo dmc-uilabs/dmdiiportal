@@ -14,6 +14,7 @@ angular.module('dmc.project')
         'domeModel',
         '$state',
         '$compile',
+        'questionToastModel',
         function ($scope,
                   $stateParams,
                   projectData,

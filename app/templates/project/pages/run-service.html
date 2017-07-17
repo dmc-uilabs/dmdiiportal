@@ -10,6 +10,11 @@
       </a>
     </div>
 
+    <span flex></span>
+    <md-button ng-disabled="!isRunning()" ng-click="cancelServiceRun($event,service)" class="md-raised md-warn">
+      Cancel
+    </md-button>
+
     <md-button ng-disabled="isRunning()" ng-click="run()" class="md-raised md-primary">
       Run
     </md-button>
