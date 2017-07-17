@@ -51,7 +51,6 @@
     <script src="scripts/common/models/project-model.js"></script>
     <script src="scripts/common/models/task-model.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
-    <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/file-upload.js"></script>
     <script src="scripts/common/models/services.model.js"></script>
