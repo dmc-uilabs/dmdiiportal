@@ -35,7 +35,7 @@
                     <md-menu-content class="message-container header-menu-content notifications-list">
                         <div class="zone-top" layout="row" layout-align="space-between center">
                             <h3>Notifications</h3>
-                            <md-button id="view-all-notifications" md-no-ink href="/notifications.php#/user" ng-click="viewAll" class="view-all-link">VIEW ALL</md-button>
+                            <md-button id="view-all-notifications" md-no-ink href="/notifications.php#/user" ng-click="viewAll" class="view-all-link">View All</md-button>
                         </div>
                         <md-menu-item ng-repeat="item in getNotifications() | orderBy:'-created' track by $index" ng-if="item.unread" ng-class="{'not-read' : item.unread}">
                         <!-- <md-menu-item ng-repeat="item in userData.notifications | limitTo:5 track by $index" ng-if="!item.cleared && !item.deleted" ng-class="{'not-read' : item.unread}">   -->
@@ -196,7 +196,7 @@
                                     <md-button id="add-dmdii-content-small" href="/add-dmdii-content.php">
                                       <div layout="row" layout-align="space-between center">
                                         Add DMDII Content
-                                        <ng-md-icon icon="settings"></ng-md-icon>
+                                        <ng-md-icon icon="settings" style="vertical-align: middle; display:inline-block; line-height:1;"></ng-md-icon>
                                       </div>
                                     </md-button>
                                 </md-menu-item>
@@ -204,7 +204,7 @@
                                     <md-button id="create-dmdii-member-small" href="/edit-member-page.php">
                                       <div layout="row" layout-align="space-between center">
                                         Create DMDII Member
-                                        <ng-md-icon icon="settings"></ng-md-icon>
+                                        <ng-md-icon icon="settings" style="vertical-align: middle; display:inline-block; line-height:1;"></ng-md-icon>
                                       </div>
                                     </md-button>
                                 </md-menu-item>
@@ -212,7 +212,7 @@
                                     <md-button id="create-dmdii-project-small" href="/edit-dmdii-project-page.php">
                                       <div layout="row" layout-align="space-between center">
                                         Create DMDII Project
-                                        <ng-md-icon icon="settings"></ng-md-icon>
+                                        <ng-md-icon icon="settings" style="vertical-align: middle; display:inline-block; line-height:1;"></ng-md-icon>
                                       </div>
                                     </md-button>
                                 </md-menu-item>
@@ -334,7 +334,7 @@
                                 <md-button id="add-dmdii-content" href="/add-dmdii-content.php">
                                   <div layout="row" layout-align="space-between center">
                                     Add DMDII Content
-                                    <ng-md-icon icon="settings"></ng-md-icon>
+                                    <ng-md-icon icon="settings" style="vertical-align: middle; display:inline-block; line-height:1;"></ng-md-icon>
                                   </div>
                                 </md-button>
                             </md-menu-item>
@@ -342,7 +342,7 @@
                                 <md-button id="create-dmdii-member" href="/edit-member-page.php">
                                   <div layout="row" layout-align="space-between center">
                                     Create DMDII Member
-                                    <ng-md-icon icon="settings"></ng-md-icon>
+                                    <ng-md-icon icon="settings" style="vertical-align: middle; display:inline-block; line-height:1;"></ng-md-icon>
                                   </div>
                                 </md-button>
                             </md-menu-item>
@@ -350,7 +350,7 @@
                                 <md-button id="create-dmdii-project" href="/edit-dmdii-project-page.php">
                                   <div layout="row" layout-align="space-between center">
                                     Create DMDII Project
-                                    <ng-md-icon icon="settings"></ng-md-icon>
+                                    <ng-md-icon icon="settings" style="vertical-align: middle; display:inline-block; line-height:1;"></ng-md-icon>
                                   </div>
                                 </md-button>
                             </md-menu-item>

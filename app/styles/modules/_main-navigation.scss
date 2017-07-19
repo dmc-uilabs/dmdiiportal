@@ -8,6 +8,13 @@ $navigation: #FFF;
 $navigationArrow: #65AF3F;
 $navigationActive: #65AF3F;
 
+a:focus{
+  color: map-get($colors, primary);
+}
+a:hover{
+  color: map-get($colors, primary);
+}
+
 div[dmc-top-header]{
   z-index: 99;
   position: relative;
@@ -366,6 +373,7 @@ div[dmc-top-header]{
     }
     .view-all-link{
       text-transform: uppercase;
+      font-size: 12px;
     }
     md-menu-item{
       max-height: none;
