@@ -260,9 +260,13 @@ div[dmc-top-header]{
           opacity: .7;
           margin-left:4px;
         }
-        .md-select-value .md-select-icon{
-          margin-left:-6px;
-          margin-bottom:3px;
+        .md-select-value {
+          //margin-right: -3px;
+          .md-select-icon{
+            margin-left:-6px;
+            margin-bottom:3px;
+            //margin-right: 5px;
+          }
         }
       }
     }
