@@ -16,6 +16,7 @@ angular.module('dmc.dmdiiEvents')
         'DMCUserModel',
         '$mdDialog',
         '$window',
+        '$http',
         function($state,
                  $stateParams,
                  $scope,
@@ -29,7 +30,8 @@ angular.module('dmc.dmdiiEvents')
                 //  is_search,
                  DMCUserModel,
                  $mdDialog,
-                 $window){
+                 $window,
+                 $http){
 
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -77,9 +79,13 @@ angular.module('dmc.dmdiiEvents')
             // }
 
             var addMemEvents = function(response) {
-              $scope.events = $scope.events.concat(response.data);
-              eventSourcesLoaded++;
-              sortEvents($scope.events);
+                var eventsToAdd = response.data;
+                for (var i = 0; i < eventsToAdd.length; i++) {
+                    eventsToAdd[i].type = 'member';
+                }
+                $scope.events = $scope.events.concat(eventsToAdd);
+                eventSourcesLoaded++;
+                sortEvents($scope.events);
             }
 
             var addProjEvents = function(events) {
@@ -88,6 +94,7 @@ angular.module('dmc.dmdiiEvents')
                 events[i].date = events[i].eventDate;
                 events[i].name = events[i].eventName;
                 events[i].description = events[i].eventDescription;
+                events[i].type = 'project';
               }
               $scope.events = $scope.events.concat(events);
               eventSourcesLoaded++;
@@ -103,6 +110,7 @@ angular.module('dmc.dmdiiEvents')
                 events[i].date = events[i].awardedDate;
                 events[i].name = events[i].projectTitle;
                 events[i].description = events[i].projectSummary;
+                events[i].type = 'dmdii';
               }
               $scope.events = $scope.events.concat(events);
               eventSourcesLoaded++;
@@ -198,6 +206,27 @@ angular.module('dmc.dmdiiEvents')
                 dmdiiEvent.documents = response.data;
               });
             }
+            
+            $scope.deleteEvent = function(index, eventId) {
+                var eventToDelete = $scope.events[index];
+                switch (eventToDelete.type) {
+                    case 'member':
+                        $http.delete(dataFactory.dmdiiMemberEventUrl(eventId).delete).then(function(response){
+                            $scope.events.splice(index, 1);
+                        });
+                        break;
+                    case 'project':
+                        $http.delete(dataFactory.dmdiiProjectEventUrl(eventId).delete).then(function(response){
+                            $scope.events.splice(index, 1);
+                        });
+                        break;
+                    case 'dmdii':
+                        $http.delete(dataFactory.deleteEvent(eventId)).then(function(response){
+                            $scope.events.splice(index, 1);
+                        });
+                        break;
+                }
+            };
 
         }
     ]

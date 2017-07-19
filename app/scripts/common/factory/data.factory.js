@@ -446,6 +446,9 @@ return {
       getEvents: function() {
         return localhost + 'events';
       },
+      deleteEvent: function (id) {
+          return localhost + 'events/' + id;
+      },
       getAnnouncements: function() {
         return localhost + 'announcements';
       },
