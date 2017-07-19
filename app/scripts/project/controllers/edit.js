@@ -31,14 +31,21 @@ angular.module('dmc.project')
             $scope.addMembersWp = function(ev){
               $mdDialog.show({
                   controller: 'AddMembersController',
-                  locals:{testAtul:$scope.testAtul},
                   templateUrl:'templates/components/add-project/ap-tab-two.html',
                   parent: angular.element(document.body),
+                  locals:{dataToPass: $scope.invitees},
                   targetEvent: ev,
                   fullscreen:true,
                   clickOutsideToClose:true
               }).then(function(invitees){
                 $scope.invitees= invitees;
+                $scope.invitees.map(function(a) {
+                  var newMember = a.displayName;
+                  // var newMember= a.firstName + ' ' + a.lastName;
+                  if ($scope.currentMembers.indexOf(newMember)==-1){
+                    $scope.currentMembers.push(newMember);
+                  }
+                });
               })
 
             }
@@ -83,7 +90,8 @@ angular.module('dmc.project')
 
             $scope.invitees = [];
             $scope.documents = [];
-            var currentMembers = [];
+            $scope.currentMembers = [];
+            var currentMembersId=[];
 
             function apply() {
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -95,7 +103,7 @@ angular.module('dmc.project')
                     var profileIds = $.map(response.data, function (x) {
                         return x.profileId;
                     });
-                    currentMembers = $.map(response.data, function (x) {
+                    currentMembersId = $.map(response.data, function (x) {
                         return {
                             id : x.id,
                             profileId : x.profileId
@@ -107,6 +115,12 @@ angular.module('dmc.project')
                             id: profileIds
                         }, function (res) {
                             $scope.invitees = res.data;
+                            $scope.invitees.map(function(a) {
+                              var newMember = a.displayName;
+                              if ($scope.currentMembers.indexOf(newMember)==-1){
+                                $scope.currentMembers.push(newMember);
+                              }
+                            });
                             apply();
                         });
                     }
@@ -184,7 +198,8 @@ angular.module('dmc.project')
                 }
                 newProject.documents = $scope.documents;
 
-                projectModel.update_project(projectCtrl.currentProjectId, projectCtrl.projectData.directoryId, newProject, new_invitees, currentMembers, function(data){
+
+                projectModel.update_project(projectCtrl.currentProjectId, projectCtrl.projectData.directoryId, newProject, new_invitees, currentMembersId, function(data){
                     document.location.href = 'project.php#/'+projectCtrl.currentProjectId+'/home';
                 });
             };

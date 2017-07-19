@@ -24,18 +24,28 @@ angular.module('dmc.add_project.directive', [
                 {name: 'question_answer', color: 'rgb(89, 226, 168)'}
             ];
 
+            $scope.hello="hello baby";
+            $scope.invitees = [];
+
+
+            $scope.currentMembers=[]
             $scope.addMembersWp = function(ev){
               $mdDialog.show({
                   controller: 'AddMembersController',
-                  locals:{testAtul:$scope.testAtul},
-                  // templateUrl: 'templates/add_members/add-members.html',
                   templateUrl:'templates/components/add-project/ap-tab-two.html',
                   parent: angular.element(document.body),
                   targetEvent: ev,
+                  locals:{dataToPass: $scope.invitees},
                   fullscreen:true,
                   clickOutsideToClose:true
               }).then(function(invitees){
                 $scope.invitees= invitees;
+                $scope.invitees.map(function(a) {
+                  var newMember = a.displayName;
+                  if ($scope.currentMembers.indexOf(newMember)==-1){
+                    $scope.currentMembers.push(newMember);
+                  }
+                });
               })
 
             }
@@ -97,7 +107,6 @@ angular.module('dmc.add_project.directive', [
 
             $scope.createNewProject = function(details) {
 
-
                 setProjectDetails(details);
                 var invitees = $scope.invitees;
 
@@ -115,9 +124,9 @@ angular.module('dmc.add_project.directive', [
                 $(window).unbind('beforeunload')
                 newProject.documents = $scope.documents;
 
-                // projectModel.add_project(newProject, invitees, function(data){
-                //     document.location.href = 'project.php#/'+data+'/home';
-                // });
+                projectModel.add_project(newProject, invitees, function(data){
+                    document.location.href = 'project.php#/'+data+'/home';
+                });
             };
 
 
@@ -125,7 +134,6 @@ angular.module('dmc.add_project.directive', [
                     $scope.projectData.tags.push({
                         name : newTag
                     });
-                    console.log($scope.projectData);
                     $scope.newTag = null;
                 };
 
@@ -145,7 +153,7 @@ angular.module('dmc.add_project.directive', [
             // Invitees
             $scope.subject = 'Pat has invited you to join the project.';
             $scope.message = 'We seek a power transformer with improved heat losses relative to a standard iron core transformer. Cost and time to delivery are also critical. The attached documents give detailed specs and the attached Evaluator Service encompasses how we will value the trade-offs among heat loss, cost, and delivery time.';
-            $scope.invitees = [];
+
         }]
     };
 }])
@@ -157,9 +165,9 @@ angular.module('dmc.add_project.directive', [
         'toastModel',
         'ajax',
         '$mdDialog',
+        'dataToPass',
         'dataFactory',
         '$cookieStore',
-        'testAtul',
         function ($scope,
                   DMCMemberModel,
                   projectModel,
@@ -167,9 +175,9 @@ angular.module('dmc.add_project.directive', [
                   toastModel,
                   ajax,
                   $mdDialog,
+                  dataToPass,
                   dataFactory,
-                  $cookieStore,
-                  testAtul) {
+                  $cookieStore) {
             DMCMemberModel.getMembers().then(
                 function(data){
                     $scope.foundMembers = data;
@@ -178,10 +186,12 @@ angular.module('dmc.add_project.directive', [
                 function(data){}
             );
 
+
             $scope.compare = [];
-            $scope.invitees = [];
             $scope.favorites = [];
             $scope.showFavoritesFlag = false;
+
+            $scope.invitees=dataToPass;
 
             function isInvite(){
                 for(var i in $scope.foundMembers){
@@ -225,24 +235,26 @@ angular.module('dmc.add_project.directive', [
                 isInvite();
             });
 
-            var currentMembers = [];
+            var currentMembersId = [];
             $scope.getMembers = function () {
                 ajax.get(dataFactory.projectMembers($stateParams.projectId), {}, function (response) {
                     var profileIds = $.map(response.data, function (x) {
                         return x.profileId;
                     });
-                    currentMembers = $.map(response.data, function (x) {
+                    currentMembersId = $.map(response.data, function (x) {
                         return {
                             id : x.id,
                             profileId : x.profileId
                         };
                     });
-                    $scope.invitees = response.data;
+
+
                     if(profileIds.length > 0) {
                         ajax.get(dataFactory.profiles().all, {
                             id: profileIds
                         }, function (res) {
-                            $scope.invitees = res.data;
+                            $scope.invitees=$scope.invitees||[]
+                            $scope.invitees.concat(res.data);
                             apply();
                         });
                     }
@@ -327,6 +339,8 @@ angular.module('dmc.add_project.directive', [
                 apply();
             };
 
+
+
             $scope.addToFavorite = function(item){
                 var found = false;
                 for(var i in $scope.favorites){
@@ -353,7 +367,7 @@ angular.module('dmc.add_project.directive', [
 
 
             $scope.send = function(){
-                projectModel.add_members_to_project($scope.invitees,currentMembers, function(){
+                projectModel.add_members_to_project($scope.invitees,currentMembersId, function(){
                     $cookieStore.put('toast', 'Invitations Sent');
                     $(window).unbind('beforeunload');
                     $scope.$on('$locationChangeStart', function (event, next, current) {});

@@ -9,6 +9,25 @@
     @extend .form_fields;
     margin-right:100px;
   }
+  .list-comma::after {
+    content: ' , ';
+  }
+  .list-comma:last-child::after {
+    content: '';
+  }
+  .documentUpload{
+    margin-left:5px;
+  }
+  h5{
+    font-weight:normal;
+    padding-right:5px;
+    margin:5px 0px;
+  }
+  h4{
+    font-weight:bold;
+    padding-right:10px;
+    margin:5px 0px;
+  }
 
   h2{
     font-weight:100;
@@ -16,7 +35,7 @@
   }
 
   ng-md-icon{
-    padding-left: 10px;
+    padding-left: 5px;
   }
 
   .form_fields{

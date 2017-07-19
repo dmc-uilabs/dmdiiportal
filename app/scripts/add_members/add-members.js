@@ -8,6 +8,7 @@ angular.module('dmc.add_members', [
   'dmc.data',
   'dmc.widgets.documents',
   'dmc.component.members-card',
+  'dmc.add_project.directive',
   'dmc.compare',
   'dmc.common.header',
   'dmc.common.footer',
