@@ -1,0 +1,412 @@
+[
+  {
+    "content": "Logo Bar",
+    "notes":
+    [
+      {
+        "content": "Logo",
+        "notes":
+        [
+          {
+            "content": "DMC Activities",
+            "notes":
+            [
+              {
+                "content": "Activities Page Double Loading",
+                "notes":
+                [
+                  {
+                    "content": "Active users of the website will also notice that when visiting this page, the load time is much quicker as we are no longer double loading this page, which was a bug that was introduced a few releases ago.",
+                    "class": "release-bug"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "content": "Notifications"
+      },
+      {
+        "content": "Display-name Drop-down Menu",
+        "notes":
+        [
+          {
+            "content": "My Account",
+            "notes":
+            [
+              {
+                "content": "Account Basics"
+              },
+              {
+                "content": "Profile"
+              },
+              {
+                "content": "Privacy"
+              },
+              {
+                "content": "Notifications"
+              }
+            ]
+          },
+          {
+            "content": "My Organization",
+            "notes":
+            [
+              {
+                "content": "Updated VPC Form Layout",
+                "notes":
+                [
+                  {
+                    "content": "Previous to this updated when interacting with an organization's VPC form, the ability to add additional capabilities would not work properly. Additionally removing fields would cause the Should Cost Application to not properly. This fix now allows organizational administrators to add new fields to their organization's VPC without breaking the Should Cost application as well as being able to easily reset the VPC form to allow starting over to be easier.",
+                    "class": "release-feature"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "content": "Searching",
+        "notes":
+        [
+          {
+            "content": "Individuals",
+            "notes":
+            [
+              {
+                "content": "User Profile page"
+              }
+            ]
+          },
+          {
+            "content": "Organizations",
+            "notes":
+            [
+              {
+                "content": "Organization Profile page"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "content":"Header",
+    "notes":
+    [
+      {
+        "content": "About",
+        "notes":
+        [
+          {
+            "content": "About the DMC",
+            "notes":
+            [
+              {
+                "content": "Static Content for IE and Edge Internet Browsers",
+                "notes":
+                [
+                  {
+                    "content": "The content on this page used to become squashed and centered making the content very difficult to consumer but this issue has been fixed.",
+                    "class": "release-bug"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "content": "DMC Academia",
+            "notes":
+            [
+              {
+                "content": "Static Content for IE and Edge Internet Browsers",
+                "notes":
+                [
+                  {
+                    "content": "The content on this page used to become squashed and centered making the content very difficult to consumer but this issue has been fixed.",
+                    "class": "release-bug"
+                  }
+                ]
+              },
+              {
+                "content": "Manufacturing Extension Partnership",
+                "notes":
+                [
+                  {
+                    "content": "The DMC has consolidated very valuable information about the MEP (Manufacturing Extention Partnership) and can now be consumed on the DMC Academia page.",
+                    "class": "release-content"
+                  }
+                ]
+              },
+              {
+                "content": "Job Taxonomy",
+                "notes":
+                [
+                  {
+                    "content": "DMDII has completed work on creating a Job Taxonomy and the learnings of this has been consolidated by the DMC and can now be consumed on the DMC Academia page.",
+                    "class": "release-content"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "content": "DMC Security",
+            "notes":
+            [
+              {
+                "content": "Static Content for IE and Edge Internet Browsers",
+                "notes":
+                [
+                  {
+                    "content": "The content on this page used to become squashed and centered making the content very difficult to consumer but this issue has been fixed.",
+                    "class": "release-bug"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "content": "DMC Releases",
+            "notes":
+            [
+              {
+                "content": "Static Content for IE and Edge Internet Browsers",
+                "notes":
+                [
+                  {
+                    "content": "The content on this page used to become squashed and centered making the content very difficult to consumer but this issue has been fixed.",
+                    "class": "release-bug"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "content": "Marketplace",
+        "notes":
+        [
+          {
+            "content": "Application Profile page"
+          }
+        ]
+      },
+      {
+        "content": "Workspaces",
+        "notes":
+        [
+          {
+            "content": "Workspaces Directory",
+            "notes":
+            [
+              {
+                "content": "Sorting in Workspace Directory",
+                "notes":
+                [
+                  {
+                    "content": "In a previous release, we updated the user interface for the workspaces directory as well as provided the ability for users to sort workspaces they are viewing in the directory list. After that release, when workspaces were being sorted by the date of workspace creation or by the name of the workspace, results would not filter appropriately and would give unexpected results. Now when sorting results, all results are sorted as expects and sorting continues sorting appropriately when clicking next.",
+                    "class": "release-bug"
+                  }
+                ]
+              },
+              {
+                "content": "Filtering in Workspace Directory",
+                "notes":
+                [
+                  {
+                    "content": "In a previous release, we updated the user interface for workspaces as well as provided the ability for users to filter workspaces they are viewing in the directory. In that release, filtering would only filter workspaces found on that particular page list, so each next page a user would visit would have a different amount of results depending on the amount of matching results. Now each page users visit has the same number of results and does not repeat information that has been shown to the user on previous pages.",
+                    "class": "release-bug"
+                  }
+                ]
+              },
+              {
+                "content": "Workspace Search in Directory",
+                "notes":
+                [
+                  {
+                    "content": "We have heard multiple times from many of our active users that the ability to search for an existing public or private workspace is something they would really like to have. We are proud to say that in this release we have implemented this very feature. Users can now visit the the workspace directory page and user the new search bar to find a specific workspace.",
+                    "class": "release-feature"
+                  }
+                ]
+              },
+              {
+                "content": "Workspace Profile",
+                "notes":
+                [
+                  {
+                    "content": "Edit Workspace"
+                  },
+                  {
+                    "content": "Home"
+                  },
+                  {
+                    "content": "Discussions"
+                  },
+                  {
+                    "content": "Team"
+                  },
+                  {
+                    "content": "Documents"
+                  },
+                  {
+                    "content": "Tasks"
+                  },
+                  {
+                    "content": "Workspace Services Directory",
+                    "notes":
+                    [
+                      {
+                        "content": "Workspace Searching for Marketplace Apps",
+                        "notes":
+                        [
+                          {
+                            "content": "When trying to add an application to a workspace from the DMC Marketplace page, users used to find they would receive no auto-completed results until they had erased there search criteria entirely and search for the application once more. This is has been fixed and now workspaces always returns the first time they are being searched for when trying to add a marketplace application to a workspace.",
+                            "class": "release-bug"
+                          }
+                        ]
+                      },
+                      {
+                        "content": "Service Profile Page"
+                      },
+                      {
+                        "content": "Application Run page"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "content": "DMDII",
+        "notes":
+        [
+          {
+            "content": "About the DMDII Portal",
+            "notes":
+            [
+              {
+                "content": "Static Content for IE and Edge Internet Browsers",
+                "notes":
+                [
+                  {
+                    "content": "The content on this page used to become squashed and centered making the content very difficult to consumer but this issue has been fixed.",
+                    "class": "release-bug"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "content": "Members",
+            "notes":
+            [
+              {
+                "content": "DMDII Member Profile Page"
+              }
+            ]
+          },
+          {
+            "content": "Projects",
+            "notes":
+            [
+
+              {
+                "content": "Search DMDII Projects by Tag and ID",
+                "notes":
+                [
+                  {
+                    "content": "In terms of popular feature requests, this one is definitely near the top of the list. When visiting the DMDII Projects Directory page, users now can search for DMDII Projects by either a known tag or a project IDs. When searching using a project ID as the search criteria, us the form ##-##-##. If a user uses ##-## as the search criteria, this will return projects that begin with that project number. This means searching for 15-16 will return all 15-16 DMDII Projects.",
+                    "class": "release-feature"
+                  }
+                ]
+              }
+              {
+                "content": "DMDII Project Profile"
+              }
+            ]
+          },
+          {
+            "content": "Events"
+          },
+          {
+            "content": "Add DMDII Content"
+          },
+          {
+            "content": "Create DMDII Member"
+          },
+          {
+            "content": "Create DMDII Project"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "content": "Footer",
+    "notes":
+    [
+      {
+            "content": "FAQs",
+            "notes":
+            [
+              {
+                "content": "Static Content for IE and Edge Internet Browsers",
+                "notes":
+                [
+                  {
+                    "content": "The content on this page used to become squashed and centered making the content very difficult to consumer but this issue has been fixed.",
+                    "class": "release-bug"
+                  }
+                ]
+              }
+            ]
+      },
+      {
+            "content": "Legal",
+            "notes":
+            [
+                  {
+                        "content": "General Terms of Service"
+                  },
+                  {
+                        "content": "Member Terms of Service"
+                  },
+                  {
+                        "content": "Privacy Policy"
+                  },
+                  {
+                        "content": "App SLA"
+                  },
+                  {
+                        "content": "DMCA"
+                  }
+            ]
+      },
+      {
+            "content": "Contact Us",
+            "notes":
+            [
+              {
+                "content": "Static Content for IE and Edge Internet Browsers",
+                "notes":
+                [
+                  {
+                    "content": "The content on this page used to become squashed and centered making the content very difficult to consumer but this issue has been fixed.",
+                    "class": "release-bug"
+                  }
+                ]
+              }
+            ]
+      }
+    ]
+  }
+]
