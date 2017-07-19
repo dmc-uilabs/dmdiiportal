@@ -1,3 +1,4 @@
+
 <div class="onboarding-home">
 	<md-content layout layout-align="center center">
 		<div layout="column"  layout-fills style="max-width:98%">
@@ -42,6 +43,158 @@
 						<h3>During this release, the DMC team focused most efforts on updating and adding content throughout the site to both give the site a new updated look in some locations as well as to give users more ways to learn about the DMC. This being the case you will see many changes on our site related to the DMDII Portal as well as adding a new Learn section to the main menu. Please look to the Relese tree below to find all changes associated with this release to learn more about what changes may effect you.</h3>
 
 				<md-tabs md-dynamic-height md-border-bottom>
+
+					<!-- Release V 0.1.9 -->
+					<md-tab label="V 0.1.9 ">
+						<md-content class="tab-projects">
+							<div layout="column" class="text-row">
+								<div layout="row" style="justify-content:flex-end">
+									<span style="margin-right:40px; margin-top:-11px;"><h4>Released: 6/2/2017</h4></span>
+									<span class="release-bug margin5px" style="margin-right:64px"></span>
+									<span class="release-feature margin5px" style="margin-right:67px"></span>
+									<span class="release-content margin5px"></span>
+								</div>
+								<h2 style="font-weight: 300; text-transform: uppercase; font-size:20px;">Introduction</h2>
+								<p>
+									During this sprint, the DMC team worked to begin implementing changes that were most requested by most users during our DMC Site Usability Testing Day, which was held on June 9, 2017. Many suggestions we received revolved around users' workspace home pages, as well as workspace creation and navigation as a whole. We've gone through a few iterations of possible new layouts and in this release we've updated these sections of the website. Our team plans to hold more usability test every few weeks to continue to get feedback on how we can improve our site for usability. If you are interested in being a DMC Usability Tester, please reach out to <u><a href="mailto:askdmc@uilabs.org" style="color:green">askdmc@uilabs.org</a></u> and we will then make sure to add you to the next Site Usability Test schedule sign-up e-mail.
+								</p>
+								<md-divider></md-divider>
+								<release-tree ng-if="notesV018" notes="notesV019" class="release-tree"></release-tree>
+							</div>
+
+							<md-divider></md-divider>
+
+							<div class="section" layout="row" layout-align="center start" layout-fills>
+								<div class="image">
+									<ng-md-icon icon="settings_ethernet" style="fill: #666" size="50"></ng-md-icon>
+								</div>
+								<div layout="column" flex class="text">
+									<h2>Codebase</h2>
+									<h3>
+										<strong>Cleaner Logging for Rest Machine</strong>
+									</h3>
+									<ul>
+										<li>
+											In a previous release any console logs that were unknown errors were hidden from the browser console and made only available to review through access to our rest machine for safer error logging. In this release we've made it easier for us to read some logs when users are doing actions we consider to be those of an active user. This will make it easier for use to track active users.
+										</li>
+									</ul>
+									<h3>
+										<strong>Hiding DOME IPs in console</strong>
+									</h3>
+									<ul>
+										<li>
+											Running dome applications no logger shows the IP addresses of the DOME machine in the console. We've implemented this change for security reasons, to both keep the servers and app IP safe from nefarious users.
+										</li>
+									</ul>
+								</div>
+							</div>
+
+							<!-- <md-divider></md-divider>
+
+							<div class="section" layout="row" layout-align="center start" layout-fills>
+								<div class="image">
+									<img ng-src="images/icon-marketplace-lg.svg"  style="width: 50px">
+								</div>
+								<div layout="column" flex class="text">
+										<h2>Applications</h2>
+								<p>In this release, we've added two new application to the DMC Marketplace that help to support the new Workflow were have noted in the Codebase section above. Additionally, for the time being, we have removed the two application that were created by Pennsylvania State University (Welding Model and Conceptual Cost Model) from the DMC Marketplace due to issues with the DOME server on which they are being hosted, while we look to fix this issue.</p>
+								<p>The applications listed below have been added to the DMC Marketplace and were created by the DMC team. Learn more about the apps by visiting the DMC Marketplace or at their respective Confluence Wiki pages.</p>
+								<ul>
+									<li>
+										<strong>Should Cost Tool</strong>:Creates a Should Cost Analysis report which is generated from a supplied Technical Data Package and the Virtual Production Capabilities form that organization administrators have filled out.
+										<ul><li>
+											App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Manufacturing+Should+Cost+Analysis+by+DMC" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Manufacturing+Should+Cost+Analysis+by+DMC style="color:green">Manufacturing Should Cost Analysis by DMC</a></u>
+										</li></ul>
+									</li>
+									<li>
+										<strong>Technical Data Package (TDP) Authoring Tool</strong>: Generates an XML formated TDP file based on a .stp CAD file and is used as an input for the Should Cost Analysis.
+										<ul><li>
+											App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Technical+Data+Package+Authoring+Tool+by+DMC" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Technical+Data+Package+Authoring+Tool+by+DMC style="color:green">Technical Data Package Authoring Tool by DMC</a></u>
+										</li></ul>
+									</li>
+								</ul>
+								</h3>
+								</div>
+							</div> -->
+
+							<!-- <md-divider></md-divider>
+
+							<div class="section" layout="row" layout-align="center start" layout-fills>
+								<div class="image">
+									<ng-md-icon icon="assignment" style="fill: #666" size="50"></ng-md-icon>
+								</div>
+								<div layout="column" flex class="text">
+									<h2>New Workflows</h2>
+									<h3>
+										<strong>Bidding to Build a Part</strong>
+									</h3>
+									During this release we worked to try to transform how manufacturers find the right supplier for a part they wish to build. Larger manufacturers may have a few hundred to a couple thousand suppliers, which makes it hard to find the right supplier that can machine a newly designed part. We envision the DMC can be used in the following way to increase productivity:
+									<ol>
+										<li>
+											Manufacturer uploads a .stp file to their private workspace documents page.
+										</li>
+										<li>
+											The manufacturer then uses the Technical Data Packaging Tool application in their private workspace choosing to use the file they've uploaded as an input to the application.
+											<ul>
+												<li>
+													They also specify the coating and material type at this stage.
+												</li>
+											</ul>
+										</li>
+										<li>
+											The manufacturer then creates a new private workspace and invites all their suppliers to it.
+											<ul>
+												<li>
+													They will also share authorization tokens with their suppliers, which are used to run the Manufacturing Should Cost Analysis application.
+												</li>
+												<li>
+													The tokens are also used so that suppliers are not able to gain the system.
+												</li>
+											</ul>
+										</li>
+										<li>
+											The manufacturer then shares the output of the TDP application to their new workspace and allows the files to be accessible to team members of the new workspace.
+										</li>
+										<li>
+											Newly invited suppliers on the DMC have their organization administrators fill out their organization VPCs.
+										</li>
+										<li>
+											Individual suppliers now created their own private workspaces and add the Manufacturing Should Cost Analysis application to it.
+										</li>
+										<li>
+											Suppliers now run the Manufacturing Should Cost Analysis application and use the Manufacturer's supplied file as an input from that shared workspace.
+											<ul>
+												<li>
+													Suppliers at this time will use their one time use authorization tokens to run the application.
+												</li>
+												<li>
+													This will generate a report that can then be saved to their workspace documents page and can then be reviewed before sharing. Suppliers will be give three authorization tokens that allow them to update their VPC in the case they realize they may have entered some information in incorrectly.
+												</li>
+											</ul>
+										</li>
+										<li>
+											Suppliers now share the Should Cost Report from their workspace to a new workspace the Manufacturer has created that is only accessible to the Manufacturer. This means the reports are not viewable by any other competitor.
+										</li>
+										<li>
+											The manufacturer now can make an informed decision on which suppliers have the actual capabilities to create the part they are looking to have made and also know which suppliers may be to costly to use in this case. They can now figure out which suppliers they may want talk to before making their final decision.
+										</li>
+									</ol>
+								</div>
+							</div> -->
+
+								</md-content>
+					</md-tab>
+
+
+
+
+
+
+
+
+
+
+
 
 					<!-- Release V 0.1.8 -->
 					<md-tab label="V 0.1.8 ">
