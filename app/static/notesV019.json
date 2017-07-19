@@ -12,6 +12,16 @@
             "notes":
             [
               {
+                "content": "DMC Activities Page Update",
+                "notes":
+                [
+                  {
+                    "content": "The DMC Activities page has been updated to be more compliant with the look and feel of more of the current site. This page can be visited by clicking on the DMC logo in the top left hand corner of the page. You'll also be taken to this page directly after logging into the website. We've removed discusions for the time being as well as articles as this content had become rather old but may come back in the future.",
+                    "class": "release-feature"
+                  }
+                ]
+              },
+              {
                 "content": "Activities Page Double Loading",
                 "notes":
                 [
@@ -26,7 +36,20 @@
         ]
       },
       {
-        "content": "Notifications"
+        "content": "Notifications",
+        "notes":
+        [
+          {
+            "content": "Notifications for Workspace Administrators",
+            "notes":
+            [
+              {
+                "content": "When a file gets shared to a workspace, the workspace owner will receive a notification to let them know there has been a file shared to their workspace. As before, in order for the file to be viewable by other members of the workspcae the file needs to be accepted by the workspace owner. Clicking on the notification of the file having been shared, this will take the owner to the workspace documents directory where they can either prview the document or accept/decline the document being shared to the members of the workspace.",
+                "class": "release-feature"
+              }
+            ]
+          }
+        ]
       },
       {
         "content": "Display-name Drop-down Menu",
@@ -40,7 +63,20 @@
                 "content": "Account Basics"
               },
               {
-                "content": "Profile"
+                "content": "Profile",
+                "notes":
+                [
+                  {
+                    "content": "My Profile Changes",
+                    "notes":
+                    [
+                      {
+                        "content": "In the past, in order to edit a user's Profile page, the user would simply visit their profile page and then edit the content. Now the user will visit their My Account Page, and go to the My Account tab to make their changes. Users can view their profile in two ways, by clicking on the preview profile button, or searching for their name in the top menu. This has been done so the user has a single place where they manage everythingthing related to their account.",
+                        "class": "release-feature"
+                      }
+                    ]
+                  }
+                ]
               },
               {
                 "content": "Privacy"
@@ -73,6 +109,16 @@
         "notes":
         [
           {
+            "content": "Individuals and Organization Searching",
+            "notes":
+            [
+              {
+                "content": "The original links to the Individuals and Organizations searching pages have been removed. In order to be able to search for an individual is now done by interacting with the search bar now found below the user's display name after logging in. When searching for a user, type in their name, click on the select drop-down item and choose Individuals and finally click the search icon. If searching for an organization, do the same and but choose Organizations instead of Individuals. If you would like to be able to get to the original search pages, simply leave the search field empty, choose an option from the Select drop-down and click on the search icon.",
+                "class": "release-feature"
+              }
+            ]
+          },
+          {
             "content": "Individuals",
             "notes":
             [
@@ -95,9 +141,34 @@
     ]
   },
   {
-    "content":"Header",
+    "content":"Main Menu",
     "notes":
     [
+      {
+        "content": "New Menu Layout",
+        "notes":
+        [
+          {
+            "content": "A few Development sprints ago, the DMC team held a site for usability testing day. One of the things we noticed was how difficult it was for many user to find the pages where they could compete tasks. After re-evaluating all the menu items on our site, we've optimized the layout in the following ways.",
+            "class": "release-feature",
+            "notes":
+            [
+              {
+                "content": "The main menu layout is now the following: About (About DMC, Academia, Security, Releases), Marketplace, Workspaces, DMDII (About the DMDII Portal, Members, Projects Events),(For Sitewide Administrator: Add  DMDII Content, Create DMDII Project, Create DMDII Member)."
+              },
+              {
+                "content": "Display Name Drop-down now has the following sub-menu items: My Account and My Organization."
+              },
+              {
+                "content": "Notification and Invitations have now all been melded into one icon called notifications."
+              },
+              {
+                "content": "Since the beginning the DMC has wanted to have a platform global search option. What we have done is created a site search option that at the moment returns either individual or organization. To use this feature, simply type in the search criteria, choose the search type (Individual or organization) from the drop-down and click the search icon. This feature will continue to be updated to in the future be able to do more of a smart search."
+              }
+            ]
+          }
+        ]
+      },
       {
         "content": "About",
         "notes":
@@ -206,6 +277,16 @@
             "notes":
             [
               {
+                "content":"Workspace Creation Form Update",
+                "notes":
+                [
+                  {
+                    "content": "During the last DMC Usability Testing Day, we had feedback from user letting us know that the Workspace creation form and process seemed unclear and confusing. In response to this we've updated the look and feel to this as well as made it clearer as to what the fields mean as well as why we need that information to create your workspace. We've also made it easier to tell what information is actually required.",
+                    "class": "release-feature"
+                  }
+                ]
+              },
+              {
                 "content": "Sorting in Workspace Directory",
                 "notes":
                 [
@@ -240,7 +321,30 @@
                 "notes":
                 [
                   {
-                    "content": "Edit Workspace"
+                    "content": "Workspaces Home Page Rework",
+                    "notes":
+                    [
+                      {
+                        "content": "One of the major pieces of feedback the DMC team received during the last Usability Testing Day was that workspaces seems to have many great features, but it felt that when using them, you were being forced to leave the workspace in order to use most parts of it. In this release, we've introduced a new layout where each of them different pages related to the workspace have been consolidated into tabs. The look is very cool but more importantly, workspace features now feel more integrated and getting around is much quicker than ever before.",
+                        "class": "release-=feature"
+                      }
+                    ]
+                  },
+                  {
+                    "content": "Edit Workspace",
+                    "notes":
+                    [
+                      {
+                        "content": "Updated Workspace Edit Form",
+                        "notes":
+                        [
+                          {
+                            "content": "During the last DMC Usability Testing Day, we had feedback from user letting us know that the Workspace creation form and process seemed unclear and confusing. In response to this we've updated the look and feel to this as well as made it clearer as to what the fields mean as well as why we need that information to create your workspace. We've also made it easier to tell what information is actually required.",
+                            "class": "release-feature"
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "content": "Home"
@@ -275,7 +379,20 @@
                         "content": "Service Profile Page"
                       },
                       {
-                        "content": "Application Run page"
+                        "content": "Application Run page",
+                        "notes":
+                        [
+                          {
+                            "content": "Canceling a Running Service",
+                            "notes":
+                            [
+                              {
+                                "content": "In the past the ability to cancel a running application was only possible to be done from a workspace's services directory. Due to feedback from users, we have implemented the ability to cancel a running application from the application's run page. This is done by clicking on the cancel button next to the run button This new feature at the moment only relates to application without custom interfaces at the moment but we will update this in the future. Applications with custom interfaces can still be stopped from the workspace services directory.",
+                                "class": "release-feature"
+                              }
+                            ]
+                          }
+                        ]
                       }
                     ]
                   }
@@ -328,14 +445,27 @@
                     "class": "release-feature"
                   }
                 ]
-              }
+              },
               {
                 "content": "DMDII Project Profile"
               }
             ]
           },
           {
-            "content": "Events"
+            "content": "Events",
+            "notes":
+            [
+              {
+                "content": "New DMDII Events Page",
+                "notes":
+                [
+                  {
+                    "content": "There is now a new page that now collects all the separate events that can be found across the entire site. This should make it easier for users to find events they have missed and events that are coming up. Project Events that can still be found on the DMDII Projects Directory can also be found here as well. The intended use for this page is to use the calender to find a date where an event was created. Users will then be presented with a short description. If the user wants to learn more, they can click on the the event name and will be taken to a page where they can get more information.",
+                    "class": "release-feature"
+                  }
+                ]
+              }
+            ]
           },
           {
             "content": "Add DMDII Content"
