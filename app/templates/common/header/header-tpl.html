@@ -86,10 +86,10 @@
                     <md-button id="user-menu" class="user-button"
                                aria-label="Open Latest Services Menu"
                                ng-click="closeMenu(); $mdOpenMenu($event)">
-                        <ng-md-icon ng-hide="userData.isDmdiiAdmin || screenVerySmall()" icon="person" size="20"></ng-md-icon>
-                        <ng-md-icon ng-if="!userData.isDmdiiAdmin && screenVerySmall()" icon="person" size="25"></ng-md-icon>
-                        <md-icon ng-hide="!userData.isDmdiiAdmin || screenVerySmall()" md-svg-src="images/superadmin.svg"></md-icon>
-                        <md-icon ng-if="userData.isDmdiiAdmin && screenVerySmall()" md-svg-src="images/superadmin.svg"></md-icon>
+                        <ng-md-icon ng-hide="userData.isDmdiiAdmin || screenVerySmall()" icon="person" size="20" style="box-sizing: content-box"></ng-md-icon>
+                        <ng-md-icon ng-if="!userData.isDmdiiAdmin && screenVerySmall()" icon="person" size="25" style="box-sizing: content-box"></ng-md-icon>
+                        <md-icon ng-hide="!userData.isDmdiiAdmin || screenVerySmall()" md-svg-src="images/superadmin.svg" style="box-sizing: content-box"></md-icon>
+                        <md-icon ng-if="userData.isDmdiiAdmin && screenVerySmall()" md-svg-src="images/superadmin.svg" style="box-sizing: content-box"></md-icon>
                         <span ng-hide="screenVerySmall()">Hi, {{userData.displayName}}</span>
                     </md-button>
                     <md-menu-content class="header-menu-content">
@@ -141,14 +141,14 @@
                 <md-menu md-offset="0 57" class="item hamburger-menu" id="multimenu" ng-init="dropDownWidth = 200" style="overflow: visible">
 
                     <md-button id="small-menu" ng-click="closeMenu(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);">
-                        <ng-md-icon icon="menu" style="fill: white" size="25"></ng-md-icon>
+                        <ng-md-icon icon="menu" style="fill: white; vertical-align: middle; display:inline-block; line-height:1;" size="25"></ng-md-icon>
                     </md-button>
 
                     <md-menu-content id="hamburger-menu-content" ng-style="{width:dropDownWidth+'px'}">
                         <md-menu-item>
                           <md-menu ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" style="padding: 0px;" ng-init="dropDownWidth = 200">
                             <md-button id="about-small" class="sub-menu" ng-click="closeSubMenus(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);">
-                              <ng-md-icon icon="chevron_right" size="20"></ng-md-icon>
+                              <ng-md-icon icon="chevron_right" size="20" style="vertical-align: middle; display:inline-block; line-height:1;"></ng-md-icon>
                               About
                             </md-button>
                             <md-menu-content class="sub-menu-content" ng-style="{width:dropDownWidth+'px'}">
@@ -176,7 +176,7 @@
                         <md-menu-item>
                           <md-menu ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" style="padding: 0px;" ng-init="dropDownWidth = 230">
                               <md-button id="dmdii-small" class="sub-menu" ng-click="$mdOpenMenu($event); setDropDown($event,dropDownWidth);">
-                                <ng-md-icon icon="chevron_right" size="20">
+                                <ng-md-icon icon="chevron_right" size="20" style="vertical-align: middle; display:inline-block; line-height:1;">
                                 </ng-md-icon>DMDII
                               </md-button>
                               <md-menu-content class="sub-menu-content" ng-style="{width:dropDownWidth+'px'}">
@@ -234,7 +234,7 @@
                     <md-menu md-offset="0 57" class="item" ng-init="dropDownWidth = 136">
                       <md-button id="about" ng-click="closeMenu(); $mdOpenMenu($event);">
                             About
-                            <ng-md-icon icon="arrow_drop_down" size="43" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                            <ng-md-icon icon="arrow_drop_down" size="43" ng-class="{'member-portal': membersOnly}" style="vertical-align: middle; display:inline-block; line-height:1;"></ng-md-icon>
                         </md-button>
                         <md-menu-content class="header-menu-content">
                             <md-menu-item>
@@ -309,7 +309,7 @@
                                 ng-click="closeMenu(); $mdOpenMenu($event); setDropDown($event,dropDownWidth);"
                                 ng-class="{'active-page' : activePage.indexOf('membersOnly') > -1}">
                             DMDII
-                            <ng-md-icon icon="arrow_drop_down" size="43" ng-class="{'member-portal': membersOnly}"></ng-md-icon>
+                            <ng-md-icon icon="arrow_drop_down" size="43" ng-class="{'member-portal': membersOnly}" style="vertical-align: middle; display:inline-block; line-height:1;"></ng-md-icon>
                         </md-button>
                         <md-menu-content class="header-menu-content" ng-style="{width:dropDownWidth+'px'}">
                             <md-menu-item>
