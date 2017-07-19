@@ -54,7 +54,7 @@
                               </div>
                             </a>
 
-                            <a ng-if="item.type == 'DOCUMENT_SHARED' || item.type == 'INVITATION_TO_WORKSPACE' || item.type == 'DOCUMENT_SHARED_WITH_WORKSPACE'" ng-href="{{item.message}}">
+                            <a ng-if="item.type == 'DOCUMENT_SHARED' || item.type == 'INVITATION_TO_WORKSPACE' || item.type == 'DOCUMENT_SHARED_WITH_WORKSPACE'" ng-href="{{item.type == 'INVITATION_TO_WORKSPACE' ? '/all.php#/invitations' : item.message}}">
                               <div layout="row">
                                 <ng-md-icon ng-if="item.type == 'DOCUMENT_SHARED' || item.type == 'DOCUMENT_SHARED_WITH_WORKSPACE'" icon="insert_drive_file" size="30"></ng-md-icon>
                                 <ng-md-icon ng-if="item.type == 'INVITATION_TO_WORKSPACE'" icon="folder_open" size="30"></ng-md-icon>
