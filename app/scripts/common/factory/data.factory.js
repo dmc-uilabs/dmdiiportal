@@ -446,9 +446,6 @@ return {
       getEvents: function() {
         return localhost + 'events';
       },
-      deleteEvent: function (id) {
-          return localhost + 'events/' + id;
-      },
       getAnnouncements: function() {
         return localhost + 'announcements';
       },
@@ -577,6 +574,7 @@ return {
         return {
           get: localhost + 'dmdiiProject/' + id,
           all: localhost + 'dmdiiprojects',
+          delete: localhost + 'dmdiiProjects' + id,
           active: localhost + 'dmdiiprojects/member/active',
           contributors: localhost + 'dmdiiproject/contributingcompanies',
           search: localhost + 'dmdiiprojects/search'

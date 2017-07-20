@@ -120,7 +120,7 @@ angular.module('dmc.dmdiiEvents')
             $scope.getEvents = function(){
                 ajax.get(dataFactory.dmdiiMemberEventUrl().get, {limit: 1000}, addMemEvents);
                 ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 1000}, addProjEvents);
-                ajax.get(dataFactory.getDMDIIProject().all, {page: 0, pageSize: 100}, addDMDIIEvents);
+                ajax.get(dataFactory.getDMDIIProject().delete, {page: 0, pageSize: 100}, addDMDIIEvents);
             };
 
             $scope.getEvents();
@@ -221,7 +221,7 @@ angular.module('dmc.dmdiiEvents')
                         });
                         break;
                     case 'dmdii':
-                        $http.delete(dataFactory.deleteEvent(eventId)).then(function(response){
+                        $http.delete(dataFactory.getDMDIIProject(eventId)).delete.then(function(response){
                             $scope.events.splice(index, 1);
                         });
                         break;
