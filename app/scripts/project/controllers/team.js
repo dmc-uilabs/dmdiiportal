@@ -50,7 +50,20 @@ angular.module('dmc.project')
                     tag : 'companies'
                 }
             ];
-
+            $scope.inviteModal = function(ev){
+              $mdDialog.show({
+                  controller: 'AddMembersController',
+                  templateUrl:'templates/components/add-project/ap-tab-two.html',
+                  parent: angular.element(document.body),
+                  locals:{dataToPass: $scope.invitees},
+                  targetEvent: ev,
+                  fullscreen:true,
+                  clickOutsideToClose:true
+              }).then(function(invitees){
+                $scope.invitees= invitees;
+              })
+            }
+            
 
             // if(projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin) {
             //     loadRequests();

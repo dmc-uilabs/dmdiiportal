@@ -39,12 +39,6 @@ angular.module('dmc.project')
                   clickOutsideToClose:true
               }).then(function(invitees){
                 $scope.invitees= invitees;
-                // $scope.invitees.map(function(a) {
-                //   var newMember = a.displayName;
-                //   if ($scope.currentMembers.indexOf(newMember)==-1){
-                //     $scope.currentMembers.push(newMember);
-                //   }
-                // });
               })
 
             }

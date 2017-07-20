@@ -179,7 +179,6 @@ angular.module('dmc.add_project.directive', [
                 function(data){}
             );
 
-
             $scope.compare = [];
             $scope.favorites = [];
             $scope.showFavoritesFlag = false;
@@ -295,6 +294,7 @@ angular.module('dmc.add_project.directive', [
             }
 
             $scope.addToInvitation = function(item){
+              $scope.invitees=$scope.invitees||[];
                 var found = false;
                 for(var i in $scope.invitees){
                     if($scope.invitees[i].id === item.id) {
