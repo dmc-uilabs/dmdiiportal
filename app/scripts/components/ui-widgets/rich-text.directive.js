@@ -27,7 +27,7 @@ angular.module('dmc.widgets.rich-text', [
 			if ($scope.placeholder) {
 				$scope.placeholderText = $scope.placeholder
 			} else if ($scope.isRequired) {
-				$scope.placeholderText = 'Enter text here (required)';
+				$scope.placeholderText = 'Enter text here';
 			} else {
 				$scope.placeholderText = 'Enter text here';
 			}
