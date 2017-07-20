@@ -14,9 +14,6 @@ angular.module('dmc.add_project.directive', [
     return {
         restrict: 'A',
         templateUrl: 'templates/components/add-project/ap-index.html',
-        // scope : {
-        //     projectDetails: '='
-        // },
         controller: ['$scope', '$mdDialog','projectModel', function ($scope, $mdDialog,projectModel,questionToastModel) {
             // Specify a list of font-icons with ligatures and color overrides
             var iconData = [
@@ -24,11 +21,10 @@ angular.module('dmc.add_project.directive', [
                 {name: 'question_answer', color: 'rgb(89, 226, 168)'}
             ];
 
-            $scope.hello="hello baby";
             $scope.invitees = [];
 
 
-            $scope.currentMembers=[]
+            // $scope.currentMembers=[]
             $scope.addMembersWp = function(ev){
               $mdDialog.show({
                   controller: 'AddMembersController',
@@ -40,12 +36,12 @@ angular.module('dmc.add_project.directive', [
                   clickOutsideToClose:true
               }).then(function(invitees){
                 $scope.invitees= invitees;
-                $scope.invitees.map(function(a) {
-                  var newMember = a.displayName;
-                  if ($scope.currentMembers.indexOf(newMember)==-1){
-                    $scope.currentMembers.push(newMember);
-                  }
-                });
+                // $scope.invitees.map(function(a) {
+                //   var newMember = a.displayName;
+                //   if ($scope.currentMembers.indexOf(newMember)==-1){
+                //     $scope.currentMembers.push(newMember);
+                //   }
+                // });
               })
 
             }
@@ -65,11 +61,7 @@ angular.module('dmc.add_project.directive', [
             ];
 
 
-            $scope.data = {
-                secondLocked : true,
-                thirdLocked : true,
-                fourthLocked : true
-            };
+
             $scope.selectedIndex = 0;
             var newProject = {}
             var setProjectDetails = function(data) {
@@ -144,6 +136,7 @@ angular.module('dmc.add_project.directive', [
                         $scope.projectData.tags.splice(index,1);
                     }
                 };
+
 
 
 
@@ -236,7 +229,7 @@ angular.module('dmc.add_project.directive', [
             });
 
             var currentMembersId = [];
-            
+
 
             $scope.$watchCollection('compare',function(newArray,oldArray){
                 for(var i in $scope.foundMembers){

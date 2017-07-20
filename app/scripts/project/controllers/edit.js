@@ -39,13 +39,12 @@ angular.module('dmc.project')
                   clickOutsideToClose:true
               }).then(function(invitees){
                 $scope.invitees= invitees;
-                $scope.invitees.map(function(a) {
-                  var newMember = a.displayName;
-                  // var newMember= a.firstName + ' ' + a.lastName;
-                  if ($scope.currentMembers.indexOf(newMember)==-1){
-                    $scope.currentMembers.push(newMember);
-                  }
-                });
+                // $scope.invitees.map(function(a) {
+                //   var newMember = a.displayName;
+                //   if ($scope.currentMembers.indexOf(newMember)==-1){
+                //     $scope.currentMembers.push(newMember);
+                //   }
+                // });
               })
 
             }
@@ -63,11 +62,6 @@ angular.module('dmc.project')
             }
             $rootScope.$on('$stateChangeStart', $mdDialog.cancel);
 
-            $scope.data = {
-                secondLocked : true,
-                thirdLocked : true,
-                fourthLocked : true
-            };
 
             $scope.projectState = "EDIT WORKSPACE";
             $scope.editState = true;
@@ -90,7 +84,7 @@ angular.module('dmc.project')
 
             $scope.invitees = [];
             $scope.documents = [];
-            $scope.currentMembers = [];
+            // $scope.currentMembers = [];
             var currentMembersId=[];
 
             function apply() {
@@ -115,12 +109,12 @@ angular.module('dmc.project')
                             id: profileIds
                         }, function (res) {
                             $scope.invitees = res.data;
-                            $scope.invitees.map(function(a) {
-                              var newMember = a.displayName;
-                              if ($scope.currentMembers.indexOf(newMember)==-1){
-                                $scope.currentMembers.push(newMember);
-                              }
-                            });
+                            // $scope.invitees.map(function(a) {
+                            //   var newMember = a.displayName;
+                            //   if ($scope.currentMembers.indexOf(newMember)==-1){
+                            //     $scope.currentMembers.push(newMember);
+                            //   }
+                            // });
                             apply();
                         });
                     }
@@ -128,31 +122,7 @@ angular.module('dmc.project')
             };
             $scope.getMembers();
 
-            // get project documents
-            $scope.getDocuments = function(){
-              /*
-                ajax.get(dataFactory.documentsUrl().getList, {
-                    parentType: 'PROJECT',
-                    parentId: projectCtrl.currentProjectId,
-                    docClass: 'SUPPORT',
-                    recent: 20
-                }, function(response) {
-                    $scope.documents = $.map(response.data.data||[], function(proj){
-                      proj.title = proj.documentName;
-                      return proj;
-                    });
-                    apply();
-                });
 
-                ajax.get(dataFactory.getProjectDocuments(projectCtrl.currentProjectId),{
-                    'project-documentId' : 0
-                },function(response){
-                    $scope.documents = response.data;
-                    apply();
-                });
-                */
-            };
-            $scope.getDocuments();
 
             var newProject = {};
             var setProjectDetails = function(data) {
