@@ -236,32 +236,7 @@ angular.module('dmc.add_project.directive', [
             });
 
             var currentMembersId = [];
-            $scope.getMembers = function () {
-                ajax.get(dataFactory.projectMembers($stateParams.projectId), {}, function (response) {
-                    var profileIds = $.map(response.data, function (x) {
-                        return x.profileId;
-                    });
-                    currentMembersId = $.map(response.data, function (x) {
-                        return {
-                            id : x.id,
-                            profileId : x.profileId
-                        };
-                    });
-
-
-                    if(profileIds.length > 0) {
-                        ajax.get(dataFactory.profiles().all, {
-                            id: profileIds
-                        }, function (res) {
-                            $scope.invitees=$scope.invitees||[]
-                            $scope.invitees.concat(res.data);
-                            apply();
-                        });
-                    }
-                });
-            };
-
-            $scope.getMembers();
+            
 
             $scope.$watchCollection('compare',function(newArray,oldArray){
                 for(var i in $scope.foundMembers){
