@@ -2,6 +2,15 @@
 <div class="container container-view-all all-project-members">
     <div class="content-panel-body">
         <md-content style="padding-top: 38px;" layout-padding>
+          <div layout="row" flex layout-align="start end">
+                <div layout="column" flex class="margin-right12-5">
+                    <span>Manage Requests</span>
+                </div>
+                <a ng-href="{{'/add-members.php#/'+projectCtrl.projectData.id}}"
+                   class="link-button uppercase invite-button margin-left20">
+                    <ng-md-icon icon="group_add" size="22"></ng-md-icon>Invite
+                </a>
+          </div>
             <div layout="row" flex layout-align="start end" class="search-content">
                 <md-input-container class="filterBox">
                     <md-select placeholder="People" ng-model="typeModel" ng-change="changedType(typeModel)">

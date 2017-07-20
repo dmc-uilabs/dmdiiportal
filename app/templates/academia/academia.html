@@ -26,56 +26,95 @@
                     <p class="slim-margin">In fulfilling our mission of sharing and collaboration, we endeavor to share these materials as a guide so that others may have an easier time learning and creating.</p>
                 </div>
             </div>
-
         </div>
 
     </section>
 
     <script>
+
     jQuery(document).ready(function(){
         jQuery('#hideshowUni').on('click', function(event) {
              jQuery('#uniContent').toggle('show');
               jQuery('#courseraContent').hide();
+              jQuery('#jobTaxonomy').hide();
+              jQuery('#MEPcontent').hide();
 
         });
         jQuery('#hideshowCou').on('click', function(event) {
              jQuery('#courseraContent').toggle('show');
               jQuery('#uniContent').hide();
+              jQuery('#jobTaxonomy').hide();
+              jQuery('#MEPcontent').hide();
+        });
+        jQuery('#hideshowTax').on('click', function(event) {
+            jQuery('#jobTaxonomy').toggle('show');
+            jQuery('#uniContent').hide();
+            jQuery('#MEPcontent').hide();
+            jQuery('#courseraContent').hide();
+
+         });
+
+        jQuery('#hideshowMEP').on('click', function(event) {
+             jQuery('#MEPcontent').toggle('show');
+             jQuery('#jobTaxonomy').hide();
+             jQuery('#uniContent').hide();
+             jQuery('#courseraContent').hide();
         });
 
     });
     </script>
 
 
+
     <section class="container">
         <div class="row ">
             <h2>Pathways for learners</h2>
             <h3>Ensuring the DMC meets you where you need it</h3>
-            <div class="row">
-              <div class="col-xs-2">
+            <!-- <div class="row"> -->
+              <!-- <div class="col-xs-3">
               </div>
-              <div class="col-xs-10">
-                <div class="apps col-md-4">
-                    <h3><span style="color:green">For Students</span></h3>
-                    <img class="img-responsive" ng-src="images/DIMELABS.png">
-                    <br>
-                    <p>Students or members of the academic community can follow the link below to learn more about how to use the DMC in the classroom.</p>
-                    <h4><a id="hideshowUni"> View Academic Content</a></h4>
-                </div>
-                <div class="apps col-md-4">
-                    <h3><span style="color:green">Seeking Certification</span></h3>
-                    <img class="img-responsive" ng-src="images/coursera.png">
-                    <br>
-                    <p> Looking for a certification, the link below describes the Coursera MOOC (Massive Open Online Course). Improve your career with a Digital Manufacturing Specialization.</p>
-                    <h4><a id="hideshowCou">View  Coursera Certification</a></h4>
+              <div class="col-xs-12"> -->
+              <div layout="row" layout-align="center center" layout-wrap>
+                  <div flex = "22"class="apps" >
+                      <h3><span style="color:green">For Students</span></h3>
+                      <br>
+                      <img class="img-responsive" ng-src="images/DIMELABS.png">
+                      <br>
+                      <p>Students or members of the academic community can follow the link below to learn more about how to use the DMC in the classroom.</p>
+                      <h4><a id="hideshowUni"> View Academic Content</a></h4>
+                  </div>
+                  <div flex = "22"class="apps" >
+                      <h3><span style="color:green">Seeking Certification</span></h3>
+                      <img class="img-responsive" ng-src="images/coursera.png">
+                      <br>
+                      <p> The link below describes the Coursera MOOC (Massive Open Online Course). Improve your career with a Digital Manufacturing Specialization.</p>
+                      <h4><a id="hideshowCou">View  Coursera Certification</a></h4>
+                  </div>
+                  <div flex = "22"class="apps" >
+                      <h3><span style="color:green">Job Taxonomy</span></h3>
+                      <br>
+                      <img class="img-responsive" ng-src="images/job_taxonomy.png">
+                      <br>
+                      <p> The job taxonomy program is an effort to explore the impact of DM&D technologies and business practices on existing and emerging job roles.</p>
+                      <h4><a id="hideshowTax">Learn More About Job Taxonomy</a></h4>
+                  </div>
+                  <div flex = "22"class="apps" >
+                      <h3><span style="color:green">For Manufacturers</span></h3>
+                      <img class="img-responsive" ng-src="images/nist-mep-logo2.png">
+                      <br>
+                      <p> DMDII and NIST Manufacturing Extension Partnership are jointly developing materials and tools to train and guide SMMs through Digital Manufacturing and Design technology adoption.</p>
+                      <h4><a id="hideshowMEP"> View MEP Content</a></h4>
+                  </div>
                 </div>
 
-              </div>
-              <div class="col-xs-1">
-              </div>
+              <!-- </div> -->
+              <!-- <div class="col-xs-1">
+              </div> -->
             </div>
         </div>
     </section>
+
+    <!-- End of the table code for "row " -->
 
 
 
@@ -83,8 +122,7 @@
 
 
 
-
-
+<!--start copy-->
     <section class="container">
         <div class="row">
             <div class="col-xs-6">
@@ -291,6 +329,7 @@
         </div>
     </div>
 </section>
+<!--Bottom stuff starts here-->
 
 <section class="container">
     <div class="row ">
@@ -423,14 +462,13 @@
                 </div>
             </div>
 
-        </div>
-
-    </section>
-
-
 
 </div>
+    </section>
+
 <div id="courseraContent" style="display:none">
+<!-- Bottom stuff ends here -->
+<!-- End copy -->
 
 
 <!-- This is the split between the NCSU section and the Coursera section -->
@@ -456,7 +494,8 @@
           </h4>
           <h4>
 						<p  style="border-left: 6px solid green; border-right: 6px solid green; color: gray; margin-left: 26px; margin-right: 32px; padding-left: 26px; padding-right: 50px;">
-            DMDII partnered with some of our members to create a “Specialization” on Coursera. This consists of 9 courses and a capstone. <br />
+            DMDII partnered with some of our members
+            a “Specialization” on Coursera. This consists of 9 courses and a capstone. <br />
 <br />
 A full set of course descriptions including their content can be found at <a href="https://www.coursera.org/specializations/digital-manufacturing-design-technology">https://www.coursera.org/specializations/digital-manufacturing-design-technology</a>. They chose to break courses into individual 7-10 minute lessons, they found this approach encourages learners to work through material in convenient chunks (think while on lunch break, waiting for a bus, some quiet time in the evening, etc.)
 <br /><br />
@@ -977,6 +1016,585 @@ The first 6 courses of the specialization are live! Under each courses webpage y
         </div>
     </div>
 </section>
+</div>
+
+
+<!-- This is the split between courseraContent and Job Taxonomy -->
+<!-- This is the split between courseraContent and Job Taxonomy -->
+<!-- This is the split between courseraContent and Job Taxonomy -->
+<!-- This is the split between courseraContent and Job Taxonomy -->
+<!-- This is the split between courseraContent and Job Taxonomy -->
+<div id="jobTaxonomy" style="display:none">
+  <section class="container">
+    <div class="row">
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="project-summary-container">
+        <div class="row ">
+            <h2 class="col-xs-6" style="margin-top: 60px">Digital Manufacturing and Design Roles Taxonomy</h2>
+            <p class="col-xs-6">
+                "The Digital Manufacturing and Design Roles Taxonomy consists of a technical domain structure, the identification of the broader set of 165 potential roles and role descriptors in digital manufacturing and design, and 20 success profiles for representative role. These roles will play a part in creating a bridge between our current and future workforce, providing a more aligned and accelerated path for digital manufacturing workforce development and the economic benefits for individuals and companies alike."
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Nav tabs -->
+<section class="container">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active hidden-xs"><a data-target="#coreprinciples" aria-controls="coreprinciples" role="tab" data-toggle="tab">Core Principles</a></li>
+        <li role="presentation" class="hidden-xs"><a data-target="#taxonomystructure" aria-controls="taxonomystructure" role="tab" data-toggle="tab">Taxonomy Structure</a></li>
+        <li role="presentation" class="hidden-xs"><a data-target="#roles" aria-controls="roles" role="tab" data-toggle="tab">Roles</a></li>
+    </ul>
+</section>
+<section class="gray">
+<div class="container">
+    <!-- Tab panes -->
+    <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane fade in active" id="coreprinciples">
+          <h2>Taxonomy Core Principles:</h2>
+          <ol type="1">
+              <li>
+                  Developing frameworks that are based on industry demand and expertise of the future, enhanced, and carried by workforce and organizational change innovation and best practice.
+              </li>
+              <li>
+                  Building towards the opportunities of digital, and not from the destructive perceptions of disruption.
+              </li>
+              <li>
+                  Staging and diversifying the reality of identifying and timing talent and workforce plans and investments to meet market opportunities, and the diversity of the manufacturing base.
+              </li>
+              <li>
+                  Taking a systems approach and looking for inspiration and proof from successful adaptations and changes.
+              </li>
+          </ol>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade " id="taxonomystructure">
+          <div class="col-xs-12">
+            <h3 style ="text-align: center;">A taxonomy offers a consistent way to identify, define, organize, and track important matters that need to be distinguished and optimized.</h3>
+            <div class="col-xs-1">
+            </div>
+            <img class="col-xs-10 image-responsive" ng-src="images/TaxStructure.png">
+            <div class="col-xs-1">
+            </div>
+          </div>
+            <div class = "col-xs-1">
+            </div>
+            <div class="col-xs-11">
+            <h4>This workforce taxonomy can be used to describe the micro level - of an individual person; and also the macro level, such as groups of workers or a large pool of talent.</h4>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade " id="roles">
+            <div class="col-xs-12">
+              <h3 style ="text-align: center;">A taxonomy provides a way to define and classify the work that is being done in DM&D to enable workforce planning, development and hiring.</h3>
+              <div class="col-xs-3">
+              </div>
+              <img class="col-xs-6 image-responsive" ng-src="images/Digital_SkillSet.png">
+              <div class="col-xs-3">
+              <h4>A role can be an entire job and often is an entire job, especially in larger organizations. Other organizations will combine roles especially in early stages or where the volume of work does not require dedicated positions.</h4>
+              </div>
+              <hr>
+            </div>
+            <div class="col-xs-12">
+              <h3 style ="text-align: center;">What kind of leader will be needed to lead the digital manufacturing organizations overall and across domains?</h3>
+              <div class="col-xs-3">
+              </div>
+              <img class="col-xs-6 image-responsive" ng-src="images/Five_Lenses.png">
+            </div>
+              <div>
+              <h4 style ="text-align: center;">The Five Major "Lenses"</h4>
+              </div>
+        </div>
+
+    </div>
+
+</div>
+</section>
+<!--Bottom stuff starts here-->
+<!--Bottom stuff starts here-->
+<!--Bottom stuff starts here-->
+
+<section class="container">
+<div class="project-summary-container">
+
+    <h2>Success Profile Overview</h2>
+    <div class="row ">
+      <div class="col-xs-12">
+      <div class="col-xs-2">
+      </div>
+      <img class="col-xs-8 image-responsive" ng-src="images/Futures_Roles.png">
+      <div class="col-xs-2">
+      </div>
+      </div>
+      <div class = "col-xs-2">
+      </div>
+      <div class= "col-xs-10">
+        <h4>These profiles are representatives of the kinds of changes the workforce experiences in DM&D. The value of these roles is dependant on DM&D maturity, business needs and current talent supply and demand factors.</h4>
+        <br>
+      </div>
+
+
+
+      <div class="col-xs-12">
+      <div class="col-xs-1">
+      </div>
+      <img class="col-xs-10 image-responsive" ng-src="images/Success_Description.png">
+      <div class="col-xs-1">
+      </div>
+      </div>
+      <div class = "col-xs-1">
+      </div>
+      <div class= "col-xs-11">
+        <h4>Improving the system of digital manufacturing talent will hinge on a better balance between supply and demand, including a fuller pipeline of workforce candidates. </h4>
+      </div>
+    </div>
+
+</div>
+
+</section>
+
+<section class="container">
+    <div class="project-summary-container">
+
+            <h2>Job Taxonomy Documents</h2>
+
+            <div class="row">
+
+              <div class="col-xs-3">
+              </div>
+
+              <div class="col-xs-12">
+
+              <div layout="row" layout-align="center center">
+
+                  <div class="apps col-md-3">
+                      <h3><span style="color:green">Taxonomy Executive Summary</span></h3>
+                      <p>The taxonomy executive summary strives to capture a sense of  the  changing  technology  and  business  interactions,  and  job  roles  that  are  having  an  impact  on  our manufacturing sector.</p>
+                      <h4>
+                      <u>
+                        <a href="images/Taxonomy-Executive-Summary.pdf" style="color:green" align="center" download>Access the executive summary here</a>
+                      </u>
+                      </h4>
+                  </div>
+
+                  <div class="apps col-md-3">
+                      <h3><span style="color:green">Digital Manufacturing Roles Taxonomy</span></h3>
+                      <p> Partners in Connection is a job taxonomy report created out of the public-private effort to define digital manufacturing workforce frameworks. Awareness of the workforce changes needed to empower manufacturing as technologies continue to advance and become interconnected is shared here.</p>
+                      <h4>
+                      <u>
+                        <a href="images/DMD-Job-Role-Taxonomy.pdf" style="color:green" align="center" download>Access the full job taxonomy document here</a>
+                      </u>
+                      </h4>
+                  </div>
+
+                  <div class="apps col-md-3">
+                      <h3><span style="color:green">Success Profiles</span></h3>
+                      <br>
+                      <p> These Success Profiles describe a portion of the Roles that make up the ‘omni-facturing’ workforce, a talent pool that has augmented the manual origins of its legacy name with many digital and digitally enabled capabilities. </p>
+                      <h4>
+                      <u>
+                        <a href="images/Full-Success-Profiles-Packet.pdf" style="color:green" download>Access the complete success profile here</a>
+                      </u>
+                      </h4>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="col-xs-1">
+              </div>
+
+            </div>
+    </div>
+</section>
+
+<section class="container">
+
+    <div class="project-summary-container">
+        <div class="row">
+
+            <h2>Next Steps</h2>
+            <p class="dmc-blockquote">A job taxonomy will demand the time to both honor our past and create a talent base for the future. Doing so will require alignment on the workforce as a community of capability, and leveraging its management as a talent ecosystem, where taking action collectively and having mutual accountability is the only guarantee of sustained existence.</p>
+
+        </div>
+    </div>
+
+</section>
+
+
+<section class="container">
+
+    <div class="project-summary-container">
+        <div class="row">
+
+            <h2>Lead Authors</h2>
+            <div class="col-xs-2">
+              <img class="img-responsive" style="border: 2px solid green; border-radius: 4px; padding: 2px;" ng-src="images/michael_fornasiero.jpg">
+            </div>
+            <div class="col-xs-10">
+              <h4>Michael Fornasiero</h4>
+              <p>Michael Fornasiero is the Program Manager of Workforce Development and SMM Engagement at UI LABS.  In his role, Michael is responsible for the development of strategy and programs focused on workforce development, and advancing the adoption of new technologies by small to midsized manufacturers. UI LABS’ workforce development programs focus on building both awareness and capabilities in students and workers that engage with digital manufacturing and design technologies, along with helping industry and academic leaders understand how emerging technologies are impacting jobs and their organizations.
+              </p>
+              <p>
+              Prior to joining UI LABS in 2016, Michael was a Mechanical Engineer at GE Global Research in the Manufacturing Processes Lab where he worked on challenges in Additive Manufacturing, Non-traditional Machining, Automation, and Simulation. He has a master’s in Mechanical Engineering from Rensselaer Polytechnic (NSF GK-12 Fellow) and a bachelor’s in Mechanical Engineering from Clarkson University.
+              </p>
+              <br>
+            </div>
+
+            <div class="col-xs-2">
+              <img class="img-responsive" style="border: 2px solid green; border-radius: 4px; padding: 2px;" ng-src="images/rebekah_kowalski.jpg">
+            </div>
+            <div class="col-xs-10">
+              <h4>Rebekah Kowalski</h4>
+              <p>Rebekah leads Right Management North America’s Workforce Strategy and Solution Integration Team.  The team is responsible for integration of our cross-brand, global solutions designed to help our clients through organizational transformation.
+              </p>
+              <p>
+              Leading up to her current role, Rebekah oversaw the continuous innovation and expansion of Right Management’s Strategic Workforce Consulting Practice worldwide.  Rebekah was the primary architect of ManpowerGroup’s proprietary workforce supply and demand forecasting solution and consulting process.  She also pioneered the workforce strategy approach for our government clients to help them align their employment ecosystems with their long-term talent forecast.
+              </p>
+              <p>
+              Prior to joining Right Management, Rebekah spent nine years at the helm of Manpower’s US and Global Solutions units and led the teams responsible for working with ManpowerGroup’s most strategically significant global clients to architect innovative global workforce strategy and delivery models that enabled them to optimize cost and flexibility while preparing for emerging needs. Rebekah serves on the Board of the Wisconsin Education Business Roundtable, the Executive Committee of Competitive Wisconsin, and is a member of the UW System Business Council.
+              </p>
+              <br>
+            </div>
+
+            <div class="col-xs-2">
+              <img class="img-responsive" style="border: 2px solid green; border-radius: 4px; padding: 2px;" ng-src="images/lory_antonucci.jpg">
+            </div>
+            <div class="col-xs-10">
+              <h4>Lory Antonucci</h4>
+              <p>Lory Antonucci is a senior leader and managing consultant in HR, Human Capital and Organizational Effectiveness strategies, solutions, technologies and services at the Right Management. In her role, Lory focuses on improving organizations, leaders and the workforce via talent management, strategic workforce planning, and organizational improvement. As a senior consultant in talent management, Lory has recruited individuals to provide global solutioning in the organizational effectiveness and talent management arenas for some of Right's most significant clients in the Americas and with global workforces. Lory's experience has also allowed her to lead solutioning efforts with global and America's sales and consulting teams to understand client needs, propose and architect major solutions and multiple engagements that bring the best of Manpower and Right's broad workforce solutions to execute clients' business strategies.
+              </p>
+              <p>
+              Prior to joining the Right Management in 2014, Lory was the Vice President of ClearPicture, performing advisory and client services. She received her Master of Education from Wayne State University's Graduate School of Education and has a master's in Biomimicry from Arizona State University.
+              </p>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<section class="container">
+
+    <div class="project-summary-container">
+        <div class="row" style="text-align: center;">
+            <h2>Would you like to learn more?</h2>
+              <a href="/contact-us.php" class="btn btn-next" style="text-align: center;" role="button">Contact DMC</a>
+              <a class="btn btn-next" href="mailto:lory.antonucci@right.com"><mailto lory.antonucci@right.com></mailto>Contact Lory Antonucci</a>
+              <p>
+        </div>
+        <div class="row" style="text-align: center;">
+              <a class="btn btn-next" href="mailto:rebekah.kowalski@right.com"><mailto rebekah.kowalski@right.com></mailto>Contact Rebekah Kowalski</a>
+              <a class="btn btn-next" href="mailto:michael.fornasiero@uilabs.org"><mailto michael.fornasiero@uilabs.org></mailto>Contact Michael Fornasiero</a>
+        </div>
+    </div>
+
+</section>
+</div>
+
+
+<!-- MEP Content -->
+<!-- MEP Content -->
+<div id="MEPcontent" style="display:none">
+  <section class="container">
+      <div class="row">
+      </div>
+  </section>
+
+  <section class="container">
+      <div class="project-summary-container">
+          <div class="row ">
+              <div class="col-xs-12">
+                  <h2>DMDII Project Roots</h2>
+                  <h4>IMEC Program Summary 09-22-16</h4>
+                  <p class="dmc-blockquote">
+                      The Illinois Manufacturing Excellence Center (IMEC), Purdue Manufacturing Extension Partnership (Purdue MEP), and the Digital Manufacturing and Design Innovation Institute (DMDII) were named recipients of a $1.2 million award by the U.S. Department of Commerce National Institute of Standards and Technology (NIST) Hollings Manufacturing Extension Partnership (MEP). The federally funded award supports the efforts of Manufacturing USA, a network comprising fourteen public-private research institutes, including DMDII, dedicated to advancing manufacturing innovation, education and collaboration. IMEC and Purdue MEP will use these funds to establish “fellows in residence” to work within DMDII to engage small and medium-sized manufacturers on their digital readiness and needs.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="container">
+      <div class="project-summary-container">
+          <div class="row ">
+              <h2 class="col-xs-6" style="margin-top: 60px">Illinois Manufacturing Excellence Center (IMEC)</h2>
+              <p class="col-xs-6">
+                  IMEC was established in 1996 to improve the productivity and competitiveness of Illinois’ small and mid-sized manufacturing firms. By linking long-term plans with on-site implementation, IMEC identifies performance gaps, solves these gaps, and helps organizations build a culture to support sustained improvements.<br> <br> IMEC is a private, public partnership that operates through the National Institute of Standards and Technology (NIST). IMEC delivers customized training, hands on technical assistance, and leadership advisement to help manufacturers improve bottom line results.
+              </p>
+          </div>
+      </div>
+      <div class="project-summary-container">
+          <div class="row ">
+              <h2 class="col-xs-6" style="margin-top: 60px">Purdue Manufacturing Extension Partnership (MEP)</h2>
+              <p class="col-xs-6">
+                  Purdue MEP provides high-value solutions to help Indiana businesses maximize their success by increasing profits, reducing costs, and implementing growth systems. The organization serves more than 500 companies annually by implementing continuous improvement principles in the areas of productivity, growth and technology. As a result of their services, Purdue MEP clientele have reported new sales, product and market growth, cost reductions, and job growth—resulting in over $1.4 billion of economic impact in Indiana since 2005.
+              </p>
+          </div>
+      </div>
+  </section>
+
+
+
+  <!-- Nav tabs -->
+  <section class="container">
+      <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active hidden-xs"><a data-target="#missionIMEC" aria-controls="missionIMEC" role="tab" data-toggle="tab">Mission</a></li>
+          <li role="presentation" class="hidden-xs"><a data-target="#collabIMEC" aria-controls="collabIMEC" role="tab" data-toggle="tab">Collaboration</a></li>
+          <li role="presentation" class="hidden-xs"><a data-target="#programsIMEC" aria-controls="programsIMEC" role="tab" data-toggle="tab">Programs</a></li>
+          <li role="presentation" class="hidden-xs"><a data-target="#impactIMEC" aria-controls="impactIMEC" role="tab" data-toggle="tab">Impact</a></li>
+
+      </ul>
+  </section>
+
+  <section class="gray">
+  <div class="container">
+      <!-- Tab panes -->
+      <div class="tab-content">
+          <div role="tabpanel" class="tab-pane fade in active" id="missionIMEC">
+                <div class="row ">
+                  <p class="dmc-blockquote">
+                    The mission of this program is to develop materials and tools to assist small to medium size manufacturers in their digital manufacturing and design technology adoption journey.
+                  </p>
+                </div>
+
+          </div>
+          <div role="tabpanel" class="tab-pane fade " id="collabIMEC">
+              <div class="row ">
+                  <div class="col-xs-12">
+                    <h2>
+                      Collaboration for National Impact
+                    </h2>
+
+                    <div class="col-xs-1"> </div>
+                    <img class="col-xs-10 image-responsive" ng-src="images/collabNationalImpact.png" >
+                    <div class="col-xs-1"> </div>
+                </div>
+              </div>
+          </div>
+
+          <div role="tabpanel" class="tab-pane fade " id="programsIMEC">
+
+              <div class="row ">
+                  <div class="col-xs-12">
+                    <h2>
+                      Program Goals and Objectives
+                    </h2>
+                    <p>A “Train-the-Trainer” approach is being developed in partnership between DMDII and NIST/MEP to teach MEP practitioners about the impact of DM&D technologies and support their implementation at U.S. small and medium sized manufacturers (SMMs) </p>
+                    <p></p>
+                    <h4> <strong>The DM&D Train-the-Trainer program is designed to:</strong> </h4>
+                    <h4>
+                      <span style="color:green">
+                        +Make MEP practitioners comfortable and conversant in the breadth of DM&D technologies
+                      </span>
+                    </h4>
+                    <h4>
+                      <p style="border-left: 6px solid green; border-right: 6px solid green; color: gray; margin-left: 26px; margin-right: 32px; padding-left: 26px; padding-right: 50px;">
+                      </p>
+                    </h4>
+
+                    <h4>
+                      <span style="color:green">
+                        +Provide MEP practitioners with resources to engage small manufacturers about DM&D
+                      </span>
+                    </h4>
+                    <h4>
+                      <p style="border-left: 6px solid green; border-right: 6px solid green; color: gray; margin-left: 26px; margin-right: 32px; padding-left: 26px; padding-right: 50px;">
+
+                        <ul style="border-left: 6px solid green; border-right: 6px solid green; color: gray; margin-left: 26px; margin-right: 32px; padding-left: 26px; padding-right: 50px;">
+                          <li>
+                            Technology Education Materials
+                          </li>
+                          <li>
+                            Technology Assessment and Baseline Tools
+                          </li>
+                          <li>
+                            Opportunity Identification and Technology Adoption Roadmapping Tools
+                          </li>
+                          <li>
+                            Establishment of technical assistance resources to aid technology implementation
+                          </li>
+                        </ul>
+                      </p>
+                  </h4>
+                  <br>
+                  <div class="col-xs-1"> </div>
+                  <img class="col-xs-10 image-responsive" ng-src="images/pilotTeam.png" align="left">
+                  <div class="col-xs-1"> </div>
+
+                </div>
+              </div>
+
+          </div>
+
+          <div role="tabpanel" class="tab-pane fade " id="impactIMEC">
+
+            <div class="row ">
+                <div class="col-xs-12">
+                  <h2>
+                    The National-Level Economic Impact of the MEP
+                  </h2>
+                  <p> <em>MEP centers provide
+                    assistance to primarily small and medium-size manufacturing
+                    businesses to help them improve their productivity. As part of
+                    the National Institute of Standards and Technology (NIST), the
+                    MEP centers provide services such as assistance with product
+                    development, tools and resources for business expansion, and
+                    business continuity planning, which can contribute to cost
+                    savings, new investments, and improved products and
+                    processes.</em>
+                  </p>
+                  <p> <em>Each year, NIST MEP surveys their clients using an independent
+                    third-party vendor to obtain a reading of the impact of the services
+                    provided. Using an economic impact model developed by Regional Economic
+                    Models Inc. (REMI), the study forecasts the indirect and induced
+                    effects of the reported increase in jobs, sales, cost savings, and
+                    investments by MEP clients.</em>
+                  </p>
+
+
+                  <p> <em>The results of the study on the effects of MEP projects of the U.S. economy finds that the $130 million invested in MEP during FY2016 generated nearly a nine-fold increase in
+                    federal personal income tax – a 8.7:1 return. Taking into account the competitive interactions among businesses, the REMI model forecasts 142,000 additional jobs and a $15.4 billion
+                    increase in GDP during FY2016, when the client-reported effects of MEP projects are included in the model compared to when they are not. </em>
+                  </p>
+                  <p>
+                    <a href="https://w3auth.nist.gov/sites/default/files/documents/2017/03/13/2017_10_march_mep_technical_report-final.pdf"> View Report </a>
+
+                  </p>
+              </div>
+            </div>
+            <br>
+              <section class="container">
+                  <div class="row">
+                      <div class="col-xs-6">
+                        <iframe controls style="max-height: 300px;" width="500" height="600" src="https://www.youtube.com/embed/3oXI-qE9WfY" frameborder="0" allowfullscreen></iframe>
+                      </div>
+                      <div class="col-xs-6">
+                          <h1 style="margin-top:75px">Watch the Impact of U.S. Manufacturing and MEP </h1>
+                      </div>
+                  </div>
+              </section>
+
+
+          </div>
+      </div>
+  </div>
+</section>
+<!-- End of tabs -->
+<section class="container">
+
+    <div class="project-summary-container">
+        <div class="row ">
+
+            <h2>Next Steps for Businesses</h2>
+            <p class="dmc-blockquote">Fall 2017 engagement tools are in development. </p>
+            <br><br>
+        </div>
+    </div>
+</section>
+
+
+
+  <section class="container">
+      <div class="project-summary-container">
+        <h2>Featured Members</h2>
+
+          <div class="row ">
+              <br>
+              <div class="col-xs-2">
+                <img class="img-responsive" style="border: 2px solid green; border-radius: 4px; padding: 2px; width: 60%; margin-left: 12px;" ng-src="images/DimitriosSaranteas.jpg">
+              </div>
+              <div class="col-xs-10">
+                <h4>Dimitrios Saranteas - Institute Embed Program Contact </h4>
+                <h6>MEP Digital Manufacturing Technical Specialist</h6>
+                <p>Dimitrios focus is to engage with internal and external partners of the DMDII and NNMI to identify technology transfer opportunities for Small-to-Medium-Sized Manufacturers (SMMs). As an embedded resource at DMDII, Dimitrios is working to interface with MEP Program and MEP Centers System-wide with digital manufacturing solutions.</p>
+                <br>
+              </div>
+          </div>
+          <div class="row ">
+              <br>
+              <div class="col-xs-2">
+                  <img class="img-responsive" style="border: 2px solid green; border-radius: 4px; padding: 2px; width: 60%; margin-left: 12px;" ng-src="images/tylerBrown.jpg">
+              </div>
+              <div class="col-xs-10">
+                <h4>Tyler Brown - Institute Embed Program Contact</h4>
+                <h6> Technology Acceleration Specialist </h6>
+                <p>Tyler is the Purdue MEP embed with the Digital Manufacturing and Design Innovation Institute in partnership with IMEC, they are involved with a NIST program to identify and resolve technology gaps in SMEs, Tyler works with companies throughout Indiana to identify and strengthen company competitiveness.</p>
+                <br>
+              </div>
+          </div>
+          <div class="row ">
+              <br>
+              <div class="col-xs-2">
+                <img class="img-responsive" style="border: 2px solid green; border-radius: 4px; padding: 2px; width: 60%; margin-left: 12px;" ng-src="images/williammurray.png">
+              </div>
+              <div class="col-xs-10">
+                <h4>William Murray - Institute Embed Program Contact</h4>
+                <h6>Digital & Additive Manufacturing Specialist</h6>
+                <p> Bill Murray is part of the New York Manufacturing Extension Partnership (NY MEP) team. His role is to be New York State’s point person for digital and additive manufacturing, promoting those technologies’ use by small manufacturers to increase their competitiveness and aid in their innovation. Bill is based at Rochester Institute of Technology (RIT) and coordinates with two of the Manufacturing USA institutes: America Makes and the DMDII.</p>
+                <br>
+              </div>
+          </div>
+          <div class="row ">
+              <br>
+              <div class="col-xs-2">
+                <img class="img-responsive" style="border: 2px solid green; border-radius: 4px; padding: 2px; width: 60%; margin-left: 12px;" ng-src="images/David-Boulay-IMEC.jpg">
+              </div>
+              <div class="col-xs-10">
+                <h4>David Boulay </h4>
+                <h6>President, Illinois Manufacturing Excellence Center </h6>
+                <p>David is the president of IMEC, a public-private partnership with the mission to be a catalyst for transforming the state of manufacturing. In this role, David focuses his passion at the intersection between economic development, workforce development, and manufacturing competitiveness. With over 20 years of experience in manufacturing, university, and non-profit settings, he brings a broad understanding to his work.</p>
+                <br>
+              </div>
+          </div>
+          <div class="row ">
+              <br>
+              <div class="col-xs-2">
+                <img class="img-responsive" style="border: 2px solid green; border-radius: 4px; padding: 2px; width: 60%; margin-left: 12px;" ng-src="images/robertgoosen.jpg">
+              </div>
+              <div class="col-xs-10">
+                <h4>Robert Goosen</h4>
+                <h6>Associate Director - Engineering and Technology Services</h6>
+                <p>Bob is responsible for the management and continued development of the Center’s Engineering and Technology Services organization.  His responsibilities include leveraging Purdue’s extensive technical strengths and capabilities to deliver the types of services, such as Technology Adoption and Digital Manufacturing, that will meet the short and long-term needs of Indiana’s manufacturing industries.</p>
+                <br>
+              </div>
+          </div>
+          <div class="row ">
+              <br>
+              <div class="col-xs-2">
+                <img class="img-responsive" style="border: 2px solid green; border-radius: 4px; padding: 2px; width: 60%; margin-left: 12px;" ng-src="images/alysonslack.jpg">
+              </div>
+              <div class="col-xs-10">
+                <h4>Alyson Slack</h4>
+                <h6>Manager - Manufacturing Strategic Initiatives</h6>
+                <p>Alyson Slack is manager of manufacturing strategic initiatives, reporting to Empire State Development’s Division of Science, Technology & Innovation. Alyson develops and implements strategic industry initiatives and works with federal agencies and other funding partners on opportunities related to technology- and innovation-led economic development in New York State.</p>
+                <br>
+              </div>
+          </div>
+
+      </div>
+  </section>
+
+  <section class="container">
+      <div class="project-summary-container">
+          <div class="row" style="text-align: center;">
+              <h2>Want more Information on MEP ?</h2>
+              <a href="/contact-us.php" class="btn btn-next" style="text-align: center;" role="button">Contact DMC</a>
+              <a class="btn btn-next" href="mailto:dsaranteas@imec.org,brow1224@purdue.edu,william.murray@esd.ny.gov"><mailto dsaranteas@imec.org></mailto>Contact MEP</a>
+              </div>
+          </div>
+      </div>
+  </section>
+
+</div>
+
+</div>
+</div>
 </div>
 
 </main>

@@ -70,7 +70,7 @@ angular.module('dmc.project')
             function checkServer(){
                 if(!$scope.serverModel && $scope.interface && $scope.interface.domeServer){
                     for(var i in $scope.servers){
-                        if($scope.servers[i].ip == $scope.interface.domeServer){
+                        if($scope.servers[i].id == $scope.interface.domeServer){
                             $scope.serverModel = i;
                             break;
                         }

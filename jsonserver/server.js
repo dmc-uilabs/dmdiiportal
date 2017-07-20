@@ -11,7 +11,10 @@ server.use(jsonServer.defaults());
 server.use(jsonServer.rewriter({
     '/documents/directories/26': '/documentsdirectories',
     '/documents/directories/29': '/documentsdirectoriestwo',
+    '/documents/s_directories/26': '/documentsSdirectories',
+    '/documents/s_directories/29': '/documentsSdirectories',
     '/documents/versions/:id': '/documentversions',
+    '/documents/s_versions/:id': '/documentSversions',
     '/user/createtoken':'/createtoken',
     '/project/:pid/invite/:uid': '/projects_members/:uid',
     '/mark-read-notifications': '/user',
@@ -142,7 +145,8 @@ server.get('/dmdiiprojects', function (req, res) {
   var start = page*size
   var end = (page+1)*size
 
-  projectsOrig = {"count": projectsData.length ,"data" : projectsData.slice(start,end) }
+  // projectsOrig = {"count": projectsData.length ,"data" : projectsData.slice(start,end) }
+  projectsOrig = {"count": projectsData.length ,"data" : projectsData }
 
   res.jsonp(projectsOrig)
 })

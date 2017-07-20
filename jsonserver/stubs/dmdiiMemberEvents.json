@@ -1,23 +1,37 @@
 [
   {
     "id": 1,
-    "name": "Event 1",
-    "description": "This is the description of event 1",
+    "name": "DMDII Members-Only Technology Showcase",
+    "description": "Join DMDII members to hear about the latest work from the Institute through project team presentations, demos, and panel discussions. \n *more details to come closer to event date",
     "location": "1161 Oak Valley Drive, Ann Arbor, MI",
-    "date": "2016-06-25"
+    "date": "2017-06-25"
   },
   {
     "id": 2,
-    "name": "Event 2",
-    "description": "This is the description of event 2",
+    "name": "Augmented Reality Stakeholders Convene to Move Technology Forward",
+    "description": "New blog post published: http://www.uilabs.org/blog/augmented-reality-stakeholders-convene-to-move-technology-forward/",
     "location": "1161 Oak Valley Drive, Ann Arbor, MI",
-    "date": "2016-08-30"
+    "date": "2017-06-30"
   },
   {
     "id": 3,
-    "name": "Event 3",
-    "description": "This is the description of event 3",
+    "name": "mHUB Presents, First Industrial Responders Emerge (FIRE) Panel Discussion: Trends in Product Innovation",
+    "description": "Join industry leaders for an evening of discussions, networking and tours of mHUB! First Industrial Responders Emerge panelists will address innovation, product sourcing, business best practices and supplier networks and lead breakout discussions.",
     "location": "1161 Oak Valley Drive, Ann Arbor, MI",
-    "date": "2016-11-13"
+    "date": "2017-06-13"
+  },
+  {
+    "id": 4,
+    "name": "City Digital’s David Leopold will give a keynote talk about “Mapping the Street of the Future,” featuring insights, opportunities, and lessons learned from City Digital’s underground infrastructure mapping pilot and other related projects.",
+    "description": "The first in a three-part series, this one-day workshop, hosted by Boston University, will bring together city leaders, utilities, planners and academic researchers to identify barriers and challenges to coordinated infrastructure management in aging cities, and explore emerging solutions. Together, attendees will consider both above and below ground infrastructure, from lights, lanes and greenery to pipes, roots and soil.",
+    "location": "1161 Oak Valley Drive, Ann Arbor, MI",
+    "date": "2017-06-13"
+  },
+  {
+    "id": 5,
+    "name": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi ",
+    "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. ",
+    "location": "1161 Oak Valley Drive, Ann Arbor, MI",
+    "date": "2017-06-23"
   }
 ]
