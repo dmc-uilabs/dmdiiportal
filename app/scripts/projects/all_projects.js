@@ -26,13 +26,13 @@ angular.module('dmc.all_projects', [
 
         $scope.myProjectsFlag = true;
         $scope.allProjectsFlag = false;
-        $scope.searchText = angular.isDefined($stateParams.text) ? $stateParams.text : null;
+        $scope.searchTerm = angular.isDefined($stateParams.text) ? $stateParams.text : null;
         $scope.filterModel = null;
         $scope.sortModel = 0;
         $scope.sortProjects = "most_recent";
         $scope.isActive = false;
         $scope.activeTab = 'my-projects';
-        $scope.searchTerm = null;
+        //$scope.searchTerm = null;
 
         $scope.submit = function(text){
             var dataSearch = $.extend(true, {}, $stateParams);

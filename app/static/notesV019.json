@@ -1,0 +1,542 @@
+[
+  {
+    "content": "Logo Bar",
+    "notes":
+    [
+      {
+        "content": "Logo",
+        "notes":
+        [
+          {
+            "content": "DMC Activities",
+            "notes":
+            [
+              {
+                "content": "DMC Activities Page Update",
+                "notes":
+                [
+                  {
+                    "content": "The DMC Activities page has been updated to be more compliant with the look and feel of more of the current site. This page can be visited by clicking on the DMC logo in the top left hand corner of the page. You'll also be taken to this page directly after logging into the website. We've removed discusions for the time being as well as articles as this content had become rather old but may come back in the future.",
+                    "class": "release-feature"
+                  }
+                ]
+              },
+              {
+                "content": "Activities Page Double Loading",
+                "notes":
+                [
+                  {
+                    "content": "Active users of the website will also notice that when visiting this page, the load time is much quicker as we are no longer double loading this page, which was a bug that was introduced a few releases ago.",
+                    "class": "release-bug"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "content": "Notifications",
+        "notes":
+        [
+          {
+            "content": "Notifications for Workspace Administrators",
+            "notes":
+            [
+              {
+                "content": "When a file gets shared to a workspace, the workspace owner will receive a notification to let them know there has been a file shared to their workspace. As before, in order for the file to be viewable by other members of the workspcae the file needs to be accepted by the workspace owner. Clicking on the notification of the file having been shared, this will take the owner to the workspace documents directory where they can either prview the document or accept/decline the document being shared to the members of the workspace.",
+                "class": "release-feature"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "content": "Display-name Drop-down Menu",
+        "notes":
+        [
+          {
+            "content": "My Account",
+            "notes":
+            [
+              {
+                "content": "Account Basics"
+              },
+              {
+                "content": "Profile",
+                "notes":
+                [
+                  {
+                    "content": "My Profile Changes",
+                    "notes":
+                    [
+                      {
+                        "content": "In the past, in order to edit a user's Profile page, the user would simply visit their profile page and then edit the content. Now the user will visit their My Account Page, and go to the My Account tab to make their changes. Users can view their profile in two ways, by clicking on the preview profile button, or searching for their name in the top menu. This has been done so the user has a single place where they manage everythingthing related to their account.",
+                        "class": "release-feature"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "content": "Privacy"
+              },
+              {
+                "content": "Notifications"
+              }
+            ]
+          },
+          {
+            "content": "My Organization",
+            "notes":
+            [
+              {
+                "content": "Updated VPC Form Layout",
+                "notes":
+                [
+                  {
+                    "content": "Previous to this updated when interacting with an organization's VPC form, the ability to add additional capabilities would not work properly. Additionally removing fields would cause the Should Cost Application to not properly. This fix now allows organizational administrators to add new fields to their organization's VPC without breaking the Should Cost application as well as being able to easily reset the VPC form to allow starting over to be easier.",
+                    "class": "release-feature"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "content": "Searching",
+        "notes":
+        [
+          {
+            "content": "Individuals and Organization Searching",
+            "notes":
+            [
+              {
+                "content": "The original links to the Individuals and Organizations searching pages have been removed. In order to be able to search for an individual is now done by interacting with the search bar now found below the user's display name after logging in. When searching for a user, type in their name, click on the select drop-down item and choose Individuals and finally click the search icon. If searching for an organization, do the same and but choose Organizations instead of Individuals. If you would like to be able to get to the original search pages, simply leave the search field empty, choose an option from the Select drop-down and click on the search icon.",
+                "class": "release-feature"
+              }
+            ]
+          },
+          {
+            "content": "Individuals",
+            "notes":
+            [
+              {
+                "content": "User Profile page"
+              }
+            ]
+          },
+          {
+            "content": "Organizations",
+            "notes":
+            [
+              {
+                "content": "Organization Profile page"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "content":"Main Menu",
+    "notes":
+    [
+      {
+        "content": "New Menu Layout",
+        "notes":
+        [
+          {
+            "content": "A few Development sprints ago, the DMC team held a site for usability testing day. One of the things we noticed was how difficult it was for many user to find the pages where they could compete tasks. After re-evaluating all the menu items on our site, we've optimized the layout in the following ways.",
+            "class": "release-feature",
+            "notes":
+            [
+              {
+                "content": "The main menu layout is now the following: About (About DMC, Academia, Security, Releases), Marketplace, Workspaces, DMDII (About the DMDII Portal, Members, Projects Events),(For Sitewide Administrator: Add  DMDII Content, Create DMDII Project, Create DMDII Member)."
+              },
+              {
+                "content": "Display Name Drop-down now has the following sub-menu items: My Account and My Organization."
+              },
+              {
+                "content": "Notification and Invitations have now all been melded into one icon called notifications."
+              },
+              {
+                "content": "Since the beginning the DMC has wanted to have a platform global search option. What we have done is created a site search option that at the moment returns either individual or organization. To use this feature, simply type in the search criteria, choose the search type (Individual or organization) from the drop-down and click the search icon. This feature will continue to be updated to in the future be able to do more of a smart search."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "content": "About",
+        "notes":
+        [
+          {
+            "content": "About the DMC",
+            "notes":
+            [
+              {
+                "content": "Static Content for IE and Edge Internet Browsers",
+                "notes":
+                [
+                  {
+                    "content": "The content on this page used to become squashed and centered making the content very difficult to consumer but this issue has been fixed.",
+                    "class": "release-bug"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "content": "DMC Academia",
+            "notes":
+            [
+              {
+                "content": "Static Content for IE and Edge Internet Browsers",
+                "notes":
+                [
+                  {
+                    "content": "The content on this page used to become squashed and centered making the content very difficult to consumer but this issue has been fixed.",
+                    "class": "release-bug"
+                  }
+                ]
+              },
+              {
+                "content": "Manufacturing Extension Partnership",
+                "notes":
+                [
+                  {
+                    "content": "The DMC has consolidated very valuable information about the MEP (Manufacturing Extention Partnership) and can now be consumed on the DMC Academia page.",
+                    "class": "release-content"
+                  }
+                ]
+              },
+              {
+                "content": "Job Taxonomy",
+                "notes":
+                [
+                  {
+                    "content": "DMDII has completed work on creating a Job Taxonomy and the learnings of this has been consolidated by the DMC and can now be consumed on the DMC Academia page.",
+                    "class": "release-content"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "content": "DMC Security",
+            "notes":
+            [
+              {
+                "content": "Static Content for IE and Edge Internet Browsers",
+                "notes":
+                [
+                  {
+                    "content": "The content on this page used to become squashed and centered making the content very difficult to consumer but this issue has been fixed.",
+                    "class": "release-bug"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "content": "DMC Releases",
+            "notes":
+            [
+              {
+                "content": "Static Content for IE and Edge Internet Browsers",
+                "notes":
+                [
+                  {
+                    "content": "The content on this page used to become squashed and centered making the content very difficult to consumer but this issue has been fixed.",
+                    "class": "release-bug"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "content": "Marketplace",
+        "notes":
+        [
+          {
+            "content": "Application Profile page"
+          }
+        ]
+      },
+      {
+        "content": "Workspaces",
+        "notes":
+        [
+          {
+            "content": "Workspaces Directory",
+            "notes":
+            [
+              {
+                "content":"Workspace Creation Form Update",
+                "notes":
+                [
+                  {
+                    "content": "During the last DMC Usability Testing Day, we had feedback from user letting us know that the Workspace creation form and process seemed unclear and confusing. In response to this we've updated the look and feel to this as well as made it clearer as to what the fields mean as well as why we need that information to create your workspace. We've also made it easier to tell what information is actually required.",
+                    "class": "release-feature"
+                  }
+                ]
+              },
+              {
+                "content": "Sorting in Workspace Directory",
+                "notes":
+                [
+                  {
+                    "content": "In a previous release, we updated the user interface for the workspaces directory as well as provided the ability for users to sort workspaces they are viewing in the directory list. After that release, when workspaces were being sorted by the date of workspace creation or by the name of the workspace, results would not filter appropriately and would give unexpected results. Now when sorting results, all results are sorted as expects and sorting continues sorting appropriately when clicking next.",
+                    "class": "release-bug"
+                  }
+                ]
+              },
+              {
+                "content": "Filtering in Workspace Directory",
+                "notes":
+                [
+                  {
+                    "content": "In a previous release, we updated the user interface for workspaces as well as provided the ability for users to filter workspaces they are viewing in the directory. In that release, filtering would only filter workspaces found on that particular page list, so each next page a user would visit would have a different amount of results depending on the amount of matching results. Now each page users visit has the same number of results and does not repeat information that has been shown to the user on previous pages.",
+                    "class": "release-bug"
+                  }
+                ]
+              },
+              {
+                "content": "Workspace Search in Directory",
+                "notes":
+                [
+                  {
+                    "content": "We have heard multiple times from many of our active users that the ability to search for an existing public or private workspace is something they would really like to have. We are proud to say that in this release we have implemented this very feature. Users can now visit the the workspace directory page and user the new search bar to find a specific workspace.",
+                    "class": "release-feature"
+                  }
+                ]
+              },
+              {
+                "content": "Workspace Profile",
+                "notes":
+                [
+                  {
+                    "content": "Workspaces Home Page Rework",
+                    "notes":
+                    [
+                      {
+                        "content": "One of the major pieces of feedback the DMC team received during the last Usability Testing Day was that workspaces seems to have many great features, but it felt that when using them, you were being forced to leave the workspace in order to use most parts of it. In this release, we've introduced a new layout where each of them different pages related to the workspace have been consolidated into tabs. The look is very cool but more importantly, workspace features now feel more integrated and getting around is much quicker than ever before.",
+                        "class": "release-=feature"
+                      }
+                    ]
+                  },
+                  {
+                    "content": "Edit Workspace",
+                    "notes":
+                    [
+                      {
+                        "content": "Updated Workspace Edit Form",
+                        "notes":
+                        [
+                          {
+                            "content": "During the last DMC Usability Testing Day, we had feedback from user letting us know that the Workspace creation form and process seemed unclear and confusing. In response to this we've updated the look and feel to this as well as made it clearer as to what the fields mean as well as why we need that information to create your workspace. We've also made it easier to tell what information is actually required.",
+                            "class": "release-feature"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "content": "Home"
+                  },
+                  {
+                    "content": "Discussions"
+                  },
+                  {
+                    "content": "Team"
+                  },
+                  {
+                    "content": "Documents"
+                  },
+                  {
+                    "content": "Tasks"
+                  },
+                  {
+                    "content": "Workspace Services Directory",
+                    "notes":
+                    [
+                      {
+                        "content": "Workspace Searching for Marketplace Apps",
+                        "notes":
+                        [
+                          {
+                            "content": "When trying to add an application to a workspace from the DMC Marketplace page, users used to find they would receive no auto-completed results until they had erased there search criteria entirely and search for the application once more. This is has been fixed and now workspaces always returns the first time they are being searched for when trying to add a marketplace application to a workspace.",
+                            "class": "release-bug"
+                          }
+                        ]
+                      },
+                      {
+                        "content": "Service Profile Page"
+                      },
+                      {
+                        "content": "Application Run page",
+                        "notes":
+                        [
+                          {
+                            "content": "Canceling a Running Service",
+                            "notes":
+                            [
+                              {
+                                "content": "In the past the ability to cancel a running application was only possible to be done from a workspace's services directory. Due to feedback from users, we have implemented the ability to cancel a running application from the application's run page. This is done by clicking on the cancel button next to the run button This new feature at the moment only relates to application without custom interfaces at the moment but we will update this in the future. Applications with custom interfaces can still be stopped from the workspace services directory.",
+                                "class": "release-feature"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "content": "DMDII",
+        "notes":
+        [
+          {
+            "content": "About the DMDII Portal",
+            "notes":
+            [
+              {
+                "content": "Static Content for IE and Edge Internet Browsers",
+                "notes":
+                [
+                  {
+                    "content": "The content on this page used to become squashed and centered making the content very difficult to consumer but this issue has been fixed.",
+                    "class": "release-bug"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "content": "Members",
+            "notes":
+            [
+              {
+                "content": "DMDII Member Profile Page"
+              }
+            ]
+          },
+          {
+            "content": "Projects",
+            "notes":
+            [
+
+              {
+                "content": "Search DMDII Projects by Tag and ID",
+                "notes":
+                [
+                  {
+                    "content": "In terms of popular feature requests, this one is definitely near the top of the list. When visiting the DMDII Projects Directory page, users now can search for DMDII Projects by either a known tag or a project IDs. When searching using a project ID as the search criteria, us the form ##-##-##. If a user uses ##-## as the search criteria, this will return projects that begin with that project number. This means searching for 15-16 will return all 15-16 DMDII Projects.",
+                    "class": "release-feature"
+                  }
+                ]
+              },
+              {
+                "content": "DMDII Project Profile"
+              }
+            ]
+          },
+          {
+            "content": "Events",
+            "notes":
+            [
+              {
+                "content": "New DMDII Events Page",
+                "notes":
+                [
+                  {
+                    "content": "There is now a new page that now collects all the separate events that can be found across the entire site. This should make it easier for users to find events they have missed and events that are coming up. Project Events that can still be found on the DMDII Projects Directory can also be found here as well. The intended use for this page is to use the calender to find a date where an event was created. Users will then be presented with a short description. If the user wants to learn more, they can click on the the event name and will be taken to a page where they can get more information.",
+                    "class": "release-feature"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "content": "Add DMDII Content"
+          },
+          {
+            "content": "Create DMDII Member"
+          },
+          {
+            "content": "Create DMDII Project"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "content": "Footer",
+    "notes":
+    [
+      {
+            "content": "FAQs",
+            "notes":
+            [
+              {
+                "content": "Static Content for IE and Edge Internet Browsers",
+                "notes":
+                [
+                  {
+                    "content": "The content on this page used to become squashed and centered making the content very difficult to consumer but this issue has been fixed.",
+                    "class": "release-bug"
+                  }
+                ]
+              }
+            ]
+      },
+      {
+            "content": "Legal",
+            "notes":
+            [
+                  {
+                        "content": "General Terms of Service"
+                  },
+                  {
+                        "content": "Member Terms of Service"
+                  },
+                  {
+                        "content": "Privacy Policy"
+                  },
+                  {
+                        "content": "App SLA"
+                  },
+                  {
+                        "content": "DMCA"
+                  }
+            ]
+      },
+      {
+            "content": "Contact Us",
+            "notes":
+            [
+              {
+                "content": "Static Content for IE and Edge Internet Browsers",
+                "notes":
+                [
+                  {
+                    "content": "The content on this page used to become squashed and centered making the content very difficult to consumer but this issue has been fixed.",
+                    "class": "release-bug"
+                  }
+                ]
+              }
+            ]
+      }
+    ]
+  }
+]

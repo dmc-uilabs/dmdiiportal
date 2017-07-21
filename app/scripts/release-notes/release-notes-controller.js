@@ -29,6 +29,13 @@ angular.module('dmc.release-notes')
                   $scope.notesV018 = response.data;
               });
           }
-          getV018(); 
+          getV018();
+
+          var getV019= function() {
+              ajax.get(dataFactory.getStaticJSON('notesV019.json'), {}, function(response){
+                  $scope.notesV019 = response.data;
+              });
+          }
+          getV019();
     }]
 );

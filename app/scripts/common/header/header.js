@@ -206,6 +206,9 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
             },
             {
                 id : 2, name: 'Individuals'
+            },
+            {
+                id : 3, name: 'Workspaces'
             }
         ];
 
@@ -215,6 +218,9 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
           }
           else if ($scope.searchFilters[filter].name == 'Individuals'){
               $window.location.href='/search-v2.php#/members'+(text ? '?text='+text : '');
+          }
+          else if ($scope.searchFilters[filter].name == 'Workspaces'){
+              $window.location.href='/all-projects.php#/'+(text ? '?text='+text : '');
           }
         }
 
