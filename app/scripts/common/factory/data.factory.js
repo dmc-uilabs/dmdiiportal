@@ -574,7 +574,7 @@ return {
         return {
           get: localhost + 'dmdiiProject/' + id,
           all: localhost + 'dmdiiprojects',
-          delete: localhost + 'dmdiiProjects' + id,
+          delete: localhost + 'dmdiiProjects/' + id,
           active: localhost + 'dmdiiprojects/member/active',
           contributors: localhost + 'dmdiiproject/contributingcompanies',
           search: localhost + 'dmdiiprojects/search'

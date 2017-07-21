@@ -120,7 +120,7 @@ angular.module('dmc.dmdiiEvents')
             $scope.getEvents = function(){
                 ajax.get(dataFactory.dmdiiMemberEventUrl().get, {limit: 1000}, addMemEvents);
                 ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 1000}, addProjEvents);
-                ajax.get(dataFactory.getDMDIIProject().delete, {page: 0, pageSize: 100}, addDMDIIEvents);
+                ajax.get(dataFactory.getDMDIIProject().all, {page: 0, pageSize: 100}, addDMDIIEvents);
             };
 
             $scope.getEvents();
@@ -212,22 +212,30 @@ angular.module('dmc.dmdiiEvents')
                 switch (eventToDelete.type) {
                     case 'member':
                         $http.delete(dataFactory.dmdiiMemberEventUrl(eventId).delete).then(function(response){
-                            $scope.events.splice(index, 1);
+                            deleteEventsFromView(index, eventId);
                         });
                         break;
                     case 'project':
                         $http.delete(dataFactory.dmdiiProjectEventUrl(eventId).delete).then(function(response){
-                            $scope.events.splice(index, 1);
+                            deleteEventsFromView(index, eventId);
                         });
                         break;
                     case 'dmdii':
-                        $http.delete(dataFactory.getDMDIIProject(eventId)).delete.then(function(response){
-                            $scope.events.splice(index, 1);
+                        $http.delete(dataFactory.getDMDIIProject(eventId).delete).then(function(response){
+                            deleteEventsFromView(index, eventId);
                         });
                         break;
                 }
             };
-
+            
+            var deleteEventsFromView = function(index, eventId) {
+                $scope.events.splice(index, 1);
+                for (var i = 0; i < $scope.dayEvents.length; i++) {
+                    if ($scope.dayEvents[i].id === eventId) {
+                        $scope.dayEvents.splice(i, 1);
+                    }
+                }
+            }
         }
     ]
 )
