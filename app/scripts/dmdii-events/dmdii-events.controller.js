@@ -17,6 +17,7 @@ angular.module('dmc.dmdiiEvents')
         '$mdDialog',
         '$window',
         '$http',
+        'toastModel',
         function($state,
                  $stateParams,
                  $scope,
@@ -31,7 +32,8 @@ angular.module('dmc.dmdiiEvents')
                  DMCUserModel,
                  $mdDialog,
                  $window,
-                 $http){
+                 $http,
+                 toastModel){
 
             var apply = function(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -209,23 +211,44 @@ angular.module('dmc.dmdiiEvents')
             
             $scope.deleteEvent = function(index, eventId) {
                 var eventToDelete = $scope.events[index];
-                switch (eventToDelete.type) {
-                    case 'member':
-                        $http.delete(dataFactory.dmdiiMemberEventUrl(eventId).delete).then(function(response){
-                            deleteEventsFromView(index, eventId);
-                        });
-                        break;
-                    case 'project':
-                        $http.delete(dataFactory.dmdiiProjectEventUrl(eventId).delete).then(function(response){
-                            deleteEventsFromView(index, eventId);
-                        });
-                        break;
-                    case 'dmdii':
-                        $http.delete(dataFactory.getDMDIIProject(eventId).delete).then(function(response){
-                            deleteEventsFromView(index, eventId);
-                        });
-                        break;
-                }
+                showDeleteConfirm().then(function() {
+                    switch (eventToDelete.type) {
+                        case 'member':
+                            $http.delete(dataFactory.dmdiiMemberEventUrl(eventId).delete).then(function(response){
+                                deleteEventsFromView(index, eventId);
+                                toastModel.showToast('success', 'Event deleted successfully.');
+                            }, function(error) {
+                                toastModel.showToast('error', 'Delete Failed.');
+                            });
+                            break;
+                        case 'project':
+                            $http.delete(dataFactory.dmdiiProjectEventUrl(eventId).delete).then(function(response){
+                                deleteEventsFromView(index, eventId);
+                                toastModel.showToast('success', 'Event deleted successfully.');
+                            }, function(error) {
+                                toastModel.showToast('error', 'Delete Failed.');
+                            });
+                            break;
+                        case 'dmdii':
+                            $http.delete(dataFactory.getDMDIIProject(eventId).delete).then(function(response){
+                                deleteEventsFromView(index, eventId);
+                                toastModel.showToast('success', 'Event deleted successfully.');
+                            }, function(error) {
+                                toastModel.showToast('error', 'Delete Failed.');
+                            });
+                            break;
+                    }
+                });
+            };
+            
+            var showDeleteConfirm = function() {
+                var confirm = $mdDialog.confirm()
+                    .title('Please Confirm')
+                    .content('Are you sure you want to delete this event?')
+                    .ok('Delete')
+                    .cancel('Cancel');
+                
+                return $mdDialog.show(confirm);
             };
             
             var deleteEventsFromView = function(index, eventId) {
