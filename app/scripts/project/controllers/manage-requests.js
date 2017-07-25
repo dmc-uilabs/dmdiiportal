@@ -8,8 +8,10 @@ angular.module('dmc.project')
         'ajax',
         'dataFactory',
         'DMCUserModel',
+        '$mdDialog',
         'questionToastModel',
         'toastModel',
+        'projectModel',
         'projectData',
         function ($scope,
                   $state,
@@ -18,9 +20,11 @@ angular.module('dmc.project')
                   $mdDialog,
                   ajax,
                   dataFactory,
+                  $mdDialog,
                   DMCUserModel,
                   questionToastModel,
                   toastModel,
+                  projectModel,
                   projectData) {
 
             var projectCtrl = this;
@@ -72,6 +76,26 @@ angular.module('dmc.project')
             //         });
             //     });
             // }
+
+            var currentMembersId=[];
+
+
+            $scope.inviteModal = function(ev){
+              $mdDialog.show({
+                  controller: 'AddMembersController',
+                  templateUrl:'templates/components/add-project/ap-tab-two.html',
+                  parent: angular.element(document.body),
+                  locals:{dataToPass: $scope.invitees},
+                  targetEvent: ev,
+                  fullscreen:true,
+                  clickOutsideToClose:true
+              }).then(function(invitees){
+                $scope.invitees= invitees;
+                $scope.updateTeam($scope.invitees);
+
+              })
+            }
+
 
             $scope.submit = function (text) {
                 $scope.searchModel = text;
@@ -172,6 +196,18 @@ angular.module('dmc.project')
                     apply();
                 });
             }
+
+            $scope.updateTeam = function(new_invitees) {
+                var newProject = {};
+
+                $scope.goSaveProject = true;
+                $(window).unbind('beforeunload');
+
+                projectModel.update_project(projectCtrl.currentProjectId, projectCtrl.projectData.directoryId,projectCtrl.projectData,new_invitees,currentMembersId, function(data){
+                    document.location.href = 'project.php#/'+projectCtrl.currentProjectId+'/home';
+                });
+            };
+
 
             function apply() {
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
