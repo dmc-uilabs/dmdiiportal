@@ -8,6 +8,7 @@ angular.module('dmc.add_members', [
   'dmc.data',
   'dmc.widgets.documents',
   'dmc.component.members-card',
+  'dmc.add_project.directive',
   'dmc.compare',
   'dmc.common.header',
   'dmc.common.footer',
@@ -30,7 +31,6 @@ angular.module('dmc.add_members', [
             invitees: '='
         },
         controller: function ($scope) {
-
             $scope.removeInvite = function(item){
                 for(var i in $scope.invitees){
                     if($scope.invitees[i].id === item.id){

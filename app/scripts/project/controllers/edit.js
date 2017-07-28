@@ -25,6 +25,24 @@ angular.module('dmc.project')
             projectCtrl.projectData = projectData;
 
             $scope.projectData = projectData;
+            $scope.projectData.dueDate=projectData.origDueDate;
+
+
+            $scope.addMembersWp = function(ev){
+              $mdDialog.show({
+                  controller: 'AddMembersController',
+                  templateUrl:'templates/components/add-project/ap-tab-two.html',
+                  parent: angular.element(document.body),
+                  locals:{dataToPass: $scope.invitees},
+                  targetEvent: ev,
+                  fullscreen:true,
+                  clickOutsideToClose:true
+              }).then(function(invitees){
+                $scope.invitees= invitees;
+              })
+
+            }
+
 
             if ($scope.projectData.isPublic) {
                 $scope.projectData.type = 'public';
@@ -38,15 +56,30 @@ angular.module('dmc.project')
             }
             $rootScope.$on('$stateChangeStart', $mdDialog.cancel);
 
-            $scope.data = {
-                secondLocked : true,
-                thirdLocked : true,
-                fourthLocked : true
+
+            $scope.projectState = "EDIT WORKSPACE";
+            $scope.editState = true;
+
+
+            $scope.addTag = function(newTag){
+                $scope.projectData.tags.push({
+                    name : newTag
+                });
+                $scope.newTag = null;
+            };
+
+            $scope.deleteTag = function(index,tag){
+                if(tag.id > 0){
+                    tag.deleted = true;
+                }else{
+                    $scope.projectData.tags.splice(index,1);
+                }
             };
 
             $scope.invitees = [];
             $scope.documents = [];
-            var currentMembers = [];
+            // $scope.currentMembers = [];
+            var currentMembersId=[];
 
             function apply() {
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
@@ -58,7 +91,7 @@ angular.module('dmc.project')
                     var profileIds = $.map(response.data, function (x) {
                         return x.profileId;
                     });
-                    currentMembers = $.map(response.data, function (x) {
+                    currentMembersId = $.map(response.data, function (x) {
                         return {
                             id : x.id,
                             profileId : x.profileId
@@ -70,6 +103,12 @@ angular.module('dmc.project')
                             id: profileIds
                         }, function (res) {
                             $scope.invitees = res.data;
+                            // $scope.invitees.map(function(a) {
+                            //   var newMember = a.displayName;
+                            //   if ($scope.currentMembers.indexOf(newMember)==-1){
+                            //     $scope.currentMembers.push(newMember);
+                            //   }
+                            // });
                             apply();
                         });
                     }
@@ -77,31 +116,7 @@ angular.module('dmc.project')
             };
             $scope.getMembers();
 
-            // get project documents
-            $scope.getDocuments = function(){
-              /*
-                ajax.get(dataFactory.documentsUrl().getList, {
-                    parentType: 'PROJECT',
-                    parentId: projectCtrl.currentProjectId,
-                    docClass: 'SUPPORT',
-                    recent: 20
-                }, function(response) {
-                    $scope.documents = $.map(response.data.data||[], function(proj){
-                      proj.title = proj.documentName;
-                      return proj;
-                    });
-                    apply();
-                });
 
-                ajax.get(dataFactory.getProjectDocuments(projectCtrl.currentProjectId),{
-                    'project-documentId' : 0
-                },function(response){
-                    $scope.documents = response.data;
-                    apply();
-                });
-                */
-            };
-            $scope.getDocuments();
 
             var newProject = {};
             var setProjectDetails = function(data) {
@@ -132,7 +147,11 @@ angular.module('dmc.project')
                 return '';
             });
 
-            $scope.updateProject = function(data) {
+            $scope.updateProject = function(details) {
+
+                setProjectDetails(details);
+
+                var new_invitees=$scope.invitees;
                 $scope.goSaveProject = true;
                 $(window).unbind('beforeunload');
 
@@ -143,7 +162,8 @@ angular.module('dmc.project')
                 }
                 newProject.documents = $scope.documents;
 
-                projectModel.update_project(projectCtrl.currentProjectId, projectCtrl.projectData.directoryId, newProject, data, currentMembers, function(data){
+
+                projectModel.update_project(projectCtrl.currentProjectId, projectCtrl.projectData.directoryId, newProject, new_invitees, currentMembersId, function(data){
                     document.location.href = 'project.php#/'+projectCtrl.currentProjectId+'/home';
                 });
             };
@@ -152,33 +172,7 @@ angular.module('dmc.project')
                 $scope.enableNext($(this).index()+2);
             });
 
-            $scope.goToNextTab = function(number, obj){
-                $(window).scrollTop(0);
-                if (obj) {
-                    setProjectDetails(obj);
-                }
-                $scope.selectedIndex = number-1;
-                if(number == 2){
-                    $scope.data.thirdLocked = false;
-                }else if(number == 3){
-                    $scope.data.fourthLocked = false;
-                }
-            };
 
-            $scope.disableEnable = function(number,val){
-                var v = (val ? false : true);
-                switch(number){
-                    case 2 :
-                        $scope.data.secondLocked = v;
-                        break;
-                    case 3 :
-                        $scope.data.thirdLocked = v;
-                        break;
-                    case 4 :
-                        $scope.data.fourthLocked = v;
-                        break;
-                }
-            };
 
             $scope.deleteProject = function(ev){
                 questionToastModel.show({
