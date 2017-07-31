@@ -10,7 +10,6 @@ angular.module('dmc.project')
         'DMCUserModel',
         'questionToastModel',
         'toastModel',
-        'projectModel',
         'projectData',
         function ($scope,
                   $state,
@@ -22,7 +21,6 @@ angular.module('dmc.project')
                   DMCUserModel,
                   questionToastModel,
                   toastModel,
-                  projectModel,
                   projectData) {
 
             var projectCtrl = this;
@@ -53,24 +51,6 @@ angular.module('dmc.project')
                 }
             ];
 
-            var currentMembersId=[];
-
-
-            $scope.inviteModal = function(ev){
-              $mdDialog.show({
-                  controller: 'AddMembersController',
-                  templateUrl:'templates/components/add-project/ap-tab-two.html',
-                  parent: angular.element(document.body),
-                  locals:{dataToPass: $scope.invitees},
-                  targetEvent: ev,
-                  fullscreen:true,
-                  clickOutsideToClose:true
-              }).then(function(invitees){
-                $scope.invitees= invitees;
-                $scope.updateTeam($scope.invitees);
-
-              })
-            }
 
             // if(projectCtrl.projectData.isPublic && projectCtrl.projectData.requiresAdminApprovalToJoin) {
             //     loadRequests();
@@ -128,12 +108,6 @@ angular.module('dmc.project')
                     var profileIds = $.map(response.data, function (x) {
                         return x.profileId;
                     });
-                    // currentMembersId = $.map(response.data, function (x) {
-                    //     return {
-                    //         id : x.id,
-                    //         profileId : x.profileId
-                    //     };
-                    // });
                     $scope.members = response.data;
                     ajax.get(dataFactory.profiles().all, {
                         id: profileIds,
@@ -171,7 +145,6 @@ angular.module('dmc.project')
                     });
                 });
             };
-                        // $scope.getMembers();
 
             $scope.follow = function (member) {
                 if (!member.isFollow) {
@@ -189,20 +162,6 @@ angular.module('dmc.project')
                     });
                 }
             };
-
-
-
-            $scope.updateTeam = function(new_invitees) {
-                var newProject = {};
-
-                $scope.goSaveProject = true;
-                $(window).unbind('beforeunload');
-
-                projectModel.update_project(projectCtrl.currentProjectId, projectCtrl.projectData.directoryId,projectCtrl.projectData,new_invitees,currentMembersId, function(data){
-                    document.location.href = 'project.php#/'+projectCtrl.currentProjectId+'/home';
-                });
-            };
-
 
             $scope.delete = function(event, member, index){
                 questionToastModel.show({

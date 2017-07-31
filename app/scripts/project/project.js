@@ -42,9 +42,7 @@ angular.module('dmc.project', [
     'dmc.widgets.project-tags',
     'dmc.sub-nav-menu',
     'dmc.input-file.directive',
-    'dmc.workspace-header',
-    'dmc.add_members',
-    'dmc.add_project.directive'
+    'dmc.workspace-header'
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider){
 
@@ -111,8 +109,7 @@ angular.module('dmc.project', [
         }).state('project.edit', {
             url: '/edit',
             controller: 'EditProjectCtrl as projectCtrl',
-            // templateUrl: 'templates/project/pages/edit.html',
-            templateUrl: 'templates/components/add-project/ap-index.html',
+            templateUrl: 'templates/project/pages/edit.html',
             resolve: resolve
         }).state('project.documents', {
             url: '/documents',

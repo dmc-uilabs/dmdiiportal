@@ -1,16 +1,153 @@
-
-<md-input-container flex="45">
-  <md-icon>
-    <ng-md-icon icon ="search"></ng-md-icon>
-  </md-icon>
-    <label>Search Companies</label>
-    <input ng-model="item.accessCompanySearch">
-</md-input-container>
 <div class="container marketplace-box" layout="row" >
+  <!-- <div class="content-column" layout="column" flex='20'>
+    <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
+  </div> -->
+  <!-- Left Content Column -->
   <div class="marketplace" layout="column" flex>
-  <div class="marketplace-search-button" layout="row" layout-align="center center">
-  </div>
+    <!-- <md-content class="marketplace-search" layout="row" layout-align="center center">
+
+      <form ng-submit="submit(searchModel)" class="dmc-search global-search-form" flex="60">
+          <div layout="column">
+              <div layout="row">
+                  <div layout="column" flex>
+                      <md-input-container md-no-float>
+                          <md-icon>
+                              <ng-md-icon icon="search"></ng-md-icon>
+                          </md-icon>
+                          <input type="text" placeholder="Search Marketplace" ng-model="searchModel">
+                      </md-input-container>
+                  </div>
+                  <div layout="column">
+                      <md-input-container>
+                          <md-button type="submit" class="search-button">Search</md-button>
+                      </md-input-container>
+                  </div>
+              </div>
+          </div>
+      </form>
+
+      <span flex></span>
+
+      <div class="marketplace-search-button" layout="row" layout-align="center start">
+        <md-button class="link-button favorites-link" md-no-ink href="/favorites.php">
+          <ng-md-icon icon="favorite" size="14"></ng-md-icon>
+          Favorites ({{favoritesCount}})
+        </md-button>
+        <md-button class="md-raised dmc-button"
+                   ng-disabled="!$root.comparedServices || !$root.comparedServices.services || $root.comparedServices.services.length == 0"
+                   compare-button>
+          Compare ({{$root.comparedServices && $root.comparedServices.services ? $root.comparedServices.services.length : 0}})
+        </md-button>
+      </div>
+    </md-content> -->
+
+    <md-tabs md-dynamic-height md-border-bottom ng-if="!isSearch" class="marketplace-carousel-tabs">
+      <!-- <md-tab label="Popular">
+        <md-content class="carousel-padding">
+          <div dmc-carousel
+              name-carousel="'carouselPopular'"
+              max-items="24"
+              show-items="3"
+              carousel-source="carouselData.popular.arr"
+              run-carousel="true"
+              timeout="5">
+          </div>
+        </md-content>
+      </md-tab> -->
+
+      <md-tab label="DMC Marketplace">
+        <md-content class="carousel-padding">
+          <div dmc-carousel
+              name-carousel="'carouselNew'"
+              max-items="24"
+              show-items="3"
+              carousel-source="carouselData.new.arr"
+              run-carousel="true"
+              timeout="5">
+          </div>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+
+
   <hr />
+
+
+
+  <dmc-featured-app-card
+    cards="allApps">
+
+  </dmc-featured-app-card>
+
+
+
+<hr />
+
+
+
+  <!-- <div class="marketplace-search-button" layout="row" layout-align="center center"> -->
+
+    <!-- <div >
+      <img class="image" ng-src="images/home-market-icon.png"  style="width: 180px">
+    </div>
+
+    <div class="flex-60 padding-10">
+      <h3>The DMC marketplace supplies services and applications from across the digital thread to allow one to do business better, cheaper and faster. The above carousel features new services and below you can browse them by category.</h3>
+    </div>
+
+    <div >
+      <md-button class="md-raised dmc-button"
+                 ng-disabled="!$root.comparedServices || !$root.comparedServices.services || $root.comparedServices.services.length == 0"
+                 compare-button>
+         Compare Services ({{$root.comparedServices && $root.comparedServices.services ? $root.comparedServices.services.length : 0}})
+      </md-button>
+    </div>
+
+
+  </div> -->
+
+  <hr />
+
+
+
+
+
+<!-- End -->
+
+
+
+  <div class="marketplace-search-button" layout="row" layout-align="center center">
+    <!-- <md-button class="link-button favorites-link" md-no-ink href="/favorites.php">
+      <ng-md-icon icon="favorite" size="14"></ng-md-icon>
+      Favorites ({{favoritesCount}})
+    </md-button> -->
+
+    <div >
+      <img class="image" ng-src="images/home-market-icon.png"  style="width: 180px">
+    </div>
+
+    <div class="flex-60 padding-10">
+      <h3>The DMC marketplace supplies services and applications from across the digital thread to allow one to do business better, cheaper and faster. The above carousel features new services and below you can browse them by category.</h3>
+    </div>
+
+    <div >
+      <md-button class="md-raised dmc-button"
+                 ng-disabled="!$root.comparedServices || !$root.comparedServices.services || $root.comparedServices.services.length == 0"
+                 compare-button>
+         Compare Services ({{$root.comparedServices && $root.comparedServices.services ? $root.comparedServices.services.length : 0}})
+      </md-button>
+    </div>
+
+
+
+
+  </div>
+
+
+
+  <hr />
+    <!-- Favorit items -->
+    <!-- <div class="marketplace-storefronts"> -->
       <dmc-products-card
           search-card="isSearch"
           card-source="marketplaceItems"
@@ -24,5 +161,6 @@
           view-all-link="'/marketplace.php#/search?product=services'"
           layout-margin>
       </dmc-products-card>
+    <!-- </div> -->
   </div>
 </div>

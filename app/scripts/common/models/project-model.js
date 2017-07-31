@@ -28,7 +28,6 @@ angular.module('dmc.model.project', ['dmc.data'])
                         project.tags = extractData(responses.tags);
 
                         if(project.dueDate){
-                          project.origDueDate = project.dueDate;
                             var day = 86400000;
                             project.currentDueDate = project.dueDate;
                             project.dueDate = (new Date() - new Date(project.dueDate));
