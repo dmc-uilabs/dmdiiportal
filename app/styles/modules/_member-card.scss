@@ -1,11 +1,9 @@
 .container-member-card{
   padding: 8px;
-  min-width:250px;
 }
 .member-card{
   display: block;
   border: 1px solid #ccc;
-  // min-width: 200px;
   @include borderRadius(3px);
   //width: 100%;
   //margin: 3px;
