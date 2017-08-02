@@ -13,15 +13,17 @@
                 <div class="content-panel-body">
                     <md-content class="md-padding">
                         <form name="form">
-                            <h3>Title</h3>
+                            <h3>Title <span style="color:red; font-weight:normal"> *</span></h3>
+
                             <md-input-container flex>
                                 <!-- <label>Title</label> -->
-                                <input ng-model="projectDetails.title"
-                                       ng-change="changed('title')"
-                                       ng-init="projectDetails.title_old = projectDetails.title" required>
+                                <label>Name of the workspace</label>
+                                  <input ng-model="projectDetails.title"
+                                         ng-change="changed('title')"
+                                         ng-init="projectDetails.title_old = projectDetails.title" required>
                             </md-input-container>
 
-                            <h3>Description</h3>
+                            <h3>Description <span style="color:red; font-weight:normal"> *</span></h3>
                             <md-input-container flex>
                                 <!-- <label>Overview</label> -->
                                 <!-- <textarea name="overview"
@@ -42,30 +44,49 @@
                       					</div>
                             </md-input-container>
 
-
-                            <h3>Date / Type</h3>
-                            <div layout='row' layout-align="start center">
-                                <md-input-container>
-                                  <span class="dueDate-label" ng-show="projectDetails.dueDate || projectDetails.dueDateFocused">Due Date</span>
-                                  <md-datepicker class="dueDatePicker"
-                                                 ng-change="changed('dueDate')"
-                                                 ng-init="projectDetails.dueDate_old = projectDetails.dueDate"
-                                                 ng-model="projectDetails.dueDate"
-                                                 aria-label="Due Date"
-                                                 md-placeholder="Due Date"></md-datepicker>
-                                </md-input-container>
-                                <md-input-container>
-                                  <label>Type</label>
-                                  <md-select ng-model="projectDetails.type"
-                                             ng-change="changed('type')"
-                                             ng-disabled="isUpdate"
-                                             ng-init="projectDetails.type_old = projectDetails.type"
-                                             class="type-select" aria-label="Types" required>
-                                      <md-option value="public">Public</md-option>
-                                      <md-option value="private">Private</md-option>
-                                  </md-select>
-                                </md-input-container>
+                            <div layout="row" layout-align="start center">
+                              <h3>Type<span style="color:red; font-weight:normal"> *</span></h3>
+                              <div layout="column" layout-align="start end">
+                                <md-tooltip md-direction="top">Public workspace is visible to everyone and allows anyone to join your workspace without your approval. Private workspaces, on the other hand aren't visible to everybody, only to people who are invited by the owner </md-tooltip>
+                                <md-icon>
+                                  <ng-md-icon icon="info" size="20" style="padding-left:5px" size="20"></ng-md-icon>
+                                </md-icon>
+                              </div>
                             </div>
+
+
+
+
+                            <div layout='row' layout-align="start center">
+                              <md-input-container>
+
+                                <!-- <md-select ng-model="projectDetails.type"
+                                           ng-change="changed('type')"
+                                           ng-disabled="isUpdate"
+                                           ng-init="projectDetails.type_old = projectDetails.type"
+                                           class="type-select" aria-label="Types" required>
+                                    <md-option value="public">Public</md-option>
+                                    <md-option value="private">Private</md-option>
+                                </md-select> -->
+                                <md-radio-group ng-model="projectDetails.type"
+                                ng-change="changed('type')"
+                                ng-disabled="isUpdate"
+                                ng-init="projectDetails.type_old = projectDetails.type"
+                                class="type-select" aria-label="Types" required>
+                                  <md-radio-button value="public">
+                                    Public
+                                  </md-radio-button>
+                                  <md-radio-button value="private">
+                                    Private
+                                  </md-radio-button>
+                                </md-radio-group>
+                              </md-input-container>
+                              <md-button ng-disabled="!(projectDetails.type=='public' || projectDetails.type=='private')" class="md-raised md-primary" ng-click="addMembersWp()">Add Members</md-button>
+                                                            <!-- <md-button ng-disabled="!(projectDetails.type=='public' || projectDetails.type=='private')" class="md-raised md-primary" ng-click="goToTab(2, projectDetails)">Add Members</md-button> -->
+                          </div>
+
+
+
                              <h3 ng-if="projectDetails.type == 'public'">Approval Options</h3>
                             <md-input-container ng-if="projectDetails.type == 'public'">
                                 <!-- <label>Approval Options</label> -->
@@ -80,16 +101,49 @@
                             </md-input-container>
                             <!-- </div> -->
 
+                            <div layout="row" layout-align="start center">
+                              <h3>Due Date</h3>
+                              <div layout="column" layout-align="start end">
+                                <md-tooltip md-direction="top">If you're creating this workspace for a project, 'Due Date' is the date the project is due </md-tooltip>
+                                <md-icon>
+                                  <ng-md-icon icon="info" size="20" style="padding-left:5px"></ng-md-icon>
+                                </md-icon>
+                              </div>
+                            </div>
+
+                            <div layout='row' layout-align="start center">
+                                <md-input-container>
+                                  <span class="dueDate-label" ng-show="projectDetails.dueDate || projectDetails.dueDateFocused">Due Date</span>
+                                  <md-datepicker class="dueDatePicker"
+                                                 ng-change="changed('dueDate')"
+                                                 ng-init="projectDetails.dueDate_old = projectDetails.dueDate"
+                                                 ng-model="projectDetails.dueDate"
+                                                 aria-label="Due Date"
+                                                 md-placeholder="Select Date"></md-datepicker>
+                                </md-input-container>
+                              </div>
+
 
 
 
                         </form>
                     </md-content>
+
+
                     <md-content class="md-padding">
+                      <div layout="row" layout-align="start center">
+                        <h3>ENTER TAGS</h3>
+                        <div layout="column" layout-align="start end">
+                          <md-tooltip md-direction="top">Keywords that identify the workspace during search</md-tooltip>
+                          <md-icon>
+                            <ng-md-icon icon="info" size="20" style="padding-left:5px"></ng-md-icon>
+                          </md-icon>
+                        </div>
+                      </div>
                         <div layout="column">
                             <form ng-submit="addTag(newTag)" class="add-tags-form" layout="row" layout-align="start center">
                                 <md-input-container>
-                                    <label>Enter Tag</label>
+                                    <label>Ex: Supply chain, app execution</label>
                                     <input ng-model="newTag">
                                 </md-input-container>
                                 <md-button ng-disabled="!newTag" class="md-raised md-primary">Add</md-button>
@@ -112,6 +166,27 @@
             </div>
         </div>
         <!-- Right Content Column -->
+        <!-- <div class="content-column upload-documents" layout="column" flex="50">
+            <div class="content-panel"
+                 source="documents"
+                 ui-widget-upload-documents
+                 widget-type="'row'"
+                 auto-upload="false"
+                 allow-tagging="true"
+                 access-level="accessLevels"
+                 widget-title="'UPLOAD DOCUMENTS'"></div>
+        </div> -->
+
+        <!-- <div layout="row" layout-align="start center">
+          <h3>ENTER TAGS</h3>
+          <div layout="column" layout-align="start end">
+            <md-tooltip md-direction="top">Keywords that identify the workspace during search</md-tooltip>
+            <md-icon>
+              <ng-md-icon icon="info" size="20" style="padding-left:5px"></ng-md-icon>
+            </md-icon>
+          </div>
+        </div> -->
+
         <div class="content-column upload-documents" layout="column" flex="50">
             <div class="content-panel"
                  source="documents"
@@ -122,6 +197,8 @@
                  access-level="accessLevels"
                  widget-title="'UPLOAD DOCUMENTS'"></div>
         </div>
+
+
     </div>
     <div layout="row" class="btn-next-block" layout-padding layout-align="end center">
         <!-- Cancel edit project -->
@@ -135,6 +212,7 @@
                    ng-if="!isUpdate"
                    ng-href="all-projects.php">Cancel</md-button>
         <!-- Go to next tab -->
-        <md-button class="md-raised md-primary" ng-disabled="!form.$valid" ng-click="goToTab(2, projectDetails)">Next</md-button>
+        <md-button class="md-raised md-primary" ng-disabled="!form.$valid" ng-click="submitProjectDetails(invitees)">Create</md-button>
+        <!-- <md-button class="md-raised md-primary" ng-disabled="!form.$valid" ng-click="goToTab(2, projectDetails)">Create</md-button> -->
     </div>
 </div>

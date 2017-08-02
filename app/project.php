@@ -66,6 +66,10 @@
     <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
     <script src="scripts/components/product-card-buttons/product-card-buttons.js"></script>
 
+    <script src="scripts/add_project/add_project.js"></script>
+    <script src="scripts/components/add-project/add-project.directive.js"></script>
+    <script src="scripts/add_members/add-members.js"></script>
+
     <script src="scripts/project/project.js"></script>
     <script src="scripts/project/controllers/id-locator.js"></script>
     <script src="scripts/project/controllers/discussions.js"></script>
