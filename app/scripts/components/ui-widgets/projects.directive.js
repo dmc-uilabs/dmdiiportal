@@ -72,7 +72,7 @@ angular.module('dmc.widgets.projects', [
                     // vm.activeFilter = null;
 
                     vm.activeFilter = null;
-                    vm.searchTerm = null;
+                    //vm.searchTerm = null;
                     vm.getProjects();
                 }
             }, true);

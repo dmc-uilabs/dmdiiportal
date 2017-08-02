@@ -37,7 +37,7 @@
 					<h4 ng-click="clearNotification(item.createdFor.id, item.id)" flex ng-switch on="item.type">
 						<a ng-switch-when="USER_REQUESTS_VERIFICATION" ng-href='/company-profile.php#/profile/{{userData.companyId}}'>{{item.createdBy.displayName}} has requested to be verified with your organization.</a>
 						<a ng-switch-when="NEW_USER_JOINED_ORGANIZATION" ng-href='/company-profile.php#/profile/{{userData.companyId}}'>{{item.createdBy.displayName}} has requested to join your organization.</a>
-						<a ng-switch-when="INVITATION_TO_WORKSPACE" ng-href="{{item.message}}">{{item.createdBy.displayName}} has invited you to a workspace.</a>
+						<a ng-switch-when="INVITATION_TO_WORKSPACE" ng-href="/all.php#/invitations">{{item.createdBy.displayName}} has invited you to a workspace.</a>
 						<a ng-switch-when="DOCUMENT_SHARED" ng-href="{{item.message}}">{{item.createdBy.displayName}} has shared a document with you.</a>
 						<a ng-switch-when="DOCUMENT_SHARED_WITH_WORKSPACE" ng-href="{{item.message}}">{{item.createdBy.displayName}} has shared a document with your workspace.</a>
 						<a ng-switch-default>{{item.message}}</a>

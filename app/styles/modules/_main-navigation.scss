@@ -8,6 +8,13 @@ $navigation: #FFF;
 $navigationArrow: #65AF3F;
 $navigationActive: #65AF3F;
 
+a:focus{
+  color: map-get($colors, primary);
+}
+a:hover{
+  color: map-get($colors, primary);
+}
+
 div[dmc-top-header]{
   z-index: 99;
   position: relative;
@@ -103,6 +110,9 @@ div[dmc-top-header]{
 
       ng-md-icon{
         fill: $topHeaderIcon;
+        display: inline-block;
+        vertical-align: middle;
+        height: 27.5px;
       }
     }
 
@@ -230,6 +240,9 @@ div[dmc-top-header]{
         background-color: map-get($colors, secondary);
         ng-md-icon{
           fill: #fff;
+          display: inline-block;
+          vertical-align: middle;
+          height: 23.5px;
         }
       }
       md-select {
@@ -247,9 +260,13 @@ div[dmc-top-header]{
           opacity: .7;
           margin-left:4px;
         }
-        .md-select-value .md-select-icon{
-          margin-left:-6px;
-          margin-bottom:3px;
+        .md-select-value {
+          //margin-right: -3px;
+          .md-select-icon{
+            margin-left:-6px;
+            margin-bottom:3px;
+            //margin-right: 5px;
+          }
         }
       }
     }
@@ -308,9 +325,22 @@ div[dmc-top-header]{
     //margin-right:10px;
     fill: map-get($colors, secondary);
   }
+  md-menu-item {
+    a{
+      text-align: left;
+    }
+  }
 }
 
 .header-menu-content.md-default-theme{
+  md-menu-item {
+    a{
+      text-align: left;
+    }
+    button{
+      text-align: left;
+    }
+  }
   a.md-button {
     line-height: 3.2;
   }
@@ -347,6 +377,7 @@ div[dmc-top-header]{
     }
     .view-all-link{
       text-transform: uppercase;
+      font-size: 12px;
     }
     md-menu-item{
       max-height: none;
