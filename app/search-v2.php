@@ -51,8 +51,6 @@
     <script src="scripts/components/product-card-buttons/product-card-buttons.js"></script>
     <script src="scripts/common/models/company-model.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
-    <script src="scripts/components/add-project/add-project.directive.js"></script>
-    <script src="scripts/components/members-card/members-card.js"></script>
     <script src="scripts/company-profile/company-profile.js"></script>
     <script src="scripts/components/contacts-card/contacts-card.js"></script>
     <script src="scripts/common/factory/location.factory.js"></script>
@@ -61,6 +59,7 @@
     <script src="scripts/common/models/phone-model.js"></script>
     <script src="scripts/common/models/zipcode-model.js"></script>
     <script src="scripts/common/models/question-toast-model.js"></script>
+    <script src="scripts/components/members-card/members-card.js"></script>
 
     <script src="scripts/search-v2/search-v2.js"></script>
     <script src="scripts/search-v2/search-v2.controller.js"></script>

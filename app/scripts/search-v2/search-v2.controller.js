@@ -1,5 +1,154 @@
 'use strict';
 angular.module('dmc.search_v2')
+.directive('dmcCompanyCard', function () {
+        return {
+            restrict: 'A',
+            templateUrl: 'templates/components/add-project/company-card-tpl.html',
+            scope:{
+                compareCompany: '=',
+                cardSource: '=',
+                inviteCompany: '=',
+                favoriteCompany: '='
+            },
+            controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
+
+                $scope.userData = DMCUserModel.getUserData();
+                $scope.userData.then(function(res){
+                    $scope.userData = res;
+                });
+
+                $scope.addingToProject = false;
+
+                $scope.addToProject = function(){
+                    $scope.addingToProject = true;
+                };
+
+                $scope.projects = $rootScope.projects;
+
+                $scope.cancelAddToProject = function(){
+                    $scope.addingToProject = false;
+                };
+
+                $scope.showCompany = function(id, ev){
+                    $(window).scrollTop();
+                    $mdDialog.show({
+                        controller: 'showCompany',
+                        templateUrl: 'templates/components/members-card/show-company.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose:true,
+                        locals: {
+                            'id' : $scope.cardSource.id
+                        }
+                    }).then(function() {
+                        $(window).scrollTop();
+                    }, function() {
+                        $(window).scrollTop();
+                    });
+                };
+
+                $scope.inviteUserToProject = function(projectId){
+                    var project = null;
+                    for(var i in $scope.projects){
+                        if($scope.projects[i].id == projectId){
+                            project = $scope.projects[i];
+                            break;
+                        }
+                    }
+                    if(project){
+                        ajax.get(dataFactory.getUsersByOrganization($scope.cardSource.id),{},
+                            function(response){
+                                var ids = $.map(response.data,function(x){ return x.id; });
+                                var count = ids.length;
+                                function callbackAddUser(response, i){
+                                    console.log(response, i, count)
+                                    if(i === count-1) {
+                                        $scope.cancelAddToProject();
+
+                                        if (!$scope.cardSource.currentStatus) $scope.cardSource.currentStatus = {};
+                                        if (!$scope.cardSource.currentStatus.project) $scope.cardSource.currentStatus.project = {};
+                                        $scope.cardSource.currentStatus.project.id = projectId;
+                                        $scope.cardSource.currentStatus.project.title = project.title;
+                                        $scope.cardSource.projectId = projectId;
+                                        $scope.cardSource.added = true;
+
+                                        $scope.cardSource.lastProject = {
+                                            title: project.title,
+                                            href: '/project.php#/' + project.id + '/home'
+                                        };
+                                        $scope.addedTimeout = setTimeout(function () {
+                                            $scope.cardSource.added = false;
+                                            apply();
+                                        }, 10000);
+                                        apply();
+                                    }
+                                }
+                                if(count > 0) {
+                                    var index = 0;
+                                    for (var i in ids) {
+                                        ajax.create(dataFactory.createMembersToProject(),
+                                            {
+                                                'profileId': ids[i],
+                                                'projectId': projectId,
+                                                'fromProfileId': $rootScope.userData.id,
+                                                'from': $rootScope.userData.displayName,
+                                                'date': Date.parse(new Date()),
+                                                'accept': true
+                                            }, function(response){
+                                                index++;
+                                                $rootScope.userData.messages.items.splice($rootScope.userData.messages.items.length-1, 1);
+                                                $rootScope.userData.messages.items.unshift({
+                                                    'user_name': $rootScope.userData.displayName,
+                                                    'image': '/uploads/profile/1/20151222084711000000.jpg',
+                                                    'text': 'Invited you to a project',
+                                                    'link': '/project.php#/preview/' + projectId,
+                                                    'created_at': moment().format('hh:mm A')
+                                                });
+                                                callbackAddUser(response, index);
+                                            }
+                                        );
+                                    }
+                                }
+                            }
+                        );
+                    }else{
+                        toastModel.showToast('error', 'Project not found');
+                    }
+                };
+
+                $scope.backToAdd = function(){
+                    $scope.cardSource.added = false;
+                    clearInterval($scope.addedTimeout);
+                };
+
+                $scope.followCompany = function(){
+                    if($scope.userData) {
+                        if (!$scope.cardSource.follow) {
+                            ajax.create(dataFactory.followCompany(), {
+                                accountId: $scope.userData.accountId,
+                                companyId: $scope.cardSource.id
+                            }, function (response) {
+                                $scope.cardSource.follow = response.data;
+                                if($rootScope.searchPageTotalFollow) $rootScope.searchPageTotalFollow.add();
+                                apply();
+                            });
+                        } else {
+                            ajax.delete(dataFactory.unfollowCompany($scope.cardSource.follow.id), {},
+                                function (response) {
+                                    $scope.cardSource.follow = null;
+                                    if($rootScope.searchPageTotalFollow) $rootScope.searchPageTotalFollow.delete();
+                                }
+                            );
+                        }
+                    }
+                };
+
+                var apply = function(){
+                    if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+                };
+            }
+        }
+    })
     .controller('SearchV2Controller', [
         '$scope',
         '$stateParams',
