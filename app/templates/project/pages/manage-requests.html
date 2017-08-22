@@ -6,10 +6,14 @@
                   <div layout="column" flex class="margin-right12-5">
                       <span>Manage Requests</span>
                   </div>
-                  <a ng-href="{{'/add-members.php#/'+projectCtrl.projectData.id}}"
+                  <a ng-click="inviteModal()"
                      class="link-button uppercase invite-button margin-left20">
                       <ng-md-icon icon="group_add" size="22"></ng-md-icon>Invite
                   </a>
+                  <!-- <a ng-href="{{'/add-members.php#/'+projectCtrl.projectData.id}}"
+                     class="link-button uppercase invite-button margin-left20">
+                      <ng-md-icon icon="group_add" size="22"></ng-md-icon>Invite
+                  </a> -->
             </div>
             <div layout="row" flex layout-align="start end" class="search-content">
                 <form ng-submit="submit(searchModel)" class="view-all-search-field global-search-form" flex>
