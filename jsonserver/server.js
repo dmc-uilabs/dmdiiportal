@@ -56,9 +56,11 @@ server.use(jsonServer.rewriter({
     '/projects/:projectId/accept/:memberId': '/projects_members/:memberId',
     '/projects/:projectId/reject/:memberId': '/projects_members/:memberId',
     '/dmdiiMember/events': '/dmdiiMemberEvents',
+    '/dmdiiMember/events/:id': '/dmdiiMemberEvents/:id',
     '/dmdiiMember/news': '/dmdiiMemberNews',
     '/dmdiiMember/mapEntry' : '/dmdiiMemberMap',
     '/dmdiiProject/events': '/dmdiiProjectEvents',
+    '/dmdiiProject/events/:id': '/dmdiiProjectEvents/:id',
     '/dmdiiProject/news': '/dmdiiProjectNews',
     '/dmdiiprojects/member/active': '/dmdiiprojectsmembersactive',
     '/dmdiiProject/:id': '/dmdiiProjects/:id',
@@ -149,7 +151,8 @@ server.get('/dmdiiprojects', function (req, res) {
   projectsOrig = {"count": projectsData.length ,"data" : projectsData }
 
   res.jsonp(projectsOrig)
-})
+});
+
 server.post('/services', function(req,res) {
  res.jsonp({"id":906,"companyId":"1","title":"K Max","description":"The formula used is Kmax = BetaFactor * AppliedLoad / (Thickness * math.sqrt(SpecimenWidth.getValue())). The four inputs are BetaFactor (no unit), AppliedLoad (Newton), SpecimenWidth (meter), and Thickness (meter). The output is Kmax (pascal square root meter).",
  "owner":"269","profileId":"269","releaseDate":"2017-01-21",
