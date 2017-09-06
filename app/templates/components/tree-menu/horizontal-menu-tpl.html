@@ -21,25 +21,40 @@
 
 
 <div class="filter-container">
-  <div class="row content-row">
-    <div class="col-sm-6">
-      <a class="toggle-control collapsed" data-toggle="collapse" data-target="#member-filters">Filters <span class="caret"></span></a>
-    </div>
-    <div class="col-sm-6 text-right">
-      <a ng-href="{{clearUrl}}">Clear Filters</a>
-    </div>
+  <div id="member-filters">
+    <div flex layout="row">
 
-  </div>
-  <div class="collapse" id="member-filters">
-    <div class="row">
-      <div class="col-sm-4" ng-repeat="level in treeSource.data">
-        <h4>{{level.title}}</h4>
-        <div ng-repeat="category in level.categories">
-          <a ng-class="{'selected' : category.opened}" ng-href="{{category.href}}">{{category.title}}</a>
-        </div>
+      <div class="dropdown" ng-repeat="level in treeSource.data">
+          <!-- <a layout="row" layout-align="start center" class="toggle-control collapsed dropdown-toggle" data-toggle="isPopupVisible">
+            <h4>{{level.title}}</h4><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu" ng-if="isPopupVisible">
+            <div ng-repeat="category in level.categories">
+              <input type="checkbox" name="coType" data-ng-model="type.selected" id="{{category.title}}"/>
+              <label for="{{category.title}}" class="labelForOp">{{category.title}}</label>
+            </div>
+          </div> -->
 
+          <!-- <a layout="row" layout-align="start center" class="toggle-control collapsed dropdown-toggle" id="{{makeFilterName(level.title)}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <h4>{{level.title}}</h4><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="{{makeFilterName(level.title)}}">
+            <div ng-repeat="category in level.categories">
+              <input type="checkbox" name="coType" data-ng-model="type.selected" id="{{category.title}}"/>
+              <label for="{{category.title}}" class="labelForOp">{{category.title}}</label>
+            </div>
+          </div> -->
+
+          <a layout="row" layout-align="start center" class="dropdown-toggle" id="itemstoshowdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		    			{{level.title}}<span class="caret"></span>
+		  		</a>
+					<div class="dropdown-menu" aria-labelledby="itemstoshowdropdown" ng-click="$event.stopPropagation()">
+            <div ng-repeat="category in level.categories">
+              <input type="checkbox" name="coType" data-ng-model="type.selected" id="{{category.title}}"/>
+              <label for="{{category.title}}" class="labelForOp">{{category.title}}</label>
+            </div>
+					</div>
       </div>
-
 
     </div>
   </div>

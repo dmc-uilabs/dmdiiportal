@@ -53,9 +53,21 @@ div.list-wrapper {
 
 		white-space: normal;
 	}
+
+	th{
+		vertical-align: top !important;
+	}
 }
 .map-col {
 	margin-top:40px;
+}
+
+.tier{
+	min-width: 100px;
+}
+
+.type{
+	min-width: 200px;
 }
 
 .active-projects {

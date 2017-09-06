@@ -331,10 +331,10 @@ angular.module('dmc.members')
                     }
                 };
 
-                return {
-                    title: 'BROWSE BY',
-                    data: [
-                        {
+                return [{
+                          title: 'BROWSE BY',
+                          data:
+                          [{
                             'id': 1,
                             'title': 'Tier',
                             'tag' : 'tier',
@@ -374,8 +374,12 @@ angular.module('dmc.members')
                                     'categories': []
                                 }
                             ]
+                          }]
                         },
                         {
+                          title: 'BROWSE BY',
+                          data:
+                          [{
                             'id': 2,
                             'title': 'Type',
                             'tag' : 'type',
@@ -415,8 +419,11 @@ angular.module('dmc.members')
                                 //     'categories': []
                                 // }
                             ]
+                          }]
                         },
                         {
+                          title: 'BROWSE BY',
+                          data: [{
                             'id': 3,
                             'title': 'Active Projects',
                             'tag' : 'activeProjects',
@@ -440,9 +447,9 @@ angular.module('dmc.members')
                                     'categories': []
                                 }
                             ]
+                          }]
                         }
-                    ]
-                };
+                      ];
             };
 
             $scope.treeMenuModel = getMenu();
