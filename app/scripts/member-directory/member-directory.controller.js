@@ -238,11 +238,24 @@ angular.module('dmc.members')
                     // _sort: $scope.sortBy,
                     name: $scope.searchModel
                 };
-                if(angular.isDefined($stateParams.tier)) data.tier = $stateParams.tier
-                if(angular.isDefined($stateParams.type)) data.categoryId = $stateParams.type;
-                if(angular.isDefined($stateParams.activeProjects)) data.activeProjects = $stateParams.activeProjects;
-                if(angular.isDefined($stateParams.expertiseTags)) data.expertiseTags = $stateParams.expertiseTags;
-                if(angular.isDefined($stateParams.desiredExpertiseTags)) data.desiredExpertiseTags = $stateParams.desiredExpertiseTags;
+
+                for (var filter in $scope.treeMenuModel){
+                  var params = [];
+                  for (var category in $scope.treeMenuModel[filter].categories){
+                    if($scope.treeMenuModel[filter].categories[category].selected){
+                      params.push($scope.treeMenuModel[filter].categories[category].id);
+                    }
+                  }
+                  data[$scope.treeMenuModel[filter].queryString] = params;
+                }
+
+                //console.log(data);
+
+                // if(angular.isDefined($stateParams.tier)) data.tier = $stateParams.tier
+                // if(angular.isDefined($stateParams.type)) data.categoryId = $stateParams.type;
+                // if(angular.isDefined($stateParams.activeProjects)) data.activeProjects = $stateParams.activeProjects;
+                // if(angular.isDefined($stateParams.expertiseTags)) data.expertiseTags = $stateParams.expertiseTags;
+                // if(angular.isDefined($stateParams.desiredExpertiseTags)) data.desiredExpertiseTags = $stateParams.desiredExpertiseTags;
 
                 return data;
             };
@@ -315,6 +328,8 @@ angular.module('dmc.members')
                 });
             };
 
+
+
             var getMenu = function(){
 
                 // var getUrl = function(cat, subcat){
@@ -331,128 +346,73 @@ angular.module('dmc.members')
                     }
                 };
 
-                return [{
-                          title: 'BROWSE BY',
-                          data:
-                          [{
+                return [
+                          {
                             'id': 1,
                             'title': 'Tier',
-                            'tag' : 'tier',
-                            'opened' : isOpened('tier'),
-                            'href' : $scope.getUrl('tier', null),
+                            'queryString': 'tier',
                             'categories': [
                                 {
-                                    'id': 11,
+                                    'id': 1,
                                     'title': 'One',
-                                    'tag' : '1',
-                                    'opened' : isOpened('tier', '1'),
-                                    'href' : $scope.getUrl('tier', '1'),
-                                    'categories': []
                                 },
                                 {
-                                    'id': 12,
+                                    'id': 2,
                                     'title': 'Two',
-                                    'tag' : '2',
-                                    'opened' : isOpened('tier', '2'),
-                                    'href' : $scope.getUrl('tier', '2'),
-                                    'categories': []
                                 },
                                 {
-                                    'id': 13,
+                                    'id': 3,
                                     'title': 'Three',
-                                    'tag' : '3',
-                                    'opened' : isOpened('tier', '3'),
-                                    'href' : $scope.getUrl('tier', '3'),
-                                    'categories': []
                                 },
                                 {
-                                    'id': 14,
+                                    'id': 4,
                                     'title': 'Four',
-                                    'tag' : '4',
-                                    'opened' : isOpened('tier', '4'),
-                                    'href' : $scope.getUrl('tier', '4'),
-                                    'categories': []
                                 }
                             ]
-                          }]
-                        },
-                        {
-                          title: 'BROWSE BY',
-                          data:
-                          [{
+                          },
+                          {
                             'id': 2,
                             'title': 'Type',
-                            'tag' : 'type',
-                            'opened' : isOpened('type'),
-                            'href' : $scope.getUrl('type', null),
+                            'queryString': 'categoryId',
                             'categories': [
                                 {
-                                    'id': 21,
+                                    'id': 1,
                                     'title': 'Academic/Non-Profit',
-                                    'tag' : '2',
-                                    'opened' : isOpened('type', '2'),
-                                    'href' : $scope.getUrl('type', '2'),
-                                    'categories': []
                                 },
                                 {
-                                    'id': 22,
+                                    'id': 2,
                                     'title': 'Government',
-                                    'tag' : '3',
-                                    'opened' : isOpened('type', '3'),
-                                    'href' : $scope.getUrl('type', '3'),
-                                    'categories': []
                                 },
                                 {
-                                    'id': 23,
+                                    'id': 3,
                                     'title': 'Industry',
-                                    'tag' : '1',
-                                    'opened' : isOpened('type', '1'),
-                                    'href' : $scope.getUrl('type', '1'),
-                                    'categories': []
                                 }
-                                // ,{
-                                //     'id': 24,
-                                //     'title': 'Non-Profit',
-                                //     'tag' : '4',
-                                //     'opened' : isOpened('type', '4'),
-                                //     'href' : $scope.getUrl('type', '4'),
-                                //     'categories': []
-                                // }
-                            ]
-                          }]
-                        },
-                        {
-                          title: 'BROWSE BY',
-                          data: [{
+                              ]
+                          },
+                          {
                             'id': 3,
                             'title': 'Active Projects',
-                            'tag' : 'activeProjects',
-                            'opened' : isOpened('activeProjects'),
-                            'href' : $scope.getUrl('activeProjects', null),
+                            'queryString': 'activeProjects',
                             'categories': [
                                 {
-                                    'id': 31,
+                                    'id': 1,
                                     'title': 'Yes',
-                                    'tag' : 'yes',
-                                    'opened' : isOpened('activeProjects', 'yes'),
-                                    'href' : $scope.getUrl('activeProjects', 'yes'),
-                                    'categories': []
                                 },
                                 {
-                                    'id': 32,
+                                    'id': 2,
                                     'title': 'No',
-                                    'tag' : 'no',
-                                    'opened' : isOpened('activeProjects', 'no'),
-                                    'href' : $scope.getUrl('activeProjects', 'no'),
-                                    'categories': []
                                 }
                             ]
-                          }]
-                        }
+                          }
                       ];
             };
 
             $scope.treeMenuModel = getMenu();
+
+            $scope.$watch('treeMenuModel', function() {
+                $scope.getDMDIIMembers();
+            }, true);
+
             $scope.mapObject = {
                 scope: 'usa',
 

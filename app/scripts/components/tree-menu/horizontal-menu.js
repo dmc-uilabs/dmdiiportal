@@ -15,24 +15,8 @@ angular.module('dmc.component.horizontalmenu', [
           treeSource: '='
         },
         templateUrl: 'templates/components/tree-menu/horizontal-menu-tpl.html',
-        controller: function($scope, $document, $element){
+        controller: function($scope){
             $scope.clearUrl = $window.location.href.split('?')[0];
-
-            $scope.makeFilterName = function(s){
-              return s.replace(/ /g,'');
-            }
-
-            $scope.isPopupVisible = false;
-
-            $scope.toggleDropdown = function(){
-              $scope.isPopupVisible = !$scope.isPopupVisible;
-            }
-
-            console.log($element.find('.dropdown'));
-
-            $element.find('.dropdown').on('hide.bs.dropdown', function () {
-              console.log('hello');
-            });
         }
       };
   }]
