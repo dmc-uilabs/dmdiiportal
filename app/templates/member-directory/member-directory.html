@@ -184,15 +184,15 @@
 		</div>
 
 		<div class="members-table">
-			<div class="table-responsive ">
+			<div class="table-responsive" style="overflow:visible">
 				<table class="table">
 					<thead>
 						<tr>
 							<th></th>
 							<th>Member</th>
-							<th class="tier"><dmc-horizontal-menu tree-source="treeMenuModel[0]"></dmc-horizontal-menu></th>
-							<th>Type</th>
-							<th>Active Projects</th>
+							<th><dmc-horizontal-menu tree-source="treeMenuModel[0]"></dmc-horizontal-menu></th>
+							<th><dmc-horizontal-menu tree-source="treeMenuModel[1]"></dmc-horizontal-menu></th>
+							<th><dmc-horizontal-menu tree-source="treeMenuModel[2]"></dmc-horizontal-menu></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -207,8 +207,8 @@
 								</p>
 							</td>
 
-							<td>{{member.dmdiiType.tier}}</td>
-							<td>{{member.dmdiiType.dmdiiTypeCategory.category}}</td>
+							<td class="tier">{{member.dmdiiType.tier}}</td>
+							<td class="type">{{member.dmdiiType.dmdiiTypeCategory.category}}</td>
 							<td>
 								<ul class="active-projects">
 									<li ng-repeat="project in activeProjects[member.id] track by $index">
