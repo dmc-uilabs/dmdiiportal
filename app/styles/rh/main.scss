@@ -59,6 +59,20 @@ time {
 	.collapse {
 		padding-bottom: 30px;
 	}
+	.dropdown{
+		width: 110%;
+		margin-right:-10px;
+	}
+	.dropdown-menu {
+		padding: 10px 10px 0px 10px;
+		min-width: 100px;
+	}
+	a{
+		&:hover{
+			text-decoration: none;
+			cursor: pointer;
+		}
+	}
 }
 .content-row {
 	padding:30px 0;

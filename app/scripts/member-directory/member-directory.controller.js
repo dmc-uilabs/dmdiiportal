@@ -373,7 +373,7 @@ angular.module('dmc.members')
                           {
                             'id': 2,
                             'title': 'Type',
-                            'queryString': 'categoryId',
+                            'queryString': 'type',
                             'categories': [
                                 {
                                     'id': 1,
