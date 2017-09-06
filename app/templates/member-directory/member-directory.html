@@ -1,23 +1,23 @@
 <main>
 	<section class="container">
 		<h2>Membership Directory</h2>
-		<div class="row content-row">
-			<div class="col-lg-7">
+		<!-- <div class="row content-row">
+			<div class="col-lg-7"> -->
 
 
 
 				<!-- Desktop controls -->
 				<!-- Nav tabs -->
-				<ul class="nav nav-tabs event-tabs" role="tablist">
+				<!-- <ul class="nav nav-tabs event-tabs" role="tablist"> -->
 					<!-- <li class="hidden-xs tab-label">Events</li> -->
-					<li role="presentation" class="active hidden-xs"><a data-target="#news" aria-controls="news" role="tab" data-toggle="tab">News</a></li>
+					<!-- <li role="presentation" class="active hidden-xs"><a data-target="#news" aria-controls="news" role="tab" data-toggle="tab">News</a></li>
 					<li role="presentation" class="hidden-xs"><a data-target="#calendar" aria-controls="calendar" role="tab" data-toggle="tab">Calendar</a></li>
-					<li role="presentation" class="hidden-xs"><a data-target="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">Event List</a></li>
+					<li role="presentation" class="hidden-xs"><a data-target="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">Event List</a></li> -->
 
 
 
 					<!-- Mobile controls -->
-					<li role="presentation" class="dropdown xs-tab-control visible-xs">
+					<!-- <li role="presentation" class="dropdown xs-tab-control visible-xs">
 						<a href="#" class="dropdown-toggle" id="myTabDrop1" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false"><span class="tab-section-label">Section</span> <span class="caret"></span></a>
 						<ul class="dropdown-menu" aria-labelledby="myTabDrop1"
 										id="myTabDrop1-contents">
@@ -28,12 +28,12 @@
 						</ul>
 
 					</li>
-				</ul>
+				</ul> -->
 
 
 
 				<!-- Tab panes -->
-				<div class="tab-content">
+				<!-- <div class="tab-content">
 					<div role="tabpanel" class="tab-pane fade in active" id="news">
 						<div class="event-list" ng-repeat="item in news track by $index| limitTo:3">
 						<div class="event-block">
@@ -120,11 +120,11 @@
 					</datamap>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</section>
 
 	<!-- TODO this needs to be made in to a module suitable for members, projects and ideally services -->
-	<section class="container content-padding">
+	<!-- <section class="container content-padding">
 			<div class="row">
 					<div class="col-md-12 project-main">
 							<div class="top-border"></div>
@@ -137,51 +137,62 @@
 					</div>
 					</div>
 			</div>
-	</section>
+	</section> -->
 
 	<section class="container">
 
-		<dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu>
+		<!-- <dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu> -->
 
-		<div class="row content-row">
-			<div class="col-xs-4">
+		<div class="row content-row" style="padding: 10px 0px 0px 0px">
+
+			<!-- <div class="col-xs-6">
+				<dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu>
+			</div> -->
+
+			<!-- <div class="col-xs-7"/> -->
+
+			<div class="col-xs-11">
 				<div class="form-group has-feedback">
 					<form ng-submit="submit(searchModel)">
 						<input ng-model="searchModel" type="text" class="form-control " placeholder="Search Members">
 					</form>
 				</div>
-				<!-- /input-group -->
 			</div>
-			<div class="col-xs-1" style="padding-left: 0px; margin-left: -10px;">
-				<ng-md-icon ng-click="submit(searchModel)" icon="search" style="fill: #999" size="30"></ng-md-icon>
-			</div>
-			<div class="col-xs-4 col-xs-offset-3 ">
 
+
+			<!-- <div class="col-xs-1">
+				<div class="form-group has-feedback">
+				<button class="btn btn-default" style="padding:0px 10px 0px 10px" ng-click="submit(searchModel)" >
+					<ng-md-icon icon="search" style="fill: #999" size="25"></ng-md-icon>
+				</button>
+			</div>
+			</div> -->
+
+			<div class="col-xs-1">
 				<div class="dropdown pull-right">
 					<button class="btn btn-default dropdown-toggle" type="button" id="itemstoshowdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 		    			{{showArray[sizeModule].name}}<span class="caret"></span>
-		  				</button>
+		  		</button>
 					<ul class="dropdown-menu" aria-labelledby="itemstoshowdropdown">
 						<li ng-repeat="item in showArray track by $index">
 							<a ng-click="selectItemDropDown($index)">{{item.name}}</a>
 						</li>
 					</ul>
 				</div>
-
 			</div>
+
 		</div>
+
 		<div class="members-table">
 			<div class="table-responsive ">
 				<table class="table">
 					<thead>
 						<tr>
 							<th></th>
-							<th>Name</th>
+							<th>Member</th>
 							<th>Tier</th>
 							<th>Type</th>
 							<th>Active Projects</th>
-							<th>Core Capabilities</th>
-							<th>Seeking Collaboration</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -208,26 +219,6 @@
 												 element-text-limit="30">
 											 </span>
 										</a>
-									</li>
-								</ul>
-							</td>
-							<td>
-								<ul class="active-projects">
-									<li ng-repeat="tag in member.organization.areasOfExpertise track by $index">
-										<span more-less
-											 element-text="{{tag.name}}"
-											 element-text-limit="30">
-										 </span>
-									</li>
-								</ul>
-							</td>
-							<td>
-								<ul class="active-projects">
-									<li ng-repeat="tag in member.organization.desiredAreasOfExpertise track by $index">
-										<span more-less
-											 element-text="{{tag.name}}"
-											 element-text-limit="30">
-										 </span>
 									</li>
 								</ul>
 							</td>
