@@ -172,7 +172,11 @@ a.following-btn{
     }
   }
 }
-
+.recent-updates{
+  .discussions-list{
+    height: 500px;
+  }
+}
 .discussions-list{
   md-list-item{
     border-top: 1px solid #ccc;
