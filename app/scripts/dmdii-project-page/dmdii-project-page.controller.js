@@ -135,6 +135,7 @@ angular.module('dmc.dmdiiProj')
                             ajax.delete(dataFactory.getDMDIIProject($scope.project.id).delete, {},
                                 function (response) {
                                     toastModel.showToast("success", "Project successfully removed!");
+                                    $window.location.href='/dmdii-projects.php#/dmdii_projects';
                                 }, function (response) {
                                     toastModel.showToast("error", response.statusText);
                                 }
