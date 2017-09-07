@@ -49,25 +49,25 @@ angular.module('dmc.addDmdiiContent')
             $scope.sections = {
                 quicklinks : {
                     title : 'Quick Links'
-                },
-                memberEvents : {
-                    title : 'Member Events'
-                },
-                memberNews : {
-                    title : 'Member News'
-                },
-                projectEvents : {
-                    title : 'Project Events'
-                },
-                projectNews : {
-                    title : 'Project News'
-                },
-                projectsOverview: {
-                    title : 'Projects Overview'
-                },
-				projectStatus: {
-                    title : 'Projects Status'
                 }
+        //         memberEvents : {
+        //             title : 'Member Events'
+        //         },
+        //         memberNews : {
+        //             title : 'Member News'
+        //         },
+        //         projectEvents : {
+        //             title : 'Project Events'
+        //         },
+        //         projectNews : {
+        //             title : 'Project News'
+        //         },
+        //         projectsOverview: {
+        //             title : 'Projects Overview'
+        //         },
+				// projectStatus: {
+        //             title : 'Projects Status'
+        //         }
             };
 
             var getCurrentSection = function(){
