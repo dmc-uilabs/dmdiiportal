@@ -19,6 +19,7 @@ angular.module('dmc.dmdiiProj')
         'is_search',
         'DMCUserModel',
         '$window',
+        'questionToastModel',
         function($state,
                  $stateParams,
                  $scope,
@@ -30,7 +31,8 @@ angular.module('dmc.dmdiiProj')
                  $location,
                  is_search,
                  DMCUserModel,
-                 $window){
+                 $window,
+                 questionToastModel){
 
             $scope.searchModel = angular.isDefined($stateParams.text) ? $stateParams.text : null;
 
@@ -122,7 +124,27 @@ angular.module('dmc.dmdiiProj')
             };
             $scope.getDMDIIProject();
 
-  
+            // delete server
+            $scope.deleteProject = function(event){
+                questionToastModel.show({
+                    question: "Are you sure you want to delete this project?",
+                    buttons: {
+                        ok: function(){
+                          console.log($scope.project.id);
+                            // ajax.delete(dataFactory.serverURL(item.id).delete, {},
+                            //     function (response) {
+                            //         byParameter.delete($scope.servers, "id", item.id);
+                            //         toastModel.showToast("success", "Server successfully removed!");
+                            //     }, function (response) {
+                            //         toastModel.showToast("error", response.statusText);
+                            //     }
+                            // );
+                        },
+                        cancel: function(){}
+                    }
+                }, event);
+            };
+
 		}
     ]
 ).filter('numberFixedLen', function () {

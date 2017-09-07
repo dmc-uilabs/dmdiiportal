@@ -23,7 +23,8 @@ angular.module('dmc.dmdiiProj', [
 	'dmc.component.carousel',
   'dmc.component.documentinfo',
     'dmc.widgets.tasks',
-    'dmc.widgets.tabs'
+    'dmc.widgets.tabs',
+    'dmc.model.question-toast-model'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('project_page', {
