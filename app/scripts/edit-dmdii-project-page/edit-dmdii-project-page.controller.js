@@ -4,6 +4,7 @@ angular.module('dmc.edit-project')
     .controller('DMCEditProjectPageController', [
         '$stateParams',
         '$scope',
+        '$state',
         '$q',
         '$timeout',
         '$showdown',
@@ -17,6 +18,7 @@ angular.module('dmc.edit-project')
         'fileUpload',
         function ($stateParams,
                 $scope,
+                $state,
                 $q,
                 $timeout,
                 $showdown,
@@ -112,10 +114,16 @@ angular.module('dmc.edit-project')
                     $scope.title = 'Edit Project';
                     $scope.action = 'Edited';
                     ajax.get(dataFactory.getDMDIIProject($stateParams.projectId).get, responseData(), callbackFunction);
+                } else if ($stateParams.eventId) {
+                    $scope.title = 'Edit Event';
+                    $scope.action = 'Edited';
+                    ajax.get(dataFactory.getDMDIIProject($stateParams.eventId).get, responseData(), callbackFunction);
+                } else if ($state.current.url == '/event') {
+                    $scope.title = 'Create Event';
+                    $scope.action = 'Created';
                 } else {
                     $scope.title = 'Create Project';
                     $scope.action = 'Created';
-
                 }
             };
             $scope.getDMDIIProject();
