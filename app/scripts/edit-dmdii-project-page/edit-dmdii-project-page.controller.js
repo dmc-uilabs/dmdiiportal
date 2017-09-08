@@ -115,10 +115,12 @@ angular.module('dmc.edit-project')
                     $scope.action = 'Edited';
                     ajax.get(dataFactory.getDMDIIProject($stateParams.projectId).get, responseData(), callbackFunction);
                 } else if ($stateParams.eventId) {
+                    $scope.isEvent = true;
                     $scope.title = 'Edit Event';
                     $scope.action = 'Edited';
                     ajax.get(dataFactory.getDMDIIProject($stateParams.eventId).get, responseData(), callbackFunction);
                 } else if ($state.current.url == '/event') {
+                    $scope.isEvent = true;
                     $scope.title = 'Create Event';
                     $scope.action = 'Created';
                 } else {
@@ -288,8 +290,9 @@ angular.module('dmc.edit-project')
                 }
 
                 $scope.project.projectSummary = convertToMarkdown($scope.project.projectSummary);
-
                 $scope.project.projectIdentifier = $scope.project.rootNumber + '-' + $scope.project.callNumber + '-' + $scope.project.projectNumber
+                $scope.project.isEvent = $scope.isEvent;
+                
                 ajax.create(dataFactory.saveDMDIIProject().project, $scope.project, callbackSaveFunction);
             };
 

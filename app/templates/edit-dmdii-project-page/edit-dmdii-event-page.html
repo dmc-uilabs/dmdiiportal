@@ -13,7 +13,7 @@
 
         <div layout="row">
             <div layout="column" flex class="inputs-top">
-                <h3 class="no-bottom">Title, Dates and Description</h3>
+                <h3 class="no-bottom" style="border-bottom: 1px solid grey; margin-top: 30px;">Title, Dates and Description</h3>
                 <div layout="row" layout-md="column">
                     <md-input-container flex="50" class="project-name">
                         <label>Title (Required)</label>
@@ -21,7 +21,6 @@
                                ng-disabled="!user.isDmdiiAdmin"
                                ng-required="true">
                     </md-input-container>
-
 
                     <div layout="column" flex="25">
                         <md-datepicker class="no-bottom no-pad-bottom top10"
@@ -61,7 +60,7 @@
 
         <div layout="column">
 
-
+          <h3 class="no-bottom" style="border-bottom: 1px solid grey; margin-top: 30px;">Contributing Companies</h3>
             <div layout="row" ng-show="user.isDmdiiAdmin">
                 <md-autocomplete flex="33"
 
@@ -83,7 +82,6 @@
             </div>
         </div>
 
-        <span flex></span>
 
         <div layout="row" layout-wrap flex="33">
             <div layout="column">
@@ -101,7 +99,7 @@
 
 
         <div layout="column" ng-show="user.isDmdiiAdmin">
-            <h3 class="no-bottom">DMDII Point of Contact</h3>
+            <h3 class="no-bottom" style="border-bottom: 1px solid grey; margin-top: 30px;">DMDII Point of Contact</h3>
             <div layout="row">
 
                 <md-autocomplete flex
