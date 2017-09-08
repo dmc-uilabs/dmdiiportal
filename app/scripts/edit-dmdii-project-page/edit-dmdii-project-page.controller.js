@@ -269,7 +269,7 @@ angular.module('dmc.edit-project')
                     return;
                 }
 
-                if ($scope.project.projectStatus.id != 1) {
+                if ($scope.isEvent || $scope.project.projectStatus.id != 1) {
                     var startDate = new Date($scope.date.awarded);
                     var year = startDate.getFullYear();
                     var month = startDate.getMonth() + 1;
@@ -292,7 +292,7 @@ angular.module('dmc.edit-project')
                 $scope.project.projectSummary = convertToMarkdown($scope.project.projectSummary);
                 $scope.project.projectIdentifier = $scope.project.rootNumber + '-' + $scope.project.callNumber + '-' + $scope.project.projectNumber
                 $scope.project.isEvent = $scope.isEvent;
-                
+
                 ajax.create(dataFactory.saveDMDIIProject().project, $scope.project, callbackSaveFunction);
             };
 
