@@ -62,7 +62,8 @@ time {
 	}
 	.dropdown{
 		width: 110%;
-		margin-right:-10px;
+		//width: auto;
+		margin-right:-20px;
 	}
 	.dropdown-menu {
 		padding: 10px 10px 0px 10px;
@@ -146,6 +147,22 @@ div.progress {
 	color: $brand-primary;
 	// font-weight:bold;
 
+}
+
+.project-name{
+	width: 49%;
+}
+
+.project-status{
+	width: 13%;
+}
+
+.project-focus{
+	width: 18%;
+}
+
+.project-thrust{
+	width: 20%;
 }
 
 

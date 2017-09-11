@@ -69,6 +69,7 @@
     <script src="scripts/member-directory/member-directory.js"></script>
     <script src="scripts/member-directory/member-directory.controller.js"></script>
     <script src="scripts/common/directive/recent-news.directive.js"></script>
+    <script src="scripts/components/recent-updates/recent-updates.directive.js"></script>
 
     <!-- endbuild -->
     <script type="text/javascript">

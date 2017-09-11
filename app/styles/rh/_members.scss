@@ -67,17 +67,26 @@ div.list-wrapper {
 	margin-top:40px;
 }
 
+.member-logo{
+	width: 10%;
+}
+
+.member-description{
+	width: 52%;
+}
+
 .tier{
-	min-width: 100px;
+	width: 10%;
 }
 
 .type{
-	min-width: 200px;
+	width: 18%;
 }
 
 .active-projects {
 	list-style:none;
 	padding:0;
+	width: 10%;
 	min-width:135px;
 	max-width:135px;
 	li {margin-bottom:20px;white-space:normal;}

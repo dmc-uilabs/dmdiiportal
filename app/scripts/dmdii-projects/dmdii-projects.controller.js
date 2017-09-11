@@ -298,14 +298,24 @@ angular.module('dmc.dmdiiProjects')
                     // _sort: $scope.sortDir,
                     title: $scope.searchModel
                 };
-                if(angular.isDefined($stateParams.status)) data.statusId = $stateParams.status;
-                if(angular.isDefined($stateParams.callNumber)) data.callNumber = $stateParams.callNumber;
-                if(angular.isDefined($stateParams.rootNumber)) data.rootNumber = $stateParams.rootNumber;
-                if(angular.isDefined($stateParams.focusId)) data.focusId = $stateParams.focusId;
-                if(angular.isDefined($stateParams.thrustId)) data.thrustId = $stateParams.thrustId;
+
+                for (var filter in $scope.treeMenuModel){
+                  var params = [];
+                  for (var category in $scope.treeMenuModel[filter].categories){
+                    if($scope.treeMenuModel[filter].categories[category].selected){
+                      params.push($scope.treeMenuModel[filter].categories[category].id);
+                    }
+                  }
+                  data[$scope.treeMenuModel[filter].queryString] = params;
+                }
 
                 return data;
             };
+
+            var $myGroup = $('#portalDropdowns');
+            $myGroup.on('show.bs.collapse','.collapse', function() {
+                $myGroup.find('.collapse.in').collapse('hide');
+            });
 
 
             $scope.getDmdiiProjects = function(){
@@ -393,6 +403,10 @@ angular.module('dmc.dmdiiProjects')
                 });
             };
 
+            $scope.$watch('treeMenuModel', function() {
+                $scope.getDmdiiProjects();
+            }, true);
+
             var getMenu = function(){
 
                 var getUrl = function(cat, subcat){
@@ -409,183 +423,101 @@ angular.module('dmc.dmdiiProjects')
                     }
                 };
 
-                return {
-                    title: 'BROWSE BY',
-                    data: [
-                        {
+                return [
+                          {
                             'id': 1,
                             'title': 'Status',
-                            'tag' : 'status',
-                            'opened' : isOpened('status'),
-                            'href' : getUrl('status', null),
+                            'queryString': 'status',
                             'categories': [
                                 {
-                                    'id': 11,
-                                    'title': 'Pre Award',
-                                    'tag' : '1',
-                                    'opened' : isOpened('status', '1'),
-                                    'href' : getUrl('status', '1'),
-                                    'categories': []
+                                    'id': 1,
+                                    'title': 'Pre-Awarded',
                                 },
                                 {
-                                    'id': 12,
+                                    'id': 2,
                                     'title': 'Awarded',
-                                    'tag' : '2',
-                                    'opened' : isOpened('status', '2'),
-                                    'href' : getUrl('status', '2'),
-                                    'categories': []
                                 },
-								{
-                                    'id': 13,
+                                {
+                                    'id': 3,
                                     'title': 'Completed',
-                                    'tag' : '3',
-                                    'opened' : isOpened('status', '3'),
-                                    'href' : getUrl('status', '3'),
-                                    'categories': []
                                 }
                             ]
-                        },
-                        {
+                          },
+                          {
                             'id': 2,
                             'title': 'Focus',
-                            'tag' : 'focusId',
-                            'opened' : isOpened('focusId'),
-                            'href' : getUrl('focusId', null),
+                            'queryString': 'focusId',
                             'categories': [
                                 {
-                                    'id': 21,
+                                    'id': 1,
                                     'title': 'Model-Based Design/Enterprise',
-                                    'tag' : '1',
-                                    'opened' : isOpened('focusId', '1'),
-                                    'href' : getUrl('focusId', '1'),
-                                    'categories': []
                                 },
                                 {
-                                    'id': 22,
+                                    'id': 2,
                                     'title': 'Manufacturing Process',
-                                    'tag' : '2',
-                                    'opened' : isOpened('focusId', '2'),
-                                    'href' : getUrl('focusId', '2'),
-                                    'categories': []
                                 },
                                 {
-                                    'id': 23,
-                                    'title': 'Sensors & Metrology',
-                                    'tag' : '3',
-                                    'opened' : isOpened('focusId', '3'),
-                                    'href' : getUrl('focusId', '3'),
-                                    'categories': []
+                                    'id': 3,
+                                    'title': 'Sesnors & Metrology',
                                 },
                                 {
-                                    'id': 24,
+                                    'id': 4,
                                     'title': 'Product Lifecycle Management',
-                                    'tag' : '4',
-                                    'opened' : isOpened('focusId', '4'),
-                                    'href' : getUrl('focusId', '4'),
-                                    'categories': []
                                 },
                                 {
-                                    'id': 25,
+                                    'id': 5,
                                     'title': 'Other',
-                                    'tag' : '5',
-                                    'opened' : isOpened('focusId', '5'),
-                                    'href' : getUrl('focusId', '5'),
-                                    'categories': []
                                 }
-                            ]
-                        },
-                        {
+                              ]
+                          },
+                          {
                             'id': 3,
                             'title': 'Thrust Area',
-                            'tag' : 'thrustId',
-                            'opened' : isOpened('thrustId'),
-                            'href' : getUrl('thrustId', null),
+                            'queryString': 'thrustId',
                             'categories': [
-                                {
-                                    'id': 33,
-                                    'title': 'Advanced Analysis',
-                                    'tag' : '3',
-                                    'opened' : isOpened('thrustId', '3'),
-                                    'href' : getUrl('thrustId', '3'),
-                                    'categories': []
-                                },
-                                {
-                                    'id': 31,
-                                    'title': 'Advanced Manufacturing Enterprise',
-                                    'tag' : '1',
-                                    'opened' : isOpened('thrustId', '1'),
-                                    'href' : getUrl('thrustId', '1'),
-                                    'categories': []
-                                },
-                                {
-                                    'id': 32,
-                                    'title': 'Intelligent Machining',
-                                    'tag' : '2',
-                                    'opened' : isOpened('thrustId', '2'),
-                                    'href' : getUrl('thrustId', '2'),
-                                    'categories': []
-                                },
-                                {
-                                    'id': 34,
-                                    'title': 'Adaptive Vehicle Make',
-                                    'tag' : '4',
-                                    'opened' : isOpened('thrustId', '4'),
-                                    'href' : getUrl('thrustId', '4'),
-                                    'categories': []
-                                 },
-                                 {
-                                    'id': 35,
-                                    'title': 'Digital Manufacturing Commons',
-                                    'tag' : '5',
-                                    'opened' : isOpened('thrustId', '5'),
-                                    'href' : getUrl('thrustId', '5'),
-                                    'categories': []
-                                },
-                                {
-                                    'id': 36,
-                                    'title': 'Cost Systems',
-                                    'tag' : '6',
-                                    'opened' : isOpened('thrustId', '6'),
-                                    'href' : getUrl('thrustId', '6'),
-                                    'categories': []
-                                },
-                                {
-                                   'id': 37,
-                                   'title': 'Design – Process/Product Development – Systems Engineering',
-                                   'tag' : '7',
-                                   'opened' : isOpened('thrustId', '7'),
-                                   'href' : getUrl('thrustId', '7'),
-                                   'categories': []
-                                 },
-                                 {
-                                    'id': 38,
-                                    'title': 'Future Factory',
-                                    'tag' : '8',
-                                    'opened' : isOpened('thrustId', '8'),
-                                    'href' : getUrl('thrustId', '8'),
-                                    'categories': []
-                                 },
-                                 {
-                                    'id': 39,
-                                    'title': 'Agile Resilient Supply Chain',
-                                    'tag' : '9',
-                                    'opened' : isOpened('thrustId', '9'),
-                                    'href' : getUrl('thrustId', '9'),
-                                    'categories': []
-                                 },
-                                 {
-                                    'id': 40,
-                                    'title': 'Cyber Security in Manufacturing',
-                                    'tag' : '10',
-                                    'opened' : isOpened('thrustId', '10'),
-                                    'href' : getUrl('thrustId', '10'),
-                                    'categories': []
-                                  }
-
+                              {
+                                  'id': 3,
+                                  'title': 'Advanced Analysis',
+                              },
+                              {
+                                  'id': 1,
+                                  'title': 'Advanced Manufacturing Enterprise',
+                              },
+                              {
+                                  'id': 2,
+                                  'title': 'Intelligent Machining',
+                              },
+                              {
+                                  'id': 4,
+                                  'title': 'Adaptive Vehicle Make',
+                              },
+                              {
+                                  'id': 5,
+                                  'title': 'Digital Manufacturing Commons',
+                              },
+                              {
+                                  'id': 6,
+                                  'title': 'Cost Systems',
+                              },
+                              {
+                                  'id': 7,
+                                  'title': 'Design - Process/Product Development - Systems Engineering',
+                              },
+                              {
+                                  'id': 8,
+                                  'title': 'Future Factory',
+                              },
+                              {
+                                  'id': 9,
+                                  'title': 'Agile Resilient Supply Chain',
+                              },
+                              {
+                                  'id': 10,
+                                  'title': 'Cyber Security in Manufacturing',
+                              }
                             ]
-                        }
-                    ]
-                };
+                          }
+                      ];
             };
 
             $scope.treeMenuModel = getMenu();

@@ -57,6 +57,27 @@ angular.module('dmc.members')
                 }
             });
 
+            $scope.docs = [];
+
+            var callbackLinksFunction = function(response) {
+                $scope.docs = response.data;
+            }
+
+            $scope.getQuickLinks = function() {
+                ajax.get(dataFactory.quicklinkUrl().get, {limit: 7}, callbackLinksFunction)
+            }
+            $scope.getQuickLinks();
+
+            $scope.deleteQuicklink = function(index, id) {
+                ajax.delete(dataFactory.quicklinkUrl(id).delete, {}, function() {
+                    $scope.docs.splice(index, 1);
+                });
+            };
+
+            var $myGroup = $('#portalDropdowns');
+            $myGroup.on('show.bs.collapse','.collapse', function() {
+                $myGroup.find('.collapse.in').collapse('hide');
+            });
 
             $scope.showArray = [
                 {
