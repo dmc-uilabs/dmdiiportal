@@ -35,6 +35,16 @@ angular.module('dmc.dmdiiProj', [
                 return false;
             }
         }
+    })
+    .state('view_event', {
+      url: '/event/:projectId',
+      templateUrl: 'templates/dmdii-events/view-event.html',
+      controller: 'DMCDmdiiProjectPageController',
+      resolve: {
+          is_search: function() {
+              return false;
+          }
+      }
     });
     $urlRouterProvider.otherwise('/project_page');
 }).directive('tabContributors', function () {
