@@ -210,9 +210,9 @@ angular.module('dmc.members')
                 }
 
                 var numberMembers=$scope.members.arr.length;
-                $scope.randMemberId=Math.floor(Math.random()*numberMembers);
-                $scope.randMember = $scope.members.arr[$scope.randMemberId];
-                $scope.randMember.organization.description = truncateText($scope.randMember.organization.description,350);
+                //$scope.randMemberId=Math.floor(Math.random()*numberMembers);
+                //$scope.randMember = $scope.members.arr[$scope.randMemberId];
+                //$scope.randMember.organization.description = truncateText($scope.randMember.organization.description,350);
                 $scope.activeProjects = {};
 
                 angular.forEach($scope.members.arr, function(member, index) {
@@ -294,7 +294,7 @@ angular.module('dmc.members')
             $scope.getDMDIIMemberMap = function() {
                 ajax.get(dataFactory.getDMDIIMember().map, null, callbackMapFunction);
             }
-            $scope.getDMDIIMemberMap();
+            //$scope.getDMDIIMemberMap();
 
             $scope.getNext = function() {
                 $scope.memberCurrentPage++;
@@ -376,15 +376,15 @@ angular.module('dmc.members')
                             'queryString': 'type',
                             'categories': [
                                 {
-                                    'id': 1,
+                                    'id': 2,
                                     'title': 'Academic/Non-Profit',
                                 },
                                 {
-                                    'id': 2,
+                                    'id': 3,
                                     'title': 'Government',
                                 },
                                 {
-                                    'id': 3,
+                                    'id': 1,
                                     'title': 'Industry',
                                 }
                               ]
@@ -395,11 +395,11 @@ angular.module('dmc.members')
                             'queryString': 'activeProjects',
                             'categories': [
                                 {
-                                    'id': 1,
+                                    'id': 'yes',
                                     'title': 'Yes',
                                 },
                                 {
-                                    'id': 2,
+                                    'id': 'no',
                                     'title': 'No',
                                 }
                             ]

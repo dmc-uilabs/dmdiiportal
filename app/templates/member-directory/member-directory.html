@@ -201,6 +201,7 @@
 							<td><img ng-src="{{member.organization.logoImage ? member.organization.logoImage : 'images/icon-company-lg.svg'}}" class="img-responsive" alt=""></td>
 							<td>
 								<a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a>
+								<p ng-if="member.organization.industry">{{member.organization.industry}}</p>
 								<p class="description" more-less
 									element-text="{{member.organization.description}}"
 									element-text-limit="140">
