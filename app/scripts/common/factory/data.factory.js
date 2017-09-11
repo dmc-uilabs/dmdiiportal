@@ -580,6 +580,12 @@ return {
           search: localhost + 'dmdiiprojects/search'
         }
       },
+      getDMDIIEvents: function(id) {
+        return {
+          get: localhost + 'dmdiievent/' + id,
+          all: localhost + 'dmdiievents'
+        }
+      }
       saveDMDIIProject: function() {
         return {
           project: localhost + 'dmdiiProject/save'
