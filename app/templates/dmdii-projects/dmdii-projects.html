@@ -1,8 +1,15 @@
 <main>
 		<section class="container projects-head">
 			<h2>Projects</h2>
+
+
 			<div class="row status-row">
-				<div class="col-sm-4">
+
+				<div class="col-sm-8">
+					<h4>Recent Activity</h4>
+					<div style="max-height: 300px; overflow: auto;" dmc-recent-updates></div>
+				</div>
+				<!-- <div class="col-sm-4">
 					<h4>Projects Overview</h4>
 					<img ng-src="{{projectOverview.documentUrl}}" class="img-responsive">
 					<a class="delete-button" href ng-click="deleteDocument(projectOverview.id, 'projectOverview')" ng-show="userData.isDmdiiAdmin"><ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon> Delete</a>
@@ -12,7 +19,7 @@
 					<h4>Projects Status</h4>
 					<img ng-src="{{projectStatus.documentUrl}}" class="img-responsive">
 				<a class="delete-button" href ng-click="deleteDocument(projectStatus.id, 'projectStatus')" ng-show="userData.isDmdiiAdmin"><ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon> Delete</a>
-				</div>
+				</div> -->
 				<div class="col-sm-4">
 					<h4>Quick Links</h4>
 					<ul class="quick-links">
@@ -25,7 +32,7 @@
 					</ul>
 			</div>
 			</div>
-			<div class="row timeline-row">
+			<!-- <div class="row timeline-row">
 			<div class="col-xs-12">
 
 				<div>
@@ -38,12 +45,12 @@
 				</div>
 
 			</div>
-			</div>
+			</div> -->
 
 		</section>
 
 		<!-- TODO this needs to be made in to a module suitable for members, projects and ideally services -->
-		<section class="container content-padding">
+		<!-- <section class="container content-padding">
         <div class="row">
             <div class="col-md-12 project-main">
 								<div class="top-border"></div>
@@ -51,9 +58,9 @@
 									<div class="status status-complete">FEATURED PROJECT</div>
 									<div class="status">{{randProject.projectStatus.name}}</div>
 								</div>
-								<!-- <time>{{randProject.rootNumber | numberFixedLen:2}}-{{randProject.callNumber | numberFixedLen:2}}-{{randProject.projectNumber | numberFixedLen:2}}</time> -->
+
                 <h1><a ng-href="{{'/dmdii-project-page.php#/'+randProject.id}}">{{randProject.projectTitle}}</a></h1>
-								<!-- <h4>Summary</h4> -->
+
 								<div class="sublabels" layout="row">
 									<div>{{randProject.projectFocusArea.name}}</div>
 									<div>{{randProject.projectThrust.name}}</div>
@@ -62,10 +69,17 @@
             </div>
             </div>
         </div>
-		</section>
+		</section> -->
 
 
 		<section class="container">
+			<div class="row status-row">
+
+				<div class="col-sm-12">
+					<h4 style="margin: 45px 0px 30px;">Projects List</h4>
+				</div>
+			</div>
+
       <dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu>
 
 			<div class="row content-row">
@@ -145,6 +159,6 @@
 			</div>
 		</section>
 
-	<recent-news news="news"></recent-news>
+	<!-- <recent-news news="news"></recent-news> -->
 
 </main>
