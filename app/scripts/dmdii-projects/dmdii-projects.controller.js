@@ -462,11 +462,19 @@ angular.module('dmc.dmdiiProjects')
                                 },
                                 {
                                     'id': 4,
-                                    'title': 'Product Lifecycle Management',
+                                    'title': 'Supply Chain Management',
                                 },
                                 {
                                     'id': 5,
+                                    'title': 'Product Lifecycle Management',
+                                },
+                                {
+                                    'id': 6,
                                     'title': 'Other',
+                                },
+                                {
+                                    'id': 7,
+                                    'title': 'Cyber Security',
                                 }
                               ]
                           },
