@@ -143,7 +143,7 @@ angular.module('dmc.members')
             };
 
             $scope.hasNext = function() {
-                return $scope.memberCurrentPage !== Math.ceil($scope.members.count / $scope.memberPageSize) - 1;
+                return $scope.members.count && $scope.memberCurrentPage !== Math.ceil($scope.members.count / $scope.memberPageSize) - 1;
             };
 
             $scope.plainText = function(input) {
