@@ -15,11 +15,8 @@
 
 			<div layout="row" layout-margin>
 				<!--member image-->
-				<div class="member-logo" layout="column" style="max-width:20%">
-					<img class="company-logo" ng-if="member.organization.logoImage" ng-src="{{member.organization.logoImage}}">
-					<div class="no-image" ng-if="!member.organization.logoImage" layout layout-align="center center">
-						<h3>No Image</h3>
-					</div>
+				<div layout="column" style="min-width: 20%; max-width:20%; padding-right: 20px">
+					<img class="company-logo" ng-src="{{member.organization.logoImage ? member.organization.logoImage : 'images/icon-company-lg.svg'}}">
 				</div>
 				<div flex>
 					<!--member header-->
@@ -36,7 +33,7 @@
 					<span flex></span>
 
 					<!--member description-->
-					<div class="member-description" markdown-to-html="member.organization.description"></div>
+					<div markdown-to-html="member.organization.description"></div>
 
 				</div>
 			</div>
@@ -75,17 +72,19 @@
 
 				<md-tab label="Project Involvement">
 					<md-content class="md-padding">
-						<div layout="row">
-							<div class="pad20 member-project"  ng-show="primes.length > 0" ng-repeat="project in primes">
-								<h4 class="no-bottom no-top"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</a></h4>
-								<h2 class="no-bottom no-top" style="color:green;font-weight: bolder;"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h2>(Prime)
+						<div layout="column">
+							<div class="member-project" ng-show="primes.length > 0" ng-repeat="project in primes">
+								<h4 class="no-bottom no-top">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}} (Prime)</h4>
+								<h3 class="no-bottom no-top" style="margin-top:0px"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h3>
+								<md-divider/>
 							</div>
-							<div class="pad20 member-project"  ng-show="contributing.length > 0" ng-repeat="project in contributing">
-								<h4 class="no-bottom no-top"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</a></h4>
-								<h2 class="no-bottom no-top" style="color:green;font-weight: bolder;"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h2>
+							<div class="member-project" ng-show="contributing.length > 0" ng-repeat="project in contributing">
+								<h4 class="no-bottom no-top">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</h4>
+								<h3 class="no-bottom no-top" style="margin-top:0px"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h3>
+								<md-divider/>
 							</div>
 							<div ng-show="!primes && !contributing || primes.length === 0 && contributing.length === 0">
-								<p>This Member is not on any projects yet</p>
+								<span>This Member is not on any projects yet</span>
 						</div>
 					</md-content>
 				</md-tab>

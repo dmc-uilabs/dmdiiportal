@@ -128,12 +128,13 @@
 							<td>
 								<ul class="active-projects">
 									<li ng-repeat="project in activeProjects[member.id] track by $index">
-										<a class="gray-link" ng-href="{{'/dmdii-project-page.php#/' + project.id}}">
-											<span class="gray-link"
+										<a class="gray-link" ng-href="{{'/dmdii-project-page.php#/' + project.id}}" data-toggle="tooltip" title="{{project.projectTitle}}">
+											<!-- <span class="gray-link"
 													more-less
 												 element-text ="{{project.projectTitle}}"
 												 element-text-limit="30">
-											 </span>
+											 </span> -->
+											 <span>{{project.projectIdentifier}}</span>
 										</a>
 									</li>
 								</ul>
