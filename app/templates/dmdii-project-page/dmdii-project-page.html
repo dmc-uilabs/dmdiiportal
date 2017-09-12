@@ -2,24 +2,24 @@
     <div class="container">
         <div class="row hidden-xs">
             <div class="col-sm-4"><a href="add-dmdii-project-doc.php#/{{project.id}}/projectUpdates"><ng-md-icon icon="add" style="fill: #75bc52" size="16"></ng-md-icon></ng-md-icon>Add documents &amp; updates</a></div>
-            <div class="col-sm-6 pull-right text-right"><a href="edit-dmdii-project-page.php#/{{project.id}}/edit"><ng-md-icon icon="mode_edit" style="fill: #75bc52" size="16"></ng-md-icon> Edit Project</a>
-                <!-- Delete doesn't currently match a defined function
-                <a ng-click="deleteProject()"> <ng-md-icon icon="delete" style="fill: #75bc52" size="16"></ng-md-icon> Delete Project </a> -->
+            <div class="col-sm-6 pull-right text-right">
+              <a href="edit-dmdii-project-page.php#/{{project.id}}/edit"><ng-md-icon icon="mode_edit" style="fill: #75bc52" size="16"></ng-md-icon> Edit Project</a>
+              <a href ng-click="deleteProject($event)"> <ng-md-icon icon="delete" style="fill: #75bc52" size="16"></ng-md-icon> Delete Project </a>
             </div>
         </div>
-        <div class="dropdown visible-xs">
+        <!-- <div class="dropdown visible-xs">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project Options<span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li><a href="add-dmdii-project-doc.php#/{{project.id}}/projectUpdates"><ng-md-icon icon="add" style="fill: #75bc52" size="16"></ng-md-icon>Add documents &amp; updates</a></a>
                 </li>
                 <li role="separator" class="divider"></li>
                 <li><a href="edit-dmdii-project-page.php#/{{project.id}}/edit"><ng-md-icon icon="mode_edit" style="fill: #75bc52" size="16"></ng-md-icon> Edit Project</a></li>
-                <!-- Delete doesn't currently match a defined function
+                Delete doesn't currently match a defined function
                 <li role="separator" class="divider"></li>
-                <li><a href ng-click="deleteProject()"><ng-md-icon icon="delete" style="fill: #75bc52" size="16"></ng-md-icon> Delete Project </a></li> -->
+                <li><a href ng-click="deleteProject()"><ng-md-icon icon="delete" style="fill: #75bc52" size="16"></ng-md-icon> Delete Project </a></li>
 
             </ul>
-        </div>
+        </div> -->
     </div>
 </header>
 
