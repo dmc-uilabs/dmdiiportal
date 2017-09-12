@@ -46,6 +46,13 @@ angular.module('dmc.dmdiiEvents')
                 userData = res;
             });
 
+            $scope.options = {
+              multiDayEvents: {
+                endDate: 'endDate',
+                startDate: 'date'
+              }
+            };
+
             $scope.events = $scope.events || [];
             $scope.startDate = new Date();
             $scope.startDate.setDate(1);
