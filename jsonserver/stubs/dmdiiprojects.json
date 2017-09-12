@@ -1,37 +1,26 @@
 [{
-    "id": 59,
-    "primeOrganization": {
-        "id": 1,
-        "name": "UI LABS"
-    },
-    "principalInvestigator": {
-        "id": 64,
-        "firstName": "Kym",
-        "lastName": "Wehrle",
-        "email": "kym.wehrle@uilabs.org"
-    },
-    "projectStatus": {
-        "id": 3,
-        "name": "completed"
-    },
-    "awardedDate": "2017-02-28",
-    "endDate": "2017-02-28",
-    "projectTitle": "Technology Showcase - February 28, 2017",
-    "projectSummary": "DMDII's first 2017 Technology Showcase was held on February 28, 2017\\. Please click on the documents section to access the presentations from the event.",
+    "id": 99,
+    "primeOrganization": null,
+    "principalInvestigator": null,
+    "projectStatus": null,
+    "awardedDate": "2017-09-12",
+    "endDate": "2017-09-19",
+    "projectTitle": "New Event Form One",
+    "projectSummary": "Event form!",
     "principalPointOfContact": {
-        "id": 263,
-        "displayName": "Kym Wehrle",
-        "accountId": 263,
-        "profileId": 263,
-        "companyId": 1,
-        "companyName": "UI LABS",
+        "id": 18,
+        "displayName": "Rob Harris",
+        "accountId": 18,
+        "profileId": 18,
+        "companyId": 112,
+        "companyName": "Integris Group LLC",
         "role": 0,
-        "realname": "Kym Wehrle",
+        "realname": "Rob Harris",
         "title": null,
         "termsConditions": true,
-        "firstName": "Kym",
-        "lastName": "Wehrle",
-        "email": "kym.wehrle@uilabs.org",
+        "firstName": "Rob",
+        "lastName": "Harris",
+        "email": "harris.robert34@gmail.com",
         "address": null,
         "phone": null,
         "image": null,
@@ -44,7 +33,7 @@
             "totalItems": 0
         },
         "onboarding": {
-            "id": 263,
+            "id": 18,
             "profile": false,
             "account": false,
             "company": false,
@@ -52,12 +41,471 @@
         },
         "skills": [],
         "roles": {
-            "0": "SUPERADMIN",
+            "112": "ADMIN"
+        },
+        "isDMDIIMember": true,
+        "userContactInfo": {
+            "id": 9,
+            "userPrivateContactInfo": null,
+            "userPublicContactInfo": null,
+            "userMemberPortalContactInfo": null
+        },
+        "aboutMe": null,
+        "resume": "",
+        "account": 0,
+        "notifications": [{
+            "id": 331,
+            "type": "NEW_USER_JOINED_ORGANIZATION",
+            "createdBy": {
+                "id": 384,
+                "email": "bill.mckay@integrisgp.com",
+                "displayName": "Bill McKay"
+            },
+            "createdFor": {
+                "id": 18,
+                "email": "harris.robert34@gmail.com",
+                "displayName": "Rob Harris"
+            },
+            "created": 1489691594960,
+            "message": "testUserFullName has requested to join your organization",
+            "unread": true,
+            "deleted": false
+        }, {
+            "id": 6,
+            "type": "NEW_USER_JOINED_ORGANIZATION",
+            "createdBy": {
+                "id": 14,
+                "email": "cameron.kagy@integrisgp.com",
+                "displayName": "Cameron Kagy"
+            },
+            "createdFor": {
+                "id": 18,
+                "email": "harris.robert34@gmail.com",
+                "displayName": "Rob Harris"
+            },
+            "created": 1476195073976,
+            "message": "Cameron Kagy has requested to join your organization",
+            "unread": true,
+            "deleted": false
+        }, {
+            "id": 4,
+            "type": "NEW_USER_JOINED_ORGANIZATION",
+            "createdBy": {
+                "id": 20,
+                "email": "ajberb@gmail.com",
+                "displayName": "Andy Berberich"
+            },
+            "createdFor": {
+                "id": 18,
+                "email": "harris.robert34@gmail.com",
+                "displayName": "Rob Harris"
+            },
+            "created": 1476194383358,
+            "message": "Andy Berberich has requested to join your organization",
+            "unread": true,
+            "deleted": false
+        }],
+        "hasUnreadNotifications": true,
+        "timezone": "GMT"
+    },
+    "projectFocusArea": null,
+    "projectThrust": null,
+    "contributingCompanyIds": [],
+    "rootNumber": null,
+    "callNumber": null,
+    "projectNumber": null,
+    "costShare": null,
+    "dmdiiFunding": null,
+    "isEvent": true,
+    "projectIdentifier": "null-null-null"
+}, {
+    "id": 101,
+    "primeOrganization": null,
+    "principalInvestigator": null,
+    "projectStatus": null,
+    "awardedDate": "2017-09-13",
+    "endDate": "2017-09-17",
+    "projectTitle": "Event 73",
+    "projectSummary": "seventy",
+    "principalPointOfContact": {
+        "id": 17,
+        "displayName": "alex test",
+        "accountId": 17,
+        "profileId": 17,
+        "companyId": 4,
+        "companyName": "3D Systems",
+        "role": 0,
+        "realname": "alex test",
+        "title": null,
+        "termsConditions": true,
+        "firstName": "alex",
+        "lastName": "test",
+        "email": "alextestdmc@gmail.com",
+        "address": null,
+        "phone": null,
+        "image": null,
+        "runningServices": {
+            "items": [],
+            "totalItems": 0
+        },
+        "messages": {
+            "items": [],
+            "totalItems": 0
+        },
+        "onboarding": {
+            "id": 17,
+            "profile": false,
+            "account": false,
+            "company": false,
+            "storefront": false
+        },
+        "skills": [],
+        "roles": null,
+        "isDMDIIMember": false,
+        "userContactInfo": {
+            "id": 8,
+            "userPrivateContactInfo": null,
+            "userPublicContactInfo": null,
+            "userMemberPortalContactInfo": null
+        },
+        "aboutMe": null,
+        "resume": "",
+        "account": 0,
+        "notifications": [{
+            "id": 871,
+            "type": "INVITATION_TO_WORKSPACE",
+            "createdBy": {
+                "id": 311,
+                "email": "Atul.Adhikari@uilabs.org",
+                "displayName": "Atul Adhikari"
+            },
+            "createdFor": {
+                "id": 17,
+                "email": "alextestdmc@gmail.com",
+                "displayName": "alex test"
+            },
+            "created": 1501711593549,
+            "message": "project.php#/preview/254",
+            "unread": true,
+            "deleted": false
+        }, {
+            "id": 836,
+            "type": "INVITATION_TO_WORKSPACE",
+            "createdBy": {
+                "id": 171,
+                "email": "joe.mazrimas@gmail.com",
+                "displayName": "Joseph Mazrimas"
+            },
+            "createdFor": {
+                "id": 17,
+                "email": "alextestdmc@gmail.com",
+                "displayName": "alex test"
+            },
+            "created": 1500667148512,
+            "message": "project.php#/preview/240",
+            "unread": true,
+            "deleted": false
+        }, {
+            "id": 835,
+            "type": "INVITATION_TO_WORKSPACE",
+            "createdBy": {
+                "id": 171,
+                "email": "joe.mazrimas@gmail.com",
+                "displayName": "Joseph Mazrimas"
+            },
+            "createdFor": {
+                "id": 17,
+                "email": "alextestdmc@gmail.com",
+                "displayName": "alex test"
+            },
+            "created": 1500667101907,
+            "message": "project.php#/preview/240",
+            "unread": true,
+            "deleted": false
+        }, {
+            "id": 834,
+            "type": "INVITATION_TO_WORKSPACE",
+            "createdBy": {
+                "id": 171,
+                "email": "joe.mazrimas@gmail.com",
+                "displayName": "Joseph Mazrimas"
+            },
+            "createdFor": {
+                "id": 17,
+                "email": "alextestdmc@gmail.com",
+                "displayName": "alex test"
+            },
+            "created": 1500667033837,
+            "message": "project.php#/preview/235",
+            "unread": true,
+            "deleted": false
+        }, {
+            "id": 799,
+            "type": "INVITATION_TO_WORKSPACE",
+            "createdBy": {
+                "id": 311,
+                "email": "Atul.Adhikari@uilabs.org",
+                "displayName": "Atul Adhikari"
+            },
+            "createdFor": {
+                "id": 17,
+                "email": "alextestdmc@gmail.com",
+                "displayName": "alex test"
+            },
+            "created": 1500651225286,
+            "message": "project.php#/preview/208",
+            "unread": true,
+            "deleted": false
+        }, {
+            "id": 787,
+            "type": "INVITATION_TO_WORKSPACE",
+            "createdBy": {
+                "id": 311,
+                "email": "Atul.Adhikari@uilabs.org",
+                "displayName": "Atul Adhikari"
+            },
+            "createdFor": {
+                "id": 17,
+                "email": "alextestdmc@gmail.com",
+                "displayName": "alex test"
+            },
+            "created": 1500565057504,
+            "message": "project.php#/preview/238",
+            "unread": true,
+            "deleted": false
+        }, {
+            "id": 786,
+            "type": "INVITATION_TO_WORKSPACE",
+            "createdBy": {
+                "id": 311,
+                "email": "Atul.Adhikari@uilabs.org",
+                "displayName": "Atul Adhikari"
+            },
+            "createdFor": {
+                "id": 17,
+                "email": "alextestdmc@gmail.com",
+                "displayName": "alex test"
+            },
+            "created": 1500564773119,
+            "message": "project.php#/preview/236",
+            "unread": true,
+            "deleted": false
+        }, {
+            "id": 777,
+            "type": "INVITATION_TO_WORKSPACE",
+            "createdBy": {
+                "id": 171,
+                "email": "joe.mazrimas@gmail.com",
+                "displayName": "Joseph Mazrimas"
+            },
+            "createdFor": {
+                "id": 17,
+                "email": "alextestdmc@gmail.com",
+                "displayName": "alex test"
+            },
+            "created": 1500404129072,
+            "message": "project.php#/preview/235",
+            "unread": true,
+            "deleted": false
+        }, {
+            "id": 776,
+            "type": "INVITATION_TO_WORKSPACE",
+            "createdBy": {
+                "id": 311,
+                "email": "Atul.Adhikari@uilabs.org",
+                "displayName": "Atul Adhikari"
+            },
+            "createdFor": {
+                "id": 17,
+                "email": "alextestdmc@gmail.com",
+                "displayName": "alex test"
+            },
+            "created": 1500317801768,
+            "message": "project.php#/preview/236",
+            "unread": true,
+            "deleted": false
+        }],
+        "hasUnreadNotifications": true,
+        "timezone": "GMT"
+    },
+    "projectFocusArea": null,
+    "projectThrust": null,
+    "contributingCompanyIds": [],
+    "rootNumber": null,
+    "callNumber": null,
+    "projectNumber": null,
+    "costShare": null,
+    "dmdiiFunding": null,
+    "isEvent": true,
+    "projectIdentifier": "null-null-null"
+}, {
+    "id": 102,
+    "primeOrganization": null,
+    "principalInvestigator": null,
+    "projectStatus": null,
+    "awardedDate": "2017-09-04",
+    "endDate": "2017-09-30",
+    "projectTitle": "Event 79",
+    "projectSummary": "abcdef",
+    "principalPointOfContact": {
+        "id": 37,
+        "displayName": "Mark A Fleming",
+        "accountId": 37,
+        "profileId": 37,
+        "companyId": 161,
+        "companyName": "Northwestern University",
+        "role": 0,
+        "realname": "Mark A Fleming",
+        "title": null,
+        "termsConditions": true,
+        "firstName": "Mark",
+        "lastName": "Fleming",
+        "email": "mark.fleming@northwestern.edu",
+        "address": null,
+        "phone": null,
+        "image": null,
+        "runningServices": {
+            "items": [],
+            "totalItems": 0
+        },
+        "messages": {
+            "items": [],
+            "totalItems": 0
+        },
+        "onboarding": {
+            "id": 37,
+            "profile": false,
+            "account": false,
+            "company": false,
+            "storefront": false
+        },
+        "skills": [],
+        "roles": {
+            "161": "ADMIN"
+        },
+        "isDMDIIMember": true,
+        "userContactInfo": {
+            "id": 38,
+            "userPrivateContactInfo": null,
+            "userPublicContactInfo": null,
+            "userMemberPortalContactInfo": null
+        },
+        "aboutMe": null,
+        "resume": "",
+        "account": 0,
+        "notifications": [{
+            "id": 624,
+            "type": "NEW_USER_JOINED_ORGANIZATION",
+            "createdBy": {
+                "id": 513,
+                "email": "YibingShi2018@u.northwestern.edu",
+                "displayName": "Yibing Shi"
+            },
+            "createdFor": {
+                "id": 37,
+                "email": "mark.fleming@northwestern.edu",
+                "displayName": "Mark A Fleming"
+            },
+            "created": 1494999736206,
+            "message": "Yibing Shi has requested to join your organization",
+            "unread": true,
+            "deleted": false
+        }, {
+            "id": 608,
+            "type": "NEW_USER_JOINED_ORGANIZATION",
+            "createdBy": {
+                "id": 499,
+                "email": "d-georganopoulou@northwestern.edu",
+                "displayName": "Dimitra Georganopoulou"
+            },
+            "createdFor": {
+                "id": 37,
+                "email": "mark.fleming@northwestern.edu",
+                "displayName": "Mark A Fleming"
+            },
+            "created": 1494413715819,
+            "message": "Dimitra Georganopoulou has requested to join your organization",
+            "unread": true,
+            "deleted": false
+        }, {
+            "id": 54,
+            "type": "NEW_USER_JOINED_ORGANIZATION",
+            "createdBy": {
+                "id": 152,
+                "email": "HuaqingRen2013@u.northwestern.edu",
+                "displayName": "Huaqing Ren"
+            },
+            "createdFor": {
+                "id": 37,
+                "email": "mark.fleming@northwestern.edu",
+                "displayName": "Mark A Fleming"
+            },
+            "created": 1480529646377,
+            "message": "Huaqing Ren has requested to join your organization",
+            "unread": true,
+            "deleted": false
+        }],
+        "hasUnreadNotifications": true,
+        "timezone": "GMT"
+    },
+    "projectFocusArea": null,
+    "projectThrust": null,
+    "contributingCompanyIds": [],
+    "rootNumber": null,
+    "callNumber": null,
+    "projectNumber": null,
+    "costShare": null,
+    "dmdiiFunding": null,
+    "isEvent": true,
+    "projectIdentifier": "null-null-null"
+}, {
+    "id": 103,
+    "primeOrganization": null,
+    "principalInvestigator": null,
+    "projectStatus": null,
+    "awardedDate": "2017-09-20",
+    "endDate": "2017-09-20",
+    "projectTitle": "A New Event 9/11 -1",
+    "projectSummary": "A New Event 9/11 -1",
+    "principalPointOfContact": {
+        "id": 32,
+        "displayName": "Khai Waterman",
+        "accountId": 32,
+        "profileId": 32,
+        "companyId": 1,
+        "companyName": "UI LABSs",
+        "role": 0,
+        "realname": "Khai Waterman",
+        "title": null,
+        "termsConditions": true,
+        "firstName": "KhaiDMC",
+        "lastName": "WatermanDMC",
+        "email": "kpwaterman@yahoo.com",
+        "address": null,
+        "phone": null,
+        "image": null,
+        "runningServices": {
+            "items": [],
+            "totalItems": 0
+        },
+        "messages": {
+            "items": [],
+            "totalItems": 0
+        },
+        "onboarding": {
+            "id": 32,
+            "profile": false,
+            "account": false,
+            "company": false,
+            "storefront": false
+        },
+        "skills": [],
+        "roles": {
             "1": "MEMBER"
         },
         "isDMDIIMember": true,
         "userContactInfo": {
-            "id": 923,
+            "id": 31,
             "userPrivateContactInfo": null,
             "userPublicContactInfo": null,
             "userMemberPortalContactInfo": null
@@ -69,934 +517,39 @@
         "hasUnreadNotifications": false,
         "timezone": "(UTC -06:00) US/Central"
     },
-    "projectFocusArea": {
-        "id": 6,
-        "name": "Other"
-    },
-    "projectThrust": {
-        "id": 5,
-        "name": "Digital Manufacturing Commons",
-        "code": "DMC"
-    },
-    "contributingCompanyIds": [116, 146, 167, 205, 226, 305, 306],
-    "rootNumber": 0,
-    "callNumber": 0,
-    "projectNumber": 0,
-    "costShare": 8395.00,
-    "dmdiiFunding": 5983.00,
-    "projectIdentifier": "0-0-0"
-}, {
-    "id": 53,
-    "primeOrganization": {
-        "id": 1,
-        "name": "UI LABS"
-    },
-    "principalInvestigator": {
-        "id": 52,
-        "firstName": "Kristen",
-        "lastName": "Preble",
-        "email": "kristen.preble@uilabs.org"
-    },
-    "projectStatus": {
-        "id": 3,
-        "name": "completed"
-    },
-    "awardedDate": "2016-11-18",
-    "endDate": "2016-11-18",
-    "projectTitle": "Technology Showcase - November 18, 2016",
-    "projectSummary": "This quarterly event gives partners from large industrial companies, universities, and small and medium-sized manufacturers a chance to hear from DMDII project teams and explore new ways to collaborate.\n\nRecently, a new type of organization has been added that broadens the capabilities of the network even further: startups. One goal of the showcase is “getting people into the room to see if something new and better can be created as a result,” said Tom McDermott, Chief Program Officer of DMDII. Having access to nimble companies with innovative technology is attractive to DMDII partners looking to apply new tools to address manufacturing-related challenges.\n\nAt this Showcase, three project teams presented, as well as four startup organizations pitched their companies to the attendees. To see these presentations along with other materials from the Showcase, visit the \"Project Documents\" tab. To read more about the day visit UILABS' [blog](http://www.uilabs.org/blog/2016/11/18/broadening-the-network-startups-play-key-role-in-dmdii-technology-showcase).",
-    "principalPointOfContact": {
-        "id": 260,
-        "displayName": "Michael Howard",
-        "accountId": 260,
-        "profileId": 260,
-        "companyId": 1,
-        "companyName": "UI LABS",
-        "role": 0,
-        "realname": "Michael Howard",
-        "title": "Program Manager",
-        "termsConditions": true,
-        "firstName": "Michael",
-        "lastName": "Howard",
-        "email": "michael.howard@uilabs.org",
-        "address": "1415 N Cherry Ave, Chicago, IL",
-        "phone": null,
-        "image": null,
-        "runningServices": {
-            "items": [],
-            "totalItems": 0
-        },
-        "messages": {
-            "items": [],
-            "totalItems": 0
-        },
-        "onboarding": {
-            "id": 260,
-            "profile": false,
-            "account": false,
-            "company": false,
-            "storefront": false
-        },
-        "skills": [],
-        "roles": {
-            "0": "SUPERADMIN",
-            "1": "MEMBER"
-        },
-        "isDMDIIMember": true,
-        "userContactInfo": {
-            "id": 920,
-            "userPrivateContactInfo": null,
-            "userPublicContactInfo": {
-                "id": 15,
-                "email": "michael.howard@uilabs.org",
-                "phone": "3122816866",
-                "location": "Chicago, IL"
-            },
-            "userMemberPortalContactInfo": {
-                "id": 13,
-                "email": "michael.howard@uilabs.org",
-                "phone": "3122816866",
-                "location": "Chicago, IL"
-            }
-        },
-        "aboutMe": null,
-        "resume": "",
-        "account": 0,
-        "notifications": [],
-        "hasUnreadNotifications": false,
-        "timezone": null
-    },
-    "projectFocusArea": {
-        "id": 6,
-        "name": "Other"
-    },
-    "projectThrust": {
-        "id": 5,
-        "name": "Digital Manufacturing Commons",
-        "code": "DMC"
-    },
-    "contributingCompanyIds": [97, 143, 158, 188, 300],
-    "rootNumber": 0,
-    "callNumber": 0,
-    "projectNumber": 0,
-    "costShare": 8395.00,
-    "dmdiiFunding": 5983.00,
-    "projectIdentifier": "0-0-0"
-}, {
-    "id": 79,
-    "primeOrganization": {
-        "id": 128,
-        "name": "Lockheed Martin Corporation"
-    },
-    "principalInvestigator": {
-        "id": 104,
-        "firstName": "Mimi",
-        "lastName": "Hsu",
-        "email": "mimi.hsu@lmco.com"
-    },
-    "projectStatus": {
-        "id": 3,
-        "name": "completed"
-    },
-    "awardedDate": "2017-03-02",
-    "endDate": "2017-03-03",
-    "projectTitle": "Augmented Reality Workshop: Hardware/Software Functional Requirements for Industrial Industry Use - March 1-2, 2017",
-    "projectSummary": "This workshop was the capstone to a DMDII Partner Innovation Project (PIP) executed by Lockheed Martin, Procter & Gamble, and Caterpillar to address the business problem of how augmented reality (AR) technology can be used in the enterprise of the future. The first day of the workshop focused on hardware functional requirements and the second day on software. At an evening reception, AR hardware and software providers had an opportunity to showcase their technologies.",
-    "principalPointOfContact": {
-        "id": 298,
-        "displayName": "Amanda Needham",
-        "accountId": 298,
-        "profileId": 298,
-        "companyId": 1,
-        "companyName": "UI LABS",
-        "role": 0,
-        "realname": "Amanda Needham",
-        "title": null,
-        "termsConditions": true,
-        "firstName": "Amanda",
-        "lastName": "Needham",
-        "email": "amanda.needham@uilabs.org",
-        "address": null,
-        "phone": null,
-        "image": null,
-        "runningServices": {
-            "items": [],
-            "totalItems": 0
-        },
-        "messages": {
-            "items": [],
-            "totalItems": 0
-        },
-        "onboarding": {
-            "id": 298,
-            "profile": false,
-            "account": false,
-            "company": false,
-            "storefront": false
-        },
-        "skills": [],
-        "roles": {
-            "0": "SUPERADMIN",
-            "1": "MEMBER"
-        },
-        "isDMDIIMember": true,
-        "userContactInfo": {
-            "id": 966,
-            "userPrivateContactInfo": null,
-            "userPublicContactInfo": null,
-            "userMemberPortalContactInfo": null
-        },
-        "aboutMe": null,
-        "resume": "",
-        "account": 0,
-        "notifications": [],
-        "hasUnreadNotifications": false,
-        "timezone": "(UTC -06:00) America/Chicago"
-    },
-    "projectFocusArea": {
-        "id": 6,
-        "name": "Other"
-    },
-    "projectThrust": {
-        "id": 8,
-        "name": "Future Factory",
-        "code": "FF"
-    },
-    "contributingCompanyIds": [45, 177, 298],
-    "rootNumber": 0,
-    "callNumber": 0,
-    "projectNumber": 0,
-    "costShare": 8395.00,
-    "dmdiiFunding": 5983.00,
-    "projectIdentifier": "0-0-0"
-}, {
-    "id": 82,
-    "primeOrganization": {
-        "id": 1,
-        "name": "UI LABS"
-    },
-    "principalInvestigator": {
-        "id": 112,
-        "firstName": "jon",
-        "lastName": "brand",
-        "email": "j@b.com"
-    },
-    "projectStatus": {
-        "id": 2,
-        "name": "awarded"
-    },
-    "awardedDate": "2017-06-06",
-    "endDate": "2017-06-21",
-    "projectTitle": "Test3",
-    "projectSummary": "test3",
-    "principalPointOfContact": {
-        "id": 113,
-        "displayName": "Andrew Wielgus",
-        "accountId": 113,
-        "profileId": 113,
-        "companyId": 33,
-        "companyName": "Aztec Plastic Company",
-        "role": 0,
-        "realname": "Andrew Wielgus",
-        "title": null,
-        "termsConditions": true,
-        "firstName": "Andrew",
-        "lastName": "Wielgus",
-        "email": "awielgus@aztecplastic.com",
-        "address": null,
-        "phone": null,
-        "image": "https://dmcupfinal.s3.amazonaws.com/USER/cuid-603470e7-2b6c-4609-91a3-371f0926c9a8%40uilabs.idp.cirrusidentity.com/Documents/1479741200--225606-sanitized-Az-logo.PNG?AWSAccessKeyId=AKIAIZPP46XXRK6PBF6A&Expires=1499994063&Signature=wX%2FWiAqyuIQvA8TDR7KlNRUOXOY%3D",
-        "runningServices": {
-            "items": [],
-            "totalItems": 0
-        },
-        "messages": {
-            "items": [],
-            "totalItems": 0
-        },
-        "onboarding": {
-            "id": 113,
-            "profile": false,
-            "account": true,
-            "company": false,
-            "storefront": false
-        },
-        "skills": [],
-        "roles": {
-            "33": "ADMIN"
-        },
-        "isDMDIIMember": true,
-        "userContactInfo": {
-            "id": 113,
-            "userPrivateContactInfo": null,
-            "userPublicContactInfo": null,
-            "userMemberPortalContactInfo": null
-        },
-        "aboutMe": null,
-        "resume": "",
-        "account": 0,
-        "notifications": [],
-        "hasUnreadNotifications": false,
-        "timezone": null
-    },
-    "projectFocusArea": {
-        "id": 2,
-        "name": "Manufacturing Processes"
-    },
-    "projectThrust": {
-        "id": 2,
-        "name": "Intelligent Machining",
-        "code": "IM"
-    },
-    "contributingCompanyIds": [158],
-    "rootNumber": 1,
-    "callNumber": 2,
-    "projectNumber": 3,
-    "costShare": 3.00,
-    "dmdiiFunding": 3.00,
-    "projectIdentifier": "1-2-3"
-}, {
-    "id": 1,
-    "primeOrganization": {
-        "id": 97,
-        "name": "Green Dynamics, Inc."
-    },
-    "principalInvestigator": {
-        "id": 5,
-        "firstName": "Neil",
-        "lastName": "Gupta",
-        "email": "neil.gupta@green-dyn.com"
-    },
-    "projectStatus": {
-        "id": 3,
-        "name": "completed"
-    },
-    "awardedDate": "2015-07-22",
-    "endDate": "2016-09-29",
-    "projectTitle": "Blade Multidisciplinary Design and Analysis (BladeMDA)",
-    "projectSummary": "## <span style=\"font-weight: normal;\">Project has completed and the</span> [<u>BladeMDA</u>](http://blademda.green-dyn.com/BladeMDA/login) <span style=\"font-weight: normal;\">web app is LIVE!</span>\n\n## <span style=\"font-weight: normal;\">Contact Neil Gupta (neil.gupta@green-dyn.com) for login information</span>\n\nSince their introduction over 60 years ago, composite materials have shown great promise for reducing weight and increasing performance for a variety of structures. However, high materials costs, a wide range of processing technologies and fragmented material databases have limited the growth of composites in industry. Similarly, while different elements of the software industry have developed powerful tools to provide critical design feedback for almost all aspects of design and manufacturing, very few of these toolsets work seamlessly together. Over the last two years, DARPA has undertaken an effort to integrate the design and analysis tool chain through its Adaptive Vehicle Make (AVM) suite of programs. Green Dynamics' recent DMDII grant award entitled _Structural Composites - Blade Multidisciplinary Design and Analysis (BladeMDA)_ seeks to capitalize on this effort by creating an integrated design and analysis software focused on the development of large composite structures, specifically wind turbine blades.\n\n**The primary goals of the completed software suite are:**\n\n*   Simplify the multidisciplinary design process by guiding designers through an incremental development approach across all product disciplines.\n*   Reduce the scope of disparate tool set expertise required to operate the range of key analysis codes used to analyze a complex turbine/rotor blade system.\n*   Close key gaps in the digital tool chain, particularly with respect to structural and manufacturing analysis and direct, fully integrated manufacturing plans and project costs.\n\nAt the completion of this project, we intend to demonstrate to the wind turbine composites industry a fully integrated digital design and analysis tool which covers concept development through work instruction and lamination file generation. A sub scale demonstration of a complete turbine blade will be created in order to validate manufacturing analysis tools and infusion flow properties. In addition we will provide training and educational courses for the software suite at relevant trade shows and to DMDII consortia members. Successful implementation of this software approach will reduce barriers to entry for smaller composite developers and shorten cycle times for current manufacturers all while providing a comprehensive cost and manufacturing model to prevent overruns.",
-    "principalPointOfContact": {
-        "id": 94,
-        "displayName": "Song Zhao",
-        "accountId": 94,
-        "profileId": 94,
-        "companyId": 1,
-        "companyName": "UI LABS",
-        "role": 0,
-        "realname": "Song Zhao",
-        "title": null,
-        "termsConditions": true,
-        "firstName": "Song",
-        "lastName": "Zhao",
-        "email": "song.zhao@uilabs.org",
-        "address": null,
-        "phone": null,
-        "image": null,
-        "runningServices": {
-            "items": [],
-            "totalItems": 0
-        },
-        "messages": {
-            "items": [],
-            "totalItems": 0
-        },
-        "onboarding": {
-            "id": 94,
-            "profile": false,
-            "account": false,
-            "company": false,
-            "storefront": false
-        },
-        "skills": [],
-        "roles": {
-            "1": "MEMBER"
-        },
-        "isDMDIIMember": true,
-        "userContactInfo": {
-            "id": 94,
-            "userPrivateContactInfo": null,
-            "userPublicContactInfo": null,
-            "userMemberPortalContactInfo": null
-        },
-        "aboutMe": null,
-        "resume": "",
-        "account": 0,
-        "notifications": [],
-        "hasUnreadNotifications": false,
-        "timezone": null
-    },
-    "projectFocusArea": {
-        "id": 1,
-        "name": "Model-Based Design/Enterprise"
-    },
-    "projectThrust": {
-        "id": 4,
-        "name": "Adaptive Vehicle Make",
-        "code": "AVM"
-    },
-    "contributingCompanyIds": [143, 153, 179, 226, 247],
-    "rootNumber": 14,
-    "callNumber": 1,
-    "projectNumber": 6,
-    "costShare": 1355528.00,
-    "dmdiiFunding": 1215763.00,
-    "projectIdentifier": "14-1-6"
-}, {
-    "id": 2,
-    "primeOrganization": {
-        "id": 116,
-        "name": "Iowa State University"
-    },
-    "principalInvestigator": {
-        "id": 6,
-        "firstName": "Matt",
-        "lastName": "Frank",
-        "email": "mfrank@iastate.edu"
-    },
-    "projectStatus": {
-        "id": 2,
-        "name": "awarded"
-    },
-    "awardedDate": "2016-02-25",
-    "endDate": "2017-01-15",
-    "projectTitle": "Automated Manufacturability Analysis Software \"ANA\"",
-    "projectSummary": "This project will develop a software tool \"ANA\" that will evaluate the manufacturability of designs early in the conceptual phase. It will allow a designer to receive early feedback on problem areas of their design, with respect to a variety of manufacturing processes. The first prototype of this tool will consider machining, casting, die-casting and welding, but it will be expandable to other methods in the future. Similar to designers color-based finite element software they are used to, ANA will color 3D models of their part based on the analysis, showing them where their design is easy or difficult to produce.\n\n**What is the industry problem this project address?**\n\n> We lack a simple digital link to the novice designer during the conceptual design stage.\n\n**If successful, what will the project provide or achieve?**  \n\n> It will enable convergence to better designs fast and effectively, especially for the novice designer. Longer term, it will provide more robust designs that can migrate from process to process over their lifetime. In general, we expect ANA to lower cost, and shorter development time for new products.\n\n**What is the main deliverable of the project?**  \n\n> This project will deliver usable software in a Pre-Beta level of development.",
-    "principalPointOfContact": {
-        "id": 449,
-        "displayName": "Scott Kruse",
-        "accountId": 449,
-        "profileId": 449,
-        "companyId": 1,
-        "companyName": "UI LABS",
-        "role": 0,
-        "realname": "Scott Kruse",
-        "title": null,
-        "termsConditions": true,
-        "firstName": "Scott",
-        "lastName": "Kruse",
-        "email": "Scott.Kruse@uilabs.org",
-        "address": null,
-        "phone": null,
-        "image": null,
-        "runningServices": {
-            "items": [],
-            "totalItems": 0
-        },
-        "messages": {
-            "items": [],
-            "totalItems": 0
-        },
-        "onboarding": {
-            "id": 449,
-            "profile": false,
-            "account": false,
-            "company": false,
-            "storefront": false
-        },
-        "skills": [],
-        "roles": {
-            "0": "SUPERADMIN",
-            "1": "MEMBER"
-        },
-        "isDMDIIMember": true,
-        "userContactInfo": {
-            "id": 1117,
-            "userPrivateContactInfo": null,
-            "userPublicContactInfo": null,
-            "userMemberPortalContactInfo": null
-        },
-        "aboutMe": null,
-        "resume": "",
-        "account": 0,
-        "notifications": [],
-        "hasUnreadNotifications": false,
-        "timezone": null
-    },
-    "projectFocusArea": {
-        "id": 5,
-        "name": "Product Lifecycle Management"
-    },
-    "projectThrust": {
-        "id": 4,
-        "name": "Adaptive Vehicle Make",
-        "code": "AVM"
-    },
-    "contributingCompanyIds": [20, 61, 147, 157, 218, 224, 226, 233],
-    "rootNumber": 14,
-    "callNumber": 1,
-    "projectNumber": 7,
-    "costShare": 1069828.00,
-    "dmdiiFunding": 1069828.00,
-    "projectIdentifier": "14-1-7"
-}, {
-    "id": 3,
-    "primeOrganization": {
-        "id": 226,
-        "name": "Pennsylvania State University (PSU)"
-    },
-    "principalInvestigator": {
-        "id": 7,
-        "firstName": "Chris",
-        "lastName": "Ligetti",
-        "email": "cxl300@arl.psu.edu"
-    },
-    "projectStatus": {
-        "id": 2,
-        "name": "awarded"
-    },
-    "awardedDate": "2015-12-18",
-    "endDate": "2016-12-19",
-    "projectTitle": "Integration of AVM iFAB Tools for Industrial Use",
-    "projectSummary": "This project will mature and implement the DARPA AVM iFAB manufacturability analysis software and Design Assist Tools for industrial use and demonstrate the technology on a product line from Oshkosh's Access business unit, JLG. This technology seeks to replace the traditional design/manufacturing interaction, where the reliance on human-in-the-loop manufacturing engineering assessment results in long delays in product development and increased product costs. ARL Penn State will be the lead software developer for modifications to the iFAB tools as identified by the project team after evaluation of the current state software, as well as the development of the software interfaces to the Oshkosh-provided component library and PTC Windchill PLM system. ARL Penn State will support Oshkosh in completing the proposed iFAB Manufacturability Analysis System (MAS) use case and will concurrently develop a software specification to ensure successful implementation of the proposed technologies. Successful execution of the project will strengthen Oshkosh's commitment to full implementation at the completion of the effort. The developed technologies will be demonstrated to additional design and manufacturing organizations interested in future implementation of the iFAB MAS, particularly active members of DMDII. The System Specification Document deliverable will provide the necessary background for Oshkosh and other interested organizations to seamlessly implement the iFAB MAS without the need for additional research and development funding.\n\n**What is the industry problem this project address?**\n\n> Current ability to conduct detailed manufacturability assessments and cost roll-ups throughout the design process requires human-in-the-loop interaction.\n\n**If successful, what will the project provide or achieve?**\n\n> Reduced product development time (DARPA AVM goal) through lower manual effort in manufacturing data specification and developing product cost roll-ups. Reduced Engineering Change Requests (ECRs) by lowering the risk of non-manufacturable or costly designs being released to production. Accurate product cost roll-ups at multiple levels of detail (Component -  Assembly -  Sub-System - Total Product)\n\n**What is the main deliverable of the project?**\n\n> Manufacturability Analysis System (software), to include the following software interfaces: (Manufacturing Analysis Augmentation Tool, PTC Windchill, aPriori, Manufacturability Analysis web application), System Specification (document) that adequately supports full-scale deployment of the MAS at Oshkosh and other industrial organizations",
-    "principalPointOfContact": {
-        "id": 449,
-        "displayName": "Scott Kruse",
-        "accountId": 449,
-        "profileId": 449,
-        "companyId": 1,
-        "companyName": "UI LABS",
-        "role": 0,
-        "realname": "Scott Kruse",
-        "title": null,
-        "termsConditions": true,
-        "firstName": "Scott",
-        "lastName": "Kruse",
-        "email": "Scott.Kruse@uilabs.org",
-        "address": null,
-        "phone": null,
-        "image": null,
-        "runningServices": {
-            "items": [],
-            "totalItems": 0
-        },
-        "messages": {
-            "items": [],
-            "totalItems": 0
-        },
-        "onboarding": {
-            "id": 449,
-            "profile": false,
-            "account": false,
-            "company": false,
-            "storefront": false
-        },
-        "skills": [],
-        "roles": {
-            "0": "SUPERADMIN",
-            "1": "MEMBER"
-        },
-        "isDMDIIMember": true,
-        "userContactInfo": {
-            "id": 1117,
-            "userPrivateContactInfo": null,
-            "userPublicContactInfo": null,
-            "userMemberPortalContactInfo": null
-        },
-        "aboutMe": null,
-        "resume": "",
-        "account": 0,
-        "notifications": [],
-        "hasUnreadNotifications": false,
-        "timezone": null
-    },
-    "projectFocusArea": {
-        "id": 1,
-        "name": "Model-Based Design/Enterprise"
-    },
-    "projectThrust": {
-        "id": 4,
-        "name": "Adaptive Vehicle Make",
-        "code": "AVM"
-    },
-    "contributingCompanyIds": [24, 169, 179],
-    "rootNumber": 14,
-    "callNumber": 1,
-    "projectNumber": 9,
-    "costShare": 1278579.00,
-    "dmdiiFunding": 1268857.00,
-    "projectIdentifier": "14-1-9"
-}, {
-    "id": 4,
-    "primeOrganization": {
-        "id": 2,
-        "name": "General Electric (GE)"
-    },
-    "principalInvestigator": {
-        "id": 8,
-        "firstName": "Benjamin",
-        "lastName": "Beckmann",
-        "email": "beckmann@ge.com"
-    },
-    "projectStatus": {
-        "id": 2,
-        "name": "awarded"
-    },
-    "awardedDate": "2015-12-22",
-    "endDate": "2017-04-30",
-    "projectTitle": "Elastic Cloud-Based Make",
-    "projectSummary": "The proposed Elastic Cloud-Based Make (ECBM) project will transition multiple MS&A tools, developed under the AVM program, to the DMDII. Bringing together large industrial partners, former iFAB performers, and top-tier academic institutions, the proposed project will:\n\n1) transition iFab tools to the DMC, establishing a clear path to commercialization  \n2) demonstrate the iFAB tools via use cases of interest to DMDII members and the Department of Defense (DoD)   \n3) design and disseminate educational content to broaden the awareness and impact of the AVM tools\n\n**What is the industry problem this project addresses?**  \n\n> SME access to powerful MS&A tools\n\n**If successful, what will the project provide or achieve?**  \n\n> This project will establish a framework for companies, particularly SMEs, to gain access to the powerful MS&A tools developed under the previous DARPA AVM program.\n\n**What is the main deliverable of the project?**  \n\n> 1) transition iFab tools to the DMC, establishing a clear path to commercialization  \n> 2) demonstrate the iFAB tools via use cases of interest to DMDII members and the Department of Defense (DoD)  \n> 3) design and disseminate educational content to broaden the awareness and impact of the AVM tools",
-    "principalPointOfContact": {
-        "id": 449,
-        "displayName": "Scott Kruse",
-        "accountId": 449,
-        "profileId": 449,
-        "companyId": 1,
-        "companyName": "UI LABS",
-        "role": 0,
-        "realname": "Scott Kruse",
-        "title": null,
-        "termsConditions": true,
-        "firstName": "Scott",
-        "lastName": "Kruse",
-        "email": "Scott.Kruse@uilabs.org",
-        "address": null,
-        "phone": null,
-        "image": null,
-        "runningServices": {
-            "items": [],
-            "totalItems": 0
-        },
-        "messages": {
-            "items": [],
-            "totalItems": 0
-        },
-        "onboarding": {
-            "id": 449,
-            "profile": false,
-            "account": false,
-            "company": false,
-            "storefront": false
-        },
-        "skills": [],
-        "roles": {
-            "0": "SUPERADMIN",
-            "1": "MEMBER"
-        },
-        "isDMDIIMember": true,
-        "userContactInfo": {
-            "id": 1117,
-            "userPrivateContactInfo": null,
-            "userPublicContactInfo": null,
-            "userMemberPortalContactInfo": null
-        },
-        "aboutMe": null,
-        "resume": "",
-        "account": 0,
-        "notifications": [],
-        "hasUnreadNotifications": false,
-        "timezone": null
-    },
-    "projectFocusArea": {
-        "id": 1,
-        "name": "Model-Based Design/Enterprise"
-    },
-    "projectThrust": {
-        "id": 1,
-        "name": "Advanced Manufacturing Enterprise",
-        "code": "AME"
-    },
-    "contributingCompanyIds": [116, 161, 167, 182, 188, 191, 226],
-    "rootNumber": 14,
-    "callNumber": 1,
-    "projectNumber": 10,
-    "costShare": 1793018.00,
-    "dmdiiFunding": 1793018.00,
-    "projectIdentifier": "14-1-10"
-}, {
-    "id": 5,
-    "primeOrganization": {
-        "id": 213,
-        "name": "STEP Tools, Inc."
-    },
-    "principalInvestigator": {
-        "id": 9,
-        "firstName": "Martin ",
-        "lastName": "Hardwick",
-        "email": "hardwick@steptools.com"
-    },
-    "projectStatus": {
-        "id": 3,
-        "name": "completed"
-    },
-    "awardedDate": "2015-06-16",
-    "endDate": "2016-10-31",
-    "projectTitle": "Mind the Gap - Filling the Gap between CAD and CNC with Engineering Services",
-    "projectSummary": "The Mind the Gap services allow third parties to validate machining processes using smart phones and tablets, and to suggest new solutions by substituting better tooling. Our team developed groundbreaking technology for the DARPA AVM program. The technology enables the real time generation, visualization and simulation of machining solutions. The first service will enable tooling optimization by third parties, such as cutter vendors, causing a reduction in machining costs that has been measured as greater than 15%.\n\n**If successful, what will the project provide or achieve?**\n\n> Reduced Engineering Change Requests (ECRs) by lowering the risk of non-manufacturable or costly designs being released to production\n\n**What is the main deliverable of the project?**\n\n> Two cloud services for optimizing machining. The first service delivers data about the machining process and itﾒs required GD&T to the smart phones and desktops of external users. The second service allows those external users to define optimizations using their preferred CAM system.",
-    "principalPointOfContact": {
-        "id": 449,
-        "displayName": "Scott Kruse",
-        "accountId": 449,
-        "profileId": 449,
-        "companyId": 1,
-        "companyName": "UI LABS",
-        "role": 0,
-        "realname": "Scott Kruse",
-        "title": null,
-        "termsConditions": true,
-        "firstName": "Scott",
-        "lastName": "Kruse",
-        "email": "Scott.Kruse@uilabs.org",
-        "address": null,
-        "phone": null,
-        "image": null,
-        "runningServices": {
-            "items": [],
-            "totalItems": 0
-        },
-        "messages": {
-            "items": [],
-            "totalItems": 0
-        },
-        "onboarding": {
-            "id": 449,
-            "profile": false,
-            "account": false,
-            "company": false,
-            "storefront": false
-        },
-        "skills": [],
-        "roles": {
-            "0": "SUPERADMIN",
-            "1": "MEMBER"
-        },
-        "isDMDIIMember": true,
-        "userContactInfo": {
-            "id": 1117,
-            "userPrivateContactInfo": null,
-            "userPublicContactInfo": null,
-            "userMemberPortalContactInfo": null
-        },
-        "aboutMe": null,
-        "resume": "",
-        "account": 0,
-        "notifications": [],
-        "hasUnreadNotifications": false,
-        "timezone": null
-    },
-    "projectFocusArea": {
-        "id": 2,
-        "name": "Manufacturing Processes"
-    },
-    "projectThrust": {
-        "id": 1,
-        "name": "Advanced Manufacturing Enterprise",
-        "code": "AME"
-    },
-    "contributingCompanyIds": [226, 247],
-    "rootNumber": 14,
-    "callNumber": 2,
-    "projectNumber": 2,
-    "costShare": 1099329.00,
-    "dmdiiFunding": 1010052.00,
-    "projectIdentifier": "14-2-2"
-}, {
-    "id": 6,
-    "primeOrganization": {
-        "id": 167,
-        "name": "Oregon State University"
-    },
-    "principalInvestigator": {
-        "id": 10,
-        "firstName": "Matt",
-        "lastName": "Campbell",
-        "email": "Matt.Campbell@OregonState.edu"
-    },
-    "projectStatus": {
-        "id": 3,
-        "name": "completed"
-    },
-    "awardedDate": "2015-07-15",
-    "endDate": "2017-01-14",
-    "projectTitle": "Automated Assembly Planning: From CAD Model to Virtual Assembly Process",
-    "projectSummary": "Building upon four AVM technologies, the PIs will complete the development of an Automated Assembly Planning tool. The proposed tool will interact with users via the IC.IDO virtual reality platform. With minimal input from the user beyond the CAD assembly, the tool will present alternative ways of assembling the components of the represented CAD product. The goal is a demonstratable platform wherein a CAD assembly is used to initiate the process. This is followed by a presentation of the model within IC.IDO and the initiation of a user-interaction to clarify part-to-part constraints. Following this input phase, the assembly planning search process will commence using evaluation criteria previously developed and augmented by the Probability Certificate of Correctness work performed under DARPA AVM META program. Finally, the resulting assembly plans will be presented via IC.IDO, and the user will be able to visualize and interact with the plan.\n\n**What is the industry problem this project address?**\n\n> Early detection of manufacturability issues or expected excessive costs prior to manufacturing release will reduce product cost and total development time\n\n**If successful, what will the project provide or achieve for industry members?**\n\n> They can use the tool to quickly find an optimal assembly plan. They will likely learn new ways of assembling that they had not previously considered. They may find better ways to lay out an assembly facility based on the results. They may find ways to redefine parts to minimize assembly plans. They can use results to adjust current plans based on changes such as delays from OEM subcontractors or assembling different products within the same product family.\n\n**What is the main deliverable of the project?**\n\n> The main deliverable is an add-on module to ESI's IC.IDO virtual reality platform.",
-    "principalPointOfContact": {
-        "id": 449,
-        "displayName": "Scott Kruse",
-        "accountId": 449,
-        "profileId": 449,
-        "companyId": 1,
-        "companyName": "UI LABS",
-        "role": 0,
-        "realname": "Scott Kruse",
-        "title": null,
-        "termsConditions": true,
-        "firstName": "Scott",
-        "lastName": "Kruse",
-        "email": "Scott.Kruse@uilabs.org",
-        "address": null,
-        "phone": null,
-        "image": null,
-        "runningServices": {
-            "items": [],
-            "totalItems": 0
-        },
-        "messages": {
-            "items": [],
-            "totalItems": 0
-        },
-        "onboarding": {
-            "id": 449,
-            "profile": false,
-            "account": false,
-            "company": false,
-            "storefront": false
-        },
-        "skills": [],
-        "roles": {
-            "0": "SUPERADMIN",
-            "1": "MEMBER"
-        },
-        "isDMDIIMember": true,
-        "userContactInfo": {
-            "id": 1117,
-            "userPrivateContactInfo": null,
-            "userPublicContactInfo": null,
-            "userMemberPortalContactInfo": null
-        },
-        "aboutMe": null,
-        "resume": "",
-        "account": 0,
-        "notifications": [],
-        "hasUnreadNotifications": false,
-        "timezone": null
-    },
-    "projectFocusArea": {
-        "id": 2,
-        "name": "Manufacturing Processes"
-    },
-    "projectThrust": {
-        "id": 1,
-        "name": "Advanced Manufacturing Enterprise",
-        "code": "AME"
-    },
-    "contributingCompanyIds": [74],
-    "rootNumber": 14,
-    "callNumber": 2,
-    "projectNumber": 4,
-    "costShare": 1007173.00,
-    "dmdiiFunding": 792037.00,
-    "projectIdentifier": "14-2-4"
-}, {
-    "id": 7,
-    "primeOrganization": {
-        "id": 26,
-        "name": "Arizona State University (ASU)"
-    },
-    "principalInvestigator": {
-        "id": 11,
-        "firstName": "Jami",
-        "lastName": "Shah",
-        "email": "jami.shah@asu.edu"
-    },
-    "projectStatus": {
-        "id": 3,
-        "name": "completed"
-    },
-    "awardedDate": "2015-07-13",
-    "endDate": "2016-08-31",
-    "projectTitle": "Automatic tolerancing of mechanical assemblies from STEP AP203: Completion of AVM tasks",
-    "projectSummary": "Tolerance specification can be separated into two major tasks; tolerance schema generation and tolerance value specification. For this purpose, the first major step is to identify mating features called assembly features. Also, in order to create the tolerance chains we need Local Constraints (assembly feature relationships), Global constraints (part feature relationships) and directions of control. In addition, we have to identify feature patterns since they have associated tolerances according to Dimensioning and Tolerancing Standard ASME Y14.5M. Directions in which these loops lie are also needed; we call them Direction of Control (DoC). Then we can create the GD&T schema, allocate tolerance values, and prepare it for tolerance evaluation. The verified GD&T specs are translated to STEP AP242 format.\n\n**What is the industry problem this project address?**\n\n> Controlling manufacturing variability through analytical models. Designers must consider proper functioning and assemblability of parts by appropriate tolerance specification, and subsequent assembly stack analyses, to ensure adequate clearance or interference at critical locations. Various interactive computer aided tolerance software (CATS) tools are available today for worst case and statistical tolerance stack analyses. However, these tools do not aid synthesis; they require the user to input a complete and consistent GD&T scheme. The ability for a designer to generate a good tolerance scheme may take years of experience and requires deep knowledge not only of the device function, but also of GD&T standards. This is often accomplished by trial and error. Assemblability is affected by not only tolerance values, but also tolerance types used, choice of datums, dimension control sequence (datum flow chain), and also, by what is NOT controlled\n\n**If successful, what will the project provide or achieve?**\n\n> Automation of first order GD&T for mechanical assemblies. No one has automated tolerance synthesis before.\n\n**What is the main deliverable of the project?**\n\n> Technical Report and Software executables/modules - schema, allocation, translation",
-    "principalPointOfContact": {
-        "id": 449,
-        "displayName": "Scott Kruse",
-        "accountId": 449,
-        "profileId": 449,
-        "companyId": 1,
-        "companyName": "UI LABS",
-        "role": 0,
-        "realname": "Scott Kruse",
-        "title": null,
-        "termsConditions": true,
-        "firstName": "Scott",
-        "lastName": "Kruse",
-        "email": "Scott.Kruse@uilabs.org",
-        "address": null,
-        "phone": null,
-        "image": null,
-        "runningServices": {
-            "items": [],
-            "totalItems": 0
-        },
-        "messages": {
-            "items": [],
-            "totalItems": 0
-        },
-        "onboarding": {
-            "id": 449,
-            "profile": false,
-            "account": false,
-            "company": false,
-            "storefront": false
-        },
-        "skills": [],
-        "roles": {
-            "0": "SUPERADMIN",
-            "1": "MEMBER"
-        },
-        "isDMDIIMember": true,
-        "userContactInfo": {
-            "id": 1117,
-            "userPrivateContactInfo": null,
-            "userPublicContactInfo": null,
-            "userMemberPortalContactInfo": null
-        },
-        "aboutMe": null,
-        "resume": "",
-        "account": 0,
-        "notifications": [],
-        "hasUnreadNotifications": false,
-        "timezone": null
-    },
-    "projectFocusArea": {
-        "id": 2,
-        "name": "Manufacturing Processes"
-    },
-    "projectThrust": {
-        "id": 4,
-        "name": "Adaptive Vehicle Make",
-        "code": "AVM"
-    },
+    "projectFocusArea": null,
+    "projectThrust": null,
     "contributingCompanyIds": [],
-    "rootNumber": 14,
-    "callNumber": 2,
-    "projectNumber": 5,
-    "costShare": 124735.00,
-    "dmdiiFunding": 124323.00,
-    "projectIdentifier": "14-2-5"
+    "rootNumber": null,
+    "callNumber": null,
+    "projectNumber": null,
+    "costShare": null,
+    "dmdiiFunding": null,
+    "isEvent": true,
+    "projectIdentifier": "null-null-null"
 }, {
-    "id": 8,
-    "primeOrganization": {
-        "id": 191,
-        "name": "Rolls-Royce"
-    },
-    "principalInvestigator": {
-        "id": 12,
-        "firstName": "Andrew",
-        "lastName": "Hall",
-        "email": "Andrew.Hall2@rolls-royce.com"
-    },
-    "projectStatus": {
-        "id": 2,
-        "name": "awarded"
-    },
-    "awardedDate": "2016-01-14",
-    "endDate": "2017-07-14",
-    "projectTitle": "Supply Chain MBE/TDP Improvement",
-    "projectSummary": "Model-Based Enterprise (MBE) is a critical technology and practice that will offer a step change in how design and manufacturing information is shared, such as design models/criteria, manufacturing process models/information, supply chain (internal & external) communications, and enterprise-wide information sharing. The outcome of the project is intended to resolve the current 'silo' environment among internal functional groups and through the supply chain and accelerate progress on digital communication between design and manufacturing. This project will enable support of fully annotated 3D models based on the latest MBD and TDP (technical data package) standards; demonstrate secure, digital transfer of these 3D models to and from suppliers, and link the MBE requirements to shop floor capabilities demonstrating supply chain integration.\n\n**What is the industry problem this project addresses?**\n\n> MBD is not widely used to communicate definitions through supply chains. This project will document the tools, lessons, and minimum requirements needed to communicate a definition through the supply chain using various neutral CAD derivatives.\n\n**If successful, what will the project provide or achieve?**\n\n> The project will demonstrate that members who apply the lessons learned will be able to increase the communication success rate, reduce rework, and improve quality of data and delivered product. Estimates for general benefit of implementing MBE/MBD best practices can range from 10-30% or higher, depending on the magnitude of MBE/MBD. The project will document issues and successes using the latest technology (STEP AP 242, 3D PDF, JT) for communicating definition data.\n\n**What is the main deliverable of the project?**\n\n> The main deliverable will be training curriculum and knowledge-base for creating, translating, validating and transferring definition data.",
+    "id": 104,
+    "primeOrganization": null,
+    "principalInvestigator": null,
+    "projectStatus": null,
+    "awardedDate": "2017-09-25",
+    "endDate": "2017-09-25",
+    "projectTitle": "New Event 9/11 - 2",
+    "projectSummary": "abc",
     "principalPointOfContact": {
-        "id": 268,
-        "displayName": "Katie Tillery-Merk",
-        "accountId": 268,
-        "profileId": 268,
-        "companyId": 1,
-        "companyName": "UI LABS",
+        "id": 9,
+        "displayName": "Lizabeth Stuck",
+        "accountId": 9,
+        "profileId": 9,
+        "companyId": null,
+        "companyName": null,
         "role": 0,
-        "realname": "Katie Tillery-Merk",
+        "realname": "Lizabeth Stuck",
         "title": null,
         "termsConditions": true,
-        "firstName": "Katie",
-        "lastName": "Tillery-Merk",
-        "email": "katie.tillery-merk@uilabs.org",
+        "firstName": "Lizabeth",
+        "lastName": "Stuck",
+        "email": "dmdii.su.027@gmail.com",
         "address": null,
         "phone": null,
         "image": null,
@@ -1009,20 +562,17 @@
             "totalItems": 0
         },
         "onboarding": {
-            "id": 268,
+            "id": 9,
             "profile": false,
             "account": false,
             "company": false,
             "storefront": false
         },
         "skills": [],
-        "roles": {
-            "0": "SUPERADMIN",
-            "1": "MEMBER"
-        },
-        "isDMDIIMember": true,
+        "roles": null,
+        "isDMDIIMember": false,
         "userContactInfo": {
-            "id": 936,
+            "id": 37,
             "userPrivateContactInfo": null,
             "userPublicContactInfo": null,
             "userMemberPortalContactInfo": null
@@ -1032,22 +582,36 @@
         "account": 0,
         "notifications": [],
         "hasUnreadNotifications": false,
-        "timezone": null
+        "timezone": "GMT"
     },
-    "projectFocusArea": {
-        "id": 1,
-        "name": "Model-Based Design/Enterprise"
-    },
-    "projectThrust": {
-        "id": 1,
-        "name": "Advanced Manufacturing Enterprise",
-        "code": "AME"
-    },
-    "contributingCompanyIds": [22, 115, 128, 149, 180],
-    "rootNumber": 14,
-    "callNumber": 6,
-    "projectNumber": 1,
-    "costShare": 1587356.00,
-    "dmdiiFunding": 1420292.00,
-    "projectIdentifier": "14-6-1"
+    "projectFocusArea": null,
+    "projectThrust": null,
+    "contributingCompanyIds": [],
+    "rootNumber": null,
+    "callNumber": null,
+    "projectNumber": null,
+    "costShare": null,
+    "dmdiiFunding": null,
+    "isEvent": true,
+    "projectIdentifier": "null-null-null"
+}, {
+    "id": 105,
+    "primeOrganization": null,
+    "principalInvestigator": null,
+    "projectStatus": null,
+    "awardedDate": "2017-09-27",
+    "endDate": "2017-09-30",
+    "projectTitle": "New Event 9/11  - 3",
+    "projectSummary": "abc",
+    "principalPointOfContact": null,
+    "projectFocusArea": null,
+    "projectThrust": null,
+    "contributingCompanyIds": [39],
+    "rootNumber": null,
+    "callNumber": null,
+    "projectNumber": null,
+    "costShare": null,
+    "dmdiiFunding": null,
+    "isEvent": true,
+    "projectIdentifier": "null-null-null"
 }]

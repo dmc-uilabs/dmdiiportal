@@ -7,10 +7,8 @@
 					</ng-md-icon>Add documents &amp; updates</a>
 			</div>
 			<div class="col-sm-6 pull-right text-right">
-				<a href="edit-dmdii-project-page.php#/{{project.id}}/edit">
-					<ng-md-icon icon="mode_edit" style="fill: #75bc52" size="16"></ng-md-icon> Edit Project</a>
-				<!-- Delete doesn't currently match a defined function
-                <a ng-click="deleteProject()"> <ng-md-icon icon="delete" style="fill: #75bc52" size="16"></ng-md-icon> Delete Project </a> -->
+				<a href="edit-dmdii-project-page.php#/event/{{project.id}}/edit"><ng-md-icon icon="mode_edit" style="fill: #75bc52" size="16"></ng-md-icon> Edit Event</a>
+				<a href ng-click="deleteProject($event)"> <ng-md-icon icon="delete" style="fill: #75bc52" size="16"></ng-md-icon> Delete Event</a>
 			</div>
 		</div>
 		<div class="dropdown visible-xs">
@@ -39,13 +37,10 @@
 <main>
 	<section class="container">
 		<div class="row">
-			<div class="col-md-6 project-main">
+			<div class="col-md-8 project-main">
 				<h1>{{project.projectTitle}}</h1>
-
 			</div>
-			<div class="col-md-6">
-				<div class="row">
-					<div class="col-xs-6 pull-right">
+			<div class="col-md-4">
 
 						<h4>Dates</h4>
 						<dl class="project-stats">
@@ -54,26 +49,20 @@
 							<dt>Ends</dt>
 							<dd><time>{{project.endDate}}</time></dd>
 						</dl>
-					</div>
 
-					<div class="col-xs-6">
-
-					</div>
-				</div>
-				<!-- <div class="row">
-                    <div class="col-sm-6">
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 60%;">60%</div>
-                        </div>
-                    </div>
-                </div> -->
 			</div>
 		</div>
+
 		<div class="project-summary-container">
 			<div class="row ">
 				<div class="col-xs-12">
 					<h4>Summary</h4>
 					<div class="slim-margin" markdown-to-html="project.projectSummary"></div>
+					<h4>DMDII Contact</h4>
+					<div class="slim-margin">
+						<div>{{project.principalPointOfContact.firstName}}  {{project.principalPointOfContact.lastName}}</div>
+						<div style="color: grey;">{{project.principalPointOfContact.email}}</div>
+					</div>
 				</div>
 			</div>
 
@@ -81,28 +70,27 @@
 
 
 		<!-- Nav tabs -->
-		<ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active hidden-xs">
-				<a data-target="#contributors" aria-controls="contributors" role="tab" data-toggle="tab">Contributors</a>
-			</li>
-			<li role="presentation" class="hidden-xs">
+		<ul ng-show="documents.length || project.contributingCompanies.length" class="nav nav-tabs" role="tablist">
+			<li ng-show="documents.length" role="presentation" class="active hidden-xs">
 				<a data-target="#documents" aria-controls="documents" role="tab" data-toggle="tab">Docs &amp; Presentations</a>
 			</li>
+			<li ng-show="project.contributingCompanies.length" role="presentation" class="hidden-xs">
+				<a data-target="#contributors" aria-controls="contributors" role="tab" data-toggle="tab">Contributors</a>
+			</li>
 
 
-			<li role="presentation" class="dropdown xs-tab-control visible-xs">
+			<li ng-show="documents.length || project.contributingCompanies.length" role="presentation" class="dropdown xs-tab-control visible-xs">
 				<a data-target="#" class="dropdown-toggle" id="myTabDrop1" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false">
 					<span class="tab-section-label">Section</span>
 					<span class="caret"></span></a>
 				<ul class="dropdown-menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
-					<li class="">
+					<li ng-show="documents.length" class="">
+						<a data-target="#documents" role="tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">Docs &amp; Presentations</a>
+					</li>
+					<li class="" ng-show="project.contributingCompanies.length">
 						<a data-target="#contributors" role="tab" data-toggle="tab" aria-controls="dropdown1" aria-expanded="false">Contrubutors</a>
 					</li>
 
-					<li class="">
-
-						<a data-target="#documents" role="tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">Docs &amp; Presentations</a>
-					</li>
 				</ul>
 
 			</li>
@@ -115,15 +103,15 @@
 		</div>
 	</section>
 
-	<section class="gray">
+	<section ng-show="documents.length || project.contributingCompanies.length" class="gray">
 		<div class="container">
 			<!-- Tab panes -->
 			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane fade in active" id="contributors">
-					<tab-contributors project="project" user-data="userData"></tab-contributors>
-				</div>
-				<div role="tabpanel" class="tab-pane fade " id="documents">
+				<div ng-show="documents.length" role="tabpanel" class="tab-pane fade in active" id="documents">
 					<tab-documents documents="documents" user-data="userData" project="project"></tab-documents>
+				</div>
+				<div ng-show="project.contributingCompanies.length" role="tabpanel" class="tab-pane fade" id="contributors">
+					<tab-contributors project="project" user-data="userData"></tab-contributors>
 				</div>
 			</div>
 		</div>
