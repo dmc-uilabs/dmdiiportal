@@ -1,4 +1,4 @@
-<div class="row contributors-row">
+<div ng-if="!project.isEvent" class="row contributors-row">
 <div class="col-sm-6">
   <h4>Coordinator</h4>
   <dl>
@@ -16,6 +16,18 @@
   <h4>Participants</h4>
   <dl>
   <dt><a ng-href="{{'/member-page.php#/'+project.primeOrganization.id}}">{{project.primeOrganization.name}}</a><span class="participant-meta">&bull; Prime</span></dt>
+  <dt ng-repeat="member in project.contributingCompanies">
+    <a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a>
+  </dt>
+  </dl>
+</div>
+</div>
+
+
+<div ng-if="project.isEvent && project.contributingCompanies.length" class="row contributors-row">
+<div class="col-sm-6">
+  <h4>Contributing Organizations</h4>
+  <dl>
   <dt ng-repeat="member in project.contributingCompanies">
     <a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a>
   </dt>
