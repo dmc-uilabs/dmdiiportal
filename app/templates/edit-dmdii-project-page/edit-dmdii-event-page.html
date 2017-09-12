@@ -1,0 +1,123 @@
+<div ng-if="!not_found" class="edit-project-page">
+    <md-content class="project-profile-padding">
+        <div layout="row">
+            <div layout="row" layout-align="start start" flex="50">
+                <h2>{{title}}</h2>
+            </div>
+
+            <div layout="row" flex="50" layout-align="end start">
+                <md-button class="md-raised cancel-button" ng-click="cancelChanges()">Cancel</md-button>
+                <md-button class="md-raised md-primary save-button" ng-click="saveChanges()">Save</md-button>
+            </div>
+        </div>
+
+        <div layout="row">
+            <div layout="column" flex class="inputs-top">
+                <h3 class="no-bottom" style="border-bottom: 1px solid grey; margin-top: 30px;">Title, Dates and Description</h3>
+                <div layout="row" layout-md="column">
+                    <md-input-container flex="50" class="project-name">
+                        <label>Title (Required)</label>
+                        <input ng-model="project.projectTitle"
+                               ng-disabled="!user.isDmdiiAdmin"
+                               ng-required="true">
+                    </md-input-container>
+
+                    <div layout="column" flex="25">
+                        <md-datepicker class="no-bottom no-pad-bottom top10"
+                        name="awardDate"
+                        ng-model="date.awarded"
+                        ng-required="true"
+                        md-placeholder="Start Date">
+                      </md-datepicker>
+                    </div>
+
+                    <div layout="column" flex="25">
+                        <md-datepicker class="no-bottom no-pad-bottom top10"
+                          name="endDate"
+                          ng-model="date.end"
+                          ng-required="true"
+                          md-placeholder="End Date">
+                        </md-datepicker>
+                    </div>
+                </div>
+
+              <div layout="column" flex="100"
+                ui-widget-rich-text
+                field-name="fieldName"
+                is-required="true"
+                model="project.projectSummary"
+                limit="descriptionLimit"
+                is-saved="isSaved"
+                is-valid="isValid">
+              </div>
+
+
+            </div>
+        </div>
+
+        <!-- <div layout="row">
+        </div> -->
+
+        <div layout="column">
+
+          <h3 class="no-bottom" style="border-bottom: 1px solid grey; margin-top: 30px;">Contributing Companies</h3>
+            <div layout="row" ng-show="user.isDmdiiAdmin">
+                <md-autocomplete flex="33"
+
+                    ng-required="project.projectStatus.id !== 1"
+                    md-input-name="organizations"
+                    md-items="org in queryOrgSearch(searchContOrg)"
+                    md-search-text="searchContOrg"
+                    md-selected-item="selectedContOrg"
+                    md-item-text="org.name"
+                    md-selected-item-change="addContributor(selectedContOrg)"
+                    md-floating-label="Add Contributing Company">
+                    <md-item-template>
+                      <span md-highlight-text="searchContOrg">{{org.name}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                      No Organizations matching "{{searchContOrg}}" were found.
+                    </md-not-found>
+                </md-autocomplete>
+            </div>
+        </div>
+
+
+        <div layout="row" layout-wrap flex="33">
+            <div layout="column">
+                <span class="no-bottom" flex>Selected Contributors (Click Company to remove)</span>
+                <div layout="row" layout-wrap>
+                    <md-chips ng-repeat="company in contributors track by $index">
+                        <md-chip ng-click="(user.isDmdiiAdmin) && removeContributor($index)">
+                            <span>{{company.name}}</span>
+                        </md-chip>
+                    </md-chips>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div layout="column" ng-show="user.isDmdiiAdmin">
+            <h3 class="no-bottom" style="border-bottom: 1px solid grey; margin-top: 30px;">DMDII Point of Contact</h3>
+            <div layout="row">
+
+                <md-autocomplete flex
+                    md-input-name="selectDmdiiPOC"
+                    md-no-cache="true"
+                    md-selected-item="project.principalPointOfContact"
+                    md-search-text="query"
+                    md-items="dmdiiPOC in searchMembers(query)"
+                    md-item-text="dmdiiPOC.displayName"
+                    md-floating-label="Search DMC Users">
+                    <md-item-template>
+                        <span md-highlight-text="query">{{dmdiiPOC.displayName}} - {{dmdiiPOC.companyName}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No matches found for "{{query}}".
+                    </md-not-found>
+                </md-autocomplete>
+            </div>
+        </div>
+    </md-content>
+</div>
