@@ -63,7 +63,9 @@ angular.module('dmc.add-project-doc').
 
 					$scope.update.dmdiiProject = $scope.project.id;
 
-                    $scope.update.description = convertToMarkdown($scope.update.description);
+          $scope.update.description = convertToMarkdown($scope.update.description);
+
+          $scope.update.accessLevel = 'ALL_MEMBERS';
 
 					ajax.create(dataFactory.dmdiiProjectUpdateUrl().save, $scope.update, function(response) {
 						$scope.update = {};
