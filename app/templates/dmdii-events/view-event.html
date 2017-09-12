@@ -72,8 +72,8 @@
 
 
 		<!-- Nav tabs -->
-		<ul ng-show="project.documents.length || project.contributingCompanies.length" class="nav nav-tabs" role="tablist">
-			<li ng-show="project.documents.length" role="presentation" class="active hidden-xs">
+		<ul ng-show="documents.length || project.contributingCompanies.length" class="nav nav-tabs" role="tablist">
+			<li ng-show="documents.length" role="presentation" class="active hidden-xs">
 				<a data-target="#documents" aria-controls="documents" role="tab" data-toggle="tab">Docs &amp; Presentations</a>
 			</li>
 			<li ng-show="project.contributingCompanies.length" role="presentation" class="hidden-xs">
@@ -81,12 +81,12 @@
 			</li>
 
 
-			<li ng-show="project.documents.length || project.contributingCompanies.length" role="presentation" class="dropdown xs-tab-control visible-xs">
+			<li ng-show="documents.length || project.contributingCompanies.length" role="presentation" class="dropdown xs-tab-control visible-xs">
 				<a data-target="#" class="dropdown-toggle" id="myTabDrop1" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false">
 					<span class="tab-section-label">Section</span>
 					<span class="caret"></span></a>
 				<ul class="dropdown-menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
-					<li ng-show="project.documents.length" class="">
+					<li ng-show="documents.length" class="">
 						<a data-target="#documents" role="tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">Docs &amp; Presentations</a>
 					</li>
 					<li class="" ng-show="project.contributingCompanies.length">
@@ -105,11 +105,11 @@
 		</div>
 	</section>
 
-	<section ng-show="project.documents.length || project.contributingCompanies.length" class="gray">
+	<section ng-show="documents.length || project.contributingCompanies.length" class="gray">
 		<div class="container">
 			<!-- Tab panes -->
 			<div class="tab-content">
-				<div ng-show="project.documents.length" role="tabpanel" class="tab-pane fade in active" id="documents">
+				<div ng-show="documents.length" role="tabpanel" class="tab-pane fade in active" id="documents">
 					<tab-documents documents="documents" user-data="userData" project="project"></tab-documents>
 				</div>
 				<div ng-show="project.contributingCompanies.length" role="tabpanel" class="tab-pane fade" id="contributors">
