@@ -46,7 +46,7 @@ angular.module('dmc.dmdiiEvents', [
     //     }
     // });
     .state('view_event', {
-      url: '/dmdii_events/view_event',
+      url: '/event/:projectId',
       templateUrl: 'templates/dmdii-events/view-event.html',
       controller: 'DMCDmdiiEventsController'
     })
