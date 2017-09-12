@@ -122,7 +122,7 @@ angular.module('dmc.dmdiiProj')
             };
             $scope.getDMDIIProject();
 
-  
+
 		}
     ]
 ).filter('numberFixedLen', function () {

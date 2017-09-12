@@ -99,11 +99,14 @@
 
 					<div class="event-block">
 					<div class="row">
-						<h2 class="col-sm-9" ui-sref="view_event" ng-click="selectEvent(event)" style="outline: 0;">{{event.name}}</h2>
+						<a ng-href="/dmdii-project-page.php#/event/{{event.id}}" ng-click="selectEvent(event)"><h2 class="col-sm-9" style="outline: 0;">{{event.name}}</h2></a>
 
 						<div class="column col-sm-3">
+							<h3>Start</h3>
 							<time>{{event.date}}</time>
-							<a ui-sref="view_event" ng-click="selectEvent(event)"><h6>EVENT DETAILS</h6></a>
+							<h3>End</h3>
+							<time>{{event.endDate}}</time>
+							<a ng-href="/dmdii-project-page.php#/event/{{event.id}}" ng-click="selectEvent(event)"><h6>EVENT DETAILS</h6></a>
 						</div>
 					</div>
 
@@ -184,4 +187,3 @@
 </main>
 
 <!-- Temporary template for events detail. This will change once the event object is normalized/consolidated -->
-
