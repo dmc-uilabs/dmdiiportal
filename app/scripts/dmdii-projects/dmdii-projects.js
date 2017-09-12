@@ -26,7 +26,8 @@ angular.module('dmc.dmdiiProjects', [
     'dmc.component.horizontalmenu',
     'dmc.widgets.tasks',
     'dmc.widgets.tabs',
-    'dmc.recent-news'
+    'dmc.recent-news',
+    'dmc.recent-updates'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('dmdii_projects', {

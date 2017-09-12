@@ -274,10 +274,10 @@ angular.module('dmc.dmdiiProjects')
                 }
 
                 $scope.dmdiiProjectsLoading = false;
-                var numberProjects=$scope.projects.arr.length;
-                $scope.randProjectId = Math.floor(Math.random()*numberProjects);
-                $scope.randProject = $scope.projects.arr[$scope.randProjectId];
-                $scope.randProject.projectSummary = truncateText($scope.randProject.projectSummary, 350);
+                // var numberProjects=$scope.projects.arr.length;
+                // $scope.randProjectId = Math.floor(Math.random()*numberProjects);
+                // $scope.randProject = $scope.projects.arr[$scope.randProjectId];
+                // $scope.randProject.projectSummary = truncateText($scope.randProject.projectSummary, 350);
 
                 // insertData(response.data);
             };

@@ -298,6 +298,21 @@ angular.module('dmc.company-profile')
                 if (!$scope.isValid) {
                     return;
                 }
+    
+                if ($scope.company.productionCapabilities && $scope.company.productionCapabilities != '') {
+                    if (!isJSON($scope.company.productionCapabilities)) {
+                        toastModel.showToast('error', '"TDP" is not a valid JSON string.');
+                        return;
+                    }
+                }
+    
+                if ($scope.company.otherOrganizationTags && $scope.company.otherOrganizationTags != '') {
+                    if (!isJSON($scope.company.otherOrganizationTags)) {
+                        toastModel.showToast('error', '"Tag My Suppliers" is not a valid JSON string.');
+                        return;
+                    }
+                }
+                
                 delete $scope.company.images;
                 delete $scope.company.videos;
                 delete $scope.company.logoImage;
@@ -314,6 +329,15 @@ angular.module('dmc.company-profile')
             // function for create contact
             var createContact = function(contact,updatedData){
                 var contact_ = $.extend(true,{},contact);
+            };
+            
+            var isJSON = function(str) {
+                try {
+                    JSON.parse(str);
+                } catch (e) {
+                    return false;
+                }
+                return true;
             };
 
             $scope.currentSection = {
@@ -336,6 +360,9 @@ angular.module('dmc.company-profile')
                 },
                 membership : {
                     title : 'Membership'
+                },
+                vpc : {
+                    title : 'VPC'
                 }
             };
 

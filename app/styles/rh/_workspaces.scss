@@ -1,0 +1,65 @@
+.workspace-totals-row {
+  .title {
+    color: grey;
+    font-size: .9em;
+  }
+  .info {
+    color: black;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  .col-sm-4 {
+    padding: 0px;
+  }
+}
+
+.workspace-divider {
+  border-top: 1px solid lightgrey;
+  margin: 15px 0px;
+}
+
+.ws-infobox {
+  padding-left: 0px;
+  &.tags {
+    .info {
+      margin-right: 5px;
+      margin-top: 10px;
+      background: #eee;
+      display: inline-block;
+      font-weight: normal;
+      padding: 5px;
+      font-size: .8em;
+      border-radius: 2px;
+    }
+  }
+}
+
+.ws-invite-controls {
+  a {
+    margin-top: 5px;
+    color: #676767;
+    ng-md-icon {
+      padding: 7px;
+    }
+  }
+  margin-top: 10px;
+}
+
+
+@media (min-width: 992px) {
+  .ws-invite-controls {
+    .row {
+      float: right;
+    }
+  }
+}
+
+.ws-filters {
+  margin-bottom: 30px;
+  margin-top: 10px;
+  md-radio-button {
+    display: inline;
+    margin: 15px 15px 15px 0px;
+    outline: 0;
+  }
+}

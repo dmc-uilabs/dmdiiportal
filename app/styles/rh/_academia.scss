@@ -4,9 +4,15 @@
     border-radius: 4px;
     padding: 10px;
     margin: 25px;
-    min-height: 315px;
+    min-height: 335px;
+    max-height: 335px;
+    min-width: 242px;
+    max-width: 242px;
     img {
       min-height: 84px;
+    }
+    .docs-title{
+      font-size: 18px;
     }
 }
 

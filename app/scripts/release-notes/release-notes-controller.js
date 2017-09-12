@@ -30,5 +30,12 @@ angular.module('dmc.release-notes')
               });
           }
           getV018();
+
+          var getV019= function() {
+              ajax.get(dataFactory.getStaticJSON('notesV019.json'), {}, function(response){
+                  $scope.notesV019 = response.data;
+              });
+          }
+          getV019();
     }]
 );

@@ -1,26 +1,24 @@
-<div class="page-header margin-bottom-35">
-    <md-toolbar>
-        <h1 class="project-title" layout="row" layout-align="start end">
-            <div class="title">
-                <a href="/project.php#/{{projectCtrl.projectData.id}}/home">{{projectCtrl.projectData.title}}</a>
-            </div>
-            <span ng-if="projectCtrl.projectData.dueDate" class="small-text due-date-project small-text--grey">
-                Due in {{projectCtrl.projectData.dueDate}}
-            </span>
-        </h1>
-        <div class="md-toolbar-tools">
-            <div layout="column" flex="65" class="margin-right12-5">
-                <div layout="row" class="name-project" flex>
-                    <div sub-nav-menu-button current-page="7"></div>
-                </div>
-            </div>
-        </div>
-    </md-toolbar>
+<workspace-header class="workspace-header" ng-init="currentPage='99'"></workspace-header>
+<div ng-if="!serviceData.id" class="project-details-services" layout="column">
+	<div layout="row" layout-align="space-between start">
+		<div layout="column" class="header">
+			<div class="margin-bottom8">
+				<a class="link" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
+					Return to Services
+				</a>
+        <h3 style="font-size:12px">Service not found!</h3>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="publish-service-title">Publish Service</div>
-<div class="container publish-service-marketplace">
+<div ng-show="serviceData.id" class="publish-service-title">
+	<div class="content-panel-body">
+		<md-content>Publish Service</md-content>
+	</div>
+</div>
+<div ng-show="serviceData.id" class="container publish-service-marketplace">
     <div class="content-panel-body">
-        <md-content ng-show="currentPage == 1">
+        <md-content ng-show="currentPublishPage == 1">
             <div layout="row" flex layout-align="start end" class="service-name">
                 <md-input-container flex="50">
                     <label>Service Name</label>
@@ -140,7 +138,7 @@
                            ng-disabled="isDisabledFirstPage" ng-click="nextPage()">Next</md-button>
             </div>
         </md-content>
-        <md-content layout-padding ng-show="currentPage == 2">
+        <md-content layout-padding ng-show="currentPublishPage == 2">
             <div layout="row" flex layout-align="start end" class="service-authors">
                 <div layout="column" flex="100">
                     <div flex>

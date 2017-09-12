@@ -2,7 +2,7 @@
     <md-toolbar>
         <div class="md-toolbar-tools">
             <div layout="row" layout-align="start center" flex>
-								<md-checkbox ng-checked="allSelected()" ng-click="toggle()" aria-label="toggle-selections">
+								<md-checkbox ng-checked="allSelected()" ng-click="toggleAll()" aria-label="toggle-selections">
 								</md-checkbox>
 								<md-button class="md-icon-button" ng-click="moveIt($event)" ng-disabled="!itemsSelected()" aria-label="move">
 									<ng-md-icon icon="unarchive" size="22"></ng-md-icon>
@@ -45,7 +45,7 @@
           <tbody>
 						<tr ng-repeat="directory in currentDir.children track by $index">
 								<td>
-									<md-checkbox ng-model="selectedDirs[directory.id]" aria-label="toggle-selections">
+									<md-checkbox ng-model="selectedDirs[directory.id]" ng-click="toggleDir(directory.id)" aria-label="toggle-selections">
 									</md-checkbox>
 								</td>
 								<td class="folder" ng-click="changeDir(directory.id)">
@@ -65,16 +65,25 @@
 						</tr>
 					<tr ng-repeat="file in dirFiles track by $index">
 							<td>
-								<md-checkbox ng-model="selectedFiles[file.id]" aria-label="toggle-selections">
+								<md-checkbox ng-model="selectedFiles[file.id]" ng-click="toggleFile(file.id)" aria-label="toggle-selections">
 								</md-checkbox>
 							</td>
-              <td ng-click="downloadFile(file, $event)">
+              <td ng-click="showDlDialog(file, $event)">
 									<a href>
 	                    <ng-md-icon icon="insert_drive_file" style="fill: #666" size="35"></ng-md-icon>
 											<span>{{file.documentName}}</span>
 									</a>
               </td>
-              <td><a href="/profile.php#/{{file.ownerId}}">{{file.ownerDisplayName}}</a></td>
+              <td><a href="/profile.php#/{{file.ownerId}}">{{file.ownerDisplayName}}</a>
+			  		<div ng-if="!file.isAccepted" layout="row" class="margin-top-10">
+						<md-button class="md-raised md-primary dmc-button " ng-click="acceptFile(file.id)">
+							Accept
+						</md-button>
+						<md-button class="md-raised dmc-button decline-push-button" ng-click="declineFile(file)">
+							Decline
+						</md-button>
+					</div>
+			  </td>
               <td>{{file.expires|date}}</td>
               <td>{{file.modified|date}}</td>
               <td>{{file.sha256}}</file>

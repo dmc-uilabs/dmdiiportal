@@ -37,6 +37,7 @@
 <script src="/bower_components/datamaps/dist/datamaps.all.min.js"></script>
 <script src="/bower_components/angular-datamaps/dist/angular-datamaps.min.js"></script>
 <script src="/bower_components/angular-carousel/angular-carousel.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="/bower_components/moment/moment.js"></script>
 <script src="/bower_components/clndr/clndr.min.js"></script>
@@ -50,7 +51,6 @@
 <script src="/bower_components/angular-material/angular-material.js"></script>
 <script src="/bower_components/angular-messages/angular-messages.js"></script>
 <script src="/bower_components/ngMask/dist/ngMask.js"></script>
-<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
 <script src="/bower_components/angular-material-icons/angular-material-icons.min.js"></script>
 <script src="/bower_components/angular-recursion/angular-recursion.js"></script>

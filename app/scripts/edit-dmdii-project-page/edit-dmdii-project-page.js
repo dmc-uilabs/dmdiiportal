@@ -45,15 +45,35 @@ angular.module('dmc.edit-project', [
             }
         }
     })
-    .state('create-project-page', {
-        url: '/',
-        templateUrl: 'templates/edit-dmdii-project-page/edit-dmdii-project-page.html',
+    .state('create-event-page', {
+        url: '/event',
+        templateUrl: 'templates/edit-dmdii-project-page/edit-dmdii-event-page.html',
         controller: 'DMCEditProjectPageController',
         resolve: {
             is_search: function() {
                 return false;
             }
         }
+    })
+    .state('edit-event-page', {
+        url: '/event/:eventId/edit',
+        templateUrl: 'templates/edit-dmdii-project-page/edit-dmdii-event-page.html',
+        controller: 'DMCEditProjectPageController',
+        resolve: {
+            is_search: function() {
+                return false;
+            }
+        }
+    })
+    .state('create-project-page', {
+      url: '/',
+      templateUrl: 'templates/edit-dmdii-project-page/edit-dmdii-project-page.html',
+      controller: 'DMCEditProjectPageController',
+      resolve: {
+        is_search: function() {
+          return false;
+        }
+      }
     });
     $urlRouterProvider.otherwise('/');
 });

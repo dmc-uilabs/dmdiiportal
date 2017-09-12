@@ -21,7 +21,7 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
     templateUrl: 'templates/common/header/header-tpl.html',
     controller : function($scope,ajax,dataFactory,$window,$mdMedia){
         $scope.userData;
-        $scope.invitations = [];
+        //$scope.invitations = [];
         $scope.userName = userModel.getUserName();
         userModel.getUserData().then(
             function(response){
@@ -33,7 +33,11 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
         );
 
         $scope.screenSmall = function(){
-          return $mdMedia('(max-width: 868px)');
+          return $mdMedia('(max-width: 900px)');
+        }
+
+        $scope.screenVerySmall = function(){
+          return $mdMedia('(max-width: 710px)');
         }
 
         var initUserData = function(data) {
@@ -48,22 +52,22 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
               $scope.service_alert = $scope.userData.runningServices.total;
           }
           if($scope.userData.profileId !=1 ){
-            ajax.get(dataFactory.getMembersToProject(),
-                {
-                    'profileId' : $scope.userData.profileId,
-                    'accept' : false,
-                },
-                function(response){
-                  $scope.invitations = response.data;
-                  $scope.message_alert = 0;
-                  for(var i in $scope.invitations){
-                    $scope.message_alert++;
-                    $scope.invitations[i].date = moment($scope.invitations[i].date).format('MM/DD/YYYY, hh:mm A');
-                    getProfile($scope.invitations[i]);
-                  }
-
-                }
-            )
+            // ajax.get(dataFactory.getMembersToProject(),
+            //     {
+            //         'profileId' : $scope.userData.profileId,
+            //         'accept' : false,
+            //     },
+            //     function(response){
+            //       $scope.invitations = response.data;
+            //       $scope.message_alert = 0;
+            //       for(var i in $scope.invitations){
+            //         $scope.message_alert++;
+            //         $scope.invitations[i].date = moment($scope.invitations[i].date).format('MM/DD/YYYY, hh:mm A');
+            //         getProfile($scope.invitations[i]);
+            //       }
+            //
+            //     }
+            // )
 
                       if ($scope.userData.messages) {
                          for (var i=0; i<$scope.userData.messages.items.length; i++) {
@@ -78,26 +82,35 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
 
 
           if ($scope.userData.notifications) {
-              $scope.notification_alert = 0;
+              var notification_alert = 0;
 
               angular.forEach($scope.userData.notifications, function(item) {
                   if (item.unread === true && !item.cleared && !item.deleted){
-                      $scope.notification_alert++;
+                      notification_alert++;
                   }
               });
-              notificationsMessages.setNotificationAlerts($scope.notification_alert);
+              notificationsMessages.setNotificationAlerts(notification_alert);
+              notificationsMessages.setNotifications($scope.userData.notifications);
           }
             apply();
         };
 
+        $scope.getAlertCount = function(){
+          return notificationsMessages.getNotificationAlerts();
+        };
 
-        var getProfile = function(invitation){
-          ajax.get(dataFactory.profiles(invitation.fromProfileId).get,{},
-            function(response){
-              invitation['profileImage'] = response.data.image;
-            }
-          );
+        $scope.getNotifications = function(){
+          return notificationsMessages.getNotifications();
         }
+
+
+        // var getProfile = function(invitation){
+        //   ajax.get(dataFactory.profiles(invitation.fromProfileId).get,{},
+        //     function(response){
+        //       invitation['profileImage'] = response.data.image;
+        //     }
+        //   );
+        // }
 // =======
 //         $scope.$watch(function () { return notificationsMessages.getNotificationAlerts(); }, function (newValue, oldValue) {
 //           if (newValue != null) {
@@ -135,8 +148,11 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
 
         $scope.markAllRead = function(){
             ajax.get(dataFactory.markAllNotificationsRead($scope.userData.id), {}, function() {
-                $scope.notification_alert = 0;
-                $scope.userData.notifications = [];
+                for(var i in $scope.userData.notifications){
+                  $scope.userData.notifications[i].unread = false;
+                }
+                notificationsMessages.setNotificationAlerts(0);
+                notificationsMessages.setNotifications($scope.userData.notifications);
             });
         };
 
@@ -151,19 +167,30 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
             for(var i in $scope.userData.notifications){
                 if($scope.userData.notifications[i].id == item.id) {
                   if($scope.userData.notifications[i].unread){
-                    $scope.notification_alert--;
+                    notificationsMessages.setNotificationAlerts(notificationsMessages.getNotificationAlerts()-1);
                     $scope.userData.notifications[i].unread = false;
                   }
-                  $scope.userData.notifications[i].cleared = true;
                 }
             }
+            notificationsMessages.setNotifications($scope.userData.notifications);
             ajax.get(dataFactory.markNotificationRead(item.createdFor.id, item.id),function(response){
             });
         };
 
+        // $scope.clearNotification = function(id, notification_id){
+        //     for(var i in $scope.userData.notifications){
+        //         if($scope.userData.notifications[i].id == notification_id) {
+        //           $scope.userData.notifications[i].unread = false;
+        //           $scope.userData.notifications[i].cleared = true;
+        //           notificationsMessages.setNotificationAlerts(notificationsMessages.getNotificationAlerts() - 1);
+        //         }
+        //     }
+        //     ajax.get(dataFactory.markNotificationRead(id, notification_id),function(response){
+        //     });
+        // };
+
         $scope.$on('notificationCleared', function (event, notificationId) {
-          $scope.notification_alert--;
-          notificationsMessages.setNotificationAlerts($scope.notification_alert);
+          notificationsMessages.setNotificationAlerts(notificationsMessages.getNotificationAlerts()-1);
         });
 
         function apply() {
@@ -172,6 +199,30 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
 
         $scope.bannerMessage = angular.element('#bannerMsg')[0].innerText;
         $scope.showBanner = $scope.bannerMessage && $scope.bannerMessage != '_';
+
+        $scope.searchFilters = [
+            {
+                id : 1, name: 'Organizations'
+            },
+            {
+                id : 2, name: 'Individuals'
+            },
+            {
+                id : 3, name: 'Workspaces'
+            }
+        ];
+
+        $scope.submitSearch = function(text, filter){
+          if ($scope.searchFilters[filter].name == 'Organizations'){
+              $window.location.href='/search-v2.php#/companies'+(text ? '?text='+text : '');
+          }
+          else if ($scope.searchFilters[filter].name == 'Individuals'){
+              $window.location.href='/search-v2.php#/members'+(text ? '?text='+text : '');
+          }
+          else if ($scope.searchFilters[filter].name == 'Workspaces'){
+              $window.location.href='/all-projects.php#/'+(text ? '?text='+text : '');
+          }
+        }
 
     }
   };

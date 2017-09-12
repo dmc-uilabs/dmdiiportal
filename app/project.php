@@ -41,6 +41,7 @@
     <script src="scripts/components/ui-widgets/interfaces.directive.js"></script>
     <script src="scripts/components/ui-widgets/project-tags.directive.js"></script>
     <script src="scripts/components/sub-nav-menu/sub-nav-menu.directive.js"></script>
+    <script src="scripts/components/workspace-header/workspace-header.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
     <script src="scripts/common/factory/socket.factory.js"></script>
     <script src="scripts/common/factory/ajax.factory.js"></script>
@@ -50,7 +51,6 @@
     <script src="scripts/common/models/project-model.js"></script>
     <script src="scripts/common/models/task-model.js"></script>
     <script src="scripts/common/models/toast-model.js"></script>
-    <script src="scripts/common/models/question-toast-model.js"></script>
     <script src="scripts/common/models/user-model.js"></script>
     <script src="scripts/common/models/file-upload.js"></script>
     <script src="scripts/common/models/services.model.js"></script>
@@ -65,6 +65,10 @@
     <script src="scripts/community/controllers/compose-discussion.js"></script>
     <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
     <script src="scripts/components/product-card-buttons/product-card-buttons.js"></script>
+
+    <script src="scripts/add_project/add_project.js"></script>
+    <script src="scripts/components/add-project/add-project.directive.js"></script>
+    <script src="scripts/add_members/add-members.js"></script>
 
     <script src="scripts/project/project.js"></script>
     <script src="scripts/project/controllers/id-locator.js"></script>

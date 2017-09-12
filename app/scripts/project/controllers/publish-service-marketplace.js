@@ -33,7 +33,7 @@ angular.module('dmc.project')
             projectCtrl.projectData = projectData;
 
             $scope.serviceData = serviceData;
-            $scope.currentPage = 1;
+            $scope.currentPublishPage = 1;
             $scope.isDisabledFirstPage = true;
             $scope.isDisabledSecondPage = true;
             var getServiceTypes = function() {
@@ -122,7 +122,7 @@ angular.module('dmc.project')
             $scope.changedInput();
 
             $scope.nextPage = function(){
-                $scope.currentPage++;
+                $scope.currentPublishPage++;
             };
 
             // Second Page
@@ -180,7 +180,7 @@ angular.module('dmc.project')
             };
 
             $scope.backPage = function(){
-                $scope.currentPage--;
+                $scope.currentPublishPage--;
             };
 
             var deletedDocuments = [];

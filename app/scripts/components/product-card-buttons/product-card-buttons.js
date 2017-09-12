@@ -64,23 +64,38 @@ angular.module('dmc.component.product-card-buttons',[
         return false;
       }
 
-      $scope.loadProjects = function() {
-          var unfiltered_projects = $scope.$root.projects;
 
-          // Filter projects for only projects that user is a member of
-          ajax.get(dataFactory.getMembersToProject(),{
-              profileId : $scope.userData.profileId
-          },function(response){
-            $scope.filtered_response = response.data.filter(acceptedInvite);
-            $scope.projects = unfiltered_projects.filter(isMember);
-          });
-      };
+      $scope.searchWorkspace=function(queryWs){
+        queryWs=queryWs.toLowerCase();
+        var item =$scope.projects.filter(function (obj){
+          if (obj.title.toLowerCase().includes(queryWs)){
+            return obj;
+          }
+        });
+        return item;
+      }
+
+
+      var addCardProjects = function(projects) {
+        var unfiltered_projects = projects;
+        // $scope.projects=projects;
+        // Filter projects for only projects that user is a member of
+        ajax.get(dataFactory.getMembersToProject(),{
+            profileId : $scope.userData.profileId
+        },function(response){
+          $scope.filtered_response = response.data.filter(acceptedInvite);
+          $scope.projects = unfiltered_projects.filter(isMember);
+        });
+      }
 
       $scope.addToProject = function(){
         if (!$rootScope.projects) {
-          ajax.loadProjects();
+          ajax.loadProjects(addCardProjects);
         }
-          $scope.addingToProject = true;
+        else{
+          addCardProjects($rootScope.projects);
+        }
+        $scope.addingToProject = true;
       };
 
       $scope.cancelAddToProject = function(){
@@ -92,6 +107,7 @@ angular.module('dmc.component.product-card-buttons',[
           clearTimeout($scope.addedTimeout);
           if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
       };
+
 
       $scope.saveToProject = function(projectId){
           var project = null;

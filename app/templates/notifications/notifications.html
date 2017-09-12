@@ -1,14 +1,63 @@
+<div class="home">
 <div class="notifications" layout="column">
 	<div layout="row" layout-align="space-between center">
-		<h2>My Notifications
-            <a href="/account.php#/{{userData.accountId}}/notifications">
-                <ng-md-icon icon="settings" size="18"></ng-md-icon>
-            </a>
-        </h2>
+		<h1>My Notifications
+        <a href="/account.php#/{{userData.accountId}}/notifications">
+            <ng-md-icon style="padding-bottom:20px" icon="settings" size="21"></ng-md-icon>
+        </a>
+      </h1>
 		<md-button ng-if="filterFlag" class="md-raised dmc-button" ng-click="reset()">View All</md-button>
 	</div>
 <md-content class="md-padding">
-	<div layout="row" layout-align="space-between start">
+
+
+	<div layout="row" class="wh-nav" layout-wrap ng-init="currentPage=1">
+      <a class="wh-link" ng-repeat="p in pages" ng-class="{selected: p.id == currentPage}" ng-click="changePage(p.id)">
+          {{p.title}}
+      </a>
+  </div>
+
+</md-content>
+
+<md-content>
+
+	<div class="block" style="height:auto; max-height:600px">
+		<md-list>
+			<md-list-item class="notification-item" ng-repeat="item in getNotifications() | orderBy:'-created'" ng-if="currentPage == 2 || currentPage == 1 && item.unread" ng-class="{unread: (item.unread)}">
+				<div flex="100" layout="row" layout-align="center center">
+					<div class="logo-event" ng-switch on="item.type">
+						<!--<img ng-src="{{item.image}}">-->
+            <ng-md-icon ng-switch-when="USER_REQUESTS_VERIFICATION" icon="check_circle" size="40"></ng-md-icon>
+            <ng-md-icon ng-switch-when="NEW_USER_JOINED_ORGANIZATION" icon="person_add" size="40"></ng-md-icon>
+						<ng-md-icon ng-switch-when="INVITATION_TO_WORKSPACE" icon="folder_open" size="40"></ng-md-icon>
+						<ng-md-icon ng-switch-when="DOCUMENT_SHARED" icon="insert_drive_file" size="40"></ng-md-icon>
+						<ng-md-icon ng-switch-when="DOCUMENT_SHARED_WITH_WORKSPACE" icon="insert_drive_file" size="40"></ng-md-icon>
+            <ng-md-icon ng-switch-default icon="notifications" size="40"></ng-md-icon>
+					</div>
+					<h4 ng-click="clearNotification(item.createdFor.id, item.id)" flex ng-switch on="item.type">
+						<a ng-switch-when="USER_REQUESTS_VERIFICATION" ng-href='/company-profile.php#/profile/{{userData.companyId}}'>{{item.createdBy.displayName}} has requested to be verified with your organization.</a>
+						<a ng-switch-when="NEW_USER_JOINED_ORGANIZATION" ng-href='/company-profile.php#/profile/{{userData.companyId}}'>{{item.createdBy.displayName}} has requested to join your organization.</a>
+						<a ng-switch-when="INVITATION_TO_WORKSPACE" ng-href="/all.php#/invitations">{{item.createdBy.displayName}} has invited you to a workspace.</a>
+						<a ng-switch-when="DOCUMENT_SHARED" ng-href="{{item.message}}">{{item.createdBy.displayName}} has shared a document with you.</a>
+						<a ng-switch-when="DOCUMENT_SHARED_WITH_WORKSPACE" ng-href="{{item.message}}">{{item.createdBy.displayName}} has shared a document with your workspace.</a>
+						<a ng-switch-default>{{item.message}}</a>
+					</h4>
+					<div layout="column" style="text-align: right">
+						<h4>{{item.created | date:'mediumDate'}}</h4>
+						<span style="height: 5px"/>
+						<h4>{{item.created | date:'mediumTime'}}</h4>
+					</div>
+					<md-button class="md-icon-button clear-notification" aria-label="Clear" md-no-ink ng-click="clearNotification(item.createdFor.id, item.id)">
+							<ng-md-icon icon="drafts" size="24" style="margin-bottom:4px"></ng-md-icon>
+					</md-button>
+				</div>
+			</md-list-item>
+		</md-list>
+	</div>
+
+
+
+	<!-- <div layout="row" layout-align="space-between start">
 		<div flex="30" class="section" ng-repeat="item in notifications track by $index" >
 			<div class="cell1" layout layout-align="center center">
 				<h2 ng-click="filtered('month', item.events, item.name)">{{item.name}}</h2>
@@ -26,9 +75,9 @@
 				<h4>{{item.month}}</h4>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
-	<div class="block" ng-if="version1 && !user && !filterFlag">
+	<!-- <div class="block" ng-if="version1 && !user && !filterFlag">
 		<h2>Evaluate Project Submissions</h2>
 		<div layout="row" layout-align="center center" class="first">
 			<div flex="15">
@@ -37,9 +86,9 @@
 			<h4 flex>The Demo Project has closed. <a href="">Evaluate 56 submissions.</a></h4>
 			<h4>2 hours ago</h4>
 		</div>
-	</div>
+	</div> -->
 
-	<div class="block" ng-if="version1 && user && !filterFlag">
+	<!-- <div class="block" ng-if="version1 && user && !filterFlag">
 		<h2>Project invitations</h2>
 		<div layout="row" layout-align="center center" class="first">
 			<div flex="15">
@@ -56,7 +105,7 @@
 			<span flex></span>
 			<h4>2 hours ago</h4>
 		</div>
-	</div>
+	</div> -->
 
 
 	<!-- TODO other notification types to be implemented
@@ -90,16 +139,16 @@
 -->
 
 
-	<div class="block" >
+	<!-- <div class="block" >
 		<div layout="row" layout-align="space-between center">
 			<h2>{{typeNotifications}}</h2>
 		</div>
 		<md-list>
 			<md-list-item ng-repeat="item in userData.notifications | filter: filterBy"  ng-if="!item.cleared && !item.deleted" >
 				<div flex="100" layout="row" layout-align="center center" >
-					<div class="logo-event" ng-switch on="item.type">
+					<div class="logo-event" ng-switch on="item.type"> -->
 						<!--<img ng-src="{{item.image}}">-->
-                        <ng-md-icon ng-switch-when="USER_REQUESTS_VERIFICATION" icon="check_circle" size="40"></ng-md-icon>
+                        <!-- <ng-md-icon ng-switch-when="USER_REQUESTS_VERIFICATION" icon="check_circle" size="40"></ng-md-icon>
                         <ng-md-icon ng-switch-when="NEW_USER_JOINED_ORGANIZATION" icon="person_add" size="40"></ng-md-icon>
                         <md-icon ng-switch-default md-svg-src="images/icon_project.svg"></md-icon>
 					</div>
@@ -123,9 +172,9 @@
 		<md-list>
 			<md-list-item ng-repeat="item in userData.notifications | filter: filterBy | limitTo:20"  ng-if="item.cleared || item.deleted" >
 				<div flex="100" layout="row" layout-align="center center" >
-					<div class="logo-event" ng-switch on="item.type">
+					<div class="logo-event" ng-switch on="item.type"> -->
 						<!--<img ng-src="{{item.image}}">-->
-												<ng-md-icon ng-switch-when="USER_REQUESTS_VERIFICATION" icon="check_circle" size="40" ></ng-md-icon>
+												<!-- <ng-md-icon ng-switch-when="USER_REQUESTS_VERIFICATION" icon="check_circle" size="40" ></ng-md-icon>
 												<ng-md-icon ng-switch-when="NEW_USER_JOINED_ORGANIZATION" icon="person_add" size="40" ></ng-md-icon>
 												<md-icon ng-switch-default md-svg-src="images/icon_project.svg"></md-icon>
 					</div>
@@ -135,6 +184,7 @@
 				</div>
 			</md-list-item>
 		</md-list>
-	</div>
+	</div> -->
 </md-content>
+</div>
 </div>

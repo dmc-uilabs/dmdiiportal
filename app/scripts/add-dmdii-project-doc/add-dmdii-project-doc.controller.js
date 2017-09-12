@@ -52,13 +52,13 @@ angular.module('dmc.add-project-doc')
                 },
                 projectDocuments : {
                     title : 'Project Documents'
-                },
-                projectFinancials: {
-                    title : 'Project Financials'
-                },
-                projectSchedule: {
-                    title : 'Project Schedule'
                 }
+                // projectFinancials: {
+                //     title : 'Project Financials'
+                // },
+                // projectSchedule: {
+                //     title : 'Project Schedule'
+                // }
             };
 
             var getCurrentSection = function(){
