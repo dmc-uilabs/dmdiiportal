@@ -7,10 +7,8 @@
 					</ng-md-icon>Add documents &amp; updates</a>
 			</div>
 			<div class="col-sm-6 pull-right text-right">
-				<a href="edit-dmdii-project-page.php#/{{project.id}}/edit">
-					<ng-md-icon icon="mode_edit" style="fill: #75bc52" size="16"></ng-md-icon> Edit Project</a>
-				<!-- Delete doesn't currently match a defined function
-                <a ng-click="deleteProject()"> <ng-md-icon icon="delete" style="fill: #75bc52" size="16"></ng-md-icon> Delete Project </a> -->
+				<a href="edit-dmdii-project-page.php#/event/{{project.id}}/edit"><ng-md-icon icon="mode_edit" style="fill: #75bc52" size="16"></ng-md-icon> Edit Event</a>
+				<a href ng-click="deleteProject($event)"> <ng-md-icon icon="delete" style="fill: #75bc52" size="16"></ng-md-icon> Delete Event</a>
 			</div>
 		</div>
 		<div class="dropdown visible-xs">
