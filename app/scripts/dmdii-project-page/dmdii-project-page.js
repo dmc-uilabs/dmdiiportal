@@ -19,11 +19,13 @@ angular.module('dmc.dmdiiProj', [
     'dmc.widgets.documents',
     'dmc.common.header',
     'dmc.common.footer',
-	'dmc.component.productscard',
-	'dmc.component.carousel',
-  'dmc.component.documentinfo',
+  	'dmc.component.productscard',
+  	'dmc.component.carousel',
+    'dmc.component.documentinfo',
     'dmc.widgets.tasks',
-    'dmc.widgets.tabs'
+    'dmc.widgets.tabs',
+    'dmc.model.toast-model',
+    'dmc.model.question-toast-model'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
     $stateProvider.state('project_page', {
