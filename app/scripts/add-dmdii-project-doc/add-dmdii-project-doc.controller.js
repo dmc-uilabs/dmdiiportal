@@ -55,7 +55,7 @@ angular.module('dmc.add-project-doc')
               };
 
               if (!$scope.project.isEvent) {
-                $scope.sections[projectUpdates] = { title : 'Project Updates' };
+                $scope.sections.projectUpdates = { title : 'Project Updates' };
               }
             }
 
