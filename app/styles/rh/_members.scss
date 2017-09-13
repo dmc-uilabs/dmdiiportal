@@ -82,8 +82,10 @@ div.list-wrapper {
 			border-bottom:none;
 		}
 
-		time {
-			line-height: 24px;
+		.dates {
+			font-weight: bold;
+			font-size: .8em;
+			margin-top: 10px;
 		}
 		h2 {
 			margin:0;
@@ -92,11 +94,21 @@ div.list-wrapper {
 			line-height:24px;
 		}
 		p {
-			margin-top:20px;
+			margin-top:10px;
 			color:$gray;
 			line-height:25px;
 			font-size:15px;
+			max-height: 200px;
+			overflow: hidden;
 		}
+	}
+
+.fade-bottom{
+		position: relative;
+		width: 100%;
+		height: 50px;
+		margin-top: -50px;
+		background: linear-gradient(to bottom, transparent, white);
 	}
 }
 
