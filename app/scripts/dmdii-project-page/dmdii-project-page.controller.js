@@ -57,27 +57,31 @@ angular.module('dmc.dmdiiProj')
             var callbackFunction = function(response){
                 $scope.project = response.data;
 
-                if(($scope.project.dmdiiFunding == 5983) && ($scope.project.costShare == 8395)){
-                  $scope.project.kind='dmdiiEvent'
-                }else{
-                  $scope.project.kind='dmdiiProject'
+                // if(($scope.project.dmdiiFunding == 5983) && ($scope.project.costShare == 8395)){
+                //   $scope.project.kind='dmdiiEvent'
+                // }else{
+                //   $scope.project.kind='dmdiiProject'
+                // }
+
+                if ($scope.project.awardedDate) {
+                  var awardDate = new Date($scope.project.awardedDate);
+                  var year = awardDate.getFullYear();
+                  var month = awardDate.getMonth() + 1;
+                  month = (month < 10) ? '0' + month : month;
+                  var day = awardDate.getDate()+1;
+
+                  $scope.project.awardedDate = month + '-' + day + '-' + year;
                 }
 
-                var awardDate = new Date($scope.project.awardedDate);
-                var year = awardDate.getFullYear();
-                var month = awardDate.getMonth() + 1;
-                month = (month < 10) ? '0' + month : month;
-                var day = awardDate.getDate()+1;
+                if ($scope.project.endDate) {
+                  var endDate = new Date($scope.project.endDate);
+                  var year = endDate.getFullYear();
+                  var month = endDate.getMonth() + 1;
+                  month = (month < 10) ? '0' + month : month;
+                  var day = endDate.getDate()+1;
 
-                $scope.project.awardedDate = month + '-' + day + '-' + year;
-
-                var endDate = new Date($scope.project.endDate);
-                var year = endDate.getFullYear();
-                var month = endDate.getMonth() + 1;
-                month = (month < 10) ? '0' + month : month;
-                var day = endDate.getDate()+1;
-
-                $scope.project.endDate = month + '-' + day + '-' + year;
+                  $scope.project.endDate = month + '-' + day + '-' + year;
+                }
 
                 ajax.get(dataFactory.getDMDIIProject().contributors, {projectId: $scope.project.id}, function(response) {
                     $scope.project.contributingCompanies = response.data;
