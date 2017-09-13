@@ -38,7 +38,21 @@
             </div>
             <div class="col-md-6">
                 <div class="row">
-                    <div ng-if="project.kind != 'dmdiiEvent' && project.dmdiiFunding" class="col-xs-6">
+                  <div ng-if="project.awardedDate" class="col-xs-6 pull-right">
+
+                    <h4>Key Dates</h4>
+                    <dl class="project-stats">
+                      <!-- <dt ng-if="project.kind == 'dmdiiEvent'">Starts</dt> -->
+                      <!-- ng-if="project.kind != 'dmdiiEvent'" -->
+                      <dt>Awarded On</dt>
+                      <dd><time>{{project.awardedDate}}</time></dd>
+                      <!-- <dt ng-if="project.kind == 'dmdiiEvent'">Ends</dt> -->
+                      <!-- ng-if="project.kind != 'dmdiiEvent'" -->
+                      <dt>Completed</dt>
+                      <dd><time>{{project.endDate}}</time></dd>
+                    </dl>
+                  </div>
+                    <div ng-if="project.kind != 'dmdiiEvent' && project.dmdiiFunding" class="col-xs-6 pull-right">
 
                         <h4>Project Financials</h4>
                         <dl class="project-stats">
@@ -46,20 +60,6 @@
                             <dd>{{project.dmdiiFunding | currency}}</dd>
                             <dt>Cost Share</dt>
                             <dd>{{project.costShare | currency}}</dd>
-                        </dl>
-                    </div>
-                    <div ng-if="project.awardedDate" class="col-xs-6 pull-right">
-
-                        <h4>Key Dates</h4>
-                        <dl class="project-stats">
-                            <!-- <dt ng-if="project.kind == 'dmdiiEvent'">Starts</dt> -->
-<!-- ng-if="project.kind != 'dmdiiEvent'" -->
-                            <dt>Awarded On</dt>
-                            <dd><time>{{project.awardedDate}}</time></dd>
-                            <!-- <dt ng-if="project.kind == 'dmdiiEvent'">Ends</dt> -->
-<!-- ng-if="project.kind != 'dmdiiEvent'" -->
-                            <dt>Completed</dt>
-                            <dd><time>{{project.endDate}}</time></dd>
                         </dl>
                     </div>
                 </div>
