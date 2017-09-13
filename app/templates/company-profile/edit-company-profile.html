@@ -99,7 +99,7 @@
                         <div tab-contact
                              source="company"
                              ng-switch-when="contact"></div>
-                        <div tab-membership
+                        <div ng-if="company.dmdiiMemberId" tab-membership
                              source="company"
                              ng-switch-when="membership"></div>
                         <div tab-vpc
