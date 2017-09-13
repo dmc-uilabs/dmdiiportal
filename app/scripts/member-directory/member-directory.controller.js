@@ -428,6 +428,14 @@ angular.module('dmc.members')
                       ];
             };
 
+            $scope.parseProjectNumber = function(identifier){
+              return identifier.replace(/\b\d\b/g, function myFunction(x){return "0"+x;});
+            }
+
+            $scope.checkNonProfit = function(industry){
+              return industry == "Academic" ? "Academic/Non-Profit" : industry;
+            }
+
             $scope.treeMenuModel = getMenu();
 
             $scope.$watch('treeMenuModel', function() {

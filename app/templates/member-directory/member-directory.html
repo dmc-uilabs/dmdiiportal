@@ -124,7 +124,7 @@
 							</td>
 
 							<td class="tier">{{member.dmdiiType.tier}}</td>
-							<td class="type">{{member.dmdiiType.dmdiiTypeCategory.category}}</td>
+							<td class="type">{{checkNonProfit(member.dmdiiType.dmdiiTypeCategory.category)}}</td>
 							<td>
 								<ul class="active-projects">
 									<li ng-repeat="project in activeProjects[member.id] track by $index">
@@ -134,7 +134,7 @@
 												 element-text ="{{project.projectTitle}}"
 												 element-text-limit="30">
 											 </span> -->
-											 <span>{{project.projectIdentifier}}</span>
+											 <span>{{parseProjectNumber(project.projectIdentifier)}}</span>
 										</a>
 									</li>
 								</ul>
