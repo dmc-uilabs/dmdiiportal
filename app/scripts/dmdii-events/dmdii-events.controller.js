@@ -71,58 +71,19 @@ angular.module('dmc.dmdiiEvents')
 
             $scope.endDate = year + '-' + month + '-' + day;
 
-            var eventSourcesLoaded = 0
-
-            // var eventsCallbackFunction = function(response) {
-            //     $scope.events = $scope.events.concat(response.data);
-            //     sortEvents($scope.events);
-            //     setInitialSelectedDay($scope.events);
-            //     eventSourcesLoaded++;
-            // }
-
-            var addMemEvents = function(response) {
-                var eventsToAdd = response.data;
-                for (var i = 0; i < eventsToAdd.length; i++) {
-                    eventsToAdd[i].type = 'member';
-                }
-                $scope.events = $scope.events.concat(eventsToAdd);
-                eventSourcesLoaded++;
-                sortEvents($scope.events);
-            }
-
-            var addProjEvents = function(events) {
-              events = events.data;
-              for (var i=0; i<events.length; i++) {
-                events[i].date = events[i].eventDate;
-                events[i].name = events[i].eventName;
-                events[i].description = events[i].eventDescription;
-                events[i].type = 'project';
+            var addDMDIIEvents = function(response) {
+              var eventArray = response.data.data;
+              for (var i=0; i<eventArray.length; i++) {
+                eventArray[i].date = eventArray[i].awardedDate;
+                eventArray[i].name = eventArray[i].projectTitle;
+                eventArray[i].description = eventArray[i].projectSummary;
               }
-              $scope.events = $scope.events.concat(events);
-              eventSourcesLoaded++;
-              sortEvents($scope.events);
-            }
-
-            var addDMDIIEvents = function(events) {
-              events = events.data.data;
-              events = events.filter(function(event){
-                return (event.dmdiiFunding == 5983) && (event.costShare == 8395)
-              })
-              for (var i=0; i<events.length; i++) {
-                events[i].date = events[i].awardedDate;
-                events[i].name = events[i].projectTitle;
-                events[i].description = events[i].projectSummary;
-                events[i].type = 'dmdii';
-              }
-              $scope.events = $scope.events.concat(events);
-              eventSourcesLoaded++;
+              $scope.events = $scope.events.concat(eventArray);
               sortEvents($scope.events);
             }
 
             $scope.getEvents = function(){
-                ajax.get(dataFactory.dmdiiMemberEventUrl().get, {limit: 1000}, addMemEvents);
-                ajax.get(dataFactory.dmdiiProjectEventUrl().get, {limit: 1000}, addProjEvents);
-                ajax.get(dataFactory.getDMDIIProject().all, {page: 0, pageSize: 100}, addDMDIIEvents);
+              ajax.get(dataFactory.getDMDIIEvents().all, {page: 0, pageSize: 100}, addDMDIIEvents);
             };
 
             $scope.getEvents();
@@ -187,17 +148,15 @@ angular.module('dmc.dmdiiEvents')
             }
 
             var sortEvents = function(events) {
-              if (eventSourcesLoaded == 3) {
                 $scope.events.sort(function(a,b){
                   return new Date(a.date) - new Date(b.date);
                 });
 
                 setInitialSelectedDay($scope.events);
-              }
             }
 
             $scope.selectEvent = function(event) {
-              if (event && event.dmdiiFunding) {
+              if (event) {
                 addDocuments(event);
               }
               $rootScope.selectedEvent = event;
@@ -208,49 +167,29 @@ angular.module('dmc.dmdiiEvents')
                 dmdiiEvent.documents = response.data;
               });
             }
-            
+
             $scope.deleteEvent = function(index, eventId) {
                 var eventToDelete = $scope.events[index];
                 showDeleteConfirm().then(function() {
-                    switch (eventToDelete.type) {
-                        case 'member':
-                            $http.delete(dataFactory.dmdiiMemberEventUrl(eventId).delete).then(function(response){
-                                deleteEventsFromView(index, eventId);
-                                toastModel.showToast('success', 'Event deleted successfully.');
-                            }, function(error) {
-                                toastModel.showToast('error', 'Delete Failed.');
-                            });
-                            break;
-                        case 'project':
-                            $http.delete(dataFactory.dmdiiProjectEventUrl(eventId).delete).then(function(response){
-                                deleteEventsFromView(index, eventId);
-                                toastModel.showToast('success', 'Event deleted successfully.');
-                            }, function(error) {
-                                toastModel.showToast('error', 'Delete Failed.');
-                            });
-                            break;
-                        case 'dmdii':
-                            $http.delete(dataFactory.getDMDIIProject(eventId).delete).then(function(response){
-                                deleteEventsFromView(index, eventId);
-                                toastModel.showToast('success', 'Event deleted successfully.');
-                            }, function(error) {
-                                toastModel.showToast('error', 'Delete Failed.');
-                            });
-                            break;
-                    }
+                  $http.delete(dataFactory.getDMDIIProject(eventId).delete).then(function(response){
+                      deleteEventsFromView(index, eventId);
+                      toastModel.showToast('success', 'Event deleted successfully.');
+                  }, function(error) {
+                      toastModel.showToast('error', 'Delete Failed.');
+                  });
                 });
             };
-            
+
             var showDeleteConfirm = function() {
                 var confirm = $mdDialog.confirm()
                     .title('Please Confirm')
                     .content('Are you sure you want to delete this event?')
                     .ok('Delete')
                     .cancel('Cancel');
-                
+
                 return $mdDialog.show(confirm);
             };
-            
+
             var deleteEventsFromView = function(index, eventId) {
                 $scope.events.splice(index, 1);
                 for (var i = 0; i < $scope.dayEvents.length; i++) {
