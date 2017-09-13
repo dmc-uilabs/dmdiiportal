@@ -36,6 +36,7 @@ angular.module('dmc.add-project-doc')
             $scope.getProject = function() {
                 ajax.get(dataFactory.getDMDIIProject($stateParams.projectId).get, {}, function(response) {
                     $scope.project = response.data;
+                    updateSections();
                 });
             }
             $scope.getProject();
@@ -46,20 +47,17 @@ angular.module('dmc.add-project-doc')
                 name : 'projectUpdates'
             };
 
-            $scope.sections = {
-                projectUpdates : {
-                    title : 'Project Updates'
-                },
+            var updateSections = function() {
+              $scope.sections = {
                 projectDocuments : {
-                    title : 'Project Documents'
+                  title : 'Project Documents'
                 }
-                // projectFinancials: {
-                //     title : 'Project Financials'
-                // },
-                // projectSchedule: {
-                //     title : 'Project Schedule'
-                // }
-            };
+              };
+
+              if (!$scope.project.isEvent) {
+                $scope.sections[projectUpdates] = { title : 'Project Updates' };
+              }
+            }
 
             var getCurrentSection = function(){
                 var sectionName = $location.$$path.split('/');
