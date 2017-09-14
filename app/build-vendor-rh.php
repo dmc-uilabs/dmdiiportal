@@ -31,6 +31,7 @@
 <!-- bower:js -->
 <script src="/bower_components/jquery/dist/jquery.js"></script>
 <script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/bower_components/hammerjs/hammer.js"></script>
 <script src="/bower_components/d3/d3.min.js"></script>
 <script src="/bower_components/topojson/topojson.min.js"></script>
@@ -44,7 +45,6 @@
 <script src="/bower_components/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
 <script src="/bower_components/moment-range/lib/moment-range.min.js"></script>
 <script src="/bower_components/angular-datepicker/dist/angular-datepicker.js"></script>
-<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/bower_components/angular-ui-select/dist/select.min.js"></script>
 <script src="/bower_components/angular-animate/angular-animate.js"></script>
 <script src="/bower_components/angular-aria/angular-aria.js"></script>

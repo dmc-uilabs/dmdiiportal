@@ -421,10 +421,10 @@ angular.module('dmc.edit-member')
             $scope.saveChanges = function() {
                 $scope.isSaved = true;
 
-                if (!$scope.isValid) {
-                    toastModel.showToast('error', 'Form is not valid!');
-                    return;
-                }
+                // if (!$scope.isValid) {
+                //     toastModel.showToast('error', 'Form is not valid!');
+                //     return;
+                // }
 
                 $scope.setTier();
 

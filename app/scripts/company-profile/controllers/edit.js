@@ -36,6 +36,10 @@ angular.module('dmc.company-profile')
                 ajax.get(dataFactory.getOrganization($stateParams.companyId), {}, function(response) {
                     $scope.company = response.data;
 
+                    if($scope.company.dmdiiMemberId){
+                      getDMDIIMember();
+                    }
+
                     $scope.company.description = $showdown.makeHtml($scope.company.description);
                     ajax.get(dataFactory.documentsUrl().getList, {
                         parentType: 'ORGANIZATION',
@@ -69,6 +73,38 @@ angular.module('dmc.company-profile')
                         $scope.company.videos = response.data.data;
                     });
                 });
+            };
+
+            $scope.date = {};
+
+            $scope.member = {};
+
+            // callback for member
+            var memberCallbackFunction = function(response){
+                $scope.member = response.data;
+
+                var startDate = $scope.member.startDate.split('-');
+                $scope.date.start = new Date(startDate[0], startDate[1]-1, startDate[2], 0);
+                var expireDate = $scope.member.expireDate.split('-');
+                $scope.date.expire = new Date(expireDate[0], expireDate[1]-1, expireDate[2], 0);
+
+                $scope.companyTier = {
+                    data: {
+                        id: $scope.member.dmdiiType.id,
+                        tier: $scope.member.dmdiiType.tier || undefined,
+                        category: $scope.member.dmdiiType.dmdiiTypeCategory.id,
+                        categoryString: $scope.member.dmdiiType.dmdiiTypeCategory.category
+                    }
+                }
+            };
+
+            var responseData = function(){
+              var data = {};
+              return data;
+            };
+
+            var getDMDIIMember = function(){
+                ajax.get(dataFactory.getDMDIIMember($scope.company.dmdiiMemberId).get, responseData(), memberCallbackFunction);
             };
 
             $scope.company = {
@@ -292,6 +328,50 @@ angular.module('dmc.company-profile')
                 return escaped;
             };
 
+            $scope.setTier = function() {
+                if ($scope.member.dmdiiType) {
+                    $scope.member.dmdiiType.id = $scope.companyTier.data.id;
+
+                    $scope.member.dmdiiType.tier = $scope.companyTier.data.tier || undefined;
+                    $scope.member.dmdiiType.dmdiiTypeCategory.id = $scope.companyTier.data.category;
+                    $scope.member.dmdiiType.dmdiiTypeCategory.category = $scope.companyTier.data.categoryString;
+
+                } else {
+                    $scope.member.dmdiiType = {
+                        id: $scope.companyTier.data.id,
+                        tier: $scope.companyTier.data.tier,
+                        dmdiiTypeCategory: {
+                            id: $scope.companyTier.data.category,
+                            category: $scope.companyTier.data.categoryString
+
+                        }
+                    }
+                }
+            }
+
+            $scope.saveMemberChanges = function() {
+                $scope.setTier();
+
+                var date = new Date($scope.date.start);
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                month = (month < 10) ? '0' + month : month;
+                var day = date.getDate();
+                day = (day < 10) ? '0' + day : day;
+
+                $scope.member.startDate = year + '-' + month + '-' + day;
+
+                var date = new Date($scope.date.expire);
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                month = (month < 10) ? '0' + month : month;
+                var day = date.getDate();
+                day = (day < 10) ? '0' + day : day;
+
+                $scope.member.expireDate = year + '-' + month + '-' + day;
+                ajax.create(dataFactory.saveDMDIIMember().member, $scope.member, function(){return;});
+            };
+
             $scope.saveChanges = function(){
                 $scope.isSaved = true;
 
@@ -319,6 +399,10 @@ angular.module('dmc.company-profile')
 
                 $scope.company.description = convertToMarkdown($scope.company.description);
 
+                // Save DMDII Member profile
+                if($scope.company.dmdiiMemberId){
+                  $scope.saveMemberChanges();
+                }
                 if ($scope.company.id) {
                     ajax.put(dataFactory.updateOrganization($scope.company.id), $scope.company, saveCallback);
                 } else {
@@ -352,9 +436,9 @@ angular.module('dmc.company-profile')
                 skills : {
                     title : 'Skills'
                 },
-                projects : {
-                    title : 'Projects'
-                },
+                // projects : {
+                //     title : 'Projects'
+                // },
                 contact : {
                     title : 'Contact'
                 },
