@@ -38,7 +38,9 @@
             "featureImage": null,
             "logoImage": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTA2OTE1Njg4NjVeQTJeQWpwZ15BbWU3MDAyNjU4MDM@._V1_UY317_CR22,0,214,317_AL_.jpg",
             "awards": [],
-            "contacts": [],
+            "contacts": [{"id":17,"contactType":{"id":2,"contactType":"LEGAL"},"name":"mommy","phoneNumber":"12233333333"
+,"title":"asdf","email":"a@a"},{"id":15,"contactType":{"id":2,"contactType":"LEGAL"},"name":"asfd","phoneNumber"
+:"12345678900","title":"asdf","email":"asdf@as"}],
             "areasOfExpertise": [],
             "desiredAreasOfExpertise": [],
             "dmdiiMemberId": 2,
