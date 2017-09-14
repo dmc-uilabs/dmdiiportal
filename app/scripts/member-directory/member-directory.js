@@ -27,6 +27,7 @@ angular.module('dmc.members', [
     'dmc.component.horizontalmenu',
     'dmc.widgets.tasks',
     'dmc.widgets.tabs',
+    'dmc.recent-updates',
     'datamaps'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
@@ -50,4 +51,12 @@ angular.module('dmc.members', [
         }
     });
     $urlRouterProvider.otherwise('/member_directory');
-});
+})
+.controller('QuickDocController',
+	['$scope', '$rootScope', '$mdDialog', 'doc',
+	function ($scope, $rootScope, $mdDialog, doc) {
+        $scope.doc = doc;
+		$scope.cancel = function(){
+            $mdDialog.hide();
+		}
+}]);

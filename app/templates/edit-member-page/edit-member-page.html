@@ -1,3 +1,5 @@
+<main>
+<section class="container">
 <div ng-if="!not_found" class="edit-member-page">
     <md-content class="company-profile-padding">
         <div layout="row">
@@ -31,7 +33,7 @@
             <div layout="row">
                 <div layout="column" class="logo-column" ng-show="!changingLogo">
                     <div class="profile-logo">
-                        <img ng-src="{{company.organization.logoImage ? company.organization.logoImage : 'images/icon-company-lg.svg'}}" class="logo" alt="{{company.name}}"/>
+                        <img ng-src="{{company.organization.logoImage ? company.organization.logoImage : 'images/icon-company-lg.svg'}}" class="logo" style="max-width:250px; max-height: 250px;" alt="{{company.name}}"/>
                         <md-button md-no-ink class="md-fab md-mini md-warn md-raised remove-logo"
                                    ng-if="company.organization.logoImage"
                                    ng-click="removeLogo($event)"
@@ -107,7 +109,7 @@
             </div>
 
             <div layout="column">
-                <div layout="row" ng-if="userData.isAdmin || userData.isDmdiiAdmin">
+                <!-- <div layout="row" ng-if="userData.isAdmin || userData.isDmdiiAdmin">
                     <md-autocomplete flex="45"
                         md-input-name="coreCpabilites"
                         md-items="tag in queryTagSearch(searchWellTag)"
@@ -140,9 +142,9 @@
                           No Tags matching "{{searchSeekTag}}" were found.
                         </md-not-found>
                     </md-autocomplete>
-                </div>
+                </div> -->
 
-                <div layout="row">
+                <!-- <div layout="row">
                     <div layout="row" layout-wrap flex="45">
                         <div layout="column">
                             <span class="no-bottom" flex>Selected Core Capabilities (Click tag to remove)</span>
@@ -170,7 +172,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             <div layout="column" ng-show="userData.isAdmin || userData.isDmdiiAdmin">
                 <h3 class="no-bottom">Contacts</h3>
@@ -215,7 +217,7 @@
                 </div>
             </div>
 
-            <div layout="column" ng-show="userData.isAdmin || userData.isDmdiiAdmin">
+            <!-- <div layout="column" ng-show="userData.isAdmin || userData.isDmdiiAdmin">
                 <h3 class="no-bottom">Recognitions</h3>
                 <div layout="row">
                     <div layout="column" flex="20">
@@ -247,7 +249,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </md-content>
 </div>
+</section>
+</main>

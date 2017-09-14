@@ -10,6 +10,7 @@
 @import 'members';
 @import 'academia';
 @import 'workspaces';
+@import 'companyonboard';
 @import 'recentupdates';
 
 body {
@@ -54,10 +55,25 @@ time {
 
 }
 .filter-container {
-	border-top:1px solid $border-color;
-	border-bottom:1px solid $border-color;
+	//border-top:1px solid $border-color;
+	//border-bottom:1px solid $border-color;
 	.collapse {
 		padding-bottom: 30px;
+	}
+	.dropdown{
+		width: 110%;
+		//width: auto;
+		margin-right:-20px;
+	}
+	.dropdown-menu {
+		padding: 10px 10px 0px 10px;
+		min-width: 100px;
+	}
+	a{
+		&:hover{
+			text-decoration: none;
+			cursor: pointer;
+		}
 	}
 }
 .content-row {
@@ -131,6 +147,22 @@ div.progress {
 	color: $brand-primary;
 	// font-weight:bold;
 
+}
+
+.project-name{
+	width: 49%;
+}
+
+.project-status{
+	width: 13%;
+}
+
+.project-focus{
+	width: 18%;
+}
+
+.project-thrust{
+	width: 20%;
 }
 
 

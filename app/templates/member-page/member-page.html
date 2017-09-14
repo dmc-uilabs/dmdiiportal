@@ -1,3 +1,4 @@
+<main>
 <div class="container member-box" ng-show="member" layout="row">
 	<!--Member-->
 	<div class="content-column" flex='100'>
@@ -14,17 +15,14 @@
 
 			<div layout="row" layout-margin>
 				<!--member image-->
-				<div class="member-logo" layout="column" style="max-width:20%">
-					<img class="company-logo" ng-if="member.organization.logoImage" ng-src="{{member.organization.logoImage}}">
-					<div class="no-image" ng-if="!member.organization.logoImage" layout layout-align="center center">
-						<h3>No Image</h3>
-					</div>
+				<div layout="column" style="padding-right: 20px">
+					<img class="company-logo" style="max-width:250px; max-height: 250px;" ng-src="{{member.organization.logoImage ? member.organization.logoImage : 'images/icon-company-lg.svg'}}">
 				</div>
 				<div flex>
 					<!--member header-->
 
 						<div layout="row" layout-align="start center">
-							<p class="member-header">{{member.organization.name}}</p>
+							<h2 class="member-header">{{member.organization.name}}</h2>
 						</div>
 						<div layout="row" layout-align="start center">
 							<h5 class="member-subtitle">{{member.dmdiiType.dmdiiTypeCategory.category + ' Tier ' + member.dmdiiType.tier + ' Partner' }}<br>{{' Member Since ' + startDate}}</h5>
@@ -35,64 +33,64 @@
 					<span flex></span>
 
 					<!--member description-->
-					<div class="member-description" markdown-to-html="member.organization.description"></div>
+					<div markdown-to-html="member.organization.description"></div>
 
 				</div>
 			</div>
 
-			<div layout="row" layout-margin >
-
-				<div layout="column" class="member-contacts">
-
-					<h2>Contacts</h2>
-					<div layout="row">
-						<div flex="50" layout="column" class="contact no-bottom" ng-repeat="contact in member.contacts | limitTo:4">
-
-							<div layout="row" layout-align="start center" class="no-bottom" ng-show="contact.firstName && contact.lastName">
-									<h3 class="no-bottom">{{contact.firstName + ' ' + contact.lastName}}</h3>
-							</div>
-							<div layout="row" layout-align="start center" ng-show="contact.contactType && contact.contactType.type">
-								<h5 style="color:green;margin-top:-3px">{{contact.contactType.type}}</h5>
-							</div>
-							<div layout="row" layout-align="start center" class="no-bottom" ng-show="contact.title && contact.title.length > 0">
-									<h3 class="no-bottom">{{contact.title}}</h3>
-							</div>
-							<div layout="row" layout-align="start center" class="no-bottom" ng-if="contact.phone">
-									<ng-md-icon icon="phone" style="fill: green" size="30"></ng-md-icon>
-									<a href="tel:{{contact.phone}}">{{contact.phone}}</a>
-							</div>
-							<div layout="row" layout-align="start center" class="no-bottom" ng-if="contact.email">
-									<ng-md-icon icon="mail" style="fill: green;margin-right:3px" size="30"></ng-md-icon>
-									<a href="mailto:{{contact.email}}">{{contact.email}}</a>
-							</div>
-
-						</div>
-					</div>
-				</div>
-
-			</div>
 			<div layout="row" layout-margin >
 			<md-divider></md-divider>
 
 			<md-tabs md-selected="$parent.selectedTab" md-dynamic-height md-border-bottom style="width:100%">
+					<md-tab label="Contacts">
+						<md-content class="member-contacts">
+							<div layout="row">
+								<div flex="50" layout="column" class="contact no-bottom" ng-repeat="contact in member.contacts | limitTo:4">
+
+									<div layout="row" layout-align="start center" class="no-bottom" ng-show="contact.firstName && contact.lastName">
+											<h3 class="no-bottom">{{contact.firstName + ' ' + contact.lastName}}</h3>
+									</div>
+									<div layout="row" layout-align="start center" ng-show="contact.contactType && contact.contactType.type">
+										<h5 style="color:green;margin-top:-3px">{{contact.contactType.type}}</h5>
+									</div>
+									<div layout="row" layout-align="start center" class="no-bottom" ng-show="contact.title && contact.title.length > 0">
+											<h3 class="no-bottom">{{contact.title}}</h3>
+									</div>
+									<div layout="row" layout-align="start center" class="no-bottom" ng-if="contact.phone">
+											<ng-md-icon icon="phone" style="fill: green" size="30"></ng-md-icon>
+											<a href="tel:{{contact.phone}}">{{contact.phone}}</a>
+									</div>
+									<div layout="row" layout-align="start center" class="no-bottom" ng-if="contact.email">
+											<ng-md-icon icon="mail" style="fill: green;margin-right:3px" size="30"></ng-md-icon>
+											<a href="mailto:{{contact.email}}">{{contact.email}}</a>
+									</div>
+
+								</div>
+							</div>
+					</md-content>
+				</md-tab>
+
 				<md-tab label="Project Involvement">
 					<md-content class="md-padding">
-						<div layout="row">
-							<div class="pad20 member-project"  ng-show="primes.length > 0" ng-repeat="project in primes">
-								<h4 class="no-bottom no-top"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</a></h4>
-								<h2 class="no-bottom no-top" style="color:green;font-weight: bolder;"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h2>(Prime)
+						<div layout="column">
+							<div class="member-project" ng-show="primes.length > 0" ng-repeat="project in primes">
+								<h4 class="no-bottom no-top">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}} (Prime)</h4>
+								<h3 class="no-bottom no-top" style="margin-top:0px"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h3>
+								<md-divider/>
 							</div>
-							<div class="pad20 member-project"  ng-show="contributing.length > 0" ng-repeat="project in contributing">
-								<h4 class="no-bottom no-top"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</a></h4>
-								<h2 class="no-bottom no-top" style="color:green;font-weight: bolder;"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h2>
+							<div class="member-project" ng-show="contributing.length > 0" ng-repeat="project in contributing">
+								<h4 class="no-bottom no-top">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</h4>
+								<h3 class="no-bottom no-top" style="margin-top:0px"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h3>
+								<md-divider/>
 							</div>
 							<div ng-show="!primes && !contributing || primes.length === 0 && contributing.length === 0">
-								<p>This Member is not on any projects yet</p>
+								<span>This Member is not on any projects yet</span>
 						</div>
 					</md-content>
 				</md-tab>
 
-				<md-tab label="Storefront">
+
+				<!-- <md-tab label="Storefront">
 					<md-content class="carousel-padding">
 						<div  class="member-storefront">
 							<div class="member-storefront">
@@ -141,7 +139,7 @@
 							</div>
 						</div>
 					</md-content>
-				</md-tab>
+				</md-tab> -->
 
 			</md-tabs>
 
@@ -149,3 +147,4 @@
 
 	</div>
 </div>
+</main>

@@ -43,6 +43,11 @@ div.list-wrapper {
 	background: $color-dark;
 }
 
+.more-less{
+	font-size: 12px;
+	//line-height: 1.0;
+}
+
 .members-table {
 	img.img-responsive {
 		min-width: 100px;
@@ -53,14 +58,36 @@ div.list-wrapper {
 
 		white-space: normal;
 	}
+
+	th{
+		vertical-align: top !important;
+	}
 }
 .map-col {
 	margin-top:40px;
 }
 
+.member-logo{
+	width: 10%;
+	padding-right: 20px;
+}
+
+.member-description{
+	width: 50%;
+}
+
+.tier{
+	width: 10%;
+}
+
+.type{
+	width: 18%;
+}
+
 .active-projects {
 	list-style:none;
 	padding:0;
+	width: 12%;
 	min-width:135px;
 	max-width:135px;
 	li {margin-bottom:20px;white-space:normal;}

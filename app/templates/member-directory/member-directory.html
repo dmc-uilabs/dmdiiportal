@@ -1,130 +1,45 @@
 <main>
-	<section class="container">
-		<h2>Membership Directory</h2>
-		<div class="row content-row">
-			<div class="col-lg-7">
+		<section class="container projects-head">
+			<div id="portalDropdowns">
 
+				<div  layout="row">
+					<h2>Membership Directory</h2>
 
+					<div layout="row" style="margin-top:auto; padding-bottom:4px" class="portal-tabs">
+						<a class="toggle-control collapsed" data-toggle="collapse" data-target="#recent-activity, #divider-activity">
+							<h4 style="padding-left:30px; padding-bottom:0px">Recent Activity</h4>
+						</a>
+						<a class="toggle-control collapsed" data-toggle="collapse" data-target="#quick-links, #divider-links">
+							<h4 style="padding-left:20px; padding-bottom:0px">Quick Links</h4>
+						</a>
+					</div>
+				</div>
 
-				<!-- Desktop controls -->
-				<!-- Nav tabs -->
-				<ul class="nav nav-tabs event-tabs" role="tablist">
-					<!-- <li class="hidden-xs tab-label">Events</li> -->
-					<li role="presentation" class="active hidden-xs"><a data-target="#news" aria-controls="news" role="tab" data-toggle="tab">News</a></li>
-					<li role="presentation" class="hidden-xs"><a data-target="#calendar" aria-controls="calendar" role="tab" data-toggle="tab">Calendar</a></li>
-					<li role="presentation" class="hidden-xs"><a data-target="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">Event List</a></li>
+				<md-divider class="collapse" id="divider-activity"></md-divider>
+				<md-divider class="collapse" id="divider-links"></md-divider>
 
-
-
-					<!-- Mobile controls -->
-					<li role="presentation" class="dropdown xs-tab-control visible-xs">
-						<a href="#" class="dropdown-toggle" id="myTabDrop1" data-toggle="dropdown" aria-controls="myTabDrop1-contents" aria-expanded="false"><span class="tab-section-label">Section</span> <span class="caret"></span></a>
-						<ul class="dropdown-menu" aria-labelledby="myTabDrop1"
-										id="myTabDrop1-contents">
-							<li class=""><a href="#news" role="tab" data-toggle="tab" aria-controls="dropdown1" aria-expanded="false">News</a></li>
-							<li class=""><a href="#calendar" role="tab" data-toggle="tab" aria-controls="dropdown2" aria-expanded="false">Calendar</a></li>
-							<li class="">
-								<a href="#schedule" role="tab" data-toggle="tab" aria-controls="dropdown3" aria-expanded="false">Event List</a></li>
+				<div class="portal-dropdowns">
+					<div class="collapse" id="quick-links">
+						<ul class="quick-links">
+							<li ng-repeat="doc in docs track by $index" layout="row" layout-align="space-between center">
+								<a href ng-click="quickLinkAction(doc)">{{doc.displayName}}</a>
+								<a href ng-click="deleteQuicklink($index, doc.id)" ng-show="userData.isDmdiiAdmin" class="delete-icon"><ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon></a>
+							</li>
 						</ul>
-
-					</li>
-				</ul>
-
-
-
-				<!-- Tab panes -->
-				<div class="tab-content">
-					<div role="tabpanel" class="tab-pane fade in active" id="news">
-						<div class="event-list" ng-repeat="item in news track by $index| limitTo:3">
-						<div class="event-block">
-						<div class="row">
-							<h2 class="col-sm-6">{{item.title}}</h2><time class="col-sm-6 text-right">{{item.dateCreated}}</time>
-						</div>
-							<p>{{plainText(item.content)}}</p>
-							<a ng-if="userData.isDmdiiAdmin" flex="10" href ng-click="deleteNews($index, item.id)" class="delete-icon">delete <ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon></a>
-						</div>
-						</div>
 					</div>
 
-					<div role="tabpanel" class="tab-pane fade" id="calendar">
-
-						<div class="col-sm-6">
-								<tien-clndr class="clndr" tien-clndr-object="clndr" tien-clndr-events="events" tien-clndr-options="options">
-										<div class="clndr-controls">
-												<div class="clndr-previous-button" ng-click="clndr.back()">
-														&lsaquo;
-												</div>
-												<div class="month">
-													{{month}}
-												</div>
-												<div class="clndr-next-button" ng-click="clndr.forward()">
-													&rsaquo;
-												</div>
-										</div>
-										<div class="clndr-grid">
-												<div class="days-of-the-week">
-													<div class="header-day" ng-repeat="day in daysOfTheWeek track by $index">
-														{{day}}
-													</div>
-												</div>
-												<div class="days">
-													<div class="{{day.classes}}" ng-repeat="day in days" ng-click="dayClicked($event, day)">
-														<div class="event-indicator" ng-show="day.events.length" ng-click="showEvents(day.events)">{{day.events.length}}</div>
-														{{day.day}}
-													</div>
-												</div>
-										</div>
-								</tien-clndr>
-							</div>
-
-							<div class="col-sm-6" style="">
-								<div ng-if="dayEvents.length" class="event-details">
-									<div class="list-wrapper">
-										<div ng-repeat="event in dayEvents">
-											<h2>{{event.name}}</h2>
-											<time>{{event.date}}</time>
-											<p markdown-to-html="event.description"></p>
-										</div>
-									</div>
-								</div>
-							</div>
-
-					</div>
-					<div role="tabpanel" class="tab-pane fade " id="schedule">
-
-						<div class="event-list" ng-repeat="event in events track by $index| limitTo:3">
-
-						<div class="event-block">
-						<div class="row">
-							<h2 class="col-sm-6">{{event.name}}</h2><time datetime="2011-01-12" class="col-sm-6 text-right">{{event.date}}</time>
-						</div>
-
-							<p markdown-to-html="event.description"></p>
-							<a ng-if="userData.isDmdiiAdmin" flex="10" href ng-click="deleteEvent($index, event.id)" class="delete-icon">delete <ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon></a>
-
-						</div>
-
-
-						</div>
-
-					</div>
+					<div class="collapse" id="recent-activity" dmc-recent-updates></div>
 				</div>
+
+				<md-divider class="collapse" id="divider-activity"></md-divider>
+				<md-divider class="collapse" id="divider-links"></md-divider>
+
 			</div>
 
-			<div class="col-lg-5  hidden-xs">
-				<h4 class="col-label">Membership Map</h4>
-				<div class="map-col text-center">
-					<datamap
-						map="mapObject"
-						>
-					</datamap>
-				</div>
-			</div>
-		</div>
-	</section>
+		</section>
 
 	<!-- TODO this needs to be made in to a module suitable for members, projects and ideally services -->
-	<section class="container content-padding">
+	<!-- <section class="container content-padding">
 			<div class="row">
 					<div class="col-md-12 project-main">
 							<div class="top-border"></div>
@@ -137,97 +52,90 @@
 					</div>
 					</div>
 			</div>
-	</section>
+	</section> -->
 
 	<section class="container">
 
-		<dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu>
+		<!-- <dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu> -->
 
-		<div class="row content-row">
-			<div class="col-xs-4">
+		<div class="row content-row" style="padding: 10px 0px 0px 0px">
+
+			<!-- <div class="col-xs-6">
+				<dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu>
+			</div> -->
+
+			<!-- <div class="col-xs-7"/> -->
+
+			<div class="col-xs-11">
 				<div class="form-group has-feedback">
 					<form ng-submit="submit(searchModel)">
 						<input ng-model="searchModel" type="text" class="form-control " placeholder="Search Members">
 					</form>
 				</div>
-				<!-- /input-group -->
 			</div>
-			<div class="col-xs-1" style="padding-left: 0px; margin-left: -10px;">
-				<ng-md-icon ng-click="submit(searchModel)" icon="search" style="fill: #999" size="30"></ng-md-icon>
-			</div>
-			<div class="col-xs-4 col-xs-offset-3 ">
 
+
+			<!-- <div class="col-xs-1">
+				<div class="form-group has-feedback">
+				<button class="btn btn-default" style="padding:0px 10px 0px 10px" ng-click="submit(searchModel)" >
+					<ng-md-icon icon="search" style="fill: #999" size="25"></ng-md-icon>
+				</button>
+			</div>
+			</div> -->
+
+			<div class="col-xs-1">
 				<div class="dropdown pull-right">
 					<button class="btn btn-default dropdown-toggle" type="button" id="itemstoshowdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 		    			{{showArray[sizeModule].name}}<span class="caret"></span>
-		  				</button>
+		  		</button>
 					<ul class="dropdown-menu" aria-labelledby="itemstoshowdropdown">
 						<li ng-repeat="item in showArray track by $index">
 							<a ng-click="selectItemDropDown($index)">{{item.name}}</a>
 						</li>
 					</ul>
 				</div>
-
 			</div>
+
 		</div>
+
 		<div class="members-table">
-			<div class="table-responsive ">
+			<div class="table-responsive" style="overflow:visible">
 				<table class="table">
 					<thead>
 						<tr>
-							<th></th>
-							<th>Name</th>
-							<th>Tier</th>
-							<th>Type</th>
-							<th>Active Projects</th>
-							<th>Core Capabilities</th>
-							<th>Seeking Collaboration</th>
+							<th class="member-logo"></th>
+							<th class="member-description">Member</th>
+							<th class="tier"><dmc-horizontal-menu tree-source="treeMenuModel[0]"></dmc-horizontal-menu></th>
+							<th class="type"><dmc-horizontal-menu tree-source="treeMenuModel[1]"></dmc-horizontal-menu></th>
+							<th class="activeProjects"><dmc-horizontal-menu tree-source="treeMenuModel[2]"></dmc-horizontal-menu></th>
 						</tr>
 					</thead>
 					<tbody>
 
 						<tr ng-repeat="member in members.arr">
-							<td><img ng-src="{{member.organization.logoImage ? member.organization.logoImage : 'images/icon-company-lg.svg'}}" class="img-responsive" alt=""></td>
-							<td>
+							<td class="member-logo"><img ng-src="{{member.organization.logoImage ? member.organization.logoImage : 'images/icon-company-lg.svg'}}" class="img-responsive" alt=""></td>
+							<td class="member-description">
 								<a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a>
-								<p class="description" more-less
+								<p ng-if="member.organization.industry">{{member.organization.industry}}</p>
+								<p more-less
 									element-text="{{member.organization.description}}"
-									element-text-limit="140">
+									element-text-limit="300">
 								</p>
 							</td>
 
-							<td>{{member.dmdiiType.tier}}</td>
-							<td>{{member.dmdiiType.dmdiiTypeCategory.category}}</td>
+							<td class="tier">{{member.dmdiiType.tier}}</td>
+							<td class="type">{{checkNonProfit(member.dmdiiType.dmdiiTypeCategory.category)}}</td>
 							<td>
 								<ul class="active-projects">
 									<li ng-repeat="project in activeProjects[member.id] track by $index">
-										<a class="gray-link" ng-href="{{'/dmdii-project-page.php#/' + project.id}}">
-											<span class="gray-link"
+										<a class="gray-link" ng-href="{{'/dmdii-project-page.php#/' + project.id}}" data-toggle="tooltip" title="{{project.projectTitle}}">
+											<!-- <span class="gray-link"
 													more-less
 												 element-text ="{{project.projectTitle}}"
 												 element-text-limit="30">
-											 </span>
+											 </span> -->
+											 <span>{{parseProjectNumber(project.projectIdentifier)}}</span>
 										</a>
-									</li>
-								</ul>
-							</td>
-							<td>
-								<ul class="active-projects">
-									<li ng-repeat="tag in member.organization.areasOfExpertise track by $index">
-										<span more-less
-											 element-text="{{tag.name}}"
-											 element-text-limit="30">
-										 </span>
-									</li>
-								</ul>
-							</td>
-							<td>
-								<ul class="active-projects">
-									<li ng-repeat="tag in member.organization.desiredAreasOfExpertise track by $index">
-										<span more-less
-											 element-text="{{tag.name}}"
-											 element-text-limit="30">
-										 </span>
 									</li>
 								</ul>
 							</td>
