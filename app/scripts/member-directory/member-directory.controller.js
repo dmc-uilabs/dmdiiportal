@@ -19,6 +19,7 @@ angular.module('dmc.members')
         '$location',
         'is_search',
         'DMCUserModel',
+        '$mdDialog',
         '$window',
         function($state,
                  $stateParams,
@@ -32,6 +33,7 @@ angular.module('dmc.members')
                  $location,
                  is_search,
                  DMCUserModel,
+                 $mdDialog,
                  $window){
 
             var apply = function(){
@@ -468,6 +470,18 @@ angular.module('dmc.members')
                 },
                 data: {},
                 zoomable: false
+            }
+
+            $scope.showModalQuickLink = function(doc){
+                $mdDialog.show({
+                    controller: 'QuickDocController',
+                    templateUrl: 'templates/dmdii-projects/quick-doc.html',
+                    parent: angular.element(document.body),
+                    locals: {
+                       doc: doc
+                },
+                    clickOutsideToClose: true
+                });
             }
 
             $scope.quickLinkAction = function(doc) {
