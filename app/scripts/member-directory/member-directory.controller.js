@@ -473,6 +473,20 @@ angular.module('dmc.members')
                 data: {},
                 zoomable: false
             }
+
+            $scope.quickLinkAction = function(doc) {
+                if (angular.isDefined(doc.text) && doc.text !== null) {
+                    $scope.showModalQuickLink(doc);
+                }
+                if (angular.isDefined(doc.link) && doc.link !== null) {
+                    $window.open(doc.link);
+                }
+                if (angular.isDefined(doc.doc) && doc.doc !== null) {
+                    ajax.get(dataFactory.getDMDIIDocuments(doc.doc.id).single, {}, function(response) {
+                        $window.open(response.data.documentUrl);
+                    })
+                }
+            }
         }
     ]
 );
