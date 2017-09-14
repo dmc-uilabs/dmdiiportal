@@ -1,6 +1,7 @@
 <div ng-if="!not_found" class="add-project-doc">
     <md-content class="add-dmdii-content-padding">
-        <a class="no-bottom no-top" ng-href="{{'/dmdii-project-page.php#/'+project.id}}">Back to Project Page</a>
+        <a ng-show="!project.isEvent" class="no-bottom no-top" ng-href="{{'/dmdii-project-page.php#/'+project.id}}">Back to Project Page</a>
+        <a ng-show="project.isEvent" class="no-bottom no-top" ng-href="{{'/dmdii-project-page.php#/event/'+project.id}}">Back to Event Page</a>
         <div layout="row">
             <md-tabs class="add-content-tabs"
                      md-selected="currentSection.index"
@@ -17,14 +18,6 @@
                              user="user"></div>
                         <div tab-project-documents
                             ng-switch-when="projectDocuments"
-                            project="project"
-                            user="user"></div>
-                        <div tab-project-financials
-                            ng-switch-when="projectFinancials"
-                            project="project"
-                            user="user"></div>
-                        <div tab-project-schedule
-                            ng-switch-when="projectSchedule"
                             project="project"
                             user="user"></div>
                     </md-content>

@@ -92,7 +92,7 @@ angular.module('dmc.edit-project')
             $scope.descriptionLimit = 5000;
             $scope.isValid = false;
             $scope.isSaved = false;
-            $scope.fieldName = 'Project Summary'
+            $scope.fieldName = 'Project Summary (Required)'
 
             $scope.$on('isValid', function (event, data) {
                 $scope.isValid = data;
@@ -253,7 +253,11 @@ angular.module('dmc.edit-project')
             var callbackSaveFunction = function(response) {
                 if (response.status === 200) {
                     toastModel.showToast('success', 'Member Successfully ' + $scope.action + '!')
-                    $window.location.href = '/dmdii-project-page.php#/' + response.data.id;
+                    if (response.data.isEvent) {
+                      $window.location.href = '/dmdii-project-page.php#/event/' + response.data.id;
+                    } else {
+                      $window.location.href = '/dmdii-project-page.php#/' + response.data.id;
+                    }
                 }
             }
 

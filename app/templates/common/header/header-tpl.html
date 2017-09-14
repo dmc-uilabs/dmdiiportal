@@ -110,7 +110,7 @@
                               <md-button href="/upload-application.php">Submit an App</md-button>
                           </md-menu-item>
                           <md-menu-item ng-if="userData.isDmdiiAdmin">
-                              <md-button href="/add-dmdii-content.php">Add DMDII Content</md-button>
+                              <md-button href="/add-dmdii-content.php">Create Quick Link</md-button>
                           </md-menu-item>
                           <md-menu-item ng-if="userData.isDmdiiAdmin">
                               <md-button href="/edit-member-page.php">Create DMDII Member</md-button>
@@ -195,7 +195,7 @@
                                 <md-menu-item ng-if="userData.isDmdiiAdmin">
                                     <md-button id="add-dmdii-content-small" href="/add-dmdii-content.php">
                                       <div layout="row" layout-align="space-between center">
-                                        Add DMDII Content
+                                        Create Quick Link
                                         <ng-md-icon icon="settings" style="vertical-align: middle; display:inline-block; line-height:1;"></ng-md-icon>
                                       </div>
                                     </md-button>
@@ -212,6 +212,14 @@
                                     <md-button id="create-dmdii-project-small" href="/edit-dmdii-project-page.php">
                                       <div layout="row" layout-align="space-between center">
                                         Create DMDII Project
+                                        <ng-md-icon icon="settings" style="vertical-align: middle; display:inline-block; line-height:1;"></ng-md-icon>
+                                      </div>
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item ng-if="userData.isDmdiiAdmin">
+                                    <md-button id="create-dmdii-event-small" href="/edit-dmdii-project-page.php#/event">
+                                      <div layout="row" layout-align="space-between center">
+                                        Create DMDII Event
                                         <ng-md-icon icon="settings" style="vertical-align: middle; display:inline-block; line-height:1;"></ng-md-icon>
                                       </div>
                                     </md-button>
@@ -333,7 +341,7 @@
                             <md-menu-item ng-if="userData.isDmdiiAdmin">
                                 <md-button id="add-dmdii-content" href="/add-dmdii-content.php">
                                   <div layout="row" layout-align="space-between center">
-                                    Add DMDII Content
+                                    Create Quick Link
                                     <ng-md-icon icon="settings" style="vertical-align: middle; display:inline-block; line-height:1;"></ng-md-icon>
                                   </div>
                                 </md-button>
@@ -350,6 +358,14 @@
                                 <md-button id="create-dmdii-project" href="/edit-dmdii-project-page.php">
                                   <div layout="row" layout-align="space-between center">
                                     Create DMDII Project
+                                    <ng-md-icon icon="settings" style="vertical-align: middle; display:inline-block; line-height:1;"></ng-md-icon>
+                                  </div>
+                                </md-button>
+                            </md-menu-item>
+                            <md-menu-item ng-if="userData.isDmdiiAdmin">
+                                <md-button id="create-dmdii-event" href="/edit-dmdii-project-page.php#/event">
+                                  <div layout="row" layout-align="space-between center">
+                                    Create DMDII Event
                                     <ng-md-icon icon="settings" style="vertical-align: middle; display:inline-block; line-height:1;"></ng-md-icon>
                                   </div>
                                 </md-button>
