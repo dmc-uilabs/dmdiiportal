@@ -53,11 +53,11 @@
         <label>Website</label>
         <input ng-model="source.website">
     </md-input-container>
-    <md-input-container flex="25" class="left-space right-space">
-        <label>Preferred Method of Communication</label>
-        <md-select ng-model="source.perferedCommMethod">
-            <md-option ng-repeat="method in preferredMethods" value="{{method.id}}">{{method.name}}</md-option>
-        </md-select>
+    <md-input-container flex="25" class="left-space">
+        <label>Phone</label>
+        <input name="phone"
+               phone-input
+               ng-model="source.phone">
     </md-input-container>
     <md-input-container flex="25" class="left-space">
         <label>Email</label>
@@ -65,10 +65,12 @@
     </md-input-container>
 </div>
 <div layout="row" class="line-block">
-    <md-input-container flex="25" class="left-space">
-        <label>Phone</label>
-        <input ng-model="source.phone">
-    </md-input-container>
+  <md-input-container flex="25" class="left-space right-space">
+      <label>Preferred Method of Communication</label>
+      <md-select ng-model="source.perferedCommMethod">
+          <md-option ng-repeat="method in preferredMethods" value="{{method.id}}">{{method.name}}</md-option>
+      </md-select>
+  </md-input-container>
 </div>
 <div layout="row" class="line-block" layout-wrap layout-align="left center">
     <md-input-container flex="25" class="right-space" ng-repeat="item in source.contactMethods track by $index" ng-if="!item.removed">
