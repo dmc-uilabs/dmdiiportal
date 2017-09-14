@@ -92,7 +92,7 @@ angular.module('dmc.edit-project')
             $scope.descriptionLimit = 5000;
             $scope.isValid = false;
             $scope.isSaved = false;
-            $scope.fieldName = 'Project Summary'
+            $scope.fieldName = 'Project Summary (Required)'
 
             $scope.$on('isValid', function (event, data) {
                 $scope.isValid = data;
@@ -328,5 +328,5 @@ angular.module('dmc.edit-project')
             function apply(){
                 if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             }
-  
+
         }]);
