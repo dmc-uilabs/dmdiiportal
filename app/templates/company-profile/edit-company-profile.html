@@ -92,15 +92,18 @@
                              source="company"
                              tags="tags"
                              ng-switch-when="skills"></div>
-                        <div tab-projects
+                        <!-- <div tab-projects
                              source="company"
                              tags="tags"
-                             ng-switch-when="projects"></div>
+                             ng-switch-when="projects"></div> -->
                         <div tab-contact
                              source="company"
                              ng-switch-when="contact"></div>
-                        <div tab-membership
+                        <div ng-if="company.dmdiiMemberId" tab-membership
                              source="company"
+                             user-data="userData"
+                             company-tier="companyTier"
+                             date="date"
                              ng-switch-when="membership"></div>
                         <div tab-vpc
                              source="company"

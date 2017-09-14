@@ -12,7 +12,7 @@
                 <md-button class="md-raised md-primary save-button" ng-click="saveChanges()">Save</md-button>
             </div>
         </div>
-        <div layout="row" ng-show="!company.id">
+        <div layout="row" style="padding-bottom:40px; padding-top:20px" ng-show="!company.id">
             <md-autocomplete flex="33"
                 md-input-name="organizations"
                 md-items="org in queryOrgSearch(searchOrg)"
@@ -29,228 +29,29 @@
                 </md-not-found>
             </md-autocomplete>
         </div>
-        <div ng-hide=!company.organization.id>
-            <div layout="row">
-                <div layout="column" class="logo-column" ng-show="!changingLogo">
-                    <div class="profile-logo">
-                        <img ng-src="{{company.organization.logoImage ? company.organization.logoImage : 'images/icon-company-lg.svg'}}" class="logo" style="max-width:250px; max-height: 250px;" alt="{{company.name}}"/>
-                        <md-button md-no-ink class="md-fab md-mini md-warn md-raised remove-logo"
-                                   ng-if="company.organization.logoImage"
-                                   ng-click="removeLogo($event)"
-                                   aria-label="Delete Image">
-                            <ng-md-icon icon="delete" size="18"></ng-md-icon>
-                        </md-button>
-                    </div>
-                    <md-button style="width: auto;" flex class="md-raised change-logo" ng-click="changeLogo()" ng-disabled="!userData.isAdmin && !userData.isDmdiiAdmin">Change Logo</md-button>
+        <div style="padding-top: 20px; padding-bottom: 20px" ng-hide=!company.organization.id>
+          <div layout="row" flex class="line-block" layout-align="space-between center">
+                <md-input-container flex="35" class="company-industry">
+                    <label>Category and Tier (Required)</label>
+                    <md-select ng-model="companyTier.data"
+                    ng-model-options="{trackBy: '$value.id'}"
+                    ng-disabled="!userData.isDmdiiAdmin"
+                    ng-required="true">
+                    <md-option ng-value="type" ng-repeat="type in types">{{categories[type.category] + type.tier}}</md-option>
+                </md-input-container>
+
+                <div layout="column" layout-align="start start" flex="20">
+                    <label style="margin-left:53px">Join Date (Required)</label>
+                    <md-datepicker class="no-bottom no-pad-bottom top10" name="joinDate" ng-model="date.start" required md-placeholder="Join Date (Required)"></md-datepicker>
                 </div>
-                <div ng-if="changingLogo">
-                    <div flex="30">
-                        <div class="content-panel"
-        	                source="logo"
-        	                ui-widget-upload-documents
-        	                widget-type="'row'"
-        	                auto-upload="false"
-        	                widget-title="'Upload Logo'"
-        	                file-limit="1">
-        	            </div>
-                    </div>
-                    <div layout="row" layout-align="space-between start">
-                        <md-button flex class="md-raised cancel-change-logo" ng-click="cancelChangingLogo()">Cancel</md-button>
-                    </div>
+
+                <div layout="column" layout-align="start start" flex="20">
+                    <label style="margin-left:42px">Expire Date (Required)</label>
+                    <md-datepicker class="no-bottom no-pad-bottom top10" name="expireDate" ng-model="date.expire" required md-placeholder="Expire Date (Required)"></md-datepicker>
                 </div>
-                <div layout="column" flex class="inputs-top">
-                    <div layout="row">
-                        <md-input-container class="company-name" flex="50" md-no-float>
-                            <label>Company Name (Required)</label>
-                            <input ng-model="company.organization.name"
-                                   ng-disabled="!userData.isAdmin && !userData.isDmdiiAdmin"
-                                   ng-required="true">
-                        </md-input-container>
-                    </div>
-
-                    <div layout="row">
-                        <md-input-container flex="35" class="company-industry">
-                            <label>Category and Tier (Required)</label>
-                            <md-select ng-model="companyTier.data"
-                            ng-model-options="{trackBy: '$value.id'}"
-                            ng-disabled="!userData.isDmdiiAdmin"
-                            ng-required="true">
-                            <md-option ng-value="type" ng-repeat="type in types">{{categories[type.category] + type.tier}}</md-option>
-                        </md-input-container>
-                    </div>
-
-                    <div layout="row">
-                        <div layout="row">
-                            <div layout="column">
-                                <md-datepicker class="no-bottom no-pad-bottom top10" name="joinDate" ng-model="date.start" required md-placeholder="Join Date (Required)"></md-datepicker>
-                            </div>
-
-                            <div layout="column">
-                                <md-datepicker class="no-bottom no-pad-bottom top10" name="expireDate" ng-model="date.expire" required md-placeholder="Expire Date (Required)"></md-datepicker>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div layout="row">
-                <div layout="column" flex="100" ng-if="userData.isAdmin || userData.isDmdiiAdmin"
-                    ui-widget-rich-text
-                    field-name="fieldName"
-                    is-required="true"
-                    model="company.organization.description"
-                    limit="descriptionLimit"
-                    is-saved="isSaved"
-                    is-valid="isValid">
-                </div>
-                <div layout="column" flex="100"
-                    ng-if="!userData.isAdmin && !userData.isDmdiiAdmin"
-                    markdown-to-html="company.organization.description">
-                </div>
-            </div>
-
-            <div layout="column">
-                <!-- <div layout="row" ng-if="userData.isAdmin || userData.isDmdiiAdmin">
-                    <md-autocomplete flex="45"
-                        md-input-name="coreCpabilites"
-                        md-items="tag in queryTagSearch(searchWellTag)"
-                        md-search-text="searchWellTag"
-                        md-selected-item="selectedWellTag"
-                        md-selected-item-change="addWellTag(selectedWellTag)"
-                        md-item-text="tag.name"
-                        md-floating-label="Core Capabilities">
-                        <md-item-template>
-                          <span md-highlight-text="searchWellTag">{{tag.name}}</span>
-                        </md-item-template>
-                        <md-not-found>
-                          No Tags matching "{{searchWellTag}}" were found.
-                        </md-not-found>
-                    </md-autocomplete>
-                    <span flex></span>
-
-                    <md-autocomplete flex="45"
-                        md-input-name="seeking"
-                        md-items="tag in queryTagSearch(searchSeekTag)"
-                        md-search-text="searchSeekTag"
-                        md-selected-item="selectedSeekTag"
-                        md-selected-item-change="addSeekTag(selectedSeekTag)"
-                        md-item-text="tag.name"
-                        md-floating-label="Seeking Collaboration">
-                        <md-item-template>
-                          <span md-highlight-text="searchSeekTag">{{tag.name}}</span>
-                        </md-item-template>
-                        <md-not-found>
-                          No Tags matching "{{searchSeekTag}}" were found.
-                        </md-not-found>
-                    </md-autocomplete>
-                </div> -->
-
-                <!-- <div layout="row">
-                    <div layout="row" layout-wrap flex="45">
-                        <div layout="column">
-                            <span class="no-bottom" flex>Selected Core Capabilities (Click tag to remove)</span>
-                            <div layout="row" layout-wrap>
-                                <md-chips ng-repeat="area in company.organization.areasOfExpertise track by $index">
-                                    <md-chip ng-click="(userData.isAdmin || userData.isDmdiiAdmin) && removeWellTag($index)">
-                                        <span>{{area.name}}</span>
-                                    </md-chip>
-                                </md-chips>
-                            </div>
-                        </div>
-                    </div>
-
-                    <span flex></span>
-
-                    <div layout="row" layout-wrap flex="45">
-                        <div layout="column">
-                            <span class="no-bottom" flex>Selected Seeking Collaborations (Click tag to remove)</span>
-                            <div layout="row" layout-wrap>
-                                <md-chips ng-repeat="area in company.organization.desiredAreasOfExpertise track by $index">
-                                    <md-chip ng-click="(userData.isAdmin || userData.isDmdiiAdmin) && removeSeekTag($index)">
-                                        <span>{{area.name}}</span>
-                                    </md-chip>
-                                </md-chips>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
-            <div layout="column" ng-show="userData.isAdmin || userData.isDmdiiAdmin">
-                <h3 class="no-bottom">Contacts</h3>
-                <div layout="row">
-                    <div layout="column" flex="20">
-                        <md-input-container>
-                            <label>First Name</label>
-                            <input id="contactFirstName"
-                                ng-model="contact.firstName">
-                        </md-input-container>
-                        <md-input-container>
-                            <label>Last Name</label>
-                            <input id="contactLastName"
-                                ng-model="contact.lastName">
-                        </md-input-container>
-                        <md-input-container md-no-float>
-                            <label>Email</label>
-                            <input id="contactEmail"
-                                ng-model="contact.email">
-                        </md-input-container>
-                        <md-input-container>
-                            <label>Contact Type</label>
-                            <md-select id="contactType"
-                                ng-model="contact.contactType" ng-model-options="{trackBy: '$value.id'}">
-                                <md-option ng-repeat="type in contactTypes" ng-value="type">{{type.type}}</md-option>
-                            </md-select>
-                        </md-input-container>
-                        <md-button class="md-raised" ng-click="addContact()">Add Contact</md-button>
-                    </div>
-                    <span flex></span>
-
-                    <div layout="row" flex="75" layout-align="start start" layout-wrap>
-                        <md-chips ng-repeat="contact in company.contacts track by $index">
-                            <md-chip ng-click="(userData.isAdmin || userData.isDmdiiAdmin) && removeContact($index)">
-                                <span>
-                                    <strong>{{contact.firstName + ' ' + contact.lastName}}</strong>
-                                    <em>{{contact.email}}</em>
-                                </span>
-                            </md-chip>
-                        </md-chips>
-                    </div>
-                </div>
-            </div>
-
-            <!-- <div layout="column" ng-show="userData.isAdmin || userData.isDmdiiAdmin">
-                <h3 class="no-bottom">Recognitions</h3>
-                <div layout="row">
-                    <div layout="column" flex="20">
-                        <md-input-container md-no-float>
-                            <input id="awardName"
-                                ng-model="award.name"
-                                placeholder="Recognition Name">
-                        </md-input-container>
-                        <md-input-container md-no-float>
-                            <textarea id="awardDescription"
-                                ng-model="award.description"
-                                columns="4"
-                                md-maxlength="250"
-                                placeholder="Recognition Description"></textarea>
-                        </md-input-container>
-                        <md-input-container md-no-float>
-                            <input id="awardLink"
-                                ng-model="award.link"
-                                placeholder="Recognition Link (Optional)">
-                        </md-input-container>
-                        <md-button class="md-raised" ng-click="addAward()">Add Award</md-button>
-                    </div>
-                    <span flex></span>
-                    <div layout="row" flex="75" layout-wrap>
-                        <div flex="20" ng-repeat="award in company.organization.awards track by $index">
-                            <span flex="5" ng-click="removeAward($index)">x</span>
-                            <h4 class="no-top">{{award.name}}</h4>
-                            <p>{{award.description}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+          </div>
         </div>
+
     </md-content>
 </div>
 </section>
