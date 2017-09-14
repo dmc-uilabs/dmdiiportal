@@ -36,11 +36,11 @@
                         ui-sref="company-profile-edit({companyId: company.id})">
                         Edit Company
                     </md-button>
-                    <md-button ng-if="(userData.isAdmin || userData.isDmdiiAdmin) && userData.isDMDIIMember"
+                    <!-- <md-button ng-if="(userData.isAdmin || userData.isDmdiiAdmin) && userData.isDMDIIMember"
                         class="md-raised dmc-button"
                         href="edit-member-page.php#/{{company.id}}/edit">
                         Edit DMDII Member Profile
-                    </md-button>
+                    </md-button> -->
                     <md-button ng-if="userData.isDmdiiAdmin"
                         class="md-raised dmc-button"
                         href=""
@@ -165,7 +165,7 @@
     </md-content>
 </md-tab>
 
-<md-tab label="Projects">
+<!-- <md-tab label="Projects">
     <md-content class="tab-content">
         <div layout="row" class="text-row">
             <div layout="column" flex="50" class="padding-right8">
@@ -179,9 +179,9 @@
         <div layout="row" flex="50" class="padding-left8">
             <h2>Collaboration Interests</h2>
             <md-chips ng-repeat="skill in company.desiredAreasOfExpertise track by $index">
-                <md-chip>
+                <md-chip> -->
                     <!-- <a ng-href="{{'search.php#/companies?text='+skill.name}}">{{skill.name}}</a> -->
-                    {{skill.name}}
+                    <!-- {{skill.name}}
                 </md-chip>
             </md-chips>
         </div>
@@ -199,7 +199,7 @@
             </div>
         </div>
     </md-content>
-</md-tab>
+</md-tab> -->
 
 <!-- <md-tab label="HISTORY">
     <ui-widget-tabs-history data="history"></ui-widget-tabs-history>
@@ -263,16 +263,16 @@
     </div>
 </md-tab>
 
-<md-tab label="Membership">
+<md-tab ng-if="company.dmdiiMemberId && userData.isDMDIIMember" label="DMDII Member Profile">
     <md-content class="tab-projects" layout="row">
         <div layout="column" flex="33" class="padding-left8" ng-if="company.dmdiiMemberId">
             <h2>DMDII Profile</h2>
             <a href="{{'member-page.php#/' + company.dmdiiMemberId}}">{{company.name}}</a>
         </div>
-        <div layout="column" flex="33" class="padding-left8">
+        <!-- <div layout="column" flex="33" class="padding-left8">
             <h2>Reason for Joining DMDll</h2>
             <p>{{company.reasonJoining}}</p>
-        </div>
+        </div> -->
     </md-content>
 </md-tab>
 <md-tab label="VPC" ng-if="userData.isAdmin || userData.isMember || userData.isDmdiiAdmin">

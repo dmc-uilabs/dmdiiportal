@@ -1,6 +1,14 @@
 <div class="space-header">
 </div>
 
+<!-- The banner below is not seen: it is only used to 'push'
+    other content down when a banner is added to the header-->
+<div class="header-banner" ng-if="showBanner">
+  <div class="banner-msg">
+    {{bannerMessage}}
+  </div>
+</div>
+
 <div style="display: none;" id="bannerMsg">_</div>
 
 <header class='main-header' layout="column"  ng-click="closeMenu()">
