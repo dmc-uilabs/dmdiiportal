@@ -28,3 +28,13 @@
 .videosacademia video {
   width:100%;
 }
+
+.hoverTable{
+    width:100%;
+    border-collapse:collapse;
+}
+.hoverTable tr:hover {
+    td{
+      background-color: #E8E8E8;
+    }
+}
