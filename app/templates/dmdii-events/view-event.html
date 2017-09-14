@@ -58,8 +58,8 @@
 				<div class="col-xs-12">
 					<h4>Summary</h4>
 					<div class="slim-margin" markdown-to-html="project.projectSummary"></div>
-					<h4>DMDII Contact</h4>
-					<div class="slim-margin">
+					<h4 ng-show="project.principalPointOfContact.firstName" style="margin-top: 30px;">DMDII Contact</h4>
+					<div ng-show="project.principalPointOfContact.firstName" class="slim-margin">
 						<div>{{project.principalPointOfContact.firstName}}  {{project.principalPointOfContact.lastName}}</div>
 						<div style="color: grey;">{{project.principalPointOfContact.email}}</div>
 					</div>

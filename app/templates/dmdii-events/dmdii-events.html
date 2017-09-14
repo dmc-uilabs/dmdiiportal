@@ -99,19 +99,28 @@
 
 					<div class="event-block">
 					<div class="row">
-						<a ng-href="/dmdii-project-page.php#/event/{{event.id}}" ng-click="selectEvent(event)"><h2 class="col-sm-9" style="outline: 0;">{{event.name}}</h2></a>
 
-						<div class="column col-sm-3">
-							<h3>Start</h3>
+							<a class="col-sm-12" ng-href="/dmdii-project-page.php#/event/{{event.id}}" ng-click="selectEvent(event)">
+								<h2 style="outline: 0;">{{event.name}}</h2>
+							</a>
+
+						</div>
+						<div class="row">
+
+						<div class="column col-sm-12 dates">
 							<time>{{event.date}}</time>
-							<h3>End</h3>
-							<time>{{event.endDate}}</time>
-							<a ng-href="/dmdii-project-page.php#/event/{{event.id}}" ng-click="selectEvent(event)"><h6>EVENT DETAILS</h6></a>
+							<span ng-if="event.date != event.endDate">
+								<span> - </span>
+								<time>{{event.endDate}}</time>
+							</span>
+							<!-- <a ng-href="/dmdii-project-page.php#/event/{{event.id}}" ng-click="selectEvent(event)"><h6>EVENT DETAILS</h6></a> -->
 						</div>
 					</div>
-
-						<p markdown-to-html="event.description"></p>
-						<a ng-if="userData.isDmdiiAdmin" flex="10" href ng-click="deleteEvent($index, event.id)" class="delete-icon">delete <ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon></a>
+					<div class="row">
+						<p class="col-sm-12" markdown-to-html="event.description"></p>
+					</div>
+					<div class="row fade-bottom">
+					</div>
 
 					</div>
 
