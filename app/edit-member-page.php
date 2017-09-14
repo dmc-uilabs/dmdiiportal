@@ -18,7 +18,7 @@
 <div ui-view></div>
 <dmc-footer></dmc-footer>
 
-<?php include 'build-vendor.php' ?>
+<?php include 'build-vendor-rh.php' ?>
 
 <!-- build:js scripts/edit-member-page/index.js -->
 <script src="scripts/socket/socket.io.js"></script>

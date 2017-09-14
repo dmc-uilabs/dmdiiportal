@@ -63,6 +63,29 @@ ul  {
         }
     }
 }
+
+.portal-dropdowns{
+  max-height: 300px;
+  overflow: auto;
+}
+
+.portal-tabs{
+  a{
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+  .toggle-control{
+    &.collapsed{
+      h4{
+        //text-decoration: underline;
+      }
+    }
+  }
+
+}
+
 .delete-button {
     margin: 20px 0;
     display:block;
@@ -74,10 +97,10 @@ ul  {
     padding:0;
 
     li {
-    border-top:1px solid $border-color;
+    //border-top:1px solid $border-color;
     padding: 15px 30px 15px 0;
     .delete-icon {
-        position:absolute;
+        //position:absolute;
         right:0;
         color:$gray;
     }
@@ -448,4 +471,3 @@ h3.row {
 .margin-right-none {
     margin-right: 0px;
 }
-

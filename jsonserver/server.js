@@ -63,6 +63,7 @@ server.use(jsonServer.rewriter({
     '/dmdiiProject/events/:id': '/dmdiiProjectEvents/:id',
     '/dmdiiProject/news': '/dmdiiProjectNews',
     '/dmdiiprojects/member/active': '/dmdiiprojectsmembersactive',
+    '/dmdiiprojects/member': '/dmdiiprojectsmembersactive',
     '/dmdiiProject/:id': '/dmdiiProjects/:id',
     '/dmdiidocuments/dmdiiProjectId': '/dmdiidocuments',
     '/dmdiidocument/filetype': '/dmdiidocument',

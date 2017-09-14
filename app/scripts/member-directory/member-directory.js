@@ -27,6 +27,7 @@ angular.module('dmc.members', [
     'dmc.component.horizontalmenu',
     'dmc.widgets.tasks',
     'dmc.widgets.tabs',
+    'dmc.recent-updates',
     'datamaps'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
