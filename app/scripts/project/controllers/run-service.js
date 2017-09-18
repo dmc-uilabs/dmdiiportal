@@ -530,14 +530,16 @@ angular.module('dmc.project')
                       if (!$scope.service.interfaceModel.inParams[key].value){
                         return true;
                       }
+                      if (!document.getElementById($scope.service.interfaceModel.inParams[key].name)){
+                        return true;
+                      }
                   }
               } else {
                 return true;
               }
               return false;
             }
-
-
+            
         }
     ]
 );
