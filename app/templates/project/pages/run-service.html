@@ -15,7 +15,7 @@
       Cancel
     </md-button>
 
-    <md-button ng-disabled="isRunning()" ng-click="run()" class="md-raised md-primary">
+    <md-button ng-disabled="isRunning() || allInputsNotFilled()" ng-click="run()" class="md-raised md-primary">
       Run
     </md-button>
 
@@ -79,8 +79,8 @@
       <md-button ng-disabled="!isRunning()" ng-click="cancelServiceRun($event,service)" class="md-raised md-warn">
         Cancel
       </md-button>
-			<md-button ng-disabled="isRunning()" ng-click="run()" class="md-raised md-primary">
-				Run
+			<md-button ng-disabled="isRunning() || allInputsNotFilled()" ng-click="run()" class="md-raised md-primary">
+				Run!
 			</md-button>
 		</div>
 	</div>
@@ -102,14 +102,14 @@
 				<h2>Inputs</h2>
 				<div class="inputs-button ">
 					<md-button ng-disabled="!isChangedValues" ng-click="default()" class="md-raised  dmc-button margin-left20">
-						Default
+						Default Values
 					</md-button>
-					<md-button ng-disabled="!isChangedOrder" ng-click="reset()" class="md-raised  dmc-button margin-left20">
+					<!-- <md-button ng-disabled="!isChangedOrder" ng-click="reset()" class="md-raised  dmc-button margin-left20">
 						Reset Order
 					</md-button>
 					<md-button ng-disabled="!isChangedOrder" ng-click="save()" class="md-raised md-primary dmc-button margin-left20">
 						Save Order
-					</md-button>
+					</md-button> -->
 				</div>
 			</div>
 
@@ -122,6 +122,9 @@
             </md-select>
             <md-select ng-show="inputFile.projectModel" placeholder="Select File" ng-model="inputFile.projectModelFile" ng-change="setinputFileValue(inputFile.projectModelFile)">
                 <md-option ng-repeat="f in projectFiles" ng-value="{{f}}">{{f.documentName}}</md-option>
+
+                <!-- HERE -->
+
             </md-select>
           </div>
         </div>
@@ -133,6 +136,9 @@
 							<label>{{item.name}}</label>
                 <input maxlength="600" ng-change="changedValue()" ng-model="item.value" ng-if="item.type != 'File'">
 							 <input type="file" file-upload-model="item.value" ng-if="item.type == 'File'">
+
+               <!-- HERE -->
+
 							</md-input-container>
 						</div>
 						<div flex="50" class="right">

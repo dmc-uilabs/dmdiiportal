@@ -522,6 +522,11 @@ angular.module('dmc.project')
 
             };
 
+            $scope.allInputsNotFilled = function(){
+              return true;  
+            }
+
+
         }
     ]
 );
