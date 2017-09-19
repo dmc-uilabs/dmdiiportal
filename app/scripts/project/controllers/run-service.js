@@ -522,21 +522,27 @@ angular.module('dmc.project')
 
             };
 
-            $scope.allInputsNotFilled = function(){
-
-              if($scope.service.interfaceModel && $scope.service.interfaceModel.inParams) {
-                  for (var key in $scope.service.interfaceModel.inParams) {
-                      // Escape double quotes since values will be passed as JSON strings
-                      if (!$scope.service.interfaceModel.inParams[key].value){
-                        return true;
-                      }
-                      if (!document.getElementById($scope.service.interfaceModel.inParams[key].name && $scope.hasCustomUI)){
-                        return true;
-                      }
+            $scope.allInputsNotFilled = function()
+            {
+              if($scope.service.interfaceModel && $scope.service.interfaceModel.inParams)
+              {
+                for (var key in $scope.service.interfaceModel.inParams)
+                {
+                  // Escape double quotes since values will be passed as JSON strings
+                  if (!$scope.service.interfaceModel.inParams[key].value)
+                  {
+                    return true;
                   }
-              } else {
-                  return true;
+                  // if (!document.getElementById($scope.service.interfaceModel.inParams[key].name && $scope.hasCustomUI == true))
+                  // {
+                  //   return true;
+                  // }
                 }
+              }
+              else
+              {
+                return true;
+              }
               return false;
             }
 
