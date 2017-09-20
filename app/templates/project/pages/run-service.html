@@ -122,9 +122,6 @@
             </md-select>
             <md-select ng-show="inputFile.projectModel" placeholder="Select File" ng-model="inputFile.projectModelFile" ng-change="setinputFileValue(inputFile.projectModelFile)">
                 <md-option ng-repeat="f in projectFiles" ng-value="{{f}}">{{f.documentName}}</md-option>
-
-                <!-- HERE -->
-
             </md-select>
           </div>
         </div>
@@ -136,9 +133,6 @@
 							<label>{{item.name}}</label>
                 <input maxlength="600" ng-change="changedValue()" ng-model="item.value" ng-if="item.type != 'File'">
 							 <input type="file" file-upload-model="item.value" ng-if="item.type == 'File'">
-
-               <!-- HERE -->
-
 							</md-input-container>
 						</div>
 						<div flex="50" class="right">
