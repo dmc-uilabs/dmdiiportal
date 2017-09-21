@@ -28,7 +28,7 @@
 
 
 					<div layout="column">
-						<div layout="row" ng-repeat="item in history.interface.inputs | filter:resultsFilter">
+						<div layout="row" ng-repeat="item in history.interface.inputs | filter:resultsFilter" class="service-output">
 							<div flex="35"style="margin-right: 10px;">
 							<b>{{item.name}}:</b>
 						</div>
@@ -37,7 +37,7 @@
 								{{item.unit}}
 							</div>
 							<div flex="65" ng-if="item.value.includes('http')">
-								<md-button class="md-primary md-raised" style="margin-top:-10px" href = {{item.value}}>view file</md-button>
+								<a href = {{item.value}} style="color:#65AF3F">view file</a>
 							</div>
 						</div>
 					</div>
@@ -51,7 +51,7 @@
 				<md-content>
 
 					<div layout="column">
-						<div layout="row" ng-repeat="item in outputParamsToArray(history.interface.outParams) | filter:resultsFilter">
+						<div layout="row" ng-repeat="item in outputParamsToArray(history.interface.outParams) | filter:resultsFilter" class="service-output">
 							<div flex="35"style="margin-right: 10px;">
 							<b>{{item.name}}:</b>
 							</div>
@@ -60,7 +60,7 @@
 								{{item.unit}}
 							</div>
 							<div flex="65" ng-if="item.value.includes('http')">
-								<md-button class="md-primary md-raised" style="margin-top:-10px"  href = {{item.value}}>view file</md-button>
+								<a href = {{item.value}} style="color:#65AF3F">view file</a>
 								{{item.unit}}
 							</div>
 						</div>
