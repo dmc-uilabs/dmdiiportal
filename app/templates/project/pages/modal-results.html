@@ -55,6 +55,9 @@
 							<div flex="35"style="margin-right: 10px;">
 							<b>{{item.name}}:</b>
 							</div>
+							<div flex="65" ng-if="!item.value.includes('http')">
+								{{item.balue}}
+							</div>
 							<div flex="65" ng-if="item.value.includes('http')">
 								<md-button class="md-primary md-raised" style="margin-top:-10px"  href = {{item.value}}>view file</md-button>
 							</div>
