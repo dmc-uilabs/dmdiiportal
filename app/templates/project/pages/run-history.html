@@ -27,7 +27,8 @@
                 <th name="Run Date" order-by="startDate"></th>
                 <th name="Run By" order-by="runBy"></th>
                 <!-- <th name="Run Time" order-by="runTime"></th> -->
-                <th name="Results" order-by="status"></th>
+                <th name="Status" order-by="status"></th>
+								<th name="Results" order-by="status"></th>
             </tr>
             </thead>
             <tbody>
@@ -42,7 +43,10 @@
                     {{item.runTime}}s.
                 </td> -->
                 <td ng-style="{color: (item.status == '1' ? '#65AF3F': (item.status == '-1' ? 'red' : 'orange'))}">
-                    <a ng-click="openResults(item)">{{(item.status == 1 ? 'success' : (item.status == -1 ? 'error' : 'running' ))}}</a>
+                  {{(item.status == 1 ? 'success' : (item.status == -1 ? 'error' : 'running' ))}}
+                </td>
+								<td ng-style="{color: (item.status == '1' ? '#65AF3F': (item.status == '-1' ? 'red' : 'orange'))}">
+                    <a ng-click="openResults(item)">{{(item.status == 1 ? 'View Results' : (item.status == -1 ? 'View Results' : 'View Results' ))}}</a>
                 </td>
             </tr>
             <tr ng-if="history.length == 0">
