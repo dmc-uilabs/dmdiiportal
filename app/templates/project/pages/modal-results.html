@@ -56,10 +56,12 @@
 							<b>{{item.name}}:</b>
 							</div>
 							<div flex="65" ng-if="!item.value.includes('http')">
-								{{item.balue}}
+								{{item.value}}
+								{{item.unit}}
 							</div>
 							<div flex="65" ng-if="item.value.includes('http')">
 								<md-button class="md-primary md-raised" style="margin-top:-10px"  href = {{item.value}}>view file</md-button>
+								{{item.unit}}
 							</div>
 						</div>
 					</div>
