@@ -68,7 +68,15 @@
 									</div>
 									<div role="tabpanel" class="tab-pane fade " id="event-list" style="max-height: 500px; overflow-y: scroll;">
 
-										<div class="event-list" ng-repeat="event in events">
+										<div class="event-filter-tabs">
+											<div class="row">
+												<a ng-repeat="eventFilter in eventFilters track by $index" ng-click="selectEventListFilter($index)" href="" class="col-xs-4" ng-class="{selected: eventFilter.isSelected}">
+													{{eventFilter.name}}
+												</a>
+											</div>
+										</div>
+
+										<div class="event-list" ng-repeat="event in events | filter: eventListFilter">
 
 										<div class="event-block">
 										<div class="row">
