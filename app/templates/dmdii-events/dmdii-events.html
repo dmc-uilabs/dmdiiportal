@@ -66,7 +66,7 @@
 										</tien-clndr>
 
 									</div>
-									<div role="tabpanel" class="tab-pane fade " id="event-list" style="max-height: 500px; overflow-y: scroll;">
+									<div role="tabpanel" class="tab-pane fade " id="event-list">
 
 										<div class="event-filter-tabs">
 											<div class="row">
@@ -76,9 +76,9 @@
 											</div>
 										</div>
 
-										<div class="event-list" ng-repeat="event in events | filter: eventListFilter">
+										<div style="max-height: 500px; overflow: auto;" class="event-list">
 
-										<div class="event-block">
+										<div ng-repeat="event in events | filter: eventListFilter" class="event-block">
 										<div class="row">
 											<h5 style="outline: 0;"ng-click="eventClicked(event)" class="col-sm-9">{{event.name}}</h5>
 											<div class="column col-sm-3">
