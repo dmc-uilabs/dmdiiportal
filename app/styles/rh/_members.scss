@@ -148,7 +148,6 @@ div.list-wrapper {
 .event-filter-tabs {
 	padding: 0px 40px;
 	margin: 0px 0px 30px;
-	// border-bottom: 1px solid $border-color;
 	.row {
 		a {
 			padding: 5px 0px;
@@ -157,13 +156,35 @@ div.list-wrapper {
 			text-transform: uppercase;
 			font-size: .8em;
 			color: $white;
-			background: $gray;
+			background: lightgray;
 			text-decoration: none;
 			outline: 0;
 			&.selected {
 				background: $brand-primary;
 			}
 		}
-		// border: 1px solid grey;
 	}
+}
+
+.view-event {
+	padding: 0px;
+	font-size: .9em;
+	&:hover {
+		color: $brand-primary;
+		text-decoration: none;
+	}
+	ng-md-icon {
+		margin-left: 2px;
+		svg{
+			margin-bottom: -3px;
+		}
+		fill: $brand-primary;
+	}
+}
+
+ng-md-icon {
+	svg{
+		margin: 0px -4px -4px 0px;
+	}
+	fill: $brand-primary;
 }
