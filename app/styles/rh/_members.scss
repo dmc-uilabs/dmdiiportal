@@ -169,16 +169,19 @@ div.list-wrapper {
 .view-event {
 	padding: 0px;
 	font-size: .9em;
-	&:hover {
-		color: $brand-primary;
-		text-decoration: none;
-	}
 	ng-md-icon {
 		margin-left: 2px;
 		svg{
 			margin-bottom: -3px;
 		}
 		fill: $brand-primary;
+	}
+	&:hover{
+		color: $color-dark;
+		text-decoration: none;
+		svg {
+			fill: $color-dark;
+		}
 	}
 }
 
