@@ -205,6 +205,43 @@ angular.module('dmc.dmdiiEvents')
                     }
                 }
             }
+
+            $scope.eventFilters = [
+              {
+                name: "Upcoming", isSelected: true,
+                filterFunct: function(ev) {
+                  return Date.parse(ev.awardedDate) >= Date.now() || Date.parse(ev.endDate) >= Date.now();
+                }
+              },
+              {
+                name: "Historical",
+                filterFunct: function(ev) {
+                  return Date.parse(ev.awardedDate) < Date.now() || Date.parse(ev.endDate) < Date.now();
+                }
+              },
+              {
+                name: "All",
+                filterFunct: function(date) {
+                  return true;
+                }
+              }
+            ]
+
+            $scope.selectEventListFilter = function(filterIndex) {
+              $scope.eventFilters.forEach(function(eventFilter, i){
+                if (i==filterIndex) {
+                  eventFilter.isSelected = true;
+                } else {
+                  eventFilter.isSelected = false;
+                }
+              })
+            }
+
+            $scope.eventListFilter = function(event) {
+              var currentFilter = $scope.eventFilters.filter(function(eventFilter){return eventFilter.isSelected})[0];
+              return currentFilter.filterFunct(event);
+            }
+
         }
     ]
 )

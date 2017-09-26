@@ -100,7 +100,8 @@ div.list-wrapper {
 
 .event-list {
 	.event-block {
-		padding:30px;
+		padding: 30px 0px;
+		margin: 0px 30px;
 		border-bottom:1px solid $border-color;
 		&:first-of-type{
 			padding-top:0;
@@ -108,7 +109,6 @@ div.list-wrapper {
 		&:last-of-type {
 			border-bottom:none;
 		}
-
 		.dates {
 			font-weight: bold;
 			font-size: .8em;
@@ -119,6 +119,9 @@ div.list-wrapper {
 			font-weight:300;
 			font-size:24px;
 			line-height:24px;
+		}
+		h5 {
+			margin: 0px 0px -5px;
 		}
 		p {
 			margin-top:10px;
@@ -142,4 +145,51 @@ div.list-wrapper {
 .hoverinfo {
 	padding: 5px 10px;
 	text-align: left;
+}
+
+.event-filter-tabs {
+	padding: 0px 40px;
+	margin: 0px 0px 30px;
+	.row {
+		a {
+			padding: 5px 0px;
+			text-align: center;
+			border: 1px solid white;
+			text-transform: uppercase;
+			font-size: .8em;
+			color: $white;
+			background: lightgray;
+			text-decoration: none;
+			outline: 0;
+			&.selected {
+				background: $brand-primary;
+			}
+		}
+	}
+}
+
+.view-event {
+	padding: 0px;
+	font-size: .9em;
+	ng-md-icon {
+		margin-left: 2px;
+		svg{
+			margin-bottom: -3px;
+		}
+		fill: $brand-primary;
+	}
+	&:hover{
+		color: $color-dark;
+		text-decoration: none;
+		svg {
+			fill: $color-dark;
+		}
+	}
+}
+
+ng-md-icon {
+	svg{
+		margin: 0px -4px -4px 0px;
+	}
+	fill: $brand-primary;
 }
