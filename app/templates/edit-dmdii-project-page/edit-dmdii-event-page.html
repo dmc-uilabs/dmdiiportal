@@ -14,8 +14,8 @@
         <div layout="row">
             <div layout="column" flex class="inputs-top">
                 <h3 class="no-bottom" style="border-bottom: 1px solid grey; margin-top: 30px;">Title, Dates and Description</h3>
-                <div layout="row" layout-md="column" style="min-height: 75px;">
-                    <md-input-container flex="50" class="project-name">
+                <div layout="row" layout-sm="column">
+                    <md-input-container flex="50" class="project-name" style="min-height: 75px;">
                         <label>Title (Required)</label>
                         <input ng-model="project.projectTitle"
                                ng-disabled="!user.isDmdiiAdmin"
