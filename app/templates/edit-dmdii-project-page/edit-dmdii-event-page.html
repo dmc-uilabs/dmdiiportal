@@ -14,7 +14,7 @@
         <div layout="row">
             <div layout="column" flex class="inputs-top">
                 <h3 class="no-bottom" style="border-bottom: 1px solid grey; margin-top: 30px;">Title, Dates and Description</h3>
-                <div layout="row" layout-md="column">
+                <div layout="row" layout-md="column" style="min-height: 75px;">
                     <md-input-container flex="50" class="project-name">
                         <label>Title (Required)</label>
                         <input ng-model="project.projectTitle"
@@ -48,7 +48,9 @@
                 model="project.projectSummary"
                 limit="descriptionLimit"
                 is-saved="isSaved"
-                is-valid="isValid">
+                is-valid="isValid"
+                placeholder="  "
+                >
               </div>
 
 
