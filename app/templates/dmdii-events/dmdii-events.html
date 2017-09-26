@@ -80,12 +80,16 @@
 
 										<div ng-repeat="event in events | filter: eventListFilter" class="event-block">
 										<div class="row">
-											<h5 style="outline: 0;" class="col-sm-9">
+											<h5 style="outline: 0;" class="col-sm-12">
 												<a ng-href="/dmdii-project-page.php#/event/{{event.id}}">{{event.name}}</a>
 											</h5>
 											<!-- previously using this func above to 'drill in' to summary view ng-click="eventClicked(event)"  -->
-											<div class="column col-sm-3">
+											<div class="column col-sm-12 dates">
 												<time datetime="2011-01-12">{{event.date}}</time>
+												<span ng-if="event.date != event.endDate">
+													<span> -- </span>
+													<time>{{event.endDate}}</time>
+												</span>
 												<!-- <a ui-sref="view_event" ng-click="selectEvent(event)"><h6>EVENT DETAILS</h6></a> -->
 											</div>
 										</div>
