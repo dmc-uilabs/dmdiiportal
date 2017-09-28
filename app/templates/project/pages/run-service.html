@@ -15,7 +15,7 @@
       Cancel
     </md-button>
 
-    <md-button ng-disabled="isRunning()" ng-click="run()" class="md-raised md-primary">
+    <md-button ng-disabled="isRunning() || attachmentUploadInProgress" ng-click="run()" class="md-raised md-primary">
       Run
     </md-button>
 
@@ -79,7 +79,7 @@
       <md-button ng-disabled="!isRunning()" ng-click="cancelServiceRun($event,service)" class="md-raised md-warn">
         Cancel
       </md-button>
-			<md-button ng-disabled="isRunning()" ng-click="run()" class="md-raised md-primary">
+			<md-button ng-disabled="isRunning() || attachmentUploadInProgress" ng-click="run()" class="md-raised md-primary">
 				Run
 			</md-button>
 		</div>
