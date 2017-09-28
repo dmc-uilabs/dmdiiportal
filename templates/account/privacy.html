@@ -1,0 +1,89 @@
+<div class="container container-account" layout="row" ng-if="userBasics.id">
+    <div class="content-column left-content margin-right12-5" layout="column" flex="20">
+        <div class="content-panel" account-menu account-id="accountId" page="page"></div>
+    </div>
+    <div class="content-column right-content margin-left12-5" layout="column" flex>
+        <div class="content-panel">
+            <div class="content-panel-body">
+                <md-content>
+                    <div class="header-right-content" layout="row">
+                        <div layout="column">
+                            <h2 class="md-title">{{title}}</h2>
+                            <h4> User information is treated as private. If you wish to make any fields public select the field and fill it out accordingly. </h4>
+                        </div>
+                        <span layout="column" flex></span>
+                        <md-button class="md-raised md-primary save-button" ng-click="saveChanges()">Save</md-button>
+                    </div>
+                    <div class="inputs-container" layout="row">
+                        <div layout="column" flex="50">
+                            <h2 class="md-title title-block">Public information</h2>
+                            <div layout="row">
+                                <div layout="column" flex="20" ng-repeat="(key,item) in information.public">
+                                    <md-checkbox
+                                        ng-init="enabled.public[key] = userBasics.userContactInfo.userPublicContactInfo[key] != null"
+                                        ng-model="enabled.public[key]"
+                                        ng-change="changedCheckbox('userPublicContactInfo', key)"
+                                        aria-label="{{item.title}}">{{item.title}}</md-checkbox>
+                                </div>
+                            </div>
+                            <div layout="row" ng-repeat="(key,item) in information.public" ng-if="enabled.public[key]">
+                                <md-input-container class="md-icon-float information-item" layout="column" flex id="{{'edit_public_'+key}}">
+                                    <label>{{item.title}}</label>
+                                    <md-icon ng-class="{'location-gps' : key == 'location'}" ng-click="key == 'location' && getLocation('userPublicContactInfo')">
+                                        <ng-md-icon icon="{{item.icon}}" size="26"></ng-md-icon>
+                                    </md-icon>
+                                    <input ng-if="key == 'phone'"
+                                           ng-model="userBasics.userContactInfo.userPublicContactInfo[key]"
+                                           phone-input>
+                                    <input ng-if="key != 'phone'"
+                                           ng-model="userBasics.userContactInfo.userPublicContactInfo[key]">
+                                </md-input-container>
+                            </div>
+                        </div>
+
+                        <div layout="column" flex="50">
+                            <h2 class="md-title title-block">Member Portal information</h2>
+                            <div layout="row">
+                                <div layout="column" flex="20" ng-repeat="(key,item) in information.memberPortal">
+                                    <md-checkbox
+                                        ng-init="enabled.memberPortal[key] = userBasics.userContactInfo.userMemberPortalContactInfo[key] != null"
+                                        ng-model="enabled.memberPortal[key]"
+                                        ng-change="changedCheckbox('userMemberPortalContactInfo', key)"
+                                        aria-label="{{item.title}}">{{item.title}}</md-checkbox>
+                                </div>
+                            </div>
+                            <div layout="row" ng-repeat="(key,item) in information.memberPortal" ng-if="enabled.memberPortal[key]">
+                                <md-input-container class="md-icon-float information-item" layout="column" flex id="{{'edit_memberPortal_'+key}}">
+                                    <label>{{item.title}}</label>
+                                    <md-icon ng-class="{'location-gps' : key == 'location'}" ng-click="key == 'location' && getLocation('userMemberPortalContactInfo')">
+                                        <ng-md-icon icon="{{item.icon}}" size="26"></ng-md-icon>
+                                    </md-icon>
+                                    <input ng-if="key == 'phone'"
+                                           ng-model="userBasics.userContactInfo.userMemberPortalContactInfo[key]"
+                                           phone-input>
+                                    <input ng-if="key != 'phone'"
+                                           ng-model="userBasics.userContactInfo.userMemberPortalContactInfo[key]">
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<md-divider ></md-divider>-->
+                    <!--<div class="inputs-container blocked-users" layout="row">-->
+                        <!--<div layout="column" flex="50">-->
+                            <!--<h2 class="md-title title-block">Blocked Users</h2>-->
+                            <!--<div layout="row">-->
+                                <!--<div class="blocked-user" ng-repeat="user in blockedUser">-->
+                                    <!--<a ng-href="/user?id={{user.id}}">{{user.fullName}}</a>-->
+                                    <!--<md-button class="md-icon-button" ng-click="deleteBlockedUser(user.id)" aria-label="Delete Blocked User">-->
+                                        <!--<ng-md-icon icon="clear" ng-style="{'fill' : '#444'}" size="26"></ng-md-icon>-->
+                                    <!--</md-button>-->
+                                <!--</div>-->
+                                <!--<div class="empty-blocked-list" ng-show="blockedUser.length == 0">List is empty</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </md-content>
+            </div>
+        </div>
+    </div>
+</div>

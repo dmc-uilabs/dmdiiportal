@@ -1,0 +1,48 @@
+<main class="container">
+
+    <div class="row">
+        <div class="col-md-5 margin-left-20">
+            <a class="text-uppercase" ng-href="/marketplace.php">BACK TO RESOURCE CENTER</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4 col-md-4 media-column">
+            <img class="center-img" ng-src="{{resource.img}}" width="70%" height="" style="...">
+        </div>
+        <div class="col-sm-8 col-md-8 spacing-container info-column">
+            <div class="top-content-container">
+                <h2>
+                    {{resource.documentName}}
+                </h2>
+                <div>
+                    Release Date: {{resource.releaseDate}}
+                </div>
+                <div>
+                    Author: {{resource.ownerDisplayName}}
+                </div>
+            </div>
+            <div class="description-container">
+                <p ng-bind-html="resource.longDescription"></p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <ul class="nav nav-tabs margin-left-20" role="tablist" style="margin-bottom: -45px;">
+            <li role="presentation" class="active no-click-border" ng-click="adHocData('service_tags')"><a data-target="#tags" aria-controls="all-workspaces" role="tab" data-toggle="tab">TAGS</a></li>
+        </ul>
+    </div>
+
+    <div class="tab-content margin-left-20">
+        <div role="tabpanel" class="tab-pane fade in active" id="tags">
+            <div class="row margin-bottom-20">
+                <div class="chips" ng-repeat="tag in resource.tags track by $index">
+                    <div class="chip">
+                        {{tag.tagName}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>

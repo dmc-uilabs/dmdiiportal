@@ -1,0 +1,40 @@
+<div class="row margin-bottom-10">
+    <div ng-if="$ctrl.categorizedContent.contentType">
+        <div class="col-sm-3 col-md-3 media-column">
+            <ng-youtube-embed ng-if="$ctrl.categorizedContent.contentType === 'video'" video="$ctrl.categorizedContent.videoSource" width="100%" height="100%"></ng-youtube-embed>
+            <img ng-if="!($ctrl.categorizedContent.contentType === 'video')" ng-src="{{$ctrl.categorizedContent.imgLocation}}" width="100%" height="100%" style="max-height: 150px;">
+        </div>
+
+        <div class="col-sm-9 col-md-9 description-column border-left">
+            <h3 ng-if="$ctrl.categorizedContent.contentType != 'document' && $ctrl.categorizedContent.contentType != 'app'" class="border-bottom">{{$ctrl.categorizedContent.title}}</h3>
+            <h3 ng-if="$ctrl.categorizedContent.contentType === 'app'" class="border-bottom"><a ng-href="{{'/resource-profile.php#/app/' + $ctrl.categorizedContent.id}}">{{$ctrl.categorizedContent.title}}</a></h3>
+            <h3 ng-if="$ctrl.categorizedContent.contentType === 'document'" class="border-bottom"><a ng-href="{{'/resource-profile.php#/document/' + $ctrl.categorizedContent.id}}">{{$ctrl.categorizedContent.documentName}}</a></h3>
+
+            <div class="spacing-container">
+                <p ng-if="$ctrl.categorizedContent.contentType != 'document' && $ctrl.categorizedContent.contentType != 'integration'" ng-bind-html="$ctrl.categorizedContent.description"></p>
+                <p ng-if="$ctrl.categorizedContent.contentType === 'document' || $ctrl.categorizedContent.contentType === 'integration'" ng-bind-html="$ctrl.categorizedContent.shortDescription"></p>
+                <div class="row margin-left-0">
+                    <a class="col-sm-6 col-md-6 margin-left-0 padding-left-0" ng-if="$ctrl.categorizedContent.buttonText && $ctrl.categorizedContent.contentType != 'document' && $ctrl.categorizedContent.contentType != 'app'" href="{{$ctrl.categorizedContent.buttonLink}}">
+                        <button class="btn green-button content-button">{{$ctrl.categorizedContent.buttonText}}</button>
+                    </a>
+                    <div class="col-sm-6 col-md-6 margin-left-0 padding-left-0" ng-if="$ctrl.categorizedContent.contentType === 'document'">
+                        <button  ng-click="$ctrl.downloadFile($ctrl.categorizedContent.id)" class="btn green-button content-button">Download</button>
+                    </div>
+                    <div class="col-sm-6 col-md-6 margin-left-0 padding-left-0" ng-if="$ctrl.categorizedContent.contentType === 'app'">
+                      <button run-default-button class="btn green-button content-button" ng-click="saveToDefaultProject($ctrl.categorizedContent)">Run</button>
+                      <button class="btn green-button content-button margin-left-20" ng-disabled="!serviceMap[$ctrl.categorizedContent.id]" ng-click="$ctrl.redirectToServiceHistory(serviceMap[$ctrl.categorizedContent.id]['workspaceId'], serviceMap[$ctrl.categorizedContent.id]['serviceId'])">Run History</button>
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 margin-left-0 padding-left-0" ng-if="$ctrl.categorizedContent.contentType === 'integration'">
+                      <button run-default-button class="btn green-button content-button" ng-click="$ctrl.goToIntegration($ctrl.categorizedContent.link)">Run</button>
+                    </div>
+
+                    <div ng-if="$ctrl.categorizedContent.contentType === 'app' || $ctrl.categorizedContent.contentType === 'document'" class="fav-button-container col-sm-6 col-md-6 pull-right">
+                        <ng-md-icon ng-if="!$ctrl.categorizedContent.favorited" ng-click="$ctrl.favoriteContent()" class="pull-right fav-button" icon="favorite" style="fill: grey" size="25"></ng-md-icon>
+                        <ng-md-icon ng-if="$ctrl.categorizedContent.favorited" ng-click="$ctrl.unFavoriteContent()" class="pull-right fav-button" icon="favorite" style="fill: #84C641" size="25"></ng-md-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="container container-account" layout="row" ng-if="accountData.id">
+    <div class="content-column left-content margin-right12-5" layout="column" flex="20">
+        <div class="content-panel" account-menu account-id="accountId" page="page"></div>
+    </div>
+    <div class="content-column right-content margin-left12-5" layout="column" flex>
+        <div class="content-panel">
+            <div class="content-panel-body">
+                <md-content>
+                    <div class="header-right-content" layout="row">
+                        <div layout="column">
+                            <h2 class="md-title">{{title}}</h2>
+                        </div>
+                        <span layout="column" flex></span>
+                        <md-button class="md-raised cancel-button" ng-click="cancelChanges()" ng-disabled="changedItems.length == 0">Cancel</md-button>
+                        <md-button class="md-raised md-primary save-button" ng-click="saveChanges()" ng-disabled="changedItems.length == 0">Save</md-button>
+                    </div>
+                    <div class="inputs-container">
+                        <md-tabs md-dynamic-height md-border-bottom>
+                            <md-tab label="{{notification.title}}" ng-repeat="(key,notification) in notifications">
+                                <md-content class="md-padding">
+                                    <div class="top-container" layout="row">
+                                        <md-button class="md-raised disable-enable-button" ng-click="disableAll(key)">Deactivate All</md-button>
+                                        <md-button class="md-raised disable-enable-button" ng-click="enableAll(key)">Activate All</md-button>
+                                    </div>
+                                    <div layout="row" classs="body-container" layout-wrap>
+                                        <div class="block-notification" flex="50" ng-repeat="category in notification.data">
+                                            <h2>{{category.title}}</h2>
+                                            <div layout="row" flex="100"
+                                                 layout-align="start center"
+                                                 ng-repeat="item in category['account-notification-category-items']"
+                                                 ng-init="item.user_item.changedSelected = item.user_item.selected"
+                                                 ng-if="!item.hide">
+                                                <md-switch ng-model="item.user_item.changedSelected"
+                                                           aria-label="Switch notification"
+                                                           ng-change="changedNotification(item.user_item)">
+                                                </md-switch>
+                                                <span class="title-switch" ng-click="switchByText(item.user_item)">{{item.title}}</span>
+                                                <span flex></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </md-content>
+                            </md-tab>
+                        </md-tabs>
+                    </div>
+                </md-content>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<md-tabs md-dynamic-height md-border-bottom class="all-project-members ">
+    <md-tab label="Active">
+        <md-content class="md-padding">
+            <div layout="row" flex layout-align="space-between start" layout-wrap>
+                <div flex="45" class="one-member" ng-repeat="item in members track by $index">
+                    <div layout="row" flex="100" layout-align="start center">
+                        <div class="avatar">
+                            <img ng-src="{{item.image}}" alt="{{item.displayName}}"/>
+                        </div>
+                        <div class="info" flex>
+                            <div class="name" flex layout-align="start center">
+                                <h4><a href="/profile.php#/{{item.id}}">{{item.displayName}}</a><span>{{item.jobTitle}}</span></h4>
+                            </div>
+                            <div class="company-name" flex>
+                                <a href="/company.php#/{{item.companyId}}">{{item.company}}</a>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <md-button class="md-raised" ng-click="follow(item)">{{item.isFollow ? 'Unfollow' : 'Follow'}}</md-button>
+                            <md-button md-no-ink class="md-icon-button delete"
+                                       ng-click="delete($event,item)"
+                                       aria-label="Delete">
+                                <ng-md-icon icon="delete" size="25"></ng-md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </md-content>
+    </md-tab>
+    <md-tab label="Pending">
+        <md-content class="md-padding">
+            <div layout="row" flex layout-align="space-between start" layout-wrap>
+                <div flex="45" class="one-member" ng-repeat="item in requests track by $index" ng-if="!item.decline">
+                    <div layout="row" flex="100" layout-align="start center">
+                        <div class="avatar">
+                            <img ng-src="{{item.member.image}}" alt="{{item.member.displayName}}"/>
+                        </div>
+                        <div class="info" flex>
+                            <div class="name" flex layout-align="start center">
+                                <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a><span>{{item.member.jobTitle}}</span></h4>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <md-button class="md-raised decline" ng-click="decline(item)">
+                                Decline
+                            </md-button>
+                            <md-button class="md-raised approve" ng-click="approve(item)">
+                                Approve
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </md-content>
+    </md-tab>
+    <md-tab label="Removed">
+        <md-content class="md-padding">
+            <div layout="row" flex layout-align="space-between start" layout-wrap>
+                <div flex="45" class="one-member" ng-repeat="item in removedMembers track by $index">
+                    <div layout="row" flex="100" layout-align="start center">
+                        <div class="avatar">
+                            <img ng-src="{{item.member.image}}" alt="{{item.member.displayName}}"/>
+                        </div>
+                        <div class="info" flex>
+                            <div class="name" flex layout-align="start center">
+                                <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a><span>{{item.member.jobTitle}}</span></h4>
+                            </div>
+                            <div class="company-name" flex>
+                                <a href="/company.php#/{{item.member.companyId}}">{{item.member.company}}</a>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <md-button md-no-ink class="md-icon-button add"
+                                       ng-click="invite($event,item)"
+                                       aria-label="Invite to project">
+                                <ng-md-icon icon="group_add" size="25"></ng-md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </md-content>
+    </md-tab>
+</md-tabs>

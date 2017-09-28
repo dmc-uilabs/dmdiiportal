@@ -1,0 +1,396 @@
+<div layout="row">
+	<div flex="100">
+		<button class="md-raised md-primary save-button md-button md-default-theme" ng-click ="submit()">Submit</button>
+		<button class="md-raised md-primary save-button md-button md-default-theme" ng-click ="resetVpcToDefault()">Reset to Default</button>
+		<div>
+			<p>
+			<h2><span style="color:#65af3f">Manufacturing Processes</span></h2>
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('machining')">Machining</a></h3>
+			<div ng-show="machining" class="isActive width-50">
+				<button class="md-raised md-button" ng-click="addForm('machining')">Add Input</button>
+				<div ng-show="addMachiningItem" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input ng-model="newMachiningName" type="text" placeholder="Ex: Labor Rate">
+					<p>
+					<label>Value: </label>
+					<input ng-model="newMachiningValue" type="number" placeholder="10">
+					<p>
+					<label>Unit: </label>
+					<input ng-model="newMachiningUnit" type="text" placeholder="Dollars / Hour">
+					<p>
+					<label>Help: </label>
+					<input ng-model="newMachiningHelp" type="text" placeholder="Per Worker">
+					<button class="md-raised md-button" ng-click="addItem('Machining', newMachiningName, newMachiningValue, newMachiningUnit, newMachiningHelp)">Add</button>
+				</div>
+
+				<div class="col-sm-12">
+					<div class="item_vpe column" ng-repeat="machiningItem in vpc.Machining track by $index">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="title_vpe">
+									{{machiningItem.name}}
+								</div>
+								<div ng-if="machiningItem.help" class="help_vpe">
+									{{machiningItem.help}}
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<input class="input_vpe" ng-model="machiningItem.value" placeholder="59" type="number">
+								<div class="unit_vpe">
+								Unit: {{machiningItem.unit}}
+							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('Machining', $index)">Delete</md-button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('casting')">Casting</a></h3>
+			<div ng-show = "casting" class="isActive width-50">
+				<button class="md-raised md-button" ng-click="addForm('casting')">Add Input</button>
+				<div ng-show="addCastingItem" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input ng-model="newCastingName" type="text" placeholder="Ex: Labor Rate">
+					<p>
+						<label>Value: </label>
+						<input ng-model="newCastingValue" type="number" placeholder="10">
+					<p>
+						<label>Unit: </label>
+						<input ng-model="newCastingUnit" type="text" placeholder="Dollars / Hour">
+					<p>
+						<label>Help: </label>
+						<input ng-model="newCastingHelp" type="text" placeholder="Per Worker">
+						<button class="md-raised md-button" ng-click="addItem('Casting', newCastingName, newCastingValue, newCastingUnit, newCastingHelp)">Add</button>
+				</div>
+				<div class="col-sm-6">
+					<div class="item_vpe column" ng-repeat="castingItem in vpc.Casting track by $index">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="title_vpe">
+									{{castingItem.name}}
+								</div>
+								<div ng-if="castingItem.help" class="help_vpe">
+									{{castingItem.help}}
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<input class="input_vpe" ng-model="castingItem.value" placeholder="59" type="number">
+							<div class="unit_vpe">
+								Unit: {{castingItem.unit}}
+							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('Casting', $index)">Delete</md-button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('invCasting')">Investment Casting</a></h3>
+			<div ng-show="invCasting" class="isActive width-50">
+				<button class="md-raised md-button" ng-click="addForm('invCasting')">Add Input</button>
+				<div ng-show="addInvCastingItem" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input ng-model="newInvCastingName" type="text" placeholder="Ex: Labor Rate">
+					<p>
+						<label>Value: </label>
+						<input ng-model="newInvCastingValue" type="number" placeholder="10">
+					<p>
+						<label>Unit: </label>
+						<input ng-model="newInvCastingUnit" type="text" placeholder="Dollars / Hour">
+					<p>
+						<label>Help: </label>
+						<input ng-model="newInvCastingHelp" type="text" placeholder="Per Worker">
+						<button class="md-raised md-button" ng-click="addItem('Investment Casting', newInvCastingName, newInvCastingValue, newInvCastingUnit, newInvCastingHelp)">Add</button>
+				</div>
+				<div class="col-sm-6">
+					<div class="item_vpe column" ng-repeat="invCastingItem in vpc['Investment Casting'] track by $index">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="title_vpe">
+									{{invCastingItem.name}}
+								</div>
+								<div ng-if="invCastingItem.help" class="help_vpe">
+									{{invCastingItem.help}}
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<input class="input_vpe" ng-model="invCastingItem.value" placeholder="59" type="number">
+							<div class="unit_vpe">
+								Unit: {{invCastingItem.unit}}
+							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('Investment Casting', $index)">Delete</md-button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('welding')">Welding</a></h3>
+			<div ng-show ="welding" class="isActive width-50">
+				<button class="md-raised md-button" ng-click="addForm('welding')">Add Input</button>
+				<div ng-show="addWeldingItem" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input ng-model="newWeldingName" type="text" placeholder="Ex: Labor Rate">
+					<p>
+						<label>Value: </label>
+						<input ng-model="newWeldingValue" type="number" placeholder="10">
+					<p>
+						<label>Unit: </label>
+						<input ng-model="newWeldingUnit" type="text" placeholder="Dollars / Hour">
+					<p>
+						<label>Help: </label>
+						<input ng-model="newWeldingHelp" type="text" placeholder="Per Worker">
+						<button class="md-raised md-button" ng-click="addItem('Welding', newWeldingName, newWeldingValue, newWeldingUnit, newWeldingHelp)">Add</button>
+				</div>
+				<div class="col-sm-6">
+					<div class="item_vpe column" ng-repeat="weldingItem in vpc.Welding track by $index">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="title_vpe">
+									{{weldingItem.name}}
+								</div>
+								<div ng-if="weldingItem.help" class="help_vpe">
+									{{weldingItem.help}}
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<input class="input_vpe" ng-model="weldingItem.value" placeholder="59" type="number">
+							<div class="unit_vpe">
+								Unit: {{weldingItem.unit}}
+							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('Welding', $index)">Delete</md-button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<hr>
+			<h2><span style="color:#65af3f">Labor</span></h2>
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('genLabor')">General Labor</a></h3>
+			<div ng-show="genLabor" class="isActive width-50">
+				<button class="md-raised md-button" ng-click="addForm('generalLabor')">Add Input</button>
+				<div ng-show="addGeneralLaborItem" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input ng-model="newGeneralLaborName" type="text" placeholder="Ex: Labor Rate">
+					<p>
+						<label>Value: </label>
+						<input ng-model="newGeneralLaborValue" type="number" placeholder="10">
+					<p>
+						<label>Unit: </label>
+						<input ng-model="newGeneralLaborUnit" type="text" placeholder="Dollars / Hour">
+					<p>
+						<label>Help: </label>
+						<input ng-model="newGeneralLaborHelp" type="text" placeholder="Per Worker">
+						<button class="md-raised md-button" ng-click="addItem('General Labor', newGeneralLaborName, newGeneralLaborValue, newGeneralLaborUnit, newGeneralLaborHelp)">Add</button>
+				</div>
+				<div class="col-sm-6">
+					<div class="item_vpe column" ng-repeat="generalLaborItem in vpc['General Labor'] track by $index">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="title_vpe">
+									{{generalLaborItem.name}}
+								</div>
+								<div ng-if="generalLaborItem.help" class="help_vpe">
+									{{generalLaborItem.help}}
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<input class="input_vpe" ng-model="generalLaborItem.value" placeholder="59" type="number">
+							<div class="unit_vpe">
+								Unit: {{generalLaborItem.unit}}
+							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('General Labor', $index)">Delete</md-button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<hr>
+			<h2><span style="color:#65af3f">Finishing Processes</span></h2>
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('plating')">Plating</a></h3>
+			<div ng-show="plating" class="isActive width-50">
+				<button class="md-raised md-button" ng-click="addForm('plating')">Add Input</button>
+				<div ng-show="addPlatingItem" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input ng-model="newPlatingName" type="text" placeholder="Ex: Labor Rate">
+					<p>
+						<label>Value: </label>
+						<input ng-model="newPlatingValue" type="number" placeholder="10">
+					<p>
+						<label>Unit: </label>
+						<input ng-model="newPlatingUnit" type="text" placeholder="Dollars / Hour">
+					<p>
+						<label>Help: </label>
+						<input ng-model="newPlatingHelp" type="text" placeholder="Per Worker">
+						<button class="md-raised md-button" ng-click="addItem('Plating', newPlatingName, newPlatingValue, newPlatingUnit, newPlatingHelp)">Add</button>
+				</div>
+				<div class="col-sm-6">
+					<div class="item_vpe column" ng-repeat="platingItem in vpc.Plating track by $index">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="title_vpe">
+									{{platingItem.name}}
+								</div>
+								<div ng-if="platingItem.help" class="help_vpe">
+									{{platingItem.help}}
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<input class="input_vpe" ng-model="platingItem.value" placeholder="59" type="number">
+							<div class="unit_vpe">
+								Unit: {{platingItem.unit}}
+							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('Plating', $index)">Delete</md-button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('painting')">Painting</a></h3>
+			<div ng-show="painting" class="isActive width-50">
+				<button class="md-raised md-button" ng-click="addForm('painting')">Add Input</button>
+				<div ng-show="addPaintingItem" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input ng-model="newPaintingName" type="text" placeholder="Ex: Labor Rate">
+					<p>
+						<label>Value: </label>
+						<input ng-model="newPaintingValue" type="number" placeholder="10">
+					<p>
+						<label>Unit: </label>
+						<input ng-model="newPaintingUnit" type="text" placeholder="Dollars / Hour">
+					<p>
+						<label>Help: </label>
+						<input ng-model="newPaintingHelp" type="text" placeholder="Per Worker">
+						<button class="md-raised md-button" ng-click="addItem('Painting', newPaintingName, newPaintingValue, newPaintingUnit, newPaintingHelp)">Add</button>
+				</div>
+				<div class="col-sm-6">
+					<div class="item_vpe column" ng-repeat="paintingItem in vpc.Painting track by $index">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="title_vpe">
+									{{paintingItem.name}}
+								</div>
+								<div ng-if="paintingItem.help" class="help_vpe">
+									{{paintingItem.help}}
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<input class="input_vpe" ng-model="paintingItem.value" placeholder="59" type="number">
+							<div class="unit_vpe">
+								Unit: {{paintingItem.unit}}
+							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('Painting', $index)">Delete</md-button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('xray')">X-Ray Machine</a></h3>
+			<div ng-show="xray" class="isActive width-50">
+				<button class="md-raised md-button" ng-click="addForm('xRayMachine')">Add Input</button>
+				<div ng-show="addXRayMachineItem" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input ng-model="newXRayMachineName" type="text" placeholder="Ex: Labor Rate">
+					<p>
+						<label>Value: </label>
+						<input ng-model="newXRayMachineValue" type="number" placeholder="10">
+					<p>
+						<label>Unit: </label>
+						<input ng-model="newXRayMachineUnit" type="text" placeholder="Dollars / Hour">
+					<p>
+						<label>Help: </label>
+						<input ng-model="newXRayMachineHelp" type="text" placeholder="Per Worker">
+						<button class="md-raised md-button" ng-click="addItem('X-Ray Machine', newXRayMachineName, newXRayMachineValue, newXRayMachineUnit, newXRayMachineHelp)">Add</button>
+				</div>
+				<div class="col-sm-6">
+					<div class="item_vpe column" ng-repeat="xRayItem in vpc['X-Ray Machine'] track by $index">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="title_vpe">
+									{{xRayItem.name}}
+								</div>
+								<div ng-if="xRayItem.help" class="help_vpe">
+									{{xRayItem.help}}
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<input class="input_vpe" ng-model="xRayItem.value" placeholder="59" type="number">
+							<div class="unit_vpe">
+								Unit: {{xRayItem.unit}}
+							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('X-Ray Machine', $index)">Delete</md-button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<hr>
+			<h2><span style="color:#65af3f">Materials</span></h2>
+			<h3 style="font-weight:normal"><a href="" ng-click="toggleCategory('material')">Material Cost</a></h3>
+			<div ng-show="material" class="isActive width-50">
+				<button class="md-raised md-button" ng-click="addForm('materialCost')">Add Input</button>
+				<div ng-show="addMaterialCostItem" class="item_vpe column">
+					<label>Cost Item: </label>
+					<input ng-model="newMaterialName" type="text" placeholder="Ex: Labor Rate">
+					<p>
+						<label>Value: </label>
+						<input ng-model="newMaterialValue" type="number" placeholder="10">
+					<p>
+						<label>Unit: </label>
+						<input ng-model="newMaterialUnit" type="text" placeholder="Dollars / Hour">
+					<p>
+						<label>Help: </label>
+						<input ng-model="newMaterialHelp" type="text" placeholder="Per Worker">
+						<button class="md-raised md-button" ng-click="addItem('Material', newMaterialName, newMaterialValue, newMaterialUnit, newMaterialHelp)">Add</button>
+				</div>
+				<div class="col-sm-6">
+					<div class="item_vpe column" ng-repeat="materialCostItem in vpc.Material track by $index">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="title_vpe">
+									{{materialCostItem.name}}
+								</div>
+								<div ng-if="materialCostItem.help" class="help_vpe">
+									{{materialCostItem.help}}
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<input class="input_vpe" ng-model="materialCostItem.value" placeholder="59" type="number">
+							<div class="unit_vpe">
+								Unit: {{materialCostItem.unit}}
+							</div>
+						</div>
+						<div class="float-right">
+							<md-button class="md-raised delete-vpc-button" ng-click ="deleteFromVPC('Material', $index)">Delete</md-button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<!-- <button class="md-raised md-primary save-button md-button md-default-theme" ng-click ="submit()">Submit</button> -->
+		</div>
+	</div>
+</div>

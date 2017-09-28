@@ -1,0 +1,48 @@
+<div ng-show="!isLast" class="row">
+  <div class="col-xs-12 resource-center-group fade-area"
+    style="background-image: url('../images/{{contentNode.selectedNode.categoryImage}}'); padding: 15px;"
+    ng-click="moveUpStack({node: contentNode})">
+    <span>{{contentNode.selectedNode.categoryTitle}}</span>
+  </div>
+</div>
+
+<div ng-show="isLast">
+  <div class="row">
+    <div class="back-button-container">
+      <ng-md-icon ng-show="contentNode.selectedNode" ng-click="returnToHome(contentNode)" class="nav-back" style="fill: white" icon="navigate_before" size="25"></ng-md-icon>
+    </div>
+    <div ng-repeat="resourceGroup in contentNode.resourceGroups"
+    class="resource-center-group"
+    style="background-image: url('../images/{{resourceGroup.categoryImage}}')"
+    ng-click="selectResourceGroup(contentNode, resourceGroup)"
+    ng-hide="contentNode.selectedNode && resourceGroup != contentNode.selectedNode"
+    ng-class="{'col-xs-4': !contentNode.selectedNode,
+              'col-xs-12': contentNode.selectedNode && resourceGroup == contentNode.selectedNode}">
+
+      <span>{{resourceGroup.categoryTitle}}</span>
+    </div>
+  </div>
+
+  <div ng-show="contentNode.selectedNode && contentNode.selectedNode.subCategories" class="row">
+    <div ng-repeat="subGroup in contentNode.selectedNode.subCategories"
+      class="resource-center-group sub-group col-xs-3"
+      ng-click="selectResourceGroup(contentNode.selectedNode.subCategories, subGroup); addToStack({node: contentNode.selectedNode.subCategories, selected: subGroup})"
+      style="background-image: url('../images/{{subGroup.categoryImage}}')">
+      <span>{{subGroup.categoryTitle}}</span>
+    </div>
+  </div>
+
+  <div ng-show="contentNode.selectedNode" class="row">
+      <div class="col-xs-12 category-description">
+        <h4>Summary</h4>
+        {{contentNode.selectedNode.categoryDescription}}
+      </div>
+  </div>
+
+  <div ng-repeat="item in contentNode.selectedNode.contentSet">
+    <div ui-widget-content
+         content-item="item"
+         serviceMap="serviceMap">
+    </div>
+  </div>
+</div>

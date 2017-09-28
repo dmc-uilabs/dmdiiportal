@@ -1,0 +1,31 @@
+<div layout="column" class="profile-step1">
+	<div layout="row" layout-align="space-between center">
+		<h2>Tell Us About Yourself</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.image">
+			SKIP
+		</md-button>
+	</div>
+	<h3>We’ll help set up your profile.</h3>
+	<form name="basicForm" autocomplete="off" layout="row" layout-wrap>
+		<md-input-container flex="50">
+			<label>Display Name</label>
+			<input ng-model="profile[0].data.displayName">
+		</md-input-container>
+		<md-input-container flex="50">
+			<label>Job Title</label>
+			<input ng-model="profile[0].data.title">
+		</md-input-container>
+		<md-input-container class="md-icon-float" flex="50">
+			<label>Location</label>
+			<md-icon class="location-gps" ng-click="getLocation()">
+              <ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
+            </md-icon>
+			<input ng-model="profile[0].data.address">
+		</md-input-container>
+	</form>
+	<div layout="row" layout-align="end center" class="onboarding-foter">
+		<md-button class="dmc-button md-raised md-primary" ng-click="next(0)">
+			NEXT
+		</md-button>
+	</div>
+</div>

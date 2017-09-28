@@ -1,0 +1,10 @@
+<div class="tree-menu" layout="column">
+  <h1 ng-hide="treeSource.title == false || treeSource.length == 0">{{treeSource.title}}</h1>
+  <ul dmc-menu menu-source="treeSource.data" selected="selected"></ul>
+
+  <span flex></span>
+
+  <div>
+      <a class="slim-margin" ng-href="{{clearUrl}}">Clear Filters</a>
+  </div>
+</div>

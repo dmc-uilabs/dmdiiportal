@@ -1,0 +1,64 @@
+<workspace-header class="workspace-header" ng-init="currentPage='1'"></workspace-header>
+
+<div class="container project-page-container">
+
+
+  <md-content class="content-panel-body">
+    <div layout="row" layout-align="space-between start">
+      <span flex></span>
+      <span style="font-size:10px">Workspace Creator: {{projectCtrl.projectData.projectManager}}</span>
+    </div>
+    <div layout="row">
+      <div flex="25" style="display: none">
+        <img ng-src="{{projectCtrl.projectData.featureImage.thumbnail}}">
+      </div>
+      <div flex>
+        <p class="project-description" markdown-to-html="projectCtrl.projectData.description"></p>
+      </div>
+    </div>
+
+
+
+
+    <div layout="row" class="project-home">
+      <!-- Left Content Column -->
+      <div class="content-column" layout="column" flex="65">
+
+        <!-- Requirement Documents -->
+        <div ng-if="isPreview" class="content-panel margin-top-25 margin-right12-5"
+        ui-widget-documents
+        project-id="projectCtrl.currentProjectId"
+        widget-title="'DOCUMENTS'"></div>
+        <!-- Discussion -->
+        <div ng-if="!isPreview" class="content-panel margin-right12-5 margin-top-25"
+        ui-widget-discussions project-id="projectCtrl.currentProjectId"
+        widget-title="'DISCUSSIONS'"></div>
+        <!-- Tasks -->
+        <div ng-if="!isPreview" class="content-panel margin-right12-5 margin-top-25"
+        ui-widget-tasks project-id="projectCtrl.currentProjectId"
+        columns="['title','assignee','dueDate','priority']"
+        widget-title="'TASKS'" show-task-modal="showTaskModal"></div>
+      </div>
+      <!-- Right Content Column -->
+      <div class="content-column" layout="column" flex>
+        <!-- Project tags -->
+        <div class="content-panel margin-top-25 margin-left12-5"
+        ui-widget-project-tags
+        tags="projectCtrl.projectData.tags"
+        widget-title="'TAGS'"></div>
+        <!-- Running Services -->
+        <div ng-if="!isPreview" class="content-panel margin-left12-5 margin-top-25"
+        ui-widget-services
+        view-all-href="'https://test.projectdmc.org/services/?group_id=7'"
+        title-href="'https://test.projectdmc.org/services/index.php?group_id=7&diid=4'"
+        project-id="projectCtrl.currentProjectId"
+        widget-title="'SERVICES'"
+        limit="5"
+        columns="['name','status']"></div>
+        <!-- Components -->
+        <!--<div ng-if="!isPreview" class="content-panel project-review" ui-widget-components project-id="projectCtrl.currentProjectId" widget-title="'COMPONENTS'" columns="['name']"></div>-->
+      </div>
+    </div>
+  </md-content>
+
+</div>

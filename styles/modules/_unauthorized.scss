@@ -1,0 +1,29 @@
+.unauthorized{
+  &-text {
+    h3 {
+      margin: 5px 0;
+      font-size: 21px;
+    }
+  }
+  &-description{
+    p{
+      font-size: 15px;
+    }
+  }
+  &-company{
+    md-input-container md-select{
+      background-color: #fff;
+      @include borderRadius(3px);
+    }
+    .md-button{
+      text-transform: uppercase;
+    }
+    md-input-container .md-input[disabled]{
+      background-image: none;
+      color: #333;
+      background-color: #fff;
+      @include borderRadius(3px);
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+.page-header {
+  background-color: map-get($colors, body_color);
+  height: auto;
+  min-height: 0;
+  md-toolbar{
+    min-height: 0;
+    height: auto;
+    background: none;
+  }
+  .md-toolbar-tools {
+    background-color: map-get($colors, body_color);
+    color: map-get($colors, primary);
+    padding: 0;
+    min-height: 0;
+    height: auto;
+    h1 {
+      display: inline-block;
+      font-size: 24px;
+      span {
+        padding-left: 10px;
+        vertical-align: baseline;
+      }
+    }
+    h2 {
+      padding-top: 10px;
+      font-size: 14px;
+      text-transform: uppercase;
+      img {
+        width: 31px;
+        padding-right: 5px;
+      }
+    }
+    .search{
+      margin: 0 0 0;
+      .md-button {
+        margin: 0;
+        color: #fff;
+        text-transform: uppercase;
+      }
+      md-input-container{
+        margin-right: 0;
+      }
+    }
+    .md-button {
+      margin: 0 8px;
+      &.white-label {
+        color: #fff !important;
+      }
+      text-transform: initial;
+      ng-md-icon[icon='reply'] {
+        svg {
+          -moz-transform: scale(-1, 1);
+          -webkit-transform: scale(-1, 1);
+          -o-transform: scale(-1, 1);
+          -ms-transform: scale(-1, 1);
+          transform: scale(-1, 1);
+        }
+      }
+    }
+  }
+  md-input-container{
+    margin-right: 10px;
+    md-select{
+      min-width: 100px;
+    }
+  }
+}

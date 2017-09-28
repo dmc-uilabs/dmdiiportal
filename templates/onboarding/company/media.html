@@ -1,0 +1,126 @@
+<div layout="column" class="company-step5">
+	<div layout="row" layout-align="space-between center">
+		<h2>Let’s See Your Media</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.tool">
+			SKIP
+		</md-button>
+	</div>
+	<h3>Help us learn more with videos and images about your company.</h3>
+
+<div layout="row">
+    <div class="list-images" flex="100">
+        <div layout="row" layout-align="space-between center">
+            <h3>Images</h3>
+            <md-button class="md-raised dmc-button"
+                       ng-show="!isAddingImage"
+                       ng-click="addNewImage()"
+                       aria-label="Add Image">
+                Add New Image
+            </md-button>
+        </div>
+        <div layout="row"
+             class="boxForAddImage"
+             layout-align="start start"
+             ng-if="isAddingImage">
+                <div layout="row" flex>
+					<div class="content-column upload-documents top10" layout="column" flex>
+						<div class="content-panel"
+						source="newImages"
+						ui-widget-upload-documents
+						widget-type="'row'"
+						auto-upload="false"
+						widget-title="'Upload Images'"
+						allow-tagging="true"
+						file-limit="3">
+						</div>
+					</div>
+                </div>
+        </div>
+        <div layout="row"
+             layout-wrap
+             layout-align="start start"
+             flex ng-if="company[4].data.images.length > 0">
+            <div class="list-images-item" ng-repeat="image in company[4].data.images">
+                <div class="img"><img ng-src="{{image.documentUrl}}"/></div>
+                <md-input-container md-no-float>
+                    <input type="text"
+                           ng-model="image.title"
+                           placeholder="Image Title">
+                </md-input-container>
+                <md-button class="md-fab md-mini md-warn md-raised"
+                           ng-click="deleteImage($index)"
+                           aria-label="Delete Image">
+                    <ng-md-icon icon="delete" size="18"></ng-md-icon>
+                </md-button>
+            </div>
+        </div>
+        <div layout="row" ng-if="company[4].data.images.length == 0 && !isAddingImage">No images</div>
+    </div>
+</div>
+<div layout="row">
+    <div class="list-videos" flex="100">
+        <div layout="row" class="title-list-videos" layout-align="space-between center">
+            <h3>Videos</h3>
+            <md-button class="md-raised dmc-button"
+                       ng-click="addNewVideo()"
+                       ng-show="!isAddingVideo"
+                       aria-label="Add Video">
+                Add New Video
+            </md-button>
+        </div>
+        <div layout="row" class="boxForAddVideo" flex ng-if="isAddingVideo">
+            <form name="formAddVideo" ng-submit="saveVideo(newVideo)" layout="column" flex>
+                <div layout="row" flex>
+                    <md-input-container class="title-video right-space" flex>
+                        <label>Title</label>
+                        <input name="title" ng-model="newVideo.title">
+                    </md-input-container>
+                    <md-input-container class="link-video left-space" flex>
+                        <label>Link</label>
+                        <input required name="link" ng-model="newVideo.link" ng-pattern="/^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/">
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-align="end center">
+                    <md-button class="md-raised dmc-button" type="button" ng-click="cancelAddVideo()">
+                        Cancel
+                    </md-button>
+                    <md-button class="md-raised md-primary dmc-button"
+                               type="submit"
+                               ng-disabled="!formAddVideo.$valid">
+                        Save
+                    </md-button>
+                </div>
+            </form>
+        </div>
+        <div layout="row"
+             layout-align="start center"
+             class="video-item"
+             ng-repeat="video in company[4].data.videos" flex>
+            <md-input-container class="title-video right-space" flex>
+                <label>Title</label>
+                <input ng-model="video.title">
+            </md-input-container>
+            <md-input-container class="link-video left-space" flex>
+                <label>Link</label>
+                <input ng-model="video.link" ng-pattern="/^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/">
+            </md-input-container>
+            <md-button md-no-ink
+                       ng-click="deleteVideo($index)"
+                       class="md-icon-button delete-video"
+                       aria-label="Delete Video">
+                <ng-md-icon icon="delete" size="32"></ng-md-icon>
+            </md-button>
+        </div>
+        <div layout="row" ng-if="company[4].data.videos.length == 0 && !isAddingVideo">No videos</div>
+    </div>
+</div>
+
+	<div layout="row" layout-align="end center" class="onboarding-foter">
+		<md-button class="dmc-button md-raised margin-right5" ui-sref="^.accomplishments">
+			BACK
+		</md-button>
+		<md-button class="dmc-button md-raised md-primary" ng-click="next(4)">
+			NEXT
+		</md-button>
+	</div>
+</div>

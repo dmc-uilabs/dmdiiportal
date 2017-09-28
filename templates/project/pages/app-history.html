@@ -1,0 +1,54 @@
+<main class="app-profile">
+	<section class="container">
+    <div layout="row" layout-align="space-between center">
+			<div layout="column">
+        <h2><a ng-href="{{'/service-marketplace.php#/' + service.parent}}">{{service.title}}</a></h2>
+				<a ng-href="{{'run-app.php#/' + service.projectId + '/services/' + service.id + '/runapp'}}" class="link margin-top8">
+          Run Again
+        </a>
+			</div>
+    </div>
+  </section>
+
+	<div class="container">
+    <div class="row">
+      <div class="col-xs-12"><div class="rh-divider"></div></div>
+    </div>
+  </div>
+
+	<section class="container">
+		<h3 class="section">Run History</h3>
+		<md-data-table-container style="padding-bottom:20px">
+        <table md-data-table>
+            <thead md-order="sort" md-trigger="onOrderChange">
+            <tr>
+                <th name="Run Date"></th>
+                <!-- <th name="Run By" order-by="runBy"></th> -->
+                <!-- <th name="Run Time" order-by="runTime"></th> -->
+                <th name="Status"></th>
+            </tr>
+            </thead>
+            <tbody class="service-run-items">
+            <tr ng-click="openResults(item)" ng-repeat="item in history">
+                <td>
+                    {{item.startDate}}
+                </td>
+                <!-- <td>
+                    <a href="/profile.php#/{{item.runBy}}" >{{item.runByUserName}}</a>
+                </td> -->
+                <!-- <td>
+                    {{item.runTime}}s.
+                </td> -->
+                <td ng-style="{color: (item.status == '1' ? '#65AF3F': (item.status == '-1' ? 'red' : (item.status == '2' ? 'red' : 'orange')))}">
+                    <a>{{(item.status == 1 ? 'Success' : (item.status == -1 ? 'Error' : (item.status == '2' ? 'Canceled' : 'Running')))}}</a>
+                </td>
+            </tr>
+            <tr ng-if="history.length == 0">
+                <td class="empty" colspan="7">No run history</td>
+            </tr>
+            </tbody>
+        </table>
+    </md-data-table-container>
+	</section>
+
+</main>

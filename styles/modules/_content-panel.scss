@@ -1,0 +1,40 @@
+.container-dashboard {
+  .content-column {
+    padding: 0;
+    .space {
+      width: 2%;
+      min-width: 2%;
+    }
+  }
+}
+.content-panel-dashboard{
+}
+.content-panel {
+  &:first-child {
+    padding-top: 0;
+  }
+  &.project-review {
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+  .content-panel-header {
+    md-toolbar {
+      background: none;
+      min-height: 0;
+      height: auto;
+      margin-bottom: 10px;
+      .md-toolbar-tools {
+        height: auto;
+      }
+    }
+
+    h2 {
+      color: #363636;
+      font-size: 18px;
+      font-weight: normal;
+      text-transform: capitalize;
+      margin: 0;
+    }
+  }
+}

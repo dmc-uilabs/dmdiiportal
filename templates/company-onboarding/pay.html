@@ -1,0 +1,202 @@
+<pay_section class="onboarding-pay_section">
+
+  <div class="header container">
+    <h1>Tier 3 Membership Sign Up</h1>
+  </div>
+
+  <signup-tabs
+    current-stage="3">
+  </signup-tabs>
+
+
+  <div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <!-- <h3>General Information</h3> -->
+
+          <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <!-- <label class="pay_section">Legal Corporate/Organization Name :  </label> -->
+                <div ng-bind="company.name" class="_name"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+              <label class="pay_section">Principal Office Address : </label>
+              <span class="_show"> {{company.firstAddress.line1}} {{company.firstAddress.line2}}, {{company.firstAddress.city}}, {{company.firstAddress.state}}, {{company.firstAddress.zipcode}}</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 col-md-12" ng-show="company.secondAddress">
+                <label class="pay_section">Subsidary Office Address : </label>
+                <span class="_show">{{company.secondAddress.line1}} {{company.secondAddress.line2}} , {{company.secondAddress.city}}, {{company.secondAddress.state}}, {{company.secondAddress.zipcode}}</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+              <label class="pay_section">Main Point of Contact : </label>
+              <span class="_show" style="color: #75bc52; font-size:24px;">    {{company.main.fname}} {{company.main.lname}}</span>
+              <span class="_show">    :    {{company.main.phone}} | {{company.main.email}} | {{company.main.mailAddress}}</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 col-md-12" ng-show="company.finance">
+              <label class="pay_section">Financial Point of Contact : </label>
+              <span class="_show"> {{company.finance.fname}} {{company.finance.lname}}</span>
+              <span class="_show">    :    {{company.finance.phone}} | {{company.finance.email}} | {{company.finance.mailAddress}}</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 col-md-12" ng-show="company.legal">
+              <label class="pay_section">Legal Point of Contact : </label>
+              <span class="_show"> {{company.legal.fname}} {{company.legal.lname}}</span>
+              <span class="_show">    :    {{company.legal.phone}} | {{company.legal.email}} | {{company.legal.mail}}</span>
+            </div>
+          </div>
+      </div>
+
+        <div class="col-lg-12 col-md-12">
+          <!-- <h3>Company Information</h3> -->
+
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <label class="pay_section">Corporation/Organization type : </label>
+                <span ng-repeat="type in company.type" class="_show_type label label-success">{{type}}</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <label class="pay_section">Number of employees : </label>
+                <span ng-bind="company.selectedEmployeeSize" class="_show"></span>
+            </div>
+
+            <div class="col-lg-4 col-md-4">
+                <label class="pay_section">Annual Revenue : </label>
+                <span ng-bind="company.selectedAnnualRevenue" class="_show"></span>
+            </div>
+
+            <div class="col-lg-4 col-md-4">
+                <label class="pay_section">StartUp Organization : </label>
+                <span ng-bind="company.startUp == 1 ? 'Yes' : 'No' " class="_show"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <label class="pay_section">Primary NAICS Code : </label>
+                <span ng-bind="company.naicsCode" class="_show"></span>
+            </div>
+
+            <div class="col-lg-6 col-md-6">
+                <label class="pay_section">DUNS Number (or EIN) : </label>
+                <span ng-bind="company.duns" class="_show"></span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-12 col-md-12">
+          <hr>
+          <button ng-click="back()" class="btn btn-danger">
+      							Back to Edit
+      		</button>
+
+          <!-- ng-disabled="!company.name" -->
+          <button class="btn btn-success pull-right" ng-disabled="!company.name" ng-click="scroll()">
+      						Proceed to Pay
+      		 </button>
+
+        </div>
+
+        <div class="col-lg-12 col-md-12" ng-show="payment">
+           <h3>Proceed to Pay</h3>
+           <br>
+
+           <form method="post" id="payment-form">
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <label class="paymentLabel" for="card-element">
+                  Credit or debit card
+                </label>
+                <div id="card-element">
+                  <!-- a Stripe Element will be inserted here. -->
+                </div>
+
+                <!-- Used to display form errors -->
+                <div id="card-errors" role="alert"></div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <button class="paymentButton pull-right" ng-disabled="isDisabled">
+                  Submit Payment
+                </button>
+              </div>
+            </div>
+
+
+          </form>
+
+
+        </div>
+     </div>
+  </div>
+
+
+
+  <br>
+  <br>
+
+  <div class="modal fade" id="successPay" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header success-modal">
+          <h5 class="modal-title">Success</h5>
+        </div>
+        <div class="modal-body">
+          Successful payment!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Great</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="failedPay" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title alert-modal">Alert</h5>
+        </div>
+        <div class="modal-body" ng-bind="body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="orgExist" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header alert-modal">
+          <h5 class="modal-title">Alert</h5>
+        </div>
+        <div class="modal-body">
+          You already have a Tier3 Membership organization database, will redirect to dashboard.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="linkToPage()">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</pay_section>

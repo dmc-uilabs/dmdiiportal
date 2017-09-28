@@ -1,0 +1,212 @@
+.community{
+  background: white;
+	padding: 40px;
+  padding-top: 0px;
+}
+
+.flexrow{
+  &-header{
+    color: map-get($colors, primary);
+    font-weight: normal;
+  }
+  &-left{
+    min-width: 500px;
+    // padding: 0px 30px;
+    //padding-right: 60px;
+  }
+  &-right{
+    // padding: 0px 30px;
+    min-width: 300px;
+  }
+}
+
+.news{
+  &-header{
+    color: map-get($colors, secondary);
+    font-size: 24px;
+  }
+  &-title{
+    font-weight: bold;
+    font-family:inherit;
+    font-size:16px;
+  }
+  &-description{
+    white-space: pre-wrap;
+    font-weight: normal;
+  }
+}
+
+.follow-button{
+  display: block;
+  width: 40px;
+  padding-right: 5px;
+}
+
+.add_discussion_button:hover{
+  cursor: pointer;
+}
+
+.content-panel.project {
+  .md-toolbar-tools.widget-toolbar-title {
+    h2{
+      color: map-get($colors, secondary);
+      text-transform: capitalize;
+      line-height: 60px;
+    }
+  }
+}
+.filterBox{
+  md-select {
+    height: 38px;
+  }
+}
+a.add-discussion-btn,
+a.contacts-btn,
+a.following-btn{
+  span {
+    font-size: 14px;
+  }
+}
+.add-discussion-btn{
+  background-color: #C7C7C7;
+  border:none;
+  font-size: 14px;
+  @include borderRadius(2px);
+  outline: none;
+  height: 32px;
+  ng-md-icon{
+    vertical-align: -webkit-baseline-middle;
+  }
+}
+.dmc-announcements-content-panel {
+  .announcements-list {
+    md-list {
+      padding: 0 5px;
+      md-list-item {
+        padding: 0;
+        border-top: 1px solid #ccc;
+        padding-top: 8px;
+        margin-top: 8px;
+        min-height: 0;
+        .md-list-item-text {
+          padding: 0;
+          p {
+            color: #333;
+            font-size: 14px;
+          }
+          .info {
+            span {
+              font-size: 11px;
+              color: #666;
+            }
+            span:first-child {
+              border-right: 1px solid #666;
+              padding-right: 8px;
+              margin-right: 8px;
+            }
+          }
+        }
+      }
+      md-list-item:first-child {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+      }
+    }
+  }
+}
+
+.dmc-events-content-panel{
+  .events-list{
+    md-list {
+      padding: 0 5px;
+      md-list-item {
+        padding: 0;
+        border-top: 1px solid #ccc;
+        padding-top: 8px;
+        margin-top: 8px;
+        min-height: 0;
+        .main-block{
+          outline: none;
+          cursor: pointer;
+        }
+        .arrow-item{
+          fill: map-get($colors, secondary);
+        }
+        .date-item{
+          text-align: center;
+          font-size: 15px;
+          min-width: 80px;
+          padding-right: 13px;
+          div{
+            border: 1px solid map-get($colors, secondary);
+            padding: 3px 8px;
+            color: map-get($colors, secondary);
+          }
+          span{
+            display: block;
+            padding: 2px 0;
+          }
+          span:first-child {
+            text-transform: uppercase;
+          }
+        }
+        .md-list-item-text{
+          .title{
+            font-size: 16px;
+          }
+          div{
+            padding: 2px 0;
+          }
+        }
+        p{
+          margin-bottom: 0;
+          font-size: 14px;
+        }
+      }
+      md-list-item:first-child {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+      }
+    }
+  }
+}
+.recent-updates{
+  .discussions-list{
+    height: 500px;
+  }
+}
+.discussions-list{
+  md-list-item{
+    border-top: 1px solid #ccc;
+    padding: 0;
+    img{
+      width: 36px;
+    }
+    &.md-3-line h3{
+      margin-bottom: 5px;
+    }
+    .info{
+      span {
+        font-size: 10px;
+        color: #666;
+      }
+    }
+  }
+  md-list-item:first-child {
+    border-top: none;
+  }
+  .badge {
+    min-width: 49px;
+    height: 44px;
+    text-align: center;
+    font-size: 8px;
+    font-weight: bold;
+    color: map-get($colors, secondary);
+    padding: 5px;
+    // border: 1px solid map-get($colors, secondary);
+    display: inline-block;
+    margin-right: 10px;
+  }
+}

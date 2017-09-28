@@ -1,0 +1,28 @@
+<div class="featuredApp-card">
+  <div layout="row" layout-sm="column" layout-align="center center">
+    <div layout ="column" flex>
+      <h1>App Parade</h1>
+      <p></p>
+      <h2><a ng-href="{{'/service-marketplace.php#/'+randApp.id}}" ng-click="previousPage.save($event)" >{{randApp.title}}</a></h2>
+      <!-- <ui-widget-stars-static class="review-stars" size="15" value={{cardSource.ratingAverage}} text=({{cardSource.ratingCount}})></ui-widget-stars-static> -->
+
+      <h3 class="rich-text-small" markdown-to-html="randApp.description"></h3>
+    </div>
+
+
+    <div layout="column" class="featured-app-image" style="min-width:300px">
+      <div>
+          <img ng-if="randApp.images[0].documentUrl" ng-src="{{randApp.images[0].documentUrl}}" alt="{{randApp.title}}">
+          <img ng-if="!randApp.images[0].documentUrl" ng-src="images/DMCGear.png" alt="{{randApp.title}}">
+      </div>
+
+
+      <product-card-buttons-marketplace
+        card-source = "randApp"
+        type-product = "randApp.type">
+      </product-card-buttons-marketplace>
+
+    </div>
+
+  </div>
+</div>

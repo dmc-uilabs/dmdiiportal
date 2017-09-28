@@ -1,0 +1,186 @@
+<main>
+    <section style="margin-bottom: 60px;" class="container" ng-if="(($root.isLogged && userData.roles && userData.roles[userData.companyId]) || ($root.isLogged && userData.isDmdiiAdmin))">
+    <!-- <section class="container" ng-if="!(($root.isLogged && userData.roles && userData.roles[userData.companyId]) || ($root.isLogged && userData.isDmdiiAdmin))"> -->
+
+    <div class="row welcome margin-bottom-15">
+      <h2 class="col-xs-12">WELCOME TO THE</h2>
+      <h1 class="col-xs-9">DIGITAL MANUFACTURING COMMONS</h1>
+      <div class="col-xs-3" style="text-align: right;">
+        <a class="social-button" href="http://www.uilabs.org/news-blog/blog/" target="_blank"><md-icon md-svg-src="images/comment-text-outline.svg" title="UILABS Blog"></a>
+        <a class="social-button" href="https://twitter.com/DMDII_" target="_blank"><md-icon md-svg-src="images/twitter.svg" title="DMDII Twitter"></a>
+        <a class="social-button" href="https://www.linkedin.com/company/ui-labs" target="_blank"><md-icon md-svg-src="images/linkedin-box.svg" title="UILABS LinkedIn"></a>
+        <a class="social-button" href="https://www.instagram.com/uilabs_/" target="_blank"><md-icon md-svg-src="images/instagram.svg" title="UILABS Instagram"></a>
+      </div>
+      <h1 class="col-xs-4 small-underline"></h1>
+      <p class="col-xs-12 lighter">Your portal to digital transformation for increased productivity.</p>
+    </div>
+
+
+        <!-- <md-divider class="margin-bottom-30"></md-divider> -->
+
+        <div class="row">
+          <!-- Recent updates -->
+          <!-- <div class="col-xs-8">
+            <h3 class="flexrow-header">Recent Updates</h2>
+            <div class="content-panel project margin-right12-5" dmc-recent-updates></div>
+
+          </div> -->
+          <!-- Twitter -->
+          <div class="col-xs-4">
+            <h3 class="flexrow-header">Tweets from DMDII</h2>
+            <twitter-timeline>
+              <a class="twitter-timeline" data-chrome="noheader nofooter" data-height="365" href="https://twitter.com/DMDII_">Tweets from DMDII</a>
+            </twitter-timeline>
+          </div>
+
+          <div class="col-xs-8" class="home-theater">
+            <!-- <md-divider></md-divider> -->
+            <!-- <div layout="row" layout-align="center"> -->
+            <h3 class="flexrow-header">Videos from DMDII</h2>
+            <!-- </div> -->
+            <md-divider></md-divider>
+            <div style="padding-top: 15px">
+              <ng-youtube-embed listType="playlist" list="UUB9yv90uJXvKnCY-0vpjvtw" width="100%"></ng-youtube-embed>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- <div class="row margin-bottom-30">
+          <div class="home-theater">
+            <h3 class="flexrow-header">Videos from DMDII</h2>
+            <md-divider></md-divider>
+            <div style="padding-top: 15px">
+              <ng-youtube-embed listType="playlist" list="UUB9yv90uJXvKnCY-0vpjvtw" width="100%"></ng-youtube-embed>
+            </div>
+          </div>
+        </div> -->
+
+    </section>
+
+    <section style="margin-bottom: 60px;" class="container" ng-if="!(($root.isLogged && userData.roles && userData.roles[userData.companyId]) || ($root.isLogged && userData.isDmdiiAdmin))">
+    <!-- <section class="container" ng-if="(($root.isLogged && userData.roles && userData.roles[userData.companyId]) || ($root.isLogged && userData.isDmdiiAdmin))"> -->
+
+    <div class="row welcome">
+      <h2 class="col-xs-12">WELCOME TO THE</h2>
+      <h1 class="col-xs-9">DIGITAL MANUFACTURING COMMONS</h1>
+      <div class="col-xs-3">
+        <a class="social-button" href="http://www.uilabs.org/news-blog/blog/" target="_blank"><md-icon md-svg-src="images/comment-text-outline.svg" title="UILABS Blog"></a>
+        <a class="social-button" href="https://twitter.com/DMDII_" target="_blank"><md-icon md-svg-src="images/twitter.svg" title="DMDII Twitter"></a>
+        <a class="social-button" href="https://www.linkedin.com/company/ui-labs" target="_blank"><md-icon md-svg-src="images/linkedin-box.svg" title="UILABS LinkedIn"></a>
+        <a class="social-button" href="https://www.instagram.com/uilabs_/" target="_blank"><md-icon md-svg-src="images/instagram.svg" title="UILABS Instagram"></a>
+      </div>
+      <h1 class="col-xs-4 small-underline"></h1>
+      <p class="col-xs-12 lighter">Your portal to digital transformation for increased productivity.</p>
+    </div>
+      <div class="row">
+        <div class="col-xs-3 about-img">
+          <span class="helper"></span>
+          <img class="img-max" src="images/dmcLogo.png">
+        </div>
+        <div class="col-xs-9 about-txt">
+          <div class="col">
+            <h3 class="green">About the DMC</h3>
+            <p class="lighter">Mi sit condimentum vitae non, id consectetuer sit ullamcorper velit eu. Lectus vel. Dolor vestibulum ut sem, sit tempus, odio autem, arcu massa. Lorem sem risus. Non cum viverra vitae at diam arcu. Pellentesque nulla cursus lorem conubia, amet ultrices metus tincidunt vivamus, integer faucibus sed ante. Excepturi amet ornare libero phasellus sagittis lacinia, eget tristique ac pede erat, vel rutrum a, orci velit fringilla senectus aenean posuere lobortis.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-3 about-img">
+          <span class="helper"></span>
+          <img class="img-max" src="http://www.purdue.edu/in-mac/images/DMDII-logo.jpg"></img>
+        </div>
+        <div class="col-xs-9 about-txt">
+          <div class="col">
+            <h3 class="blue">About DMDII</h3>
+            <p class="lighter">Mi sit condimentum vitae non, id consectetuer sit ullamcorper velit eu. Lectus vel. Dolor vestibulum ut sem, sit tempus, odio autem, arcu massa. Lorem sem risus. Non cum viverra vitae at diam arcu. Pellentesque nulla cursus lorem conubia, amet ultrices metus tincidunt vivamus, integer faucibus sed ante. Excepturi amet ornare libero phasellus sagittis lacinia, eget tristique ac pede erat, vel rutrum a, orci velit fringilla senectus aenean posuere lobortis.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-9 about-txt">
+          <h3 class="grey">Already a Member?</h3>
+          <p class="lighter">If your organization is already a DMC/DMDII member, you need to be verfied by your organization's administrator. You can find instructions on how to get verified <a href>here</a>.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="section-header">
+          HOW CAN THE DMC HELP YOU?
+        </div>
+      </div>
+
+
+      <div class="row icons">
+        <div class="col-xs-3">
+          <a href="/transform.php">
+            <img ng-src="images/calc.png"></img>
+            <h4>IMPROVE ESTIMATES</h4>
+          </a>
+        </div>
+        <div class="col-xs-3">
+          <a href="/transform.php">
+            <img ng-src="images/computer.png"></img>
+            <h4>IMPROVE CNC OPERATIONS</h4>
+          </a>
+        </div>
+        <div class="col-xs-3">
+          <a href="/transform.php">
+            <img ng-src="images/ruler.png"></img>
+            <h4>IMPROVE CMM OPERATIONS</h4>
+          </a>
+        </div>
+        <div class="col-xs-3">
+          <a href="/transform.php">
+            <img ng-src="images/meter.png" ></img>
+            <h4>GET LEAN</h4>
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="home-theater col-xs-12">
+          <div style="padding-top: 15px">
+            <ng-youtube-embed listType="playlist" list="UUB9yv90uJXvKnCY-0vpjvtw" width="100%"></ng-youtube-embed>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="section-header">
+          BENEFITS OF BECOMING A MEMBER
+        </div>
+      </div>
+
+      <div class="row icons">
+        <div class="col-xs-2">
+          <img src="https://dev-web2.opendmc.org/images/Icons_Distribute.svg"></img>
+          <h5>Participate In Projects</h5>
+        </div>
+        <div class="col-xs-2">
+          <img src="https://dev-web2.opendmc.org/images/Icons_Analyze.svg"></img>
+          <h5>Attend Workshops and Quarterly Tech Showcases</h5>
+        </div>
+        <div class="col-xs-2">
+          <img src="https://dev-web2.opendmc.org/images/Icons_Connect.svg"></img>
+          <h5>Access the DMDII Partner Network </h5>
+        </div>
+        <div class="col-xs-2">
+          <img src="https://dev-web2.opendmc.org/images/Icons_Distribute.svg"></img>
+          <h5>Collaborate Virtually on the Portal </h5>
+        </div>
+        <div class="col-xs-2">
+          <img src="https://dev-web2.opendmc.org/images/Icons_Analyze.svg"></img>
+          <h5>Receive Discounts from Affiliate Organizations </h5>
+        </div>
+        <div class="col-xs-2">
+          <img src="https://dev-web2.opendmc.org/images/Icons_Connect.svg"></img>
+          <h5>Benefit from Digital Readiness Assessments </h5>
+        </div>
+      </div>
+
+    </section>
+</main>

@@ -1,0 +1,40 @@
+.apps {
+
+    border: 1px solid green;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 25px;
+    min-height: 335px;
+    // max-height: 335px;
+    min-width: 242px;
+    max-width: 242px;
+    img {
+      min-height: 84px;
+    }
+    .docs-title{
+      font-size: 18px;
+    }
+}
+
+.videosacademia {
+    width: 220px;
+    padding: 10px;
+    margin: 25px;
+		h5 {
+			margin-top: 25px;
+			color: green;
+		}
+}
+.videosacademia video {
+  width:100%;
+}
+
+.hoverTable{
+    width:100%;
+    border-collapse:collapse;
+}
+.hoverTable tr:hover {
+    td{
+      background-color: #E8E8E8;
+    }
+}

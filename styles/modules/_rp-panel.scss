@@ -1,0 +1,99 @@
+.rp-panel {
+  border-top: 2px solid $body_grey;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  .title-widget{
+    margin: 0 0 15px 0;
+  }
+  &:first-child{
+    border-top: none;
+  }
+  h2{
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  &__title {
+    &.my-projects {
+      padding: 10px 0 15px 0;
+    }
+    h2 {
+      font-size: 18px;
+      font-weight: 300;
+      margin-top: 0;
+      a {
+        text-decoration: none;
+        color: #333;
+        font-size: 24px;
+      }
+      span{
+        font-size: 12px;
+        margin-left: 15px;
+        text-transform: uppercase;
+        color: map-get($colors, text_grey);
+      }
+    }
+  }
+  &__controls{
+    .md-button{
+      display: block;
+      padding: 0;
+      margin: 3px 0 6px 0;
+      width: 100%;
+    }
+  }
+  &__image{
+    width: 100%;
+    text-align: left;
+    .img-size {
+      width: 75%;
+    }
+  }
+  md-tabs{
+    md-list{
+      padding-top: 0;
+      padding-bottom: 0;
+      md-list-item.md-2-line .md-list-item-text{
+        padding-top: 16px;
+        h3{
+          margin-top: 0;
+        }
+      }
+    }
+  }
+  &__tab-content {
+    md-content{
+      padding: 0 0 0 16px;
+      md-list{
+        padding-top: 0;
+        md-list-item {
+          margin-bottom: 10px;
+          padding: 0;
+          min-height: 0;
+          .md-list-item-text {
+            padding-top: 0;
+            padding-bottom: 10px;
+          }
+        }
+      }
+      .discussion-list md-list-item{
+        .md-list-item-text {
+          padding-right: 55px;
+        }
+        .md-secondary-container, .md-secondary, .md-list-item-inner .md-secondary-container, .md-list-item-inner .md-secondary{
+          right: 0;
+        }
+      }
+
+      .discussion-list md-list-item.md-2-line .md-secondary.user-info .md-avatar{
+        margin: -16px 0 0 13px;
+      }
+      .discussion-list md-list-item.md-2-line .md-list-item-text h3{
+        width: 100%;
+      }
+      .task-list md-list-item.md-3-line .md-list-item-text h4{
+        padding-bottom: 5px;
+
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+[
+   {
+      "id":1,
+      "displayName":"Thomas Smith",
+      "accountId":1,
+      "profileId":1,
+      "companyId":1,
+      "companyName":"UI LABS",
+      "role":0,
+      "realname":"Thomas Smith",
+      "title":null,
+      "termsConditions":true,
+      "firstName":"Thomas",
+      "lastName":"Smith",
+      "email":"Thomas.Smith@uilabs.org",
+      "address":null,
+      "phone":null,
+      "image":null,
+      "runningServices":{
+         "items":[
+
+         ],
+         "totalItems":0
+      },
+      "messages":{
+         "items":[
+
+         ],
+         "totalItems":0
+      },
+      "onboarding":{
+         "id":1,
+         "profile":false,
+         "account":false,
+         "company":false,
+         "storefront":false
+      },
+      "skills":[
+
+      ],
+      "roles":{
+         "1":"MEMBER"
+      },
+      "isDMDIIMember":true,
+      "userContactInfo":{
+         "id":1,
+         "userPrivateContactInfo":null,
+         "userPublicContactInfo":null,
+         "userMemberPortalContactInfo":null
+      },
+      "aboutMe":"",
+      "resume":"",
+      "account":0,
+      "notifications":[
+
+      ],
+      "hasUnreadNotifications":false,
+      "timezone":null
+   }
+]

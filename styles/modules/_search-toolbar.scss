@@ -1,0 +1,12 @@
+.search-toolbar {
+  .md-button {
+    text-transform: initial;
+    text-decoration: underline;
+    margin: 0 15px;
+  }
+  .search-field{
+    md-input-container{
+      padding: 0;
+    }
+  }
+}

@@ -1,0 +1,132 @@
+
+.notifications{
+	padding: 8px;
+	md-content{
+		background-color: transparent;
+	}
+	h1{
+		font-size: 32px;
+    color: map-get($colors, primary);
+    font-weight: lighter;
+	}
+	h2{
+		margin: 16px 0 24px;
+	}
+	.section{
+		//border: 1px solid #999;
+		background-color: #fff;
+		h2{
+			font-size: 14px;
+			margin: 0;
+			cursor: pointer;
+			&:focus{
+				outline: none;
+			}
+		}
+		h3{
+			font-weight: normal;
+			margin: 0;
+			cursor: pointer;
+			&:focus{
+				outline: none;
+			}
+		}
+		h4{
+			font-size: 20px;
+			margin: 0;
+		}
+		.cell1{
+			padding: 16px;
+		}
+		.cell2{
+			padding: 24px 16px 16px;
+			border-bottom: 1px solid #999;
+		}
+		.cell3{
+			padding: 4px 16px;
+			border-bottom: 1px solid #999;
+		}
+		.cell4{
+			padding: 4px 16px;
+		}
+	}
+	.block{
+		//padding-top: 48px;
+		.notification-item{
+			border-left: 3px solid white;
+			border-top: 2px solid white;
+			border-bottom: 2px solid white;
+			color: grey;
+			&:hover{
+				background: #ebedef;
+			}
+		}
+		.unread{
+			color: map-get($colors, primary);
+			border-left: 3px solid  map-get($colors, secondary);
+		}
+		.clear-notification{
+			&:hover{
+				color: map-get($colors, secondary);
+			}
+		}
+		h4{
+			margin: 0px 10px;
+		}
+		h2{
+			margin: 0 0 16px;
+		}
+		a{
+			color: inherit;
+		}
+		img{
+			height: 100%;
+			width: auto;
+			margin-right: 16px;
+		}
+		.first{
+			background-color: #fff;
+			//border: 1px solid #999;
+			padding: 4px 36px;
+			height: 65px;
+			line-height: 65px;
+			div{
+				height: 100%;
+			}
+			.md-button{
+				height: 28px;
+				line-height: 28px;
+				min-height: 28px;
+			}
+		}
+		md-list{
+			//border: 1px solid #999;
+			background-color: #fff;
+			padding: 0;
+			md-list-item{
+              .logo-event{
+                margin-right: 13px;
+              }
+				div{
+					height: 100%;
+				}
+				padding: 4px 16px;
+				// margin: 16px;
+				// height: 65px;
+				// line-height: 65px;
+              md-icon{
+                width: 40px;
+                height: 40px;
+              }
+              ng-md-icon{
+                svg {
+                  vertical-align: middle;
+                }
+              }
+			}
+		}
+		.all{
+			margin: 0;
+		}
+	}
+}

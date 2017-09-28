@@ -1,0 +1,47 @@
+[
+	{
+		"id": 1,
+		"companyId": 1,
+		"profileId": 1,
+		"firstName": "Thomas-changed",
+		"lastName": "Smith-changed",
+		"displayName": "Thomas-changed Smith-changed",
+		"email": "thomas.smith@ge.com",
+		"deactivated": false,
+		"location": "Schenectady",
+		"timezone": "(UTC -05:00) America/Atikokan",
+		"userContactInfo": null
+	},
+	{
+		"id": 2,
+		"firstName": "Bill",
+		"companyId": 2,
+		"lastName": "Gates",
+		"displayName": "Bill",
+		"email": "email2@gmail.com",
+		"deactivated": false,
+		"location": null,
+		"timezone": null,
+		"userContactInfo": {
+			"userPublicContactInfo": {},
+			"userPrivateContactInfo": {},
+			"userMemberPortalContactInfo": {}
+		}
+	},
+	{
+   "id":"204",
+   "companyId":"-1",
+   "profileId":"204",
+   "firstName":"max",
+   "lastName":"power",
+   "displayName":"max power",
+   "email":"jmdmctestuser1@gmail.com",
+   "deactivated":false,
+   "location":"",
+   "timezone":null,
+   "privacy":{
+      "private":null,
+      "public":null
+   }
+	}
+]

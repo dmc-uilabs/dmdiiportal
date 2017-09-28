@@ -1,0 +1,19 @@
+<md-dialog class="dmc-project-sub-nav-dialog" >
+    <md-dialog-content>
+      <md-button ng-repeat="p in pages"
+                 ui-sref="{{p.state}}"
+                 ng-click="openPage()"
+                 class="dmc-project-sub-nav-dialog-btn"
+                 ng-class="{'selected' : p.id === currentPage}">
+        <ng-md-icon icon="{{p.icon}}"
+                    style="fill: white"
+                    ng-if="p.location != 'folder'"
+                    size="120">
+        </ng-md-icon>
+        <md-icon class="folder-icon" md-svg-src="images/{{p.icon}}.svg" ng-if="p.location == 'folder'" ></md-icon>
+        <div class="dmc-project-subnav-dialog-btn__caption">
+          {{p.title}}
+        </div>
+      </md-button>
+    </md-dialog-content>
+</md-dialog>

@@ -1,0 +1,57 @@
+
+    <td colspan="5" class="modelBox">
+        <div class="model-inputs" layout="row">
+            <div layout="column" flex>
+                <div class="content-panel">
+                    <div class="content-panel-header">
+                        <md-toolbar>
+                            <div class="md-toolbar-tools">
+                                <h2>Inputs for {{serviceName}}</h2>
+                                <span flex></span>
+                                <md-button href="/">View All</md-button>
+                            </div>
+                        </md-toolbar>
+                    </div>
+                    <div class="content-panel-body">
+                        <md-content class="md-padding">
+                            <md-list>
+                                <md-list-item ng-repeat="item in inputs track by $index" class="md-2-line">
+                                    <div class="md-list-item-text">
+                                        <h3>2.5</h3>
+                                        <h3>Inputs</h3>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="model-inputs" layout="row">
+            <div layout="column" flex>
+                <div class="content-panel">
+                    <div class="content-panel-header">
+                        <md-toolbar>
+                            <div class="md-toolbar-tools">
+                                <h2>Outputs for {{serviceName}}</h2>
+                                <span flex></span>
+                                <md-button href="/">View All</md-button>
+                            </div>
+                        </md-toolbar>
+                    </div>
+                    <div class="content-panel-body">
+                        <md-content class="md-padding">
+                            <md-list>
+                                <md-list-item ng-repeat="item in outputs track by $index" class="md-2-line">
+                                    <div class="md-list-item-text">
+                                        <h3>2.5</h3>
+                                        <h3>Outputs</h3>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </td>

@@ -1,0 +1,14 @@
+.star-rating {
+  .md-button {
+    &.md-icon-button {
+      padding: 0;
+      line-height: 14px;
+      width: 14px;
+      height: 14px;
+    }
+  }
+  & > div {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

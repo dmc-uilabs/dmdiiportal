@@ -1,0 +1,489 @@
+<section class="onboarding-section">
+
+  <div class="header container">
+    <h1>Tier 3 Membership Sign Up</h1>
+  </div>
+
+  <signup-tabs
+    current-stage="2">
+  </signup-tabs>
+
+
+  <div class="container">
+    <div class="row">
+
+      <form name="companyGeneralForm">
+        <div class="col-lg-12 col-md-12">
+          <h3>General Information</h3>
+
+          <div class="row">
+            <div class="col-lg-4 col-md-4">
+              <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgName.$invalid && companyGeneralForm.orgName.$touched}">
+                  <label class="section">Legal Corporate/Organization Name *</label>
+                  <input name="orgName" ng-value="company.name" class="form-control" ng-model="company.name" type="text" required>
+                  <p class="help-block">Required</p>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <div>
+            <label class="section">Principal Office Address</label> or North American HQ if outside US
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgFirstLine1.$invalid && companyGeneralForm.orgFirstLine1.$touched}">
+                    <div class="sublabels">Line 1 *</div>
+                    <input name="orgFirstLine1" ng-value="company.firstAddress.line1" class="form-control" ng-model="company.firstAddress.line1" type="text" required>
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgFirstCity.$invalid && companyGeneralForm.orgFirstCity.$touched}">
+                    <div class="sublabels">
+                      City *
+                    </div>
+                    <input name="orgFirstCity" ng-value="company.firstAddress.city" ng-model="company.firstAddress.city" class="form-control" type="text" required>
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgFirstState.$invalid && companyGeneralForm.orgFirstState.$touched}">
+                    <div class="sublabels">
+                      State *
+                    </div>
+                    <input name="orgFirstState" ng-value="company.firstAddress.state" ng-model="company.firstAddress.state" class="form-control" type="text" required>
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                    <div class="sublabels">
+                      Line 2
+                    </div>
+                    <input class="form-control" ng-value="company.firstAddress.line2" type="text" name="orgFirstLine2" ng-model="company.firstAddress.line2">
+                    <p class="help-block">Optional</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-3">
+              </div>
+
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgFirstZip.$invalid && companyGeneralForm.orgFirstZip.$touched}">
+                    <div class="sublabels">
+                      Zip Code *
+                    </div>
+                    <input name="orgFirstZip" ng-value="company.firstAddress.zipcode" ng-model="company.firstAddress.zipcode" class="form-control" type="text" required>
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-8">
+              <input type="checkbox" name="subCompany" id="subCompany" ng-checked="company.secondAddress" ng-model="company.subCompany"/>
+              <label for="subCompany" class="labelForOp selection" style="font-weight:bold">Subsidary Office Address</label>
+              <span>Check if your primary company is <strong>OUTSIDE</strong> the US</span>
+            </div>
+          </div>
+
+          <div ng-show="company.subCompany" class="subComAddress">
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgSecondLine1.$invalid && companyGeneralForm.orgSecondLine1.$touched && company.subCompany}">
+                    <div class="sublabels">
+                      Line 1 *
+                    </div>
+                    <input name="orgSecondLine1" ng-value="company.secondAddress.line1" ng-model="company.secondAddress.line1" class="form-control" type="text" ng-required="company.subCompany">
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgSecondCity.$invalid && companyGeneralForm.orgSecondCity.$touched && company.subCompany}">
+                    <div class="sublabels">
+                      City *
+                    </div>
+                    <input name="orgSecondCity" ng-value="company.secondAddress.city" ng-model="company.secondAddress.city" class="form-control" type="text" ng-required="company.subCompany">
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgSecondState.$invalid && companyGeneralForm.orgSecondState.$touched && company.subCompany}">
+                    <div class="sublabels">
+                      State *
+                    </div>
+                    <input name="orgSecondState" ng-value="company.secondAddress.state" ng-model="company.secondAddress.state" class="form-control" type="text" ng-required="company.subCompany">
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                    <div class="sublabels">
+                      Line 2
+                    </div>
+                    <input name="orgSecondLine2" ng-value="company.secondAddress.line2" ng-model="company.secondAddress.line2" class="form-control" type="text">
+                    <p class="help-block">Optional</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-3">
+              </div>
+
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgSecondZip.$invalid && companyGeneralForm.orgSecondZip.$touched && company.subCompany}">
+                    <div class="sublabels">
+                      Zip Code *
+                    </div>
+                    <input name="orgSecondZip" ng-value="company.secondAddress.zipcode" ng-model="company.secondAddress.zipcode" class="form-control" type="text" ng-required="company.subCompany">
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <label class="section">Main Point of Contact</label>
+          <div>
+            <div class="row">
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgMainFName.$invalid && companyGeneralForm.orgMainFName.$touched}">
+                    <div class="sublabels">
+                      First Name *
+                    </div>
+                    <input name="orgMainFName" ng-value="company.main.fname" ng-model="company.main.fname" class="form-control" type="text" required>
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgMainLName.$invalid && companyGeneralForm.orgMainLName.$touched}">
+                    <div class="sublabels">
+                      Last Name *
+                    </div>
+                    <input name="orgMainLName" ng-value="company.main.lname" ng-model="company.main.lname" class="form-control" type="text" required>
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgMainPhone.$invalid && companyGeneralForm.orgMainPhone.$touched}">
+                    <div class="sublabels">
+                      Phone Number *
+                    </div>
+                    <input name="orgMainPhone" ng-value="company.main.phone" ng-model="company.main.phone" class="form-control" type="text" required>
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgMainEmail.$invalid && companyGeneralForm.orgMainEmail.$touched}">
+                    <div class="sublabels">
+                      Email *
+                    </div>
+                    <input name="orgMainEmail" ng-value="company.main.email" ng-model="company.main.email" class="form-control" type="email" required>
+                    <span class="help-block" ng-show="!companyGeneralForm.orgMainEmail.$touched">Required</span>
+                    <span class="help-block" ng-show="companyGeneralForm.orgMainEmail.$invalid && companyGeneralForm.orgMainEmail.$touched">Invaild Email Address</span>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgMainMailAd.$invalid && companyGeneralForm.orgMainMailAd.$touched}">
+                    <div class="sublabels">
+                      Mailing Address *
+                    </div>
+                    <input name="orgMainMailAd" ng-value="company.main.mailAddress" ng-model="company.main.mailAddress" class="form-control" type="text" required>
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-8">
+              <input type="checkbox" name="financialContact" id="financialContact" ng-checked="company.finance" ng-model="company.financialContact"/>
+              <label for="financialContact" class="labelForOp selection" style="font-weight:bold">Financial Contact</label>
+              <span>Check if different for Financial Point of Contact</span>
+            </div>
+          </div>
+
+          <div ng-show="company.financialContact">
+            <div class="row">
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgFinFName.$invalid && companyGeneralForm.orgFinFName.$touched && company.financialContact}">
+                    <div class="sublabels">
+                      First Name *
+                    </div>
+                    <input name="orgFinFName" ng-value="company.finance.fname" ng-model="company.finance.fname" class="form-control" type="text" ng-required="company.financialContact">
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgFinLName.$invalid && companyGeneralForm.orgFinLName.$touched && company.financialContact}">
+                    <div class="sublabels">
+                      Last Name *
+                    </div>
+                    <input name="orgFinLName" ng-value="company.finance.lname" ng-model="company.finance.lname" class="form-control" type="text" ng-required="company.financialContact">
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgFinPhone.$invalid && companyGeneralForm.orgFinPhone.$touched && company.financialContact}">
+                    <div class="sublabels">
+                      Phone Number *
+                    </div>
+                    <input name="orgFinPhone" ng-value="company.finance.phone" ng-model="company.finance.phone" class="form-control" type="text" ng-required="company.financialContact">
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgFinEmail.$invalid && companyGeneralForm.orgFinEmail.$touched && company.financialContact}">
+                    <div class="sublabels">
+                      Email *
+                    </div>
+                    <input name="orgFinEmail" ng-value="company.finance.email" ng-model="company.finance.email" class="form-control" type="email" ng-required="company.financialContact">
+                    <span class="help-block" ng-show="!companyGeneralForm.orgFinEmail.$touched">Required</span>
+                    <span class="help-block" ng-show="companyGeneralForm.orgFinEmail.$invalid && companyGeneralForm.orgFinEmail.$touched">Invaild Email Address</span>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgFinMail.$invalid && companyGeneralForm.orgFinMail.$touched && company.financialContact}">
+                    <div class="sublabels">
+                      Mailing Address *
+                    </div>
+                    <input name="orgFinMail" ng-value="company.finance.mailAddress" ng-model="company.finance.mailAddress" class="form-control" type="text" ng-required="company.financialContact">
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-8">
+              <input type="checkbox" name="legalContact" id="legalContact" ng-checked="company.legal" ng-model="company.legalContact"/>
+              <label for="legalContact" class="labelForOp selection" style="font-weight:bold">Legal Contact</label>
+              <span>Check if different for Legal Point of Contact</span>
+            </div>
+          </div>
+
+          <div ng-show="company.legalContact">
+            <div class="row">
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgLegalFName.$invalid && companyGeneralForm.orgLegalFName.$touched && company.legalContact}">
+                    <div class="sublabels">
+                      First Name *
+                    </div>
+                    <input name="orgLegalFName" ng-value="company.legal.fname" ng-model="company.legal.fname" class="form-control" type="text" ng-required="company.legalContact">
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgLegalLName.$invalid && companyGeneralForm.orgLegalLName.$touched && company.legalContact}">
+                    <div class="sublabels">
+                      Last Name *
+                    </div>
+                    <input name="orgLegalLName" ng-value="company.legal.lname" ng-model="company.legal.lname" class="form-control" type="text" ng-required="company.legalContact">
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgLegalPhone.$invalid && companyGeneralForm.orgLegalPhone.$touched && company.legalContact}">
+                    <div class="sublabels">
+                      Phone Number *
+                    </div>
+                    <input name="orgLegalPhone" ng-value="company.legal.phone" ng-model="company.legal.phone" class="form-control" type="text" ng-required="company.legalContact">
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-3">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgLegalEmail.$invalid && companyGeneralForm.orgLegalEmail.$touched && company.legalContact}">
+                    <div class="sublabels">
+                      Email *
+                    </div>
+                    <input name="orgLegalEmail" ng-value="company.legal.email" ng-model="company.legal.email" class="form-control" type="email" ng-required="company.legalContact">
+                    <span class="help-block" ng-show="!companyGeneralForm.orgLegalEmail.$touched">Required</span>
+                    <span class="help-block" ng-show="companyGeneralForm.orgLegalEmail.$invalid && companyGeneralForm.orgLegalEmail.$touched">Invaild Email Address</span>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgLegalMail.$invalid && companyGeneralForm.orgLegalMail.$touched && company.legalContact}">
+                    <div class="sublabels">
+                      Mailing Address *
+                    </div>
+                    <input name="orgLegalMail" ng-value="company.legal.mail" ng-model="company.legal.mail" class="form-control" type="text" ng-required="company.legalContact">
+                    <p class="help-block">Required</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+      </div>
+
+        <div class="col-lg-12 col-md-12">
+          <h3>Company Information</h3>
+
+          <div>
+            <label class="section">Corporation/Organization type *</label>
+            <div class="row col-lg-12 col-md-12">
+
+              <div class="form-group" ng-class="{'has-error': companyGeneralForm.coType.$invalid}">
+                <span ng-repeat="type in orgType">
+                  <input type="checkbox" name="coType" data-ng-model="type.selected" id="{{$index}}" ng-required="isOptionsRequired()"/>
+                  <label for="{{$index}}" class="labelForOp">{{type.selection}}</label>
+                </span>
+                <p class="help-block">Required</p>
+              </div>
+            </div>
+
+          </div>
+
+          <hr>
+
+          <div class="row">
+            <div class="col-lg-4 col-md-4">
+              <label class="section">Number of employees *</label>
+              <div class="form-group" ng-class="{'has-error': companyGeneralForm.orgEmployeeSize.$error.required}">
+                <select
+                   ng-model="company.selectedEmployeeSize"
+                   name="orgEmployeeSize"
+                   ng-options="option.name for option in employeeSize"
+                   required>
+                   <option value="">Please Select</option>
+                 </select>
+                <p class="help-block">Required</p>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4">
+              <label class="section">Annual Revenue *</label>
+              <div class="form-group" ng-class="{'has-error': companyGeneralForm.orgAnnualRevenue.$error.required}">
+                <select
+                   ng-model="company.selectedAnnualRevenue"
+                   name="orgAnnualRevenue"
+                   ng-options="option.name for option in annualRevenue"
+                   required>
+                   <option value="">Please Select</option>
+                 </select>
+                <p class="help-block">Required</p>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4">
+              <label class="section">Is your organization a start-up? *</label>
+              <div class="form-group" ng-class="{'has-error':companyGeneralForm.startUp.$invalid}">
+                <input type="radio" name="startUp" ng-model="company.startUp" value=1 id="startUp1" required/>
+                <label for="startUp1" class="labelForOp">Yes</label>
+                <input type="radio" name="startUp" ng-model="company.startUp" value=0 id="startUp2" required/>
+                <label for="startUp2" class="labelForOp">No</label>
+                <p class="help-block">Required</p>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgNAICScode.$invalid && companyGeneralForm.orgNAICScode.$touched}">
+                  <label class="section">Primary NAICS Code *</label>
+                  <input name="orgNAICScode" ng-value="company.naicsCode" ng-model="company.naicsCode" class="form-control" type="text" required>
+                  <p class="help-block">Required, Enter if known or look up on <a href="https://www.naics.com/search/" target="_blank">naics</a></p>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group" ng-class="{'has-error':companyGeneralForm.orgDUNSnumber.$invalid && companyGeneralForm.orgDUNSnumber.$touched}">
+                  <label class="section">DUNS Number (or EIN) *</label>
+                  <input name="orgDUNSnumber" ng-value="company.duns" ng-model="company.duns" class="form-control" type="text" required>
+                  <p class="help-block">Required, Enter if known or look up <a href="http://www.dnb.com/duns-number/lookup.html" target="_blank">dnb</a></p>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <div class="col-lg-12 col-md-12">
+          <h3>Membership Agreement</h3>
+
+          <div>
+            <label class="section">Please sign the MEMBERSHIP AGREEMENT on the bottom *</label>
+            <!-- <script src="https://www.smartwaiver.com/m/webpl/f.js?webpl_waiver=596d227c4530f&webpl_title=Sign%20the%20Membership%20Agreement&webpl_align=Right&webpl_fontsize=14&webpl_background=%2375bc52&webpl_fontcolor=%23ffffff&webpl_font=Trebuchet%20MS" type="text/javascript"></script> -->
+          </div>
+        </div>
+      </form>
+
+      <div class="col-lg-12 col-md-12">
+        <!-- <hr> -->
+
+
+
+        <button ng-disabled="companyGeneralForm.$invalid" type="submit" ng-click="save(company)" class="btn btn-next pull-right">
+    							NEXT
+    		</button>
+
+        <br>
+        <br>
+        <label ng-show="companyGeneralForm.$invalid" class="help-block has-error pull-right">Required Field Invaild</label>
+        <label ng-show="companyGeneralForm.$invalid" class="help-block has-error pull-right">Please sign the agreements on bottom</label>
+
+      </div>
+     </div>
+  </div>
+
+</div>
+
+  <br>
+  <br>
+
+  <div class="modal fade" id="orgExist" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header alert-modal">
+          <h5 class="modal-title">Alert</h5>
+        </div>
+        <div class="modal-body">
+          You already have a Tier3 Membership organization database, will redirect to dashboard.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="linkToPage()">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

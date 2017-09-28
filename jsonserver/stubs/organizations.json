@@ -1,0 +1,175 @@
+[
+  {
+   "id":1,
+   "name":"UI LABS",
+   "location":null,
+   "description":"UI LABS solves large-scale challenges by bringing University + Industry together with startups and government to accelerate the deployment of emerging technologies through collaboration. UI LABS is developing a portfolio of applied research and commercialization Labs that lead to a return on investment for its partners, improve local, regional and national competitiveness, and transform entire industries. Across its current Labs, UI LABS has more than 200 members from industry, academic and research institutions, states and cities, and community organizations.",
+   "division":"Innovation Engine",
+   "industry":"Digital Manufacturing",
+   "naicsCode":"01010101",
+   "email":"dmdii@uilabs.org",
+   "phone":"1.312.281.6911",
+   "website":"http://www.uilabs.org/#about",
+   "socialMediaLinkedin":null,
+   "socialMediaTwitter":null,
+   "socialMediaInthenews":null,
+    "perferedCommMethod":"1",
+  "productionCapabilities": "[{\"name\":\"Machining :: Labor Rate\",\"unit\":\"dollars / hour\",\"value\":20}]",
+   "address":{
+      "id":1,
+      "streetAddress1":"1415 N Cherry",
+      "streetAddress2":"",
+      "city":"Chicago",
+      "state":"IL",
+      "country":"US",
+      "zip":"60642"
+   },
+   "reasonJoining":"To transform American Manufacturing.",
+   "featureImage":null,
+   "logoImage":"https://dmcupfinal.s3.amazonaws.com/ORGANIZATION/cuid-78f627b8-412c-40fb-93e0-ec7e1652e2b2%40uilabs.idp.cirrusidentity.com/Documents/1485394337--244902-sanitized-UI-LABS.png?AWSAccessKeyId=AKIAIZPP46XXRK6PBF6A&Expires=1488072737&Signature=rZZ4AQxSe70GTcTYYaOi3pMh5t0%3D",
+   "awards":[
+      {
+         "id":3,
+         "name":"Design of the Year",
+         "description":"UI LABS' facility was recognized as the \"Design of the Year\" by the Chicago chapter of the American Institute of Architects.",
+         "link":"http://www.google.com"
+      },
+      {
+         "id":4,
+         "name":"Project of the Year",
+         "description":"UI LABS' facility was recognized as \"Project of the Year\" by Core Net Chicago.",
+         "link":null
+      },
+      {
+         "id":8,
+         "name":"Chicago Commercial Real Estate Awards",
+         "description":"Chicago Commercial Real Estate Awards – Special Achievement of the Year, 2016",
+         "link":null
+      },
+      {
+         "id":9,
+         "name":"Chicago Inno 50 on Fire Award",
+         "description":"Chicago Inno 50 on Fire Award – Civic Category, 2016",
+         "link":null
+      },
+      {
+         "id":10,
+         "name":"Urban Land Institute (ULI)",
+         "description":"Urban Land Institute (ULI) Chicago Vision Award – Program Category, 2016",
+         "link":null
+      }
+   ],
+   "contacts":[
+      {
+         "id":3,
+         "contactType":{
+            "id":5,
+            "contactType":"SUPPORT"
+         },
+         "name":"Jane Doe",
+         "phoneNumber":null,
+         "title":null,
+         "email":"jane.doe@uilabs.org"
+      }
+   ],
+   "areasOfExpertise":[
+      {
+         "id":9,
+         "name":"Business Process Management",
+         "description":null,
+         "link":null,
+         "isDmdii":true
+      },
+      {
+         "id":16,
+         "name":"Consumer-driven innovation",
+         "description":null,
+         "link":null,
+         "isDmdii":true
+      },
+      {
+         "id":19,
+         "name":"Cybersecurity Technology",
+         "description":null,
+         "link":null,
+         "isDmdii":true
+      },
+      {
+         "id":28,
+         "name":"Digital Value Chain",
+         "description":null,
+         "link":null,
+         "isDmdii":true
+      },
+      {
+         "id":28,
+         "name":"Digital Value Chain",
+         "description":null,
+         "link":null,
+         "isDmdii":true
+      },
+      {
+         "id":47,
+         "name":"Information Assurance",
+         "description":null,
+         "link":null,
+         "isDmdii":true
+      },
+      {
+         "id":48,
+         "name":"Innovation and Product Development",
+         "description":null,
+         "link":null,
+         "isDmdii":true
+      },
+      {
+         "id":60,
+         "name":"Manufacturing Process Design and Development",
+         "description":null,
+         "link":null,
+         "isDmdii":true
+      },
+      {
+         "id":81,
+         "name":"Operational Quality Assurance",
+         "description":null,
+         "link":null,
+         "isDmdii":true
+      },
+      {
+         "id":85,
+         "name":"Product Life Cycle Excellence",
+         "description":null,
+         "link":null,
+         "isDmdii":true
+      },
+      {
+         "id":88,
+         "name":"R&D",
+         "description":null,
+         "link":null,
+         "isDmdii":true
+      }
+   ],
+   "desiredAreasOfExpertise":[
+      {
+         "id":7,
+         "name":"Big Data",
+         "description":null,
+         "link":null,
+         "isDmdii":true
+      },
+      {
+         "id":41,
+         "name":"Green Building Practices",
+         "description":null,
+         "link":null,
+         "isDmdii":true
+      }
+   ],
+   "dmdiiMemberId":1,
+   "postCollaboration":"DMDII and City Digital",
+   "upcomingProjectInterests":"Project 15-16-08",
+   "pastProjects":""
+}
+]

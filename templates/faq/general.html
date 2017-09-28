@@ -1,0 +1,140 @@
+<div class="container container-search-faq" layout="row">
+    <div layout="column" flex class="container-search-faq-inner">
+
+
+        <!-- <div layout="row" layout-align="center center" class="search-block">
+            <form ng-submit="submit()" class="dmc-search-large global-search-form" flex="100">
+                <div layout="column">
+                    <div layout="row">
+                        <div layout="column" flex>
+                            <md-input-container md-no-float>
+                                <md-icon>
+                                    <ng-md-icon icon="search"></ng-md-icon>
+                                </md-icon>
+                                <input type="text" placeholder="Search FAQ" ng-model="searchModel">
+                            </md-input-container>
+                        </div>
+                        <div layout="column">
+                            <md-input-container>
+                                <md-button type="submit" class="search-button">Search</md-button>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div> -->
+    </div>
+</div>
+
+<div class="container container-faq margin-top-25" layout="row" layout-align="center center" ng-if="categoryId == null">
+  <h2>Frequently Asked Questions </h2>
+</div>
+<div class="container container-faq margin-top-25" layout="row" ng-if="categoryId != null">
+
+    <!-- <div class="content-column left-content" layout="column" flex="20"> -->
+        <!-- <md-list>
+            <md-list-item ng-class="{'selected' : item.id == selectedCategory.id}" ng-repeat="item in categories">
+                <md-button ng-href="{{'/faq.php#/general/'+item.id+(searchModel ? '?text='+searchModel : '')}}" flex>
+                    <div class="md-list-item-text" layout="column">
+                        <div>{{item.title}}</div>
+                    </div>
+                </md-button>
+            </md-list-item>
+            <md-list-item ng-click="viewAll()" ng-show="totalCategories > 2 && !showAllCategories">
+                <div class="md-list-item-text" layout="column">
+                    <div>View All</div>
+                </div>
+            </md-list-item>
+            <md-list-item ng-click="showLess()" ng-show="totalCategories > 2 && showAllCategories">
+                <div class="md-list-item-text" layout="column">
+                    <div>Show Less</div>
+                </div>
+            </md-list-item>
+        </md-list> -->
+
+    </div>
+    <div class="content-column right-content margin-left25" layout="column" flex>
+        <div class="content-panel">
+            <div class="content-panel-body">
+                  <div>
+                    <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab label="General ">
+                        <md-content >
+                            <div ng-repeat="q in gFaq" class="faqq">
+                                      <h4>{{q.q}}</h4>
+                                      <p ng-bind-html="q.a | unsafe" ></p>
+
+                            </div>
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="Member Portal ">
+                        <md-content >
+                            <div ng-repeat="q in mpFaq" class="faqq">
+                                      <h4>{{q.q}}</h4>
+                                      <p ng-bind-html="q.a | unsafe" ></p>
+
+                            </div>
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="Getting Access ">
+                        <md-content >
+                            <div ng-repeat="q in aFaq" class="faqq">
+                                      <h4>{{q.q}}</h4>
+                                      <p ng-bind-html="q.a | unsafe" ></p>
+
+                            </div>
+                        </md-content>
+                    </md-tab>
+
+                    <md-tab label="Workspaces ">
+                       <md-content >
+                           <div ng-repeat="q in wFaq" class="faqq">
+                                     <h4>{{q.q}}</h4>
+                                     <p ng-bind-html="q.a | unsafe" ></p>
+
+                           </div>
+                       </md-content>
+                    </md-tab>
+
+                    <md-tab label="Marketplace and Applications ">
+                       <md-content >
+                           <div ng-repeat="q in mFaq" class="faqq">
+                                     <h4>{{q.q}}</h4>
+                                     <p ng-bind-html="q.a | unsafe" ></p>
+
+                           </div>
+                       </md-content>
+                    </md-tab>
+
+                    </md-tabs>
+
+            </div>
+        </div>
+    </div>
+    <div class="content-column right-content margin-left25" layout="column" flex="20" ng-if="article">
+        <!-- <div class="content-panel">
+            <div class="content-panel-body">
+                <md-content layout-padding ng-if="article">
+                    <div class="block-content title-right-content" layout="row" layout-align="start center">
+                        <h2 class="title">Related Articles</h2>
+                    </div>
+                    <md-divider ></md-divider>
+                    <md-list class="related-articles-list">
+                        <md-list-item ng-repeat="item in relatedArticles">
+                            <div class="md-list-item-text" layout="column">
+                                <a ng-href="{{'/faq.php#/article/'+categoryId+'/'+item.id+(searchModel ? '?text='+searchModel : '')}}">{{item.title}}</a>
+                            </div>
+                        </md-list-item>
+                        <md-list-item ng-if="relatedArticles.length == 0">
+                            <div class="md-list-item-text" layout="column">
+                                List is empty...
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </div>
+        </div> -->
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<md-dialog flex="35">
+  <div class="container container-view-all all-project-documents">
+      <div class="content-panel-body">
+          <md-content>
+              <div class="content-panel" source="documents" ui-widget-upload-documents hide-edit="hideEdit" auto-upload="false" widget-title="'UPLOAD DOCUMENTS'" allow-tagging="true"></div>
+              <div layout="row" layout-align="end center" layout-margin flex>
+                  <md-button class="md-raised dmc-button margin-right15" ng-click="cancel()">
+                      Cancel
+                  </md-button>
+                  <md-button class="md-raised dmc-button md-primary"
+                             ng-click="uploadDocuments()"
+                             ng-disabled="documents.length == 0">Upload</md-button>
+              </div>
+          </md-content>
+      </div>
+  </div>
+</md-dialog>

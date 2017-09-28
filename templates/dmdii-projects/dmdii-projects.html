@@ -1,0 +1,154 @@
+<main>
+		<section class="container projects-head">
+			<div id="portalDropdowns">
+
+				<div  layout="row">
+					<h2>Projects</h2>
+
+					<div layout="row" style="margin-top:auto; padding-bottom:4px" class="portal-tabs">
+						<a class="toggle-control collapsed" data-toggle="collapse" data-target="#recent-activity, #divider-activity">
+							<h4 style="padding-left:30px; padding-bottom:0px">Recent Activity</h4>
+						</a>
+						<a class="toggle-control collapsed" data-toggle="collapse" data-target="#quick-links, #divider-links">
+							<h4 style="padding-left:20px; padding-bottom:0px">Quick Links</h4>
+						</a>
+					</div>
+				</div>
+
+				<md-divider class="collapse" id="divider-activity"></md-divider>
+				<md-divider class="collapse" id="divider-links"></md-divider>
+
+				<div class="portal-dropdowns">
+					<div class="collapse" id="quick-links">
+						<ul class="quick-links">
+							<li ng-repeat="doc in docs track by $index" layout="row" layout-align="space-between center">
+								<a href ng-click="quickLinkAction(doc)">{{doc.displayName}}</a>
+								<a href ng-click="deleteQuicklink($index, doc.id)" ng-show="userData.isDmdiiAdmin" class="delete-icon"><ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon></a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="collapse" id="recent-activity" dmc-recent-updates></div>
+				</div>
+
+				<md-divider class="collapse" id="divider-activity"></md-divider>
+				<md-divider class="collapse" id="divider-links"></md-divider>
+
+			</div>
+
+		</section>
+
+		<!-- TODO this needs to be made in to a module suitable for members, projects and ideally services -->
+		<!-- <section class="container content-padding">
+        <div class="row">
+            <div class="col-md-12 project-main">
+								<div class="top-border"></div>
+                <div layout="row">
+									<div class="status status-complete">FEATURED PROJECT</div>
+									<div class="status">{{randProject.projectStatus.name}}</div>
+								</div>
+
+                <h1><a ng-href="{{'/dmdii-project-page.php#/'+randProject.id}}">{{randProject.projectTitle}}</a></h1>
+
+								<div class="sublabels" layout="row">
+									<div>{{randProject.projectFocusArea.name}}</div>
+									<div>{{randProject.projectThrust.name}}</div>
+								</div>
+								<div class="slim-margin" markdown-to-html="randProject.projectSummary"></div>
+            </div>
+            </div>
+        </div>
+		</section> -->
+
+
+		<section class="container">
+			<!-- <div class="row status-row">
+
+				<div class="col-sm-12">
+					<h4 style="margin: 45px 0px 30px;">Projects List</h4>
+				</div>
+			</div> -->
+
+      <!-- <dmc-horizontal-menu tree-source="treeMenuModel"></dmc-horizontal-menu> -->
+
+			<div class="row content-row" style="padding: 10px 0px 0px 0px">
+				<div class="col-xs-11">
+					<div class="form-group has-feedback">
+						<form ng-submit="submit(searchModel)">
+							<input ng-model="searchModel" type="text" class="form-control " placeholder="Search Projects">
+						</form>
+					</div>
+				</div>
+				<!-- <div class="col-xs-1" style="padding-left: 0px; margin-left: -10px;">
+					<ng-md-icon ng-click="submit(searchModel)" icon="search" style="fill: #999" size="30"></ng-md-icon>
+				</div> -->
+				<div class="col-xs-1">
+
+				<div class="dropdown">
+
+
+						<div class="dropdown pull-right">
+							<button class="btn btn-default dropdown-toggle" type="button" id="itemstoshowdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+									{{showArray[sizeModule].name}}<span class="caret"></span>
+									</button>
+							<ul class="dropdown-menu" aria-labelledby="itemstoshowdropdown">
+								<li ng-repeat="item in showArray track by $index">
+									<a ng-click="selectItemDropDown($index)">{{item.name}}</a>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="projects-table">
+			<div class="table-responsive" style="overflow:visible">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="project-name">Name</th>
+						<th class="project-status"><dmc-horizontal-menu tree-source="treeMenuModel[0]"></dmc-horizontal-menu></th>
+						<th class="project-focus"><dmc-horizontal-menu tree-source="treeMenuModel[1]"></dmc-horizontal-menu></th>
+						<th class="project-thrust"><dmc-horizontal-menu tree-source="treeMenuModel[2]"></dmc-horizontal-menu></th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr ng-repeat="project in projects.arr">
+						<td class="project-name">
+							<a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a>
+							<!-- <time datetime="2011-01-12">January 12th, 2011</time> -->
+							<a ng-href="{{'member-page.php#/'+project.primeOrganization.id}}"><h6>{{project.primeOrganization.name}}</h6></a>
+							<div ng-if="project.kind != 'dmdiiEvent'" class="sublabel">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</div>
+							<div ng-if="project.kind == 'dmdiiEvent'" class="sublabel">EVENT</div>
+						</td>
+
+						<td class="project-status">{{project.projectStatus.name}}</td>
+						<td class="project-focus">{{project.projectFocusArea.name}}</td>
+						<td class="project-thrust">{{project.projectThrust.name}}</td>
+					</tr>
+
+				</tbody>
+			</table>
+			</div>
+
+						<div class="row">
+							<div class="col-xs-6">
+								<button id="prevPage" ng-if="hasPrev()" class="btn btn-next pull-right" ng-click="getPrev()">
+										PREV
+								</button>
+							</div>
+
+							<div class="col-xs-6">
+								<button id="nextPage" ng-if="hasNext()" class="btn btn-next pull-left" ng-click="getNext()">
+										NEXT
+								</button>
+							</div>
+						</div>
+
+			</div>
+		</section>
+
+	<!-- <recent-news news="news"></recent-news> -->
+
+</main>

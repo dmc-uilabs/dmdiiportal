@@ -1,0 +1,45 @@
+<div class="container edit-project">
+    <div class="content-columns">
+        <div class="content-panel">
+            <div class="content-panel-header">
+                <md-toolbar>
+                    <div class="md-toolbar-tools edit-project-tools" layout="row" layout-align="start center">
+                        <h2>EDIT WORKSPACE</h2>
+                        <span flex></span>
+                        <md-button class="md-raised md-warn dmc-button delete-project" ng-click="deleteProject($event)" ng-if="$root.userData.isDmdiiAdmin || ($root.userData.accountId === projectCtrl.projectData.projectManagerId)">Delete Workspace</md-button>
+                    </div>
+                </md-toolbar>
+            </div>
+            <div class="content-panel-body">
+                <md-content class="md-padding rfp-invitation">
+                    <md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom md-autoselect>
+                        <!--Tab -->
+                        <div layout="row" layout-align="space-between center">
+                            <md-tab label="1 ENTER WORKSPACE INFORMATION">
+                                <md-content>
+                                    <ap-tab-one go-to-tab="goToNextTab"
+                                                project-details="projectData"
+                                                documents="documents"
+                                                is-update="true"
+                                                disable-enable-tab="disableEnable"></ap-tab-one>
+                                </md-content>
+                            </md-tab>
+                            <md-tab label="2 SELECT MEMBERS TO INVITE"
+                                    ng-disabled="data.secondLocked">
+                                <md-content>
+                                    <ap-tab-two go-to-tab="goToNextTab"
+                                                project-details="projectData"
+                                                invitees="invitees"
+                                                disable-enable-tab="disableEnable"
+                                                is-update="true"
+                                                submit-project-details="updateProject" ></ap-tab-two>
+                                </md-content>
+                            </md-tab>
+                        </div>
+                    </md-tabs>
+                </md-content>
+            </div>
+        </div>
+    </div>
+
+</div>

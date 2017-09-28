@@ -1,0 +1,159 @@
+@import 'variables';
+
+$link_color: black;
+
+%nav_item {
+  text-transform: initial;
+  font-size: 18px;
+  font-weight: 100;
+  ng-md-icon {
+    svg {
+      vertical-align: middle;
+    }
+  }
+}
+
+//
+.small-text {
+  font-size: 10px;
+  &.--grey {
+    color: map-get($colors, text_grey);
+  }
+}
+
+.link{
+  color: black;
+  text-transform: uppercase;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+.dmc-search-large{
+    md-input-container {
+      padding: 0;
+      md-icon{
+        left: 7px;
+        top: 10px;
+        fill: rgba(149, 149, 149, 0.87);
+      }
+      input {
+        @include borderRadius(3px 0 0 3px);
+        padding: 5px 5px 5px 34px;
+        margin-left: 0;
+      }
+      &.md-input-focused{
+        .md-input{
+          border-bottom-width: 1px;
+          padding: 5px 5px 5px 34px;
+        }
+      }
+    }
+    .search-button,
+    .search-button:hover{
+      margin: 0;
+      @include borderRadius(0 3px 3px 0);
+      background-color: #64B045;
+      color: #fff;
+      height: 46px;
+    }
+ }
+
+.dmc-search{
+    md-input-container {
+      padding: 0;
+      height: 32px;
+      md-icon{
+        left: 7px;
+        top: 5px;
+        fill: rgba(149, 149, 149, 0.87);
+      }
+      input {
+        @include borderRadius(3px 0 0 3px);
+        margin-left: 0;
+      }
+      &.md-input-focused{
+        .md-input{
+          border-bottom-width: 1px;
+        }
+      }
+    }
+    .search-button,
+    .search-button:hover{
+      margin: 0;
+      @include borderRadius(0 3px 3px 0);
+      background-color: #64B045;
+      color: #fff;
+      height: 32px;
+      max-height: 32px;
+      min-height: 32px;
+      line-height: 32px;
+    }
+  }
+
+.padding-left8{
+  padding-left: 8px;
+}
+
+.padding-right8{
+  padding-right: 8px;
+}
+
+.padding-left16{
+  padding-left: 16px;
+}
+
+.padding-right16{
+  padding-right: 16px;
+}
+
+.padding-top8{
+  padding-top: 8px;
+}
+
+.padding-bottom8{
+  padding-bottom: 8px;
+}
+
+.padding-top16{
+  padding-top: 16px;
+}
+
+.padding-bottom16{
+  padding-bottom: 16px;
+}
+
+.margin-left8{
+  margin-left: 8px;
+}
+
+.margin-right8{
+  margin-right: 8px;
+}
+
+.margin-left16{
+  margin-left: 16px;
+}
+
+.margin-right16{
+  margin-right: 16px;
+}
+
+.margin-top8{
+  margin-top: 8px;
+}
+
+.margin-bottom8{
+  margin-bottom: 8px;
+}
+
+.margin-top16{
+  margin-top: 16px;
+}
+
+.margin-bottom16{
+  margin-bottom: 16px;
+}

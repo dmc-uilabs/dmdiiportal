@@ -1,0 +1,48 @@
+<div layout="column" class="account-step1">
+	<div layout="row" layout-align="space-between center">
+		<h2>Set Your “Public” Privacy Settings</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.private">
+			SKIP
+		</md-button>
+	</div>
+	<h3>This information is <b>public</b> and will be available to all DMC members.</h3>
+	<div layout="row">
+		<md-checkbox ng-model="account[0].data.public.email.enable" class="md-primary">
+			Email
+		</md-checkbox>
+		<md-checkbox ng-model="account[0].data.public.phone.enable" class="md-primary">
+			Phone
+		</md-checkbox>
+		<md-checkbox ng-model="account[0].data.public.location.enable" class="md-primary">
+			Location
+		</md-checkbox>
+	</div>
+	<form name="publicForm" autocomplete="off" layout="row" layout-wrap>
+		<md-input-container class="md-icon-float" flex="50" ng-if="account[0].data.public.email.enable">
+			<label>Email</label>
+			<md-icon>
+				<ng-md-icon icon="email"></ng-md-icon>
+			</md-icon>
+			<input ng-model="account[0].data.public.email.value" ng-pattern="/^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$/">
+		</md-input-container>
+		<md-input-container class="md-icon-float" flex="50" ng-if="account[0].data.public.phone.enable">
+			<label>Phone</label>
+			<md-icon>
+				<ng-md-icon icon="phone"></ng-md-icon>
+			</md-icon>
+			<input phone-input ng-model="account[0].data.public.phone.value">
+		</md-input-container>
+		<md-input-container class="md-icon-float" flex="50" ng-if="account[0].data.public.location.enable">
+			<label>Location</label>
+			<md-icon class="location-gps" ng-click="getLocation(0)">
+              	<ng-md-icon icon="gps_fixed" size="26" class="location"></ng-md-icon>
+            </md-icon>
+			<input ng-model="account[0].data.public.location.value">
+		</md-input-container>
+	</form>
+	<div layout="row" layout-align="end center">
+		<md-button class="dmc-button md-raised md-primary" ng-click="next(0)">
+			NEXT
+		</md-button>
+	</div>
+</div>

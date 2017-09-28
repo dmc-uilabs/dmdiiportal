@@ -1,0 +1,407 @@
+.subComAddress{
+  margin-top: 1em;
+}
+
+body{
+  background-color: white;
+}
+
+.col-md-12 > h3{
+  border-bottom: solid 1px green;
+  margin-top: 3rem;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover{
+  border: 1px solid #75bc52;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus{
+  border: 2px solid #75bc52;
+}
+
+/* Thanks to Raúl Barrera on CodePen */
+
+input[type="checkbox"],
+input[type="radio"]{
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.labelForOp {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 10px;
+  line-height: 27px;
+  cursor: pointer;
+
+  -webkit-user-select: none; /* Chrome, Opera, Safari */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Standard syntax */
+}
+.labelForOp::before {
+  content: " ";
+  position: absolute;
+  top: 6px;
+  left: 0;
+  display: block;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #75bc52;
+  border-radius: 4px;
+  z-index: -1;
+}
+
+input[type="radio"] + .labelForOp::before {
+  border-radius: 18px;
+}
+
+input[type="radio"]:disabled + .labelForOp{
+  color: #999;
+  cursor: not-allowed;
+}
+
+input[type="radio"]:disabled + .labelForOp::before{
+  border: 2px solid #999;
+  cursor: not-allowed;
+}
+
+/* Checked */
+input[type="checkbox"]:checked + .labelForOp,
+input[type="radio"]:checked + .labelForOp{
+  padding-left: 10px;
+  color: #fff;
+  z-index: 1;
+}
+input[type="checkbox"]:checked + .labelForOp::before,
+input[type="radio"]:checked + .labelForOp::before{
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #75bc52;
+  z-index: -1;
+}
+
+.labelForOp,
+.labelForOp::before {
+  -webkit-transition: .2s all ease;
+  -o-transition: .2s all ease;
+  transition: .2s all ease;
+  font-weight: normal;
+}
+
+select{
+  outline: none;
+  height: 3rem;
+  border: 2px solid #75bc52;
+  background: white;
+}
+
+option{
+  font-size: 20px;
+}
+
+.header h1{
+  // text-align: center;
+  margin-top: 4rem;
+}
+
+.signup-tabs{
+  margin-top: 2rem;
+  .gray{
+    padding: 0px 0px 20px;
+  }
+}
+.signup-tabs ol{
+  -webkit-padding-start: 0px;
+  text-align: center;
+}
+
+.signup-tabs li{
+  // display: inline;
+  display:inline-block;
+  padding: 20px 20px 0 20px;
+  // float: left;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #6e797a;
+  letter-spacing: .1em;
+  list-style-type: none;
+}
+
+.sublabels{
+  color: #737373;
+}
+
+.help-block{
+  color: #999;
+}
+
+._selected{
+  color: #75bc52 !important;
+}
+
+.section{
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  color: #75bc52;
+  padding: 4px 0px;
+  border-radius: 4px;
+}
+
+.pay_section{
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-top: 2rem;
+}
+
+.selection{
+  margin-bottom: 1rem;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.basic-informations {
+  margin-top: 45px;
+  padding: 15px;
+}
+
+._show_type{
+  margin-left: 1rem;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+}
+
+._show{
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}
+
+.StripeElement {
+  background-color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+.paymentLabel{
+  font-weight: 500;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 8px;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.col-lg-12 .btn-success{
+  background: #75bc52;
+  border: 1px solid #75bc52;
+  outline: none;
+}
+
+.paymentButton{
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  color: #fff;
+  background: #75bc52;
+  display: inline-block;
+  padding: 10px 14px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+  border-radius: 4px;
+  font-weight: 600;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+  margin-top: 31px;
+
+}
+
+button[disabled]{
+    cursor: not-allowed;
+    background: #777;
+}
+
+._name{
+  color: green;
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.alert-modal{
+  color: red;
+}
+
+.success-modal{
+  color: #75bc52;
+}
+
+.modal{
+  font-family: 'Roboto', sans-serif;
+}
+
+.modal-title{
+  font-size: 16px;
+}
+
+.modal-dialog {
+    width: 500px;
+    margin: 200px auto;
+}
+
+.landing-container {
+  margin: 40px auto 40px auto;
+  width: 90%;
+  max-width: 1200px;
+
+  h4{
+    font-size: 1.1em;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0px;
+    li {
+      font-size: .8em;
+    }
+  }
+}
+
+.column-header {
+  text-align: center;
+}
+
+.pricing-title-container  {
+  margin: 0px;
+}
+
+.tier3-title-container {
+  background-color: $brand-accent;
+  color: white;
+}
+
+.tier2-title-container {
+  background-color: #0797AE;
+  color: white;
+}
+
+.tier1-title-container {
+  background-color: #364141;
+  color: white;
+}
+
+.tier1-title-container h2, .tier2-title-container h2, .tier3-title-container h2, .all-tier-title-container h2 {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.all-tier-title-container {
+  background-color: darkgrey;
+  padding-bottom: 15px;
+  color: white;
+}
+
+.sub-title {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: .1em;
+  font-size: 11px;
+}
+
+.no-margin-row {
+  margin: 0px;
+}
+
+.sign-up-button {
+  width: 90%;
+  margin: 10px auto;
+  display: block;
+  color: white;
+  font-weight: 800;
+  min-height: 50px;
+  letter-spacing: .1em;
+}
+
+.tier1-button {
+  background-color: #364141;
+}
+
+.tier2-button {
+  background-color: #0797AE;
+}
+
+.tier3-button {
+  background-color: $brand-accent;
+}
+
+.landing-container {
+  .content-row {
+    background-color: #F3F4F4;
+  }
+}
+
+.margin-left-10 {
+  margin-left: 10px;
+}
+
+.header {
+  font-weight: 600;
+}
+
+.row h4.text-center {
+  font-weight: normal;
+  text-transform: none;
+  font-size: 16px;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.content-row.no-pad-top {
+  padding-top: 0;
+}
+
+.arrow-icon svg {
+  transform: rotate(45deg);
+  margin-top: -18px;
+}
+
+.arrow-icon {
+  margin: 0px auto;
+  display: block;
+}
+
+.mem-tiers {
+  h4 {
+    // border-bottom: 1px solid lightgrey;
+    margin-right: 10px;
+  }
+  ul {
+    margin: 0px 20px;
+  }
+  margin-bottom: 30px;
+}

@@ -1,0 +1,802 @@
+
+<div class="onboarding-home">
+	<md-content layout layout-align="center center">
+		<div layout="column"  layout-fills style="max-width:98%">
+			<div class="section-header" layout="column" layout-align="start start" layout-fills flex class="text">
+				<!-- <h1>Release Notes</h1>
+				<p>Learn about each of our releases, the work that goes into each release, how you may be effected, plans for the future and much more.</p> -->
+			</div>
+
+
+			<div class="section" layout="row" layout-align="center center" layout-fills>
+				<div class="logo">
+					<img ng-src="images/Tree-Animation.gif">
+				</div>
+				<div layout="column" flex class="text" style="min-width:70%">
+					<h1>Digital Manufacturing Commons: Releases </h1>
+					<p>
+					<h3>Learn about each of our releases, the work that goes into each release, how you may be effected, plans for the future and much more.</h3>
+				</div>
+			</div>
+			<!-- <div layout="column" class="background">
+				<div class="section" layout="row" layout-align="center center" layout-fills>
+					<div class="image">
+						<img ng-src="images/icon-profile-lg.svg"  style="width: 50px">
+					</div>
+					<div layout="column" flex class="text">
+						<h2>Time Line</h2>
+						<h3>Here you can view what the DMC has completed in the last quarter, what it has planned to be complete in this quarter and what is in store for the platform in the next three quarters. The timeline should be available to view in the next release.</h3>
+					</div>
+
+				</div> -->
+
+			<md-divider></md-divider>
+
+			<h1>Release Tree</h1>
+			<div layout="column" class="background">
+				<div class="section" layout="row" layout-align="center start" layout-fills>
+					<div class="image">
+						<img ng-src="images/Gear Tree_Grey Tree.svg"  style="width: 115px">
+					</div>
+					<div layout="column" flex class="text">
+						<h2>Release Tree</h2>
+						<h3>During this release, the DMC team focused most efforts on updating and adding content throughout the site to both give the site a new updated look in some locations as well as to give users more ways to learn about the DMC. This being the case you will see many changes on our site related to the DMDII Portal as well as adding a new Learn section to the main menu. Please look to the Relese tree below to find all changes associated with this release to learn more about what changes may effect you.</h3>
+
+				<md-tabs md-dynamic-height md-border-bottom>
+
+					<!-- Release V 0.1.9 -->
+					<md-tab label="V 0.1.9 TabbyStar">
+						<md-content class="tab-projects">
+							<div layout="column" class="text-row">
+								<div layout="row" style="justify-content:flex-end">
+									<span style="margin-right:40px; margin-top:-11px;"><h4>Released: 7/18/2017</h4></span>
+									<span class="release-bug margin5px" style="margin-right:64px"></span>
+									<span class="release-feature margin5px" style="margin-right:67px"></span>
+									<span class="release-content margin5px"></span>
+								</div>
+								<h2 style="font-weight: 300; text-transform: uppercase; font-size:20px;">Introduction</h2>
+								<p>
+									During this sprint, the DMC team worked to begin implementing changes that were most requested by most users during our DMC Site Usability Testing Day, which was held on June 9, 2017. Many suggestions we received revolved around users' workspace home pages, as well as workspace creation and navigation as a whole. We've gone through a few iterations of possible new layouts and in this release we've updated these sections of the website. Our team plans to hold more usability test every few weeks to continue to get feedback on how we can improve our site for usability. If you are interested in being a DMC Usability Tester, please reach out to <u><a href="mailto:askdmc@uilabs.org" style="color:green">askdmc@uilabs.org</a></u> and we will then make sure to add you to the next Site Usability Test schedule sign-up e-mail.
+								</p>
+								<md-divider></md-divider>
+								<release-tree ng-if="notesV018" notes="notesV019" class="release-tree"></release-tree>
+							</div>
+
+							<md-divider></md-divider>
+
+							<div class="section" layout="row" layout-align="center start" layout-fills>
+								<div class="image">
+									<ng-md-icon icon="settings_ethernet" style="fill: #666" size="50"></ng-md-icon>
+								</div>
+								<div layout="column" flex class="text">
+									<h2>Codebase</h2>
+									<h3>
+										<strong>Cleaner Logging for Rest Machine</strong>
+									</h3>
+									<ul>
+										<li>
+											In a previous release any console logs that were unknown errors were hidden from the browser console and made only available to review through access to our rest machine for safer error logging. In this release we've made it easier for us to read some logs when users are doing actions we consider to be those of an active user. This will make it easier for use to track active users.
+										</li>
+									</ul>
+									<h3>
+										<strong>Hiding DOME IPs in console</strong>
+									</h3>
+									<ul>
+										<li>
+											Running dome applications no logger shows the IP addresses of the DOME machine in the console. We've implemented this change for security reasons, to both keep the servers and app IP safe from nefarious users.
+										</li>
+									</ul>
+								</div>
+							</div>
+
+							<!-- <md-divider></md-divider>
+
+							<div class="section" layout="row" layout-align="center start" layout-fills>
+								<div class="image">
+									<img ng-src="images/icon-marketplace-lg.svg"  style="width: 50px">
+								</div>
+								<div layout="column" flex class="text">
+										<h2>Applications</h2>
+								<p>In this release, we've added two new application to the DMC Marketplace that help to support the new Workflow were have noted in the Codebase section above. Additionally, for the time being, we have removed the two application that were created by Pennsylvania State University (Welding Model and Conceptual Cost Model) from the DMC Marketplace due to issues with the DOME server on which they are being hosted, while we look to fix this issue.</p>
+								<p>The applications listed below have been added to the DMC Marketplace and were created by the DMC team. Learn more about the apps by visiting the DMC Marketplace or at their respective Confluence Wiki pages.</p>
+								<ul>
+									<li>
+										<strong>Should Cost Tool</strong>:Creates a Should Cost Analysis report which is generated from a supplied Technical Data Package and the Virtual Production Capabilities form that organization administrators have filled out.
+										<ul><li>
+											App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Manufacturing+Should+Cost+Analysis+by+DMC" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Manufacturing+Should+Cost+Analysis+by+DMC style="color:green">Manufacturing Should Cost Analysis by DMC</a></u>
+										</li></ul>
+									</li>
+									<li>
+										<strong>Technical Data Package (TDP) Authoring Tool</strong>: Generates an XML formated TDP file based on a .stp CAD file and is used as an input for the Should Cost Analysis.
+										<ul><li>
+											App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Technical+Data+Package+Authoring+Tool+by+DMC" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Technical+Data+Package+Authoring+Tool+by+DMC style="color:green">Technical Data Package Authoring Tool by DMC</a></u>
+										</li></ul>
+									</li>
+								</ul>
+								</h3>
+								</div>
+							</div> -->
+
+							<!-- <md-divider></md-divider>
+
+							<div class="section" layout="row" layout-align="center start" layout-fills>
+								<div class="image">
+									<ng-md-icon icon="assignment" style="fill: #666" size="50"></ng-md-icon>
+								</div>
+								<div layout="column" flex class="text">
+									<h2>New Workflows</h2>
+									<h3>
+										<strong>Bidding to Build a Part</strong>
+									</h3>
+									During this release we worked to try to transform how manufacturers find the right supplier for a part they wish to build. Larger manufacturers may have a few hundred to a couple thousand suppliers, which makes it hard to find the right supplier that can machine a newly designed part. We envision the DMC can be used in the following way to increase productivity:
+									<ol>
+										<li>
+											Manufacturer uploads a .stp file to their private workspace documents page.
+										</li>
+										<li>
+											The manufacturer then uses the Technical Data Packaging Tool application in their private workspace choosing to use the file they've uploaded as an input to the application.
+											<ul>
+												<li>
+													They also specify the coating and material type at this stage.
+												</li>
+											</ul>
+										</li>
+										<li>
+											The manufacturer then creates a new private workspace and invites all their suppliers to it.
+											<ul>
+												<li>
+													They will also share authorization tokens with their suppliers, which are used to run the Manufacturing Should Cost Analysis application.
+												</li>
+												<li>
+													The tokens are also used so that suppliers are not able to gain the system.
+												</li>
+											</ul>
+										</li>
+										<li>
+											The manufacturer then shares the output of the TDP application to their new workspace and allows the files to be accessible to team members of the new workspace.
+										</li>
+										<li>
+											Newly invited suppliers on the DMC have their organization administrators fill out their organization VPCs.
+										</li>
+										<li>
+											Individual suppliers now created their own private workspaces and add the Manufacturing Should Cost Analysis application to it.
+										</li>
+										<li>
+											Suppliers now run the Manufacturing Should Cost Analysis application and use the Manufacturer's supplied file as an input from that shared workspace.
+											<ul>
+												<li>
+													Suppliers at this time will use their one time use authorization tokens to run the application.
+												</li>
+												<li>
+													This will generate a report that can then be saved to their workspace documents page and can then be reviewed before sharing. Suppliers will be give three authorization tokens that allow them to update their VPC in the case they realize they may have entered some information in incorrectly.
+												</li>
+											</ul>
+										</li>
+										<li>
+											Suppliers now share the Should Cost Report from their workspace to a new workspace the Manufacturer has created that is only accessible to the Manufacturer. This means the reports are not viewable by any other competitor.
+										</li>
+										<li>
+											The manufacturer now can make an informed decision on which suppliers have the actual capabilities to create the part they are looking to have made and also know which suppliers may be to costly to use in this case. They can now figure out which suppliers they may want talk to before making their final decision.
+										</li>
+									</ol>
+								</div>
+							</div> -->
+
+								</md-content>
+					</md-tab>
+
+
+
+
+
+
+
+
+
+
+
+
+					<!-- Release V 0.1.8 -->
+					<md-tab label="V 0.1.8 ">
+						<md-content class="tab-projects">
+							<div layout="column" class="text-row">
+								<div layout="row" style="justify-content:flex-end">
+									<span style="margin-right:40px; margin-top:-11px;"><h4>Released: 6/2/2017</h4></span>
+									<span class="release-bug margin5px" style="margin-right:64px"></span>
+									<span class="release-feature margin5px" style="margin-right:67px"></span>
+									<span class="release-content margin5px"></span>
+								</div>
+								<h2 style="font-weight: 300; text-transform: uppercase; font-size:20px;">Introduction</h2>
+								<p>During this release, our team focused its efforts mainly around creating a brand new workflow that users can now exercise on our website. Read on below to learn more about this and how to use it. Additionally, we worked to fix a few issues issues with our codebase. A few of the items that are featured below such as safer and more anonymized error logging to the frontend.</p>
+								<md-divider></md-divider>
+								<release-tree ng-if="notesV018" notes="notesV018" class="release-tree"></release-tree>
+							</div>
+
+							<md-divider></md-divider>
+
+							<div class="section" layout="row" layout-align="center start" layout-fills>
+								<div class="image">
+									<ng-md-icon icon="settings_ethernet" style="fill: #666" size="50"></ng-md-icon>
+								</div>
+								<div layout="column" flex class="text">
+									<h2>Codebase</h2>
+									<h3>
+										<strong>Soft Delete for Applications in Workspaces</strong>
+									</h3>
+									<ul>
+										<li>
+											The ability for users to delete workspaces has been a feature on our website for quite a  while but the way this was being handled on the backen of our system is not necessarily the best way to have architecturally done so. Many pages that were related to that deleted application would still be accessibl, which is not very secure. In this release we did some work to implement archiving applications in workspaces. When an application is deleted now, the application as well as many other pages such as the run and information pages are no longer accessible. In the case a user deletes an application accidentally or realizes they still need that application, they can reach out to us via any of the contact method listed on our contact us page and we can re-instate that very application in their workspace with the same run history if needed.
+										</li>
+									</ul>
+									<h3>
+										<strong>Out of Service Workspace Applications Removed</strong>
+									</h3>
+									<ul>
+										<li>
+											While we were in the past still working on how applications are referenced when new infrastructure is created this cause applications that some users added to their workspaces to become unresponsive. We ave systematically removed all applications from user workspaces that were in an unusable state. Users might have found that these applications were making the site run more slowly for them as well as were unable to remove them from their workspaces. All this should now be fixed.
+										</li>
+									</ul>
+									<!-- <h3>
+										<strong>New Permissions for Editing Services</strong>
+									</h3>
+									<ul>
+										<li>
+											In the past users would have had the ability to go to the marketplace, add an application to their workspace and then edit what that application actually ran when executed. We have made changes that now only allow users to edit applications that have registered their own DOME servers applications to their workspaces.
+										</li>
+									</ul> -->
+									<!-- <h3>
+										<strong>Permissions on User Profile Pictures</strong>
+									</h3>
+									<ul>
+										<li>
+											In a previous release we made front end changes the would keep users from being able to change profile pictures of other users. In this release we introduced backend permissions that will reinforce this to ensure users are not able make these changes in some other ways.
+										</li>
+									</ul> -->
+									<h3>
+										<strong>Safer Error Logging</strong>
+									</h3>
+									<ul>
+										<li>
+											In the past when our infrastructure and code would detect errors that we did not account our code for, the error would be logged to the browser potentially revealing sensitive information thats should not be available to users. We've implemented a change that will catch these unknown errors and anonymize them after the original log is saved to our servers and send the new error message to the browser. We've made this change in order to both keep our users safe as well as to more easily investigate errors that users may run into or report to us.
+										</li>
+									</ul>
+								</div>
+							</div>
+
+							<md-divider></md-divider>
+
+	    				<div class="section" layout="row" layout-align="center start" layout-fills>
+	    					<div class="image">
+	    						<img ng-src="images/icon-marketplace-lg.svg"  style="width: 50px">
+	    					</div>
+	    					<div layout="column" flex class="text">
+	    							<h2>Applications</h2>
+	    					<p>In this release, we've added two new application to the DMC Marketplace that help to support the new Workflow were have noted in the Codebase section above. Additionally, for the time being, we have removed the two application that were created by Pennsylvania State University (Welding Model and Conceptual Cost Model) from the DMC Marketplace due to issues with the DOME server on which they are being hosted, while we look to fix this issue.</p>
+	    					<p>The applications listed below have been added to the DMC Marketplace and were created by the DMC team. Learn more about the apps by visiting the DMC Marketplace or at their respective Confluence Wiki pages.</p>
+	    					<ul>
+	    						<li>
+										<strong>Should Cost Tool</strong>:Creates a Should Cost Analysis report which is generated from a supplied Technical Data Package and the Virtual Production Capabilities form that organization administrators have filled out.
+										<ul><li>
+											App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Manufacturing+Should+Cost+Analysis+by+DMC" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Manufacturing+Should+Cost+Analysis+by+DMC style="color:green">Manufacturing Should Cost Analysis by DMC</a></u>
+										</li></ul>
+									</li>
+	    						<li>
+										<strong>Technical Data Package (TDP) Authoring Tool</strong>: Generates an XML formated TDP file based on a .stp CAD file and is used as an input for the Should Cost Analysis.
+										<ul><li>
+											App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Technical+Data+Package+Authoring+Tool+by+DMC" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Technical+Data+Package+Authoring+Tool+by+DMC style="color:green">Technical Data Package Authoring Tool by DMC</a></u>
+										</li></ul>
+									</li>
+	    					</ul>
+	    					</h3>
+	    					</div>
+	    				</div>
+							<md-divider></md-divider>
+
+							<div class="section" layout="row" layout-align="center start" layout-fills>
+								<div class="image">
+									<ng-md-icon icon="assignment" style="fill: #666" size="50"></ng-md-icon>
+								</div>
+								<div layout="column" flex class="text">
+									<h2>New Workflows</h2>
+									<h3>
+										<strong>Bidding to Build a Part</strong>
+									</h3>
+									During this release we worked to try to transform how manufacturers find the right supplier for a part they wish to build. Larger manufacturers may have a few hundred to a couple thousand suppliers, which makes it hard to find the right supplier that can machine a newly designed part. We envision the DMC can be used in the following way to increase productivity:
+									<ol>
+										<li>
+											Manufacturer uploads a .stp file to their private workspace documents page.
+										</li>
+										<li>
+											The manufacturer then uses the Technical Data Packaging Tool application in their private workspace choosing to use the file they've uploaded as an input to the application.
+											<ul>
+												<li>
+													They also specify the coating and material type at this stage.
+												</li>
+											</ul>
+										</li>
+										<li>
+											The manufacturer then creates a new private workspace and invites all their suppliers to it.
+											<ul>
+												<li>
+													They will also share authorization tokens with their suppliers, which are used to run the Manufacturing Should Cost Analysis application.
+												</li>
+												<li>
+													The tokens are also used so that suppliers are not able to gain the system.
+												</li>
+											</ul>
+										</li>
+										<li>
+											The manufacturer then shares the output of the TDP application to their new workspace and allows the files to be accessible to team members of the new workspace.
+										</li>
+										<li>
+											Newly invited suppliers on the DMC have their organization administrators fill out their organization VPCs.
+										</li>
+										<li>
+											Individual suppliers now created their own private workspaces and add the Manufacturing Should Cost Analysis application to it.
+										</li>
+										<li>
+											Suppliers now run the Manufacturing Should Cost Analysis application and use the Manufacturer's supplied file as an input from that shared workspace.
+											<ul>
+												<li>
+													Suppliers at this time will use their one time use authorization tokens to run the application.
+												</li>
+												<li>
+													This will generate a report that can then be saved to their workspace documents page and can then be reviewed before sharing. Suppliers will be give three authorization tokens that allow them to update their VPC in the case they realize they may have entered some information in incorrectly.
+												</li>
+											</ul>
+										</li>
+										<li>
+											Suppliers now share the Should Cost Report from their workspace to a new workspace the Manufacturer has created that is only accessible to the Manufacturer. This means the reports are not viewable by any other competitor.
+										</li>
+										<li>
+											The manufacturer now can make an informed decision on which suppliers have the actual capabilities to create the part they are looking to have made and also know which suppliers may be to costly to use in this case. They can now figure out which suppliers they may want talk to before making their final decision.
+										</li>
+									</ol>
+								</div>
+							</div>
+								</md-content>
+					</md-tab>
+
+<!-- Release V 0.1.7 -->
+<md-tab label="V 0.1.7">
+	<md-content class="tab-projects">
+		<div layout="column" class="text-row">
+			<div layout="row" style="justify-content:flex-end">
+				<span style="margin-right:40px; margin-top:-11px;"><h4>Released: 5/9/2017</h4></span>
+				<span class="release-bug margin5px" style="margin-right:64px"></span>
+				<span class="release-feature margin5px" style="margin-right:67px"></span>
+				<span class="release-content margin5px"></span>
+			</div>
+			<h2 style="font-weight: 300; text-transform: uppercase; font-size:20px;">Introduction</h2>
+			<p>In this release the DMC development team focused most efforts on revamping the many existing workflows around workspaces. As one may be able to guess from looking at our most recent releases, workspaces have received a layout face-lift. There is some new functionality when it come to applications that we think users will make running applications an even smoother experience than before.</p>
+			<md-divider></md-divider>
+			<release-tree ng-if="notesV017" notes="notesV017" class="release-tree"></release-tree>
+		</div>
+
+		<md-divider></md-divider>
+
+		<div class="section" layout="row" layout-align="center start" layout-fills>
+			<div class="image">
+				<ng-md-icon icon="settings_ethernet" style="fill: #666" size="50"></ng-md-icon>
+			</div>
+			<div layout="column" flex class="text">
+				<h2>Codebase</h2>
+				<h3>
+					<strong>Vault Integration</strong>
+				</h3>
+				<ul>
+					<li>
+						We've integrated Vault into our deployment framework for our playform in this release. This change will not effect users directly but makes sure that our team is able to work on our platform virtual machines in a much safer capacity. Users as usual can rest assured that only those with the proper access level are working on updating the code base and infrastructure that supports the website.
+					</li>
+				</ul>
+				<h3>
+					<strong>Updated Terraform Infrastructure Deployment Scripts</strong>
+				</h3>
+				<ul>
+					<li>
+						Users that know our development team's infrastructure deployment methods know that we use Terraform to deploy and build our infrastructure. We've made some updates due to some recent changes that allows us to once more deploy our infrastructure in a more automated way.
+					</li>
+					<li>
+						Along with this update, we now have new code that allows us to now automatically build our ELK Stack/Stack Monitoring Infrastructure in tandem with the rest our our infrastructure.
+					</li>
+				</ul>
+        <h3>
+					<strong>Updated Terraform Version</strong>
+				</h3>
+				<ul>
+					<li>
+						We've updated our Terraform deployment scripts to now be compliant with Terraform Verson 0.9.4. If you are interested in deployiong our infrastructure yourself for this or other versions of the DMC going forward, you will need to make sure you have this version of Terraform installed.
+					</li>
+        </ul>
+				<h3>
+					<strong>File Signing (SHA256)</strong>
+				</h3>
+				<ul>
+					<li>
+						In order to give users the piece of mind that they are not downloading documents that have been altered after they have been uploaded to our site, we have implemented SHA256 for uploaded files. SHA256 is a cryptographic hash which is like a semi unique signature for a text or a data file. The signature is very difficult to regenerate exactly the same way once created, so our users can know that the files being downloaded are always the original and unaltered versions uploaded to the DMDII Projects' profile pages.
+					</li>
+				</ul>
+				<h3>
+					<strong>Quarantine Bucket Workflow</strong>
+				</h3>
+				<ul>
+					<li>
+						In a previous release we implemented a framework for our quarantine bucket. We've now finalized and fully tested its functionality and have included it in this release. In the past, our infrastructure would scan all documents being uploaded to our site before making the document available for user to download. Documents that did not pass the virus and malware scan process would be marked as not safe and would not become available for download through our site. This will move files marked as not safe by our infrastructure will be moved to our quarantine storage solution, when users go to retrieve the document the next time they will find in place of the document an image informaing them the file was not properly uploaded. We will at this point be able informed of the action so we can analyze the threats our site experiences on a regular bases, to ensure our users are always safe when using our platform.
+					</li>
+				</ul>
+			</div>
+		</div>
+
+			<md-divider></md-divider>
+
+			<div class="section" layout="row" layout-align="center start" layout-fills>
+				<div class="image">
+					<img ng-src="images/icon-marketplace-lg.svg"  style="width: 50px">
+				</div>
+				<div layout="column" flex class="text">
+					<h2>Applications</h2>
+					<p>
+						<h3>
+							<strong>Marketplace Applications</strong>
+						</h3>
+							During this release we decided that it was appropriate to remove the applications listed below from the DMC Marketplace, as we could not provide sufficient information to user to explain conceptually what they solved for. Also as we are looking to expand our variety of applications available in the marketplace, we believed these two applications were the least utilized applications as well as estimated to be the least likely to provide value to our users at this time. We have been working to clean up the currently marketplace to ensure users are getting a rich experience an are not overwhelmed with the amount of options in terms of applications.
+						<ul>
+							<li>
+								X0OverWp2p8
+							</li>
+							<li>
+								X0OverWp8p1
+							</li>
+						</ul>
+					</p>
+					<p>
+						<h3>
+							<strong>Docent Working Once More</strong>
+						</h3>
+							In a previous release, the Docent application in our marketplace became no longer usable in users' workspaces. We have taken a few weeks to look into the issue and have found a solution that has been implimented in this release.
+					</p>
+					<!-- <p>
+						<h3>
+							<strong>Workspace Applications</strong>
+						</h3>
+						Due to the changes we made that allows users to stop an already running application we have found that there are a few hundred instances of applications that are still "running" in users' workspaces. This has caused our website to begin running very slowly when visiting pages like the workspace directories as workspace services pages. In order to fix the issue, all applications that users have in their workspaces that are no longer in a run-able state due to the necessary server no longer being accessible have been removed from users' workspaces.
+					</p> -->
+				</div>
+			</div>
+
+			</md-content>
+</md-tab>
+
+<!-- Release V 0.1.6 -->
+<md-tab label="V 0.1.6">
+	<md-content class="tab-projects">
+		<div layout="column" class="text-row">
+			<div layout="row" style="justify-content:flex-end">
+				<span style="margin-right:40px; margin-top:-11px;"><h4>Released: 4/21/2017</h4></span>
+				<span class="release-bug margin5px" style="margin-right:64px"></span>
+				<span class="release-feature margin5px" style="margin-right:67px"></span>
+				<span class="release-content margin5px"></span>
+			</div>
+			<h2 style="font-weight: 300; text-transform: uppercase; font-size:20px;">Introduction</h2>
+			<p>During this release, the DMC focused heavily on what we consider to be "Content Cleanup." In the last release users may have noticed that the DMDII Portal received a UI overhaul. In this release we focused on fixing a few issues that were brought to our attention by avid users of the Portal as well as other bugs we are aware of in the system.</p>
+			<p>Beyond bugs, we also worked on adding more general site features such as notifications, invitations, and update aggregation which we expect will help to drive our users to learn more about small updates happening with DMDII Members and DMDII Projects as well as being able to manage organization profiles and workspaces more effectively.</p>
+			<md-divider></md-divider>
+			<release-tree ng-if="notesV016" notes="notesV016" class="release-tree"></release-tree>
+		</div>
+
+		<md-divider></md-divider>
+
+		<div class="section" layout="row" layout-align="center start" layout-fills>
+			<div class="image">
+				<ng-md-icon icon="settings_ethernet" style="fill: #666" size="50"></ng-md-icon>
+			</div>
+			<div layout="column" flex class="text">
+					<h2>Codebase</h2>
+					<ul>
+						<li>
+							<h3>Framework for More Secure Document Access</h3>
+						</li>
+							<ul>
+								<li>
+									We are aware that some users of our platform want to make sure that the documents they are downloading/getting access to through workspaces and the DMDII Portal. In this release we worked to put together a framework that will be introduced in a upcoming release to make it harder for an individual to share information with someone that should not have access to these documents.
+								</li>
+							</ul>
+						</ul>
+			</div>
+		</div>
+
+			<md-divider></md-divider>
+
+			<div class="section" layout="row" layout-align="center start" layout-fills>
+				<div class="image">
+					<img ng-src="images/icon-marketplace-lg.svg"  style="width: 50px">
+				</div>
+				<div layout="column" flex class="text">
+					<h2>Applications</h2>
+					<p>
+						<h3>
+							<strong>Marketplace Applications</strong>
+						</h3>
+							We've include two new application in our Marketplace for our users to demo.This time the applications are coming from one of our DMDII Academic Members. North Carolina State University is working to build three more applications similar to these two. If you are a DMDII member, definitely check out their 15-16-08 project which can be found in the DMDII Project Directory.
+						</p>
+						<ul>
+							Learn more about the apps when visiting the DMC Marketplace or at their associated Confluence pages:
+							<ul>
+								<li>
+									<strong>Machine Status</strong>: This app is designed to retrieve status of machines in the NCSU ISE Manufacturing Laboratory.</li>
+									<ul>
+										<li>
+											App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machine+Status+by+North+Carolina+State+University" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machine+Status+by+North+Carolina+State+University style="color:green">Machine Status by North Carolina State University</a></u>
+										</li>
+									</ul>
+									<li>
+										<strong>Machining Data</strong>: This app retrieves detailed machining dataset associated with any of the 3 machines in current dataset.
+									</li>
+									<ul>
+										<li>
+											App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machining+Data+by+North+Carolina+State+University" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machining+Data+by+North+Carolina+State+University style="color:green">Machining Data by North Carolina State University</a></u>
+										</li>
+									</ul>
+									<li><strong>Machining Data with Plots</strong>: This app retrieves a machining dataset and plots values as an XY graph.</li>
+										<ul>
+											<li>
+												App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machining+Data+with+Plots+by+North+Carolina+State+University" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Machining+Data+with+Plots+by+North+Carolina+State+University style="color:green">Machining Data with Plots by North Carolina State University</a></u>
+											</li>
+										</ul>
+								</ul>
+							</ul>
+					<p>
+						<h3>
+							<strong>Updates to Existing Applications</strong>
+						</h3>
+							We've been told in the past that many of the applications we've published to our marketplace during our beta release are very ambiguous and that most people do not know what these applications do. In a continuous effort, we have begun to update application names and descriptions to be more descriptive to help users more decisively use the marketplace applications available to them on the DMC.
+					</p>
+					<ul>
+						<li>
+							Changes made thus far include:
+							<ul>
+								<li>
+									Our Beta Factor application has been renamed Nonlinear Crack Growth Rate Correction Factor Calculation, and its documentation has also been updated.
+								</li>
+								<li>
+									Our K Max application has been renamed Critical Stress Intensity Factor, and its documentation has also been updated.
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<p>
+						<h3>
+							<strong>Installing and Launching DOME</strong>
+						</h3>
+						We have found recently that our instructions for users being able to install and launch our DOME SDK on Windows and Mac operating systems were no longer working. We've made a few updates to our documentation to account for this. Individuals interested in building DOME applications may find it useful to revisist our update documentation found on our Confluence wiki page: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Installing+and+Launching+DOME" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Installing+and+Launching+DOME style="color:green">Installing and Launching DOME</a></u>
+					</p>
+					<p>
+						<h3>
+							<strong>DOME and External APIs</strong>
+						</h3>
+						We understand that many developers that will be building DOME applications may need to take advantage of calling external APIs in order to make their applications function properly or in the architecture they've designed. In order to easy the process of doing this. We've created documentation that users should be able to reference to allow them to do exactly that. The instructions to do this can be found on our Confluence Wiki page: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/DOME+Applications+and+External+APIs" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/DOME+Applications+and+External+APIs style="color:green">DOME Applications and External APIs</a></u>
+					</p>
+				</div>
+
+			</div>
+
+			</md-content>
+</md-tab>
+
+<!-- Release V 0.1.5 -->
+			<md-tab label="V 0.1.5 ">
+			  <md-content class="tab-projects">
+			    <div layout="column" class="text-row">
+						<div layout="row" style="justify-content:flex-end">
+							<span style="margin-right:40px; margin-top:-11px;"><h4>Released: 4/7/2017</h4></span>
+							<span class="release-bug margin5px" style="margin-right:64px"></span>
+							<span class="release-feature margin5px" style="margin-right:67px"></span>
+							<span class="release-content margin5px"></span>
+						</div>
+						<h2 style="font-weight: 300; text-transform: uppercase; font-size:20px;">Introduction</h2>
+						<p>During this release, the DMC heaviliy focused on making updates that effected the DMDII Membership Portal. The Membership Portal recieved a new look and feel (navigation hasn't changed too much so don't worry if you were a fan of how you traversed the portal before). In addition to these changes, we are slowly making the shift to releasing new content with every release we put out. We are starting this release strong with all the new static content pages we've added to the site which include our Security page and updated About and Activities pages.</p>
+						<p>We've also made a few updates to our legal page so definitely look over this when you have the opportunity.</p>
+						<p>As with most releases, we have added three more application to the DMC Marketplace in the form of external application contributions from DMDII Member Organizations such as Integris Engineering and Pennsylvania State University. Read more about them in our Applications section found below.</p>
+						<p>Finally, if you couldn't tell already, all release notes about the platform and the website will be published to this page going forward, so you no longer need to leave the DMC to learn more about the hard work that is put into each release as well as what new features and content is available to you every two weeks. All previous release notes can still be accessed from our wiki page on Confluence, with links to each article available in the tabs above.</p>
+						<md-divider></md-divider>
+				    <release-tree ng-if="notesV015" notes="notesV015" class="release-tree"></release-tree>
+			    </div>
+
+			    <md-divider></md-divider>
+
+			    <div class="section" layout="row" layout-align="center start" layout-fills>
+    				<div class="image">
+    					<ng-md-icon icon="settings_ethernet" style="fill: #666" size="50"></ng-md-icon>
+    				</div>
+    				<div layout="column" flex class="text">
+  						<h2>Codebase</h2>
+							<h3>
+								<strong>White-list and Black-List Framework</strong>
+							</h3>
+							<ul>
+								<li>
+									The DMC has created a framework to be able to white-list and black-list endpoints. In the past these endpoints were listed one by one, but now we will be able to white-list and black-list endpoints via a singular file. In future updates we will be utilizing this functionality to add full lists of white and blacklist on our own servers.
+								</li>
+							</ul>
+							<h3>
+								<strong>Quarantine Bucket Workflow Framework</strong>
+							</h3>
+							<ul>
+								<li>
+									We have made changes to our framework for our document upload process to make it even safer. In the past, our infrastructure would scan all documents being uploaded to our site before making the document available for user to download. Documents that did not pass the virus and malware scan process would be marked as not safe and would not become available for download through our site. When implimented, this will move files marked as not safe by our infrastructure will be moved into our quarentine storage solution. We will at this point be able to analyze in depth the threats our site experiences on a regular bases, to ensure our users are always safe when using our platform. This functionality will added in a future update while we are going through the process of testing this fuctionality as best we can befor adding it to our production platform.
+								</li>
+							</ul>
+							<h3>
+								<strong>DMC License files have been updated</strong>
+							</h3>
+							<ul>
+								<li>
+									The DMC has updated all repositories stored on GitHub with new License Files. These Files can be found in the root of all repositories. The GitHub link can be found at: <u><a href="https://github.com/dmc-uilabs" target="_blank"https://github.com/dmc-uilabs style="color:green">https://github.com/dmc-uilabs</a></u>
+								</li>
+							</ul>
+    				</div>
+
+    			</div>
+
+    				<md-divider></md-divider>
+
+    				<div class="section" layout="row" layout-align="center start" layout-fills>
+    					<div class="image">
+    						<img ng-src="images/icon-marketplace-lg.svg"  style="width: 50px">
+    					</div>
+    					<div layout="column" flex class="text">
+    							<h2>Applications</h2>
+    					<p>We've include three new application in our Marketplace for our users to demo. This time the applications have stepped it up a notch. Two DMDII member organization have created applications that users can currently use for free.</p>
+    					<p>These Applicaitions have been created by Integris Engineering and Pennsylvania State University. Learn more about the apps when visting the DMC Marketplace or at their associated Confluence pages:</p>
+    					<ul>
+    						<li>
+									<strong>Single Shimmed Shear Join Calculator</strong>: The Single Shear Shimmed Joint app calculates an approximate minimum margin of safety (similar to a Safety Factor) on a bolted joint against a defined shear and tensile load.
+									<ul><li>
+										App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=84613112" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=84613112 style="color:green">Single Shear Shimmed Joint by INTEGRIS</a></u>
+									</li></ul>
+								</li>
+    						<li>
+									<strong>Conceptual Cost Model (Pennsylvania State University)</strong>: Estimates the cost of a part or assembly.
+									<ul><li>
+										App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Conceptual+Cost+Model+by+Pennsylvania+State+University" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Conceptual+Cost+Model+by+Pennsylvania+State+University style="color:green">Conceptual Cost Model by Pennsylvania State University</a></u>
+									</li></ul>
+								</li>
+    						<li>
+									<strong>Weld Cost Model (Pennsylvania State University)</strong>: Estimate cost of welds.
+									<ul><li>
+										App documentation can be found at: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Weld+Cost+Model+by+Pennsylvania+State+University" target="_blank "https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Weld+Cost+Model+by+Pennsylvania+State+University style="color:green">Weld Cost Model by Pennsylvania State University</a></u>
+									</li></ul>
+								</li>
+    					</ul>
+    					</h3>
+    					</div>
+
+    				</div>
+
+			      </md-content>
+			</md-tab>
+<!-- Release V 0.1.4 -->
+			<md-tab label="V 0.1.4 ">
+			  <md-content class="tab-projects">
+			    <div layout="column" class="text-row">
+						<h2 style="font-weight: 300; text-transform: uppercase; font-size:20px;">Introduction</h2><h4>Released: 3/22/2017</h4></span>
+						<span style="margin-right:40px; margin-top:-11px;">
+						<p>The Digital Manufacturing Commons has always used an agile process to provide users with the latest updates so users can have an opportunity to help us test our site and to allow users to give us feedback which allows them to help push the platform in the right direction. Though we have always used an agile process, as well as advertised that we use this process, we have not always been very verbose about what features have been added to site. Going forward, users will see updates from us, roughly every 2 weeks (inline with our Sprint Burndowns) with details as to what changes have been made and why we've made the decision to make those changes. We'll also will be including what issues/bugs we have been able to fix/patch. Read on for more details.</p>
+						<p>Read more about the DMC V 0.1.4 Release on our DMC wiki: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.4" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.4 style="color:green">V 0.1.4</a></u> on Confluence.</p>
+			    </div>
+			    <md-divider></md-divider>
+				</md-content>
+			</md-tab>
+
+<!-- Release V 0.1.3 -->
+			<md-tab label="V 0.1.3 ">
+			  <md-content class="tab-projects">
+			    <div layout="column" class="text-row">
+						<h2 style="font-weight: 300; text-transform: uppercase; font-size:20px;">Introduction</h2><h4>Released: 3/3/2017</h4></span>
+						<p>The Digital Manufacturing Commons has always used an agile process to provide users with the latest updates so users can have an opportunity to help us test our site and to allow users to give us feedback which allows them to help push the platform in the right direction. Though we have always used an agile process, as well as advertised that we use this process, we have not always been very verbose about what features have been added to site. Going forward, users will see updates from us, roughly every 2 weeks (inline with our Sprint Burndowns) with details as to what changes have been made and why we've made the decision to make those changes. We'll also will be including what issues/bugs we have been able to fix/patch. Read on for more details.</p>
+						<p>Read more about the DMC V 0.1.3 Release on our DMC wiki: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.3" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.3 style="color:green">V 0.1.3</a></u> on Confluence.</p>
+			    </div>
+			    <md-divider></md-divider>
+				</md-content>
+			</md-tab>
+
+<!-- Release V 0.1.2 -->
+			<md-tab label="V 0.1.2 ">
+			  <md-content class="tab-projects">
+			    <div layout="column" class="text-row">
+						<h2 style="font-weight: 300; text-transform: uppercase; font-size:20px;">Introduction</h2><h4>Released: 2/9/2017</h4></span>
+						<p>The Digital Manufacturing Commons has always used an agile process to provide users with the latest updates so users can have an opportunity to help us test our site and to allow users to give us feedback which allows them to help push the platform in the right direction. Though we have always used an agile process, as well as advertised that we use this process, we have not always been very verbose about what features have been added to site. Going forward, users will see updates from us, roughly every 2 weeks (inline with our Sprint Burndowns) with details as to what changes have been made and why we've made the decision to make those changes. We'll also will be including what issues/bugs we have been able to fix/patch. Read on for more details.</p>
+						<p>Read more about the DMC V 0.1.2 Release on our DMC wiki: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.2" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/V+0.1.2 style="color:green">V 0.1.2</a></u> on Confluence.</p>
+			    </div>
+			    <md-divider></md-divider>
+				</md-content>
+			</md-tab>
+
+<!-- Release V 0.1.1 -->
+			<md-tab label="V 0.1.1 BETA ">
+			  <md-content class="tab-projects">
+			    <div layout="column" class="text-row">
+						<div>
+							<h2 style="font-weight: 300; text-transform: uppercase; font-size:20px;">Introduction</h2><h4>Released: 1/20/2017</h4></span>
+							<p>With the success of the Alpha release just a little bit over a month ago we are introducing our Beta release of the Digital Manufacturing Commons platform. Users will find a few new updates which include the new Marketplace tab, access to run a set of demo applications as well as the ability to see the full organizations list of organizations signed up to use the site. We've also introduced our live chatting tool to better help users use our site more effectively and efficiently.</p>
+							<p>During our Beta Launch period, only fully verified users on the website will be able to access the platform features, so if you are not verified or your organization administrator has not yet joined and verified their account, this is really the time to do so if you want to get a feel for what is to come in our full launch in the second quarter of 2017. To learn more about each of the Individual features, look in the use cases section, and as usual, if you have any questions please feel free to reach out. Modes of contact are all listed in the Contact Us section.</p>
+							<p>Special Friends of the DMC (Non DMDII Members) can sign up as well. During the sign up process, do not check the I am a DMDII Member checkbox. When done with the onboarding process, make sure to e-mail <u><a href="mailto:askdmc@uilabs.org" style="color:green">askdmc@uilabs.org</a></u> and we will work to amke sure your account become verified.</p>
+							<p>Read more about the DMC Beta Release on our DMC wiki: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035269" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035269 style="color:green">V 0.1.1 Beta</a></u> on Confluence.</p>
+						</div>
+			    </div>
+			    <md-divider></md-divider>
+				</md-content>
+			</md-tab>
+
+<!-- Release V 0.1.0 -->
+			<md-tab label="V 0.1.0 ALPHA ">
+			  <md-content class="tab-projects">
+			    <div layout="column" class="text-row">
+						<div>
+							<h2 style="font-weight: 300; text-transform: uppercase; font-size:20px;">Introduction</h2>
+							<p>The V.0.1.0 release of the Digital Manufacturing Commons platform was released on November 29, 2017. This release was marked as the alpha launch of the platform and was announced in a news letter sent out via UI LABS and was additionally announce at the Defense Manufacturing Conference in Colorado the same day.</p>
+							<p>The major features included in this release include the DMDII Member Portal, DMDII Projects, User Profiles, My Organization, Individuals, Activities, My Workspaces, and All Workspaces. To get the features included with each of the major features above, please read below. The platform can be accessed at <u><a href="https://portal.opendmc.org/#/" target="_blank "https://portal.opendmc.org/#/ style="color:green">https://portal.opendmc.org/#/</a></u>.</p>
+						</div>
+						<div>
+							<p>Read more about the DMC Alpha Release on our DMC wiki: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035266" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/pages/viewpage.action?pageId=81035266 style="color:green">V 0.1.0 Alpha</a></u> one confluence.</p>
+						</div>
+			    </div>
+			    <md-divider></md-divider>
+				</md-content>
+			</md-tab>
+</md-tabs>
+
+</div>
+</div>
+
+			<md-divider></md-divider>
+
+				<div class="section" layout="row" layout-align="center start" layout-fills>
+					<div class="image">
+						<ng-md-icon icon="cloud_upload" style="fill: #666" size="50"></ng-md-icon>
+						<!-- <img ng-src="images/icon-settings-lg.svg"  style="width: 50px"> -->
+					</div>
+					<div layout="column" flex class="text">
+							<h2>How to Deploy</h2>
+					<h3>If you are interested in deploying our infrastructure internally for your business or for personal use, you can follow our instructions, which will be posted here in the near future. If you do run into deployment issues or have further questions about our instructions, e-mail us at <u><a href="mailto:askdmc@uilabs.org" style="color:green">askdmc@uilabs.org</a></u>.</h3>
+					</div>
+
+				</div>
+
+				<md-divider></md-divider>
+				<div class="section" layout="row" layout-align="center start" layout-fills>
+					<div class="image">
+						<ng-md-icon icon="update" style="fill: #666" size="50"></ng-md-icon>
+						<!-- <img ng-src="images/icon-settings-lg.svg"  style="width: 50px"> -->
+					</div>
+					<div layout="column" flex class="text">
+							<h2>How to Upgrade</h2>
+					<h3>If you wish to upgrade a previous deployment of our infrastructure but do not want to potentially lose information saved in your database, these instuctions will walk you through how to do just that, once they are available in the future.</h3>
+					</div>
+
+				</div>
+
+				<md-divider></md-divider>
+				<div class="section" layout="row" layout-align="center start" layout-fills>
+					<div class="image">
+						<img ng-src="images/icon-profile-lg.svg"  style="width: 50px">
+					</div>
+					<div layout="column" flex class="text">
+							<h2>How to Contribute</h2>
+					<h3>Those interested in contributing to our project, we urge you to look to our: <u><a href="https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/For+Contributors" target="_blank"https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/For+Contributors style="color:green">For Contributors</a></u> wiki page on Confluence.
+					</h3>
+					</div>
+
+				</div>
+
+				<md-divider></md-divider>
+				<div class="section" layout="row" layout-align="center start" layout-fills>
+
+					<div layout="column" flex class="text-center">
+							<h1>Questions About our Releases?</h1>
+							<h3><p><span class="button-view-opportunities"><a href="/contact-us.php">Contact Us</a></span></h3>
+							<h3>If you have questions about the DMC release process, or you've identified a bug or have a requestion for a new feature,</h3>
+							<h3>please email us at <a href="mailto:askdmc@uilabs.org">askdmc@uilabs.org</a>.</h3>
+					</div>
+
+				</div>

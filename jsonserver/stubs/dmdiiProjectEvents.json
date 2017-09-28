@@ -1,0 +1,56 @@
+[{
+    "id": 12,
+    "eventName": "DMDII Technical Advisory Committee Meeting",
+    "eventDescription": "DMDII Technical Advisory Committee Meeting",
+    "eventDate": "2017-11-09"
+}, {
+    "id": 13,
+    "eventName": "DMDII Executive Committee Meeting",
+    "eventDescription": "DMDII Executive Committee Meeting",
+    "eventDate": "2017-11-09"
+}, {
+    "id": 8,
+    "eventName": "DMDII's 3rd 2017 Technology Showcase",
+    "eventDescription": "DMDII's 3rd 2017 Technology Showcase",
+    "eventDate": "2017-11-08"
+}, {
+    "id": 14,
+    "eventName": "Defense Manufacturing Conference (Nov 4-7)",
+    "eventDescription": "Defense Manufacturing Conference (Nov 4-7)",
+    "eventDate": "2017-11-04"
+}, {
+    "id": 11,
+    "eventName": "DMDII Executive Committee Meeting",
+    "eventDescription": "DMDII Executive Committee Meeting",
+    "eventDate": "2017-08-24"
+}, {
+    "id": 7,
+    "eventName": "DMDII Technology Showcase",
+    "eventDescription": "DMDII's 2nd 2017 Technology Showcase",
+    "eventDate": "2017-07-12"
+}, {
+    "id": 10,
+    "eventName": "DMDII Technical Advisory Committee Meeting",
+    "eventDescription": "DMDII Technical Advisory Committee Meeting",
+    "eventDate": "2017-07-11"
+}, {
+    "id": 9,
+    "eventName": "DMDII Executive Committee Meeting",
+    "eventDescription": "DMDII Executive Committee Meeting",
+    "eventDate": "2017-05-16"
+}, {
+    "id": 6,
+    "eventName": "MBE Summit (April 3-6)",
+    "eventDescription": "2017 MBE Summit to be held at NIST April 3-6\\. Click [HERE](https://www.nist.gov/news-events/events/2017/04/model-based-enterprise-summit-2017) to be directed to the website for more information.",
+    "eventDate": "2017-04-03"
+}, {
+    "id": 3,
+    "eventName": "DMDII Technology Showcase",
+    "eventDescription": "DMDII Technology Showcase",
+    "eventDate": "2017-02-28"
+}, {
+    "id": 5,
+    "eventName": "DMDII Technology Showcase",
+    "eventDescription": "DMDII presents on 3 tech projects and introduces multiple small start-ups. Click [**here**](https://portal.opendmc.org/dmdii-project-page.php#/53) for access to the presentations",
+    "eventDate": "2016-11-17"
+}]

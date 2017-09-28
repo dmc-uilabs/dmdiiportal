@@ -1,0 +1,34 @@
+[
+	{
+		"id": 1,
+		"name": "Services Completed",
+		"events": [
+			"SERVICE_FINISH"
+		],
+		"today": 2,
+		"week": 5,
+		"month": 7
+	},
+	{
+		"id": 2,
+		"name": "Assigned Tasks",
+		"events": [
+			"TASK_ASSIGN"
+		],
+		"today": 2,
+		"week": 5,
+		"month": 7
+	},
+	{
+		"id": 3,
+		"name": "Reviewed",
+		"events": [
+			"REVIEW_SERVICE",
+			"REVIEW_USER",
+			"REVIEW_COMPANY"
+		],
+		"today": 2,
+		"week": 5,
+		"month": 7
+	}
+]

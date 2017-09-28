@@ -1,0 +1,181 @@
+{
+    "services": [
+        {
+            "id": 1,
+            "companyId": 2,
+            "title": "Qout-of-balance Testing",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+            "owner": "L.Mason",
+            "profileId": 1,
+            "releaseDate": "08/25/2015",
+            "serviceType": "analytical",
+            "specifications": "/services/3/specifications",
+            "featureImage": {
+                "thumbnail": "images/marketplace-card-image-1.jpg",
+                "large": "images/marketplace-card-image-1.jpg"
+            },
+            "type": "service",
+            "from": "marketplace",
+            "parent": 0,
+            "published": true
+        }
+    ],
+    // projects/add_service - add service to the project (post method)
+    // project/1/services - get all services for some project (get method)
+    // project_services/1 - remove service from project (delete method)
+    // project_services/1 - update project service by id (patch method)
+    // project_services/1 - get project service by id (get method)
+
+    "project_services":[ // new table
+        {
+            "id" : 1,
+            "projectId" : 2,
+            "serviceId" : 1,
+            "averageRun": 25,
+            "project": {
+                "title": "Control Compartment for LDR Mining"
+            }
+        }
+    ],
+    // run_service - run service, save new object to the service_runs (post method)
+    // project_services/1/runs - get all runs for some service (get method)
+    // service_runs/1 - remove run history by id (delete method)
+    // service_runs/1 - update run history by id (patch method)
+    // service_runs/1 - get run history by id (get method)
+    "service_runs" : [
+        {
+            "project_serviceId": 1, // project_serviceId instead serviceId
+            "accountId": 1,
+            "runBy": "Thomas Smith",
+            "status": 0,
+            "percentCompleted": 100,
+            "startDate": "02/26/2016",
+            "startTime": "15:40:03",
+            "id": 1,
+            "stopDate": "02/26/2016",
+            "stopTime": "15:40:11",
+            "interface": {
+                "inParams": {
+                    "t": {
+                        "name": "t",
+                        "type": "Real",
+                        "unit": "second",
+                        "category": "time",
+                        "value": "5",
+                        "parameterid": "0163d253-d8de-1004-8a2f-592d01a9bb93"
+                    },
+                    "a": {
+                        "name": "a",
+                        "type": "Real",
+                        "unit": "meter per second square",
+                        "category": "acceleration",
+                        "value": "7",
+                        "parameterid": "0163d256-d8de-1004-8a2f-592d01a9bb93"
+                    },
+                    "vel_0": {
+                        "name": "vel_0",
+                        "type": "Real",
+                        "unit": "centimeter per second",
+                        "category": "velocity",
+                        "value": "4",
+                        "parameterid": "0163d250-d8de-1004-8a2f-592d01a9bb93"
+                    }
+                },
+                "outParams": {
+                    "v": {
+                        "name": "v",
+                        "type": "Real",
+                        "unit": "centimeter per second",
+                        "category": "velocity",
+                        "value": 3504,
+                        "parameterid": "0163d259-d8de-1004-8a2f-592d01a9bb93",
+                        "instancename": "v"
+                    }
+                }
+            }
+        }
+    ],
+    // input_positions - add new positions (post method)
+    // project_services/1/input_positions - get position of inputs for some project service
+    // input_positions/1 - update positions by id (patch method)
+    "input_positions": [ // I suggest change input-positions on input_positions
+        {
+            "project_serviceId": 1,  // project_serviceId instead serviceId
+            "positions": [
+                {
+                    "name": "a",
+                    "position": 1
+                },
+                {
+                    "name": "t",
+                    "position": 2
+                },
+                {
+                    "name": "vel_0",
+                    "position": 3
+                }
+            ],
+            "id": 1
+        }
+    ],
+    // project_services/1/history - get history for some project service(get method)
+    "services_history":[
+        {
+            "type": "successful_runs",
+            "link": "",
+            "period": "today",
+            "section": "project",
+            "user": "Timmy Thomas",
+            "date": "02/02/2016 12:10:31",
+            "title": "Timmy Thomas successfully ran the service.",
+            "project_serviceId": 1,  // project_serviceId instead serviceId
+            "id": 1
+        }
+    ],
+    // project_services/1/statistic - get statistic for some project service(get method)
+    "services_statistic":[
+        {
+            "id": 1,
+            "project_serviceId": 1, // project_serviceId instead serviceId
+            "success_rate": {
+                "success": 50,
+                "incomplete": 30,
+                "failed": 20
+            },
+            "successful_runs": {
+                "today": 1,
+                "week": 3,
+                "all": 4
+            },
+            "incomplete_runs": {
+                "today": 1,
+                "week": 3,
+                "all": 4
+            },
+            "unavailable_runs": {
+                "today": 1,
+                "week": 3,
+                "all": 4
+            },
+            "runs_by_users": {
+                "today": 3,
+                "week": 6,
+                "all": 12
+            },
+            "unique_users": {
+                "today": 1,
+                "week": 3,
+                "all": 4
+            },
+            "average_time": {
+                "today": 10.1,
+                "week": 11,
+                "all": 22.2
+            }
+        }
+    ]
+}
+
+//"service_tags" - ?
+//"specifications" - ?
+//"service_documents" - ?

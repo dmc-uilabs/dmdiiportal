@@ -1,0 +1,81 @@
+.dmc-project-sub-nav-dialog {
+  background: transparent;
+  box-shadow: none;
+  md-dialog-content{
+    max-width: 565px;
+    text-align: left;
+  }
+  a.md-button:not([disabled]):hover,.md-button:not([disabled]):hover{
+    background: rgba(66,66,66,0.55);
+  }
+  .md-button{
+    @include boxShadow(inset -1px -1px rgba(255,255,255,0.55));
+    @include borderRadius(6px);
+    text-transform: capitalize;
+    font-size: 17px;
+  }
+  &-btn {
+    color: #fff;
+    background: #424242;
+    display: inline-block;
+    padding: 8px 21px;
+
+    &__caption {
+      padding-top: 5px;
+      font-size: 1.4em;
+      text-transform: capitalize;
+    }
+  }
+  a.selected:not([disabled]),a.selected:not([disabled]):hover{
+    background: map-get($colors, secondary);
+    cursor: default;
+    box-shadow: inset -1px -1px  rgba(255,255,255,0.55),inset 1px 1px  rgba(255,255,255,0.55);
+  }
+  .folder-icon{
+    width: 120px;
+    height: 123px;
+  }
+}
+
+.nav-menu-button{
+  display: block;
+  .button-sub-nav {
+    @include borderRadius(2px);
+    height: 30px;
+    padding: 0 12px;
+    background-color: #C7C7C7;
+    cursor: pointer;
+    width: auto;
+    margin-right: 15px;
+    &:hover{
+      background-color: #d7d7d7;
+    }
+  }
+  .name-page{
+    font-size: 24px;
+  }
+  .squares{
+    max-width: 28px;
+    text-align: left;
+    display: inline-block;
+    line-height: 0;
+    font-size: 0;
+    margin-top: 6px;
+    div{
+      display: inline-block;
+      background-color: #666666;
+      width: 7px;
+      height: 7px;
+      margin: 1px;
+    }
+    .selected{
+      background-color: #64B045;
+    }
+  }
+  .title{
+    display: inline-block;
+    font-size: 13px;
+    vertical-align: top;
+    text-transform: uppercase;
+  }
+}

@@ -1,0 +1,42 @@
+[{
+    "id": "1369",
+    "version": 1,
+    "modelId": "aff647da-d82f-1004-8e7b-5de38b2eeb0f",
+    "interfaceId": "aff647db-d82f-1004-8e7b-5de38b2eeb0f",
+    "type": "interface",
+    "name": "Default Interface",
+    "path": [30],
+    "serviceId": 1515,
+    "domeServer": "114",
+    "inParams": {
+        "SpecimenWidth": {
+            "type": "Real",
+            "name": "SpecimenWidth",
+            "unit": "meter",
+            "category": "length",
+            "value": "3",
+            "parameterid": "d9f30f3a-d800-1004-8f53-704dbfababa8",
+            "instancename": null
+        },
+        "CrackLength": {
+            "type": "Real",
+            "name": "CrackLength",
+            "unit": "meter",
+            "category": "length",
+            "value": "1",
+            "parameterid": "d9f30f37-d800-1004-8f53-704dbfababa8",
+            "instancename": null
+        }
+    },
+    "outParams": {
+        "Alpha": {
+            "type": "Real",
+            "name": "Alpha",
+            "unit": "no unit",
+            "category": "no unit",
+            "value": "0.3333333333333333",
+            "parameterid": "d9f30f3d-d800-1004-8f53-704dbfababa8",
+            "instancename": "Alpha"
+        }
+    }
+}]

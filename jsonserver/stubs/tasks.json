@@ -1,0 +1,16 @@
+[{
+    "id": "51",
+    "title": "A new task for ABC",
+    "project": {
+        "id": 56,
+        "title": "workspace from reg user maz"
+    },
+    "assignee": "Joseph Mazrimas",
+    "assigneeId": "222",
+    "reporter": "Joseph Mazrimas",
+    "reporterId": "171",
+    "dueDate": 1498626000000,
+    "additionalDetails": "<p>details about task<br></p>",
+    "status": "Open",
+    "priority": 2
+}]

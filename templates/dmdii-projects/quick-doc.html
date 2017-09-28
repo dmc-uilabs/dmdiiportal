@@ -1,0 +1,17 @@
+<md-dialog flex="80" aria-label="View" class="quick-doc">
+	<md-content layout="column">
+		<div layout="row" flex="100" class="header">
+			<div layout="column">
+				<h2>{{doc.displayName}}</h2>
+			</div>
+		</div>
+
+		<div class="rich-text-small" markdown-to-html="doc.text"></div>
+
+		<div layout="row" layout-align="space-between center" class="button-aria">
+			<md-button class="dmc-button md-raised" ng-click="cancel()">
+				Close
+			</md-button>
+		</div>
+	</md-content>
+</md-dialog>

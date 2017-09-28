@@ -1,0 +1,130 @@
+
+.dropzone{
+  border:2px dashed #ccc;
+  @include borderRadius(5px);
+  .dz-message{
+    div{
+      span{
+        display: block;
+      }
+    }
+  }
+  .dz-remove-item{
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    @include borderRadius(15px);
+    z-index: 11;
+  }
+  .dz-preview .dz-error-message{
+    top: 6px;
+    width: 88px;
+    left: 129px;
+    padding: 8px;
+    &:after{
+      top: 45px;
+      left: -6px;
+      width: 0;
+      height: 0;
+      border-top: 6px solid transparent;
+      border-right: 6px solid #be2626;
+      border-bottom: 6px solid transparent;
+      border-left: none;
+    }
+  }
+}
+.upload-documents{
+  md-list-item{
+    border-bottom: 1px solid #ddd;
+    p{
+      padding: 8px 0;
+    }
+    &:last-child{
+      border-bottom: none;
+    }
+  }
+  .md-button{
+    min-height: 36px;
+    height: 36px;
+    line-height: 36px;
+  }
+  .md-button.save{
+    &:hover{
+      color: white;
+      background-color: #65AF3F;
+    }
+    color: white;
+    background-color: #65AF3F;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  md-input-container{
+    padding: 0;
+  }
+}
+
+.upload-list{
+  margin: 10px;
+  padding: 3%;
+  // border-color: grey;
+  // border-style: solid;
+  // border-width: 0px 0px 2px 0px;
+  background: #EFECED;
+  border-radius: 3px;
+
+  .doc-attr-group{
+  margin-bottom: 15px;
+  margin-left: 15px;}
+
+  .doc-title{
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 10px;
+    .title{
+      color: map-get($colors, secondary);
+    }
+    .editing{
+      font-style: italic;
+      font-size: .7em;
+      color: grey;
+    }
+  }
+  .company-search-results{
+    background: white;
+    -webkit-transition: display 1s; /* Safari */
+    display: display 1s;
+    padding: 15px;
+    -webkit-box-shadow: 2px 2px 2px 0px rgba(163,163,163,1);
+    -moz-box-shadow: 2px 2px 2px 0px rgba(163,163,163,1);
+    box-shadow: 2px 2px 2px 0px rgba(163,163,163,1);
+  }
+
+  ul.company-access-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  ul.company-access-list li {
+      display: inline;
+  }
+  ul.company-access-list ng-md-icon:hover ~ span {
+      color: map-get($colors, secondary);
+  }
+  ul.company-access-list li:after {
+      content: ",  ";
+  }
+  ul.company-access-list li:last-child:after {
+      content: "";
+  }
+
+  .confirm-buttons{
+    border-top: 1px solid lightgrey;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    button{
+      margin-left: -10px;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+[
+	{
+		"id": 1,
+		"name": "Additive Manufacturing"
+	},
+	{
+		"id": 2,
+		"name": "Advanced Analytics"
+	},
+	{
+		"id": 3,
+		"name":"Application Infrastructure"
+	},
+	{
+		"id": 4,
+		"name": "Asset Management"
+	},
+	{
+		"id": 5,
+		"name": "Automation"
+	}
+]

@@ -1,0 +1,28 @@
+<div ng-if="!not_found" class="add-project-doc">
+    <md-content class="add-dmdii-content-padding">
+        <a ng-show="!project.isEvent" class="no-bottom no-top" ng-href="{{'/dmdii-project-page.php#/'+project.id}}">Back to Project Page</a>
+        <a ng-show="project.isEvent" class="no-bottom no-top" ng-href="{{'/dmdii-project-page.php#/event/'+project.id}}">Back to Event Page</a>
+        <div layout="row">
+            <md-tabs class="add-content-tabs"
+                     md-selected="currentSection.index"
+                     md-dynamic-height
+                     md-border-bottom
+					 flex="100">
+                <md-tab label="{{section.title}}"
+                        md-on-select="onSectionSelected(key)"
+                        ng-repeat="(key,section) in sections">
+                    <md-content class="mainSectionsContent" ng-switch on="key">
+                        <div tab-project-updates
+                             ng-switch-when="projectUpdates"
+                             project="project"
+                             user="user"></div>
+                        <div tab-project-documents
+                            ng-switch-when="projectDocuments"
+                            project="project"
+                            user="user"></div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </div>
+    </md-content>
+</div>

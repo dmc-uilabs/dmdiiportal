@@ -1,0 +1,61 @@
+<md-content class="md-padding tabs-history" layout="row">
+	<md-list ng-if="filters.block != 'Project'" flex class="history-list">
+		<div class="header" layout="row" layout-align="space-between center">
+			<h2>{{data.leftColumn.title}}</h2>
+			<a class="link" ng-href="{{data.leftColumn.viewAllLink}}" ng-click="previousPage.save($event)">View all</a>
+		</div>
+		<md-list-item ng-repeat="item in data.leftColumn.list track by $index">
+			<md-icon md-svg-src="{{item.icon}}" aria-label="{{item.icon}}"></md-icon>
+			<a ng-href="{{item.link}}"><h2>{{item.title}}</h2></a>
+			<span flex></span>
+			<h3>{{item.date}}</h3>
+		</md-list-item>
+		<div ng-if="!data.leftColumn.list.length">
+			No history
+		</div>
+	</md-list>
+
+	<md-list flex class="history-list" ng-if="filters.block == 'Project'">
+		<div class="header" layout="row" layout-align="space-between center">
+			<h2>{{filters.block}}</h2>
+			<a class="link" ng-href="{{data.leftColumn.viewAllLink}}">View all</a>
+		</div>
+		<md-list-item ng-repeat="item in history | filter: filterBy">
+			<md-icon md-svg-src="{{item.icon}}" aria-label="{{item.icon}}"></md-icon>
+			<a ng-href="{{item.link}}"><h2>{{item.title}}</h2></a>
+			<span flex></span>
+			<h3>{{item.date}}</h3>
+		</md-list-item>
+	</md-list>
+
+	<span class="vertikal-divider"></span>
+
+	<md-list flex class="history-list" ng-if="filters.block != 'Marketplace'">
+		<div class="header" layout="row" layout-align="space-between center">
+			<h2>{{data.rightColumn.title}}</h2>
+			<a class="link margin-left16" ng-href="{{data.rightColumn.viewAllLink}}">View all</a>
+		</div>
+		<md-list-item ng-repeat="item in data.rightColumn.list track by $index">
+			<md-icon md-svg-src="{{item.icon}}" aria-label="{{item.icon}}"></md-icon>
+			<a ng-href="{{item.link}}"><h2>{{item.title}}</h2></a>
+			<span flex></span>
+			<h3>{{item.date}}</h3>
+		</md-list-item>
+		<div ng-if="!data.rightColumn.list.length">
+			No history
+		</div>
+	</md-list>
+
+	<md-list flex class="history-list" ng-if="filters.block == 'Marketplace'">
+		<div class="header" layout="row" layout-align="space-between center">
+			<h2>{{filters.block}}</h2>
+			<a class="link margin-left16" ng-href="{{data.leftColumn.viewAllLink}}" ng-click="previousPage.save($event)">View all</a>
+		</div>
+		<md-list-item ng-repeat="item in history | filter: filterBy">
+			<md-icon md-svg-src="{{item.icon}}" aria-label="{{item.icon}}"></md-icon>
+			<a ng-href="{{item.link}}"><h2>{{item.title}}</h2></a>
+			<span flex></span>
+			<h3>{{item.date}}</h3>
+		</md-list-item>
+	</md-list>
+</md-content>

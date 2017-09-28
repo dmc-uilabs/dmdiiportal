@@ -1,0 +1,54 @@
+<workspace-header class="workspace-header" ng-init="currentPage='7'"></workspace-header>
+<div ng-if="!service.id" class="project-details-services" layout="column">
+	<div layout="row" layout-align="space-between start">
+		<div layout="column" class="header">
+			<div class="margin-bottom8">
+				<a class="link" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
+					Return to Services
+				</a>
+        <h3 style="font-size:12px">Service not found!</h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-if="service.id" class="project-history-services padding-10" layout="column">
+	<h2>{{service.title}}</h2>
+	<div layout="row" layout-align="space-between center">
+		<a ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/' + from}}" ng-click="showHistory()" class="link margin-top8">
+			{{from}} Service
+		</a>
+	</div>
+	<h3>Run History</h3>
+
+    <md-data-table-container>
+        <table md-data-table>
+            <thead md-order="sort" md-trigger="onOrderChange">
+            <tr>
+                <th name="Run Date" order-by="startDate"></th>
+                <th name="Run By" order-by="runBy"></th>
+                <!-- <th name="Run Time" order-by="runTime"></th> -->
+                <th name="Results" order-by="status"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in history">
+                <td>
+                    {{item.startDate}}
+                </td>
+                <td>
+                    <a href="/profile.php#/{{item.runBy}}" >{{item.runByUserName}}</a>
+                </td>
+                <!-- <td>
+                    {{item.runTime}}s.
+                </td> -->
+                <td ng-style="{color: (item.status == '1' ? '#65AF3F': (item.status == '-1' ? 'red' : 'orange'))}">
+                    <a ng-click="openResults(item)">{{(item.status == 1 ? 'success' : (item.status == -1 ? 'error' : 'running' ))}}</a>
+                </td>
+            </tr>
+            <tr ng-if="history.length == 0">
+                <td class="empty" colspan="7">No services</td>
+            </tr>
+            </tbody>
+        </table>
+    </md-data-table-container>
+</div>

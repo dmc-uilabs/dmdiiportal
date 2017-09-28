@@ -1,0 +1,131 @@
+<workspace-header class="workspace-header" ng-init="currentPage='7'"></workspace-header>
+<div ng-if="!service.id" class="project-details-services" layout="column">
+	<div layout="row" layout-align="space-between start">
+		<div layout="column" class="header">
+			<div class="margin-bottom8">
+				<a class="link" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
+					Return to Services
+				</a>
+        <h3 style="font-size:12px">Service not found!</h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-if="service.id" class="project-details-services" layout="column">
+	<div layout="row" layout-align="space-between start">
+		<div layout="column" class="header">
+			<div class="margin-bottom8">
+				<a class="link" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
+					Return to Services
+				</a>
+			</div>
+			<h2><a ng-href="{{(service.from == 'marketplace')?'service-marketplace.php#/' + service.id : ''}}">{{service.title}}</a> <span>By <a ng-href="{{'profile.php#/'+service.profileId}}">{{service.ownerName}}</a></span></h2>
+			<div class="margin-top8 margin-bottom8">
+				<a ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/detail/run-history'}}" class="link">
+					Run History
+				</a>
+			</div>
+            <div>
+                <a href="/marketplace.php#/search?product=services&type={{service.serviceType}}">{{service.serviceType == 'data' ? 'Data' : service.serviceType == 'analytical' ? 'Analytical' : 'Solid'}} Service</a>
+            </div>
+			<!-- <ui-widget-stars-static size="15" value="{{service.average_rating}}" text="({{service.average_rating}}) {{service.number_of_comments}} reviews"></ui-widget-stars-static> -->
+		</div>
+		<div class="buttons" layout="column" >
+			<div layout="row" layout-align="end center">
+				<md-button ng-if="service.from == 'marketplace'" aria-label="reply" ng-click="share(ev)" class="md-icon-button reply header-icon">
+					<ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
+				</md-button>
+				<md-button ng-if="userData.isDmdiiAdmin || (service.owner == userData.id && service.from == 'project' && !service.published)" aria-label="create" ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/edit'}}" class="md-icon-button header-icon margin-left20">
+					<ng-md-icon icon="create" style="fill: grey;" size="25"></ng-md-icon>
+				</md-button>
+				<md-button aria-label="delete" ng-click="delete()" class="md-icon-button header-icon margin-left20">
+					<ng-md-icon icon="delete" style="fill: grey;" size="25"></ng-md-icon>
+				</md-button>
+			</div>
+			<div layout="row">
+				<md-button class="md-raised dmc-button margin-left20" ui-sref="project.run-services({ServiceId : service.id})">
+					Run
+				</md-button>
+				<md-button ng-if="userData.isDmdiiAdmin" ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/publish'}}"
+                           class="md-raised dmc-button margin-left20">
+					Publish Service
+				</md-button>
+				<md-button class="md-raised dmc-button margin-left20 follow" ng-click="follow()">
+					{{(followFlag) ? 'Unfollow' : 'Follow'}}
+				</md-button>
+			</div>
+		</div>
+	</div>
+	<div class="description" markdown-to-html="service.description"></div>
+	<md-tabs md-selected="selectedTab" md-dynamic-height md-border-bottom>
+		<md-tab label="STATISTICS" ng-if="service.from == 'marketplace'">
+			<ui-widget-tabs-statistic data="service.services_statistic[0]" filter="getHistory"></ui-widget-tabs-statistic>
+		</md-tab>
+
+<!-- 		<md-tab label="HISTORY" ng-if="service.from == 'marketplace'">
+			<ui-widget-tabs-history data="history"></ui-widget-tabs-history>
+		</md-tab> -->
+
+		<md-tab label="TAGS">
+			<md-content class="md-padding">
+				<div layout="row" class="tabs-content" layout-wrap>
+					<md-chips ng-repeat="tag in service.service_tags track by $index">
+						<md-chip ng-click="search(tag.name)">
+							<a ng-href="/marketplace.php#/search/services?text={{tag.name}}">{{tag.name}}</a>
+						</md-chip>
+					</md-chips>
+				</div>
+			</md-content>
+		</md-tab>
+
+		<md-tab ng-click="getDocuments()" label="DOCUMENTS">
+			<md-content class="md-padding">
+
+            <div ng-if="!service.service_docs">
+              <h3>No documents</h3>
+            </div>
+            <md-data-table-container layout="row" flex=100 ng-if="service.service_docs.length > 0">
+                <table md-data-table>
+                    <thead md-order="sort" md-trigger="onOrderChange" ng-hide="service.service_docs.length == 0">
+                    <tr>
+                        <th name="Name"></th>
+                        <th name="Owner"></th>
+                        <th name="Expires"></th>
+                        <th name="Last Modifed"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in service.service_docs track by $index" ng-click="changeItem(item)">
+                        <td class="file" ng-if="item.documentUrl">
+                            <div layout="row" layout-align="start center">
+                                <ng-md-icon icon="insert_drive_file" style="fill: #666" size="35"></ng-md-icon>
+                                <a target="_blank" ng-href="{{item.documentUrl}}" ng-if="item.documentUrl">{{item.documentName}}</a>
+                            </div>
+                        </td>
+                        <td><a href="/profile.php#/{{item.ownerId}}">{{item.ownerDisplayName}}</a></td>
+                        <td>{{item.expires|date}}</td>
+                        <td>{{item.modified|date}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </md-data-table-container>
+        </div>
+
+
+
+
+			</md-content>
+		</md-tab>
+
+		<!-- <md-tab ng-if="service.from == 'marketplace'" label="Reviews">
+			<div layout="row" layout-align="start center">
+				<h4>{{service.number_of_comments}} reviews </h4>
+				 <ui-widget-stars-static size="15" value="{{service.average_rating}}" text="({{service.average_rating}})"></ui-widget-stars-static> -->
+			<!--</div>
+			<div ng-repeat="review in service.service_reviews">
+				<ui-widget-review review="review" userlogin="'UserLogin'" typereview="'reply_reviews'"></ui-widget-review>
+        <md-divider></md-divider>
+      </div>
+		</md-tab> -->
+	</md-tabs>
+</div>

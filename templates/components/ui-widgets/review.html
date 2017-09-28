@@ -1,0 +1,125 @@
+<div class="review-widget">
+  <div class="md-toolbar-tools">
+    <!-- <ui-widget-stars-static size="15" value="{{review.rating}}"></ui-widget-stars-static> -->
+    <h2><a ng-href="{{'profile.php#/'+review.accountId}}">{{review.name}}</a> <span>{{(review.status)? 'Verified': 'Unverified'}} User</span></h2>
+    <span flex></span>
+    <span>{{review.date}}</span>
+  </div>
+  <!--One Review content-->
+  <md-content class="md-padding">
+    <span class="rich-text-small" markdown-to-html="review.comment"></span>
+    <div ng-if="typereview != 'reply_reviews'" layout="row" layout-align="center center" layout-fill class="review-widget-footer">
+      <div layout="row">
+        <a href="" ng-click="Reply($index)">Reply</a>
+        |
+        <a href="" ng-if="review.flagged">Flagged</a>
+        <a href="" ng-if="!review.flagged" ng-click="FlagReview($index)">Flag</a>
+      </div>
+      <md-button md-no-ink class="md-button" ng-if="review.reply" ng-click="ShowReply()">
+        {{(showReply == true )? 'Hide' : 'Show' }} Repl{{(review.replyReviews.length > 1)?'ies':'y'}}
+      </md-button>
+      <span flex></span>
+      <div layout="row" layout-align="center center">
+        <p>Was this review helpful?</p>
+        <md-button aria-label="Like" md-no-ink class="md-button"  ng-click="Like(review)">
+          <ng-md-icon icon="thumb_up" ng-style="(review.helpful && review.helpful.helpful === true)? {fill:'#65AF3F'}: {fill:'black'}" size="14"></ng-md-icon>
+          {{(review.like > 0)? review.like: ''}}
+        </md-button>
+        <md-button aria-label="Dislike" md-no-ink class="md-button"  ng-click="DisLike(review)">
+          <ng-md-icon icon="thumb_down" ng-style="(review.helpful && review.helpful.helpful === false)? {fill:'red'}: {fill:'black'}" size="14"></ng-md-icon>
+          {{(review.dislike > 0)? review.dislike: ''}}
+        </md-button>
+      </div>
+    </div>
+  </md-content>
+
+  <!--Reply-->
+  <div flex class="new-review" ng-if="replyFlag">
+    <form name="CommentForm">
+      <md-input-container flex>
+        <div ui-widget-rich-text
+          field-name="comment"
+          model="NewReview.Comment"
+          limit="1000"
+          is-saved="isSaved"
+          is-valid="isValid">
+        </div>
+      </md-input-container>
+      <div layout layout-align="end end">
+        <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
+        <md-button class="md-raised" ng-click="Submit(NewReview)" ng-disabled="!NewReview.Comment" >Submit</md-button>
+      </div>
+    </form>
+  </div>
+
+  <!--Flag Review-->
+  <div flex class="new-review" ng-if="flagReviewFlag">
+    <form name="CommentForm" layout="row" layout-align="start start">
+      <md-input-container flex="20">
+        <label>Reason</label>
+        <md-select ng-model="NewReview.Reason" ng-change="">
+          <md-option value="none">None</md-option>
+        </md-select>
+      </md-input-container>
+      <div flex layout="column">
+        <md-input-container flex>
+          <label>Comment</label>
+          <textarea ng-model="NewReview.Comment" columns="1" md-maxlength="1000"></textarea>
+        </md-input-container>
+        <div layout layout-align="end end">
+          <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
+          <md-button class="md-raised" ng-click="SubmitReview(NewReview)" ng-disabled="!NewReview.Comment || !NewReview.Reason" >Submit</md-button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div ng-if="showReply" class="show-reply" ng-repeat="reply in review.replyReviews">
+    <md-divider></md-divider>
+    <div class="md-toolbar-tools">
+      <h2><a ng-href="{{'profile.php#/'+review.accountId}}">{{reply.name}}</a> <span>{{(reply.status)? 'Verified': 'Unverified'}} User</span></h2>
+      <span flex></span>
+      <span>{{reply.date}}</span>
+    </div>
+    <md-content class="md-padding">
+      <span class="rich-text-small" markdown-to-html="reply.comment"></span>
+      <div layout="row" layout-align="space-between center" layout-fill class="review-widget-footer">
+        <a href="" ng-if="reply.flagged">Flagged</a>
+        <a href="" ng-if="!reply.flagged" ng-click="ReplyFlagReview($index)">Flag Comment</a>
+        <div layout="row" layout-align="center center">
+          <p>Was this review helpful?</p>
+          <md-button aria-label="Like" md-no-ink class="md-button"  ng-click="Like(reply)">
+            <ng-md-icon icon="thumb_up" ng-style="(reply.helpful && reply.helpful.helpful === true)? {fill:'#65AF3F'}: {fill:'black'}" size="14"></ng-md-icon>
+            {{(reply.like > 0)? reply.like: ''}}
+          </md-button>
+          <md-button aria-label="Dislike" md-no-ink class="md-button"  ng-click="DisLike(reply)">
+            <ng-md-icon icon="thumb_down" ng-style="(reply.helpful && reply.helpful.helpful === false)? {fill:'red'}: {fill:'black'}" size="14"></ng-md-icon>
+            {{(reply.dislike > 0)? reply.dislike: ''}}
+          </md-button>
+        </div>
+      </div>
+    </md-content>
+
+    <!--Flag Review-->
+    <div flex class="new-review" ng-if="flagReplyReviewFlag === $index">
+      <form name="CommentForm" layout="row" layout-align="start start">
+        <md-input-container flex="20">
+          <label>Reason</label>
+          <md-select ng-model="NewReview.Reason" ng-change="">
+            <md-option value="none">None</md-option>
+          </md-select>
+        </md-input-container>
+        <div flex layout="column">
+          <md-input-container flex>
+            <label>Comment</label>
+            <textarea ng-model="NewReview.Comment" columns="1" md-maxlength="150"></textarea>
+          </md-input-container>
+          <div layout layout-align="end end">
+            <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
+            <md-button class="md-raised" ng-click="SubmitReply(NewReview, reply.id, $index)" ng-disabled="!NewReview.Comment || !NewReview.Reason" >Submit</md-button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

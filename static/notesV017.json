@@ -1,0 +1,406 @@
+[
+{
+      "content": "Display-name Drop-down Menu",
+      "notes":
+      [
+            {
+                  "content": "My Account",
+                  "notes":
+                  [
+                        {
+                              "content": "Account Basics"
+                        },
+                        {
+                              "content": "Privacy"
+                        },
+                        {
+                              "content": "Notifications"
+                        }
+                  ]
+            },
+            {
+                  "content": "My Profile"
+            },
+            {
+                  "content": "Create DMDII content"
+            },
+            {
+                  "content": "Create DMDII Member"
+            },
+            {
+                  "content": "Create DMDII Project"
+            }
+      ]
+},
+{
+      "content": "Top Menu",
+      "notes":
+      [
+            {
+                  "content": "Invitations"
+            },
+            {
+                  "content": "Notifications"
+            }
+      ]
+},
+{
+      "content": "Footer",
+      "notes":
+      [
+            {
+                  "content": "FAQs"
+            },
+            {
+                  "content": "Legal",
+                  "notes":
+                  [
+                        {
+                              "content": "General Terms of Service"
+                        },
+                        {
+                              "content": "Member Terms of Service"
+                        },
+                        {
+                              "content": "Privacy Policy"
+                        },
+                        {
+                              "content": "App SLA"
+                        },
+                        {
+                              "content": "DMCA"
+                        }
+                  ]
+            },
+            {
+                  "content": "Contact Us"
+            }
+      ]
+},
+{
+      "content":"Header",
+      "notes":
+      [
+            {
+                  "content": "Core",
+                  "notes":
+                  [
+                        {
+                              "content": "DMC Security",
+                              "notes":
+                              [
+                                {
+                                  "content": "DMC Security page in Microsoft Browsers",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "We recently discovered that this page did not properly render when using Internet Explorer and Microsoft Edge. We've made a changes that will make this page appears as intended. This change should also make the page more mobile browser friendly.",
+                                      "class": "release-bug"
+                                    }
+                                  ]
+                                }
+                              ]
+                        },
+                        {
+                              "content": "DMC Academia",
+                              "notes":
+                              [
+                                {
+                                  "content": "DMC Academia page in Microsoft Browsers",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "We recently discovered that this page did not properly render when using Internet Explorer and Microsoft Edge. We've made a changes that will make this page appears as intended. This change should also make the page more mobile browser friendly.",
+                                      "class": "release-bug"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": "Online Training Section",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "We've added a new section to the DMC Academia page. In the last release we added the DMC Academia page to start showcasing how academic institutions are starting to incorporate the DMC in the classroom. This rekease, we've added another section to this page all about how people can start to learn more about Digital Manufacturing. DMDII's Workforce Development program has partnered with some of DMDII's members as well as with Coursera to build a ten course Specialization on Digital Manufacturing and Design, of which half are now available. Learn more by visiting the new DMC Academia page.",
+                                      "class": "release-content"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": "DMC for Academia Video Available",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "After hosting the DMC Webinar for Academia, we knew users would be interested in seeing a recording if they were not able to attend. We've edited the video and it is now accessible on Youtube (Visit the DMC Activities page to find it right now). The video can also be found at the top of the DMC Academia for students page and can be played from there. Finally, the video can be found on the DMC User Group Meetings workspace documents section which is publicly available to verified users.",
+                                      "class": "release-content"                                   }
+                                  ]
+                                }
+                              ]
+                        },
+                        {
+                              "content": "DMC Releases",
+                              "notes":
+                              [
+                                {
+                                  "content": "Release Dates",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "In the past we were not including the day of the release on our release notes pages and subsequent tabs. Going forward, we will be including the release dates for all our releases. Previous releases have been updated to include the release dates for our releases, this is included for releases we were tracking on our Confluence wiki as well as on our site itself.",
+                                      "class": "release-feature"
+                                    }
+                                  ]
+                                }
+                              ]
+                        },
+                        {
+                              "content": "DMC Blog"
+                        }
+                  ]
+            },
+            {
+                  "content": "Explore",
+                  "notes":
+                  [
+                        {
+                              "content": "Individuals",
+                              "notes":
+                              [
+                                    {
+                                          "content": "User Profile page"
+                                    }
+                              ]
+                        },
+                        {
+                              "content": "Organization",
+                              "notes":
+                              [
+                                    {
+                                          "content": "Organization Profile page"
+                                    }
+                              ]
+                        },
+                        {
+                              "content": "Activities"
+                        },
+                        {
+                              "content": "Workspaces",
+                              "notes":
+                              [
+                                {
+                                  "content": "Workspace Directory Revamp",
+                                  "notes":
+                                  [
+                                    {
+                                      "content": "Workspaces have received a major overhaul this release. Users will find we've removed the All and My Workspace pages. Instead, users will now only have a Workspaces page (found under Explore in the main menu). The pages now will load exponentially more quickly and now returns information to make in simple to navigate to the workspace you you care most about at the time such as the workspace creator, date of creation, due date, and if the workspace is public or private.",
+                                      "class": "release-feature",
+                                      "notes":
+                                      [
+                                        {
+                                          "content": "In the past workspaces would exist exist across two different pages, My Workspaces, and All Workspaces, but now simply exist on two different tabs on the same page, which loads the content much more quickly. Users now also have access to filter workspace lists by public, and private.",
+                                          "class": "release-feature"
+                                        },
+                                        {
+                                          "content": "For some of our most active users, we've also introduced pagination, so now users will receive a list of ten workspaces before needing to click next to get to the next part of the list. Before, users that have created 50 workspaces for their testing purposes would need to wait for all of the workspaces to load on the page. Now you'll be able to start finding the content you are looking for more quickly.",
+                                          "class": "release-feature"
+                                        },
+                                        {
+                                          "content": "Users are also now able to request access to both kinds of public workspaces right from the workspace directory.",
+                                          "class": "release-feature"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": "Workspace Profile",
+                                  "notes":
+                                  [
+                                        {
+                                              "content": "Home"
+                                        },
+                                        {
+                                              "content": "Discussions"
+                                        },
+                                        {
+                                              "content": "Team"
+                                        },
+                                        {
+                                              "content": "Documents",
+                                              "notes":
+                                              [
+                                                {
+                                                  "content": "Document Sharing",
+                                                  "notes":
+                                                  [
+                                                    {
+                                                      "content": "In this release, we ave implimented a much requested feature, and that is the ability to share documents that one has access to in the documents section of workspaces on the DMC. To begin using this feature, you will need to have a document available in your workspace, then click on the share icon on the right hand side of page. Users will have three options when it comes to sharing documents. Thos options are:",
+                                                      "class": "release-feature",
+                                                      "notes":
+                                                      [
+                                                        {
+                                                          "content": "Sharing with a DMC User: This will create a site notification for a DMC user the document is being shared with. The user will then simply need to click on the notification and they will be redirected to the document. Simply begin typing the user's display name and the auto complete field will appear allowing you to click on the user. Then just approve the sharing of the document.",
+                                                          "notes":
+                                                          [
+                                                            {
+                                                              "content": "This option also gives you the option to simultaneously e-mail the document link to the user's account as well."
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "content": "Sharing Orgnaization Member: This will create a site notification for a user of your choice from your organization. The user will then simply need to click on the notification and they will be redirected to the document. Simply begin typing the user's display name and the auto complete field will appear allowing you to click on the user. Then just approve the sharing of the document.",
+                                                          "notes":
+                                                          [
+                                                            {
+                                                              "content": "This option also gives you the option to simulteniously e-mail the document link to the user's account as well."
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "content": "Sharing Via E-mail for non-DMC User: This will allow users to share a link to the document you wish to share with any person with an e-mail address. Wen prompted, provide the person's e-mail and verify that you want to share the document with them."
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "content": "SHA256 for Workspace Documents",
+                                                  "notes":
+                                                  [
+                                                    {
+                                                      "content": "Going forward, much like the SHA256 hash property being included in the Documents sections of DMDII Project Profile pages, we have also included this same property for workspace documents. This can be seen as a field which is part of uploaded documents properties like Owner, Expires, Last Modified and etc.",
+                                                      "class": "release-feature"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                        },
+                                        {
+                                              "content": "Tasks"
+                                        },
+                                        {
+                                              "content": "Workspace Services Directory",
+                                              "notes":
+                                              [
+                                                {
+                                                  "content": "Service Profile Page",
+                                                  "notes":
+                                                  [
+                                                    {
+                                                      "content": "App Documents Available in Workspace Service Profile Page",
+                                                      "notes":
+                                                      [
+                                                        {
+                                                          "content": "In the past, DMC Marketplace applications that users added to their workspaces would not contain the documents that were associated with the applications. Now, users can view the documents that are important to them from the workspace service profile page.",
+                                                          "class": "release-bug"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "content": "Application Run History",
+                                                      "notes":
+                                                      [
+                                                        {
+                                                          "content": "In the last release we added a new feature to show past application runs, which show if the application ran successfully and what the inputs and outputs for the application were. The issue was, that the history would only show the user id of the person that ran the application rather than the display-name. Now the display-name shows up appropriately as intended.",
+                                                          "class": "release-bug"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "content": "Application Run page",
+                                                  "notes":
+                                                  [
+                                                    {
+                                                      "content": "Application Run History",
+                                                      "notes":
+                                                      [
+                                                        {
+                                                          "content": "In the last release we added a new feature to show past application runs, which show if the application ran successfully and what the inputs and outputs for the application were. The issue was, that the history would only show the user id of the person that ran the application rather than the display-name. Now the display-name shows up appropriately as intended.",
+                                                          "class": "release-bug"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "content": "More Space for Input and Output for Apps",
+                                                      "notes":
+                                                      [
+                                                        {
+                                                          "content": "A request we have recieved in the past has been to give users the ability to provide more than 20 characters of input for applications. Applications can now also return more than 20 character as output. The limit for both of these fields now are 600.",
+                                                          "class": "release-feature"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                        }
+                                  ]
+                                }
+                              ]
+                        }
+                  ]
+            },
+            {
+                  "content":"My Organization",
+                  "notes":
+                  [
+                    {
+                      "content": "User Profile Pictures out of Sync",
+                      "notes":
+                      [
+                        {
+                          "content": "Avid users of the website may have noticed that some users would have multiple profile pictures appear across the site. That is, users would have one profile picture on their user profile page, but a different picture or no picture could appear on their user card on the organization profile page. This could happen in multiple places. During this release, we worked on making sure that the correct profile picture for users appears on the user profile page as well as the user card on their organization profile page. Fixes to sync the profile pictures of users accross the rest of the site should be fixed in a future release.",
+                          "class": "release-bug"
+                        }
+                      ]
+                    },
+                    {
+                      "content": "Sending User Verification Token",
+                      "notes":
+                      [
+                        {
+                          "content": "For security reasons, the DMC requires administrators of organizations to grant access to members by sharing a verification token with them. In the past, we would generate the token for the administrator to share with the organization member to give them access. Organization administrators now when verifying members of their organization will be informaed of what e-mail address their organization member has registed and will be given the option to verify that member. If they choose to still verify the user, our infrastructure will send the verification token long with instruction to that user.",
+                          "class": "release-feature"
+                        }
+                      ]
+                    }
+                  ]
+            },
+            {
+                  "content": "Marketplace",
+                  "notes":
+                  [
+                        {
+                          "content": "Application Profile page",
+                          "notes":
+                          [
+                            {
+                              "content": "App Documents and Logos Visable on Application Profile Pages",
+                              "notes":
+                              [
+                                {
+                                  "content": "In the past only site-wide administrators were able to see the logo and documents associated with applications that are in the DMC marketplace. We've made a few changes to the way we handle permissions to files and documents that should fix this issue for all applications going forward. Now users can experience the marketplace that marketplace the way it was always meant to look.",
+                                  "class": "release-bug"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                  ]
+            },
+            {
+                  "content": "DMDII Portal",
+                  "notes":
+                  [
+                        {
+                              "content": "DMDII Member Directory"
+                        },
+                        {
+                              "content": "DMDII Projects Directory"
+                        }
+                  ]
+            }
+      ]
+}
+]

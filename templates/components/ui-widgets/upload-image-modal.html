@@ -1,0 +1,33 @@
+<md-dialog layout="column" class="upload-images-widget" flex="75">
+	<md-content>
+	<div layout="row" layout-align="space-between center">
+		<h2>MANAGE IMAGES</h2>
+		<md-button class="md-icon-button" ng-click="cancel()">
+	       	<ng-md-icon icon="close" fill="#fff" size="32" aria-label="Close dialog"></ng-md-icon>
+	    </md-button>
+    </div>
+    <h3>Drag and drop to reorder images</h3>
+    <div layout="row" layout-wrap>
+    	<div class="image-box" flex="20" ng-repeat="item in images track by $index">
+    		<md-button ng-click="deleteImage($index, item.id)" aria-label="delete">
+          		<ng-md-icon icon="highlight_remove" size="32"></ng-md-icon>
+        	</md-button>
+            <div class="img"><img ng-src="{{item.documentUrl}}" alt=""/></div>
+    	</div>
+    </div>
+	<div>
+		<div class="content-panel"
+			source="newImages"
+			ui-widget-upload-documents
+			widget-type="'row'"
+			auto-upload="false"
+			widget-title="'Upload Images'"
+			file-limit="5"
+			allow-tagging="true">
+		</div>
+		<div layout="column">
+			<md-button class="md-raised md-primary dmc-button" ng-click="uploadFile()">Save</md-button>
+		</div>
+	</div>
+    </md-content>
+</md-dialog>

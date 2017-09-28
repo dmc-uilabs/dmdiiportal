@@ -1,0 +1,22 @@
+<div class="stars" layout layout-align="start center">
+    <div class="stars-button" ng-mouseleave="LeaveStar()" layout="row" layout-align="center start">
+        <md-button aria-label="Star" md-no-ink class="md-icon-button" ng-mousemove="MoveStar(1)" ng-click="ClickStar(1)">
+           <ng-md-icon aria-label="" icon="star" ng-style="StarStyle[0]" size="{{size}}" ></ng-md-icon>
+        </md-button>
+        <md-button aria-label="Star" md-no-ink class="md-icon-button" ng-mousemove="MoveStar(2)" ng-click="ClickStar(2)">
+            <ng-md-icon aria-label="" icon="star" ng-style="StarStyle[1]" size="{{size}}" ></ng-md-icon>
+        </md-button>
+        <md-button aria-label="Star" md-no-ink class="md-icon-button" ng-mousemove="MoveStar(3)" ng-click="ClickStar(3)">
+            <ng-md-icon aria-label="" icon="star" ng-style="StarStyle[2]" size="{{size}}" ></ng-md-icon>
+        </md-button>
+        <md-button aria-label="Star" md-no-ink class="md-icon-button" ng-mousemove="MoveStar(4)" ng-click="ClickStar(4)">
+            <ng-md-icon aria-label="" icon="star" ng-style="StarStyle[3]" size="{{size}}" ></ng-md-icon>
+        </md-button>
+        <md-button aria-label="Star" md-no-ink class="md-icon-button" ng-mousemove="MoveStar(5)" ng-click="ClickStar(5)">
+            <ng-md-icon aria-label="" icon="star" ng-style="StarStyle[4]" size="{{size}}" ></ng-md-icon>
+        </md-button>
+    </div>
+    <div class="stars-value" ng-if="text">
+        <span>{{text}}</span>
+    </div>
+</div>

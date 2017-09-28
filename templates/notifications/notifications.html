@@ -1,0 +1,190 @@
+<div class="home">
+<div class="notifications" layout="column">
+	<div layout="row" layout-align="space-between center">
+		<h1>My Notifications
+        <a href="/account.php#/{{userData.accountId}}/notifications">
+            <ng-md-icon style="padding-bottom:20px" icon="settings" size="21"></ng-md-icon>
+        </a>
+      </h1>
+		<md-button ng-if="filterFlag" class="md-raised dmc-button" ng-click="reset()">View All</md-button>
+	</div>
+<md-content class="md-padding">
+
+
+	<div layout="row" class="wh-nav" layout-wrap ng-init="currentPage=1">
+      <a class="wh-link" ng-repeat="p in pages" ng-class="{selected: p.id == currentPage}" ng-click="changePage(p.id)">
+          {{p.title}}
+      </a>
+  </div>
+
+</md-content>
+
+<md-content>
+
+	<div class="block" style="height:auto; max-height:600px">
+		<md-list>
+			<md-list-item class="notification-item" ng-repeat="item in getNotifications() | orderBy:'-created'" ng-if="currentPage == 2 || currentPage == 1 && item.unread" ng-class="{unread: (item.unread)}">
+				<div flex="100" layout="row" layout-align="center center">
+					<div class="logo-event" ng-switch on="item.type">
+						<!--<img ng-src="{{item.image}}">-->
+            <ng-md-icon ng-switch-when="USER_REQUESTS_VERIFICATION" icon="check_circle" size="40"></ng-md-icon>
+            <ng-md-icon ng-switch-when="NEW_USER_JOINED_ORGANIZATION" icon="person_add" size="40"></ng-md-icon>
+						<ng-md-icon ng-switch-when="INVITATION_TO_WORKSPACE" icon="folder_open" size="40"></ng-md-icon>
+						<ng-md-icon ng-switch-when="DOCUMENT_SHARED" icon="insert_drive_file" size="40"></ng-md-icon>
+						<ng-md-icon ng-switch-when="DOCUMENT_SHARED_WITH_WORKSPACE" icon="insert_drive_file" size="40"></ng-md-icon>
+            <ng-md-icon ng-switch-default icon="notifications" size="40"></ng-md-icon>
+					</div>
+					<h4 ng-click="clearNotification(item.createdFor.id, item.id)" flex ng-switch on="item.type">
+						<a ng-switch-when="USER_REQUESTS_VERIFICATION" ng-href='/company-profile.php#/profile/{{userData.companyId}}'>{{item.createdBy.displayName}} has requested to be verified with your organization.</a>
+						<a ng-switch-when="NEW_USER_JOINED_ORGANIZATION" ng-href='/company-profile.php#/profile/{{userData.companyId}}'>{{item.createdBy.displayName}} has requested to join your organization.</a>
+						<a ng-switch-when="INVITATION_TO_WORKSPACE" ng-href="/all.php#/invitations">{{item.createdBy.displayName}} has invited you to a workspace.</a>
+						<a ng-switch-when="DOCUMENT_SHARED" ng-href="{{item.message}}">{{item.createdBy.displayName}} has shared a document with you.</a>
+						<a ng-switch-when="DOCUMENT_SHARED_WITH_WORKSPACE" ng-href="{{item.message}}">{{item.createdBy.displayName}} has shared a document with your workspace.</a>
+						<a ng-switch-default>{{item.message}}</a>
+					</h4>
+					<div layout="column" style="text-align: right">
+						<h4>{{item.created | date:'mediumDate'}}</h4>
+						<span style="height: 5px"/>
+						<h4>{{item.created | date:'mediumTime'}}</h4>
+					</div>
+					<md-button class="md-icon-button clear-notification" aria-label="Clear" md-no-ink ng-click="clearNotification(item.createdFor.id, item.id)">
+							<ng-md-icon icon="drafts" size="24" style="margin-bottom:4px"></ng-md-icon>
+					</md-button>
+				</div>
+			</md-list-item>
+		</md-list>
+	</div>
+
+
+
+	<!-- <div layout="row" layout-align="space-between start">
+		<div flex="30" class="section" ng-repeat="item in notifications track by $index" >
+			<div class="cell1" layout layout-align="center center">
+				<h2 ng-click="filtered('month', item.events, item.name)">{{item.name}}</h2>
+			</div>
+			<div class="cell2" layout="row" layout-align="space-between center">
+				<h3 ng-click="filtered('today', item.events, item.name)">Today</h3>
+				<h4>{{item.today}}</h4>
+			</div>
+			<div class="cell3" layout="row" layout-align="space-between center">
+				<h3 ng-click="filtered('week', item.events, item.name)">This Week</h3>
+				<h4>{{item.week}}</h4>
+			</div>
+			<div class="cell4" layout="row" layout-align="space-between center">
+				<h3 ng-click="filtered('month', item.events, item.name)">This Month</h3>
+				<h4>{{item.month}}</h4>
+			</div>
+		</div>
+	</div> -->
+
+	<!-- <div class="block" ng-if="version1 && !user && !filterFlag">
+		<h2>Evaluate Project Submissions</h2>
+		<div layout="row" layout-align="center center" class="first">
+			<div flex="15">
+				<img src="/uploads/company/picture/1/20160107065859000000.png">
+			</div>
+			<h4 flex>The Demo Project has closed. <a href="">Evaluate 56 submissions.</a></h4>
+			<h4>2 hours ago</h4>
+		</div>
+	</div> -->
+
+	<!-- <div class="block" ng-if="version1 && user && !filterFlag">
+		<h2>Project invitations</h2>
+		<div layout="row" layout-align="center center" class="first">
+			<div flex="15">
+				<img src="/uploads/company/picture/1/20160107065859000000.png">
+			</div>
+			<h4>John Smith has invited you to join <a href="">The Demo Project.</a></h4>
+			<span flex></span>
+			<md-button class="md-raised">
+			Decline
+			</md-button>
+			<md-button class="md-raised">
+			Accept
+			</md-button>
+			<span flex></span>
+			<h4>2 hours ago</h4>
+		</div>
+	</div> -->
+
+
+	<!-- TODO other notification types to be implemented
+	<ng-md-icon ng-switch-when="FAVORITED_YOUR_SERVICE" icon="favorite" size="40"></ng-md-icon>
+                       <ng-md-icon ng-switch-when="USER_REQUESTS_VERIFICATION" icon="check_circle" size="40"></ng-md-icon>
+                       <ng-md-icon ng-switch-when="FAVORITED_SERVICE" icon="favorite" size="40"></ng-md-icon>
+                       <ng-md-icon ng-switch-when="NEW_USER_JOINED_ORGANIZATION" icon="person_add" size="40"></ng-md-icon>
+                       <ng-md-icon ng-switch-when="REVIEW_USER" icon="star" size="40"></ng-md-icon>
+                       <ng-md-icon ng-switch-when="REPLY_REVIEW" icon="star" size="40"></ng-md-icon>
+                       <ng-md-icon ng-switch-when="REVIEW_COMPANY" icon="star" size="40"></ng-md-icon>
+                       <ng-md-icon ng-switch-when="REVIEW_SERVICE" icon="star" size="40"></ng-md-icon>
+                       <ng-md-icon ng-switch-when="NEW_DISCUSSION" icon="forum" size="40"></ng-md-icon>
+                       <ng-md-icon ng-switch-when="REPLY_DISCUSSION" icon="forum" size="40"></ng-md-icon>
+                       <md-icon ng-switch-when="SERVICE_ERROR" md-svg-src="images/icon_service.svg"></md-icon>
+                       <md-icon ng-switch-when="SERVICE_FINISH" md-svg-src="images/icon_service.svg"></md-icon>
+                       <md-icon ng-switch-when="UPDATE_SERVICE" md-svg-src="images/icon_service.svg"></md-icon>
+                       <ng-md-icon ng-switch-when="TASK_ASSIGN" icon="list" size="40"></ng-md-icon>
+                       <ng-md-icon ng-switch-when="TASK_DUE" icon="list" size="40"></ng-md-icon>
+                       <ng-md-icon ng-switch-when="TASK_UPDATE" icon="list" size="40"></ng-md-icon>
+                       <md-icon ng-switch-when="UPDATE_PROJECT" md-svg-src="images/icon_project.svg"></md-icon>
+                       <ng-md-icon ng-switch-when="SERVICE_SHARED" icon="share" size="40"></ng-md-icon>
+                       <md-icon ng-switch-when="ACCEPT_INVITATION" md-svg-src="images/icon_project.svg"></md-icon>
+                       <md-icon ng-switch-when="SUBSCRIBE_YOUR_SERVICE_TO_PROJECT" md-svg-src="images/icon_service.svg"></md-icon>
+                       <md-icon ng-switch-when="UNSUBSCRIBE_SERVICE_TO_YOUR_PROJECT" md-svg-src="images/icon_project.svg"></md-icon>
+                       <md-icon ng-switch-when="SUBSCRIBE_SERVICE_TO_YOUR_PROJECT" md-svg-src="images/icon_project.svg"></md-icon>
+                       <ng-md-icon ng-switch-when="ANNOUNCEMENT_DMC" icon="forum" size="40"></ng-md-icon>
+                       <ng-md-icon ng-switch-when="ANNOUNCEMENT_SYSTEM" icon="forum" size="40"></ng-md-icon>
+                       <ng-md-icon ng-switch-when="EVENT_DMC" icon="forum" size="40"></ng-md-icon>
+
+
+-->
+
+
+	<!-- <div class="block" >
+		<div layout="row" layout-align="space-between center">
+			<h2>{{typeNotifications}}</h2>
+		</div>
+		<md-list>
+			<md-list-item ng-repeat="item in userData.notifications | filter: filterBy"  ng-if="!item.cleared && !item.deleted" >
+				<div flex="100" layout="row" layout-align="center center" >
+					<div class="logo-event" ng-switch on="item.type"> -->
+						<!--<img ng-src="{{item.image}}">-->
+                        <!-- <ng-md-icon ng-switch-when="USER_REQUESTS_VERIFICATION" icon="check_circle" size="40"></ng-md-icon>
+                        <ng-md-icon ng-switch-when="NEW_USER_JOINED_ORGANIZATION" icon="person_add" size="40"></ng-md-icon>
+                        <md-icon ng-switch-default md-svg-src="images/icon_project.svg"></md-icon>
+					</div>
+					<h4 flex ng-switch on="item.type">
+						<a ng-switch-when="DOCUMENT_SHARED" ng-href="{{item.message}}">{{item.createdBy.displayName}} has shared a document with you. Click to view.</a>
+						<a ng-switch-default href="/company-profile.php#/profile/{{userData.companyId}}">{{item.message}}</a>
+					</h4>
+					<h4>{{item.created | date:'medium'}}</h4>
+					<md-button class="md-icon-button clear-notification" aria-label="Clear" md-no-ink ng-click="clearNotification(item.createdFor.id, item.id)">
+							<ng-md-icon icon="close" size="18"></ng-md-icon>
+					</md-button>
+				</div>
+			<md-divider ng-if="!$last"></md-divider>
+			</md-list-item>
+		</md-list>
+	</div>
+	<div class="block">
+		<div layout="row" layout-align="space-between center">
+			<h2>Archived</h2>
+		</div>
+		<md-list>
+			<md-list-item ng-repeat="item in userData.notifications | filter: filterBy | limitTo:20"  ng-if="item.cleared || item.deleted" >
+				<div flex="100" layout="row" layout-align="center center" >
+					<div class="logo-event" ng-switch on="item.type"> -->
+						<!--<img ng-src="{{item.image}}">-->
+												<!-- <ng-md-icon ng-switch-when="USER_REQUESTS_VERIFICATION" icon="check_circle" size="40" ></ng-md-icon>
+												<ng-md-icon ng-switch-when="NEW_USER_JOINED_ORGANIZATION" icon="person_add" size="40" ></ng-md-icon>
+												<md-icon ng-switch-default md-svg-src="images/icon_project.svg"></md-icon>
+					</div>
+					<h4 flex><a href="/company-profile.php#/profile/{{userData.companyId}}">{{item.message}}</a></h4>
+					<h4>{{item.created | date:'medium'}}</h4>
+					<h4></h4>
+				</div>
+			</md-list-item>
+		</md-list>
+	</div> -->
+</md-content>
+</div>
+</div>

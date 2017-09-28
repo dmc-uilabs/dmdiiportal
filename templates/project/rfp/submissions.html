@@ -1,0 +1,69 @@
+<div class="page-header margin-bottom-35">
+    <md-toolbar>
+        <h1 class="project-title" layout="row" layout-align="start end">
+            <div class="title">{{projectCtrl.projectData.title}}</div>
+            <span ng-if="projectCtrl.projectData.dueDate" class="small-text due-date-project small-text--grey">
+                Due in {{projectCtrl.projectData.dueDate}}
+            </span>
+        </h1>
+        <div class="md-toolbar-tools">
+            <div layout="column" flex="65" class="margin-right12-5">
+                <div layout="row" class="name-project" flex>
+                    <div sub-nav-menu-button menu-type="'rfp'" current-page="2"></div>
+                </div>
+                <!--<span class="small-text small-text--grey">Due in 20 days</span>-->
+            </div>
+        </div>
+    </md-toolbar>
+</div>
+
+    <div class="container submissions-page">
+      <div layout="row" layout-fill>
+        <div class="content-column" layout="column" flex>
+            <div class="content-panel">
+                <div class="content-panel-header">
+                    <md-toolbar>
+                        <div class="md-toolbar-tools">
+                            <h2>Submissions</h2>
+                            <span flex></span>
+                        </div>
+                    </md-toolbar>
+                </div>
+                <div class="content-panel-body">
+                    <md-content class="md-padding">
+                        <div class="models-list">
+                            <md-data-table-container>
+                                <table md-data-table class="tableSubmissions">
+                                    <thead md-order="success" md-trigger="onOrderChange">
+                                    <tr>
+                                        <th name="Select"></th>
+                                        <th name="Submission Name" order-by="title"></th>
+                                        <th name="Date" order-by="date"></th>
+                                        <th name="Success" order-by="success"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in submissions" class="table-line">
+                                        <td>
+                                            <input value="{{item.id}}" class="idSubmission" type="hidden"/>
+                                            <md-checkbox ng-model="item.select" ng-click="compareSubmission($event,item)" aria-label="Select">
+                                                {{ item.select == true ? 'Added to Compare' : 'Add to Compare' }}
+                                            </md-checkbox>
+                                        </td>
+                                        <td class="title">{{item.title}}</td>
+                                        <td>{{item.date}}</td>
+                                        <td>{{item.success}}%</td>
+                                    </tr>
+                                    <tr ng-if="submissions.length == 0">
+                                        <td class="empty" colspan="5">No submissions</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </md-data-table-container>
+                        </div>
+                    </md-content>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>

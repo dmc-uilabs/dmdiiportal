@@ -1,0 +1,330 @@
+$font-size: 13px;
+$line-height: 1.1;
+$lines-to-show: 4;
+
+$lines-to-show-title: 2;
+.not-favorite{
+  fill : grey;
+}
+.is-favorite{
+  fill : #64B045;
+}
+// generic flexbox container
+.product-card-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.product-card {
+  width: 300px;
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid #666;
+  @include borderRadius(3px);
+  // display: inline-block;
+  background-color: #fff;
+  // vertical-align: top;
+  overflow: hidden;
+  text-align: left;
+  .reply{
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+  .title-without-spaces{
+    padding: 8px 8px 0 8px;
+    margin: 0 8px;
+    h3{
+      margin: 0;
+    }
+  }
+  &__info{
+  }
+  &__title{
+    width: 100%;
+    height: 34px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    a{
+      font-size: 1.5em;
+      color: map-get($colors, secondary);
+      font-weight: bold;
+    }
+  }
+  &__description{
+    margin: 5px 0;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 1.2em;
+    flex-grow: 1;
+    width: 100px;
+    margin-right: 5px;
+    white-space: normal;
+    .product-text{
+      min-height: 98px;
+      // Below is for wrapping excessively long words
+      /* These are technically the same, but use both */
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      -ms-word-break: break-all;
+      /* This is the dangerous one in WebKit, as it breaks things wherever */
+      word-break: break-all;
+      /* Instead use this non-standard one: */
+      word-break: break-word;
+      /* Adds a hyphen where the word breaks, if supported (No Blink) */
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+  }
+  &__image{
+    text-align: center;
+    //padding: 0 18px;
+    &_small{
+      margin-bottom: 5px;
+      box-sizing: border-box;
+      height: 108px;
+      width: 108px;
+      overflow: hidden;
+      border-radius: 5px;
+      }
+  }
+  .star-rating{
+    button{
+      margin: 0;
+    }
+  }
+  p {
+    white-space: initial;
+    display: block; /* Fallback for non-webkit */
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &.release {
+      height: 30px;
+      max-height: 30px;
+    }
+    &.description {
+      display: block; /* Fallback for non-webkit */
+      display: -webkit-box;
+      max-width: 400px;
+      height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+      margin: 0 auto;
+      font-size: $font-size;
+      line-height: $line-height;
+      -webkit-line-clamp: $lines-to-show;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  md-toolbar {
+    min-height: 48px;
+    .md-toolbar-tools {
+      background-color: #FFF;
+      height: 48px;
+    }
+  }
+
+  &__content {
+    padding: 0 8px;
+    height: 201px;
+    max-height: 201px;
+    min-height: 201px;
+    &__column{
+      padding: 0 8px;
+    }
+  }
+
+  &__owner {
+    padding: 0 8px;
+    height: 30px;
+    max-height: 30px;
+    min-height: 30px;
+    overflow: hidden;
+    &__column{
+      padding: 0 8px;
+    }
+  }
+
+  &__header {
+    padding: 0 16px;
+    a {
+      text-decoration: none;
+      color: map-get($colors, secondary);
+    }
+    h3 {
+      margin: 0;
+      text-transform: uppercase;
+
+      display: block; /* Fallback for non-webkit */
+      //display: -webkit-box;
+      max-width: 400px;
+      height: 21px*$line-height*$lines-to-show-title; /* Fallback for non-webkit */
+      line-height: $line-height;
+      font-size: 21px;
+      -webkit-line-clamp: $lines-to-show-title;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  &__footer{
+    background-color: #666;
+    padding: 6px 0;
+    .white-button{
+      background-color: #909090;
+    }
+    .md-button{
+      margin: 0 6px;
+      height: 47px;
+      min-height: 47px;
+      text-transform: none;
+      font-size: 13px;
+      line-height: 47px;
+    }
+    .back-to-add{
+      min-width: 40px;
+      fill: #fff;
+    }
+    a.page-href {
+      display: flex;
+      &:hover{
+        background-color: #777;
+        text-decoration: underline;
+      }
+      span{
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    .inner-add-to-project{
+      margin: 0 6px;
+      background-color: #909090;
+      @include borderRadius(3px);
+    }
+
+    .md-button {
+      color: white;
+    }
+    .md-button.md-raised {
+      background-color: rgb(250, 250, 250);
+      border: 1px solid green;
+      box-shadow: 0 2px 5px 0 green;
+    }
+    .remove{
+      background-color: #65AF3F;
+      ng-md-icon{
+        fill: #fff;
+      }
+      &:not([disabled]):hover{
+        background-color: #65AF3F;
+      }
+    }
+    &--small {
+      .md-button {
+        font-size: 11px;
+      }
+    }
+  }
+}
+
+
+.adding-to-project{
+  width: 100%;
+
+  .workspaceclose{
+    width: 36px;
+    min-width: 36px;
+    // height: 36px;
+    // min-height: 36px;
+    // line-height: 36px;
+    background-color:#777;
+  }
+  .workspaceclose:hover{
+    background-color: #65AF3F;
+  }
+
+
+  .add{
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    min-height: 36px;
+    line-height: 36px;
+  }
+  ng-md-icon{
+    fill: #fff;
+  }
+  // md-input-container{
+  //   padding: 0;
+  // }
+  //
+  // md-autocomplete input:not(.md-input) {
+  //   background: #909090 none repeat scroll 0 0;
+  //   border: medium none;
+  //   box-shadow: none;
+  //   box-sizing: border-box;
+  //   font-size: 14px;
+  //   height: 40px;
+  //   line-height: 40px;
+  //   outline: medium none;
+  //   padding: 0 18px;
+  //   width: 100%;
+  // }
+
+  // md-input-container:not([disabled]) .md-input{
+  //   border-color:grey;
+  //   // width:150px;
+  // }
+  input {
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+  }
+
+  md-autocomplete input:not(.md-input) {
+    font-size:10px;
+  }
+
+  md-select,
+  md-select:not([disabled]):focus {
+    @include borderRadius(3px);
+    margin: 6px 0;
+    background-color: #fff;
+    md-select-value{
+      font-size: 13px;
+      padding: 3px 8px 6px 8px;
+      border: none;
+    }
+  }
+}
+
+.ui-sortable .product-card{
+  cursor: move;
+}
+
+.shareProduct{
+  h4{
+    font-size: 17px;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  md-list{
+    width: 100%;
+    padding: 0;
+    h3{
+      color: #333;
+      font-size: 13px;
+    }
+  }
+}

@@ -1,0 +1,280 @@
+.individual-discussion{
+  .edit-btn.md-icon-button,
+  .delete-btn.md-icon-button{
+    width: 21px;
+    margin-right: 0;
+    margin-left: 13px;
+  }
+  .delete-tag-btn.md-icon-button{
+    height: 30px;
+    line-height: 28px;
+    min-height: 0;
+    min-width: 0;
+    width: 23px;
+    margin-right: 3px;
+    margin-left: 0;
+  }
+  .save-editing-comment,
+  .cancel-edit-comment{
+    margin-right: 0;
+    margin-left: 13px;
+    text-transform: none;
+  }
+  .tag-chip{
+    padding-right: 0;
+  }
+  .create-tag-box{
+    md-input-container{
+      padding-bottom: 8px;
+    }
+    button{
+      margin-bottom: 0;
+    }
+  }
+  .edit-text-box md-input-container{
+    padding-bottom: 0;
+  }
+  .return{
+    padding: 0;
+  }
+  a{
+    color: inherit;
+  }
+  h2{
+    font-weight: normal;
+    font-size: 24px;
+  }
+  .left-column{
+    //border: 1px solid #999;
+    background-color: #fff;
+
+    .header{
+      margin: 0 10px;
+      border-bottom: 1px solid #ccc;
+      padding: 3px 0;
+    }
+    .message{
+      padding: 10px;
+    }
+    .comment{
+      padding: 10px;
+      border-bottom: 1px solid #888;
+      background-color: #f6f6f6;
+      &.isOwner{
+        background-color: #fff;
+      }
+      .comment-header{
+        height: 65px;
+        img{
+          height: 100%;
+          width: auto;
+          margin-right: 16px;
+        }
+        h3{
+          font-weight: bold;
+          a{
+            text-decoration: none;
+            &:hover{
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+      .text{
+        margin: 0px 40px 15px 40px;
+      }
+      .comment-footer{
+        padding: 0px 40px 10px 40px;
+        p {
+          margin: 0;
+        }
+        .md-button{
+          margin: 0;
+          width: auto;
+          font-size: 12px;
+          min-width: 20px;
+          height: 20px;
+          min-height: 20px;
+          line-height: 20px;
+          text-transform: none;
+        }
+      }
+    }
+    .main-comment{
+      border-bottom: 1px solid #888;
+      background-color: #fff;
+    }
+    .reply{
+      padding-left: 36px;
+      .comment-header{
+        height: 65px;
+        img{
+          height: 100%;
+          width: auto;
+          margin-right: 16px;
+        }
+        h3{
+          font-weight: normal;
+          a{
+            text-decoration: none;
+            &:hover{
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+      .text{
+        padding: 10px 0;
+      }
+      .comment-footer{
+        p {
+          margin: 0;
+        }
+        .md-button{
+          margin: 0;
+          width: auto;
+          min-width: 20px;
+          height: 20px;
+          min-height: 20px;
+          line-height: 20px;
+          text-transform: none;
+        }
+      }
+    }
+
+    form[name=CommentForm]{
+      padding: 10px;;
+      //background-color: #d0d0d0;
+    }
+  }
+  .right-column{
+    .related{
+      background-color: #fff;
+      margin-bottom: 25px;
+      @include borderRadius(2px);
+      h2{
+        padding: 0 16px;
+        font-weight: normal;
+        font-size: 19px;
+      }
+      h3{
+        font-weight: normal;
+      }
+      md-list{
+        padding: 0 16px 16px 16px;
+        md-list-item{
+          a{
+            text-decoration: none;
+            &:hover{
+              text-decoration: underline;
+            }
+          }
+          height: 36px;
+          min-height: 36px;
+          line-height: 36px;
+        }
+      }
+    }
+    .tags{
+      //for version 1
+      //margin-top: 32px;
+      @include borderRadius(2px);
+      padding: 0 8px 8px;
+      background-color: #fff;
+      & .edit-title-tags{
+        margin-bottom: 0;
+      }
+      h2{
+        font-weight: normal;
+        margin-bottom: 6px;
+        font-size: 19px;
+      }
+      md-chips-wrap{
+        padding: 0;
+      }
+      md-chips .md-chips{
+        box-shadow: none;
+        md-chip{
+          @include borderRadius(2px);
+        }
+        .tags-chip{
+          padding-right: 32px;
+          .md-icon-button{
+            position: absolute;
+            right: 0;
+            top: 0;
+            min-height: 32px;
+            height: 32px;
+            line-height: 32px;
+            min-width: 32px;
+            width: 32px;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+.compose-discussion{
+  input{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.118);
+  }
+  h2{
+    color: $green;
+  }
+  md-chips .md-chips{
+    box-shadow: none;
+  }
+  padding: 16px;
+  .left-column{
+    border: 1px solid grey;
+    margin-right: 16px;
+    .header{
+      border-bottom: 1px solid grey;
+      padding: 0 8px;
+      text-align: center;
+    }
+    .message{
+      padding: 8px;
+    }
+  }
+  .right-column{
+    border: 1px solid grey;
+    padding: 8px;
+    .add-tags-form{
+      .md-button{
+        height: 36px;
+        line-height: 36px;
+        min-height: 36px;
+        min-width: 0;
+        width: 64px;
+      }
+    }
+    md-chips .md-chips{
+      box-shadow: none;
+      md-chip{
+        border-radius: 0px;
+        a{
+          text-decoration: none;
+          color: inherit;
+        }
+      }
+      .tags-chip{
+        padding-right: 32px;
+        .md-icon-button{
+          position: absolute;
+          right: 0;
+          top: 0;
+          min-height: 32px;
+          height: 32px;
+          line-height: 32px;
+          min-width: 32px;
+          width: 32px;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

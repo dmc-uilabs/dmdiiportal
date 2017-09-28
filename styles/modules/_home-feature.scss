@@ -1,0 +1,100 @@
+.container.index-container{
+  margin-top: -99px;
+  padding: 109px 8px 138px 8px;
+  margin-bottom: -128px;
+}
+.home-feature {
+  text-align: center;
+  margin: 13px 10px;
+  padding: 13px;
+  min-width: 233px;
+  @include borderRadius(3px);
+  color:#333;
+  text-decoration: none;
+  &:hover{
+    background-color: #DDD;
+  }
+  img{
+    margin-bottom: 40px;
+    width: 167px;
+    background: #75BC52;
+    @include borderRadius(3px);
+  }
+  h2 {
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: 0;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+.home-more {
+  text-align: left;
+  margin: 13px 10px;
+  padding: 0 13px;
+  min-width: 233px;
+  max-width: 233px;
+  min-height: 362px;
+  @include borderRadius(3px);
+  color:#333;
+  text-decoration: none;
+  background-color: #DDD;
+
+  h2 {
+    a{
+      font-size: 24px;
+      font-weight: 400;
+    }
+  }
+  p {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .md-button.md-icon-button{
+    margin: 0;
+  }
+}
+
+.home{
+  background: white;
+	padding: 40px;
+  padding-top: 0px;
+}
+
+.home-header{
+  h1{
+    font-size: 42px;
+    color: map-get($colors, secondary);
+    font-weight: lighter;
+  }
+  .social-button{
+    md-icon{
+      width: 40px;
+      height: 40px;
+      padding-left: 5px;
+      svg{
+        fill: map-get($colors, secondary);
+      }
+    }
+    &:hover{
+      md-icon svg{
+        fill: map-get($colors, primary);
+      }
+    }
+  }
+}
+
+.home-theater{
+  margin-top: -40px;
+  //max-width: 900px;
+  //min-height: 300px;
+  //background: #000000;
+}
+
+.md-padding{
+  padding-top: 0;
+  padding-bottom: 0;
+}

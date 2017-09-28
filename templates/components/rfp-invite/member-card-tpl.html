@@ -1,0 +1,45 @@
+<div>
+    <div layout="row">
+        <md-button aria-label="Favorite" class="md-icon-button" flex><ng-md-icon icon="favorite_outline" style="fill: grey;" size="18"></ng-md-icon></md-button>
+    </div>
+    <div class="member-card__image">
+        <img ng-src="{{cardSource.avatar}}" alt="Name member">
+    </div>
+    <div class="member-card__header" layout="column" layout-padding layout-margin>
+        <h3 class="member-name"><a ng-href="{{'profile.php#/'+cardSource.id}}">{{cardSource.name}}</a></h3>
+        <span class="company-name"><a ng-href="{{'company-profile.php#/profile/'+cardSource.companyId}}">{{cardSource.company}}</a></span>
+    </div>
+    <div class="member-card__content" layout="row" layout-padding flex>
+        <div class="member-card__content__column" flex="28" layout="column">
+            <!-- <div class="star-rating">
+                <div class="star-rating__buttons">
+                    <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="14" ></ng-md-icon></md-button>
+                    <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon aria-label="" icon="star" style="fill: #f28e1e;" size="14"></ng-md-icon></md-button>
+                    <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon aria-label="" icon="star" style="fill: #c7c7c7;" size="14"></ng-md-icon></md-button>
+                    <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon aria-label="" icon="star" style="fill: #c7c7c7;" size="14"></ng-md-icon></md-button>
+                    <md-button aria-label="Star" md-no-ink class="md-icon-button"><ng-md-icon aria-label="" icon="star" style="fill: #c7c7c7;" size="14"></ng-md-icon></md-button>
+                </div>
+                <div class="star-rating__value">
+                    <span class="small-text">({{cardSource.rating}})</span>
+                </div>
+            </div> -->
+            <div class="member-card__details">
+                <p class="description">{{cardSource.description}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="product-card__footer" layout="row">
+        <md-button ng-if="!cardSource.isInvite" aria-label="Add to Invitation" flex ng-click="addToInvitation()">
+            Add to Invitation
+        </md-button>
+        <md-button class="md-raised md-primary" ng-if="cardSource.isInvite" aria-label="Added to Invitation" flex ng-click="addToInvitation()">
+            Added to Invitation
+        </md-button>
+        <md-button ng-if="!cardSource.isCompare" aria-label="Add to Compare" flex ng-click="addToCompare()">
+            Add to Compare
+        </md-button>
+        <md-button class="md-raised md-primary" ng-if="cardSource.isCompare" aria-label="Compare" flex ng-click="addToCompare()">
+            Compare
+        </md-button>
+    </div>
+</div>

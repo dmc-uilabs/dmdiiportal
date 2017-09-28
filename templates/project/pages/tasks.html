@@ -1,0 +1,73 @@
+<workspace-header class="workspace-header" ng-init="currentPage='4'"></workspace-header>
+<div class="container container-view-all all-project-tasks">
+    <div class="content-panel-body">
+        <md-content>
+          <div layout="row" flex layout-align="end center" class="search-content" ng-if="projectId > 0" style="padding-bottom: 20px;">
+            <a href="/add-task.php{{projectId ? '#/?projectId='+projectId : ''}}" aria-label="Add Task"
+               class="link-button uppercase edit-button margin-left20">
+                <ng-md-icon icon="add" size="18"></ng-md-icon>Add Task
+            </a>
+          </div>
+            <div layout="row" flex layout-align="start end" class="search-content">
+                <md-input-container class="filterBox">
+                    <md-select placeholder="Task" ng-model="typeModel" ng-change="changedType(typeModel)">
+                        <md-option ng-repeat="item in types" value="{{item.tag}}">{{item.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <form ng-submit="submit(searchModel)" class="view-all-search-field global-search-form" flex>
+                    <div layout="column">
+                        <div layout="row">
+                            <div layout="column" flex>
+                                <md-input-container md-no-float>
+                                    <md-icon>
+                                        <ng-md-icon icon="search"></ng-md-icon>
+                                    </md-icon>
+                                    <input type="text" placeholder="Search Task" ng-model="searchModel">
+                                </md-input-container>
+                            </div>
+                            <div layout="column">
+                                <md-input-container>
+                                    <md-button type="submit" class="search-button">Search</md-button>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tasks-list">
+                <md-data-table-container>
+                    <table md-data-table>
+                        <thead md-order="sort" md-trigger="onOrderChange">
+                        <tr>
+                            <th name="Task" order-by="title" class="title"></th>
+                            <th name="Status" order-by="status"></th>
+                            <th name="Assigned To" order-by="assignee"></th>
+                            <th name="Due Date" order-by="dueDate"></th>
+                            <th name="Priority" order-by="priority"></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in tasks">
+                            <td class="title-task"><a class="link-button" href="/project.php#/{{item.project.id}}/task/{{item.id}}">{{item.title}}</a></td>
+                            <td>{{item.status}}</td>
+                            <td><a href="profile.php#/{{item.assigneeId}}">{{item.assignee}}</a></td>
+                            <td>
+                                <span ng-if="item.status=='Open' || item.status=='InProgress'" ng-bind-html="item.formatedDueDate[1]" class="label" ng-class="item.formatedDueDate[0] == 'date' ? 'label--date' : (item.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (item.formatedDueDate[0] == 'today' || item.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></span>
+                                <div ng-if="item.status=='Closed' || item.status=='Completed'">
+                                  <strike ng-bind-html="item.formatedDueDate[1]" class="label--done"></strike>
+                                </div>
+                            </td>
+                            <td>{{item.priorityName}}</td>
+
+                        </tr>
+                        <tr ng-if="tasks.length == 0">
+                            <td class="empty" colspan="4">No tasks</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </md-data-table-container>
+            </div>
+        </md-content>
+    </div>
+</div>

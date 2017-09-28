@@ -1,0 +1,9 @@
+<div layout="row" layout-align="start center">
+    <div class="button-sub-nav dmc-button margin-right15">
+        <div class="squares">
+            <div ng-class="{'selected' : currentPage === p.id}" ng-repeat="p in pages"></div>
+        </div>
+        <div class="title">Menu</div>
+    </div>
+    <div class="name-page">{{currentPageName}}</div>
+</div>

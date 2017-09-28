@@ -1,0 +1,159 @@
+<div class="individual-discussion">
+	<div layout="column">
+		<div class="return margin-bottom-20" layout="row" layout-align="space-between center">
+			<a ng-href="{{previousPage.url}}">{{previousPage.title}}</a>
+		</div>
+		<div layout="row">
+			<div  flex="70" class="margin-right12-5">
+				<div class="left-column" layout="column">
+					<div class="header" layout="row" layout-align="space-between center">
+						<h2>{{discussion.title}}</h2>
+						<md-button class="md-raised" ng-click="follow()">
+							{{(followFlag) ? 'Unfollow' : 'Follow'}}
+						</md-button>
+					</div>
+					<div class="comment" ng-repeat="comment in discussion.comments.items track by $index" ng-class="{'main-comment' : $index == 0}" layout="column">
+						<div class="comment-header" layout="row" layout-align="start center">
+							<img ng-src="{{comment.avatar}}">
+							<div layout="row" layout-align="space-between center" layout-fill>
+								<h3><a ng-href="{{'profile.php#/' + comment.accountId}}">{{comment.full_name}}</a></h3>
+								<h3>{{comment.created_at}}</h3>
+							</div>
+						</div>
+						<div class="text rich-text-small" markdown-to-html="comment.text"></div>
+						<div class="comment-footer" layout="row" layout-align="space-between center">
+							<div layout="row" layout-align="start center">
+								<div>
+									<a href="" ng-if="$first" ng-click="reply($index)">Reply</a>
+									{{($first)?' | ':''}}
+									<a href="" ng-if="comment.flagged">
+										Flagged
+									</a>
+									<a href="" ng-if="!comment.flagged" ng-click="flagged($index)">
+										Flag
+									</a>
+									{{(comment.reply && $first)?' | ':''}}
+									<a href="" ng-if="comment.reply && $first" ng-click="ShowReply($index)">
+										{{(showReplyFlag === $index )? 'Hide' : 'Show' }} Repl{{(comment.replyReviews.length > 1)?'ies':'y'}}
+									</a>
+								</div>
+						    </div>
+							<div layout="row" layout-align="center center">
+								<p>Was this post helpful?</p>
+								<md-button aria-label="Like" md-no-ink class="md-button"  ng-click="Like(comment)">
+									<ng-md-icon icon="thumb_up" ng-style="(comment.helpful && comment.helpful.helpful === true)? {fill:'#65AF3F'}: {fill:'black'}" size="14"></ng-md-icon>
+									{{(comment.like > 0)? comment.like: ''}}
+								</md-button>
+								<md-button aria-label="Dislike" md-no-ink class="md-button"  ng-click="DisLike(comment)">
+									<ng-md-icon icon="thumb_down" ng-style="(comment.helpful && comment.helpful.helpful === false)? {fill:'red'}: {fill:'black'}" size="14"></ng-md-icon>
+									{{(comment.dislike > 0)? comment.dislike: ''}}
+								</md-button>
+							</div>
+						</div>
+						<!-- reply comment -->
+						<div flex class="new-review" ng-if="replyReviewFlag === $index">
+					    	<form name="replyCommentForm" layout="row" layout-align="start start">
+					      		<div flex layout="column">
+							        <md-input-container flex>
+													<div ui-widget-rich-text
+															field-name="Comment"
+															model="NewReview.Comment"
+															limit="1000"
+															placeholder="Comment"
+															is-saved="isSaved"
+															is-valid="isValid">
+													</div>
+							        </md-input-container>
+							        <div layout layout-align="end end">
+							          	<md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
+							          	<md-button class="md-raised" ng-click="SubmitReply(NewReview, comment.id, $index)" ng-disabled="!NewReview.Comment" >Submit</md-button>
+							        </div>
+					      		</div>
+					    	</form>
+					  	</div>
+						<!--Flag Review-->
+						<div flex class="new-review" ng-if="flagReviewFlag === $index">
+						    <form name="flagCommentForm" layout="row" layout-align="start start">
+						      <md-input-container flex="20">
+						        <label>Reason</label>
+						        <md-select ng-model="NewReview.Reason" ng-change="">
+						          <md-option value="none">None</md-option>
+						        </md-select>
+						      </md-input-container>
+						      <div flex layout="column">
+						        <md-input-container flex>
+						          <label>Comment</label>
+						          <textarea ng-model="NewReview.Comment" columns="1" md-maxlength="1000"></textarea>
+						        </md-input-container>
+						        <div layout layout-align="end end">
+						          <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
+						          <md-button class="md-raised" ng-click="SubmitFlagged(NewReview, comment.id, $index)" ng-disabled="!NewReview.Comment || !NewReview.Reason" >Submit</md-button>
+						        </div>
+						      </div>
+						    </form>
+						</div>
+
+						<div ng-if="showReplyFlag === $parent.$index" class="reply" ng-repeat="reply in comment.replyReviews">
+						    <md-divider></md-divider>
+						    <div class="comment-header" layout="row" layout-align="space-between center">
+						      	<h3><a ng-href="{{'profile.php#/' + reply.accountId}}">{{reply.full_name}}</a></h3>
+						      	<h3>{{reply.created_at}}</h3>
+						    </div>
+						    <div class="text" markdown-to-html="reply.text"></div>
+						    <div class="comment-footer" layout="row" layout-align="end center">
+					          	<p>Was this review helpful?</p>
+					          	<md-button aria-label="Like" md-no-ink class="md-button"  ng-click="Like(reply)">
+					            	<ng-md-icon icon="thumb_up" ng-style="(reply.helpful && reply.helpful.helpful === true)? {fill:'#65AF3F'}: {fill:'black'}" size="14"></ng-md-icon>
+					            	{{(reply.like > 0)? reply.like: ''}}
+					         	</md-button>
+					          	<md-button aria-label="Dislike" md-no-ink class="md-button"  ng-click="DisLike(reply)">
+					            	<ng-md-icon icon="thumb_down" ng-style="(reply.helpful && reply.helpful.helpful === false)? {fill:'red'}: {fill:'black'}" size="14"></ng-md-icon>
+					            	{{(reply.dislike > 0)? reply.dislike: ''}}
+					          	</md-button>
+						    </div>
+						</div>
+
+					</div>
+                    <form name="CommentForm" ng-submit="Submit()">
+                        <md-input-container flex>
+														<div ui-widget-rich-text
+																field-name="Comment"
+																model="newComment"
+																limit="1000"
+																placeholder="Comment"
+																is-saved="isSaved"
+																is-valid="isValid">
+														</div>
+                        </md-input-container>
+                        <div layout layout-align="end end">
+                            <md-button class="md-raised" submit ng-disabled="!newComment" >Submit</md-button>
+                        </div>
+                    </form>
+				</div>
+			</div>
+			<div flex="30" class="margin-left12-5">
+				<div class="right-column" layout="column">
+					<div class="related" ng-if="version1">
+						<h2>Related Discussions</h2>
+						<md-list>
+							<md-list-item ng-repeat="item in realtedDiscussions track by $index">
+								<a ng-href="individual-discussion.php#/{{item.id}}"><h3>{{item.title}}</h3></a>
+							</md-list-item>
+						</md-list>
+					</div>
+					<div class="tags" layout="row" layout-wrap>
+						<h2 flex="100">Tags</h2>
+						<md-chips ng-repeat="tag in discussion.tags track by $index" ng-show="discussion.tags.length > 0">
+							<md-chip>
+								<a ng-href="{{'search.php#/all?text='+tag.name}}">{{tag.name}}</a>
+							</md-chip>
+						</md-chips>
+                        <div layout="row" flex="100" layout-align="start center" layout-padding ng-show="discussion.tags.length == 0">
+                            No tags
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,22 @@
+<div class="title-widget" ng-hide="widgetTitle == null" layout="row" layout-align="start center">
+    <h2>{{widgetTitle}}</h2>
+    <span flex></span>
+    <a ng-href="{{'/project.php#/'+projectId+'/tasks'}}"
+               ng-click="previousPage.save($event)"
+               class="link-button uppercase">View All ({{totalItems}})</a>
+</div>
+<md-list class="task-list">
+    <md-list-item class="md-3-line" ng-repeat="task in projectTasks">
+        <div class="md-list-item-text">
+            <a class="link-button" href="/project.php#/{{task.project.id}}/task/{{task.id}}">{{task.title}}</a>
+            <h4>Assigned To: <a href="/profile.php#/1" class="link-button">{{task.assignee}}</a></h4>
+            <div ng-if="task.status=='Open' || task.status=='InProgress'">
+              <div class="label border-radius-2" ng-bind-html="task.formatedDueDate[1]" ng-class="task.formatedDueDate[0] == 'date' ? 'label--date' : (task.formatedDueDate[0] == 'tomorrow' ? 'label--tomorrow' : (task.formatedDueDate[0] == 'today' || task.formatedDueDate[0] == 'after' ? 'label--warn' : 'label--date'))"></div>
+            </div>
+            <div ng-if="task.status=='Closed' || task.status=='Completed'">
+              <strike ng-bind-html="task.formatedDueDate[1]" class="label--done"></strike>
+            </div>
+        </div>
+        <md-divider ng-if="$index < projectTasks.length-1"></md-divider>
+    </md-list-item>
+</md-list>

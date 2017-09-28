@@ -1,0 +1,51 @@
+<div layout="row" class="add-skill-block">
+    <div layout="column" flex="50">
+        <md-autocomplete
+            md-input-name="skill"
+            md-items="tag in querySkillSearch(searchSkill)"
+            md-search-text="searchSkill"
+            md-selected-item="selectedSkill"
+            md-selected-item-change="addSkill(selectedSkill)"
+            md-item-text="tag.name"
+            md-floating-label="Skill">
+            <md-item-template>
+              <span md-highlight-text="searchSkill">{{tag.name}}</span>
+            </md-item-template>
+            <md-not-found  ng-click="addNewSkill(searchSkill)">
+              <span>No skills matching "{{searchSkill}}" were found. Click here to create it!</span>
+            </md-not-found>
+        </md-autocomplete>
+    </div>
+
+    <md-input-container style="padding-bottom: 26px;">
+        <label>Add New Skill</label>
+        <input type="text" ng-model="newSkill"></input>
+    </md-input-container>
+    <div style="padding-top: 15px;">
+        <md-button class="md-raised md-primary" ng-click="addNewSkill(newSkill)">Save Skill</md-button>
+    </div>
+</div>
+<div layout="row" class="list-skills-block" layout-wrap>
+    <div layout="column">
+        <span class="no-bottom" flex>Selected Core Capabilities (Click tag to remove)</span>
+        <div layout="row" layout-wrap>
+            <md-chips ng-repeat="skill in source.areasOfExpertise track by $index">
+                <md-chip ng-click="deleteSkill($index)">
+                    <span>{{skill.name}}</span>
+                </md-chip>
+            </md-chips>
+        </div>
+    </div>
+</div>
+<!-- <div layout="row" class="line-block" layout-align="start start">
+    <md-input-container flex class="company-technicalExpertise right-space" >
+        <label>Technical Expertise</label>
+        <textarea ng-model="source.technicalExpertise"
+                  columns="1"></textarea>
+    </md-input-container>
+    <md-input-container flex class="company-toolsSoftwareAndOther left-space" >
+        <label>Tools, Software, Equipment & Machines</label>
+        <textarea ng-model="source.toolsSoftwareEquipmentMachines"
+                  columns="1"></textarea>
+    </md-input-container>
+</div> -->

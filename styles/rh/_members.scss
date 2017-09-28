@@ -1,0 +1,145 @@
+.event-details {
+	background: $brand-primary;
+	border-radius: 20px;
+	color:white;
+	padding:20px;
+	position:relative;
+	min-height:345px;
+	max-height: 345px;
+	margin-left:30px;
+	&:before {
+		content: "";
+		display:block;
+		position:absolute;
+		left:-15px;
+		top:30px;
+		width: 0;
+		height: 0;
+		border-top: 15px solid transparent;
+		border-bottom: 15px solid transparent;
+		border-right:15px solid $brand-primary;;
+	}
+	a{
+		color: $white;
+		text-decoration: underline;
+	}
+}
+div.list-wrapper {
+	max-height: 300px;
+	overflow-y: auto;
+}
+
+/* Calendar overrides */
+.clndr .day {
+	border-radius: 50%;
+}
+
+.clndr .day.event {
+	background: $brand-primary;
+	color: $white;
+}
+
+.clndr .days .day .event-indicator, .clndr .days .empty .event-indicator  {
+	background: $color-dark;
+}
+
+.more-less{
+	font-size: 12px;
+	//line-height: 1.0;
+}
+
+.members-table {
+	img.img-responsive {
+		min-width: 100px;
+		max-width: 100px;
+	}
+	p {
+		min-width: 200px;
+
+		white-space: normal;
+	}
+
+	th{
+		vertical-align: top !important;
+	}
+}
+.map-col {
+	margin-top:40px;
+}
+
+.member-logo{
+	width: 10%;
+	padding-right: 20px;
+}
+
+.member-description{
+	width: 50%;
+}
+
+.tier{
+	width: 10%;
+}
+
+.type{
+	width: 18%;
+}
+
+.active-projects {
+	list-style:none;
+	padding:0;
+	width: 12%;
+	min-width:135px;
+	max-width:135px;
+	li {margin-bottom:20px;white-space:normal;}
+}
+
+.col-label {
+	border-bottom: 1px solid $border-color;
+	padding-bottom: 18px;
+}
+
+.event-list {
+	.event-block {
+		padding:30px;
+		border-bottom:1px solid $border-color;
+		&:first-of-type{
+			padding-top:0;
+		}
+		&:last-of-type {
+			border-bottom:none;
+		}
+
+		.dates {
+			font-weight: bold;
+			font-size: .8em;
+			margin-top: 10px;
+		}
+		h2 {
+			margin:0;
+			font-weight:300;
+			font-size:24px;
+			line-height:24px;
+		}
+		p {
+			margin-top:10px;
+			color:$gray;
+			line-height:25px;
+			font-size:15px;
+			max-height: 200px;
+			overflow: hidden;
+		}
+	}
+
+.fade-bottom{
+		position: relative;
+		width: 100%;
+		height: 50px;
+		margin-top: -50px;
+		background: linear-gradient(to bottom, transparent, white);
+	}
+}
+
+.hoverinfo {
+	padding: 5px 10px;
+	text-align: left;
+}

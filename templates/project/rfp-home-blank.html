@@ -1,0 +1,85 @@
+<div class="page-header margin-bottom-35">
+    <md-toolbar>
+        <h1 class="project-title">{{projectCtrl.projectData.title}}</h1>
+        <div class="md-toolbar-tools">
+            <div layout="column" flex="65" class="margin-right12-5">
+                <div layout="row" class="name-project" flex>
+                    <div sub-nav-menu-button current-page="7"></div>
+                </div>
+                <!--<span class="small-text small-text--grey">Due in 20 days</span>-->
+            </div>
+        </div>
+    </md-toolbar>
+</div>
+<div class="container" layout="row" layout-fill>
+    <!-- Left Content Column -->
+
+    <div class="content-column" layout="column" flex="60">
+        <!-- Overview -->
+        <div class="content-panel">
+            <div class="content-panel-header">
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>Overview</h2>
+                    </div>
+                </md-toolbar>
+            </div>
+            <div class="content-panel-body">
+                <md-content layout="row">
+                    <div>
+                        <p markdown-to-html="projectCtrl.projectData.description"></p>
+                    </div>
+                </md-content>
+            </div>
+        </div>
+        <!-- QUESTIONS -->
+        <div class="content-panel">
+                <div class="content-panel-header">
+                  <md-toolbar>
+                      <div class="md-toolbar-tools">
+                          <h2>Questions</h2>
+                          <span flex></span>
+                          <a ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/questions'}}"
+                             class="link-button uppercase">View All (10)</a>
+                      </div>
+                  </md-toolbar>
+              </div>
+              <div class="content-panel-body">
+                  <md-content>
+                      <md-list>
+                          <md-list-item>
+                              <p>No Questions</p>
+                          </md-list-item>
+                      </md-list>
+                  </md-content>
+              </div>
+            </div>
+        <!-- INVITED USERS -->
+        <div class="content-panel" ui-widget-invited-users widget-title="'INVITED USERS'" project-id="projectCtrl.projectData.id"></div>
+    </div>
+    <!-- Right Content Column -->
+    <div class="content-column" layout="column" flex>
+        <!-- SUBMISSIONS -->
+        <div class="content-panel">
+                <div class="content-panel-header">
+                  <md-toolbar>
+                      <div class="md-toolbar-tools">
+                          <h2>Submissions</h2>
+                          <span flex></span>
+                          <a ng-href="{{'/project.php#/'+projectCtrl.projectData.id+'/submissions'}}"
+                             class="link-button uppercase">View All (10)</a>
+                      </div>
+                  </md-toolbar>
+              </div>
+              <div class="content-panel-body">
+                  <md-content>
+                      <md-list>
+                          <md-list-item>
+                              <p>No Submissions</p>
+                          </md-list-item>
+                      </md-list>
+                  </md-content>
+              </div>
+            </div>
+    </div>
+</div>

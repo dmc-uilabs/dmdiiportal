@@ -1,0 +1,34 @@
+.view-all-included{
+	md-toolbar{
+		background-color: transparent;
+	}
+	md-dialog-content{
+		padding: 0;
+	}
+	.list-components{
+		border-right: 2px solid #eee;
+
+		md-list{
+			md-list-item{
+				&.selected{
+					background-color: #65AF3F;
+				}
+				min-height: 30px;
+				font-size: 10px;
+				.md-list-item-inner{
+					min-height: 30px;
+				}
+				&:hover{
+					background-color: #eee;
+					button{
+						background-color: transparent;
+					}
+				}
+				h2{
+					margin: 0;
+					font-weight: normal;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,69 @@
+.content-card-title {
+  color: $brand-accent;
+  margin-top: 0px;
+  border-bottom: none;
+}
+
+.col-md-12 h3.content-card-title  {
+  border-bottom: none;
+  margin-top: 0px;
+}
+
+.help-title {
+  margin-top: 0px;
+  display: inline-block;
+  border-bottom: solid $brand-accent 1px;
+}
+
+.col-md-12 h3.help-title  {
+  margin-top: 0px;
+}
+
+.green-button {
+  background-color: $brand-accent;
+  color: white;
+}
+
+.red-button {
+  background-color: $red;
+  color: white;
+}
+
+.border-right {
+  border-right: solid $brand-accent 1px;
+}
+
+.border-left {
+  border-left: solid $brand-accent 1px;
+}
+
+.spacing-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 118px;
+  justify-content: space-between;
+}
+
+.content-button {
+  align-self: flex-start;
+}
+
+.margin-left-20 {
+  margin-left: 20px;
+}
+
+.fav-button {
+  margin-top: 10px;
+}
+
+.fav-button-container {
+  display: inline-block;
+}
+
+.margin-left-0 {
+  margin-left: 0px;
+}
+
+.padding-left-0 {
+  padding-left: 0px;
+}

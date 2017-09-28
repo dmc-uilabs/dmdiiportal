@@ -1,0 +1,64 @@
+<div class="community" layout="column" flex>
+
+  <!-- Social feeds -->
+  <div layout-wrap layout-align="space-between start" layout="row">
+    <!-- Youtube -->
+    <div class="flexrow-left" flex="60">
+      <h2 class="flexrow-header">Videos from DMDII</h2>
+      <ng-youtube-embed listType="playlist" list="UUB9yv90uJXvKnCY-0vpjvtw" width="100%" height="500">
+      </ng-youtube-embed>
+    </div>
+    <!-- Twitter -->
+    <div class="flexrow-right" flex="35">
+      <h2 class="flexrow-header">Tweets from DMDII</h2>
+      <twitter-timeline>
+        <a class="twitter-timeline" data-chrome="noheader nofooter" data-height="500" href="https://twitter.com/DMDII_">Tweets from DMDII</a>
+      </twitter-timeline>
+    </div>
+  </div>
+
+  <!-- Middle section -->
+  <div layout="row" layout-align="center center">
+    <!-- Icon -->
+    <div >
+      <img class="image" ng-src="images/home-community-icon.png"  style="width: 180px">
+    </div>
+    <!-- News -->
+    <div class="flex-50" style="padding: 30px;">
+      <h2 class="news-header">DMC in the News</h2>
+      <a class="news-title" target="_blank" href="{{news[0].link}}">{{news[0].title}}</a>
+      <h3 class="news-description">{{news[0].description}}</h3>
+    </div>
+    <!-- Follow buttons -->
+    <div>
+      <h2 align="center">Follow Us!</h2>
+      <div layout="row" style="padding-bottom: 10px;">
+          <h3 style="padding-right: 32px;">DMDII:</h3>
+          <a class="follow-button" href="http://www.uilabs.org/news-blog/blog/" target="_blank"><img src="images/comment-text-outline.svg" title="DMDII Blog"></a>
+          <a class="follow-button" href="https://twitter.com/DMDII_" target="_blank"><img src="images/twitter.svg" title="DMDII Twitter"></a>
+      </div>
+      <div layout="row">
+        <h3 style="padding-right: 20px;">UI LABS:</h3>
+        <a class="follow-button" href="https://www.linkedin.com/company/ui-labs" target="_blank"><img src="images/linkedin-box.svg" title="UI Labs LinkedIn"></a>
+        <a class="follow-button" href="https://www.instagram.com/uilabs_/" target="_blank"><img src="images/instagram.svg" title="UI Labs Instagram"></a>
+        <a class="follow-button" href="http://www.uilabs.org/news-blog/blog/" target="_blank"><img src="images/comment-text-outline.svg" title="UI Labs Blog"></a>
+        <a class="follow-button" href="https://twitter.com/UILABS_" target="_blank"><img src="images/twitter.svg" title="UI Labs Twitter"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Discussions and events -->
+  <div layout-wrap layout-align="space between start" layout="row" >
+      <!-- Popular discussions -->
+      <div class="flexrow-left" flex="60" layout="column">
+          <div class="content-panel project discussions-you-follow margin-right12-5 margin-top-25" community-discussions widget-type="'popular'" widget-title="'Popular discussions'"></div>
+          <!-- <div class="content-panel project dmc-events-content-panel margin-right12-5 margin-top-25" dmc-recent-updates widget-title="'Recent Updates'"></div> -->
+          <div class="content-panel project margin-right12-5 margin-top-25" dmc-recent-updates widget-title="'Recent Updates'"></div>
+      </div>
+      <!-- DMC Events-->
+      <div class="flexrow-right" flex="35">
+          <div class="content-panel project dmc-events-content-panel margin-left12-5 margin-top-25" dmc-events widget-title="'Events'"></div>
+      </div>
+  </div>
+
+</div>

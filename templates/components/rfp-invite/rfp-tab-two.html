@@ -1,0 +1,68 @@
+<div class="container" layout="row" layout-margin layout-fill layout-padding>
+  <!-- Left Content Column -->
+  <div class="content-column" layout="column" flex>
+    <div class="content-panel rfp-two">
+      <div class="content-panel-header">
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h2>Add Evaluation Model</h2>
+          </div>
+        </md-toolbar>
+      </div>
+      <div class="content-panel-body">
+          <div class="content-panel">
+              <div class="content-panel-header">
+                  <md-toolbar>
+                      <div class="md-toolbar-tools">
+                          <h2>Select Model</h2>
+                          <span flex></span>
+                          <md-button><ng-md-icon icon="file_upload" style="fill: #333" size="18"></ng-md-icon> Upload Model</md-button>
+                      </div>
+                  </md-toolbar>
+              </div>
+              <div class="content-panel-body">
+                  <md-content class="md-padding">
+                      <div class="models-list">
+                          <md-data-table-container>
+                              <table md-data-table class="tableServices">
+                                  <thead md-order="priority" md-trigger="onOrderChange">
+                                  <tr>
+                                      <th name="Select" order-by="name"></th>
+                                      <th name="Model" order-by="project"></th>
+                                      <th name="Project" order-by="start"></th>
+                                      <th name="Date" order-by="status"></th>
+                                      <th name="Inputs" order-by="status"></th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  <tr ng-repeat="item in services" class="table-line">
+                                      <td>
+                                        <input value="{{item.id}}" class="idService" type="hidden"/>
+                                        <md-checkbox ng-model="item.select" ng-click="selectModel($event,item,item.select)" aria-label="Select">
+                                            {{ item.select == true ? 'Selected' : 'Select' }}
+                                        </md-checkbox>
+                                      </td>
+                                      <td class="title">{{item.title}}</td>
+                                      <td>{{item.currentStatus.project.title}}</td>
+                                      <td>{{item.releaseDate}}</td>
+                                      <td>{{item.specificationsData.input}} inputs</td>
+                                  </tr>
+                                  <tr ng-if="models.length == 0">
+                                      <td class="empty" colspan="5">No models</td>
+                                  </tr>
+                                  </tbody>
+                              </table>
+                          </md-data-table-container>
+                      </div>
+                  </md-content>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div layout="row" class="container btn-next-block" layout-margin layout-fill layout-padding>
+    <md-button class="md-raised md-primary" ng-click="goToTab(1)">Back</md-button>
+    <span flex></span>
+    <md-button class="md-raised md-primary" ng-click="goToTab(3)" ng-disabled="!isSelected">Next</md-button>
+</div>

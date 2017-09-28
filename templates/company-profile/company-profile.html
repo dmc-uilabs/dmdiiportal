@@ -1,0 +1,407 @@
+<div ng-if="!not_found" class="company-profile">
+<md-content class="company-profile-padding">
+<div layout="row">
+    <div flex="20">
+        <img class="company-profile-image" ng-src="{{company.logoImage.documentUrl ? company.logoImage.documentUrl : 'images/icon-company-lg.svg'}}">
+    </div>
+    <div flex="80" layout="column" class="company-profile-header">
+        <div layout="row" layout-align="center center">
+            <div layout="column">
+                <h2>{{company.name}}</h2>
+                <h3>{{company.division}}</h3>
+                <h3>{{company.industry}}</h3>
+                <h3>{{company.location}}</h3>
+                <h3>{{'NAICS Code:' + company.naicsCode}}</h3>
+            </div>
+
+            <span flex></span>
+
+            <md-button ng-if="version1" aria-label="location_city" href="" class="md-icon-button">
+                <md-icon md-svg-src="images/icon_add_company.svg" class="header-icon" aria-label="company"></md-icon>
+                <!-- <ng-md-icon icon="location_city" style="fill: grey;" size="25"></ng-md-icon> -->
+            </md-button>
+            <md-button ng-if="version1" aria-label="email" href="" class="md-icon-button">
+                <ng-md-icon icon="email" style="fill: grey;" size="25"></ng-md-icon>
+            </md-button>
+        </div>
+        <span flex></span>
+        <div layout="row" layout-align="center center">
+            <!-- <ui-widget-stars-static size="15" ng-click="goToReview()" value="{{company.average_rating}}" text="({{company.average_rating}})"></ui-widget-stars-static>
+            <a ng-href="company.php#/{{company.id}}/storefront?product=services">View Storefront</a> -->
+            <span flex></span>
+            <div layout="column">
+                <div layout="row" flex="50">
+                    <md-button ng-if="userData.isAdmin || userData.isDmdiiAdmin"
+                        class="md-raised dmc-button"
+                        ui-sref="company-profile-edit({companyId: company.id})">
+                        Edit Company
+                    </md-button>
+                    <!-- <md-button ng-if="(userData.isAdmin || userData.isDmdiiAdmin) && userData.isDMDIIMember"
+                        class="md-raised dmc-button"
+                        href="edit-member-page.php#/{{company.id}}/edit">
+                        Edit DMDII Member Profile
+                    </md-button> -->
+                    <md-button ng-if="userData.isDmdiiAdmin"
+                        class="md-raised dmc-button"
+                        href=""
+                        ng-click="deleteOrganization()">
+                        Delete Company
+                    </md-button>
+                </div>
+                <div layout="row" class="top10" flex="50">
+                    <md-button class="md-raised dmc-button margin-right12-5"
+                               ng-disabled="company.joinRequest"
+                               ng-if="userData.companyId != company.id && !invate"
+                               ng-click="join()">
+                        {{ !company.joinRequest ? 'Request to Join' : 'Pending Approval' }}
+                    </md-button>
+                    <!-- <md-button ng-if="!userData.isAdmin" class="md-raised dmc-button" ng-click="follow()">
+                        {{(followFlag) ? 'Unfollow' : 'Follow'}}
+                    </md-button> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<md-divider></md-divider>
+
+<div class="company-profile-description" markdown-to-html="company.description"></div>
+
+<md-tabs md-dynamic-height md-border-bottom>
+<md-tab label="Overview">
+    <md-content class="tab-projects">
+
+        <div layout="row" class="text-row">
+            <div layout="column" flex="100" class="padding-left8">
+                <h2>Awards Received</h2>
+                <div layout="row" layout-align="space-around start" layout-wrap>
+                    <div style="width: 150px;" class="pad-left-10" layout="column"ng-repeat="award in company.awards">
+                        <h4><a href="{{award.link}}">{{award.name}}</a></h4>
+                        <p>{{award.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <md-divider></md-divider>
+
+        <div layout="column">
+            <h2>Images</h2>
+            <div layout="row" class="images-carousel" layout-align="start start">
+                <div class="arrow-left" ng-hide="company.images.length <= 5 || index == 0">
+                    <md-button aria-label="Left" class="md-raised md-primary" ng-click="index = index-1">
+                        <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
+                    </md-button>
+                </div>
+
+                <div layout="column" flex="15" class="image" ng-repeat="image in company.images">
+                    <div class="one-image">
+                        <img ng-src="{{image.documentUrl}}">
+                    </div>
+                    <h2>{{image.documentTitle}}</h2>
+                </div>
+
+                <div class="arrow-right" ng-hide="company.images.length <= 5 || index <= company.images.length - 5">
+                    <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1">
+                        <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+
+        <div layout="column">
+            <h2>Videos</h2>
+            <div layout="row" class="images-carousel" layout-align="start start">
+                <div class="arrow-left" ng-hide="company.video.length <= 5 || index == 0">
+                    <md-button aria-label="Left" class="md-raised md-primary" ng-click="index = index-1">
+                        <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
+                    </md-button>
+                </div>
+
+                <div ng-repeat="video in company.videos">
+                    <video width="320" height="240" controls>
+                        Your browser does not support HTML5 video playback
+                        <source ng-src="{{trustVideoSrc(video.documentUrl)}}">
+                    </video>
+                </div>
+
+                <!-- <div layout="column" flex="15" ng-repeat="item in [0,1,2,3,4]">
+                    <div class="one-image">
+                        <a ng-href="https://youtu.be/1S6g4qpEfks">video</a>
+                    </div>
+                </div> -->
+
+                <div class="arrow-right" ng-hide="company.videos.length <= 5 || index <= company.videos.length - 5">
+                    <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1">
+                        <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+        <!--Commenting out for now. View tags by editing a company.-->
+        <!--<div layout="column" class="" flex ng-if="userdata.isAdmin || userData.isMember || userData.isDmdiiAdmin">-->
+            <!--<div layout="row">-->
+                <!--<div layout="column" flex="100" class="padding-left8">-->
+                    <!--<h2>Tag My Suppliers</h2>-->
+                    <!--<div layout="row">{{company.otherOrganizationTags}}</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </md-content>
+</md-tab>
+
+<md-tab label="Skills">
+    <md-content class="md-padding">
+        <div layout="row" class="tabs-content" layout-wrap>
+            <md-chips ng-repeat="skill in company.areasOfExpertise track by $index">
+                <md-chip>
+                    <!-- <a ng-href="{{'search.php#/companies?text='+skill.name}}">{{skill.name}}</a> -->
+                    {{skill.name}}
+                </md-chip>
+            </md-chips>
+        </div>
+
+    </md-content>
+</md-tab>
+
+<!-- <md-tab label="Projects">
+    <md-content class="tab-content">
+        <div layout="row" class="text-row">
+            <div layout="column" flex="50" class="padding-right8">
+                <h2>Past Collaboration</h2>
+                <p>{{company.postCollaboration}}</p>
+            </div>
+        </div>
+
+        <md-divider></md-divider>
+
+        <div layout="row" flex="50" class="padding-left8">
+            <h2>Collaboration Interests</h2>
+            <md-chips ng-repeat="skill in company.desiredAreasOfExpertise track by $index">
+                <md-chip> -->
+                    <!-- <a ng-href="{{'search.php#/companies?text='+skill.name}}">{{skill.name}}</a> -->
+                    <!-- {{skill.name}}
+                </md-chip>
+            </md-chips>
+        </div>
+
+        <md-divider></md-divider>
+
+        <div layout="row" class="text-row">
+            <div layout="column" flex="50" class="padding-right8">
+                <h2>Past DMDII Projects</h2>
+                <p>{{company.pastProjects}}</p>
+            </div>
+            <div layout="column" flex="50" class="padding-left8">
+                <h2>Upcoming DMDII Project Interests</h2>
+                <p>{{company.upcomingProjectInterests}}</p>
+            </div>
+        </div>
+    </md-content>
+</md-tab> -->
+
+<!-- <md-tab label="HISTORY">
+    <ui-widget-tabs-history data="history"></ui-widget-tabs-history>
+</md-tab> -->
+
+<md-tab label="Contact">
+    <div layout="row" class="contat-tab">
+        <div layout="column" flex="40">
+            <h2>General</h2>
+            <div layout="row" layout-align="start center" layout-align="start center" ng-repeat="item in contactMethods">
+                <h3>{{item.name}} - {{item.value}}</h3>
+            </div>
+            <div layout="row" layout-align="start center" layout-align="start center">
+                <ng-md-icon icon="room" style="fill: grey" size="30" flex="10"></ng-md-icon>
+                <h3>{{company.address.state}}, {{company.address.city}}, {{company.address.zip}}</h3>
+            </div>
+            <div layout="row" layout-align="start center" ng-show="company.phone && company.phone.length > 0">
+                <ng-md-icon icon="phone" style="fill: grey" size="30" flex="10"></ng-md-icon>
+                <h3><a href="tel:{{company.phone}}">{{company.phone}}</a></h3>
+            </div>
+            <div layout="row" layout-align="start center" ng-show="company.email && company.email.length > 0">
+                <ng-md-icon icon="mail" style="fill: grey" size="30" flex="10"></ng-md-icon>
+                <h3><a href="mailto:{{company.email}}">{{company.email}}</a></h3>
+            </div>
+            <div layout="row" layout-align="start center" ng-show="company.socialMediaTwitter && company.socailMedia.Twitter.length > 0">
+                <ng-md-icon icon="twitter" style="fill: grey" size="30" flex="10"></ng-md-icon>
+                <h3><a href="{{company.twitter}}">{{company.socialMediaTwitter}}</a></h3>
+            </div>
+            <div layout="row" layout-align="start center" ng-show="company.socialMediaLinkedin && company.socialMediaLinkedin.length > 0">
+                <ng-md-icon icon="linkedin-box" style="fill: grey" size="30" flex="10"></ng-md-icon>
+                <h3><a href="{{company.linkedIn}}">{{company.socialMediaLinkedin}}</a></h3>
+            </div>
+            <div layout="row" layout-align="start center" ng-show="company.website && company.website.length > 0">
+                <ng-md-icon icon="link" style="fill: grey" size="30" flex="10"></ng-md-icon>
+                <h3><a href="{{company.website}}">{{company.website}}</a></h3>
+            </div>
+        </div>
+
+        <div class="vertical-divider"></div>
+
+        <div layout="row" flex="60" layout-wrap>
+            <div flex="50" class="contact" ng-repeat="contact in company.contacts">
+                <h2>{{contact.contactType.contactType}}</h2>
+                <div layout="row" layout-align="start center" layout-align="start center">
+                    <h3>{{contact.name}}</h3>
+                </div>
+                <div layout="row" layout-align="start center" ng-show="contact.title && contact.title.length > 0">
+                    <h3>{{contact.title}}</h3>
+                </div>
+                <div layout="row" layout-align="start center" ng-if="contact.phoneNumber">
+                    <ng-md-icon icon="phone" style="fill: grey" size="30" flex="10"></ng-md-icon>
+                    <h3><a href="tel:{{contact.phoneNumber}}">{{contact.phoneNumber}}</a></h3>
+                </div>
+                <div layout="row" layout-align="start center" ng-if="contact.email">
+                    <ng-md-icon icon="mail" style="fill: grey" size="30" flex="10"></ng-md-icon>
+                    <h3><a href="mailto:{{contact.email}}">{{contact.email}}</a></h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</md-tab>
+
+<md-tab ng-if="company.dmdiiMemberId && userData.isDMDIIMember" label="DMDII Member Profile">
+    <md-content class="tab-projects" layout="row">
+        <div layout="column" flex="33" class="padding-left8" ng-if="company.dmdiiMemberId">
+            <h2>DMDII Profile</h2>
+            <a href="{{'member-page.php#/' + company.dmdiiMemberId}}">{{company.name}}</a>
+        </div>
+        <!-- <div layout="column" flex="33" class="padding-left8">
+            <h2>Reason for Joining DMDll</h2>
+            <p>{{company.reasonJoining}}</p>
+        </div> -->
+    </md-content>
+</md-tab>
+<md-tab label="VPC" ng-if="userData.isAdmin || userData.isMember || userData.isDmdiiAdmin">
+    <md-content class="tab-projects" layout="row">
+        <div layout="column" flex="100" class="padding-left8">
+            <h3>
+              <div>
+                Organization Administrators are responsible for maintaining Virtual Production Capabilties for their organizations.
+              </div>
+              <div>
+                To view or edit this information, Organization Administrators can click the Edit Company button at the top of the page.
+              </div>
+            </h3>
+        </div>
+    </md-content>
+</md-tab>
+</md-tabs>
+
+
+
+
+<!--MEMBERS -->
+
+<div class="company-members" ng-if="company.verifiedMembers.length">
+    <div layout="row" layout-align="space-between center">
+        <div layout="row" layout-align="center center">
+            <h3>VERIFIED MEMBERS</h3>
+            <h4>{{company.verifiedMembers.length}} total</h4>
+        </div>
+        <a class="viewAll" ng-show="verifiedLimit" href ng-click="viewAllVerified()">View All</a>
+        <a class="viewAll" ng-show="!verifiedLimit" href ng-click="viewLessVerified()">View Less</a>
+    </div>
+    <md-divider></md-divider>
+    <div layout="row" layout-wrap>
+        <div class="padding-card" ng-repeat="item in company.verifiedMembers | limitTo: verifiedLimit | orderBy:'displayName'">
+            <dmc-members-card card-source="item" company-id="company.id"></dmc-members-card>
+        </div>
+    </div>
+</div>
+<div class="company-members" ng-if="company.unverifiedMembers.length">
+    <div layout="row" layout-align="space-between center">
+        <div layout="row" layout-align="center center">
+            <h3>UNVERIFIED MEMBERS</h3>
+            <h4>{{company.unverifiedMembers.length}} total</h4>
+        </div>
+        <a class="viewAll" ng-show="unverifiedLimit" href ng-click="viewAllUnverified()">View All</a>
+        <a class="viewAll" ng-show="!unverifiedLimit" href ng-click="viewLessUnverified()">View Less</a>
+
+    </div>
+    <md-divider></md-divider>
+    <div layout="row" layout-wrap>
+        <div class="padding-card" ng-repeat="item in company.unverifiedMembers | limitTo: unverifiedLimit | orderBy:'displayName'">
+            <dmc-members-card card-source="item" company-id="company.id"></dmc-members-card>
+        </div>
+    </div>
+</div>
+
+<!--Reviews-->
+<!-- <div id="review" layout="row" class="reviews" layout-margin layout-fill>
+    <!--left column-->
+  <!--  <div flex class="reviews-rating">
+        <!--Rating header-->
+      <!--  <div layout="row" class="md-toolbar-tools reviews-rating-header">
+            <h2>Reviews</h2>
+            <ui-widget-stars-static size="15" value="{{company.average_rating}}" text="({{company.average_rating}})"></ui-widget-stars-static>
+            <span flex></span>
+            <md-button class="viewAll md-raised" ng-click="ViewAllReview()">View All({{company.number_of_comments}})</md-button>
+        </div>
+        <!--Rating-->
+      <!--  <div layout="row" ng-class="{'active-star' : (selectSortingStar!=5 && selectSortingStar!=0)}" ng-click="SortingReviews('5star')">
+            <p>5 STAR</p>
+            <md-progress-linear md-mode="determinate" value="{{company.precentage_stars[4]}}" flex></md-progress-linear>
+            <p flex="5">{{company.precentage_stars[4]}}%</p>
+        </div>
+        <div layout="row" ng-class="{'active-star' : (selectSortingStar!=4 && selectSortingStar!=0)}" ng-click="SortingReviews('4star')">
+            <p>4 STAR</p>
+            <md-progress-linear md-mode="determinate" value="{{company.precentage_stars[3]}}" flex></md-progress-linear>
+            <p flex="5">{{company.precentage_stars[3]}}%</p>
+        </div>
+        <div layout="row" ng-class="{'active-star' : (selectSortingStar!=3 && selectSortingStar!=0)}" ng-click="SortingReviews('3star')">
+            <p>3 STAR</p>
+            <md-progress-linear md-mode="determinate" value="{{company.precentage_stars[2]}}" flex></md-progress-linear>
+            <p flex="5">{{company.precentage_stars[2]}}%</p>
+        </div>
+        <div layout="row" ng-class="{'active-star' : (selectSortingStar!=2 && selectSortingStar!=0)}" ng-click="SortingReviews('2star')">
+            <p>2 STAR</p>
+            <md-progress-linear md-mode="determinate" value="{{company.precentage_stars[1]}}" flex></md-progress-linear>
+            <p flex="5">{{company.precentage_stars[1]}}%</p>
+        </div>
+        <div layout="row" ng-class="{'active-star' : (selectSortingStar!=1 && selectSortingStar!=0)}" ng-click="SortingReviews('1star')">
+            <p>1 STAR</p>
+            <md-progress-linear md-mode="determinate" value="{{company.precentage_stars[0]}}" flex></md-progress-linear>
+            <p flex="5">{{company.precentage_stars[0]}}%</p>
+        </div>
+    </div>
+    <!--right column-->
+    <!--<div flex layout layout-align="center center">
+        <md-button class="md-raised" ng-click="LeaveAReview()">Leave a Review</md-button>
+        <span flex></span>
+        <md-input-container>
+            <label>Sorting</label>
+            <md-select ng-model="sortListModel" ng-change="selectItemDropDown(sortListModel)"  md-container-class="margin-dropdown">
+                <md-option ng-repeat="sort in sortList track by $index"  ng-value="$index">{{sort.name}}</md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+</div>
+
+<!--new review-->
+<!--<div flex class="new-review" ng-if="LeaveFlag">
+    <form name="CommentForm">
+        <h2>Rating</h2>
+        <ui-widget-stars-active size="20" select-star="stars(star)"></ui-widget-stars-active>
+        <md-input-container flex>
+            <label>Comment</label>
+            <textarea ng-model="NewReview.Comment" columns="1" md-maxlength="1000"></textarea>
+        </md-input-container>
+        <div layout layout-align="end end">
+            <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
+            <md-button class="md-raised" ng-click="Submit(NewReview)" ng-disabled="submit_rating==0" >Submit</md-button>
+        </div>
+    </form>
+</div>
+
+<md-divider ></md-divider>
+
+<div ng-repeat="review in company.company_reviews">
+    <ui-widget-review review="review" helpful-function="updateHelpful" reply-function="addReply" flagged-function="addFlagged"></ui-widget-review>
+    <md-divider></md-divider>
+</div> -->
+</md-content>
+</div>

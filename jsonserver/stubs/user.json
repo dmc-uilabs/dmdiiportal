@@ -1,0 +1,73 @@
+{
+    "id": 1,
+    "displayName": "Digital Manufacturing Commons",
+    "accountId": 1,
+    "profileId": 1,
+    "companyId": 1,
+    "companyName": "Digital Manufacturing Commons",
+    "role": 0,
+    "realname": "Digital Manufacturing Commons",
+    "title": null,
+    "termsConditions": true,
+    "firstName": "Digital Manufacturing",
+    "lastName": "Commons",
+    "email": "dmdii.su.029@gmail.com",
+    "address": null,
+    "phone": null,
+    "image": "http://i0.kym-cdn.com/entries/icons/original/000/012/221/Jean-Claude-Van-Damme-008.jpg",
+    "runningServices": {
+        "items": [],
+        "totalItems": 0
+    },
+    "messages": {
+        "items": [],
+        "totalItems": 0
+    },
+    "onboarding": {
+        "id": 206,
+        "profile": false,
+        "account": false,
+        "company": false,
+        "storefront": false
+    },
+    "skills": [],
+    "roles": {
+        "0": "SUPERADMIN",
+        "318": "ADMIN"
+    },
+    "isDMDIIMember": true,
+    "userContactInfo": {
+        "id": 842,
+        "userPrivateContactInfo": null,
+        "userPublicContactInfo": {
+            "id": 9,
+            "email": "askdmc@uilabs.org",
+            "phone": null,
+            "location": null
+        },
+        "userMemberPortalContactInfo": null
+    },
+    "aboutMe": "To enable digital transformation in the design and manufacturing ecosystem by helping to connect key players, and analyze and distribute relevant content on an open-source platform.",
+    "resume": "",
+    "account": 0,
+    "notifications": [{
+        "id": 309,
+        "type": "DOCUMENT_SHARED",
+        "createdBy": {
+            "id": 206,
+            "email": "dmdii.su.029@gmail.com",
+            "displayName": "Digital Manufacturing Commons"
+        },
+        "createdFor": {
+            "id": 206,
+            "email": "dmdii.su.029@gmail.com",
+            "displayName": "Digital Manufacturing Commons"
+        },
+        "created": 1493935306419,
+        "message": "http://i0.kym-cdn.com/entries/icons/original/000/012/221/Jean-Claude-Van-Damme-008.jpg",
+        "unread": true,
+        "deleted": false
+    }],
+    "hasUnreadNotifications": true,
+    "timezone": "(UTC -06:00) US/Central"
+}

@@ -1,0 +1,34 @@
+.menu-filter-item{
+  border-top: 1px solid #ccc;
+  margin-top: 8px;
+  .stars{
+    margin-top: 9px;
+    span{
+      position: relative;
+      margin-top: -12px;
+      display: inline-block;
+      vertical-align: top;
+      padding-top: 10px
+    }
+  }
+  .md-subheader.md-default-theme{
+    background: none;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 8px;
+    .md-subheader-inner{
+      padding: 5px 16px;
+    }
+  }
+  md-list-item{
+    min-height: 0px ;
+    padding: 0;
+    .md-list-item-inner{
+      min-height: 0px;
+      height: 30px;
+      md-checkbox.md-checked .md-icon {
+        background-color: rgb(100, 176, 69);
+      }
+    }
+  }
+}

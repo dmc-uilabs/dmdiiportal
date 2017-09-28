@@ -1,0 +1,24 @@
+<div layout="column" flex="100">
+    <div layout="row" layout-align="center" class="top20">
+        <div class="content-column upload-documents" layout="column">
+            <div class="content-panel"
+                source="doc"
+                ui-widget-upload-documents
+                widget-type="'row'"
+                auto-upload="false"
+                widget-title="'Upload Project Overview'"
+                is-dmdii="true"
+                file-limit="1">
+            </div>
+    		<div class="slim-margin error" ng-show="noDocSelected">
+                <p>You <b>must</b> select a document</p>
+            </div>
+        </div>
+
+
+    </div>
+    <div layout="row" layout-align="end start">
+        <md-button class="md-raised cancel-button" ng-click="clear()">Clear</md-button>
+        <md-button class="md-raised md-primary save-button" ng-click="save()">Save</md-button>
+    </div>
+</div>

@@ -1,0 +1,236 @@
+<md-dialog aria-label="View" class="view-all-included company-profile">
+	<md-dialog-content class="component">
+		<div layout="row" layout-align="end center">
+
+            <md-button md-no-ink class="md-icon-button" ng-click="cancel()">
+                <ng-md-icon icon="close" style="fill: grey;" size="25" aria-label="Close dialog"></ng-md-icon>
+            </md-button>
+        </div>
+		<md-content class="product">
+            <div layout="row">
+                <!--product image-->
+                <div class="product-image-modal" flex="20">
+                    <img class="main-image" ng-src="{{company.logoImage}}">
+                </div>
+                <div flex>
+                    <!--product header-->
+                    <div class="product-header">
+                        <h2><a href="/company-profile.php#/profile/{{company.id}}">{{company.name}}</a></h2>
+                    </div>
+
+                    <md-divider></md-divider>
+
+                    <!--product description-->
+                    <div class="product-description">
+                        {{company.description}}
+                    </div>
+                </div>
+            </div>
+            <!--product tabs-->
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="Overview">
+                <md-content class="tab-projects">
+                    <div layout="row" class="text-row">
+                        <div layout="column" flex="50" class="padding-left8">
+                            <h2>Awards Received</h2>
+							<div layout="row" layout-wrap>
+			                    <div class="pad-left-10" layout="column" flex="20" ng-repeat="award in company.awards">
+			                        <h4><a href="{{award.link}}">{{award.name}}</a></h4>
+			                        <p>{{award.description}}</p>
+			                    </div>
+			                </div>
+                        </div>
+                    </div>
+
+                    <md-divider></md-divider>
+
+                    <div layout="column">
+                        <h2>Images</h2>
+						<div layout="row" class="images-carousel" layout-align="start start">
+			                <div class="arrow-left" ng-hide="company.images.length <= 5 || index == 0">
+			                    <md-button aria-label="Left" class="md-raised md-primary" ng-click="index = index-1">
+			                        <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
+			                    </md-button>
+			                </div>
+
+			                <div layout="column" flex="15" class="image" ng-repeat="image in company.images">
+			                    <div class="one-image">
+			                        <img ng-src="{{image.documentUrl}}">
+			                    </div>
+			                    <h2>{{image.documentTitle}}</h2>
+			                </div>
+
+			                <div class="arrow-right" ng-hide="company.images.length <= 5 || index <= company.images.length - 5">
+			                    <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1">
+			                        <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
+			                    </md-button>
+			                </div>
+			            </div>
+                    </div>
+
+                    <div layout="column">
+                        <h2>Videos</h2>
+						<div layout="row" class="images-carousel" layout-align="start start">
+			                <div class="arrow-left" ng-hide="company.video.length <= 5 || index == 0">
+			                    <md-button aria-label="Left" class="md-raised md-primary" ng-click="index = index-1">
+			                        <ng-md-icon icon="keyboard_arrow_left" title="Previous" aria-label="Previous" size="60"></ng-md-icon>
+			                    </md-button>
+			                </div>
+
+			                <div ng-repeat="video in company.videos">
+			                    <video width="320" height="240" controls>
+			                        Your browser does not support HTML5 video playback
+			                        <source ng-src="trustVideoSrc(video.documentUrl)">
+			                    </video>
+			                </div>
+
+			                <!-- <div layout="column" flex="15" ng-repeat="item in [0,1,2,3,4]">
+			                    <div class="one-image">
+			                        <a ng-href="https://youtu.be/1S6g4qpEfks">video</a>
+			                    </div>
+			                </div> -->
+
+			                <div class="arrow-right" ng-hide="company.videos.length <= 5 || index <= company.videos.length - 5">
+			                    <md-button aria-label="Right" class="md-raised md-primary" ng-click="index = index+1">
+			                        <ng-md-icon icon="keyboard_arrow_right" title="Next" aria-label="Next" size="60"></ng-md-icon>
+			                    </md-button>
+			                </div>
+			            </div>
+			        </div>
+                </md-content>
+            </md-tab>
+
+            <md-tab label="Skills">
+                <md-content class="md-padding">
+                    <div layout="row" class="tabs-content" layout-wrap>
+                        <md-chips ng-repeat="skill in company.skills track by $index">
+                            <md-chip>
+                                <a ng-href="{{'search.php#/companies?text='+skill.name}}">{{skill.name}}</a>
+                            </md-chip>
+                        </md-chips>
+                    </div>
+
+                    <md-divider></md-divider>
+
+                    <div layout="row" class="text-row">
+                        <div layout="column" flex="50" class="padding-right8">
+                            <h2>Skills</h2>
+							<div layout="row" class="tabs-content" layout-wrap>
+								<md-chips ng-repeat="skill in company.areasOfExpertise track by $index">
+									<md-chip>
+										<!-- <a ng-href="{{'search.php#/companies?text='+skill.name}}">{{skill.name}}</a> -->
+										{{skill.name}}
+									</md-chip>
+								</md-chips>
+							</div>
+						</div>
+                    </div>
+
+                    <md-divider></md-divider>
+
+                </md-content>
+            </md-tab>
+
+            <md-tab label="Projects">
+                <md-content class="tab-projects">
+					<div layout="row" class="text-row">
+			            <div layout="column" flex="50" class="padding-right8">
+			                <h2>Past Collaboration</h2>
+			                <p>{{company.postCollaboration}}</p>
+			            </div>
+			        </div>
+
+			        <md-divider></md-divider>
+
+			        <div layout="row" flex="50" class="padding-left8">
+			            <h2>Collaboration Interests</h2>
+						<div layout="row">
+				            <md-chips ng-repeat="skill in company.desiredAreasOfExpertise track by $index">
+				                <md-chip>
+				                    <!-- <a ng-href="{{'search.php#/companies?text='+skill.name}}">{{skill.name}}</a> -->
+				                    {{skill.name}}
+				                </md-chip>
+				            </md-chips>
+						</div>
+			        </div>
+
+			        <md-divider></md-divider>
+
+			        <div layout="row" class="text-row">
+			            <div layout="column" flex="50" class="padding-right8">
+			                <h2>Past DMDII Projects</h2>
+			                <p>{{company.pastProjects}}</p>
+			            </div>
+			            <div layout="column" flex="50" class="padding-left8">
+			                <h2>Upcoming DMDII Project Interests</h2>
+			                <p>{{company.upcomingProjectInterests}}</p>
+			            </div>
+			        </div>
+                </md-content>
+            </md-tab>
+
+<!--             <md-tab label="History">
+                <ui-widget-tabs-history data="history"></ui-widget-tabs-history>
+            </md-tab> -->
+
+            <md-tab label="Contact">
+                <div layout="row" class="contat-tab">
+                    <div layout="column" flex="40">
+                        <h2>General</h2>
+						<div layout="row" layout-align="start center" layout-align="start center" ng-repeat="item in contactMethods">
+			                <h3>{{item.name}} - {{item.value}}</h3>
+			            </div>
+			            <div layout="row" layout-align="start center" layout-align="start center">
+			                <ng-md-icon icon="room" style="fill: grey" size="30" flex="10"></ng-md-icon>
+			                <h3>{{company.address.state}}, {{company.address.city}}, {{company.address.zip}}</h3>
+			            </div>
+			            <div layout="row" layout-align="start center" ng-show="company.phone && company.phone.length > 0">
+			                <ng-md-icon icon="phone" style="fill: grey" size="30" flex="10"></ng-md-icon>
+			                <h3><a href="tel:{{company.phone}}">{{company.phone}}</a></h3>
+			            </div>
+			            <div layout="row" layout-align="start center" ng-show="company.email && company.email.length > 0">
+			                <ng-md-icon icon="mail" style="fill: grey" size="30" flex="10"></ng-md-icon>
+			                <h3><a href="mailto:{{company.email}}">{{company.email}}</a></h3>
+			            </div>
+			            <div layout="row" layout-align="start center" ng-show="company.socialMediaTwitter && company.socailMedia.Twitter.length > 0">
+			                <ng-md-icon icon="twitter" style="fill: grey" size="30" flex="10"></ng-md-icon>
+			                <h3><a href="{{company.twitter}}">{{company.socialMediaTwitter}}</a></h3>
+			            </div>
+			            <div layout="row" layout-align="start center" ng-show="company.socialMediaLinkedin && company.socialMediaLinkedin.length > 0">
+			                <ng-md-icon icon="linkedin-box" style="fill: grey" size="30" flex="10"></ng-md-icon>
+			                <h3><a href="{{company.linkedIn}}">{{company.socialMediaLinkedin}}</a></h3>
+			            </div>
+			            <div layout="row" layout-align="start center" ng-show="company.website && company.website.length > 0">
+			                <ng-md-icon icon="link" style="fill: grey" size="30" flex="10"></ng-md-icon>
+			                <h3><a href="{{company.website}}">{{company.website}}</a></h3>
+			            </div>
+                    </div>
+
+                    <div class="vertical-divider"></div>
+
+                    <div layout="row" flex="60" layout-wrap>
+						<div flex="50" class="contact" ng-repeat="contact in company.contacts">
+			                <h2>{{contact.contactType.contactType}}</h2>
+			                <div layout="row" layout-align="start center" layout-align="start center">
+			                    <h3>{{contact.name}}</h3>
+			                </div>
+			                <div layout="row" layout-align="start center" ng-show="contact.title && contact.title.length > 0">
+			                    <h3>{{contact.title}}</h3>
+			                </div>
+			                <div layout="row" layout-align="start center" ng-if="contact.phoneNumber">
+			                    <ng-md-icon icon="phone" style="fill: grey" size="30" flex="10"></ng-md-icon>
+			                    <h3><a href="tel:{{contact.phoneNumber}}">{{contact.phoneNumber}}</a></h3>
+			                </div>
+			                <div layout="row" layout-align="start center" ng-if="contact.email">
+			                    <ng-md-icon icon="mail" style="fill: grey" size="30" flex="10"></ng-md-icon>
+			                    <h3><a href="mailto:{{contact.email}}">{{contact.email}}</a></h3>
+			                </div>
+			            </div>
+                    </div>
+
+                </div>
+            </md-tab>
+            </md-tabs>
+      </md-content>
+  </md-dialog-content>
+</md-dialog>

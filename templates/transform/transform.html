@@ -1,0 +1,118 @@
+<section id="main-section" class="main-section">
+    <div class="container transform-main">
+        <div class="row nav-row">
+            <a href="index.php"><ng-md-icon class="nav-back" style="fill: white" icon="navigate_before" size="25"></ng-md-icon></a>
+            <a href="index.php"><ng-md-icon class="pull-right nav-home" icon="home" style="fill: white" size="25"></ng-md-icon></a>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="transform-title">TRANSFORM:</h3>
+                <h3 class="help-title">HOW CAN WE HELP YOU?</h3>
+            </div>
+        </div>
+        <div class="row margin-bottom-10">
+            <a ng-click="gotoElement('improved-estimates')">
+                <img class="bullet-image" ng-src="images/calc.png" type="image/png" height="80px">
+            </a>
+            <div class="col-sm-7 col-md-10 bottom-border path-link">
+                <a ng-click="gotoElement('improved-estimates')">I want to improve estimates.</a>
+            </div>
+        </div>
+        <div class="row margin-bottom-10">
+            <a ng-click="gotoElement('cnc-operations')">
+                <img class="bullet-image" ng-src="images/computer.png" type="image/png" height="80px">
+            </a>
+            <div class="col-sm-7 col-md-10 bottom-border path-link">
+                <a ng-click="gotoElement('cnc-operations')">I want to improve my CNC operations.</a>
+            </div>
+        </div>
+        <div class="row margin-bottom-10">
+            <a ng-click="gotoElement('cmm-operations')">
+                <img class="bullet-image" ng-src="images/ruler.png" type="image/png" height="80px">
+            </a>
+            <div class="col-sm-7 col-md-10 bottom-border path-link">
+                <a ng-click="gotoElement('cmm-operations')">I want to improve my CMM operations.</a>
+            </div>
+        </div>
+        <div class="row margin-bottom-10">
+            <a ng-click="gotoElement('get-lean')">
+                <img class="bullet-image" ng-src="images/meter.png" type="image/png" height="80px">
+            </a>
+            <div class="col-sm-7 col-md-10 bottom-border path-link">
+                <a ng-click="gotoElement('get-lean')">I want to get lean.</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="improved-estimates" class="transform-section">
+    <div class="container transform-content">
+        <div class="row nav-row">
+            <a ng-click="gotoElement('main-section')"><ng-md-icon class="nav-back top" style="fill: white" icon="navigate_before" size="25"></ng-md-icon></a>
+            <a href="index.php"><ng-md-icon class="pull-right nav-home" icon="home" style="fill: white" size="25"></ng-md-icon></a>
+            <img ng-click="gotoElement('get-lean')" class="pull-right margin-right-3" ng-src="images/meter_grey.png" type="image/png" height="25px">
+            <img ng-click="gotoElement('cmm-operations')" class="pull-right margin-right-3" ng-src="images/ruler_grey.png" type="image/png" height="25px">
+            <img ng-click="gotoElement('cnc-operations')" class="pull-right margin-right-3" ng-src="images/computer_grey.png" type="image/png" height="25px">
+            <img ng-click="gotoElement('improved-estimates')" class="pull-right margin-right-3" ng-src="images/calc.png" type="image/png" height="25px">
+        </div>
+        <div ui-widget-content
+             content-type="'video'"
+             title="'TRANSFORM:'"
+             category="'IMPROVE ESTIMATES'"
+             content-items="estimateContentItems"></div>
+    </div>
+</section>
+
+<section id="cnc-operations" class="transform-section">
+    <div class="container transform-content">
+        <div class="row nav-row">
+            <a ng-click="gotoElement('main-section')"><ng-md-icon class="nav-back top" style="fill: white" icon="navigate_before" size="25"></ng-md-icon></a>
+            <a href="index.php"><ng-md-icon class="pull-right nav-home" icon="home" style="fill: white" size="25"></ng-md-icon></a>
+            <img ng-click="gotoElement('get-lean')" class="pull-right margin-right-3" ng-src="images/meter_grey.png" type="image/png" height="25px">
+            <img ng-click="gotoElement('cmm-operations')" class="pull-right margin-right-3" ng-src="images/ruler_grey.png" type="image/png" height="25px">
+            <img ng-click="gotoElement('cnc-operations')" class="pull-right margin-right-3" ng-src="images/computer.png" type="image/png" height="25px">
+            <img ng-click="gotoElement('improved-estimates')" class="pull-right margin-right-3" ng-src="images/calc_grey.png" type="image/png" height="25px">
+        </div>
+        <div ui-widget-content
+             content-type="'video'"
+             title="'TRANSFORM:'"
+             category="'IMPROVE CNC OPERATIONS'"
+             content-items="cncContentItems"></div>
+    </div>
+</section>
+
+<section id="cmm-operations" class="transform-section">
+    <div class="container transform-content">
+        <div class="row nav-row">
+            <a ng-click="gotoElement('main-section')"><ng-md-icon class="nav-back top" style="fill: white" icon="navigate_before" size="25"></ng-md-icon></a>
+            <a href="index.php"><ng-md-icon class="pull-right nav-home" icon="home" style="fill: white" size="25"></ng-md-icon></a>
+            <img ng-click="gotoElement('get-lean')" class="pull-right margin-right-3" ng-src="images/meter_grey.png" type="image/png" height="25px">
+            <img ng-click="gotoElement('cmm-operations')" class="pull-right margin-right-3" ng-src="images/ruler.png" type="image/png" height="25px">
+            <img ng-click="gotoElement('cnc-operations')" class="pull-right margin-right-3" ng-src="images/computer_grey.png" type="image/png" height="25px">
+            <img ng-click="gotoElement('improved-estimates')" class="pull-right margin-right-3" ng-src="images/calc_grey.png" type="image/png" height="25px">
+        </div>
+        <div ui-widget-content
+             content-type="'video'"
+             title="'TRANSFORM:'"
+             category="'IMPROVE CMM OPERATIONS'"
+             content-items="cmmContentItems"></div>
+    </div>
+</section>
+
+<section id="get-lean" class="transform-section">
+    <div class="container transform-content">
+        <div class="row nav-row">
+            <a ng-click="gotoElement('main-section')"><ng-md-icon class="nav-back top" style="fill: white" icon="navigate_before" size="25"></ng-md-icon></a>
+            <a href="index.php"><ng-md-icon class="pull-right nav-home" icon="home" style="fill: white" size="25"></ng-md-icon></a>
+            <img ng-click="gotoElement('get-lean')" class="pull-right margin-right-3" ng-src="images/meter.png" type="image/png" height="25px">
+            <img ng-click="gotoElement('cmm-operations')" class="pull-right margin-right-3" ng-src="images/ruler_grey.png" type="image/png" height="25px">
+            <img ng-click="gotoElement('cnc-operations')" class="pull-right margin-right-3" ng-src="images/computer_grey.png" type="image/png" height="25px">
+            <img ng-click="gotoElement('improved-estimates')" class="pull-right margin-right-3" ng-src="images/calc_grey.png" type="image/png" height="25px">
+        </div>
+        <div ui-widget-content
+             content-type="'video'"
+             title="'TRANSFORM:'"
+             category="'GET LEAN'"
+             content-items="getLeanContentItems"></div>
+    </div>
+</section>

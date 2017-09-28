@@ -1,0 +1,29 @@
+<div layout="column" flex="100">
+    <div layout="row">
+		<div layout="column" flex="33">
+	        <md-input-container>
+	            <label>Title</label>
+	            <input ng-model="news.title" ng-required="true"/>
+	        </md-input-container>
+			<div ng-show="noTitle">
+				<p class="slim-margin error">You <b>must</b> enter a title</p>
+			</div>
+		</div>
+    </div>
+
+    <div layout="row">
+		<div layout="column" flex="50">
+            <md-input-container class="no-bottom no-pad-bottom">
+                <textarea ng-model="news.content" ng-required="true" placeholder="Content"></textarea>
+	        </md-input-container>
+			<div ng-show="noContent">
+				<p class="slim-margin error">You <b>must</b> enter some content</p>
+			</div>
+		</div>
+    </div>
+
+    <div layout="row" layout-align="end start">
+        <md-button class="md-raised cancel-button" ng-click="clear()">Clear</md-button>
+        <md-button class="md-raised md-primary save-button" ng-click="save()">Save</md-button>
+    </div>
+</div>

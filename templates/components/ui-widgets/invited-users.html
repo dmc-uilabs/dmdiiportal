@@ -1,0 +1,29 @@
+<div class="content-panel-header">
+    <md-toolbar>
+        <div class="md-toolbar-tools widget-toolbar-title">
+            <h2>{{widgetTitle}}</h2>
+            <span flex></span>
+            <a href="/" class="link-button uppercase">View All ({{8}})</a>
+        </div>
+    </md-toolbar>
+</div>
+<div class="content-panel-body">
+    <md-content class="md-padding">
+        <md-list class="invites-list">
+            <md-list-item class="md-1-line" ng-repeat="item in invitees">
+                <img ng-src="{{item.avatar}}" class="md-avatar" />
+                <div class="md-list-item-text" layout="column" flex>
+                    <div><strong><a href="#">{{item.name}}</a></strong>, <a href="#">{{item.company}}</a></div>
+                </div>
+                <span>Added {{item.date}}</span>
+                <md-button layout-align="right" aria-label="Remove Invite" class="md-icon-button" ng-click="removeInvite(item)"><ng-md-icon icon="delete" fill="#999" size="28"></ng-md-icon></md-button>
+                <md-divider ></md-divider>
+            </md-list-item>
+            <md-list-item class="md-1-line" ng-show="invitees.length == 0">
+                <div class="md-list-item-text" layout="column">
+                    <h3>No invitees</h3>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</div>

@@ -1,0 +1,70 @@
+<md-dialog flex="90" aria-label="View" class="view-all-included">
+  <md-dialog-content layout="row" ng-if="product">
+  	<md-content class="list-components">
+  		<md-list>
+      <!-- (product.id == listProduct.id && product.type == listProduct.type) -->
+  			<md-list-item ng-repeat="listProduct in products" class="{{($index == index) ? 'selected' : ''}}" ng-click="View($index)">
+  				<h2>{{listProduct.title}}</h2>
+  				<md-divider></md-divider>
+  			</md-list-item>
+  		</md-list>
+  	</md-content>
+  	<div flex class="component">
+  		<div layout layout-align="end end">
+	  		<md-button class="md-icon-button" ng-click="cancel()">
+	        <ng-md-icon icon="close" fill="#fff" size="32" aria-label="Close dialog"></ng-md-icon>
+	      </md-button>
+	    </div>
+  		<md-content class="product">
+        <div layout="row">
+          <!--product image-->
+          <div class="product-image-modal" flex="30">
+            <img class="main-image" ng-src="{{product.featureImage.thumbnail}}">
+          </div>
+          <div flex>
+            <!--product header-->
+            <div class="product-header">
+                <h2>{{product.title}} <span>By {{product.owner}}</span></h2>
+                <!-- <ui-widget-stars-static size="15" value="{{product.average_rating}}" text="({{product.average_rating}})"></ui-widget-stars-static> -->
+            </div>
+
+            <md-divider></md-divider>
+
+            <!--product description-->
+            <div class="product-description">
+              {{product.description}}
+            </div>
+          </div>
+        </div>
+        <!--product tabs-->
+        <md-tabs md-dynamic-height md-border-bottom>
+          <md-tab label="Specifications">
+            <md-content class="md-padding">
+              <div class="tabs-content" layout="column">
+                <p>Created: {{product.currentStatus.startDate}}</p>
+                <p>Added: {{product.specificationsData.usageStats.added}} times by {{product.specificationsData.usageStats.members}} members</p>
+                <p>Successful Runs: {{product.specificationsData.runStats.fail}}/{{product.specificationsData.runStats.success}}</p>
+                <p>Inputs: {{product.specificationsData.input}}</p>
+                <p>Outputs: {{product.specificationsData.output}}</p>
+              </div>
+            </md-content>
+          </md-tab>
+          <md-tab label="Tags">
+            <md-content class="md-padding">
+              <div layout="row" class="tabs-content" layout-wrap>
+                <md-chips ng-repeat="tag in product.tags track by $index">
+                  <md-chip >{{tag}}</md-chip>
+                </md-chips>
+                <!-- <p ng-repeat="tag in product.tags track by $index" flex="15">{{tag}}</p> -->
+              </div>
+            </md-content>
+          </md-tab>
+          <md-tab label="Documents">
+            <md-content class="md-padding">
+                <ui-widget-documents-folder documents-type="'service'" type-id="product.id"></ui-widget-documents-folder>
+            </md-content>
+          </md-tab>
+        </md-tabs>
+  	</div>
+  </md-dialog-content>
+</md-dialog>

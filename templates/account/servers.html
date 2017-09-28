@@ -1,0 +1,116 @@
+<div class="container container-account" layout="row" ng-if="accountData.id">
+    <div class="content-column left-content margin-right12-5" layout="column" flex="20">
+        <div class="content-panel" account-menu account-id="accountId" page="page"></div>
+    </div>
+    <div class="content-column right-content margin-left12-5" layout="column" flex>
+        <div class="content-panel">
+            <div class="content-panel-body">
+                <md-content>
+                    <div class="header-right-content servers" layout="row" layout-align="start center">
+                        <div layout="column">
+                            <h2 class="md-title">{{title}}</h2>
+                        </div>
+                        <span layout="column" flex></span>
+                        <div class="header-right-content servers" layout="row" layout-align="start center" ng-show="isAddingServer">
+                            <md-input-container>
+                                <label>Server Alias</label>
+                                <input id="createServerAlias" ng-model="newServer.name">
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Server URL</label>
+                                <input ng-model="newServer.ip" ng-change="changeIP('new')" class="server-url-input">
+                                <ng-md-icon ng-show="isCorrectNewIP" class="correct-ip" icon="done" size="25" aria-label="Correct IP"></ng-md-icon>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Port</label>
+                                <input ng-model="newServer.port" type="number">
+                            </md-input-container>
+                            <md-checkbox ng-model="newServer.public" aria-label="public" ng-show="userData.isDmdiiAdmin">
+                              public
+                            </md-checkbox>
+                            <md-button class="md-raised close-add-server" ng-click="cancelAdding()" ng-show="isAddingServer">
+                                <ng-md-icon icon="cancel" fill="#333" size="21" aria-label="Close Adding"></ng-md-icon>
+                                Cancel
+                            </md-button>
+                            <md-button class="md-raised md-primary save-server"
+                                       ng-disabled="!newServer.ip && !newServer.name"
+                                       ng-click="saveNewServer()">Save</md-button>
+                        </div>
+
+                        <!-- <md-button class="md-raised add-server" ng-click="addServer($event)" ng-show="!isAddingServer">
+                            <ng-md-icon icon="add_circle_outline" fill="#333" size="21" aria-label="Add Server"></ng-md-icon>
+                            Add Server
+                        </md-button> -->
+                    </div>
+                    <div class="inputs-container servers-container" layout="row">
+                        <md-content class="md-padding" flex>
+                        <md-data-table-container>
+                            <table md-data-table class="servers-table">
+                                <thead md-order="sort" md-trigger="onOrderChange">
+                                <tr>
+                                    <th class="edit-column" name="Edit"></th>
+                                    <th name="Server Alias" order-by="name"></th>
+                                    <th name="Server URL" order-by="ip"></th>
+                                    <th name="Status" order-by="status"></th>
+                                    <th class="delete-column" name="Remove"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in servers" class="one-server">
+                                        <td width="50px">
+                                            <md-button class="md-icon-button" ng-show="!item.isChanging" aria-label="Edit"
+                                                       ng-click="editServer(item,$event)" ng-if="userData.id==item.accountId">
+                                                <ng-md-icon icon="edit" size="21" style="fill:#666" aria-label="Edit Server"></ng-md-icon>
+                                            </md-button>
+                                            <md-button class="md-icon-button" ng-show="item.isChanging" aria-label="Edit"
+                                                       ng-click="cancelEditServer()">
+                                                <ng-md-icon icon="cancel" size="21" style="fill:#666" aria-label="Cancel Edit Server"></ng-md-icon>
+                                            </md-button>
+                                        </td>
+                                        <td>
+                                            <div ng-show="!item.isChanging">{{item.name}}</div>
+                                            <md-input-container md-no-float ng-init="item.changedName = item.name" ng-show="item.isChanging">
+                                                <input ng-model="item.changedName" class="nameEditInput" placeholder="Server Alias">
+                                            </md-input-container>
+                                        </td>
+                                        <td>
+                                            <div ng-show="!item.isChanging">{{item.ip}}</div>
+                                            <md-input-container md-no-float ng-init="item.changedIp = item.ip" ng-show="item.isChanging">
+                                                <input ng-model="item.changedIp" placeholder="Server Host/IP">
+                                            </md-input-container>
+
+                                        </td>
+                                        <td class="status" ng-class="{'status-online' : item.status == 'online'}">
+                                            <div ng-show="!item.isChanging">
+                                                <ng-md-icon icon="lens" size="10" aria-label="Status"></ng-md-icon>
+                                                {{item.status}}
+                                            </div>
+                                            <md-checkbox ng-model="item.changedPublic" aria-label="public" ng-show="userData.isDmdiiAdmin && item.isChanging" ng-init="item.changedPublic = item.public">
+                                              public
+                                            </md-checkbox>
+                                        </td>
+                                        <td width="50px">
+                                            <md-button ng-show="!item.isChanging" class="md-icon-button" aria-label="Delete" ng-click="deleteServer(item, $event)" ng-if="userData.id==item.accountId">
+                                                <ng-md-icon icon="delete" size="21" style="fill:#666" aria-label="Delete Server"></ng-md-icon>
+                                            </md-button>
+                                            <md-button class="md-raised md-primary save-server"
+                                                       ng-if="item.isChanging"
+                                                       ng-disabled="item.name == item.changedName && item.ip == item.changedIp && item.public==item.changedPublic"
+                                                       ng-click="saveChanges(item)">
+                                                Save
+                                            </md-button>
+                                        </td>
+                                    </tr>
+                                    <tr ng-if="servers.length == 0">
+                                        <td colspan="5" class="empty">No servers</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-data-table-container>
+                        </md-content>
+                    </div>
+                </md-content>
+            </div>
+        </div>
+    </div>
+</div>

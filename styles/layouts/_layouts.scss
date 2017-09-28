@@ -1,0 +1,528 @@
+.md-raised.md-primary.md-added.md-button.md-default-theme{
+  color: #fff;
+}
+.md-button.md-default-theme.md-raised.md-primary{
+  color: #fff;
+}
+.page-header {
+  .md-button {
+    color: #fff;
+  }
+}
+
+.md-dialog-container{
+  z-index: 100;
+}
+
+.container {
+  background: map-get($colors, body_color);
+  min-height: 100%;
+}
+
+// .footer {
+//   background: map-get($colors, primary);
+//   color: white;
+//   text-align: center;
+//   position: relative;
+//   .copyright{
+//     text-align: left;
+//     width: 49%;
+//     display: inline-block;
+//     vertical-align: top;
+//     p {
+//       padding-top: 9px;
+//     }
+//   }
+//   .copyright-home{
+//     width: 100%;
+//     display: block;
+//     padding-top: 0px;
+//     text-align: center;
+//   }
+//   .footer-menu{
+//     display: inline-block;
+//     position: relative;
+//     margin-bottom: 13px;
+//     ul{
+//       list-style: none;
+//       padding: 0;
+//       li{
+//         float: left;
+//         width: auto;
+//         padding: 0 8px;
+//         border-left: 1px solid #999;
+//         .md-button{
+//           text-transform: none;
+//           margin: 0;
+//           padding: 0 13px;
+//           color: #999;
+//           min-height: 0;
+//           line-height: 21px;
+//         }
+//         .md-button:hover{
+//           color: #eee;
+//         }
+//       }
+//       li:first-child{
+//         border-left: none;
+//       }
+//     }
+//   }
+// }
+
+
+.content-column {
+  &--white {
+    background: white;
+  }
+}
+
+.name-project{
+  text-transform: uppercase;
+  position: relative;
+  h1{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    left: 96px+20px;
+    right: 12.5px;
+    cursor: default;
+  }
+  img{
+    margin-right: 13px;
+    width: 31px;
+  }
+}
+
+
+
+.md-button{
+  ng-md-icon{
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 1;
+  }
+}
+.md-button.md-default-theme {
+    //line-height: 47px;
+}
+
+md-input-container{
+  font-size: initial;
+}
+
+#myProjectsList{
+  width: 100%;
+}
+/*
+.widget-blocks{
+  md-content{
+    display: inline-block;
+    width: 31%;
+    vertical-align: top;
+  }
+}*/
+
+
+.delete-project{
+  position: absolute;
+  right: 17px;
+  ng-md-icon{
+    fill:#aaa;
+  }
+}
+.delete-project:hover{
+  ng-md-icon{
+    fill:#333;
+  }
+}
+
+.btn-add-project{
+  margin-left: 21px;
+}
+
+.hide-scroll{
+  overflow: hidden !important;
+}
+
+.project-manager{
+  font-size: 13px;
+  padding: 5px 0;
+  ng-md-icon{
+    svg{
+      vertical-align: middle;
+      margin-top: -3px;
+    }
+  }
+}
+
+.invite-challenge-container{
+  max-width: 1280px;
+  margin: 30px auto 40px auto;
+  .content-panel[rfp-tabs]{
+    padding: 0 40px;
+    .md-toolbar-tools{
+      padding: 0;
+    }
+  }
+}
+
+.widget-toolbar-title{
+  padding: 0;
+  height: 0;
+}
+table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:nth-child(n+2):nth-last-child(n+2),
+table[md-data-table]:not([md-row-select])>tbody>tr>td:nth-child(n+2):nth-last-child(n+2), table[md-data-table]:not([md-row-select])>tfoot>tr>td:nth-child(n+2):nth-last-child(n+2),
+table[md-data-table]:not([md-row-select])>tbody>tr>td,
+table[md-data-table]:not([md-row-select])>tfoot>tr>td,
+table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th,
+table[md-data-table]:not([md-row-select])>tbody>tr>td:first-child,
+table[md-data-table]:not([md-row-select])>tfoot>tr>td:first-child,
+table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:first-child{
+  padding: 10px;
+  text-transform: capitalize;
+  &.text-normal{
+    text-transform: none;
+  }
+}
+table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:nth-child(n+2):nth-last-child(n+2),
+table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th:first-child,
+table[md-data-table]:not([md-row-select])>thead:not([md-table-progress])>tr>th{
+  padding: 0px 10px 10px 10px;
+  vertical-align: top;
+  div{
+    height: auto;
+  }
+}
+
+.md-toolbar-tools > md-menu:last-child{
+  margin-right: 0;
+}
+
+@media (min-width: 600px){
+  .md-padding {
+    padding: 10px;
+  }
+}
+
+md-toast.md-success-toast-theme {
+  background-color: #368739;
+}
+md-toast.md-error-toast-theme {
+  background-color: #AE2B2B;
+}
+md-toast{
+  position: fixed;
+  z-index: 150;
+}
+
+a.md-button.md-fab.dmc-fab, .md-button.md-fab.dmc-fab{
+  background-color: rgb(255, 255, 255);
+  ng-md-icon{
+    fill:#999;
+  }
+  &:not([disabled]):hover{
+    background-color: rgb(228, 228, 228);
+    ng-md-icon{
+      fill:#333;
+    }
+  }
+  &.dmc-fab-delete{
+    background-color: #DE4040;
+    ng-md-icon{
+      fill:#fff;
+    }
+    &:not([disabled]):hover{
+      background-color: #C13434;
+      ng-md-icon{
+        fill:#fff;
+      }
+    }
+  }
+}
+
+md-tooltip{
+  font-size: 13px;
+}
+
+.global-search-form{
+  md-icon{
+    top: 8px;
+    left: 6px;
+    color: #aaa;
+  }
+  input{
+    background-color: #f2f2f2;
+    height: 35px;
+    @include borderRadius(3px);
+    margin: 0;
+    padding-left: 35px;
+  }
+}
+
+a.link-button,
+a.link-button.md-button.md-default-theme{
+  text-decoration: none;
+  text-transform: initial;
+  color: #363636;
+  font-size: 13px;
+  cursor: pointer;
+  &:hover{
+    background: none;
+    background-color: none;
+    text-decoration: underline;
+    span{
+      text-decoration: underline;
+    }
+  }
+  &.uppercase{
+    text-transform: uppercase;
+  }
+  &.margin-left20{
+    margin-left: 20px;
+  }
+  ng-md-icon{
+    fill: #666666;
+    svg{
+      margin-bottom: -4px;
+    }
+  }
+  &.favorites-link{
+    ng-md-icon{
+      svg{
+        margin-bottom: 2px;
+      }
+    }
+  }
+}
+
+//button.md-button.md-default-theme,
+.dmc-button{
+  height: 30px;
+  min-height: 0;
+  line-height: 31px;
+  text-transform: initial;
+  color: #363636;
+  margin: 0;
+  padding: 0 12px;
+  min-width: 0;
+  width: auto;
+  background-color: #c7c7c7;
+  @include boxShadow(0 0 0 rgba(0,0,0,0));
+  .margin-left20{
+    margin-left: 20px;
+  }
+  span{
+    font-size: 14px;
+  }
+  ng-md-icon{
+    fill: #666666;
+  }
+}
+
+
+.view-all-link.md-button.md-default-theme{
+  background-color: none;
+  font-size: 13px;
+  color: #363636;
+  &:hover{
+    background: none;
+    text-decoration: underline;
+  }
+}
+
+
+md-dialog{
+  max-height: 600px;
+}
+.view-all-included{
+  height: 100%;
+  width: 100%;
+}
+md-dialog[md-theme="default"]{
+  .md-actions{
+    button.md-primary.md-button{
+      background-color: #eee;
+      span{
+        text-transform: none;
+        color: #363636;
+      }
+    }
+  }
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+.md-select-menu-container,
+.md-datepicker-calendar-pane{
+  z-index: 150;
+}
+
+// Feedback trigger
+#atlwdg-trigger{
+  position: relative;
+  background: none;
+  padding: 0;
+  border: none;
+  left: 0;
+  top: 0;
+  color: #999 !important;
+  display: inherit;
+  white-space: nowrap;
+  text-decoration: none;
+  font-family: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: none;
+  font-size: 13px;
+  font-weight: 500;
+  &:hover{
+    color: #eee !important;
+  }
+}
+
+.margin-left20{  margin-left: 20px;  }
+.margin-left25{  margin-left: 25px;  }
+.margin-left12-5{  margin-left: 12.5px;  }
+.margin-right25{  margin-right: 25px;  }
+.margin-right12-5{  margin-right: 12.5px;  }
+.margin-right15{  margin-right: 15px;  }
+.margin-right5{  margin-right: 5px;  }
+.margin-top-25{  margin-top: 25px;  }
+.margin-top-10{  margin-top: 10px;  }
+.margin-bottom-40{ margin-bottom: 40px; }
+.margin-bottom-35{ margin-bottom: 35px; }
+.margin-bottom-20{ margin-bottom: 20px; }
+.margin-bottom-10{ margin-bottom: 10px; }
+.margin-bottom-17{
+  margin-bottom: 17px;
+}
+.top-10{ top: -10px; }
+
+.padding-10{
+  @include borderRadius(2px);
+  padding: 10px;
+}
+
+button,
+.md-button.md-raised,
+.md-button{
+  @include borderRadius(2px);
+  &.md-icon-button{
+    @include borderRadius(50%);
+  }
+  &.gray-button:not([disabled]){
+    @include boxShadow(0 0 0 rgba(0,0,0,0));
+    background-color: #C7C7C7;
+    &:hover{
+      background-color: #d7d7d7 !important;
+    }
+  }
+}
+
+div[ui-widget-services] a em,
+div[ui-widget-discussions] .md-list-item-text h3 a,
+md-content[ui-widget-services] .md-list-item-text h3 a,
+md-content[ui-widget-services] .title a,
+md-content[ui-project-discussions] .md-list-item-text h3 a,
+md-content[ui-project-tasks] .md-list-item-text a,
+div[ui-widget-tasks] table td.title a{
+  font-size: 14px;
+  margin: 10px 0;
+  padding: 0;
+}
+md-content[ui-project-tasks] .md-list-item-text h4{
+  font-size: 10px;
+  margin-bottom: 7px;
+  a{
+    font-size: 10px;
+  }
+}
+
+a.link-button.font-size14{
+  font-size: 14px;
+  margin: 10px 0;
+  padding: 0;
+}
+
+md-input-container:not(.md-input-has-value) input:not(:focus){
+  color: #363636;
+}
+
+.adding-to-project{
+  .inner-add-to-project {
+    .select-block {
+      max-width: calc(100% - 2 * 50px);
+      color: #363636;
+    }
+  }
+  .md-select-value *:first-child {
+    height: 16px;
+    overflow: hidden;
+    width: 100%;
+    color: #363636;
+  }
+  .md-select-value .md-select-icon{
+    position: absolute;
+    right: 0;
+    top: 8px;
+  }
+}
+
+.select-role{
+  .inner-select-role {
+    .select-block {
+      max-width: calc(100% - 2 * 50px);
+    }
+  }
+  .md-select-value *:first-child {
+    // height: 16px;
+    // overflow: hidden;
+    // width: 100%;
+  }
+  .md-select-value .md-select-icon{
+    position: absolute;
+    right: 0;
+    top: 8px;
+  }
+}
+
+.md-dialog-container .component{
+  md-tabs.md-dynamic-height md-tabs-content-wrapper {
+    padding: 0 16px;
+  }
+}
+
+.md-button.md-warn.md-fab:not([disabled]){
+  //background-color: #CD3F3F;
+  @include borderRadius(50%);
+  ng-md-icon{
+    fill: #fff;
+  }
+  &:hover{
+    background-color: rgb(255, 6, 0);
+  }
+}
+
+.ChoiceProject{
+  .md-toolbar-tools{
+    h2{
+      color: #fff;
+    }
+    .btn-close{
+      ng-md-icon{
+        fill: #fff;
+      }
+    }
+  }
+  md-dialog-content{
+    min-width: 400px;
+  }
+}

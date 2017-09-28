@@ -1,0 +1,194 @@
+<div ng-if="!not_found" class="profile">
+  <md-content class="profile-padding">
+    <div layout="row">
+
+      <div flex="15">
+        <img class="profile-image" ng-src="{{profile.image}}">
+        <img ng-if="!profile.image" ng-src="images/icon-profile-lg.svg">
+      </div>
+
+      <div flex="85" layout="column" class="profile-header">
+        <div layout="row" layout-align="space-between center">
+          <div layout="column">
+            <h2>{{profile.displayName}} <span>{{profile.title}}</span></h2>
+            <h3><a href="/company-profile.php#/profile/{{profile.companyId}}" class="link-button">{{profile.companyName}}</a></h3>
+            <h3>{{profile.address}}</h3>
+          </div>
+          <div layout="row">
+            <md-button aria-label="group_add" class="md-icon-button" ng-if="version1">
+              <ng-md-icon icon="group_add" style="fill: grey;" size="25"></ng-md-icon>
+            </md-button>
+            <md-button aria-label="email" class="md-icon-button" ng-if="version1">
+              <ng-md-icon icon="email" style="fill: grey;" size="25"></ng-md-icon>
+            </md-button>
+          </div>
+        </div>
+
+        <span flex></span>
+
+        <div layout="row" layout-align="center center">
+          <!-- TODO remove at a later date -->
+          <!-- <ui-widget-stars-static size="15" ng-click="goToReview()" value="{{profile.average_rating}}" text="({{profile.average_rating}})"></ui-widget-stars-static> -->
+
+          <!-- <a class="link margin-left16" ng-href="company.php#/{{profile.companyId}}/storefront?product=services">View Storefront</a> -->
+
+          <span flex></span>
+
+          <div layout="row" ng-if="!inviteToProject" layout-align="center center">
+            <md-button class="md-raised" ng-href="{{'account.php#/'+profile.id+'/profile'}}" ng-if="(profile.id == $root.userData.accountId) || userData.isDmdiiAdmin">
+              Edit profile
+            </md-button>
+            <!-- <md-button class="md-raised" ng-click="follow()">
+              {{(followFlag) ? 'Unfollow' : 'Follow'}}
+            </md-button> -->
+            <md-button class="md-raised" ng-if="!invate && profile.id !== $root.userData.accountId" ng-click="btnInviteToProject()">
+              Invite to Project
+            </md-button>
+            <md-button class="md-raised cancelProject" ng-if="invate" ng-click="btnRemoveOfProject()">
+              <ng-md-icon icon="close" size="17"></ng-md-icon>
+            </md-button>
+            <a class="link-to-project" ng-if="invate" ng-href="{{'project.php#/'+toProjectId+'/home'}}">
+              {{ toProject}}
+            </a>
+          </div>
+
+          <div layout="row"  layout-align="center center" class="invite" ng-show="inviteToProject">
+            <md-button class="md-raised cancelProject" ng-click="btnCanselToProject()">
+              <ng-md-icon icon="close" size="17"></ng-md-icon>
+            </md-button>
+            <md-select placeholder="Select Project" ng-model="projectModel">
+              <md-option ng-repeat="p in projects" value="{{$index}}">{{p.title}}</md-option>
+            </md-select>
+            <md-button ng-disabled="!projectModel && projectModel !== 0" class="md-raised addProject" ng-click="btnAddToProject(projectModel)">
+              Add
+            </md-button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <md-divider></md-divider>
+    <div class="profile-description" markdown-to-html="profile.aboutMe"></div>
+
+    <md-tabs md-dynamic-height md-border-bottom>
+<!--       <md-tab label="HISTORY">
+        <ui-widget-tabs-history data="history"></ui-widget-tabs-history>
+      </md-tab> -->
+
+      <md-tab label="Skills">
+        <md-content class="md-padding">
+          <div layout="row" class="tabs-content" layout-wrap>
+            <md-chips ng-repeat="skill in profile.skills track by $index">
+              <md-chip>
+                <a ng-href="{{'search.php#/members?text='+skill}}">{{skill.skillName}}</a>
+              </md-chip>
+            </md-chips>
+          </div>
+        </md-content>
+      </md-tab>
+        <md-tab label="Contact" ng-if="profile.userContactInfo.userPublicContactInfo">
+            <md-content class="md-padding">
+                <div layout="row"
+                     layout-align="start end"
+                     class="tabs-content contact"
+                     ng-repeat="(key,item) in profile.userContactInfo.userPublicContactInfo"
+                     ng-if="item && key !== 'id'">
+                    <md-icon class="{{key}}">
+                        <ng-md-icon icon="{{ privacyInfo[key].icon }}" size="26"></ng-md-icon>
+                    </md-icon>
+                    <div layout="column" flex>
+                        <div><label>{{ privacyInfo[key].title }}</label></div>
+                        <md-input-container ng-if="key == 'phone'">
+                            <input ng-disabled="true" ng-model="item" phone-input/>
+                        </md-input-container>
+                        <div class="title" ng-if="key != 'phone'">
+                            <a ng-if="key == 'email'" href="mailto:{{item}}">{{ item }}</a>
+                            <span ng-if="key == 'location'">{{ item }}</span>
+                        </div>
+                    </div>
+                </div>
+            </md-content>
+        </md-tab>
+    </md-tabs>
+
+<!-- TODO remove at a later date -->
+
+<!-- <md-divider></md-divider> -->
+
+
+<!--
+
+    <div id="review" layout="row" class="reviews" layout-margin layout-fill>
+
+      <div flex class="reviews-rating">
+
+        <div layout="row" class="md-toolbar-tools reviews-rating-header">
+          <h2>Reviews</h2>
+          <ui-widget-stars-static size="15" value="{{profile.average_rating}}" text="({{profile.average_rating}})"></ui-widget-stars-static>
+          <span flex></span>
+          <md-button class="md-raised" ng-click="ViewAllReview()">View All({{profile.number_of_comments}})</md-button>
+        </div>
+
+        <div layout="row" ng-class="{'active-star' : (selectSortingStar!=5 && selectSortingStar!=0)}" ng-click="SortingReviews('5star')">
+          <p>5 STAR</p>
+          <md-progress-linear md-mode="determinate" value="{{profile.precentage_stars[4]}}" flex></md-progress-linear>
+          <p flex="5">{{profile.precentage_stars[4]}}%</p>
+        </div>
+        <div layout="row" ng-class="{'active-star' : (selectSortingStar!=4 && selectSortingStar!=0)}" ng-click="SortingReviews('4star')">
+          <p>4 STAR</p>
+          <md-progress-linear md-mode="determinate" value="{{profile.precentage_stars[3]}}" flex></md-progress-linear>
+          <p flex="5">{{profile.precentage_stars[3]}}%</p>
+        </div>
+        <div layout="row" ng-class="{'active-star' : (selectSortingStar!=3 && selectSortingStar!=0)}" ng-click="SortingReviews('3star')">
+          <p>3 STAR</p>
+          <md-progress-linear md-mode="determinate" value="{{profile.precentage_stars[2]}}" flex></md-progress-linear>
+          <p flex="5">{{profile.precentage_stars[2]}}%</p>
+        </div>
+        <div layout="row" ng-class="{'active-star' : (selectSortingStar!=2 && selectSortingStar!=0)}" ng-click="SortingReviews('2star')">
+          <p>2 STAR</p>
+          <md-progress-linear md-mode="determinate" value="{{profile.precentage_stars[1]}}" flex></md-progress-linear>
+          <p flex="5">{{profile.precentage_stars[1]}}%</p>
+        </div>
+        <div layout="row" ng-class="{'active-star' : (selectSortingStar!=1 && selectSortingStar!=0)}" ng-click="SortingReviews('1star')">
+          <p>1 STAR</p>
+          <md-progress-linear md-mode="determinate" value="{{profile.precentage_stars[0]}}" flex></md-progress-linear>
+          <p flex="5">{{profile.precentage_stars[0]}}%</p>
+        </div>
+      </div>
+
+      <div flex layout layout-align="center center">
+        <md-button class="md-raised" ng-click="LeaveAReview()">Leave a Review</md-button>
+        <span flex></span>
+        <md-input-container>
+          <label>Sorting</label>
+          <md-select ng-model="sortListModel" ng-change="selectItemDropDown(sortListModel)"  md-container-class="margin-dropdown">
+            <md-option ng-repeat="sort in sortList track by $index"  ng-value="$index">{{sort.name}}</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+    </div>
+
+
+    <div flex class="new-review" ng-if="LeaveFlag">
+      <form name="CommentForm">
+        <h2>Rating</h2>
+        <ui-widget-stars-active size="20" value="{{average_rating}}" select-star="stars(star)"></ui-widget-stars-active>
+        <md-input-container flex>
+          <label>Comment</label>
+          <textarea ng-model="NewReview.Comment" columns="1" md-maxlength="1000"></textarea>
+        </md-input-container>
+        <div layout layout-align="end end">
+          <md-button class="md-raised" ng-click="Cancel()">Cancel</md-button>
+          <md-button class="md-raised" ng-click="Submit(NewReview)" ng-disabled="submit_rating==0" >Submit</md-button>
+        </div>
+      </form>
+    </div>
+
+    <md-divider></md-divider>
+
+    <div ng-repeat="review in profile.reviews">
+      <ui-widget-review review="review" helpful-function="updateHelpful" reply-function="addReply" flagged-function="addFlagged"></ui-widget-review>
+      <md-divider></md-divider>
+    </div> -->
+  </md-content>
+</div>

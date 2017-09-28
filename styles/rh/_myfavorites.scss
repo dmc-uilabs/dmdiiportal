@@ -1,0 +1,15 @@
+.favoriteButton{
+  padding: 0;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  border-radius: 0;
+  font-size: 25px;
+
+}
+
+span:focus {
+  outline: none;
+  border: 0;
+}

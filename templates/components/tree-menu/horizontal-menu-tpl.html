@@ -1,0 +1,19 @@
+<div class="filter-container">
+  <div id="member-filters">
+    <div flex layout="row">
+
+      <div class="dropdown">
+          <a layout="row" layout-align="start center" class="dropdown-toggle" id="itemstoshowdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		    			{{treeSource.title}}<span class="caret"></span>
+		  		</a>
+					<div class="dropdown-menu" aria-labelledby="itemstoshowdropdown" ng-click="$event.stopPropagation()">
+            <div ng-repeat="category in treeSource.categories">
+              <input type="checkbox" name="coType" data-ng-model="category.selected" id="{{category.title}}">
+              <label for="{{category.title}}" class="labelForOp">{{category.title}}</label>
+            </div>
+					</div>
+      </div>
+
+    </div>
+  </div>
+</div>

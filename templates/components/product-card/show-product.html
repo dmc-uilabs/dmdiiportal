@@ -1,0 +1,82 @@
+<md-dialog aria-label="View" class="view-all-included">
+	<md-dialog-content class="component">
+		<div layout="row" layout-align="space-between center">
+            <md-button md-no-ink ng-click="addToFavorite()" aria-label="Favorite" class="md-icon-button">
+                <ng-md-icon icon="{{ product.favorite ? 'favorite' : 'favorite_outline'}}" ng-class="!product.favorite ? 'not-favorite' : 'is-favorite'" size="25"></ng-md-icon>
+            </md-button>
+            <!--<md-button md-no-ink href="product.php#/{{product.type}}s/{{product.id}}" ng-click="cancel()" aria-label="Open" class="md-icon-button">-->
+            <!--<ng-md-icon icon="arrow_forward" style="fill: grey;" size="25"></ng-md-icon>-->
+            <!--</md-button>-->
+            <md-button md-no-ink
+                       ng-click="share()"
+                       aria-label="Reply"
+                       class="md-icon-button" flex>
+                <ng-md-icon icon="share" style="fill: grey;" size="25"></ng-md-icon>
+            </md-button>
+            <md-button md-no-ink class="md-icon-button" ng-click="cancel()">
+                <ng-md-icon icon="close" style="fill: grey;" size="25" aria-label="Close dialog"></ng-md-icon>
+            </md-button>
+        </div>
+		<md-content class="product">
+            <div layout="row">
+                <!--product image-->
+                <div class="product-image-modal" flex="30">
+                    <img class="main-image" ng-src="{{product.images[0].documentUrl}}">
+                </div>
+                <div flex>
+                    <!--product header-->
+                    <div class="product-header">
+                        <h2>
+                            <a ng-href="{{'/service-marketplace.php#/'+product.id}}">{{product.title}}</a>
+                            <span>By <a ng-href="{{'/company.php#/'+(product.companyId ? product.companyId : 1)}}">{{product.ownerName}}</a></span>
+                        </h2>
+                        <!-- <ui-widget-stars-static size="15" value="{{product.average_rating}}" text="({{product.average_rating}})"></ui-widget-stars-static> -->
+                    </div>
+
+                    <md-divider></md-divider>
+
+                    <!--product description-->
+                    <div class="product-description">
+                        {{product.description}}
+                    </div>
+                </div>
+            </div>
+            <!--product tabs-->
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="Specifications">
+                    <md-content class="md-padding">
+                        <div class="tabs-content" layout="column">
+                            <p>Created: {{product.currentStatus.startDate}}</p>
+                            <p>Added: {{product.specificationsData.usageStats.added}} times by {{product.specificationsData.usageStats.members}} members</p>
+                            <p>Successful Runs: {{product.specificationsData.runStats.fail}}/{{product.specificationsData.runStats.success}}</p>
+                            <p>Inputs: {{product.specificationsData.input}}</p>
+                            <p>Outputs: {{product.specificationsData.output}}</p>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Statistics">
+                    <ui-widget-tabs-statistic data="statistics" filter="filter"></ui-widget-tabs-statistic>
+                </md-tab>
+                <md-tab label="Tags">
+                    <md-content class="md-padding">
+                        <div layout="row" class="tabs-content" layout-wrap>
+                            <md-chips ng-repeat="tag in product.tags track by $index">
+                                <md-chip><a href="/marketplace.php#/search?product=services&tag={{tag.name}}" ng-click="searchByTag($event)">{{tag.name}}</a></md-chip>
+                            </md-chips>
+                            <!-- <p ng-repeat="tag in product.tags track by $index" flex="15">{{tag}}</p> -->
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Documents">
+                    <md-content class="md-padding">
+						<div layout="column">
+							<div layout="row" ng-repeat="doc in productDocuments">
+		                        <a class="slim-margin" ng-href="{{doc.documentUrl}}">{{doc.documentName}}</a>
+		                    </div>
+						</div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+      </md-content>
+  </md-dialog-content>
+</md-dialog>

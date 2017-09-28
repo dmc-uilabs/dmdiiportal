@@ -1,0 +1,54 @@
+.create-discussion{
+  button.md-primary span{
+    color: #fff;
+  }
+  .md-toolbar-tools{
+    h2{
+      color: #fff;
+    }
+  }
+  .btn-close{
+    ng-md-icon{
+      fill: #fff;
+    }
+  }
+  md-dialog-content{
+    min-width: 500px;
+  }
+  .message{
+    &-error{
+      @include borderRadius(3px);
+      margin-bottom: 10px;
+    }
+    &-error{
+      background-color: #ECCFCF;
+      .md-subheader {
+        background-color: #ECCFCF;
+      }
+    }
+  }
+  .md-subheader {
+    .md-subheader-inner {
+      padding-top: 7px;
+      padding-bottom: 9px;
+    }
+  }
+}
+
+.member-text,.member-name{
+  color: #333;
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+.discussion-list md-list-item.md-2-line .md-list-item-text{
+  h4{
+    margin: 0;
+    font-size: 10px;
+  }
+  h3{
+    margin: 10px 0;
+    font-size:16px;
+  }
+}

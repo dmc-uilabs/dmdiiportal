@@ -1,0 +1,171 @@
+.tableTasks {
+  .title {
+    width: 100%;
+  }
+  .one-task{
+    .title{
+      cursor: pointer;
+    }
+  }
+  .title,.project{
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+  .label {
+    white-space: nowrap;
+    display: inline-block;
+    text-align: center;
+  }
+  .project {
+    min-width: 100px;
+    width: auto;
+  }
+  .dueDate {
+    white-space: nowrap;
+  }
+  .empty {
+    border-top: none;
+  }
+}
+
+.create-task{
+  button.md-primary span{
+    color: #fff;
+  }
+  md-datepicker{
+    padding-top: 10px;
+  }
+  .md-toolbar-tools{
+    h2{
+      color: #fff;
+    }
+  }
+  .btn-close{
+    ng-md-icon{
+      fill: #fff;
+    }
+  }
+  md-dialog-content{
+    min-width: 500px;
+  }
+  .message{
+    &-error{
+      @include borderRadius(3px);
+      margin-bottom: 10px;
+    }
+    &-error{
+      background-color: #ECCFCF;
+      .md-subheader {
+        background-color: #ECCFCF;
+      }
+    }
+  }
+  .md-subheader {
+    .md-subheader-inner {
+      padding-top: 7px;
+      padding-bottom: 9px;
+    }
+  }
+}
+
+.date-picker-date-time{
+  z-index: 999999;
+}
+
+.task-title{
+  color: #333;
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+.md-button.md-raised.dmc-button {
+  &.task-edit-btn,
+  &.task-delete-btn {
+    min-width: 20px;
+    min-height: 20px;
+    width: auto;
+    color: #363636;
+    font-size: 13px;
+    margin: 0 0 0 15px;
+    ng-md-icon{
+      fill: #363636;
+    }
+  }
+  &.task-delete-btn{
+    background-color: #F44B2F;
+    color: #fff;
+    ng-md-icon{
+      fill: #fff;
+    }
+  }
+}
+
+.project-task-container{
+  md-input-container{
+
+  }
+  .title-task-block{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    p{
+      font-weight: 100;
+      font-size: 24px;
+      margin: 0;
+    }
+  }
+  .additional-details{
+    margin-top: 15px;
+    font-size: 12px;
+  }
+  .task-details-container{
+    ul{
+      list-style: none;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      li{
+        padding: 0 0 16px;
+        font-size: 12px;
+        color: #363636;
+        span{
+          font-size: 12px;
+          font-weight: normal;
+          text-transform: none;
+          padding: 0;
+          color: #363636;
+          &.label--tomorrow,
+          &.label--warn{
+            padding: 5px;
+          }
+          &.label--warn{
+            color: #fff;
+          }
+        }
+        &:last-child{
+          padding-bottom: 0;
+        }
+      }
+    }
+    .dueDate-label{
+      margin-left: 15px;
+      margin-top: 10px;
+    }
+    .edit-details-block{
+      margin-top: 10px;
+    }
+    md-datepicker{
+      margin-left: -18px;
+      button{
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.cancel-edit-task{
+  margin-right: 10px !important;
+}

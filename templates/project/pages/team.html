@@ -1,0 +1,135 @@
+<workspace-header class="workspace-header" ng-init="currentPage='5'"></workspace-header>
+<div class="container container-view-all all-project-members">
+    <div class="content-panel-body">
+        <md-content style="padding-top: 38px;" layout-padding>
+          <div layout="row" flex layout-align="start end">
+                <div layout="column" flex class="margin-right12-5">
+                    <span>Manage Requests</span>
+                </div>
+                <!-- <a ng-href="{{'/add-members.php#/'+projectCtrl.projectData.id}}"
+                   class="link-button uppercase invite-button margin-left20">
+                    <ng-md-icon icon="group_add" size="22"></ng-md-icon>Invite
+                </a> -->
+                <a ng-click="inviteModal()"
+                   class="link-button uppercase invite-button margin-left20">
+                    <ng-md-icon icon="group_add" size="22"></ng-md-icon>Invite
+                </a>
+          </div>
+            <div layout="row" flex layout-align="start end" class="search-content">
+                <md-input-container class="filterBox">
+                    <md-select placeholder="People" ng-model="typeModel" ng-change="changedType(typeModel)">
+                        <md-option ng-repeat="item in types" value="{{item.tag}}">{{item.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <form ng-submit="submit(searchModel)" class="view-all-search-field global-search-form" flex>
+                    <div layout="column">
+                        <div layout="row">
+                            <div layout="column" flex>
+                                <md-input-container md-no-float>
+                                    <md-icon>
+                                        <ng-md-icon icon="search"></ng-md-icon>
+                                    </md-icon>
+                                    <input type="text" placeholder="Search Member" ng-model="searchModel">
+                                </md-input-container>
+                            </div>
+                            <div layout="column">
+                                <md-input-container>
+                                    <md-button type="submit" class="search-button">Search</md-button>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <md-progress-linear md-mode="indeterminate" ng-if="loading"></md-progress-linear>
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="Active">
+                    <md-content class="md-padding">
+                        <div layout="row" flex layout-align="space-between start" layout-wrap>
+                            <div flex="45" class="one-member" ng-repeat="item in acceptedRequests track by $index">
+                                <div layout="row" flex="100" layout-align="start center">
+                                    <div class="avatar">
+                                        <img ng-src="{{item.member.image}}" alt="{{item.member.displayName}}"/>
+                                    </div>
+                                    <div class="info" flex>
+                                        <div class="name" flex layout-align="start center">
+                                            <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a></h4>
+                                        </div>
+                                        <div class="company-name" flex>
+                                            <a href="/company.php#/{{item.member.companyId}}">{{companyNameList[item.member.company]}}</a>
+                                        </div>
+                                    </div>
+                                    <div class="buttons">
+                                        <md-button class="md-raised" ng-click="follow(item.member)">{{item.member.isFollow ? 'Unfollow' : 'Follow'}}</md-button>
+                                        <md-button md-no-ink class="md-icon-button delete"
+                                                   ng-click="delete($event,item)"
+                                                   aria-label="Delete">
+                                            <ng-md-icon icon="delete" size="25"></ng-md-icon>
+                                        </md-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Pending">
+                    <md-content class="md-padding">
+                        <div layout="row" flex layout-align="space-between start" layout-wrap>
+                            <div flex="45" class="one-member" ng-repeat="item in pendingRequests track by $index">
+                                <div layout="row" flex="100" layout-align="start center">
+                                    <div class="avatar">
+                                        <img ng-src="{{item.member.image}}" alt="{{item.member.displayName}}"/>
+                                    </div>
+                                    <div class="info" flex>
+                                        <div class="name" flex layout-align="start center">
+                                            <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a></h4>
+                                        </div>
+                                        <div class="company-name" flex>
+                                            <a href="/company.php#/{{item.member.companyId}}">{{companyNameList[item.member.company]}}</a>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="buttons" ng-if="projectCtrl.projectData.isPublic">
+                                        <md-button class="md-raised decline" ng-click="decline(item)">
+                                            Decline
+                                        </md-button>
+                                        <md-button class="md-raised approve" ng-click="approve(item)">
+                                            Approve
+                                        </md-button>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Removed">
+                    <md-content class="md-padding">
+                        <div layout="row" flex layout-align="space-between start" layout-wrap>
+                            <div flex="45" class="one-member" ng-repeat="item in declinedRequests track by $index">
+                                <div layout="row" flex="100" layout-align="start center">
+                                    <div class="avatar">
+                                        <img ng-src="{{item.member.image}}" alt="{{item.member.displayName}}"/>
+                                    </div>
+                                    <div class="info" flex>
+                                        <div class="name" flex layout-align="start center">
+                                            <h4><a href="/profile.php#/{{item.member.id}}">{{item.member.displayName}}</a></h4>
+                                        </div>
+                                        <div class="company-name" flex>
+                                            <a href="/company.php#/{{item.member.companyId}}">{{companyNameList[item.member.company]}}</a>
+                                        </div>
+                                    </div>
+                                    <div class="buttons">
+                                        <md-button md-no-ink class="md-icon-button add"
+                                                   ng-click="invite($event,item)"
+                                                   aria-label="Invite to project">
+                                            <ng-md-icon icon="group_add" size="25"></ng-md-icon>
+                                        </md-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+</div>

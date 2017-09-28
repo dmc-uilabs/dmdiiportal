@@ -1,0 +1,265 @@
+<!-- <div layout="row" layout-align="start start">
+    <md-input-container flex class="company-awardsReceived left-space" >
+        <label>Awards Received</label>
+        <textarea ng-model="source.awardsReceived"
+                  columns="1"></textarea>
+    </md-input-container>
+</div> -->
+<div layout="row">
+    <div class="list-contacts" flex="100">
+        <div layout="row" class="title-list-contacts" layout-align="space-between center">
+            <div class="title">Awards Recieved</div>
+            <md-button class="md-raised md-primary add-new-contact"
+                       ng-click="addNewAward()"
+                       ng-show="!isAddingAward"
+                       aria-label="Add Award">
+                Add New Award
+            </md-button>
+        </div>
+        <div layout="row" class="boxForAddAward" flex ng-if="isAddingAward">
+            <form name="formAddAward" ng-submit="saveAward(newAward)" layout="column" flex>
+                <div layout="row" flex>
+                    <div layout="column" class="left-space" flex>
+                        <div layout="row">
+                            <md-input-container flex="50" class="right-space">
+                                <label>Name</label>
+                                <input name="name" ng-model="newAward.name">
+                            </md-input-container>
+                            <md-input-container flex="50" class="left-space">
+                                <label>Link</label>
+                                <input name="link" ng-model="newAward.link">
+                            </md-input-container>
+                        </div>
+                        <div layout="row">
+                            <md-input-container flex="50" class="right-space">
+                                <label>Description</label>
+                                <input name="description"
+                                       ng-model="newAward.description">
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+                <div layout="row" layout-align="end center">
+                    <md-button class="md-raised" type="button" ng-click="cancelAddAward()">
+                        Cancel
+                    </md-button>
+                    <md-button class="md-raised md-primary"
+                               type="submit"
+                               ng-disabled="!formAddAward.$valid || (!newAward.description && !newAward.name)">
+                        Save
+                    </md-button>
+                </div>
+            </form>
+        </div>
+        <div layout="row"
+             layout-align="start start"
+             class="contact-item"
+             ng-repeat="item in source.awards track by $index" ng-show="!item.hide" flex>
+
+            <div layout="column" class="left-space" flex>
+                <div layout="row">
+                    <md-input-container flex="50" class="right-space">
+                        <label>Name</label>
+                        <input ng-model="item.name">
+                    </md-input-container>
+                    <md-input-container flex="50" class="left-space">
+                        <label>Link</label>
+                        <input ng-model="item.link">
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container flex="100" class="right-space">
+                        <label>Description</label>
+                        <textarea ng-model="item.description"/>
+                    </md-input-container>
+                </div>
+            </div>
+            <div layout="column" class="left-space">
+                <md-button md-no-ink
+                           ng-click="deleteAward($index)"
+                           class="md-icon-button delete-contact"
+                           aria-label="Delete Award">
+                    <ng-md-icon icon="delete" size="32"></ng-md-icon>
+                </md-button>
+            </div>
+        </div>
+        <div layout="row" ng-if="source.contacts.length == 0 && !isAddingAward">No contacts</div>
+    </div>
+</div>
+<div layout="row">
+    <div class="list-videos" flex="100">
+        <div layout="row" layout-align="space-between center">
+            <div class="title">Current Images</div>
+            <md-button class="md-raised md-primary add-new-image"
+                       ng-show="!isAddingImage"
+                       ng-click="addNewImage()"
+                       aria-label="Add Image">
+                Add New Image
+            </md-button>
+        </div>
+        <div layout="row"
+             layout-wrap
+             layout-align="start start"
+             flex ng-if="source.images.length > 0">
+            <div class="list-images-item" ng-repeat="image in source.images" ng-show="!image.hide">
+                <div class="img"><img ng-src="{{image.documentUrl}}"/></div>
+                <md-input-container md-no-float>
+                    <input ng-model="image.documentName"
+                           type="text"
+                           ng-disabled="true"
+                           placeholder="Image Title">
+                </md-input-container>
+                <md-button md-no-ink class="md-fab md-mini md-warn md-raised delete-image"
+                           ng-click="deleteImage(image,$event)"
+                           aria-label="Delete Image">
+                </md-button>
+            </div>
+        </div>
+        <div layout="row"
+            layout-align="start start"
+            ng-if="isAddingImage">
+            <div layout="column" flex>
+                <div class="content-panel"
+                    source="imgs"
+                    ui-widget-upload-documents
+                    widget-type="'row'"
+                    auto-upload="false"
+                    allow-tagging="true"
+                    widget-title="'Add New Image'"
+                    access-level='accessLevels'
+                    file-limit="limit"
+                    allow-vip="true">
+                </div>
+                <div layout="column" layout-align="center start">
+                    <md-button class="md-raised" type="button" ng-click="cancelAddImage()">
+                        Cancel
+                    </md-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div layout="row">
+    <div class="list-videos" flex="100">
+        <div layout="row" class="title-list-videos" layout-align="space-between center">
+            <div class="title">Current Videos</div>
+            <md-button class="md-raised md-primary add-new-video"
+                       ng-click="addNewVideo()"
+                       ng-show="!isAddingVideo"
+                       aria-label="Add Video">
+                Add New Video
+            </md-button>
+        </div>
+        <h4>Current Videos</h4>
+        <div ng-if="source.videos" ng-repeat="video in source.videos track by $index" ng-hide="video.hide">
+            <video width="320" height="240" controls>
+                Your browser does not support HTML5 video playback
+                <source ng-src="{{trustVideoSrc(video.documentUrl)}}" type="video/mp4">
+            </video>
+            <md-button md-no-ink
+                ng-click="deleteVideo(video,$event)"
+                class="md-icon-button delete-video"
+                aria-label="Delete Video">
+            <ng-md-icon icon="delete" size="32"></ng-md-icon>
+            </md-button>
+        </div>
+        <div layout="row"
+             layout-align="start start"
+             ng-if="isAddingVideo">
+            <div layout="column" flex>
+                <div class="content-panel"
+                    source="videos"
+                    ui-widget-upload-documents
+                    widget-type="'row'"
+                    auto-upload="false"
+                    allow-tagging="true"
+                    widget-title="'Add New Video'"
+                    access-level="accessLevels"
+                    file-limit="limit"
+                    allow-vip="true">
+                </div>
+                <div layout="column" layout-align="start start" flex>
+                    <md-button class="md-raised" type="button" ng-click="cancelAddVideo()">
+                        Cancel
+                    </md-button>
+                </div>
+            </div>
+        </div>
+        <!--keep for external video links -->
+        <!-- <div layout="row" class="boxForAddVideo" flex ng-if="isAddingVideo">
+            <form name="formAddVideo" ng-submit="saveVideo(newVideo)" layout="column" flex>
+                <div layout="row" flex>
+                    <md-input-container class="title-video right-space" flex>
+                        <label>Title</label>
+                        <input required name="title" ng-model="newVideo.title">
+                    </md-input-container>
+                    <md-input-container class="link-video left-space" flex>
+                        <label>file</label>
+                        <input required name="link" ng-model="newVideo.link">
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-align="end center">
+                    <md-button class="md-raised" type="button" ng-click="cancelAddVideo()">
+                        Cancel
+                    </md-button>
+                    <md-button class="md-raised md-primary"
+                               type="submit"
+                               ng-disabled="!formAddVideo.$valid">
+                        Save
+                    </md-button>
+                </div>
+            </form>
+        </div> -->
+        <!--keep for external video links -->
+        <!-- <div layout="row"
+             layout-align="start center"
+             class="video-item"
+             ng-repeat="video in source.videos" ng-show="!video.hide" flex>
+            <md-input-container class="title-video right-space" flex>
+                <label>Title</label>
+                <input ng-model="video.title">
+            </md-input-container>
+            <md-input-container class="link-video left-space" flex>
+                <label>Link</label>
+                <input ng-model="video.link"
+                    ng-disabled="true">
+            </md-input-container>
+            <md-button md-no-ink
+                       ng-click="deleteVideo(video,$event)"
+                       class="md-icon-button delete-video"
+                       aria-label="Delete Video">
+                <ng-md-icon icon="delete" size="32"></ng-md-icon>
+            </md-button>
+        </div> -->
+        <!--keep for external video links -->
+        <!-- <div layout="row"
+             layout-align="start center"
+             class="video-item"
+             ng-repeat="video in videos" ng-show="!video.hide" flex>
+            <md-input-container class="title-video right-space" flex>
+                <label>Title</label>
+                <input ng-model="video.title">
+            </md-input-container>
+            <md-input-container class="link-video left-space" flex>
+                <label>Link</label>
+                <input ng-model="video.link">
+            </md-input-container>
+            <md-button md-no-ink
+                       ng-click="deleteVideoToAdd($index,$event)"
+                       class="md-icon-button delete-video"
+                       aria-label="Delete Video">
+                <ng-md-icon icon="delete" size="32"></ng-md-icon>
+            </md-button>
+        </div> -->
+    </div>
+</div>
+<div ng-if="userData.isDmdiiAdmin" layout="row">
+    <div layout="column" class="" flex>
+        <div layout="row">
+            <md-input-container flex="100" class="right-space">
+                <label>Tag My Suppliers</label>
+                <textarea ng-model="source.otherOrganizationTags"></textarea>
+            </md-input-container>
+        </div>
+    </div>
+</div>

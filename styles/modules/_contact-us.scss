@@ -1,0 +1,72 @@
+.contact-us-body{
+  div[ui-view]{
+    padding: 0 0 40px 0;
+    max-width: none;
+  }
+}
+.contact-us{
+  &-top{
+    background-color: #d9d9d9;
+    font-size: 18px;
+    color: #333;
+    padding: 50px 0px 20px 0px;
+    div {
+      margin: 0 auto;
+      max-width: 1280px;
+      position: relative;
+      width: 100%;
+      h3 {
+        margin: 0;
+        padding: 0 40px;
+        text-align: center;
+        font-size: 19px;
+        font-weight: 100;
+      }
+    }
+  }
+  &-content{
+    max-width: 1280px;
+    margin: 20px auto 0 auto;
+    padding: 0 40px;
+    h4{
+      width: 100%;
+      display: block;
+      font-size: 18px;
+      font-weight: 100;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .get-in-touch{
+      padding: 0px 8px;
+      border-left: 1px solid #aaa;
+      &:first-child{
+        border-left: 0;
+      }
+      .contact-block{
+        margin-bottom: 34px;
+        &-column{
+          width: 200px;
+        }
+        &:last-child{
+          margin-bottom: 0;
+        }
+        ng-md-icon{
+          fill: #444;
+          margin-bottom: 8px;
+        }
+        a,span{
+          margin-left: 13px;
+          font-size: 17px;
+          color: #444;
+        }
+        a{
+          color: #333;
+          text-decoration: none;
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}

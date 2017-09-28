@@ -1,0 +1,87 @@
+<div class="container project-task-container">
+    <form name="taskForm" layout="row" >
+        <!-- Left Content Column -->
+        <div class="content-column" layout="column" flex="70">
+            <!-- Overview -->
+            <div class="content-panel margin-right12-5">
+                <div class="content-panel-header">
+                    <md-toolbar>
+                        <h2>Creating Task</h2>
+                    </md-toolbar>
+                </div>
+                <div class="content-panel-body">
+                    <md-content>
+                        <div flex layout="column">
+                            <md-input-container class="md-block" style="width: 50%;">
+                                <label>Project</label>
+                                <md-select ng-model="selectedProject" required>
+                                    <md-option ng-repeat="project in $root.projects" value="{{project.id}}">
+                                        {{project.title}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                              <label>Title</label>
+                              <textarea ng-model="task.title" md-maxlength="1000"></textarea>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <div ui-widget-rich-text
+                                    field-name="title"
+                                    is-required="true"
+                                    model="task.additionalDetails"
+                                    limit="1000"
+                                    placeholder="Additional Details"
+                                    is-saved="isSaved"
+                                    is-valid="isValid">
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </md-content>
+                </div>
+            </div>
+        </div>
+        <!-- Right Content Column -->
+        <div class="content-column" layout="column" flex>
+            <div class="content-panel margin-left12-5">
+                <div class="content-panel-header">
+                    <md-toolbar>
+                        <h2>Details</h2>
+                    </md-toolbar>
+                </div>
+                <div class="content-panel-body">
+                    <md-content class="task-details-container">
+                        <div layout="column" class="edit-details-block" flex="80">
+                            <span class="dueDate-label" ng-show="task.dueDate">Due Date</span>
+                            <md-datepicker flex class="dueDatePicker"
+                                           ng-model="task.dueDate" md-placeholder="Due Date"
+                                           ng-init="setDatePickerFocus()">
+                            </md-datepicker>
+                            <md-input-container>
+                                <label>Priority</label>
+                                <md-select ng-model="task.priority">
+                                    <md-option ng-repeat="p in priorities" value="{{p.id}}">{{p.name}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Assigned To</label>
+                                <md-select ng-model="task.assigneeId">
+                                    <md-option value="{{user.id}}" ng-repeat="user in users | orderBy:'user.member.displayName'">{{user.member.displayName}}</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </md-content>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div layout="row" class="margin-top-25">
+        <md-progress-linear ng-if="isCreation" md-mode="indeterminate" flex="50"></md-progress-linear>
+        <span flex></span>
+        <md-button ng-click="cancel()" class="md-raised dmc-button margin-right15" >
+            Cancel
+        </md-button>
+        <md-button ng-click="createTask()" ng-disabled="!taskForm.$valid" class="md-raised dmc-button md-primary">
+            Create
+        </md-button>
+    </div>
+</div>

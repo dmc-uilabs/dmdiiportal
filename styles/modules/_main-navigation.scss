@@ -1,0 +1,561 @@
+$topHeader: #0A0B0C;
+$topHeaderIcon: #FFF;
+$countMessageBackground: #65AF3F;
+$countMessageText: #FFF;
+$HeaderButtonText: #FFF;
+$bottomHeader: #363636;
+$navigation: #FFF;
+$navigationArrow: #65AF3F;
+$navigationActive: #65AF3F;
+
+a:focus{
+  color: map-get($colors, primary);
+}
+a:hover{
+  color: map-get($colors, primary);
+}
+
+div[dmc-top-header]{
+  z-index: 99;
+  position: relative;
+
+  header:focus{
+    outline: none;
+  }
+  &:focus{
+    outline: none;
+  }
+}
+
+.space-header{
+  position: relative;
+  width: 100%;
+  height: 60px;
+}
+
+.message-container{
+  md-menu-item{
+    height: auto;
+    a{
+      line-height: 1.5;
+      max-width: 200px;
+      white-space: normal;
+    }
+  }
+}
+
+.main-header{
+  top: 0;
+  z-index: 25;
+  position: fixed;
+  width: 100%;
+
+
+
+
+  .header-padding{
+
+  }
+  md-menu{
+    margin: 0;
+    padding: 0;
+  }
+
+  .header-service-icon {
+    .st0 {
+      fill: white;
+    }
+  }
+
+  .top-header {
+    background-color: $topHeader;
+    height: 47px;
+    width: 100%;
+    &-inner {
+      width: 100%;
+      .top-header-content {
+        // position: relative;
+        max-width: 1280px;
+        padding: 0 40px;
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+    .logo{
+      min-width: 191px;
+    }
+    .info-button{
+      .md-button{
+        min-height: 55px;
+        height: 55px;
+        min-width: 55px;
+        width: 55px;
+        margin: 0 10px;
+        padding: 0;
+
+        .count-message{
+          color: $countMessageText;
+          font-weight: bold;
+          font-size: 10px;
+          background-color: $countMessageBackground;
+          border-radius: 50%;
+          height: 15px;
+          width: 15px;
+          line-height: 16px;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+        }
+      }
+
+      ng-md-icon{
+        fill: $topHeaderIcon;
+        display: inline-block;
+        vertical-align: middle;
+        height: 27.5px;
+      }
+    }
+
+    .user-button,
+    .login-button{
+      min-height: 55px;
+      height: 55px;
+      line-height: 55px;
+      margin: 0 0 0 10px;
+      padding: 0;
+      text-align: left;
+      text-transform: none;
+      color: $HeaderButtonText;
+      ng-md-icon{
+        fill: $topHeaderIcon;
+      }
+      md-icon{
+        padding-right: 5px;
+        padding-bottom: 5px;
+        svg{
+          fill: map-get($colors, secondary);
+          //fill: white;
+        }
+      }
+    }
+  }
+
+  .bottom-header {
+    height: 44px;
+    background-color: $bottomHeader;
+    .bottom-header-content{
+      position: relative;
+      max-width: 1280px;
+      padding: 0 40px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .navigation{
+      md-menu-item{
+        min-height: 0px;
+        height: 100%;
+      }
+      md-menu{
+        line-height: 35px;
+      }
+      .md-button{
+        text-transform: initial;
+        font-size: 14px;
+        color: $navigation;
+        height: 44px;
+        min-height: 44px;
+        line-height: 44px;
+
+        // height: 35px;
+        // min-height: 35px;
+        // line-height: 35px;
+        margin: 0;
+        text-transform: uppercase;
+        &.active-page{
+          color: $navigationActive;
+        }
+        .count-message{
+          color: $countMessageText;
+          font-weight: bold;
+          font-size: 10px;
+          background-color: $countMessageBackground;
+          border-radius: 50%;
+          height: 15px;
+          width: 15px;
+          line-height: 16px;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+        }
+
+        ng-md-icon {
+          margin: -4px -13px 0;
+          fill: $navigationArrow;
+          svg {
+            vertical-align: middle;
+          }
+        }
+      }
+      .item{
+        margin: 0 16px;
+        &:first-child{
+          margin-left: 0px;
+        }
+        &:last-child{
+          margin-right: 0px;
+        }
+      }
+    }
+
+    .search{
+      md-input-container{
+        padding: 0;
+        width: 200px;
+        border-style: solid;
+        border-width: 0px 1px 0px 0px;
+        border-color: map-get($colors, secondary);
+        &:not(.md-input-invalid).md-input-focused md-icon{
+          color: #fff;
+        }
+        input{
+          background-color: #5E5E5E;
+          @include borderRadius(3px 0 0 3px);
+          padding-left: 8px;
+          font-size: 12px;
+          color: #fff;
+        }
+        md-select-menu{
+          margin-top: 55px;
+        }
+      }
+      .md-button{
+        @include borderRadius(0 3px 3px 0);
+        margin: 0;
+        height: 30px;
+        line-height: 30px;
+        max-height: 30px;
+        min-height: 30px;
+        font-size: 15px;
+        width: 30px;
+        min-width: 30px;
+        background-color: map-get($colors, secondary);
+        ng-md-icon{
+          fill: #fff;
+          display: inline-block;
+          vertical-align: middle;
+          height: 23.5px;
+        }
+      }
+      md-select {
+        margin: 0 0 0 5px;
+        //@include borderRadius(0 0 0 0);
+        border-style: solid;
+        border-width: 0px 0px 0px 1px;
+        border-color: map-get($colors, secondary);
+        width: 100px;
+        background-color: #5E5E5E;
+        font-size: 11px;
+        color: #fff;
+        span{
+          color: #fff;
+          opacity: .7;
+          margin-left:4px;
+        }
+        .md-select-value {
+          //margin-right: -3px;
+          .md-select-icon{
+            margin-left:-6px;
+            margin-bottom:3px;
+            //margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+#hamburger-menu-content{
+  overflow-y: visible;
+  .md-button, .md-menu{
+    margin: 0px;
+    padding: 0px;
+    align-items: flex-start;
+  }
+  .md-button{
+    width: 100%;
+    text-align: left;
+    margin-left: 12px;
+    &.sub-menu{
+      margin-left: 9px;
+      width: 60%;
+    }
+  }
+  md-menu-item:empty{
+    min-height: 0px;
+    height: 0px;
+  }
+  a{
+    background: transparent;
+  }
+  a:hover{
+    background: transparent;
+  }
+  button:hover{
+    background: transparent;
+  }
+  md-menu:hover, md-menu-item:hover{
+    background: lightgrey;
+  }
+}
+
+.header-banner{
+  background: black;
+  padding: 15px 40px;
+  .banner-msg{
+    color: red;
+    font-size: 1.5em;
+    border-left: 4px solid green;
+    padding: 0px 10px;
+    max-width: 1170px;
+    margin: auto;
+  }
+}
+
+.sub-menu-content{
+  ng-md-icon{
+    //margin-right:10px;
+    fill: map-get($colors, secondary);
+  }
+  md-menu-item {
+    a{
+      text-align: left;
+    }
+  }
+}
+
+.header-menu-content.md-default-theme{
+  md-menu-item {
+    a{
+      text-align: left;
+    }
+    button{
+      text-align: left;
+    }
+  }
+  a.md-button {
+    line-height: 3.2;
+  }
+  ng-md-icon{
+    //margin-right:0px;
+    fill: map-get($colors, secondary);
+  }
+  md-icon{
+    margin-right:10px;
+    svg{
+      fill: map-get($colors, secondary);
+      //fill: white;
+    }
+  }
+  &.messages-list{
+    width: 350px;
+  }
+  &.notifications-list{
+    width: 400px;
+    height: auto;
+    max-height: 277px;
+  }
+  &.service-status-list{
+    width: 250px;
+  }
+  &.service-status-list,
+  &.messages-list,
+  &.notifications-list{
+    padding-bottom: 0;
+    ng-md-icon{
+      fill: #444;
+      margin-right: 8px;
+      display: inline-block;
+    }
+    .view-all-link{
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    md-menu-item{
+      max-height: none;
+      height: auto;
+      position: relative;
+      border-bottom: 1px solid #ccc;
+      &.not-read{
+        background-color: #E5E5E5;
+      }
+      .service-and-market-icon{
+        width:40px;
+        height:28px;
+        vertical-align: top;
+      }
+      &.all-link{
+        min-height: 0px;
+        cursor: pointer;
+        a{
+          text-align: center;
+          margin: 5px 10px;
+          width: 100%;
+        }
+      }
+      .clear-notification{
+        position: absolute;
+        right: 0px;
+        top: 5px;
+        width: 18px;
+        height: 18px;
+        min-height: 0;
+        line-height: 0;
+        padding: 0;
+        ng-md-icon{
+          fill: #333;
+        }
+      }
+      &:hover{
+        background-color: #f2f2f2;
+      }
+      img{
+        width: 30px;
+        display: inline-block;
+        position: absolute;
+        left: 17px;
+      }
+      a {
+        text-decoration: none;
+        color: #333;
+        padding:6px 33px 6px 16px;
+        span{
+          display: inline-block;
+        }
+      }
+      i{
+        display: block;
+        font-style: normal;
+        font-size: 13px;
+        max-width: 215px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      i:last-child{
+        font-size: 12px;
+        color: #777;
+      }
+      .user-name{
+        font-weight: bold;
+      }
+      .text{
+        max-width: 250px;
+      }
+      .notifications-text{
+        max-width: 300px;
+      }
+    }
+    md-menu-item:last-child{
+      border: none;
+    }
+    .zone-top{
+      padding: 0 17px 8px 17px;
+      border-bottom: 1px solid #ccc;
+      h3{
+        margin: 0;
+        font-weight: 100;
+        font-size: 15px;
+      }
+      .md-button{
+        margin: 0;
+        min-height: 0;
+        line-height: 23px;
+        padding: 0;
+        min-width: 0;
+      }
+    }
+  }
+  &.messages-list{
+    md-menu-item {
+      a {
+        width: 100%;
+        display: block;
+        max-width: none;
+        padding-left: 80px;
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+  &.service-status-list{
+    .title-service{
+      width: 100%;
+      i:last-child,
+      i {
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 3px;
+      }
+    }
+    .time{
+      width: 100%;
+      margin-top: 4px;
+      i{
+        font-size: 11px;
+        color: #777;
+        display: inline-block;
+        width: 48%;
+        &:last-child{
+          text-align: right;
+          position: absolute;
+          font-size: 11px;
+          left: 50%;
+          width: auto;
+          right: 16px;
+        }
+      }
+    }
+  }
+}
+
+.md-select-menu-container.my-search-filter-list{
+    top: 85px !important;
+    padding-left: 15px;
+    md-select-menu{
+      position: relative;
+      width: 100px;
+      overflow: hidden;
+      md-content{
+        padding: 0;
+        margin-left: -5px;
+        md-option{
+          height: 35px;
+          .md-text{
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    .md-select-value .md-select-icon{
+      margin-left:-5px;
+      margin-bottom:3px;
+    }
+}
+
+.md-button.not-member-button.md-button.ng-scope.md-default-theme {
+  background-color: $countMessageBackground;
+  color: $HeaderButtonText;
+  height: 25px;
+  min-height: 10px;
+  padding: 4px;
+  line-height: normal;
+}
+
+.button-container {
+  border-right: 1px $countMessageBackground solid;
+}
+
+.login-button-container {
+  width: 50px;
+}

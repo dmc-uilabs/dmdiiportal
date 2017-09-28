@@ -1,0 +1,430 @@
+.container-account {
+  .left-content {
+    .content-panel {
+      .content-panel-body {
+        md-content{
+          overflow: inherit;
+          padding: 0;
+        }
+        .left-menu-list {
+          padding: 0;
+          width: 100%;
+          md-list-item {
+            min-height: 0;
+            margin-bottom: -1px;
+            cursor: pointer;
+            padding: 0;
+            .md-button.md-default-theme{
+              min-height: 0;
+              height: auto;
+              border: 1px solid #ccc;
+              background-color: #fff;
+              @include borderRadius(0);
+              padding: 8px 0;
+              margin: 0;
+              .md-list-item-inner{
+                min-height: 0;
+              }
+            }
+            .md-list-item-text {
+              font-size: 14px;
+              width: 100%;
+              text-transform: uppercase;
+              text-align: center;
+            }
+            .md-button.md-default-theme:not([disabled]):hover{
+              background-color: #eee;
+            }
+          }
+          .selected{
+            z-index: 2;
+            .md-button.md-default-theme:not([disabled]):hover,
+            .md-button.md-default-theme{
+              background-color: #64B045;
+              color: #fff;
+              border: 1px solid #64B045;
+              cursor: default;
+              z-index: 2;
+            }
+          }
+        }
+      }
+    }
+  }
+  .right-content{
+    md-content{
+      .list-skills-container{
+        margin-top: 13px;
+        .empty-skills-list{
+          font-size: 15px;
+          margin-bottom: 13px;
+        }
+        .skill{
+          display: inline-block;
+          white-space: nowrap;
+          margin-right: 8px;
+          background-color: #ddd;
+          padding-left: 13px;
+          padding-right: 3px;
+          @include borderRadius(3px);
+          .md-button.md-icon-button{
+            margin: 0;
+            height: 0;
+            width: 30px;
+            line-height: 36px;
+          }
+          span{
+            color:#333;
+            font-size: 15px;
+          }
+        }
+      }
+      .add-skills-container{
+        md-input-container{
+          padding-bottom: 3px;
+        }
+      }
+      .with-icon{
+        md-icon {
+          margin-top: 20px;
+        }
+        label{
+          margin-left: 34px;
+        }
+      }
+      .with-icon.md-input-focused label,
+      .with-icon.md-input-has-value label{
+        margin-left: 0;
+        top: 3px;
+      }
+      .picture-block{
+        margin-bottom: 21px;
+        img{
+          width: 150px;
+          height: auto;
+        }
+      }
+      .website-container{
+        margin-top: 21px;
+      }
+      .inputs-container {
+        .block-notification{
+          .title-switch{
+            cursor: pointer;
+            outline: none;
+          }
+          h2{
+            color: #666;
+            font-size: 17px;
+            font-weight: 100;
+          }
+          md-switch{
+            margin: 5px;
+            .md-label{
+              span{
+                font-size: 15px;
+              }
+            }
+            &.md-checked .md-thumb {
+              background-color: #61AE3E;
+            }
+            &.md-checked .md-bar {
+              background-color: #5FDE38;
+            }
+          }
+        }
+        .top-container {
+          padding: 13px 0;
+          .title,.disable-enable-button{
+              display: inline-block;
+          }
+          .title{
+            font-size: 18px;
+            text-transform: uppercase;
+            margin-right: 13px;
+          }
+          .disable-enable-button{
+            font-size: 16px;
+            text-transform: none;
+            cursor: pointer;
+            margin-left: 0;
+          }
+        }
+      }
+      md-input-container:nth-child(1),md-input-container:nth-child(2){
+        padding-right: 21px;
+      }
+      md-checkbox{
+        margin-left: 0;
+      }
+      md-checkbox.md-checked .md-icon {
+        background-color: #FF9600;
+      }
+      .servers-container{
+        border: 1px solid #e1e1e1;
+        margin: 8px 0 13px 0;
+        padding-top: 4px;
+        @include borderRadius(3px);
+      }
+      .servers-table{
+        th,td{
+          text-align: center;
+          div {
+            display: block;
+          }
+        }
+        th:nth-child(3),
+        th:nth-child(2),
+        td:nth-child(3),
+        td:nth-child(2){
+          text-align: left;
+        }
+        tr{
+          outline: none;
+        }
+        td{
+          font-size: 16px;
+          div {
+            text-transform: none;
+          }
+          md-input-container{
+            padding-bottom: 0;
+          }
+        }
+        .status{
+          ng-md-icon{
+            fill:#ccc;
+          }
+          &.status-online{
+            ng-md-icon{
+              fill:#65AF3F;
+            }
+          }
+        }
+      }
+      .blocked-users{
+        margin-top: 21px;
+        .empty-blocked-list{
+          font-size: 15px;
+          margin-bottom: 13px;
+        }
+        .blocked-user{
+          display: inline-block;
+          white-space: nowrap;
+          margin-right: 21px;
+          .md-button.md-icon-button{
+            margin: 0;
+            width: 30px;
+          }
+          a{
+            color:#333;
+            font-size: 15px;
+            &:hover{
+              text-decoration: none;
+            }
+          }
+        }
+      }
+      .title-block{
+        text-transform: uppercase;
+        color: #888;
+        font-size: 15px;
+        margin-top: 0;
+      }
+      .header-right-content{
+        display: flex;
+        .md-button.md-default-theme{
+          span {
+            text-transform: none;
+            text-decoration: underline;
+          }
+          &:hover{
+            span{
+              text-decoration: none;
+            }
+          }
+        }
+        .md-button.md-default-theme.deactivate-button{
+          margin-left:21px;
+        }
+        .md-button.md-default-theme.deactivate-button,
+        .md-button.md-default-theme.save-button,
+        .md-button.md-default-theme.cancel-button {
+          line-height: 36px;
+          min-height: 0;
+          height: 36px;
+          span {
+            text-decoration: none;
+          }
+        }
+
+        h2{
+          text-transform: uppercase;
+          color: #545454;
+        }
+      }
+      .header-right-content.servers{
+        position: relative;
+        padding-left: 19px;
+        .correct-ip{
+          position: absolute;
+          bottom: 7px;
+          right: 10px;
+          fill:#4CAF50;
+          input{
+            padding-right: 28px;
+          }
+        }
+        md-input-container{
+          padding-bottom: 5px;
+        }
+        .md-button.md-default-theme {
+          min-height: 0;
+          height: 36px;
+          line-height: 36px;
+          &.add-server,&.close-add-server{
+            margin-right: 0;
+            ng-md-icon{
+              fill:#616161;
+            }
+          }
+          &.save-server{
+            ng-md-icon{
+              fill:#fff;
+            }
+          }
+          span {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.location-gps{
+  cursor: pointer;
+  outline: none;
+  .location{
+    fill: #333;
+  }
+  &:hover{
+    .location{
+      fill: #1666D3;
+    }
+  }
+}
+
+.icon-input-container label:not(.md-no-float),
+.icon-input-container .md-placeholder{
+  -webkit-transform: translate3d(0, 28px, 0) scale(1);
+  transform: translate3d(0, 44px, 0) scale(1);
+  transition: -webkit-transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.25s;
+  transition: transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.25s;
+}
+.icon-input-container.md-icon-float.md-input-focused label,
+.icon-input-container.md-icon-float.md-input-has-value label{
+  -webkit-transform: translate3d(0, 6px, 0) scale(0.75);
+  transform: translate3d(0, 18px, 0) scale(0.75);
+  transition: -webkit-transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.5s;
+  transition: transform cubic-bezier(0.25, 0.8, 0.25, 1) 0.5s;
+}
+.title-input-left label{
+  top: 3px;
+}
+.title-input-left.md-input-focused label,
+.title-input-left.md-input-has-value label{
+  margin-left: 0;
+}
+.icon-input-container.md-icon-float > md-icon{
+  top: 41px;
+}
+.icon-input-container.md-icon-float.md-input-focused > md-icon,
+.icon-input-container.md-icon-float.md-input-has-value > md-icon{
+  top: 33px !important;
+}
+
+.md-raised.md-primary.md-button.md-default-theme.add-skill{
+  min-height: 0;
+  min-width: 0;
+  line-height: 36px;
+  margin: 3px 0px;
+  padding: 0 13px;
+}
+
+.flow-box{
+  margin-left: 13px;
+  .md-raised.md-button.md-default-theme{
+    line-height: 36px;
+    min-height: 0;
+    text-transform: none;
+    margin: 0 8px;
+    &.cancel-button{
+      margin-right: 0px;
+    }
+  }
+  .alert{
+    background-color: #f2f2f2;
+    @include borderRadius(3px);
+    padding: 13px;
+    position: relative;
+    .inner-box {
+      min-width: 300px;
+      min-height: 144px;
+      border: 2px dashed #ccc;
+      @include borderRadius(3px);
+      cursor: default;
+      .uploaded-picture{
+        width: 100%;
+        text-align: center;
+        margin-top: 13px;
+        margin-bottom: 13px;
+        padding: 0 8px;
+        position: relative;
+        img{
+          max-height: 110px;
+          width: auto;
+        }
+        .remove-picture{
+          position: absolute;
+          right: -13px;
+          top:-13px;
+          background-color: #CD3F3F;
+          ng-md-icon{
+            fill:#fff;
+          }
+        }
+      }
+      .text {
+        color: #6f6f6f;
+        text-align: center;
+        display: block;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.89);
+        cursor: pointer;
+        strong{
+          font-weight: 100;
+          color: #4C85AF;
+          font-size: 16px;
+          text-decoration: underline;
+          &:hover{
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.autocomplete-block{
+  md-autocomplete{
+    padding-bottom: 26px;
+    label{
+      top: -2px;
+    }
+  }
+  md-input-container:not(.md-input-has-value) input:not(:focus){
+    input{
+      color: #333;
+    }
+  }
+}

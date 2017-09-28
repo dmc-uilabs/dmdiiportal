@@ -1,0 +1,255 @@
+.company{
+  &-content{
+    .md-fab{
+      background-color: #fff;
+      &:not([disabled]):hover {
+        background-color: #ddd;
+      }
+    }
+    .editable-md-content .product-card,
+    .products-for-add .product-card{
+      a{
+        cursor: move;
+        &:hover{
+          text-decoration: none;
+        }
+      }
+    }
+    md-tabs.editable-featured {
+      md-content{
+        padding: 8px 0;
+      }
+      .editable-md-content .product-card {
+        width: 47%;
+        margin: 5px;
+      }
+    }
+
+    .logo-storefront-edit,
+    .logo-storefront{
+      overflow: hidden;
+      width: 100px;
+      height: 100px;
+      img{
+        width: 100px;
+      }
+    }
+    .logo-storefront-edit{
+      width: 194px;
+      min-width: 194px;
+      height: 200px;
+      overflow: inherit;
+      .main-image{
+        width: 100%;
+        margin-top: 13px;
+      }
+      .cancel-change-logo,
+      .upload-logo,
+      .change-logo{
+        margin: 8px 0;
+        width: 100%;
+        text-transform: none;
+      }
+      .cancel-change-logo,
+      .upload-logo{
+        width: 46%;
+      }
+    }
+    .buttons-logo-upload{
+      width: 100%;
+    }
+    .storefront-logo-box{
+      position: relative;
+    }
+    .delete-logo{
+      position: absolute;
+      right: -5px;
+      top: 9px;
+      ng-md-icon{
+        fill:#fff;
+      }
+    }
+    .flow-box.flow-box-logo{
+      margin-left: 0;
+      margin-top: 13px;
+      .inner-box{
+        width: 100%;
+        min-width: 0;
+        .uploaded-picture{
+          width: 170px;
+          img{
+            width: 140px;
+          }
+        }
+      }
+    }
+
+    .title-input-edit{
+      padding-bottom: 0;
+      input{
+        //color: #333;
+      }
+    }
+    .list-items{
+      padding-top: 16px;
+    }
+    .one-item{
+      position: relative;
+      padding: 0 8px 15px 8px;
+      .product-card{
+        width: 100%;
+      }
+    }
+    .company-buttons.md-button.md-default-theme {
+      line-height: 36px;
+      min-height: 0;
+      text-transform: none;
+    }
+    .company-buttons.md-button.md-raised.md-default-theme {
+      text-decoration: none;
+    }
+    .md-button.md-default-theme.company-edit{
+      text-transform: none;
+      min-height: 0;
+      line-height: 37px;
+      height: 35px;
+    }
+    .md-icon-button.message-button {
+      ng-md-icon {
+        fill: #585858;
+      }
+      &:hover{
+        ng-md-icon {
+          fill: #64B045;
+        }
+      }
+    }
+  }
+  &-image{
+    height: 325px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  &-title{
+    .md-title{
+      margin-bottom: 0;
+      margin-top: 0;
+      font-size: 28px;
+    }
+    p{
+      font-size: 14px;
+      margin-top: 0;
+    }
+    .read-more{
+      color: #333;
+      text-decoration: underline;
+      cursor: pointer;
+      &:hover{
+        text-decoration: none;
+        color: rgb(0,200,83);
+      }
+    }
+  }
+  &-search{
+    .company-search-field{
+      padding: 0 13px;
+    }
+    md-input-container{
+      padding-bottom: 0;
+    }
+  }
+  &-storefront-title{
+    .md-title{
+      margin-top: 0;
+      text-transform: uppercase;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.company-description{
+  padding-left: 0;
+  md-input-container{
+    margin-top: 8px;
+  }
+}
+
+.storefront-message-dialog{
+  .send-to{
+    input{
+      color: #333;
+    }
+  }
+  md-toolbar:not(.md-menu-toolbar) {
+    color: #fff;
+  }
+  ng-md-icon{
+    fill:#fff;
+  }
+  md-dialog-content{
+    min-width: 500px;
+    padding-bottom: 0;
+    md-input-container{
+      padding-bottom: 15px;
+    }
+  }
+  .md-actions{
+    padding: 0 24px;
+    .md-raised.md-primary.md-button{
+      text-transform: none;
+    }
+  }
+}
+
+
+.company-card{
+  width: 220px;
+  margin: 2px 2px;
+  border: 1px solid #ccc;
+  @include borderRadius(2px);
+  .industry{
+    font-weight: 100;
+    font-size: 12px;
+    margin: 0;
+  }
+  .member-card__image{
+    img{
+      height: 80px;
+      width: auto;
+    }
+  }
+  .top-buttons{
+    padding: 16px 16px 0;
+    a{
+      cursor: pointer;
+    }
+    ng-md-icon{
+      fill: #333;
+    }
+    a:hover{
+      ng-md-icon{
+        fill: #777;
+      }
+    }
+  }
+  .description{
+    max-height: 43px;
+    text-overflow: ellipsis;
+    height: 43px;
+    overflow: hidden;
+  }
+  .product-card__footer{
+    @include borderRadius(0 0px 2px 2px);
+  }
+  .product-card__footer .md-button{
+    min-height: 0;
+    height: 35px;
+    line-height: 35px;
+    &.add-to-project, &.page-href, &.back-to-add{
+      height: 47px;
+      line-height: 47px;
+    }
+  }
+}

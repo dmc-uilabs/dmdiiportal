@@ -1,0 +1,60 @@
+<div layout="column" class="account-step1">
+	<div layout="row" layout-align="space-between center">
+		<h2>Notifications on DMC</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.email">
+			SKIP
+		</md-button>
+	</div>
+	<h3>Select the kinds of notifications you want to receive on the site.</h3>
+	<div class="top-container margin-bottom16" layout="row">
+	    <md-button class="md-raised dmc-button margin-right5" ng-click="disableAll(2)">Deactivate All</md-button>
+	    <md-button class="md-raised dmc-button" ng-click="enableAll(2)">Activate All</md-button>
+	</div>
+
+	<div layout="row" classs="body-container">
+		<div layout="column" classs="body-container" flex="50">
+			<div class="block-notification">
+		        <h2>{{notificationCategories[1].title}}</h2>
+                <div ng-repeat="item in notificationCategories[1]['account-notification-category-items']"
+                     ng-if="!item.hide" class="notification-item"
+                     layout="row" layout-align="start center">
+    		        <md-switch ng-model="account[2].data[item.id].selected" aria-label=""></md-switch>
+                    <span class="title-switch" ng-click="clickOnTitle(account[2].data[item.id])">{{item.title}}</span>
+                    <span flex></span>
+                </div>
+		    </div>
+			<div class="block-notification">
+		        <h2>{{notificationCategories[2].title}}</h2>
+                <div ng-repeat="item in notificationCategories[2]['account-notification-category-items']"
+                     ng-if="!item.hide" class="notification-item"
+                     layout="row" layout-align="start center">
+		            <md-switch ng-model="account[2].data[item.id].selected" aria-label=""></md-switch>
+                    <span class="title-switch" ng-click="clickOnTitle(account[2].data[item.id])">{{item.title}}</span>
+                    <span flex></span>
+                </div>
+		    </div>
+		</div>
+
+		<div layout="column" classs="body-container" flex="50">
+			<div class="block-notification">
+		        <h2>{{notificationCategories[3].title}}</h2>
+                <div ng-repeat="item in notificationCategories[3]['account-notification-category-items']"
+                     ng-if="!item.hide" class="notification-item"
+                     layout="row" layout-align="start center">
+    		        <md-switch ng-model="account[2].data[item.id].selected" aria-label=""></md-switch>
+                    <span class="title-switch" ng-click="clickOnTitle(account[2].data[item.id])">{{item.title}}</span>
+                    <span flex></span>
+                </div>
+		    </div>
+		</div>
+	</div>
+
+	<div layout="row" layout-align="end center">
+		<md-button class="dmc-button md-raised margin-right5" ng-click="scrollTop()" ui-sref="^.private">
+			BACK
+		</md-button>
+		<md-button class="dmc-button md-raised md-primary" ng-click="next(2)">
+			NEXT
+		</md-button>
+	</div>
+</div>

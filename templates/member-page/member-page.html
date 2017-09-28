@@ -1,0 +1,150 @@
+<main>
+<div class="container member-box" ng-show="member" layout="row">
+	<!--Member-->
+	<div class="content-column" flex='100'>
+		<!--member-->
+		<md-content class="member">
+
+			<div layout="row" layout-align="end">
+				<md-button ng-if="userData.isAdmin || userData.isDmdiiAdmin"
+						   class="md-raised dmc-button"
+							 href="company-profile.php#/edit/{{member.organization.id}}/membership">
+					Edit DMDII Member Profile
+				</md-button>
+			</div>
+
+			<div layout="row" layout-margin>
+				<!--member image-->
+				<div layout="column" style="padding-right: 20px">
+					<img class="company-logo" style="max-width:250px; max-height: 250px;" ng-src="{{member.organization.logoImage ? member.organization.logoImage : 'images/icon-company-lg.svg'}}">
+				</div>
+				<div flex>
+					<!--member header-->
+
+						<div layout="row" layout-align="start center">
+							<h2 class="member-header">{{member.organization.name}}</h2>
+						</div>
+						<div layout="row" layout-align="start center">
+							<h5 class="member-subtitle">{{member.dmdiiType.dmdiiTypeCategory.category + ' Tier ' + member.dmdiiType.tier + ' Partner' }}<br>{{' Member Since ' + startDate}}</h5>
+						</div>
+
+
+					<md-divider></md-divider>
+					<span flex></span>
+
+					<!--member description-->
+					<div markdown-to-html="member.organization.description"></div>
+
+				</div>
+			</div>
+
+			<div layout="row" layout-margin >
+			<md-divider></md-divider>
+
+			<md-tabs md-selected="$parent.selectedTab" md-dynamic-height md-border-bottom style="width:100%">
+					<md-tab label="Contacts">
+						<md-content class="member-contacts">
+							<div layout="row">
+								<div flex="50" layout="column" class="contact no-bottom" ng-repeat="contact in member.organization.contacts | limitTo:4">
+
+									<div layout="row" layout-align="start center" class="no-bottom" ng-show="contact.name">
+											<h3 class="no-bottom">{{contact.name}}</h3>
+									</div>
+									<div layout="row" layout-align="start center" ng-show="contact.contactType && contact.contactType.contactType">
+										<h5 style="color:green;margin-top:-3px">{{contact.contactType.contactType}}</h5>
+									</div>
+									<div layout="row" layout-align="start center" class="no-bottom" ng-show="contact.title && contact.title.length > 0">
+											<h4 class="no-bottom">{{contact.title}}</h4>
+									</div>
+									<div layout="row" layout-align="start center" class="no-bottom" ng-if="contact.phoneNumber">
+											<ng-md-icon icon="phone" style="fill: green" size="30"></ng-md-icon>
+											<a href="tel:{{contact.phone}}">{{contact.phoneNumber}}</a>
+									</div>
+									<div layout="row" layout-align="start center" class="no-bottom" ng-if="contact.email">
+											<ng-md-icon icon="mail" style="fill: green;margin-right:3px" size="30"></ng-md-icon>
+											<a href="mailto:{{contact.email}}">{{contact.email}}</a>
+									</div>
+
+								</div>
+							</div>
+					</md-content>
+				</md-tab>
+
+				<md-tab label="Project Involvement">
+					<md-content class="md-padding">
+						<div layout="column">
+							<div class="member-project" ng-show="primes.length > 0" ng-repeat="project in primes">
+								<h4 class="no-bottom no-top">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}} (Prime)</h4>
+								<h3 class="no-bottom no-top" style="margin-top:0px"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h3>
+								<md-divider/>
+							</div>
+							<div class="member-project" ng-show="contributing.length > 0" ng-repeat="project in contributing">
+								<h4 class="no-bottom no-top">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</h4>
+								<h3 class="no-bottom no-top" style="margin-top:0px"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h3>
+								<md-divider/>
+							</div>
+							<div ng-show="!primes && !contributing || primes.length === 0 && contributing.length === 0">
+								<span>This Member is not on any projects yet</span>
+						</div>
+					</md-content>
+				</md-tab>
+
+
+				<!-- <md-tab label="Storefront">
+					<md-content class="carousel-padding">
+						<div  class="member-storefront">
+							<div class="member-storefront">
+								<div dmc-carousel
+								name-carousel="'carouselMemberStorefront'"
+								max-items="16"
+								show-items="4"
+								carousel-source="storefront"
+								run-carousel="true"
+								timeout="5">
+								</div>
+							</div>
+						</div>
+					</md-content>
+				</md-tab>
+
+				<md-tab label="Recognitions">
+					<md-content class="md-padding">
+						<div class="tabs-content" layout="row">
+							<div class="pad20 member-project" ng-repeat="award in member.organization.awards" ng-show="member.organization.awards.length > 0">
+								<h4 class="green"><a ng-href="{{award.link}}">{{award.name}}</a></h4>
+								<p>{{award.description}}</p>
+							</div>
+							<span ng-hide="!member.organization.awards || member.organization.awards.length > 0">This member hasn't added any recognitions yet</span>
+						</div>
+					</md-content>
+				</md-tab>
+
+				<md-tab label="Capabilities" >
+					<md-content class="md-padding">
+						<div class="tabs-content" layout="row" >
+							<div style="width:40%">
+								<h3 class="no-bottom slim-margin">Core Capabilities</h3>
+								<div class="pad20" ng-repeat="AOE in member.organization.areasOfExpertise">
+									<h4 style="color:green">{{AOE.name}}</h4>
+								</div>
+								<span ng-hide="member.organization.areasOfExpertise.length > 0">This member hasn't added any areas of expertise yet</span>
+							</div>
+
+							<div layout="column" style="margin-left:solid;">
+								<h3 class="no-bottom slim-margin">Desired Areas for Collaboration</h3>
+								<div class="pad20" ng-repeat="area in member.organization.desiredAreasOfExpertise">
+									<h4 style="color:green">{{area.name}}</h4>
+								</div>
+								<span ng-hide="member.organization.areasOfExpertise.length > 0">This member hasn't added any desired areas of collaboration yet</span>
+							</div>
+						</div>
+					</md-content>
+				</md-tab> -->
+
+			</md-tabs>
+
+		</md-content>
+
+	</div>
+</div>
+</main>

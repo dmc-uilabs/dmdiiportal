@@ -1,0 +1,10 @@
+<section class="signup-tabs">
+  <ol class="gray">
+    <li ng-repeat="step in steps" ng-class="{{$index}} < {{currentStage}} ? '_selected':'normal'">
+      <div>
+        <ng-md-icon icon="{{step.icon}}" ng-style="$index < currentStage ? {'fill': '#75bc52'}: {'fill':'#6e797a'}" size="28"></ng-md-icon>
+      </div>
+      {{$index+1}} . {{step.content}}
+    </li>
+  </ol>
+</section>

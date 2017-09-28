@@ -1,0 +1,18 @@
+<workspace-header class="workspace-header" ng-init="currentPage='7'"></workspace-header>
+<div class="project-services" layout="column">
+    <md-content >
+      <div layout="row" layout-align="space-between center" class="project-services-top">
+          <span flex></span>
+          <a class="link" href="marketplace.php">Browse Services</a>
+          <a ng-if="userData.isDmdiiAdmin || ([158, 191, 339, 237].includes(userData.companyId))" class="link margin-left16" ng-href="{{'project.php#/' + projectData.id + '/upload-service'}}">Register Services</a>
+      </div>
+
+        <div class="content-panel content-panel-dashboard"
+             ui-widget-services
+             project-id="projectData.id"
+             sort-by="'-currentStatus.status'"
+             columns="['run','name','component','status','dateAdded','addedBy','from','remove','cancelRun']"
+             widget-style="'full'">
+        </div>
+    </md-content>
+</div>

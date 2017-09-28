@@ -1,0 +1,38 @@
+<div layout="column" class="company-step6">
+	<div layout="row" layout-align="space-between center">
+		<h2>Your Company’s Skills</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.projects">
+			SKIP
+		</md-button>
+	</div>
+	<h3>Show off your capabilities, tools and technologies.</h3>
+	<div layout="column">
+	    <form ng-submit="addSkill(inputSkill)" class="add-skills-form" layout="row" layout-align="start center">
+	      	<md-input-container>
+		        <label>Enter skill</label>
+		        <input ng-model="inputSkill">
+	      	</md-input-container>
+	      	<md-button ng-disabled="!inputSkill" class="md-raised dmc-button">Add</md-button>
+	    </form>
+	    <div layout="row" class="tabs-content" layout-wrap>
+	      	<md-chips ng-repeat="skill in company[5].data.skills track by $index">
+		        <md-chip class="tags-chip">
+			        {{skill.name}}
+			        <md-button aria-label="close" ng-click="deleteSkill($index)" class="md-icon-button">
+			            <ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
+			        </md-button>
+		        </md-chip>
+	     	</md-chips>
+            <div layout="row" class="margin-bottom-10" ng-if="company[5].data.skills.length == 0">No skills</div>
+	    </div>
+	</div>
+
+	<div layout="row" layout-align="end center" class="onboarding-foter">
+		<md-button class="dmc-button md-raised margin-right5" ui-sref="^.media">
+			BACK
+		</md-button>
+		<md-button class="dmc-button md-raised md-primary" ng-click="next(5)">
+			NEXT
+		</md-button>
+	</div>
+</div>

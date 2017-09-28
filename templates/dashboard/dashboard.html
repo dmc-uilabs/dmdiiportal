@@ -1,0 +1,63 @@
+<div class="container container-dashboard" layout-padding layout="row">
+    <div class="content-column" layout="column" flex>
+        <div class="content-panel content-panel-dashboard margin-right12-5" style="display:none" ng-if="isMobile == null">
+            <div class="content-panel-header">
+                <md-toolbar>
+                    <div class="md-toolbar-tools widget-toolbar-title">
+                        <h2>MARKET PLACE STATS</h2>
+                        <span flex></span>
+                        <md-button href="/" md-no-ink class="view-all-button">View statistics</md-button>
+                    </div>
+                </md-toolbar>
+            </div>
+            <div class="content-panel-body">
+                <md-content class="md-padding">
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="Overview">
+                            <md-content class="md-padding">
+                                <img ng-src="/images/top-products.jpg" alt=""/>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Views">
+                            <md-content class="md-padding">
+                                <img ng-src="/images/top-products.jpg" alt=""/>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Added">
+                            <md-content class="md-padding">
+                                <img ng-src="/images/top-products.jpg" alt=""/>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>
+            </div>
+        </div>
+        <div class="content-panel content-panel-dashboard margin-right12-5" ui-widget-services limit="5" columns="['name','project','start','status']" widget-style="'full'" widget-title="'Services'" start-at-offset="14"></div>
+        <div class="content-panel content-panel-dashboard margin-right12-5 margin-top-25" ui-widget-projects filters="filters" widget-format="'my-projects'" get-projects-flag="true" widget-title="'Recent projects'" show-image="true" get-projects-on-ready="true"></div>
+    </div>
+
+    <div class="content-column" layout="column" flex>
+        <div class="content-panel content-panel-dashboard margin-left12-5" style="display:none" ng-if="isMobile == null">
+            <div class="content-panel-header">
+                <md-toolbar>
+                    <div class="md-toolbar-tools widget-toolbar-title">
+                        <h2>MY CONNECTIONS</h2>
+                        <span flex></span>
+                        <md-button href="/" md-no-ink class="view-all-button">View connections</md-button>
+                    </div>
+                </md-toolbar>
+            </div>
+            <div class="content-panel-body">
+                <md-content class="md-padding">
+                    <img ng-src="/images/my-connections.jpg" alt=""/>
+                </md-content>
+            </div>
+        </div>
+        <!-- Tasks -->
+        <div class="content-panel content-panel-dashboard margin-left12-5" ui-widget-tasks columns="['title','project','dueDate','priority']" widget-title="'My tasks'"></div>
+        <!-- Discussion -->
+        <div class="content-panel content-panel-dashboard margin-left12-5 margin-top-25" ui-widget-discussions widget-data-type="'following'" widget-title="'Following'"></div>
+        <!-- Onboarding -->
+        <div class="content-panel content-panel-dashboard margin-left12-5 margin-top-25" ui-widget-onboarding widget-title="'Onboarding'"></div>
+    </div>
+</div>

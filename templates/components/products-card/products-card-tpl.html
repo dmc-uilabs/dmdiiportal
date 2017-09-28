@@ -1,0 +1,90 @@
+<div class="products-card">
+    <div class="content-panel-header" layout="column" layout-padding>
+        <!-- <md-toolbar ng-if="!searchCard">
+            <div class="md-toolbar-tools">
+              <h1 class="name-card" layout-padding>{{titleCard}}</h1>
+                <span flex></span>
+              <a ng-href="{{viewAllLink}}" class="link-button uppercase" ng-show="viewAllLink">View All</a>
+            </div>
+        </md-toolbar>
+        <div layout='row' layout-align="center center">
+            <h2 class="total-size" ng-show="searchCard">{{totalSize}} {{(titleCard=="ALL FAVORITES")? 'Favorites': 'Results'}}</h2>
+            <md-button ng-click="clearFilter()" ng-if="searchCard" style="display: none">Clear All</md-button>
+            <md-content class="md-padding" layout="column" ng-show="searchCard" style="display: none">
+                <md-chips ng-model="filterItems" readonly="false">
+                    <md-chip-template>
+                        <strong>{{$chip.name}}</strong>
+                    </md-chip-template>
+                </md-chips>
+            </md-content>
+            <span flex></span>
+            <md-input-container ng-show="searchCard" class="show-filter-input-container">
+                <label>Show</label>
+                <md-select ng-model="sizeModule" ng-change="selectItemDropDown('show')">
+                    <md-option ng-repeat="item in showArray track by $index" ng-value="$index" >
+                        {{item.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container ng-show="searchCard">
+                <label>Sort</label>
+                <md-select ng-model="pageSort" ng-change="selectItemDropDown('sort')">
+                    <md-option ng-repeat="item in sortArray track by $index" ng-value="$index" >
+                        {{item.name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div> -->
+    </div>
+    <md-progress-linear md-mode="indeterminate" ng-show="cardLoading"></md-progress-linear>
+
+    <div class="content-panel-body">
+        <md-content>
+          <div dir-paginate="serviceGroup in itemsArray | itemsPerPage: itemsArray.length">
+            <div class="list-items product-container" layout="row" layout-wrap>
+              <div layout-padding layout-margin flex="76">
+                <h2 style="border-bottom: 1px solid rgba(0, 0, 0, 0.12);">{{serviceGroup.serviceType | uppercase}}</h2>
+              </div>
+            </div>
+            <div class="list-items product-container" layout="row" layout-wrap>
+                <!-- <div class="one-item"
+                     flex-sm="100"
+                     flex-md="50"
+                     flex-lg="33"
+                     flex-gt-lg="25"
+                     dir-paginate="item in itemsArray | itemsPerPage: pageSize track by $index"> -->
+                    <!-- <dmc-product-card card-style="'small'" ng-show="item.id"
+                                      type-product="item.type"
+                                      add-featured="addFeatured"
+                                      remove-featured="removeFeatured"
+                                      hide-buttons="hideButtons"
+                                      card-source="item">
+                    </dmc-product-card> -->
+                <!-- </div> -->
+
+                  <div ng-repeat="item in serviceGroup.services">
+                    <dmc-product-card card-style="'small'" ng-show="item.id"
+                                      type-product="item.type"
+                                      add-featured="addFeatured"
+                                      remove-featured="removeFeatured"
+                                      hide-buttons="hideButtons"
+                                      card-source="item">
+                    </dmc-product-card>
+                  </div>
+                </div>
+            </div>
+        </md-content>
+    </div>
+
+
+
+
+    <div class="content-panel-footer storefront-results-footer">
+        <!--<div class="total-items">-->
+            <!--{{(currentPage-1)*pageSize+1}}-{{currentPage*pageSize > totalSize ? totalSize : currentPage*pageSize}} of {{totalSize}}-->
+        <!--</div>-->
+        <!-- <div class="text-center">
+            <dir-pagination-controls on-page-change="pageChangeHandler(currentPage)"></dir-pagination-controls>
+        </div> -->
+    </div>
+</div>

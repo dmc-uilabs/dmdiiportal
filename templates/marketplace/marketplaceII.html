@@ -1,0 +1,145 @@
+<main>
+  <!-- Nav tabs -->
+  <section class="container" style="margin-bottom: 50px;">
+
+    <div style="border-bottom: 1px solid lightgrey;" class="row">
+    <h1 style="display: inline;">Resource Center</h1>
+    <ul style="float: right;" class="nav nav-tabs" role="tablist">
+      <li style="float: right;" role="presentation" class="hidden-xs"><a data-target="#viewall" aria-controls="viewall" role="tab" data-toggle="tab">View All</a></li>
+      <!-- <li style="float: right;" role="presentation" class="hidden-xs"><a data-target="#academia" aria-controls="academia" role="tab" data-toggle="tab">Academia</a></li> -->
+      <li style="float: right;" role="presentation" class="active hidden-xs"><a data-target="#forsmms" aria-controls="forsmms" role="tab" data-toggle="tab">Curated Content</a></li>
+    </ul>
+    <!-- <h1 class="col-xs-12">Resource Center</h1> -->
+  </section>
+
+
+
+    <div class="container">
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+
+
+
+          <!-- SMM PANEL -->
+            <div role="tabpanel" class="tab-pane fade in active" id="forsmms">
+              <section>
+
+                <!-- <div class="row" ng-show="showHome()">
+                  <div class="col-xs-12 resource-center-group"
+                    style="background-image: url('../images/{{contentNode.selectedNode.categoryImage}}'); padding: 15px;"
+                    ng-click="moveUpStack({node: contentNode})"
+                    >
+                    <span>{{contentNode.selectedNode.categoryTitle}}</span>
+                  </div>
+                </div> -->
+
+                <div ng-show="nodeStack[0].selectedNode" class="row">
+                  <div class="col-xs-12 resource-center-group fade-area"
+                      style="padding: 15px; background-color: lightgrey;"
+                      ng-click="returnToHome()">
+                    <span>HOME</span>
+                  </div>
+                </div>
+
+                <div ui-widget-content-path
+                  class="cp-wrapper"
+                  ng-repeat="contentNode in nodeStack track by $index"
+                  content-node="contentNode"
+                  is-last="$last"
+                  service-map="serviceMap"
+                  add-to-stack="addToNodeStack(node, selected)"
+                  move-up-stack="moveUpStack(node)">
+                </div>
+
+                  <!-- <div class="row">
+                    <div class="back-button-container">
+                      <ng-md-icon ng-if="selectedNode" ng-click="returnToHome()" class="nav-back" style="fill: white" icon="navigate_before" size="25"></ng-md-icon>
+                    </div>
+                    <div ng-repeat="resourceGroup in resourceMap"
+                    class="resource-center-group"
+                    style="background-image: url('../images/{{resourceGroup.categoryImage}}')"
+                    ng-click="selectResourceNode(resourceGroup)"
+                    ng-class="{'hide-group': selectedNode && resourceGroup.categoryId != selectedNode.categoryId,
+                              'resource-center-group_small': selectedNode,
+                              'col-xs-6': !selectedNode,
+                              'col-xs-12': selectedNode && resourceGroup.categoryId == selectedNode.categoryId,
+                              'hide-group': selectedNode && resourceGroup.categoryId != selectedNode.categoryId,
+                              'selected-node': resourceGroup.categoryId == selectedNode.categoryId}">
+
+                      <span>{{resourceGroup.categoryTitle}}</span>
+                    </div>
+                  </div>
+
+                  <div ng-if="selectedNode" class="row">
+                      <div class="col-xs-12 category-description">
+                        <h4>Summary</h4>
+                        {{selectedNode.categoryDescription}}
+                      </div>
+                  </div>
+
+                  <div ng-repeat="item in selectedNode.contentSet">
+                    <div ui-widget-content
+                         content-item="item"
+                         serviceMap="serviceMap">
+                    </div>
+                  </div> -->
+
+              </section>
+            </div>
+
+            <!-- VIEW ALL PANEL -->
+              <section role="tabpanel" class="tab-pane fade " id="viewall">
+
+                <section class="container">
+
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <form ng-submit="search(searchTerm)">
+                        <div class="search-input-div col-xs-10">
+                            <input class="search-input" type="text" ng-model="searchTerm" placeholder="Search">
+                            <ng-md-icon icon="clear" size="15" class="pull-right clear-icon" ng-click="clearSearch()"></ng-md-icon>
+                        </div>
+                        <button class="btn search-button no-click-border col-xs-2" type="submit">
+                          <ng-md-icon icon="search" size="20"></ng-md-icon>
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+
+                </section>
+                <section class="container">
+                  <!-- <div class="row ws-filters">
+                    <div class="col-xs-6" ng-init="filterModel='both'">
+                      <h4>FILTER</h4>
+                      <md-radio-group ng-model="filterModel">
+                        <md-radio-button ng-click="setFilter('clear')" value="both" class="md-primary md-checked">Apps</md-radio-button>
+                        <md-radio-button ng-click="setFilter('public')" value="pubilc" class="md-primary">Documents</md-radio-button>
+                        <md-radio-button ng-click="setFilter('private')" value="private" class="md-primary">Services</md-radio-button>
+                      </md-radio-group>
+                    </div>
+
+                    <div class="col-xs-6">
+                      <div style="float: right;">
+                        <h4>SORT</h4>
+                        <md-radio-group>
+                          <md-radio-button ng-click="updateSort()" class="md-primary" checked="true">Popular</md-radio-button>
+                          <md-radio-button ng-click="updateSort()" class="md-primary" checked="false">A-Z</md-radio-button>
+                        </md-radio-group>
+                      </div>
+
+                    </div>
+                  </div> -->
+
+                  <div ng-repeat="item in allResources | filter:searchTerm">
+                    <div ui-widget-content
+                         content-item="item"
+                         serviceMap="serviceMap">
+                    </div>
+                  </div>
+
+              </section>
+            </section>
+          </div>
+        </div>
+</main>

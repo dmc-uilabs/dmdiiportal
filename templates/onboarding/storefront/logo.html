@@ -1,0 +1,38 @@
+<div layout="column" class="storefront-step3">
+	<div layout="row" layout-align="space-between center">
+		<h2>Your Brand Goes Here</h2>
+		<md-button class="dmc-button md-raised" ui-sref="^.^.home">
+			SKIP
+		</md-button>
+	</div>
+	<h3>Include your logo to help users identify your brand. </h3>
+    <div layout="row"  layout-align="center center">
+        <div class="img-box" ng-if="storefront[2].data.logoImage.documentUrl">
+            <img ng-src="{{storefront[2].data.logoImage.documentUrl}}">
+            <md-button md-no-ink class="md-fab md-mini md-warn md-raised removed-images"
+                       ng-click="removeLogo()"
+                       aria-label="Delete Logo">
+                <ng-md-icon icon="delete" size="18"></ng-md-icon>
+            </md-button>
+        </div>
+		<div class="content-column upload-documents top10" layout="column" flex>
+			<div class="content-panel"
+			source="newLogo"
+			ui-widget-upload-documents
+			widget-type="'row'"
+			auto-upload="false"
+			widget-title="'Upload Logo'"
+			allow-tagging="true"
+			file-limit="1">
+			</div>
+		</div>
+    </div>
+	<div layout="row" layout-align="end center" class="onboarding-foter">
+		<md-button class="dmc-button md-raised margin-right5" ui-sref="^.description">
+			BACK
+		</md-button>
+		<md-button class="dmc-button md-raised md-primary" ng-click="finish(2)">
+			FINISH
+		</md-button>
+	</div>
+</div>

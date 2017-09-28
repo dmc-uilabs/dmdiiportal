@@ -1,0 +1,18 @@
+<div class="content-panel-header" ng-if="widgetTitle">
+    <md-toolbar>
+        <div class="md-toolbar-tools widget-toolbar-title">
+            <h2>{{widgetTitle}}</h2>
+        </div>
+    </md-toolbar>
+</div>
+<div class="content-panel-body">
+    <md-content>
+        <div layout="row" class="project-tags-list" layout-wrap>
+            <div class="tag without-delete" ng-repeat="tag in tags track by $index">
+                <div>
+                    <span>{{tag.name}}</span>
+                </div>
+            </div>
+        </div>
+    </md-content>
+</div>

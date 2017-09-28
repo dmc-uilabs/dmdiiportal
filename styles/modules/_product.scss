@@ -1,0 +1,307 @@
+.product {
+  padding: 16px 0;
+  .product-header {
+    margin-bottom: 15px;
+    md-input-container {
+      &.serviceType,
+      &.titleInput {
+        max-width: 489px;
+        width: 100%;
+      }
+      &.serviceType{
+        max-width: 289px;
+      }
+    }
+    h2 {
+      font-size: 21px;
+      margin: auto 0;
+      font-weight: normal;
+      text-transform: capitalize;
+
+      span {
+        margin-left: 5px;
+        font-size: 11px;
+      }
+    }
+    .header-icon{
+      width: auto;
+      min-width: 25px;
+    }
+    .add{
+      text-transform: initial;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+    .save{
+      &:hover{
+        color: white;
+        background-color: #65AF3F;
+      }
+      text-transform: initial;
+      color: white;
+      background-color: #65AF3F;
+      margin-bottom: 0;
+      margin-top: 0;
+      height: 47px;
+    }
+    .cancel{
+      text-transform: initial;
+      margin-bottom: 0;
+      margin-top: 0;
+      height: 47px;
+    }
+
+    .link-to-project{
+      margin-left: 8px;
+      width: 326px;
+    }
+    .add-to-project{
+
+      .workspaceclose{
+        width: 36px;
+        min-width: 36px;
+        background-color: #777;
+      }
+      .workspaceclose:hover{
+        background-color: #65AF3F;
+      }
+
+      md-select{
+        margin: 0;
+        width: 270px;
+      }
+      .md-button{
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      .cancelProject,
+      .addProject{
+        min-width: 36px;
+      }
+      .addProject{
+        text-transform: none;
+      }
+    }
+    .cancelProject{
+      min-width: 36px;
+    }
+  }
+
+  .product-image{
+    text-align: center;
+    width: 425px;
+    img{
+      width: 100%;
+      height: auto;
+    }
+    .delete-image{
+      color: white;
+      position: absolute;
+      margin: 0;
+      min-width: 40px;
+      min-height: 40px;
+      height: 40px;
+      width: 40px;
+      line-height: 40px;
+      z-index: 1;
+    }
+    .main-image{
+      padding-bottom: 16px;
+    }
+    .no-image{
+      min-height: 200px;
+      h2{
+        font-weight: normal;
+      }
+    }
+  }
+  .product-page-carousel{
+    .ng-carousel .image-item {
+      width: 77px;
+      height: 77px;
+    }
+  }
+  .product-image-modal{
+    width:auto;
+    padding-right: 16px
+  }
+
+  .product-description{
+    margin-top: 15px;
+  }
+
+  .add-tags-form{
+    .md-button{
+      min-height: 36px;
+      height: 36px;
+      line-height: 36px;
+    }
+  }
+    .preview{
+      height: 100%;
+      padding-top: 16px;
+      h2 {
+        margin: 8px;
+        font-size: 14px;
+      }
+      md-content{
+        height: 350px;
+      }
+      md-list-item{
+        height: 36px;
+        min-height: 36px;
+        &.selected{
+          background-color: #65AF3F;
+        }
+        .md-list-item-inner{
+          min-height: 36px;
+        }
+      }
+    }
+  .tabs-content{
+    p,
+    .add-specification{
+      margin: 3px 0;
+      color: black;
+    }
+    .deleteSpecifications{
+      margin: 15px 10px 0 0;
+      height: 24px;
+      line-height: 24px;
+      min-height: 24px;
+      min-width: 24px;
+      width: 24px;
+    }
+    md-chips .md-chips{
+      box-shadow: none;
+      md-chip{
+        border-radius: 0px;
+        a{
+          text-decoration: none;
+          color: inherit;
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+      .tags-chip{
+        padding-right: 32px;
+        .md-icon-button{
+          position: absolute;
+          right: 0;
+          top: 0;
+          min-height: 32px;
+          height: 32px;
+          line-height: 32px;
+          min-width: 32px;
+          width: 32px;
+          margin: 0;
+        }
+      }
+    }
+    md-autocomplete{
+      margin-bottom: 8px;
+    }
+
+
+    .included{
+      padding: 8px;
+      .product-card{
+        width: 100%;
+        padding-bottom: 16px;
+        a{
+          color: grey;
+        }
+      }
+    }
+
+  }
+  .padding-card{
+    padding: 8px;
+  }
+  .md-button.viewAll{
+    font-size: 11px;
+    color: #65AF3F;
+    line-height: 36px;
+    margin: 0;
+  }
+  a.viewAll{
+    margin-right: 8px;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:hover{
+      text-decoration: underline;
+    }
+
+  }
+}
+
+.reviews{
+  margin: 15px 0;
+  .reviews-rating{
+    div:focus{
+      outline: none;
+    };
+    .reviews-rating-header{
+      padding: 0;
+      h2{
+        text-transform: uppercase;
+        font-size: 21px;
+        margin-right: 10px;
+        font-weight: normal;
+      }
+      .md-button{
+        //color: #64B045;
+      }
+    }
+    md-progress-linear {
+      margin: auto 0 !important;
+      height: 15px ;
+      .md-container{
+        height: 15px ;
+        .md-bar2{
+          height: 15px ;
+        }
+      }
+      cursor: pointer;
+    }
+    .active-star{
+      md-progress-linear {
+        .md-container{
+          background-color: #CCC;
+          .md-bar2{
+            background-color: #999;
+          }
+        }
+      }
+    }
+    .review-stars{
+      .md-button{
+        cursor: default;
+      }
+    }
+    div {
+      p{
+        padding: 15px 0;
+      }
+      p:first-child {
+        margin: 0 10px 0 0;
+      }
+      p:last-child{
+        margin: 0 0 0 10px;
+      }
+    }
+  }
+}
+
+
+.similar_product{
+  h2{
+    text-transform: uppercase;
+    font-size: 21px;
+    margin-right: 10px;
+    font-weight: normal;
+  }
+}

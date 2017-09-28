@@ -1,0 +1,49 @@
+<div layout="row" class="line-block" layout-align="start start">
+    <md-input-container flex class="company-postCollaboration right-space" >
+        <label>Past Collaborations</label>
+        <textarea ng-model="source.postCollaboration"
+                  columns="1"></textarea>
+    </md-input-container>
+</div>
+<div layout="row">
+    <md-autocomplete flex="100"
+        md-input-name="desiredCollab"
+        md-items="tag in querySkillSearch(searchSkill)"
+        md-search-text="searchSkill"
+        md-selected-item="selectedSkill"
+        md-selected-item-change="addSkill(selectedSkill)"
+        md-item-text="tag.name"
+        md-floating-label="Collaboration Interests">
+        <md-item-template>
+          <span md-highlight-text="searchSkill">{{tag.name}}</span>
+        </md-item-template>
+        <md-not-found>
+          No skills matching "{{searchSkill}}" were found.
+          <a ng-click="addNewSkill()">Create a new one!</a>
+        </md-not-found>
+    </md-autocomplete>
+</div>
+<div layout="row" class="list-skills-block" layout-wrap>
+    <div layout="column">
+        <span class="no-bottom" flex>Selected Collaboration Interests (Click tag to remove)</span>
+        <div layout="row" layout-wrap>
+            <md-chips ng-repeat="area in source.desiredAreasOfExpertise track by $index">
+                <md-chip ng-click="deleteSkill($index)">
+                    <span>{{area.name}}</span>
+                </md-chip>
+            </md-chips>
+        </div>
+    </div>
+</div>
+<div layout="row" class="line-block" layout-align="start start">
+    <md-input-container flex class="company-pastProjects right-space" >
+        <label>Past DMDII Projects</label>
+        <textarea ng-model="source.pastProjects"
+                  columns="1"></textarea>
+    </md-input-container>
+    <md-input-container flex class="company-upcomingProjectInterests left-space" >
+        <label>Upcoming DMDII Project Interests</label>
+        <textarea ng-model="source.upcomingProjectInterests"
+                  columns="1"></textarea>
+    </md-input-container>
+</div>

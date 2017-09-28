@@ -1,0 +1,48 @@
+.add-members{
+	padding: 8px;
+	background: #fff;
+	.content-column{
+		padding: 8px;
+	}
+	md-toolbar{
+		background: #EFECED;
+	}
+	&-header{
+		min-height: 50px;
+		height: 50px;
+		line-height: 50px;
+		background-color: #EFECED;
+		h2{
+			font-weight: normal;
+			font-size: 14px;
+			margin: 0;
+		}
+	}
+
+	&-active{
+		.md-button{
+			max-height: 46px;
+			height: 46px;
+			line-height: 46px;
+		}
+		form{
+			md-input-container{
+				height: 40px
+			}
+		}
+	}
+	.invitees{
+		md-content{
+			position: initial;
+		}
+		.md-avatar{
+			width: auto;
+		}
+	}
+		.md-toolbar-tools{
+			padding: 0;
+		}
+	.button-aria{
+		background-color: #fff;
+	}
+}

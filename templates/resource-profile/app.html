@@ -1,0 +1,89 @@
+<main class="container">
+
+    <div class="row">
+        <div class="col-md-5 margin-left-20">
+            <a class="text-uppercase" ng-href="/marketplace.php">BACK TO RESOURCE CENTER</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4 col-md-4 media-column">
+            <img class="center-img" ng-src="{{resource.categoryImg}}" width="100%" style="...">
+        </div>
+        <div class="col-sm-8 col-md-8 spacing-container info-column">
+            <div class="top-content-container">
+                <h2>
+                    {{resource.title}}
+                </h2>
+                <div>
+                    Release Date: {{resource.releaseDate}}
+                </div>
+                <div>
+                    Author: {{resource.author}}
+                </div>
+            </div>
+            <div class="description-container">
+                <p ng-bind-html="resource.description"></p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <ul class="nav nav-tabs margin-left-20" role="tablist" style="margin-bottom: -45px;">
+            <li role="presentation" class="active no-click-border" ng-click=""><a data-target="#inputs-outputs" aria-controls="my-workspaces" role="tab" data-toggle="tab">INPUTS & OUTPUTS</a></li>
+            <li role="presentation" class="no-click-border" ng-click="adHocData('service_tags')"><a data-target="#tags" aria-controls="all-workspaces" role="tab" data-toggle="tab">TAGS</a></li>
+            <li role="presentation" class="no-click-border" ng-click=""><a data-target="#documents" aria-controls="all-workspaces" role="tab" data-toggle="tab">DOCUMENTS</a></li>
+        </ul>
+    </div>
+
+    <div class="tab-content margin-left-20">
+        <div role="tabpanel" class="tab-pane fade in active" id="inputs-outputs">
+            <div class="row margin-bottom-20">
+                <div class="col-md-4">
+                    <div class="row underline-headers">
+                        <div class="col-md-5">
+                            <h3 class="lighter-black-text">Inputs</h3>
+                        </div>
+                        <div class="col-md-5">
+                            <h3 class="lighter-black-text">Type</h3>
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="item in resource.interfaceModel.inParams track by $index">
+                        <b class="col-md-5">{{item.name}}</b>
+                        <b class="col-md-5">{{item.type}}</b>
+                    </div>
+                </div>
+                <div class="col-md-4 margin-left-20">
+                    <div class="row underline-headers">
+                        <div class="col-md-5">
+                            <h3 class="lighter-black-text">Outputs</h3>
+                        </div>
+                        <div class="col-md-5">
+                            <h3 class="lighter-black-text">Type</h3>
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="item in resource.interfaceModel.outParams track by $index">
+                        <b class="col-md-5">{{item.name}}</b>
+                        <b class="col-md-5">{{item.type}}</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade in" id="tags">
+            <div class="row margin-bottom-20">
+                <div class="chips" ng-repeat="tag in resource.service_tags track by $index">
+                    <div class="chip">
+                        <a ng-href="/marketplace.php#/search?product=services&type=analytical&text={{tag.name}}">{{tag.name}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade in" id="documents">
+            <ui-widget-documents-folder
+                    documents-type="'service'"
+                    source="documents"
+                    type-id="resource.id">
+            </ui-widget-documents-folder>
+        </div>
+    </div>
+
+</main>

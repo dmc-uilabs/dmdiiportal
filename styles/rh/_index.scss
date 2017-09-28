@@ -1,0 +1,91 @@
+.lighter{
+  font-weight: lighter;
+}
+.small-underline{
+  height: 1px;
+  margin: 0px 15px 10px;
+  background: $brand-accent;
+}
+.welcome{
+  h2{
+    margin-bottom: -15px;
+    color: $brand-accent;
+    font-weight: bolder;
+  }
+  p{
+    font-size: 1.3em;
+    margin-bottom: 30px;
+  }
+}
+.social-button{
+  md-icon{
+    width: 40px;
+    height: 40px;
+    padding-left: 5px;
+    svg{
+      fill: $brand-accent;
+    }
+  }
+  &:hover{
+    md-icon svg{
+      fill: $brand-accent;
+    }
+  }
+}
+
+.about-img{
+  text-align: center; margin: 1em 0;
+  img{
+    vertical-align: middle;
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
+
+.about-txt{
+  h3{
+    padding-bottom: 5px;
+    &.green{
+      border-bottom: 1px solid $brand-accent;
+    }
+    &.blue{
+      border-bottom: 1px solid #1656bc;
+    }
+    &.grey{
+      border-bottom: 1px solid darkgrey;
+    }
+  }
+}
+
+.section-header{
+  margin: 45px 0px;
+  background: #363636;
+  font-weight: bolder;
+  text-align: center;
+  color: white;
+  padding: 5px;
+  letter-spacing: 7px;
+  font-size: .9em;
+}
+
+.row.icons{
+  div{
+    text-align: center;
+  }
+  img{
+    max-width: 100px;
+  }
+}
+
+.row.partners{
+  margin: -30px 0px 30px;
+  div{
+    height: 140px;
+    text-align: center;
+    line-height: 140px;
+  }
+  img{
+    max-width: 100%;
+  }
+}
+

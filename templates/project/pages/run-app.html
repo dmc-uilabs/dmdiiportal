@@ -1,0 +1,79 @@
+<main class="app-profile">
+  <!-- Service Run 'Header' -->
+	<section class="container">
+    <div layout="row" layout-align="space-between center">
+			<div layout="column">
+        <h2><a ng-href="{{'/service-marketplace.php#/' + service.parent}}">{{service.title}}</a></h2>
+				<a ng-href="{{'run-app.php#/' + service.projectId + '/services/' + service.id + '/run/app-history'}}" class="link margin-top8">
+          Run History
+        </a>
+			</div>
+      <div layout="row" style="margin-top:auto">
+				<md-button ng-disabled="!isRunning()" ng-click="cancelServiceRun($event,service)" class="md-raised md-warn pull-right">
+					Cancel
+				</md-button>
+				<md-button ng-show="!hasCustomUI" ng-disabled="isRunning()" ng-click="run()" class="md-raised md-primary pull-right">
+          Run
+        </md-button>
+			</div>
+      </div>
+  </section>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12"><div class="rh-divider"></div></div>
+    </div>
+  </div>
+
+  <!-- Inputs/Outputs for Custom UIs -->
+  <section class="container" ng-show="hasCustomUI">
+    <div style="position: relative;">
+      <div class="greyout" ng-show="isRunning()">
+        <div class="loader"></div>
+      </div>
+
+      <div class="container" style="width: 100%; padding: 0px;">
+          <!--Custom UI Content will be displayed here-->
+          <div class="content-placeholder">
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inputs/Outputs for Stock UI -->
+  <section class="container" ng-show="!hasCustomUI">
+		<div style="position: relative;">
+			<div class="greyout" ng-show="isRunning()">
+				<div class="loader"></div>
+			</div>
+
+			<div class="row" ng-show="service.interfaceModel.inParams.inputFile">
+	      <div class="col-xs-12">
+					<md-button ng-disabled="fileUploadInProgress" ng-click="uploadInputFile()" style="margin-left: 0px;" class="md-raised md-primary">Upload Input File</md-button>
+					<div ng-show="fileUploadInProgress" class="file-loader"></div>
+					<span ng-show="currentInputFile">Current Input File: {{currentInputFile.documentName}}</span>
+					<span ng-show="currentInputFile" ng-click="unsetInputFile()" style="color: red;">X</span>
+				</div>
+			</div>
+
+    <div class="row">
+      <div class="col-xs-6">
+        <h3 class="section">Inputs</h3>
+        <div class="form-group" ng-repeat="item in service.interfaceModel.inputs">
+            <div ng-if="item.type != 'File'" class="sublabels">{{item.name}}</div>
+            <input ng-if="item.type != 'File'" ng-model="item.value">
+        </div>
+      </div>
+
+      <div class="col-xs-6">
+        <h3 class="section">Outputs</h3>
+        <div class="form-group" ng-repeat="item in service.interfaceModel.outParams">
+            <div class="sublabels">{{item.name}}</div>
+            <input ng-disabled="true" ng-model="item.value">
+        </div>
+      </div>
+
+    </div>
+	</div>
+  </section>
+</main>

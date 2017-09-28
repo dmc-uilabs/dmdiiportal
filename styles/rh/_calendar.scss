@@ -1,0 +1,97 @@
+
+.clndr {
+    display: block;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    max-width: 400px;
+    &.event {
+      width: 400px;
+    }
+}
+
+.clndr .clndr-controls {
+    border-bottom-color: #ccc;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    position: relative;
+}
+.clndr .clndr-controls .month {
+    padding-bottom: 12px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 12px;
+    text-align: center;
+}
+.clndr .clndr-controls .clndr-previous-button, .clndr .clndr-controls .clndr-next-button {
+    cursor: pointer;
+    left: 0;
+    padding-bottom: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 12px;
+    position: absolute;
+    top: 0;
+}
+.clndr .clndr-controls .clndr-next-button {
+    left: auto;
+    right: 0;
+}
+.clndr .clndr-grid .days-of-the-week {
+    width: 100%;
+}
+.clndr .clndr-grid .days-of-the-week .header-day {
+    float: left;
+    padding-bottom: 12px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 12px;
+    text-align: center;
+    width: 14.2857%;
+}
+.clndr .days .day, .clndr .days .empty {
+    float: left;
+    padding-bottom: 12px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 12px;
+    position: relative;
+    text-align: center;
+    width: 14.2857%;
+    outline: 0;
+}
+
+.clndr.events .days .day, .clndr.events .days .empty {
+    padding: 18px 0px;
+}
+
+.clndr .days .day.is-selected {
+    // background-color: $gray-dark !important;
+    // color: $white;
+    -webkit-box-shadow:inset 0px 0px 0px 2px $gray-dark;
+    -moz-box-shadow:inset 0px 0px 0px 2px $gray-dark;
+    box-shadow:inset 0px 0px 0px 2px $gray-dark;
+}
+.clndr .days .day.today, .clndr .days .empty.today {
+    background-color: #ccc;
+}
+.clndr .days .day .event-indicator, .clndr .days .empty .event-indicator {
+    background-color: #3bb7e8;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
+    color: #fff;
+    cursor: pointer;
+    font-size: 9px;
+    height: 15px;
+    line-height: 16px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 15px;
+}
+.clndr .days .day.adjacent-month, .clndr .days .day.inactive, .clndr .days .empty.adjacent-month, .clndr .days .empty.inactive {
+    opacity: 0.3;
+}

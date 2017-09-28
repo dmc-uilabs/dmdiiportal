@@ -1,0 +1,98 @@
+@import "variables";
+
+.last-run-status {
+  margin-top: 0px;
+  font-weight: lighter;
+}
+
+.rh-divider {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.form-group {
+  input {
+    width: 100%;
+  }
+}
+
+.modal-result{
+  padding: 50px;
+
+  md-dialog{
+    padding: 100px;
+  }
+
+  overflow: hidden;
+  h3{
+    margin: 0;
+    font-size: 18px;
+  }
+  .md-icon-button{
+    height: 18px;
+    line-height: 18px;
+    width: 24px;
+  }
+  .md-button.md-raised{
+    margin: 18px 0;
+  }
+  .preview{
+    height: 100%;
+    h2 {
+      padding: 18px 0px;
+      margin: 0px;
+    }
+    md-content{
+      height: 350px;
+      padding: 10px 0px;
+    }
+    md-list-item{
+      padding: 10px 0px;
+      height: 36px;
+      min-height: 36px;
+      &.selected{
+        background-color: #65AF3F;
+      }
+      .md-list-item-inner{
+        min-height: 36px;
+      }
+    }
+  }
+}
+
+.app-profile {
+  h3{
+    color: map-get($colors, secondary);
+    font-size: 18px;
+    //margin-left: 24px;
+  }
+
+  .md-button.md-primary{
+    background-color: map-get($colors, secondary);
+    &:hover{
+      background-color: map-get($colors, secondary) !important;
+    }
+  }
+
+  .iotab{
+    margin: 0px 40px 20px 40px;
+    h3{
+      font-weight: lighter;
+      color: map-get($colors, primary);
+    }
+    b{
+      padding-top: 10px;
+    }
+  }
+}
+
+.service-run-items{
+  a{
+    color: inherit;
+    &:hover{
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}

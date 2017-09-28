@@ -1,0 +1,91 @@
+<main>
+   <section class="container">
+        <div class="row" style="margin-bottom: 30px;">
+          <h1 class="col-xs-8">My Favorites</h1>
+          <div class="col-xs-4" style="text-align: right;" >
+            <a href="">
+              Add To Favorites<ng-md-icon icon="add" size="18"></ng-md-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+              <div class="search-input-div col-xs-10">
+                  <input class="search-input" type="text" ng-model="searchTerm" placeholder="Search">
+                  <ng-md-icon icon="clear" size="15" class="pull-right clear-icon" ng-click="clearSearch()"></ng-md-icon>
+              </div>
+              <button class="btn search-button no-click-border col-xs-2" ng-click="search()">
+                <ng-md-icon icon="search" size="20"></ng-md-icon>
+              </button>
+          </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <ul class="nav nav-tabs" role="tablist">
+            <li ng-click="getFavoriteApps()" role="presentation" class="active hidden-xs"><a data-target="#favApps" aria-controls="favApps" role="tab" data-toggle="tab">Applications</a></li>
+            <li ng-click="getFavoriteDocuments()" role="presentation" class="hidden-xs"><a data-target="#favDoc" aria-controls="favDoc" role="tab" data-toggle="tab">Documents</a></li>
+            <li role="presentation" class="hidden-xs"><a data-target="#favVid" aria-controls="favVid" role="tab" data-toggle="tab">Videos</a></li>
+            <!--<li role="presentation" class="hidden-xs"><a data-target="#favWork" aria-controls="favWork" role="tab" data-toggle="tab">Workspaces</a></li>-->
+            <!--<li role="presentation" class="hidden-xs"><a data-target="#favOrg" aria-controls="favOrg" role="tab" data-toggle="tab">Organizations</a></li>-->
+
+        </ul>
+    </section>
+
+    <section>
+        <div class="container">
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="favApps">
+                      <div ng-repeat="item in favoriteApps | filter:searchTerm">
+                          <div ui-widget-content
+                               content-item="item"
+                               serviceMap="serviceMap">
+                          </div>
+                      </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade " id="favDoc">
+                    <div ng-repeat="item in favoriteDocs | filter:searchTerm">
+                        <div ui-widget-content
+                             content-item="item">
+                        </div>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane fade " id="favVid">
+
+                    <div class="row ">
+                        <div class="col-xs-12">
+
+                      </div>
+                    </div>
+
+                </div>
+
+                <!--<div role="tabpanel" class="tab-pane fade " id="favWork">-->
+
+                    <!--<div class="row ">-->
+                        <!--<div class="col-xs-12">-->
+
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+
+                <!--<div role="tabpanel" class="tab-pane fade " id="favOrg">-->
+
+                    <!--<div class="row ">-->
+                        <!--<div class="col-xs-12">-->
+
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+
+            </div>
+        </div>
+
+    </section>
+
+</main>

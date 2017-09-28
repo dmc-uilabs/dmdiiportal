@@ -1,0 +1,65 @@
+$white: #fff;
+$gray-lighter: #f2f2f2;
+$gray-light: #dbdbdb;
+$gray: #999;
+$gray-dark: #4c4c4c;
+$color-dark:  #0d0d0d;
+$color-green: #75bc52;
+$dark-green: #4c8132;
+$grey: #363636;
+$ligh-grey: #808184;
+$red: #F44B2F;
+$green: #65AF3F;
+$body_grey: #EFECED;
+$brown: #f29300;
+$light-blue: #4ec1e1;
+$yellow: #ffff00;
+
+$colors: (
+  // Grey
+  primary: $grey,
+  // Green
+  secondary: $green,
+  // brown
+  brown: $brown,
+  // Light blue
+  light-blue: $light-blue,
+  // header color
+  header_color: $grey,
+  // Grey
+  text_grey: $ligh-grey,
+  // body color
+  body_color: $body_grey,
+  // label background
+  label_default_bg: $ligh-grey,
+  label_warn_bg: $red,
+  // link colors
+  link_color: $green,
+  // yellow
+  yellow: $yellow
+);
+
+
+$brand-primary: $color-green;
+$brand-secondary: $color-dark;
+$brand-accent: $color-green;
+
+$navbar-default-color: $white;
+$navbar-default-link-color: $white;
+$navbar-default-bg: $color-dark;
+$navbar-default-border:transparent;
+$border-radius-base: 0;
+$body-bg: $color-dark;
+
+$border-color: $gray-light;
+
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  & > [class^="col-"],
+  & > [class*=" col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}

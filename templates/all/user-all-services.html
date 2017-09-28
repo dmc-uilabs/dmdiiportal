@@ -1,0 +1,95 @@
+<div class="container container-view-all" layout="row">
+    <div layout="column" flex>
+        <div class="return-block" ng-if="previousPage">
+            <a ng-href="{{previousPage.url}}">{{previousPage.title}}</a>
+        </div>
+        <h2 class="page-title">All services</h2>
+        <div class="content-panel">
+            <div class="content-panel-body">
+                <md-content>
+                    <div layout="row" flex layout-align="start end" class="search-content">
+                        <md-input-container class="filterBox">
+                            <md-select placeholder="People" ng-model="typeModel" ng-change="changedType(typeModel)">
+                                <md-option ng-repeat="item in types" value="{{item.tag}}">{{item.name}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <form ng-submit="submit(searchModel)" class="view-all-search-field global-search-form" flex>
+                            <div layout="column">
+                                <div layout="row">
+                                    <div layout="column" flex>
+                                        <md-input-container md-no-float>
+                                            <md-icon>
+                                                <ng-md-icon icon="search"></ng-md-icon>
+                                            </md-icon>
+                                            <input type="text" placeholder="Search Services" ng-model="searchModel">
+                                        </md-input-container>
+                                    </div>
+                                    <div layout="column">
+                                        <md-input-container>
+                                            <md-button type="submit" class="search-button">Search</md-button>
+                                        </md-input-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="services-list">
+                        <md-data-table-container>
+                            <table md-data-table>
+                                <thead md-order="sort" md-trigger="onOrderChange">
+                                <tr>
+                                    <th name="Run" class="run-column"></th>
+                                    <th name="Name" order-by="title" class="title"></th>
+                                    <th name="Project" order-by="currentStatus.project.title" class="project"></th>
+                                    <th name="Status" order-by="currentStatus.status" class="status"></th>
+                                    <th name="Date Added" order-by="releaseDate"></th>
+                                    <th name="Added By" order-by="owner"></th>
+                                    <th name="Edit" class="edit-column"></th>
+                                    <th name="Remove" class="remove-column"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in services | orderBy: sort">
+                                    <td>
+                                        <md-button href="/project.php#/{{item.projectId}}/services/{{item.id}}/run" class="md-raised dmc-button" ng-click="run(item)">Run</md-button>
+                                    </td>
+                                    <td>
+                                        <a href="/project.php#/{{item.projectId}}/services/{{item.id}}/detail" class="link-button font-size14">{{item.title}}</a>
+                                    </td>
+                                    <td>
+                                        <a href="/project.php#/{{item.currentStatus.project.id}}" class="link-button">{{item.currentStatus.project.title}}</a>
+                                    </td>
+                                    <td class="">
+                                        <a href="/project.php#/{{item.currentStatus.project.id}}/services/{{item.id}}/run" class="link-button">
+                                            <md-progress-linear ng-if="item.currentStatus.status == '1'"
+                                                                md-mode="determinate"
+                                                                value="{{item.currentStatus.percentCompleted}}"></md-progress-linear>
+                                            <span ng-if="item.currentStatus.status == '1'" class="service-progress-info">1:30 of 2:00</span>
+                                            <span ng-if="item.currentStatus.status != '1'">{{ item.currentStatus.status == 0 ? 'success' : (item.currentStatus.status == -1 ? 'error' : '')}}</span>
+                                        </a>
+                                    </td>
+                                    <td>{{item.releaseDateFormat}}</td>
+                                    <td><a href="/profile.php#/{{item.profileId}}">{{item.addedBy}}</a></td>
+                                    <td>
+                                        <md-button href="/project.php#/{{item.projectId}}/services/{{item.id}}/edit" md-no-ink class="md-icon-button" aria-label="Edit">
+                                            <ng-md-icon icon="edit" size="25" style="fill: grey;"></ng-md-icon>
+                                        </md-button>
+                                    </td>
+                                    <td>
+                                        <md-button ng-click="deleteService($event,item)" md-no-ink class="md-icon-button" aria-label="Delete">
+                                            <ng-md-icon icon="delete" size="25" style="fill: grey;"></ng-md-icon>
+                                        </md-button>
+                                    </td>
+                                </tr>
+                                <tr ng-if="services.length == 0">
+                                    <td class="empty" colspan="8">No services</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </md-data-table-container>
+                    </div>
+                </md-content>
+            </div>
+        </div>
+    </div>
+</div>

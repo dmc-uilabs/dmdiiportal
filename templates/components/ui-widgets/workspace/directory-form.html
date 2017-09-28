@@ -1,0 +1,18 @@
+<md-dialog>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Directory</h2>
+      <span flex></span>
+    </div>
+  </md-toolbar>
+  <md-content>
+    <section>
+        <md-input-container>
+          <label>Name</label>
+          <input type="text" ng-model="name" required>
+        </md-input-container>
+        <md-button class="md-raised md-primary" ng-click="create()" ng-disabled="name==old" aria-label="create-update">{{action}}</md-button>
+        <md-button class="md-warn" ng-click="cancel()" aria-label="cancel">Cancel</md-button>
+      </section>
+  </md-content>
+</md-dialog>

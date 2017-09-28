@@ -1,0 +1,41 @@
+<div id="document-list" role="tablist" aria-multiselectable="true" class="panel-group">
+
+<div class=" panel default-panel" ng-repeat="doc in documents track by $index">
+
+		<div class="panel-label">
+		<a class="collapsed" data-parent="#document-list" data-toggle="collapse" data-target="#document{{$index}}" aria-expanded="false">{{doc.documentName}}</a>
+		</div>
+
+	<div id="document{{$index}}" class="panel-collapse collapse">
+	<div class="panel-content">
+	<div class="document-section">
+	<h4>General</h4>
+	<dl class="dl-inline">
+		<dt>Name</dt>
+		<dd>{{doc.documentName}}</dd>
+		<dt>Last Modified</dt>
+		<dd><time>{{doc.modified | date:'yyyy-MM-dd HH:mm Z'}}</time>
+		<dt>Last Virus Scan Date</dt>
+		<dd><time>{{doc.scanDate}}</time></dd>
+		<dt>Sha</dt>
+		<dd>{{doc.sha256}}</dd>
+		<dt>Download</dt>
+		<dd><a href="{{doc.documentUrl}}">Download</a></dd>
+	</dl>
+	</div>
+	<div class="document-section" ng-if="userData.isDmdiiAdmin">
+	<h4>Access Controls</h4>
+	<dl class="dl-inline">
+		<dt>Accessible By</dt>
+		<dd>{{doc.accessLevel}}</dd>
+	</dl>
+	</div>
+	<div class="icon-list" ng-if="userData.isDmdiiAdmin">
+		<a href ng-click="deleteDocument(doc.id, 'doc', docIndex)"><ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon>Delete</a>
+		<a ng-href="{{'/add-dmdii-project-doc.php#/'+project.id+'/projectDocuments'}}"><ng-md-icon icon="insert_drive_file" style="fill: #999" size="16"></ng-md-icon>Docs</a>
+		<a ng-href="{{doc.documentUrl}}"><ng-md-icon icon="file_download" style="fill: #999" size="16"></ng-md-icon>Download</a>
+	</div>
+	</div>
+	</div>
+	</div>
+</div>

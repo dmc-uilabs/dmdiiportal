@@ -1,0 +1,7 @@
+<md-toast class="question-toast">
+    <span class="question" flex>{{question}}</span>
+    <md-button ng-repeat="(key,button) in buttons"
+               ng-click="action(key)">
+        {{button.title}}
+    </md-button>
+</md-toast>

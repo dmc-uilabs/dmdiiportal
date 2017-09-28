@@ -1,0 +1,54 @@
+[{
+  "id":906,
+  "companyId":"1",
+  "title":"Torque",
+  "description":"Torque is a measure of how much a force acting on an object causes that object to rotate. The formula that this model is based on is Torque = r*F*sin(theta). The value r is the distance between the axes of rotation and the point where the force is applied. The value F is the magnitude of the force applied at the lever-arm. The value theta (radians) is the angle at which force is applied to the lever-arm. The value F (Newtons), and r (meter). The output value is Torque (Newton * meters). Visit for more information: https://digitalmfgcommons.atlassian.net/wiki/display/DMDIIDMC/Torque",
+  "owner":"269",
+  "profileId":"269",
+  "releaseDate":"2017-03-06",
+  "serviceType":"Fundamental Calculations - Physics",
+  "tags":[],
+  "specifications":"/services/3/specifications",
+  "featureImage":{
+    "thumbnail":"",
+    "large":""
+  },
+  "currentStatus":{
+    "percentCompleted":"0",
+    "startDate":"",
+    "startTime":""
+  },
+  "projectId":"147",
+  "from":"marketplace",
+  "type":"service",
+  "parent":"906",
+  "published":false,
+  "averageRun":""
+ },
+ {
+  "id":1631,
+  "companyId":"1",
+  "title":"Welding Model",
+  "description":"Estimates the cost of a weld based on the weld material, joint type, and weld Length. The following are valid input variables:\n\n    (Material = “Al” or “Plain Carbon Steel”)\n    (WeldLength >= 0)\n    (SidesWelded = “Single” or “Double\")\n    (JointType = “Butt”, “Corner”, “Edge”, “Lap”, “Tee”)\n    (GaugePerInch = “1/8\"”, “3/16\"”, “1/4\"”, “5/16\"”, “3/8\"”, “7/16\"”, “1/2\"”, “5/8\"”, “3/4\"”, “7/8\"”, “1\"”)",
+  "owner":"269",
+  "profileId":"269",
+  "releaseDate":"2017-04-06",
+  "serviceType":"Cost Analysis",
+  "tags":[],
+  "specifications":"/services/3/specifications",
+  "featureImage":{
+    "thumbnail":"",
+    "large":""
+  },
+  "currentStatus":{
+    "percentCompleted":"0",
+    "startDate":"",
+    "startTime":""
+  },
+  "projectId":"266",
+  "from":"marketplace",
+  "type":"service",
+  "parent":"870",
+  "published":false,
+  "averageRun":""
+}]

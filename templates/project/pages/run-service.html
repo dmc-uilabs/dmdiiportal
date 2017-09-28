@@ -1,0 +1,154 @@
+<workspace-header class="workspace-header" ng-init="currentPage='7'"></workspace-header>
+
+<div class="project-run-services" ng-if="!runHistory" ng-show="hasCustomUI && service.interfaceModel.inParams.inputFile" layout="column">
+  <div layout="row" layout-align="space-between center">
+    <span flex></span>
+    <md-button ng-disabled="!isRunning()" ng-click="cancelServiceRun($event,service)" class="md-raised md-warn">
+      Cancel
+    </md-button>
+  </div>
+</div>
+
+<div ng-show="hasCustomUI" layout = "column" style="position: relative;">
+  <div class="greyout" ng-show="isRunning()">
+    <div class="loader"></div>
+  </div>
+
+  <div class="container" style="width: 100%;">
+      <!--Custom UI Content will be displayed here-->
+
+
+      <div class="content-placeholder">
+      </div>
+  </div>
+</div>
+<div ng-if="!service.id" class="project-details-services" layout="column">
+	<div layout="row" layout-align="space-between start">
+		<div layout="column" class="header">
+			<div class="margin-bottom8">
+				<a class="link" ng-href="{{'project.php#/' + projectData.id + '/services'}}">
+					Return to Services
+				</a>
+        <h3 style="font-size:12px">Service not found!</h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div ng-if="service.id" class="project-run-services" ng-if="!runHistory" ng-show="!hasCustomUI" layout="column">
+
+	<h2><a ui-sref="project.services-detail({ServiceId: ServiceId})" >{{service.title}}</a></h2>
+	<div layout="row" layout-align="space-between center">
+		<a ng-href="{{'project.php#/' + projectData.id + '/services/' + service.id + '/run/run-history'}}" class="link margin-top8">
+			Run History
+		</a>
+		<!-- <md-progress-linear flex="30" md-mode="determinate" ng-if="status == 'running'" value="{{service.currentStatus.percentCompleted}}"></md-progress-linear> -->
+		<div>
+			<md-button ng-click="" ng-show="false" class="md-raised">
+				Visualize
+			</md-button>
+			<md-button ng-click="saveRun()" ng-if="version1" class="md-raised">
+				Save Run
+			</md-button>
+      <span flex></span>
+      <md-button ng-disabled="!isRunning()" ng-click="cancelServiceRun($event,service)" class="md-raised md-warn">
+        Cancel
+      </md-button>
+			<md-button ng-disabled="isRunning()" ng-click="run()" class="md-raised md-primary">
+				Run
+			</md-button>
+		</div>
+	</div>
+	<h3>Status:
+    <span ng-if="serviceStatusNames[service.currentStatus.status]">{{serviceStatusNames[service.lastStatus.status]}}</span>
+  </h3>
+	<h3>Last Run Status: {{lastStatus}}
+  </h3>
+	<h3>Your Run Time: {{runTime}} s.</h3>
+	<h3>Last Run Time: {{lastRunTime}} s.</h3>
+	<h3 style="margin-bottom: 10px;">Average Run: {{averageRun}} s.</h3>
+
+	<div layout="row" style="position: relative; padding-top: 10px;">
+    <div class="greyout standard-UI" ng-show="isRunning()">
+      <div class="loader"></div>
+    </div>
+		<div flex="50" class="inputs">
+			<div layout="row" class="margin-bottom-10" layout-align="space-between center">
+				<h2>Inputs</h2>
+				<div class="inputs-button ">
+					<md-button ng-disabled="!isChangedValues" ng-click="default()" class="md-raised  dmc-button margin-left20">
+						Default
+					</md-button>
+					<md-button ng-disabled="!isChangedOrder" ng-click="reset()" class="md-raised  dmc-button margin-left20">
+						Reset Order
+					</md-button>
+					<md-button ng-disabled="!isChangedOrder" ng-click="save()" class="md-raised md-primary dmc-button margin-left20">
+						Save Order
+					</md-button>
+				</div>
+			</div>
+			<md-content>
+        <div ng-if="service.interfaceModel.inParams.inputFile" layout="row" layout-align="space-between center">
+          <h3>Input File From Workspace:</h3>
+          <div flex="75">
+            <md-select placeholder="Select Project" ng-model="inputFile.projectModel" md-on-open="loadProjects()" ng-change="updateFileList(inputFile)">
+                <md-option ng-repeat="p in projects" ng-value="{{p}}">{{p.title}}</md-option>
+            </md-select>
+            <md-select ng-show="inputFile.projectModel" placeholder="Select File" ng-model="inputFile.projectModelFile" ng-change="setinputFileValue(inputFile.projectModelFile)">
+                <md-option ng-repeat="f in projectFiles" ng-value="{{f}}">{{f.documentName}}</md-option>
+            </md-select>
+          </div>
+        </div>
+
+				<md-list class="list-inputs" ui-sortable="sortableOptions" ng-model="service.interfaceModel.inputs">
+					<md-list-item ng-repeat="item in service.interfaceModel.inputs" layout="row" layout-align="start end">
+						<div flex="50" class="left">
+							<md-input-container>
+							<label>{{item.name}}</label>
+                <input maxlength="600" ng-change="changedValue()" ng-model="item.value" ng-if="item.type != 'File'">
+							 <input type="file" file-upload-model="item.value" ng-if="item.type == 'File'">
+							</md-input-container>
+						</div>
+						<div flex="50" class="right">
+							&nbsp;{{item.unit}} ({{item.type}})
+						</div>
+					</md-list-item>
+				</md-list>
+			</md-content>
+		</div>
+		<div flex="50" class="outputs">
+			<h2>Outputs</h2>
+			<md-content>
+                <md-list class="list-inputs" ui-sortable="sortableOutputOptions" ng-model="service.interfaceModel.outParams">
+                    <md-list-item ng-repeat="item in service.interfaceModel.outParams" layout="row" layout-align="start end">
+                        <div flex="50" class="left">
+                            <md-input-container style="padding-bottom: 0">
+                                <label style="color: #757575;">{{item.name}}</label>
+                                <input maxlength="600" style="color: #333;" ng-disabled="true" ng-model="item.value">
+                            </md-input-container>
+                        </div>
+                        <div flex="50" class="right">
+                            &nbsp;{{item.unit}} ({{item.type}})
+                        </div>
+                    </md-list-item>
+                </md-list>
+
+				<!--<div class="content"-->
+                     <!--ui-sortable="sortableOutputOptions"-->
+                     <!--ng-model="service.interfaceModel.outParams">-->
+					<!--<div layout="row"-->
+                         <!--ng-show="showOutputs"-->
+                         <!--class="output"-->
+                         <!--layout-align="space-between center"-->
+                         <!--ng-repeat="item in service.interfaceModel.outParams">-->
+                        <!--<div layout="column">-->
+                            <!--<h2 layout="row">{{item.name}}</h2>-->
+                            <!--<div layout="row">-->
+						        <!--<h3 flex><span>{{item.value}}</span> {{item.unit}} ({{item.type}})</h3>-->
+                            <!--</div>-->
+                        <!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			</md-content>
+		</div>
+	</div>
+</div>

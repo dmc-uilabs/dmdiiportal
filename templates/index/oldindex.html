@@ -1,0 +1,90 @@
+<div class="home">
+<!-- Template for logged in verified users -->
+<div ng-if="($root.isLogged && userData.roles && userData.roles[userData.companyId]) || ($root.isLogged && userData.isDmdiiAdmin)">
+<div layout="row" layout-align="center center" layout-padding>
+  <div layout="column" flex>
+
+    <div class="home-header" flex layout="row" layout-align="space between center" layout-fills>
+      <h1>DIGITAL MANUFACTURING COMMONS</h1>
+      <!-- <img style="height:80px; width:80px;" ng-src="images/dmcLogo.png"> -->
+      <div layout="row">
+        <a class="social-button" href="http://www.uilabs.org/news-blog/blog/" target="_blank"><md-icon md-svg-src="images/comment-text-outline.svg" title="UILABS Blog"></a>
+        <a class="social-button" href="https://twitter.com/DMDII_" target="_blank"><md-icon md-svg-src="images/twitter.svg" title="DMDII Twitter"></a>
+        <a class="social-button" href="https://www.linkedin.com/company/ui-labs" target="_blank"><md-icon md-svg-src="images/linkedin-box.svg" title="UILABS LinkedIn"></a>
+        <a class="social-button" href="https://www.instagram.com/uilabs_/" target="_blank"><md-icon md-svg-src="images/instagram.svg" title="UILABS Instagram"></a>
+      </div>
+    </div>
+
+<md-divider></md-divider>
+
+    <!-- Feeds -->
+    <div layout-wrap layout-align="space-between start" layout="row" style="padding:20px 0px 45px">
+      <!-- Recent updates -->
+      <div class="flexrow-left" flex="60">
+        <h2 class="flexrow-header">Recent Updates</h2>
+        <div class="content-panel project margin-right12-5" dmc-recent-updates></div>
+
+      </div>
+      <!-- Twitter -->
+      <div class="flexrow-right" flex="35">
+        <h2 class="flexrow-header">Tweets from DMDII</h2>
+        <twitter-timeline>
+          <a class="twitter-timeline" data-chrome="noheader nofooter" data-height="502" href="https://twitter.com/DMDII_">Tweets from DMDII</a>
+        </twitter-timeline>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Youtube -->
+<div layout="row" layout-align="center center" layout-padding>
+  <div layout="column" flex>
+    <div class="home-theater">
+      <!-- <md-divider></md-divider> -->
+      <!-- <div layout="row" layout-align="center"> -->
+        <h2 class="flexrow-header">Videos from DMDII</h2>
+      <!-- </div> -->
+      <md-divider></md-divider>
+      <div style="padding-top: 15px">
+        <ng-youtube-embed listType="playlist" list="UUB9yv90uJXvKnCY-0vpjvtw" width="100%"></ng-youtube-embed>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- <md-divider></md-divider> -->
+
+<!-- Template for not logged in/ unverified users -->
+<div ng-if="!(($root.isLogged && userData.roles && userData.roles[userData.companyId]) || ($root.isLogged && userData.isDmdiiAdmin))" layout="column">
+
+    <!-- <div layout="row" layout-align="center center" class="home-header">
+	  	<h2>DMC: Digital Manufacturing Commons</h2>
+	  	<md-button class="dmc-button md-raised md-primary" ng-href="onboarding.php">
+	  		JOIN DMC
+	  	</md-button>
+  	</div>
+  	<md-divider></md-divider> -->
+
+  	<div layout="row" layout-align="center center" layout-padding>
+	  	<div class="content-column" layout="column" ng-repeat="p in pages">
+		    <div class="home-feature" ng-if="p.show">
+		      	<a ng-click="more($index)"><img ng-src="images/{{p.img}}" class="md-card-image" alt="{{p.name}}"></a>
+		       	<h2><a ng-click="more($index)">{{p.name}}</a></h2>
+		       	<p>{{p.text}}</p>
+		       	<md-button class="md-raised md-primary" ng-click="more($index)">LEARN MORE</md-button>
+		    </div>
+		    <div class="home-more" ng-if="!p.show">
+		    	<div layout="row" layout-align="space-between center">
+		    		<h2>{{p.name}}</h2>
+			      	<md-button class="md-icon-button" ng-click="cancel($index)">
+			       		<ng-md-icon icon="close" style="fill: grey" size="25"></ng-md-icon>
+			       	</md-button>
+		       	</div>
+		       	<p>{{p.more}}</p>
+		    </div>
+	  	</div>
+	</div>
+</div>
+
+</div>

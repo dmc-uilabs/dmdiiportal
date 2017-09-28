@@ -1,0 +1,141 @@
+<div class="container container-company" layout="row" ng-if="companyData.id">
+    <!--<div class="content-column left-content" layout="column" flex="20">-->
+        <!--<dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>-->
+        <!--<dmc-products-filter ng-if="isSearch"></dmc-products-filter>-->
+    <!--</div>-->
+    <div class="content-column right-content" layout="column" flex>
+        <div class="content-panel">
+            <div class="content-panel-body">
+                <md-content class="company-content">
+                    <div layout="row" layout-align="start center" ng-style="companyPicture" class="company-image">
+                        <div layout="column" ng-show="!isChangingPicture && companyData.featureImage" style="right: 15px; top: 15px;  position: absolute;">
+                            <div layout="row">
+                                <md-button class="md-fab md-mini company-buttons company-edit-picture" ng-click="changePicture()">
+                                    <ng-md-icon icon="mode_edit" size="18"></ng-md-icon>
+                                </md-button>
+                                <md-button ng-click="removeMainPicture($event)" class="md-fab md-mini md-warn remove-picture" aria-label="Remove Picture">
+                                    <ng-md-icon icon="delete" size="18"></ng-md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                        <div layout="column" ng-show="isChangingPicture || !companyData.featureImage" flex>
+                             <div class="content-panel"
+             	                source="featureImage"
+             	                ui-widget-upload-documents
+             	                widget-type="'row'"
+             	                auto-upload="false"
+             	                widget-title="'Upload Feature Image'"
+             	                file-limit="1">
+             	            </div>
+                            <md-button class="md-raised cancel-button" ng-show="companyData.featureImage" ng-click="cancelChangePicture()">Cancel</md-button>
+                        </div>
+                    </div>
+                    <div layout="row" layout-padding layout-align="start start" class="company-title">
+                        <div layout="column" flex="25" layout-align="start start">
+                            <div class="storefront-logo-box" ng-show="!isChangingLogo && companyData.logoImage">
+                                <img ng-src="{{companyData.logoImage}}" class="main-image" alt="" />
+                                <md-button ng-click="deleteLogo($event)" class="md-fab md-mini md-warn md-raised delete-logo" aria-label="Delete logo">
+                                    <ng-md-icon icon="delete" size="18"></ng-md-icon>
+                                </md-button>
+                            </div>
+                            <div flex layout="column" ng-show="isChangingLogo || !companyData.logoImage">
+                                <div class="content-panel"
+                                    source="newLogo"
+                                    ui-widget-upload-documents
+                                    widget-type="'row'"
+                                    auto-upload="false"
+                                    widget-title="'Upload Logo'"
+                                    file-limit="1">
+                                </div>
+                                <md-button class="md-raised cancel-change-logo" flex ng-show="companyData.logoImage" ng-click="cancelChangeLogo()">
+                                    Cancel
+                                </md-button>
+                            </div>
+                            <md-button class="md-raised change-logo" ng-click="changeLogo()" flex ng-show="!isChangingLogo && companyData.logoImage">
+                                <ng-md-icon icon="camera_alt" size="18"></ng-md-icon>
+                                Change Logo
+                            </md-button>
+                        </div>
+
+                        <div layout="column" flex layout-wrap>
+                            <div layout="row" flex>
+                                <md-input-container class="title-input-edit" flex="60">
+                                    <label>Company</label>
+                                    <input class="md-title" ng-disabled="true" ng-model="companyData.name" ng-change="changedInput('name')">
+                                </md-input-container>
+                                <span flex></span>
+                                <md-button class="md-raised dmc-button" ng-click="cancelChanges()" >Cancel</md-button>
+                                <md-button class="md-raised md-primary dmc-button margin-left20" ng-click="saveChanges()">Save</md-button>
+                            </div>
+                            <div layout="column" flex="100"
+                                ui-widget-rich-text
+                                field-name="fieldName"
+                                is-required="true"
+                                model="companyData.description"
+                                limit="descriptionLimit"
+                                is-saved="isSaved"
+                                is-valid="isValid">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div layout-padding>
+                        <md-tabs md-dynamic-height
+                                 md-border-bottom
+                                 class="editable-featured"
+                                 md-selected="selectedIndexTab">
+                            <md-tab label="Featured" md-on-select="onTabSelected(0)">
+                                <md-content class="editable-md-content" ui-sortable="sortableOptions">
+                                    <dmc-product-card ng-repeat="item in featuredItems track by $index"
+                                                      type-product="item.type"
+                                                      class="feature-item"
+                                                      remove-featured="removeFeatured"
+                                                      hide-buttons="['share','favorite']"
+                                                      card-source="item">
+                                    </dmc-product-card>
+                                </md-content>
+                            </md-tab>
+                            <md-tab label="Add Featured" md-on-select="onTabSelected(1)">
+                                <md-content>
+                                    <div layout="row" layout-padding layout-align="start center" class="company-search" flex>
+                                        <md-input-container style="display:none;">
+                                            <md-select ng-model="selectedProductType" ng-change="productTypeChanged(selectedProductType)" aria-label="Product Types">
+                                                <md-option ng-repeat="type in productTypes" value="{{type.name}}">{{type.title}}</md-option>
+                                            </md-select>
+                                        </md-input-container>
+                                        <form ng-submit="submit(searchModel)" class="company-search-field global-search-form" flex="80">
+                                            <md-input-container md-no-float>
+                                                <md-icon>
+                                                    <ng-md-icon icon="search"></ng-md-icon>
+                                                </md-icon>
+                                                <input type="text" placeholder="Search Storefront" ng-model="searchModel">
+                                            </md-input-container>
+                                        </form>
+
+                                        <span flex></span>
+                                    </div>
+                                    <div layout-align="center center" class="products-for-add">
+                                        <dmc-products-card
+                                                search-card="isSearch"
+                                                card-source="storefrontItems"
+                                                card-loading="downloadData"
+                                                page-size="pageSize"
+                                                update-page-size="updatePageSize"
+                                                current-page="currentStorefrontPage"
+                                                total-size="storefrontItems.count"
+                                                class="content-panel-marketplace"
+                                                add-featured="addFeatured"
+                                                remove-featured="removeFeatured"
+                                                hide-buttons="['share','favorite']"
+                                                layout-margin>
+                                        </dmc-products-card>
+                                    </div>
+                                </md-content>
+                            </md-tab>
+                        </md-tabs>
+                    </div>
+                </md-content>
+            </div>
+        </div>
+    </div>
+</div>

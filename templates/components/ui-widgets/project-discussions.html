@@ -1,0 +1,18 @@
+<div class="title-widget" ng-hide="widgetTitle == null" layout="row" layout-align="start center">
+    <h2>{{widgetTitle}}</h2>
+    <span flex></span>
+    <a ng-href="{{'/project.php#/'+projectId+'/discussions'}}"
+               ng-click="previousPage.save($event)"
+               class="link-button uppercase">View All ({{totalItems}})</a>
+</div>
+<md-list class="discussion-list">
+    <md-list-item class="md-2-line" ng-repeat="discussion in projectDiscussions">
+        <div class="md-list-item-text">
+            <h4 ng-if="widgetFormat == 'my-projects'">{{discussion.created_at_format}}</h4>
+            <h3><a ng-href="/individual-discussion.php#/{{discussion.id}}" class="link-button" ng-click="previousPage.save($event)">{{discussion.title}}</a></h3>
+            <h4 ng-if="widgetFormat == 'my-projects'"><a href="/profile.php#/1">{{discussion.created_by}}</a> {{ discussion.isPosted ? 'posted' : 'replied' }}</h4>
+            <h4 ng-if="widgetFormat != 'my-projects'"><a href="/profile.php#/1">{{discussion.created_by}}</a> {{ discussion.isPosted ? 'posted' : 'replied' }} | {{discussion.last.created_at_format}}</h4>
+        </div>
+        <md-divider ng-if="$index < projectDiscussions.length-1"></md-divider>
+    </md-list-item>
+</md-list>

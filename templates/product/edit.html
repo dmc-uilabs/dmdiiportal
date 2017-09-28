@@ -1,0 +1,291 @@
+<div class="container marketplace-box"  layout="row" ng-if="!product.published">
+    Service not found
+</div>
+<div class="container marketplace-box"  layout="row" ng-if="product.published">
+	<!--Tree menu-->
+	<div class="content-column" layout="column" flex='20'>
+		<md-button href="marketplace.php" md-no-ink>Return to Search</md-button>
+		<dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
+	</div>
+	<!--Product-->
+	<div class="content-column" flex='80'>
+		<div ng-if="!not_found">
+			<!-- Search toolbar -->
+			<md-content class="marketplace-search" layout="row" layout-align="center center">
+				<form ng-submit="submitSearch(searchModel)" class="marketplace-search-field global-search-form" flex="60">
+					<md-input-container md-no-float>
+						<md-icon>
+							<ng-md-icon icon="search"></ng-md-icon>
+						</md-icon>
+						<input type="text" placeholder="Search Product" ng-model="searchModel">
+					</md-input-container>
+				</form>
+
+				<span flex></span>
+
+				<div class="marketplace-search-button" layout="row" layout-align="center center">
+					<md-button href="/favorites.php" class="link-button">
+						<ng-md-icon icon="favorite" size="14"></ng-md-icon>
+						Favorites ({{favoritesCount}})
+					</md-button>
+                    <md-button class="md-raised dmc-button margin-left20"
+                               ng-disabled="!$root.comparedServices || !$root.comparedServices.services || $root.comparedServices.services.length == 0"
+                               compare-button>
+                        Compare ({{$root.comparedServices && $root.comparedServices.services ? $root.comparedServices.services.length : 0}})
+                    </md-button>
+				</div>
+			</md-content>
+			<!--product-->
+			<md-content class="product">
+				<div layout="row" layout-margin>
+					<!--product image-->
+					<div class="product-image" layout="column">
+						<md-button 
+							class="md-fab md-mini md-warn md-raised delete-image"
+							ng-if="product.service_images.length" 
+							ng-click="carouselFunctions.deleteImage(indexImages,$event)"
+							aria-label="delete">
+							<ng-md-icon icon="delete" style="fill: #fff" size="18"></ng-md-icon>
+						</md-button>
+						<img class="main-image" ng-if="product.service_images.length" ng-src="{{product.service_images[indexImages].url}}">
+						<div class="no-image" ng-if="!product.service_images.length" layout layout-align="center center">
+							<h2>No Images</h2>
+						</div>
+						<md-button ng-click="loadImage()">
+							<ng-md-icon icon="camera_alt" style="fill: #65AF3F;" size="25"></ng-md-icon>
+							Manage photos
+						</md-button>
+						<div dmc-carousel 
+								functions="carouselFunctions" 
+								name-carousel="'carouselImages'" 
+								type-carousel="'images'" 
+								carouselSource="product.service_images" 
+								max-items="10" 
+								show-items="4" 
+								carousel-source="product.service_images" 
+								edit="true">
+						</div>
+					</div>
+					<div flex>
+						<!--product header-->
+						<div class="product-header">
+							<div layout="row">
+								<md-input-container>
+									<label>Title</label>
+									<input id="editTitleProduct" 
+									       ng-change="change()" 
+									       ng-init="changes.title = product.title"
+									       ng-model="product.title">
+								</md-input-container>
+								<span flex></span>
+								
+								<md-button ng-click="cancelEdit()" class="md-raised dmc-button margin-left20">Cancel</md-button>
+								<md-button ng-click="saveEdit()" class="md-raised dmc-button md-primary margin-left20">Save</md-button>
+							</div>
+						</div>
+
+						<!--product description-->
+						<div>
+							<md-input-container>
+								<label>Description</label>
+								<textarea ng-model="product.description" 
+								          ng-change="change()" 
+								          ng-init="changes.description = product.description"
+								          columns="1" 
+								          md-maxlength="1000"></textarea>
+							</md-input-container>
+						</div>
+					</div>
+				</div>
+				<!--product tabs-->
+				<md-tabs md-dynamic-height md-border-bottom>
+					<md-tab label="Specifications">
+						<md-content class="md-padding" ng-if="true">
+							<div class="tabs-content" layout="column">
+								<div layout="row">
+									<md-autocomplete
+											flex
+											md-no-cache="true"
+											md-selected-item="selectedItem"
+											md-search-text="searchText"
+											md-items="item in specificationsSearch(searchText)"
+											md-selected-item-change="AddSpecifications(item, searchText)"
+											md-item-text="item.name"
+											md-min-length="0"
+											md-input-name="specificationsField"
+											md-floating-label="Search for specifications">
+										<md-item-template>
+											<span md-highlight-text="searchText" md-highlight-flags="^i">{{item.name}}</span>
+										</md-item-template>
+										<md-not-found>
+											No matches found for "{{searchText}}".
+										</md-not-found>
+									</md-autocomplete>
+									<md-button class="dmc-button md-raised margin-left20" ng-disabled="!searchText" ng-click="addNewSpecifications(searchText)">
+										Add
+									</md-button>
+								</div>
+								<p>Created: {{product.currentStatus.startDate}}</p>
+								<p>Added: {{product.specifications[0].usageStats.added}} times by {{product.specifications[0].usageStats.members}} members</p>
+								<p>Successful Runs: {{product.specifications[0].runStats.fail}}/{{product.specifications[0].runStats.success}}</p>
+								<p>Inputs: {{product.specifications[0].input}}</p>
+								<p>Outputs: {{product.specifications[0].output}}</p>
+								
+								
+								<div layout="row" ng-repeat="item in product.specifications[0].special track by $index">
+									<md-button aria-label="close" ng-click="deleteSpecifications($index,$event)" class="md-raised deleteSpecifications">
+										<ng-md-icon icon="close" style="fill: 'grey'" size="12"></ng-md-icon>
+									</md-button>
+									<md-input-container>
+										<label>Specifications</label>
+										<input ng-model="item.specification"></input>
+									</md-input-container>
+									<md-input-container>
+										<label>Data</label>
+										<input ng-model="item.data"></input>
+									</md-input-container>
+								</div>
+								<div layout="row" ng-repeat="item in arrAddSpecifications track by $index" layout-align="start center">
+									
+									<md-input-container>
+										<label>Specifications</label>
+										<input id="{{'sipecification'+$index}}" ng-model="item.specification"/>
+									</md-input-container>
+									<md-input-container>
+										<label>Data</label>
+										<input name="data" ng-model="item.data"/>
+									</md-input-container>
+									<md-button aria-label="close" ng-click="cancelPushSpecifications($index)" class="md-raised dmc-button">
+										Cancel
+									</md-button>
+									<md-button aria-label="close" ng-click="pushSpecifications($index)" class="md-raised dmc-button">
+										Add
+									</md-button>
+								</div>
+							</div>
+						</md-content>
+					</md-tab>
+
+
+					<md-tab label="Tags">
+						<md-content class="md-padding">
+							<div layout="column">
+								<form ng-submit="addTag(inputTag)" class="add-tags-form" layout="row" layout-align="start center">
+									<md-input-container>
+										<label>Enter Tag</label>
+										<input ng-model="inputTag">
+									</md-input-container>
+									<md-button ng-disabled="!inputTag" class="md-raised md-primary">Add</md-button>
+								</form>
+								<div layout="row" class="tabs-content" layout-wrap>
+									<md-chips ng-repeat="tag in product.service_tags track by $index">
+										<md-chip class="tags-chip">
+											{{tag.name}}
+											<md-button aria-label="close" ng-click="deleteTag($index, tag.id,$event)" class="md-icon-button">
+												<ng-md-icon icon="close" style="fill: #000;" size="15"></ng-md-icon>
+											</md-button>
+										</md-chip>
+									</md-chips>
+								</div>
+							</div>
+						</md-content>
+					</md-tab>
+
+					<md-tab label="Documents">
+						<md-content class="md-padding">
+							<div ui-widget-upload-documents
+                                 class="content-panel"
+                                 product="true"
+                                 source="documents"
+                                 auto-upload="false"
+                                 widget-title="'UPLOAD DOCUMENTS'"></div>
+						</md-content>
+					</md-tab>
+
+					<md-tab label="Included Services">
+						<md-content class="md-padding" ng-if="true">
+							<md-autocomplete
+									md-no-cache="true"
+									md-selected-item="selectedItem"
+									md-search-text="searchText"
+									md-items="item in querySearch(searchText)"
+									md-selected-item-change="AddServices(item, searchText)"
+									md-item-text="item.title"
+									md-min-length="0"
+									placeholder="Search for services">
+								<md-item-template>
+									<span md-highlight-text="searchText" md-highlight-flags="^i">{{item.title}}</span>
+								</md-item-template>
+								<md-not-found>
+									No matches found for "{{searchText}}".
+								</md-not-found>
+							</md-autocomplete>
+							
+							<div layout="row" class="tabs-content" layout-wrap>
+								<div flex="25" ng-repeat="oneProdut in includedServices track by $index" class="included">
+
+									<div class="product-card" layout="column">
+										<md-toolbar>
+											<div class="md-toolbar-tools" layout layout-align="end center">
+												<md-button ng-click="deleteIncluded($index, oneProdut.id,$event)" aria-label="close" class="md-icon-button">
+													<ng-md-icon icon="close" style="fill: grey;" size="25"></ng-md-icon>
+												</md-button>
+											</div>
+										</md-toolbar>
+										<div class="product-card__header" layout="column">
+											<a href=""><h3>{{oneProdut.service.title}}</h3></a>
+											<a href=""><span class="user-name">{{oneProdut.service.owner}}</span></a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</md-content>
+					</md-tab>
+
+					<md-tab label="Authors">
+						<md-content class="md-padding" ng-if="true">
+							<md-autocomplete
+									md-no-cache="true"
+									md-selected-item="selectedItem"
+									md-search-text="searchText"
+									md-items="item in authorsSearch(searchText)"
+									md-selected-item-change="AddAuthors(item, searchText)"
+									md-item-text="item.title"
+									md-min-length="0"
+									placeholder="Search for authors">
+								<md-item-template>
+									<span md-highlight-text="searchText" md-highlight-flags="^i">{{item.title}}</span>
+								</md-item-template>
+								<md-not-found>
+									No matches found for "{{searchText}}".
+								</md-not-found>
+							</md-autocomplete>
+							
+							<div layout="row" class="tabs-content" layout-wrap>
+								<div flex="25" ng-repeat="oneProdut in product.service_authors track by $index" class="included">
+
+									<div class="product-card" layout="column">
+										<md-toolbar>
+											<div class="md-toolbar-tools" layout layout-align="end center">
+												<md-button ng-click="deleteAthors($index,$event)" aria-label="close" class="md-icon-button">
+													<ng-md-icon icon="close" style="fill: grey;" size="25"></ng-md-icon>
+												</md-button>
+											</div>
+										</md-toolbar>
+										<div class="product-card__header" layout="column">
+											<h3>John Thomas</h3>
+											<span class="user-name">Engineering Manager</span>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</md-content>
+					</md-tab>
+				</md-tabs>
+			</md-content>
+		</div>
+		<h2 ng-if="not_found">Product not found</h2>
+	</div>
+</div>

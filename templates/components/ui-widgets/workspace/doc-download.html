@@ -1,0 +1,19 @@
+<md-dialog>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Download</h2>
+      <span flex></span>
+    </div>
+  </md-toolbar>
+  <md-content>
+    <section>
+        <h3>{{file.documentName}}</h3>
+        <md-select ng-model="currentDoc" placeholder="Version" class="md-no-underline">
+          <md-option ng-repeat="doc in docs" ng-value="doc">{{doc.version+1}}</md-option>
+        </md-select>
+        <section>
+          <a class="md-button md-raised" target="_self" ng-click="downloadFile(currentDoc.id)">Download</a>
+        </section>
+      </section>
+  </md-content>
+</md-dialog>

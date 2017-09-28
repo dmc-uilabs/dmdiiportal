@@ -1,0 +1,185 @@
+[{
+    "categoryTitle": "JOB ESTIMATES",
+    "categoryImage": "Factory1.png",
+    "categoryDescription": "Tools and Content that can help companies improve their job estimate processes and performance, including manufacturability tools such as ANA, product data management tools, quoting tools, and more.",
+    "categoryServices": [466, 497, 498],
+    "categoryDocuments": [677],
+    "categoryStaticContent": [{
+        "contentType": "static-content",
+        "title": "title",
+        "description": "description",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        }
+    }]
+}, {
+    "categoryTitle": "CNC MACHINING",
+    "categoryImage": "Factory2.png",
+    "categoryDescription": "Tools and Content that can help companies improve their CNC Machining Operations, including CAM software, Tooling Optimization, Machining Optimization, Shop Floor Management software, and more.",
+    "categoryServices": [906],
+    "categoryDocuments": [660, 656],
+    "categoryStaticContent": [{
+        "contentType": "static-content",
+        "title": "title",
+        "description": "description",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        }
+    }]
+}, {
+    "categoryTitle": "MEASUREMENT AND INSPECTION",
+    "categoryImage": "Factory3.png",
+    "categoryDescription": "Tools and Content that can help companies improve their Measurement and Inspection of Parts and Products, including On-machine Measurement, Connected Gauges, Measurement Management Software, CMM Software, Metrology Tools, and more.",
+    "categoryServices": [466, 497, 498],
+    "categoryDocuments": [679, 656],
+    "categoryStaticContent": [{
+        "contentType": "static-content",
+        "title": "title",
+        "description": "description",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        }
+    }],
+    "subCategories": [{
+        "categoryTitle": "METROLOGY",
+        "categoryImage": "Factory4.png",
+        "categoryDescription": "SUB ONE",
+        "categoryServices": [466, 497, 498],
+        "categoryDocuments": [679, 656],
+        "categoryStaticContent": [{
+            "contentType": "static-content",
+            "title": "title",
+            "description": "description",
+            "featureImage": {
+                "thumbnail": "",
+                "large": ""
+            }
+        }],
+        "subCategories": [{
+            "categoryTitle": "CMM MACHINE PROGRAMMING",
+            "categoryImage": "Factory3.png",
+            "categoryDescription": "SUB FOUR",
+            "categoryServices": [498],
+            "categoryDocuments": [764, 769],
+            "categoryStaticContent": [{
+                "contentType": "static-content",
+                "title": "title",
+                "description": "description",
+                "featureImage": {
+                    "thumbnail": "",
+                    "large": ""
+                }
+            }]
+        },
+        {
+            "categoryTitle": "WORKFORCE TRAINING",
+            "categoryImage": "Factory1.png",
+            "categoryDescription": "SUB FOUR",
+            "categoryServices": [497],
+            "categoryDocuments": [601,550],
+            "categoryStaticContent": [{
+                "contentType": "static-content",
+                "title": "title",
+                "description": "description",
+                "featureImage": {
+                    "thumbnail": "",
+                    "large": ""
+                }
+            }]
+        }]
+    }, {
+        "categoryTitle": "MATERIAL QUALITY",
+        "categoryImage": "Factory1.png",
+        "categoryDescription": "SUB TWO",
+        "categoryServices": [497, 498],
+        "categoryDocuments": [771, 660],
+        "categoryStaticContent": [{
+            "contentType": "static-content",
+            "title": "title",
+            "description": "description",
+            "featureImage": {
+                "thumbnail": "",
+                "large": ""
+            }
+        }]
+    }]
+}, {
+    "categoryTitle": "MANUFACTURING AND CYBERSECURITY",
+    "categoryImage": "Factory4.png",
+    "categoryDescription": "Tools and Content that can help Manufacturing Enterprises improve their Cybersecurity and meet government requirements.",
+    "categoryServices": [466, 498],
+    "categoryDocuments": [764, 769],
+    "categoryStaticContent": [{
+        "contentType": "static-content",
+        "title": "title",
+        "description": "description",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        }
+    }]
+}, {
+    "categoryTitle": "BUSINESS TRANSFORMATION",
+    "categoryImage": "Factory5.png",
+    "categoryDescription": "Tools and Content that can help companies transform their businesses, including broad educational materials, and trusted service provider partners such as MEP.",
+    "categoryServices": [497, 498],
+    "categoryDocuments": [667, 660, 656],
+    "categoryStaticContent": [{
+        "contentType": "static-content",
+        "title": "title",
+        "description": "description",
+        "featureImage": {
+            "thumbnail": "",
+            "large": ""
+        }
+    }],
+    "subCategories": [{
+        "categoryTitle": "MEP",
+        "categoryImage": "Factory3.png",
+        "categoryDescription": "MEP",
+        "categoryServices": [466, 497],
+        "categoryDocuments": [],
+        "categoryStaticContent": [{
+            "contentType": "static-content",
+            "title": "title",
+            "description": "description",
+            "featureImage": {
+                "thumbnail": "",
+                "large": ""
+            }
+        }]
+    }, {
+        "categoryTitle": "ACADEMIC",
+        "categoryImage": "Factory1.png",
+        "categoryDescription": "MEP",
+        "categoryServices": [466, 498],
+        "categoryDocuments": [],
+        "categoryStaticContent": [{
+            "contentType": "static-content",
+            "title": "title",
+            "description": "description",
+            "featureImage": {
+                "thumbnail": "",
+                "large": ""
+            }
+        }]
+    }, {
+        "categoryTitle": "SMM",
+        "categoryImage": "Factory2.png",
+        "categoryDescription": "MEP",
+        "categoryServices": [],
+        "categoryDocuments": [],
+        "categoryStaticContent": [{
+            "contentType": "static-content",
+            "title": "title",
+            "description": "description",
+            "featureImage": {
+                "thumbnail": "",
+                "large": ""
+            }
+        }]
+    }]
+}]

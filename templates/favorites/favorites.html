@@ -1,0 +1,70 @@
+<div class="container container-company" layout="row">
+  <div class="content-column left-content" layout="column" flex="20">
+    <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
+    <dmc-products-filter state-name="'allFavoritesSearch'" ng-if="isSearch"></dmc-products-filter>
+  </div>
+  <div class="content-column right-content" layout="column" flex="80">
+    <div class="content-panel">
+      <div class="content-panel-body">
+        <md-content class="company-content">
+
+          <div layout="row" layout-padding layout-align="center center" class="company-search">
+            <!--<md-input-container>-->
+              <!--<md-select ng-model="selectedProduct" ng-change="productTypeChanged(selectedProduct)" aria-label="Product Types">-->
+                <!--<md-option ng-repeat="type in productTypes" value="{{type.name}}">{{type.title}}</md-option>-->
+              <!--</md-select>-->
+            <!--</md-input-container>-->
+
+            <form ng-submit="submit(searchModel)" class="dmc-search global-search-form" flex="60">
+                <div layout="column">
+                    <div layout="row">
+                        <div layout="column" flex>
+                            <md-input-container md-no-float>
+                                <md-icon>
+                                    <ng-md-icon icon="search"></ng-md-icon>
+                                </md-icon>
+                                <input type="text" placeholder="Search Storefront" ng-model="searchModel">
+                            </md-input-container>
+                        </div>
+                        <div layout="column">
+                            <md-input-container>
+                                <md-button type="submit" class="search-button">Search</md-button>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <span flex></span>
+
+            <div layout="row" layout-align="center center">
+              <md-button class="link-button" href="/marketplace.php">
+                Marketplace
+              </md-button>
+                <md-button class="md-raised dmc-button"
+                           ng-disabled="!$root.comparedServices || !$root.comparedServices.services || $root.comparedServices.services.length == 0"
+                           compare-button>
+                    Compare ({{$root.comparedServices && $root.comparedServices.services ? $root.comparedServices.services.length : 0}})
+                </md-button>
+            </div>
+          </div>
+          <div>
+            <dmc-products-card
+                title-card="'ALL FAVORITES'"
+                search-card="true"
+                card-source="allFavorites"
+                card-loading="downloadData"
+                page-size="pageSize"
+                update-page-size="updatePageSize"
+                current-page="currentStorefrontPage"
+                total-size="allFavorites.count"
+                class="content-panel-marketplace"
+                hide-buttons="['compare']"
+                layout-margin>
+            </dmc-products-card>
+          </div>
+        </md-content>
+      </div>
+    </div>
+  </div>
+</div>
