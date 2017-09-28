@@ -27,7 +27,7 @@
     <div class="loader"></div>
   </div>
 
-  <div ng-show="service.interfaceModel.inParams.inputFile && !service.interfaceModel.inParams.inputFile.chosenThreads" layout="row" layout-align="space-between center" style="padding: 0px 40px; margin: 0px; background: white;">
+  <div ng-show="service.interfaceModel.inParams.inputFile && !service.interfaceModel.inParams.chosenThreads" layout="row" layout-align="space-between center" style="padding: 0px 40px; margin: 0px; background: white;">
     <h3 flex>Input File From Workspace:</h3>
     <div flex="40" style="margin: 0px 8px">
       <md-select placeholder="Select Project" ng-model="inputFile.projectModel" md-on-open="loadProjects()" ng-change="updateFileList(inputFile)">
