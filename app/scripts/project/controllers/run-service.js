@@ -522,6 +522,22 @@ angular.module('dmc.project')
 
             };
 
+          $scope.allInputsNotFilled = function() {
+            if($scope.service.interfaceModel && $scope.service.interfaceModel.inParams) {
+              if($scope.service.hasCustomUI){
+                return false;
+              }
+                for (var key in $scope.service.interfaceModel.inParams) {
+                  if (!$scope.service.interfaceModel.inParams[key].value) {
+                    return true;
+                  }
+                }
+              return false;
+            } else {
+              return true;
+            }
+          }
+
         }
     ]
 );

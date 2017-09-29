@@ -15,7 +15,7 @@
       Cancel
     </md-button>
 
-    <md-button ng-disabled="isRunning()" ng-click="run()" class="md-raised md-primary">
+    <md-button ng-disabled="isRunning() || allInputsNotFilled()" ng-click="run()" class="md-raised md-primary">
       Run
     </md-button>
 
@@ -79,7 +79,7 @@
       <md-button ng-disabled="!isRunning()" ng-click="cancelServiceRun($event,service)" class="md-raised md-warn">
         Cancel
       </md-button>
-			<md-button ng-disabled="isRunning()" ng-click="run()" class="md-raised md-primary">
+			<md-button ng-disabled="isRunning() || allInputsNotFilled()" ng-click="run()" class="md-raised md-primary">
 				Run
 			</md-button>
 		</div>
@@ -102,14 +102,14 @@
 				<h2>Inputs</h2>
 				<div class="inputs-button ">
 					<md-button ng-disabled="!isChangedValues" ng-click="default()" class="md-raised  dmc-button margin-left20">
-						Default
+						Default Values
 					</md-button>
-					<md-button ng-disabled="!isChangedOrder" ng-click="reset()" class="md-raised  dmc-button margin-left20">
+					<!-- <md-button ng-disabled="!isChangedOrder" ng-click="reset()" class="md-raised  dmc-button margin-left20">
 						Reset Order
 					</md-button>
 					<md-button ng-disabled="!isChangedOrder" ng-click="save()" class="md-raised md-primary dmc-button margin-left20">
 						Save Order
-					</md-button>
+					</md-button> -->
 				</div>
 			</div>
 
