@@ -15,7 +15,7 @@
       Cancel
     </md-button>
 
-    <md-button ng-disabled="isRunning() || allInputsNotFilled()" ng-click="run()" class="md-raised md-primary">
+    <md-button ng-disabled="isRunning() || attachmentUploadInProgress || allInputsNotFilled()" ng-click="run()" class="md-raised md-primary">
       Run
     </md-button>
 
@@ -23,11 +23,11 @@
 </div>
 
 <div ng-show="hasCustomUI" layout = "column" style="position: relative;">
-  <div class="greyout" ng-show="isRunning()">
+  <div class="greyout" ng-show="isRunning() || attachmentUploadInProgress">
     <div class="loader"></div>
   </div>
 
-  <div ng-show="service.interfaceModel.inParams.inputFile" layout="row" layout-align="space-between center" style="padding: 0px 40px; margin: 0px; background: white;">
+  <div ng-show="service.interfaceModel.inParams.inputFile && !service.interfaceModel.inParams.chosenThreads" layout="row" layout-align="space-between center" style="padding: 0px 40px; margin: 0px; background: white;">
     <h3 flex>Input File From Workspace:</h3>
     <div flex="40" style="margin: 0px 8px">
       <md-select placeholder="Select Project" ng-model="inputFile.projectModel" md-on-open="loadProjects()" ng-change="updateFileList(inputFile)">
@@ -79,7 +79,7 @@
       <md-button ng-disabled="!isRunning()" ng-click="cancelServiceRun($event,service)" class="md-raised md-warn">
         Cancel
       </md-button>
-			<md-button ng-disabled="isRunning() || allInputsNotFilled()" ng-click="run()" class="md-raised md-primary">
+			<md-button ng-disabled="isRunning() || attachmentUploadInProgress || allInputsNotFilled()" ng-click="run()" class="md-raised md-primary">
 				Run
 			</md-button>
 		</div>
@@ -94,7 +94,7 @@
 	<h3 style="margin-bottom: 10px;">Average Run: {{averageRun}} s.</h3>
 
 	<div layout="row" style="position: relative; padding-top: 10px;">
-    <div class="greyout standard-UI" ng-show="isRunning()">
+    <div class="greyout standard-UI" ng-show="isRunning() || attachmentUploadInProgress">
       <div class="loader"></div>
     </div>
 		<div flex="50" class="inputs">
