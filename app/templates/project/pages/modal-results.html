@@ -28,16 +28,16 @@
 
 
 					<div layout="column">
-						<div layout="row" ng-repeat="item in history.interface.inputs track by $index">
+						<div layout="row" ng-repeat="item in history.interface.inputs | filter:resultsFilter" class="service-output">
 							<div flex="35"style="margin-right: 10px;">
 							<b>{{item.name}}:</b>
 						</div>
-							<div flex="65" ng-if="!item.name.includes('emplate') && !item.name.includes('companyVPC')">
+							<div flex="65" ng-if="!item.value.includes('http')">
 								{{item.value}}
 								{{item.unit}}
 							</div>
-							<div flex="65" ng-if="item.name.includes('emplate') || item.name.includes('companyVPC')">
-								template
+							<div flex="65" ng-if="item.value.includes('http')">
+								<a href = {{item.value}} style="color:#65AF3F">view file</a>
 							</div>
 						</div>
 					</div>
@@ -51,16 +51,17 @@
 				<md-content>
 
 					<div layout="column">
-						<div layout="row" ng-repeat="item in history.interface.outParams track by $index">
+						<div layout="row" ng-repeat="item in outputParamsToArray(history.interface.outParams) | filter:resultsFilter" class="service-output">
 							<div flex="35"style="margin-right: 10px;">
 							<b>{{item.name}}:</b>
-						</div>
-							<div flex="65" ng-if="!item.name.includes('emplate') && !item.name.includes('companyVPC')">
+							</div>
+							<div flex="65" ng-if="!item.value.includes('http')">
 								{{item.value}}
 								{{item.unit}}
 							</div>
-							<div flex="65" ng-if="item.name.includes('emplate') || item.name.includes('companyVPC')">
-								template
+							<div flex="65" ng-if="item.value.includes('http')">
+								<a href = {{item.value}} style="color:#65AF3F">view file</a>
+								{{item.unit}}
 							</div>
 						</div>
 					</div>

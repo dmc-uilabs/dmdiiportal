@@ -14,15 +14,15 @@
         <div layout="row">
             <div layout="column" flex class="inputs-top">
                 <h3 class="no-bottom" style="border-bottom: 1px solid grey; margin-top: 30px;">Title, Dates and Description</h3>
-                <div layout="row" layout-md="column">
-                    <md-input-container flex="50" class="project-name">
+                <div layout="row" layout-wrap style="display: block;">
+                    <md-input-container flex="100" class="project-name">
                         <label>Title (Required)</label>
                         <input ng-model="project.projectTitle"
                                ng-disabled="!user.isDmdiiAdmin"
                                ng-required="true">
                     </md-input-container>
 
-                    <div layout="column" flex="25">
+                    <div flex="25">
                         <md-datepicker class="no-bottom no-pad-bottom top10"
                         name="awardDate"
                         ng-model="date.awarded"
@@ -31,7 +31,7 @@
                       </md-datepicker>
                     </div>
 
-                    <div layout="column" flex="25">
+                    <div flex="25">
                         <md-datepicker class="no-bottom no-pad-bottom top10"
                           name="endDate"
                           ng-model="date.end"
@@ -41,14 +41,16 @@
                     </div>
                 </div>
 
-              <div layout="column" flex="100"
+              <div style="margin-top: 20px;" layout="column" flex="100"
                 ui-widget-rich-text
                 field-name="fieldName"
                 is-required="true"
                 model="project.projectSummary"
                 limit="descriptionLimit"
                 is-saved="isSaved"
-                is-valid="isValid">
+                is-valid="isValid"
+                placeholder="  "
+                >
               </div>
 
 

@@ -81,7 +81,16 @@ angular.module('dmc.project')
                 $state.go('project.run-services', dataSearch);
             };
 
+            $scope.resultsFilter = function(serviceParam){
+              return !(serviceParam.name.includes("emplate") || serviceParam.name.includes("companyVPC"));
+            }
 
+            $scope.outputParamsToArray = function(outputParams){
+              return Object.entries(outputParams).map(function(param){
+                return param[1];
+              })
+
+            }
 
             $scope.toWorkspace = function(ev){
                 $scope.cancel();
