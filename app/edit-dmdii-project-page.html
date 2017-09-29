@@ -1,46 +1,23 @@
 <!doctype html>
 <html class="no-js" lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Digital Manufacturing Commons</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edit DMDII Project</title>
+<!--  <base href="/">-->
+</head>
+<body ng-app="dmc.edit-project">
 
-  </head>
-  <body ng-app="dmc.about">
-    <!--[if lt IE 10]>
-    <p class="/browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+<!--[if lt IE 10]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
 
-    <!-- Top Header -->
-    <div dmc-top-header active-page="'index'"></div>
+<!-- Top Header -->
 
-    <div ui-view></div>
-
-    <!-- Footer -->
-    <dmc-footer></dmc-footer>
-
-<link rel="stylesheet" href="styles/main-rh.css" />
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<!-- Place favicon.ico in the root directory -->
-
-<!-- build:css styles/vendor.css -->
-<!-- bower:css -->
-<link rel="stylesheet" href="/bower_components/angular-carousel/angular-carousel.css" />
-<link rel="stylesheet" href="/bower_components/angular-clndr/angular-clndr.css" />
-<link rel="stylesheet" href="/bower_components/angular-datepicker/dist/angular-datepicker.css" />
-<link rel="stylesheet" href="styles/https-angular-horizontal-timeline.css" />
-<link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
-<link rel="stylesheet" href="/bower_components/angular-material-data-table/dist/md-data-table.min.css" />
-<link rel="stylesheet" href="/bower_components/dropzone/dist/min/dropzone.min.css" />
-<link rel="stylesheet" href="/bower_components/md-data-table/dist/md-data-table-style.css" />
-<link rel="stylesheet" href="/bower_components/angular-ui-select/dist/select.min.css" />
-<link rel="stylesheet" href="/bower_components/select2/select2.css" />
-<link rel="stylesheet" href="/bower_components/medium-editor/dist/css/medium-editor.min.css" />
-<link rel="stylesheet" href="/bower_components/medium-editor/dist/css/themes/beagle.css" />
-<link rel="stylesheet" href="/bower_components/angular-tree-control/css/tree-control-attribute.css" />
-<!-- endbower -->
-<!-- endbuild -->
+<div dmc-top-header members-only="true" active-page="'members&editDmdiiProject'"></div>
+<div ui-view></div>
+<dmc-footer></dmc-footer>
 
 <!-- build:css styles/main-rh.css -->
 <link rel="stylesheet" href="styles/main-rh.css">'
@@ -115,33 +92,45 @@
 <!-- endbower -->
 <!-- endbuild -->
 
+<!-- build:js scripts/edit-dmdii-project-page/index.js -->
+<script src="scripts/socket/socket.io.js"></script>
+<script src="scripts/configs/ngMaterial-config.js"></script>
+<script src="scripts/common/header/header.js"></script>
+<script src="scripts/common/factory/notifications.factory.js"></script>
+<script src="scripts/common/footer/footer.js"></script>
+<script src="scripts/common/factory/location.factory.js"></script>
+<script src="scripts/components/ui-widgets/stars.directive.js"></script>
+<script src="scripts/components/ui-widgets/review.directive.js"></script>
+<script src="scripts/components/ui-widgets/tabs.directive.js"></script>
+<script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
+<script src="scripts/components/members-card/members-card.js"></script>
+<script src="scripts/components/contacts-card/contacts-card.js"></script>
+<script src="scripts/components/documents/document-info.js"></script>
+<script src="scripts/common/models/previous-page.js"></script>
+<script src="scripts/common/factory/socket.factory.js"></script>
+<script src="scripts/common/factory/ajax.factory.js"></script>
+<script src="scripts/common/factory/data.factory.js"></script>
+<script src="scripts/common/models/file-upload.js"></script>
+<script src="scripts/common/models/toast-model.js"></script>
+<script src="scripts/common/models/company-model.js"></script>
+<script src="scripts/common/models/account-model.js"></script>
+<script src="scripts/common/models/phone-model.js"></script>
+<script src="scripts/common/models/question-toast-model.js"></script>
+<script src="scripts/common/models/user-model.js"></script>
+<script src="scripts/common/models/zipcode-model.js"></script>
+<script src="scripts/edit-dmdii-project-page/edit-dmdii-project-page.js"></script>
+<script src="scripts/edit-dmdii-project-page/edit-dmdii-project-page.controller.js"></script>
 
-    <!-- build:js scripts/home/index.js -->
-    <script src="scripts/common/models/toast-model.js"></script>
-    <script src="scripts/configs/ngMaterial-config.js"></script>
-    <script src="scripts/common/header/header.js"></script>
-    <script src="scripts/common/factory/notifications.factory.js"></script>
-    <script src="scripts/common/footer/footer.js"></script>
-    <script src="scripts/common/factory/ajax.factory.js"></script>
-    <script src="scripts/common/factory/data.factory.js"></script>
-    <script src="scripts/common/models/user-model.js"></script>
-    <script src="scripts/common/models/previous-page.js"></script>
-    <script src="scripts/home/home.js"></script>
-    <script src="scripts/home/directives/dmc-recent-updates.js"></script>
-
-<script src="scripts/about/about.js"></script>
-<script src="scripts/about/controllers/about-controller.js"></script>
-
+<!-- endbuild -->
     <script type="text/javascript">
-//        <?php
-//            if (isset($_SERVER['AJP_givenName'])) {
-//                echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
-//            } else {
-//                echo('window.givenName = "";');
-//            }
-//        ?>
-
+        <?php
+            if (isset($_SERVER['AJP_givenName'])) {
+                echo('window.givenName = "'.$_SERVER['AJP_givenName'].'";');
+            } else {
+                echo('window.givenName = "";');
+            }
+        ?>
         window.apiUrl = '';
     </script>
-  </body>
+</body>
 </html>
