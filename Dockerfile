@@ -1,4 +1,4 @@
-FROM clajtayl/dmdii-gulp as builder
+FROM clajtayl/node-gulp as builder
 
 WORKDIR /app
 

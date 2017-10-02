@@ -1,9 +1,25 @@
 # dmdiiportal
 
-Building docker img
+##Building project locally
+Navigate to the jsonserver folder and run:
 
-docker build -t dmdiiportal-nginx .
+    node server.js
 
-Creating nginx docker container
+Navigate to the root of the dmdiiportal project and run:
 
-"docker run --name portal-nginx -d -p 8080:80 -v <path-to-host-dir>:/usr/share/nginx/html dmdiiportal-nginx"
+    gulp serve
+    
+**************
+
+ 
+
+
+
+
+##Building docker image on deployment server
+
+    docker build -t dmdii-front .
+
+##Creating and running docker container on demployment server
+
+    docker container run -d -p 8080:80 dmdii-front
