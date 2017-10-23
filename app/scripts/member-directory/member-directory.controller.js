@@ -49,7 +49,7 @@ angular.module('dmc.members')
             // This code use for member-directory -------------------------------------------------
             $scope.downloadData = false;        // on/off progress line in member-directory
             $scope.memberPageSize = $cookies.get('memberPageSize') ? +$cookies.get('memberPageSize') : 12;    // visible items in member-directory
-            $scope.memberCurrentPage = 0;  // current page in member-directory
+            $scope.memberCurrentPage = 1;  // current page in member-directory
             // catch updated changedPage variable form $cookies
             // variable changed in member-directory when user change page number (pagination)
             $scope.$watch(function() { return $cookies.changedPage; }, function(newValue) {
@@ -141,11 +141,11 @@ angular.module('dmc.members')
             };
 
             $scope.hasPrev = function() {
-                return $scope.memberCurrentPage !== 0;
+                return $scope.memberCurrentPage !== 1;
             };
 
             $scope.hasNext = function() {
-                return $scope.members.count && $scope.memberCurrentPage !== Math.ceil($scope.members.count / $scope.memberPageSize) - 1;
+                return $scope.members.count && $scope.memberCurrentPage !== Math.ceil($scope.members.count / $scope.memberPageSize);
             };
 
             $scope.plainText = function(input) {
@@ -160,15 +160,15 @@ angular.module('dmc.members')
 
             // insert response data to array of marketplace items
             var insertData = function(data){
-                $scope.membersByState = {};
-                angular.forEach(data, function(member) {
-                    member.organization.description = $showdown.stripHtml($showdown.makeHtml(member.organization.description));
-                    if (!$scope.membersByState[member.organization.address.state]) {
-                        $scope.membersByState[member.organization.address.state] =  [{name: member.organization.name, id: member.organization.id}];
-                    } else {
-                        $scope.membersByState[member.organization.address.state].push({name: member.organization.name, id: member.organization.id});
-                    }
-                });
+              $scope.membersByState = {};
+              angular.forEach(data, function(member) {
+                  member.description = $showdown.stripHtml($showdown.makeHtml(member.description));
+                  if (!$scope.membersByState[member.address.state]) {
+                      $scope.membersByState[member.address.state] =  [{name: member.name, id: member.id}];
+                  } else {
+                      $scope.membersByState[member.address.state].push({name: member.name, id: member.id});
+                  }
+              });
             }
 
             $scope.options = {
@@ -176,22 +176,6 @@ angular.module('dmc.members')
                 trackSelectedDate: true
             }
             $scope.showCalendar = false;
-
-            var eventsCallbackFunction = function(response) {
-                $scope.events = response.data;
-            }
-            $scope.getEvents = function(){
-                ajax.get(dataFactory.dmdiiMemberEventUrl().get, {limit: 3}, eventsCallbackFunction);
-            };
-            $scope.getEvents();
-
-            var newsCallbackFunction = function(response) {
-                $scope.news = response.data;
-            }
-            $scope.getNews = function(){
-                ajax.get(dataFactory.dmdiiMemberNewsUrl().get, {limit: 3}, newsCallbackFunction);
-            };
-            $scope.getNews();
 
             $scope.toggleCalendar = function() {
                 if ($scope.showCalendar) {
@@ -237,6 +221,9 @@ angular.module('dmc.members')
                 //$scope.randMember = $scope.members.arr[$scope.randMemberId];
                 //$scope.randMember.organization.description = truncateText($scope.randMember.organization.description,350);
                 $scope.activeProjects = {};
+
+                var ids $scope.members.arr.map(a => a.id);
+                ajax.get(dataFactory.getDMDIIProject().active, {dmdiiMemberId: ids, page: 0, pageSize: 15},)
 
                 angular.forEach($scope.members.arr, function(member, index) {
                     ajax.get(dataFactory.getDMDIIProject().active, {dmdiiMemberId: member.id, page: 0, pageSize: 15}, function(response) {
@@ -292,7 +279,7 @@ angular.module('dmc.members')
                     ajax.get(dataFactory.getDMDIIMember().search, responseData(), callbackFunction);
                 }
             };
-            $scope.getDMDIIMembers();
+            // $scope.getDMDIIMembers();
 
             $scope.submit = function(name){
                 $scope.memberCurrentPage = 0;
@@ -334,24 +321,6 @@ angular.module('dmc.members')
                 dataSearch[cat] = subcat;
                 return 'member-directory.php' + $state.href('member_directory', dataSearch);
             };
-
-            $scope.deleteNews = function(index, id) {
-                ajax.delete(dataFactory.dmdiiMemberNewsUrl(id).delete, {}, function() {
-                    $scope.news.splice(index, 1);
-                });
-            };
-
-            $scope.deleteEvent = function(index, id) {
-                ajax.delete(dataFactory.dmdiiMemberEventUrl(id).delete, {}, function() {
-                    angular.forEach($scope.events, function(event, index) {
-                        if (event.id === id) {
-                            $scope.events.splice(index, 1);
-                        };
-                    });
-                });
-            };
-
-
 
             var getMenu = function(){
 

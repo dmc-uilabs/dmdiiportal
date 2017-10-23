@@ -545,20 +545,6 @@ return {
           map: localhost + 'dmdiiMember/mapEntry'
         }
       },
-      dmdiiMemberNewsUrl: function(id) {
-        return {
-          get: localhost + 'dmdiiMember/news',
-          save: localhost + 'dmdiiMember/news',
-          delete: localhost + 'dmdiiMember/news/' + id
-        }
-      },
-      dmdiiMemberEventUrl: function(id) {
-        return {
-          get: localhost + 'dmdiiMember/events',
-          save: localhost + 'dmdiiMember/events',
-          delete: localhost + 'dmdiiMember/events/' + id
-        }
-      },
       getDMDIIMemberProjects: function() {
         return {
           prime: localhost + 'dmdiiprojects/member',

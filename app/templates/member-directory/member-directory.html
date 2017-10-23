@@ -113,18 +113,18 @@
 					<tbody>
 
 						<tr ng-repeat="member in members.arr">
-							<td class="member-logo"><img ng-src="{{member.organization.logoImage ? member.organization.logoImage : 'images/icon-company-lg.svg'}}" class="img-responsive" alt=""></td>
+							<td class="member-logo"><img ng-src="{{member.logoImage ? member.logoImage : 'images/icon-company-lg.svg'}}" class="img-responsive" alt=""></td>
 							<td class="member-description">
-								<a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a>
-								<p ng-if="member.organization.industry">{{member.organization.industry}}</p>
+								<a ng-href="{{'/member-page.php#/'+member.id}}">{{member.name}}</a>
+								<p ng-if="member.industry">{{member.industry}}</p>
 								<p more-less
-									element-text="{{member.organization.description}}"
+									element-text="{{member.description}}"
 									element-text-limit="300">
 								</p>
 							</td>
 
-							<td class="tier">{{member.dmdiiType.tier}}</td>
-							<td class="type">{{checkNonProfit(member.dmdiiType.dmdiiTypeCategory.category)}}</td>
+							<td class="tier">{{member.dmdii_tier}}</td>
+							<td class="type">{{checkNonProfit(member.organization_type)}}</td>
 							<td>
 								<ul class="active-projects">
 									<li ng-repeat="project in activeProjects[member.id] track by $index">
