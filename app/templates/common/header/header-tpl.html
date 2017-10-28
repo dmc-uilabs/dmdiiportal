@@ -166,9 +166,10 @@
 
                     <md-menu-content id="hamburger-menu-content" ng-style="{width:dropDownWidth+'px'}">
 
-                        <md-menu-item>
+<!--                        <md-menu-item>
                           <md-button id="marketplace-small" ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin" ng-click="$mdCloseMenu($event);" href="marketplace.html#/home?product=services">Resource Center</md-button>
                         </md-menu-item>
+-->
                         <md-menu-item ng-if="userData.isDmdiiAdmin" >
                           <md-button id="workspaces-small" ng-click="$mdCloseMenu($event);" href="all-projects.html#/">WORKSPACES</md-button>
                         </md-menu-item>
@@ -268,13 +269,15 @@
             <div class="navigation" layout="row" layout-align="center center" ng-hide="screenSmall()">
                 <div layout="row">
 
-                <md-menu-item ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin">
+<!--                <md-menu-item ng-if="(userData.roles && userData.roles[userData.companyId]) || userData.isDmdiiAdmin">
                     <md-button id="marketplace" href="marketplace.html#/home?product=services">Resource Center</md-button>
                 </md-menu-item>
+-->
 
-                <md-menu-item ng-if="userData.isDmdiiAdmin">
+<!--                <md-menu-item ng-if="userData.isDmdiiAdmin">
                     <md-button id="workspaces" href="/all-projects.html">Workspaces</md-button>
                 </md-menu-item>
+-->
 
                 <md-menu-item>
                   <md-button id="activities" href="/index.html">News+Events</md-button>
