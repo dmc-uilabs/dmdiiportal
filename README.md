@@ -1,5 +1,7 @@
 # dmdiiportal
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/dmc-uilabs/dmdiiportal.svg)](https://greenkeeper.io/)
+
 ##Building project locally
 Navigate to the jsonserver folder and run:
 
