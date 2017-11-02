@@ -5,6 +5,7 @@ angular.module('dmc.ajax',[
 ])
 .config(function($httpProvider){
     $httpProvider.interceptors.push('logoutInterceptor');
+    $httpProvider.interceptors.push('httpRequestInterceptor');
 
 
 
@@ -128,4 +129,13 @@ angular.module('dmc.ajax',[
       return $q.reject(rejection);
     }
   };
-}]);
+}]).factory('httpRequestInterceptor', function () {
+  return {
+    request: function (config) {
+
+      config.headers['Test-Header'] = 'It works!';
+
+      return config;
+    }
+  };
+});

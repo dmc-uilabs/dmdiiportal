@@ -26,7 +26,7 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
         userModel.getUserData().then(
             function(response){
                 var data = response.data ? response.data : response;
-                if (data.accountId) {
+                if (data.id) {
                     initUserData(data);
                 }
             }
@@ -42,8 +42,8 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
 
         var initUserData = function(data) {
           $scope.userData = data;
-          $scope.userProfileId = $scope.userData.profileId;
-          $scope.userAccountId = $scope.userData.accountId;
+          $scope.userProfileId = $scope.userData.id;
+          $scope.userAccountId = $scope.userData.id;
           $scope.userCompanyId = $scope.userData.companyId;
 
           $scope.userData.isDmdiiAdmin = ($scope.userData.roles && angular.isDefined($scope.userData.roles[0])) ? true : false;

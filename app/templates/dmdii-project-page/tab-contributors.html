@@ -15,9 +15,9 @@
 <div class="col-sm-6">
   <h4>Participants</h4>
   <dl>
-  <dt><a ng-href="{{'/member-page.php#/'+project.primeOrganization.id}}">{{project.primeOrganization.name}}</a><span class="participant-meta">&bull; Prime</span></dt>
+  <dt><a ng-href="{{'/member-page.php#/'+project.organizationDmdiiMember.id}}">{{project.organizationDmdiiMember.name}}</a><span class="participant-meta">&bull; Prime</span></dt>
   <dt ng-repeat="member in project.contributingCompanies">
-    <a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a>
+    <a ng-href="{{'/member-page.php#/'+member.id}}">{{member.name}}</a>
   </dt>
   </dl>
 </div>
@@ -29,7 +29,7 @@
   <h4>Contributing Organizations</h4>
   <dl>
   <dt ng-repeat="member in project.contributingCompanies">
-    <a ng-href="{{'/member-page.php#/'+member.id}}">{{member.organization.name}}</a>
+    <a ng-href="{{'/member-page.php#/'+member.id}}">{{member.name}}</a>
   </dt>
   </dl>
 </div>

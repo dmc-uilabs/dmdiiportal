@@ -545,10 +545,10 @@ return {
           map: localhost + 'dmdiiMember/mapEntry'
         }
       },
-      getDMDIIMemberProjects: function() {
+      getDMDIIMemberProjects: function(id) {
         return {
-          prime: localhost + 'dmdiiprojects/member',
-          contributing: localhost + 'contributingCompanies'
+          prime: localhost + 'organizations/' + id + '/dmdii_projects',
+          contributing: localhost + 'organizations/' + id +'/contributing_organizations'
         }
       },
       saveDMDIIMember: function() {
@@ -558,18 +558,18 @@ return {
       },
       getDMDIIProject: function(id) {
         return {
-          get: localhost + 'dmdiiProject/' + id,
-          all: localhost + 'dmdiiprojects',
-          delete: localhost + 'dmdiiProjects/' + id,
-          active: localhost + 'dmdiiprojects/member/active',
-          contributors: localhost + 'dmdiiproject/contributingcompanies',
-          search: localhost + 'dmdiiprojects/search'
+          get: localhost + 'dmdii_projects/' + id,
+          all: localhost + 'dmdii_projects',
+          delete: localhost + 'dmdii_projects/' + id,
+          active: localhost + 'dmdii_projects/member/active',
+          contributors: localhost + 'dmdii_projects/' + id + '/contributing_organizations',
+          search: localhost + 'dmdii_projects/search'
         }
       },
       getDMDIIEvents: function(id) {
         return {
-          get: localhost + 'dmdiievent/' + id,
-          all: localhost + 'dmdiievents'
+          get: localhost + 'dmdii_events/' + id,
+          all: localhost + 'dmdii_events'
         }
       },
       saveDMDIIProject: function() {
@@ -579,9 +579,9 @@ return {
       },
       dmdiiProjectUpdateUrl: function(id) {
         return {
-          get: localhost + 'dmdiiProjectUpdate',
-          save: localhost + 'dmdiiProjectUpdate',
-          delete: localhost + 'dmdiiProjectUpdate/' + id
+          get: localhost + 'dmdii_project_updates',
+          save: localhost + 'dmdii_project_updates',
+          delete: localhost + 'dmdii_project_updates/' + id
         }
       },
       dmdiiProjectEventUrl: function(id) {
@@ -600,19 +600,19 @@ return {
       },
       quicklinkUrl: function(id) {
         return {
-          get: localhost + 'dmdiiquicklink',
-          save: localhost + 'dmdiiquicklink',
-          delete: localhost + 'dmdiiquicklink/' + id
+          get: localhost + 'dmdii_quick_links',
+          save: localhost + 'dmdii_quick_links',
+          delete: localhost + 'dmdii_quick_links/' + id
         };
       },
       getDMDIIDocuments: function(id) {
         return {
-          all: localhost + 'dmdiidocuments',
-          single: localhost + 'dmdiidocument/' + id,
-          project: localhost + 'dmdiidocuments/dmdiiProjectId',
-          overview: localhost + 'staticdocument/1',
-          status: localhost + 'staticdocument/2',
-          projectDocument: localhost + 'dmdiidocument/filetype'
+          all: localhost + 'dmdii_documents',
+          single: localhost + 'dmdii_documents/' + id,
+          project: localhost + 'dmdii_projects/' + id + '/dmdii_documents',
+          // overview: localhost + 'staticdocument/1',
+          // status: localhost + 'staticdocument/2',
+          // projectDocument: localhost + 'dmdii_documents/filetype'
         };
       },
       saveDMDIIDocument: function() {

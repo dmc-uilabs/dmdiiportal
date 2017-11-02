@@ -28,13 +28,13 @@
     <section class="container">
         <div class="row">
             <div class="col-md-6 project-main">
-                <div class="status status-complete">{{project.projectStatus.name}}</div>
+                <div class="status status-complete">{{project.status}}</div>
                 <!-- <div class="status" ng-if="project.kind == 'dmdiiEvent'">EVENT</div> -->
                 <h1>{{project.projectTitle}}</h1>
 <!-- ng-if="project.kind != 'dmdiiEvent'" -->
                 <time>{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</time>
 
-                <span href="#">{{project.projectFocusArea.name }}</span> <span href="#">{{project.projectThrust.name}}</span>
+                <span href="#">{{project.focusArea}}</span> <span href="#">{{project.thrust.code}}</span>
             </div>
             <div class="col-md-6">
                 <div class="row">

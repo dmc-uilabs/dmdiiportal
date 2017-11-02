@@ -62,7 +62,7 @@ angular.module('dmc.members')
             $scope.docs = [];
 
             var callbackLinksFunction = function(response) {
-                $scope.docs = response.data;
+                $scope.docs = response.data.dmdiiQuickLinks;
             }
 
             $scope.getQuickLinks = function() {
@@ -222,14 +222,22 @@ angular.module('dmc.members')
                 //$scope.randMember.organization.description = truncateText($scope.randMember.organization.description,350);
                 $scope.activeProjects = {};
 
-                var ids $scope.members.arr.map(a => a.id);
-                ajax.get(dataFactory.getDMDIIProject().active, {dmdiiMemberId: ids, page: 0, pageSize: 15},)
-
-                angular.forEach($scope.members.arr, function(member, index) {
-                    ajax.get(dataFactory.getDMDIIProject().active, {dmdiiMemberId: member.id, page: 0, pageSize: 15}, function(response) {
-                        $scope.activeProjects[member.id] = response.data.data;
-                    });
+                var ids = $scope.members.arr.map(a => a.id);
+                ids = ids.join(",");
+                ajax.get(dataFactory.getDMDIIProject().active, {dmdiiMemberId: ids, page: 0, pageSize: 15}, function(response) {
+                  angular.forEach(response.data.data, function (project) {
+                    if(!$scope.activeProjects[project.organizationDmdiiMember.id]) {
+                      $scope.activeProjects[project.organizationDmdiiMember.id] = [];
+                    }
+                    $scope.activeProjects[project.organizationDmdiiMember.id].push(project);
+                  });
                 });
+
+                // angular.forEach($scope.members.arr, function(member, index) {
+                //     ajax.get(dataFactory.getDMDIIProject().active, {dmdiiMemberId: member.id, page: 0, pageSize: 15}, function(response) {
+                //         $scope.activeProjects[member.id] = response.data.data;
+                //     });
+                // });
             };
 
             var truncateText = function(text,length) {

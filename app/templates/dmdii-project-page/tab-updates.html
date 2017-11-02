@@ -1,5 +1,5 @@
 <div class="well" ng-repeat="update in updates">
-	<time>{{update.created}}</time> <span class="pull-right">	<a ng-if="userData.isDmdiiAdmin" class="delete-button" href ng-click="deleteUpdate($index, update.id)"><ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon> Delete</a>
+	<time>{{update.date}}</time> <span class="pull-right">	<a ng-if="userData.isDmdiiAdmin" class="delete-button" href ng-click="deleteUpdate($index, update.id)"><ng-md-icon icon="delete" style="fill: #999" size="16"></ng-md-icon> Delete</a>
 				</span>
 	<h4>{{update.title}}</h4>
 	<p>{{update.description}}</p>

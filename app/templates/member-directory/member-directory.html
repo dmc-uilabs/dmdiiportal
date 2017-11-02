@@ -123,11 +123,11 @@
 								</p>
 							</td>
 
-							<td class="tier">{{member.dmdii_tier}}</td>
-							<td class="type">{{checkNonProfit(member.organization_type)}}</td>
+							<td class="tier">{{member.dmdiiTier}}</td>
+							<td class="type">{{checkNonProfit(member.organizationType)}}</td>
 							<td>
 								<ul class="active-projects">
-									<li ng-repeat="project in activeProjects[member.id] track by $index">
+									<li ng-repeat="project in activeProjects[member.id]">
 										<a class="gray-link" ng-href="{{'/dmdii-project-page.php#/' + project.id}}" data-toggle="tooltip" title="{{project.projectTitle}}">
 											<!-- <span class="gray-link"
 													more-less

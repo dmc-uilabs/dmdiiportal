@@ -67,7 +67,7 @@ angular.module('dmc.member')
             };
             // callback for member
             var callbackFunction = function(response){
-                $scope.member = response.data;
+                $scope.member = response.data.organization;
 
                 var startDate = $scope.member.startDate.split('-');
                 $scope.startDate = startDate[1] + '-' + startDate[2] + '-' + startDate[0];
@@ -77,7 +77,7 @@ angular.module('dmc.member')
                 //         $scope.member.projects = response.data.data;
                 //     });
                 // }
-                $scope.getDMDIIMemberStorefront($scope.member.id);
+                // $scope.getDMDIIMemberStorefront($scope.member.id);
                 $scope.getProjects($scope.member.id);
                 $scope.memberLoading = false;
             };
@@ -94,32 +94,32 @@ angular.module('dmc.member')
             $scope.getDMDIIMember();
 
             $scope.getProjects = function(id) {
-                ajax.get(dataFactory.getDMDIIMemberProjects().prime, {dmdiiMemberId: id, page: 0, pageSize: 50}, function(response) {
+                ajax.get(dataFactory.getDMDIIMemberProjects(id).prime, {page: 0, pageSize: 50}, function(response) {
                     $scope.primes = response.data.data;
                 });
-                ajax.get(dataFactory.getDMDIIMemberProjects().contributing, {dmdiiMemberId: id}, function(response) {
-                    $scope.contributing = response.data;
+                ajax.get(dataFactory.getDMDIIMemberProjects(id).contributing, responseData(), function(response) {
+                  $scope.contributing = response.data.dmdiiProjects;
                 });
             }
 
 			$scope.storefront = [];
 
-			var callbackStorefrontFunction = function(response){
-				$scope.storefront = response.data;
-			};
+			// var callbackStorefrontFunction = function(response){
+			// 	$scope.storefront = response.data;
+			// };
 
-			var responseStorefrontData = function(){
-				var data = {
-					_limit: 12,
-					_start: 0,
-                    published: true
-				};
-				return data;
-			};
+			// var responseStorefrontData = function(){
+			// 	var data = {
+			// 		_limit: 12,
+			// 		_start: 0,
+      //               published: true
+			// 	};
+			// 	return data;
+			// };
 
-            $scope.getDMDIIMemberStorefront = function(id){
-                ajax.get(dataFactory.getCompanyServices(id), responseStorefrontData(), callbackStorefrontFunction);
-            };
+      // $scope.getDMDIIMemberStorefront = function(id){
+      //     ajax.get(dataFactory.getCompanyServices(id), responseStorefrontData(), callbackStorefrontFunction);
+      // };
 			// $scope.getDMDIIMemberStorefront = function() {
 			// 	ajax.get(dataFactory.getServices(), responseStorefrontData(), callbackStorefrontFunction);
 			// }
