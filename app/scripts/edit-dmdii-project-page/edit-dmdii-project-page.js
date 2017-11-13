@@ -48,7 +48,7 @@ angular.module('dmc.edit-project', [
     .state('create-event-page', {
         url: '/event',
         templateUrl: 'templates/edit-dmdii-project-page/edit-dmdii-event-page.html',
-        controller: 'DMCEditProjectPageController',
+        controller: 'DMCEditEventPageController',
         resolve: {
             is_search: function() {
                 return false;
@@ -58,7 +58,7 @@ angular.module('dmc.edit-project', [
     .state('edit-event-page', {
         url: '/event/:eventId/edit',
         templateUrl: 'templates/edit-dmdii-project-page/edit-dmdii-event-page.html',
-        controller: 'DMCEditProjectPageController',
+        controller: 'DMCEditEventPageController',
         resolve: {
             is_search: function() {
                 return false;

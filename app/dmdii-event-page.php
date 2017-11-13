@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DMDII Events</title>
+    <title>DMDII Event Page</title>
 
   </head>
-  <body ng-app="dmc.dmdiiEvents">
+  <body ng-app="dmc.dmdiiEvnt">
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Top Header -->
-    <div dmc-top-header members-only="true"></div>
+    <div dmc-top-header members-only="true" active-page="'members&dmdiiEvntPage'"></div>
 
     <div ui-view></div>
 
@@ -21,7 +21,7 @@
 
     <?php include 'build-vendor-rh.php' ?>
 
-    <!-- build:js scripts/dmdii-events/index.js -->
+    <!-- build:js scripts/dmdii-project-page/index.js -->
     <script src="scripts/configs/ngMaterial-config.js"></script>
     <script src="scripts/common/header/header.js"></script>
     <script src="scripts/common/footer/footer.js"></script>
@@ -40,11 +40,11 @@
     <script src="scripts/components/ui-widgets/project-tags.directive.js"></script>
     <script src="scripts/components/sub-nav-menu/sub-nav-menu.directive.js"></script>
     <script src="scripts/components/dropzone/dropzone.directive.js"></script>
-    <script src="scripts/components/tree-menu/tree-menu.js"></script>
-    <script src="scripts/components/tree-menu/horizontal-menu.js"></script>
+    <script src="scripts/components/documents/document-info.js"></script>
     <script src="scripts/common/factory/socket.factory.js"></script>
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
+	  <script src="scripts/components/carousel/carousel.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
     <script src="scripts/components/products-card/products-card.js"></script>
     <script src="scripts/common/models/project-model.js"></script>
@@ -64,11 +64,10 @@
     <script src="scripts/components/ui-widgets/stars.directive.js"></script>
     <script src="scripts/community/controllers/compose-discussion.js"></script>
     <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
-    <script src="scripts/common/factory/notifications.factory.js"></script>
-    <script src="scripts/dmdii-events/dmdii-events.js"></script>
-    <script src="scripts/dmdii-events/dmdii-events.controller.js"></script>
-    <script src="scripts/dmdii-events-page/dmdii-event-page.controller.js"></script>
-    <script src="scripts/common/directive/recent-news.directive.js"></script>
+	<script src="scripts/common/factory/notifications.factory.js"></script>
+
+    <script src="scripts/dmdii-project-page/dmdii-project-page.js"></script>
+	<script src="scripts/dmdii-project-page/dmdii-project-page.controller.js"></script>
 
     <!-- endbuild -->
     <script type="text/javascript">

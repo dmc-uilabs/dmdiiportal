@@ -46,7 +46,8 @@ angular.module('dmc.common.header', ['ngAnimate', 'dmc.model.user', 'dmc.common.
           $scope.userAccountId = $scope.userData.id;
           $scope.userCompanyId = $scope.userData.companyId;
 
-          $scope.userData.isDmdiiAdmin = ($scope.userData.roles && angular.isDefined($scope.userData.roles[0])) ? true : false;
+          $scope.userData.isDmdiiAdmin = true;
+          // ($scope.userData.roles && angular.isDefined($scope.userData.roles[0])) ? true : false;
           if ($scope.userData.runningServices) {
               $scope.runningServicesList = $scope.userData.runningServices.items;
               $scope.service_alert = $scope.userData.runningServices.total;

@@ -49,6 +49,7 @@
 <script src="scripts/common/models/zipcode-model.js"></script>
 <script src="scripts/edit-dmdii-project-page/edit-dmdii-project-page.js"></script>
 <script src="scripts/edit-dmdii-project-page/edit-dmdii-project-page.controller.js"></script>
+<script src="scripts/edit-dmdii-event-page/edit-dmdii-event-page.controller.js"></script>
 
 <!-- endbuild -->
     <script type="text/javascript">

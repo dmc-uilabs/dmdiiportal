@@ -504,7 +504,7 @@ return {
         return localhost + 'appSubmission/appName';
       },
       getDmdiiMemberTags: function() {
-        return localhost + 'tags/dmdiiMember';
+        return localhost + 'area_of_expertises/dmdiiMember';
       },
       getOrgTags: function() {
         return localhost + 'tags/organization';
@@ -569,12 +569,17 @@ return {
       getDMDIIEvents: function(id) {
         return {
           get: localhost + 'dmdii_events/' + id,
+          delete: localhost + 'dmdii_events/' + id,
+          contributors: localhost + 'dmdii_events/' + id + '/contributing_organizations',
           all: localhost + 'dmdii_events'
         }
       },
+      saveDMDIIEvent: function() {
+        return localhost + "dmdii_events";
+      },
       saveDMDIIProject: function() {
         return {
-          project: localhost + 'dmdiiProject/save'
+          project: localhost + 'dmdii_projects'
         }
       },
       dmdiiProjectUpdateUrl: function(id) {
@@ -610,6 +615,7 @@ return {
           all: localhost + 'dmdii_documents',
           single: localhost + 'dmdii_documents/' + id,
           project: localhost + 'dmdii_projects/' + id + '/dmdii_documents',
+          events: localhost + 'dmdii_events/' + id + '/dmdii_documents'
           // overview: localhost + 'staticdocument/1',
           // status: localhost + 'staticdocument/2',
           // projectDocument: localhost + 'dmdii_documents/filetype'
@@ -655,16 +661,16 @@ return {
         return localhost + 'applicationTag'
       },
       getDmdiiDocumentTags: function() {
-        return localhost + 'dmdiidocuments/getAllTags';
+        return localhost + 'dmdii_document_tags';
       },
       getDocumentTags: function() {
         return localhost + 'documents/tags';
       },
       createDocumentTag: function() {
-        return localhost + 'dmdiidocuments/saveDocumentTag';
+        return localhost + 'dmdii_document_tags';
       },
       getNonDmdiiMembers: function() {
-        return localhost + 'organization/nonMember';
+        return localhost + 'nonMembers';
       },
       // companies ------------------
       companyURL: function(id) {

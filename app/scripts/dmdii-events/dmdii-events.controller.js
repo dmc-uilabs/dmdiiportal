@@ -80,11 +80,6 @@ angular.module('dmc.dmdiiEvents')
 
             var addDMDIIEvents = function(response) {
               var eventArray = response.data.data;
-              for (var i=0; i<eventArray.length; i++) {
-                eventArray[i].date = eventArray[i].awardedDate;
-                eventArray[i].name = eventArray[i].projectTitle;
-                eventArray[i].description = eventArray[i].projectSummary;
-              }
               $scope.events = $scope.events.concat(eventArray);
               sortEvents($scope.events);
             }
@@ -178,7 +173,7 @@ angular.module('dmc.dmdiiEvents')
             $scope.deleteEvent = function(index, eventId) {
                 var eventToDelete = $scope.events[index];
                 showDeleteConfirm().then(function() {
-                  $http.delete(dataFactory.getDMDIIProject(eventId).delete).then(function(response){
+                  $http.delete(dataFactory.getDMDIIEvents(eventId).delete).then(function(response){
                       deleteEventsFromView(index, eventId);
                       toastModel.showToast('success', 'Event deleted successfully.');
                   }, function(error) {

@@ -40,8 +40,8 @@ angular.module('dmc.edit-project')
             $scope.date = {};
 
             $scope.getOrganizations = function() {
-                ajax.get(dataFactory.getDMDIIMember().full, {}, function(response) {
-                    $scope.organizations = response.data;
+                ajax.get(dataFactory.getDMDIIMember().all, {}, function(response) {
+                    $scope.organizations = response.data.organizations;
                 });
             }
             $scope.getOrganizations();
@@ -61,7 +61,7 @@ angular.module('dmc.edit-project')
             };
             // callback for project
             var callbackFunction = function(response){
-                $scope.project = response.data;
+                $scope.project = response.data.dmdiiProject;
 
                 $scope.project.projectSummary = $showdown.makeHtml($scope.project.projectSummary);
 
@@ -73,7 +73,7 @@ angular.module('dmc.edit-project')
 
                 $scope.contributors = [];
                 ajax.get(dataFactory.getDMDIIProject().contributors, {projectId: $scope.project.id}, function(response) {
-                    angular.forEach(response.data, function(company) {
+                    angular.forEach(response.data.contributingOrganizations, function(company) {
                       $scope.contributors.push({
                           id: company.id,
                           name: company.organization.name
@@ -100,13 +100,7 @@ angular.module('dmc.edit-project')
 
             $scope.project = {
                 contributingCompanyIds: [],
-                primeOrganization: {},
-                primaryPointOfContact: {},
                 principalInvestigator: {},
-                projectStatus: {},
-                projectThrust: {},
-                projectFocusArea: {},
-                projectSummary: ''
             }
 
             $scope.getDMDIIProject = function(){
@@ -114,15 +108,6 @@ angular.module('dmc.edit-project')
                     $scope.title = 'Edit Project';
                     $scope.action = 'Edited';
                     ajax.get(dataFactory.getDMDIIProject($stateParams.projectId).get, responseData(), callbackFunction);
-                } else if ($stateParams.eventId) {
-                    $scope.isEvent = true;
-                    $scope.title = 'Edit Event';
-                    $scope.action = 'Edited';
-                    ajax.get(dataFactory.getDMDIIProject($stateParams.eventId).get, responseData(), callbackFunction);
-                } else if ($state.current.url == '/event') {
-                    $scope.isEvent = true;
-                    $scope.title = 'Create Event';
-                    $scope.action = 'Created';
                 } else {
                     $scope.title = 'Create Project';
                     $scope.action = 'Created';
@@ -231,7 +216,7 @@ angular.module('dmc.edit-project')
 
 
             $scope.setPrimeOrg = function(org) {
-                $scope.project.primeOrganization = org;
+                $scope.project.organizationDmdiiMemberId = org.id;
             }
 
             $scope.contributors = [];
@@ -273,7 +258,7 @@ angular.module('dmc.edit-project')
                     return;
                 }
 
-                if ($scope.isEvent || $scope.project.projectStatus.id != 1) {
+                if ($scope.project.statusId != 1) {
                     var startDate = new Date($scope.date.awarded);
                     var year = startDate.getFullYear();
                     var month = startDate.getMonth() + 1;
@@ -294,8 +279,9 @@ angular.module('dmc.edit-project')
                 }
 
                 $scope.project.projectSummary = convertToMarkdown($scope.project.projectSummary);
-                $scope.project.projectIdentifier = $scope.project.rootNumber + '-' + $scope.project.callNumber + '-' + $scope.project.projectNumber
-                $scope.project.isEvent = $scope.isEvent;
+                if($scope.project.principalPointOfContact) {
+                  $scope.project.principalPointOfContactId = $scope.project.principalPointOfContact.id;
+                }
 
                 ajax.create(dataFactory.saveDMDIIProject().project, $scope.project, callbackSaveFunction);
             };
@@ -314,7 +300,7 @@ angular.module('dmc.edit-project')
                 if (response.data.content) {
                   return response.data.content;
                 } else {
-                  return response.data;
+                  return response.data.users;
                 }
               });
             };

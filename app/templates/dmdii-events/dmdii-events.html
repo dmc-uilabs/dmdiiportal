@@ -81,7 +81,7 @@
 										<div ng-repeat="event in events | filter: eventListFilter" class="event-block">
 										<div class="row">
 											<h5 style="outline: 0;" class="col-sm-12">
-												<a ng-href="/dmdii-project-page.php#/event/{{event.id}}">{{event.name}}</a>
+												<a ng-href="/dmdii-events.php#/event/{{event.id}}">{{event.name}}</a>
 											</h5>
 											<!-- previously using this func above to 'drill in' to summary view ng-click="eventClicked(event)"  -->
 											<div class="column col-sm-12 dates">
@@ -115,11 +115,11 @@
 					<div class="event-block">
 					<div class="row">
 
-							<a class="col-sm-10" ng-href="/dmdii-project-page.php#/event/{{event.id}}" ng-click="selectEvent(event)">
+							<a class="col-sm-10" ng-href="/dmdii-events.php#/event/{{event.id}}" ng-click="selectEvent(event)">
 								<h2 style="outline: 0;">{{event.name}}</h2>
 							</a>
 
-							<a class="col-sm-2 view-event" ng-href="/dmdii-project-page.php#/event/{{event.id}}" ng-click="selectEvent(event)">
+							<a class="col-sm-2 view-event" ng-href="/dmdii-events.php#/event/{{event.id}}" ng-click="selectEvent(event)">
 								<span>VIEW</span><ng-md-icon icon="event_note" size="18"></ng-md-icon>
 							</a>
 
@@ -133,7 +133,7 @@
 								<span> - </span>
 								<time>{{event.endDate}}</time>
 							</span>
-							<!-- <a ng-href="/dmdii-project-page.php#/event/{{event.id}}" ng-click="selectEvent(event)"><h6>EVENT DETAILS</h6></a> -->
+							<!-- <a ng-href="/dmdii-events.php#/event/{{event.id}}" ng-click="selectEvent(event)"><h6>EVENT DETAILS</h6></a> -->
 						</div>
 					</div>
 
