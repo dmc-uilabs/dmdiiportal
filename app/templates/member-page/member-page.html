@@ -74,12 +74,12 @@
 					<md-content class="md-padding">
 						<div layout="column">
 							<div class="member-project" ng-show="primes.length > 0" ng-repeat="project in primes">
-								<h4 class="no-bottom no-top">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}} (Prime)</h4>
+								<h4 class="no-bottom no-top">{{project.projectRootNumber | numberFixedLen:2}}-{{project.projectCallNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}} (Prime)</h4>
 								<h3 class="no-bottom no-top" style="margin-top:0px"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h3>
 								<md-divider/>
 							</div>
 							<div class="member-project" ng-show="contributing.length > 0" ng-repeat="project in contributing">
-								<h4 class="no-bottom no-top">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</h4>
+								<h4 class="no-bottom no-top">{{project.projectRootNumber | numberFixedLen:2}}-{{project.projectCallNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</h4>
 								<h3 class="no-bottom no-top" style="margin-top:0px"><a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a></h3>
 								<md-divider/>
 							</div>

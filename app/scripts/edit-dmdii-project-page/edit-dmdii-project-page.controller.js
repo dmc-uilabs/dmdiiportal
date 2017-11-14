@@ -61,24 +61,28 @@ angular.module('dmc.edit-project')
             };
             // callback for project
             var callbackFunction = function(response){
-                $scope.project = response.data.dmdiiProject;
+              $scope.project = response.data.dmdiiProject;
+              $scope.project.contributingCompanyIds = [];
 
-                $scope.project.projectSummary = $showdown.makeHtml($scope.project.projectSummary);
+              $scope.project.projectSummary = $showdown.makeHtml($scope.project.projectSummary);
 
+              if ($scope.project.awardedDate) {
                 var awardedDate = $scope.project.awardedDate.split('-');
                 $scope.date.awarded = new Date(awardedDate[0], awardedDate[1]-1, awardedDate[2], 0);
+              }
+              if ($scope.project.endDate) {
+              var endDate = $scope.project.endDate.split('-');
+              $scope.date.end = new Date(endDate[0], endDate[1]-1, endDate[2], 0);
+              }
 
-                var endDate = $scope.project.endDate.split('-');
-                $scope.date.end = new Date(endDate[0], endDate[1]-1, endDate[2], 0);
-
-                $scope.contributors = [];
-                ajax.get(dataFactory.getDMDIIProject().contributors, {projectId: $scope.project.id}, function(response) {
-                    angular.forEach(response.data.contributingOrganizations, function(company) {
-                      $scope.contributors.push({
-                          id: company.id,
-                          name: company.organization.name
-                      });
-                  })
+              $scope.contributors = [];
+              ajax.get(dataFactory.getDMDIIProject($scope.project.id).contributors, {}, function(response) {
+                angular.forEach(response.data.organizations, function(company) {
+                  $scope.contributors.push({
+                      id: company.id,
+                      name: company.name
+                  });
+                })
               });
 
               $scope.projectLoading = false;
@@ -216,7 +220,7 @@ angular.module('dmc.edit-project')
 
 
             $scope.setPrimeOrg = function(org) {
-                $scope.project.organizationDmdiiMemberId = org.id;
+                $scope.project.organizationDmdiiMember = org;
             }
 
             $scope.contributors = [];
@@ -258,7 +262,7 @@ angular.module('dmc.edit-project')
                     return;
                 }
 
-                if ($scope.project.statusId != 1) {
+                if ($scope.project.status.id != 1) {
                     var startDate = new Date($scope.date.awarded);
                     var year = startDate.getFullYear();
                     var month = startDate.getMonth() + 1;

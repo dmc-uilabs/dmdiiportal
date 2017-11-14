@@ -32,7 +32,7 @@
                 <!-- <div class="status" ng-if="project.kind == 'dmdiiEvent'">EVENT</div> -->
                 <h1>{{project.projectTitle}}</h1>
 <!-- ng-if="project.kind != 'dmdiiEvent'" -->
-                <time>{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</time>
+                <time>{{project.projectRootNumber | numberFixedLen:2}}-{{project.projectCallNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</time>
 
                 <span href="#">{{project.focusArea}}</span> <span href="#">{{project.thrust.code}}</span>
             </div>

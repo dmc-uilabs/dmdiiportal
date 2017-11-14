@@ -31,7 +31,6 @@ angular.module('dmc.edit-project')
                 $window,
                 fileUpload) {
 
-
             $scope.user = null;
             DMCUserModel.getUserData().then(function(res){
                 $scope.user = res;
@@ -65,6 +64,7 @@ angular.module('dmc.edit-project')
             // callback for project
             var callbackFunction = function(response){
                 $scope.event = response.data.dmdiiEvent;
+                $scope.event.contributingCompanyIds = [];
 
                 $scope.event.description = $showdown.makeHtml($scope.event.description);
 

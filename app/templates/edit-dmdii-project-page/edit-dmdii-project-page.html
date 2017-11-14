@@ -60,20 +60,20 @@
 
                     <md-input-container flex="35" class="project-status">
                         <label>Status (Required)</label>
-                        <md-select ng-model="project.statusId"
+                        <md-select ng-model="project.status"
                         ng-disabled="!user.isDmdiiAdmin"
                         ng-required="true">
-                        <md-option ng-value="status.id" ng-repeat="status in statuses">{{status.name}}</md-option>
+                        <md-option ng-value="status" ng-repeat="status in statuses">{{status.name}}</md-option>
                     </md-input-container>
                 </div>
 
                 <div layout="row">
                     <div layout="column">
-                        <md-datepicker class="no-bottom no-pad-bottom top10" name="awardDate" ng-model="date.awarded"  ng-required="project.statusId !== 1" md-placeholder="Award Date"></md-datepicker>
+                        <md-datepicker class="no-bottom no-pad-bottom top10" name="awardDate" ng-model="date.awarded"  ng-required="project.status.id !== 1" md-placeholder="Award Date"></md-datepicker>
                     </div>
 
                     <div layout="column">
-                        <md-datepicker class="no-bottom no-pad-bottom top10" name="endDate" ng-model="date.end"  ng-required="project.statusId !== 1" md-placeholder="End Date"></md-datepicker>
+                        <md-datepicker class="no-bottom no-pad-bottom top10" name="endDate" ng-model="date.end"  ng-required="project.status.id !== 1" md-placeholder="End Date"></md-datepicker>
                     </div>
                 </div>
             </div>
@@ -94,25 +94,25 @@
         <div layout="row">
             <md-input-container flex="35" class="project-focus-area">
                 <label>Focus Area (Required)</label>
-                <md-select ng-model="project.focusAreaId"
+                <md-select ng-model="project.focusArea"
                     ng-disabled="!user.isDmdiiAdmin"
                     ng-required="true">
-                    <md-option ng-value="focus.id" ng-repeat="focus in focusAreas">{{focus.name}}</md-option>
+                    <md-option ng-value="focus" ng-repeat="focus in focusAreas">{{focus.name}}</md-option>
             </md-input-container>
 
             <md-input-container flex="35" class="project-thrust">
                 <label>Thrust Area (Required)</label>
-                <md-select ng-model="project.thrustId"
+                <md-select ng-model="project.thrust"
                     ng-disabled="!user.isDmdiiAdmin"
                     ng-required="true">
-                    <md-option ng-value="thrust.id" ng-repeat="thrust in thrustAreas">{{thrust.name}}</md-option>
+                    <md-option ng-value="thrust" ng-repeat="thrust in thrustAreas">{{thrust.name}}</md-option>
             </md-input-container>
         </div>
 
         <div layout="column">
             <md-autocomplete flex="33" ng-show="user.isDmdiiAdmin"
 
-                ng-required="project.statusId !== 1"
+                ng-required="project.status.id !== 1"
                 md-input-name="organizations"
                 md-items="org in queryOrgSearch(searchOrg)"
                 md-search-text="searchOrg"
@@ -130,13 +130,13 @@
 
             <span flex></span>
 
-            <div layout="row" layout-wrap flex="33" ng-show="project.primeOrganization.name">
+            <div layout="row" layout-wrap flex="33" ng-show="project.organizationDmdiiMember.name">
                 <div layout="column">
                     <span class="no-bottom" flex>Selected Prime Organization</span>
                     <div layout="row" layout-wrap>
                         <md-chips>
                             <md-chip>
-                                <span>{{project.primeOrganization.name}}</span>
+                                <span>{{project.organizationDmdiiMember.name}}</span>
                             </md-chip>
                         </md-chips>
                     </div>
@@ -148,7 +148,7 @@
             <div layout="row" ng-show="user.isDmdiiAdmin">
                 <md-autocomplete flex="33"
 
-                    ng-required="project.statusId !== 1"
+                    ng-required="project.status.id !== 1"
                     md-input-name="organizations"
                     md-items="org in queryOrgSearch(searchContOrg)"
                     md-search-text="searchContOrg"
@@ -189,21 +189,21 @@
                         <label>First Name</label>
                         <input id="contactFirstName"
 
-                            ng-required="project.statusId !== 1"
+                            ng-required="project.status.id !== 1"
                             ng-model="project.principalInvestigator.firstName">
                     </md-input-container>
                     <md-input-container>
                         <label>Last Name</label>
                         <input id="contactLastName"
 
-                            ng-required="project.statusId !== 1"
+                            ng-required="project.status.id !== 1"
                             ng-model="project.principalInvestigator.lastName">
                     </md-input-container>
                     <md-input-container md-no-float>
                         <label>Email</label>
                         <input id="contactEmail"
 
-                            ng-required="project.statusId !== 1"
+                            ng-required="project.status.id !== 1"
                             ng-model="project.principalInvestigator.email">
                     </md-input-container>
                 </div>
