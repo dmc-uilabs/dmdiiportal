@@ -76,7 +76,7 @@ angular.module('dmc.edit-project')
 
                 $scope.contributors = [];
                 ajax.get(dataFactory.getDMDIIEvents($scope.event.id).contributors, {}, function(response) {
-                    angular.forEach(response.data.contributingOrganizations, function(company) {
+                    angular.forEach(response.data.organizations, function(company) {
                       $scope.contributors.push({
                           id: company.id,
                           name: company.organization.name
@@ -133,10 +133,8 @@ angular.module('dmc.edit-project')
 
             var callbackSaveFunction = function(response) {
                 if (response.status === 200) {
-                    toastModel.showToast('success', 'Member Successfully ' + $scope.action + '!')
-                    if (response.data.isEvent) {
-                      $window.location.href = '/dmdii-project-page.php#/event/' + response.data.id;
-                    }
+                  toastModel.showToast('success', 'Event Successfully ' + $scope.action + '!')
+                  $window.location.href = '/dmdii-project-page.php#/event/' + response.data.dmdiiEvent.id;
                 }
             }
 
@@ -175,7 +173,11 @@ angular.module('dmc.edit-project')
                   $scope.event.principalPointOfContactId = $scope.event.principalPointOfContact.id;
                 }
 
-                ajax.create(dataFactory.saveDMDIIEvent(), $scope.event, callbackSaveFunction);
+                if($scope.action == 'Edited') {
+                  ajax.update(dataFactory.getDMDIIEvents($scope.event.id).update, $scope.event, callbackSaveFunction);
+                } else {
+                  ajax.create(dataFactory.saveDMDIIEvent(), $scope.event, callbackSaveFunction);
+                }
             };
 
             $scope.cancelChanges = function(){

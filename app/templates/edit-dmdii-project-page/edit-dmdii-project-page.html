@@ -61,6 +61,7 @@
                     <md-input-container flex="35" class="project-status">
                         <label>Status (Required)</label>
                         <md-select ng-model="project.status"
+                        ng-model-options="{trackBy: '$value.id'}"
                         ng-disabled="!user.isDmdiiAdmin"
                         ng-required="true">
                         <md-option ng-value="status" ng-repeat="status in statuses">{{status.name}}</md-option>
@@ -95,17 +96,19 @@
             <md-input-container flex="35" class="project-focus-area">
                 <label>Focus Area (Required)</label>
                 <md-select ng-model="project.focusArea"
-                    ng-disabled="!user.isDmdiiAdmin"
-                    ng-required="true">
-                    <md-option ng-value="focus" ng-repeat="focus in focusAreas">{{focus.name}}</md-option>
+                  ng-model-options="{trackBy: '$value.id'}"
+                  ng-disabled="!user.isDmdiiAdmin"
+                  ng-required="true">
+                  <md-option ng-value="focus" ng-repeat="focus in focusAreas">{{focus.name}}</md-option>
             </md-input-container>
 
             <md-input-container flex="35" class="project-thrust">
                 <label>Thrust Area (Required)</label>
                 <md-select ng-model="project.thrust"
-                    ng-disabled="!user.isDmdiiAdmin"
-                    ng-required="true">
-                    <md-option ng-value="thrust" ng-repeat="thrust in thrustAreas">{{thrust.name}}</md-option>
+                  ng-model-options="{trackBy: '$value.id'}"
+                  ng-disabled="!user.isDmdiiAdmin"
+                  ng-required="true">
+                  <md-option ng-value="thrust" ng-repeat="thrust in thrustAreas">{{thrust.name}}</md-option>
             </md-input-container>
         </div>
 

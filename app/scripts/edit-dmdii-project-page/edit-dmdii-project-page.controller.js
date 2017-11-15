@@ -78,6 +78,7 @@ angular.module('dmc.edit-project')
               $scope.contributors = [];
               ajax.get(dataFactory.getDMDIIProject($scope.project.id).contributors, {}, function(response) {
                 angular.forEach(response.data.organizations, function(company) {
+                  $scope.project.contributingCompanyIds.push(company.id);
                   $scope.contributors.push({
                       id: company.id,
                       name: company.name
@@ -241,12 +242,8 @@ angular.module('dmc.edit-project')
 
             var callbackSaveFunction = function(response) {
                 if (response.status === 200) {
-                    toastModel.showToast('success', 'Member Successfully ' + $scope.action + '!')
-                    if (response.data.isEvent) {
-                      $window.location.href = '/dmdii-project-page.php#/event/' + response.data.id;
-                    } else {
-                      $window.location.href = '/dmdii-project-page.php#/' + response.data.id;
-                    }
+                  toastModel.showToast('success', 'Project Successfully ' + $scope.action + '!')
+                  $window.location.href = '/dmdii-project-page.php#/' + response.data.dmdiiProject.id;
                 }
             }
 
@@ -283,11 +280,19 @@ angular.module('dmc.edit-project')
                 }
 
                 $scope.project.projectSummary = convertToMarkdown($scope.project.projectSummary);
+                $scope.project.status = $scope.project.status.id;
+                $scope.project.thrust = $scope.project.thrust.id;
+                $scope.project.focusArea = $scope.project.focusArea.id;
+                $scope.project.organizationDmdiiMemberId = $scope.project.organizationDmdiiMember.id;
+
                 if($scope.project.principalPointOfContact) {
                   $scope.project.principalPointOfContactId = $scope.project.principalPointOfContact.id;
                 }
-
-                ajax.create(dataFactory.saveDMDIIProject().project, $scope.project, callbackSaveFunction);
+                if($scope.action == 'Edited') {
+                  ajax.update(dataFactory.getDMDIIProject($scope.project.id).update, $scope.project, callbackSaveFunction);
+                } else {
+                  ajax.create(dataFactory.saveDMDIIProject().project, $scope.project, callbackSaveFunction);
+                }
             };
 
             $scope.cancelChanges = function(){

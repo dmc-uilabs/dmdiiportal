@@ -563,12 +563,14 @@ return {
           delete: localhost + 'dmdii_projects/' + id,
           active: localhost + 'dmdii_projects/member/active',
           contributors: localhost + 'dmdii_projects/' + id + '/contributing_organizations',
+          update: localhost + 'dmdii_projects/' + id,
           search: localhost + 'dmdii_projects/search'
         }
       },
       getDMDIIEvents: function(id) {
         return {
           get: localhost + 'dmdii_events/' + id,
+          update: localhost + 'dmdii_events/' + id,
           delete: localhost + 'dmdii_events/' + id,
           contributors: localhost + 'dmdii_events/' + id + '/contributing_organizations',
           all: localhost + 'dmdii_events'
