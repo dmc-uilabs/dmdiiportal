@@ -44,7 +44,7 @@
     <script src="scripts/common/factory/socket.factory.js"></script>
     <script src="scripts/common/factory/ajax.factory.js"></script>
     <script src="scripts/common/factory/data.factory.js"></script>
-	<script src="scripts/components/carousel/carousel.js"></script>
+	  <script src="scripts/components/carousel/carousel.js"></script>
     <script src="scripts/components/product-card/product-card.js"></script>
     <script src="scripts/components/products-card/products-card.js"></script>
     <script src="scripts/common/models/project-model.js"></script>
@@ -64,10 +64,9 @@
     <script src="scripts/components/ui-widgets/stars.directive.js"></script>
     <script src="scripts/community/controllers/compose-discussion.js"></script>
     <script src="scripts/components/ui-widgets/rich-text.directive.js"></script>
-	<script src="scripts/common/factory/notifications.factory.js"></script>
-
+	  <script src="scripts/common/factory/notifications.factory.js"></script>
     <script src="scripts/dmdii-project-page/dmdii-project-page.js"></script>
-	<script src="scripts/dmdii-project-page/dmdii-project-page.controller.js"></script>
+	  <script src="scripts/dmdii-project-page/dmdii-project-page.controller.js"></script>
 
     <!-- endbuild -->
     <script type="text/javascript">

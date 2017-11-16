@@ -52,9 +52,9 @@ angular.module('dmc.dmdiiEvnt', [
 }).directive('tabContributors', function () {
     return {
         restrict: 'E',
-        templateUrl: 'templates/dmdii-event-page/tab-contributors.html',
+        templateUrl: 'templates/dmdii-project-page/tab-contributors.html',
         scope:{
-          project: '=',
+          _event: '=',
           userData: '='
         },
         controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
@@ -78,25 +78,6 @@ angular.module('dmc.dmdiiEvnt', [
                     } else {
                         $scope.documents.splice(index, 1);
                     }
-                });
-            };
-
-          }
-        }
-      }
-  ).directive('tabUpdates', function () {
-      return {
-          restrict: 'E',
-          templateUrl: 'templates/dmdii-event-page/tab-updates.html',
-          scope:{
-            updates: '=',
-            userData: '='
-          },
-          controller: function ($scope,$mdDialog,$rootScope,ajax,dataFactory,DMCUserModel) {
-
-            $scope.deleteUpdate = function(index, id) {
-                ajax.delete(dataFactory.dmdiiEventUpdateUrl(id).delete, {}, function() {
-                    $scope.updates.splice(index, 1);
                 });
             };
 

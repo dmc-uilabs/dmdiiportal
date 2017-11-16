@@ -125,21 +125,24 @@ angular.module('dmc.dmdiiEvents')
 
             var setInitialSelectedDay = function(events) {
               var today = new Date();
-              var selectedDay;
+              today.setHours(0,0,0,0);
               var selectedEvents = [];
               // if we want to remove previous events
               // $scope.events = [];
 
               for (var i=0; i<events.length; i++) {
-                var eventDate = new Date(events[i].date)
-                if (!selectedDay && eventDate >= today) {
-                  selectedDay = eventDate
+                var eventDate = new Date(events[i].date.replace(/-/g, '\/'))
+                eventDate.setHours(0,0,0,0)
+
+                var endDate = new Date(events[i].endDate)
+                endDate.setHours(0,0,0,0)
+                if (today.getTime() <= endDate.getTime() && today.getTime() >= eventDate.getTime()) {
                   selectedEvents.push(events[i])
-                } else if (eventDate == selectedDay) {
+                } else if (eventDate.getTime() === today.getTime()) {
                   selectedEvents.push(events[i])
                 }
                 // if we want to remove previous events
-                if (eventDate >= today) {
+                if (eventDate > today) {
                   // $scope.events.push(events[i])
                   events[i].future=true;
                 }

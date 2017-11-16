@@ -58,13 +58,19 @@ angular.module('dmc.dmdiiEvents')
                 $scope.event = response.data.dmdiiEvent;
 
                 ajax.get(dataFactory.getDMDIIEvents($scope.event.id).contributors, responseData(), function(response) {
-                    $scope.event.contributingCompanies = response.data.organizations;
-                    $scope.eventLoading = false;
+                  // if(!$scope.project) {
+                  //   $scope.project = {};
+                  // }
+                  // $scope.project.contributingCompanies = response.data.organizations;
+                  $scope.event.contributingCompanies = response.data.organizations;
+                  $scope.eventLoading = false;
                 });
 
-                ajax.get(dataFactory.getDMDIIDocuments($scope.event.id).events, responseData(), function(response) {
-                    $scope.documents = response.data.dmdiiDocuments;
-                });
+                // ajax.get(dataFactory.getDMDIIDocuments($scope.event.id).events, responseData(), function(response) {
+                //     $scope.documents = response.data.dmdiiDocuments;
+                // });
+
+                $scope.documents = [];
             };
 
             var responseData = function(){

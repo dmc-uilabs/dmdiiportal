@@ -132,9 +132,9 @@ angular.module('dmc.edit-project')
             };
 
             var callbackSaveFunction = function(response) {
-                if (response.status === 200) {
+                if (response.status === 200 || response.status === 201) {
                   toastModel.showToast('success', 'Event Successfully ' + $scope.action + '!')
-                  $window.location.href = '/dmdii-project-page.php#/event/' + response.data.dmdiiEvent.id;
+                  $window.location.href = '/dmdii-events.php#/event/' + response.data.dmdiiEvent.id;
                 }
             }
 
