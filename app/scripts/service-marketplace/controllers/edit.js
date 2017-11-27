@@ -155,7 +155,7 @@ angular.module('dmc.service-marketplace')
             DMCUserModel.getUserData().then(function(res){
                 userData = res;
                 CompareModel.get('services',userData);
-                //getFavoriteCount();
+                getFavoriteCount();
             });
 
             // get favorites count ------------------

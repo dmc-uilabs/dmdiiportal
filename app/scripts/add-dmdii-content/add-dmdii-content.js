@@ -15,7 +15,7 @@ angular.module('dmc.addDmdiiContent', [
     'dmc.socket',
     'dmc.model.question-toast-model',
     'dmc.widgets.tabs',
-	'dmc.widgets.documents',
+	  'dmc.widgets.documents',
     'dmc.widgets.rich-text',
     'dmc.common.header',
     'dmc.common.footer',

@@ -1,273 +1,166 @@
-<main>
-  <!-- Nav tabs -->
-  <section class="container" style="margin-bottom: 50px;">
+<div class="container marketplace-box" layout="row" >
+  <!-- <div class="content-column" layout="column" flex='20'>
+    <dmc-tree-menu tree-source="treeMenuModel"></dmc-tree-menu>
+  </div> -->
+  <!-- Left Content Column -->
+  <div class="marketplace" layout="column" flex>
+    <!-- <md-content class="marketplace-search" layout="row" layout-align="center center">
 
-    <div class="row">
-    <ul class="nav nav-tabs" role="tablist">
-      <li style="float: right;" role="presentation" class="hidden-xs"><a data-target="#viewall" aria-controls="viewall" role="tab" data-toggle="tab">View All</a></li>
-      <!-- <li style="float: right;" role="presentation" class="hidden-xs"><a data-target="#academia" aria-controls="academia" role="tab" data-toggle="tab">Academia</a></li> -->
-      <li style="float: right;" role="presentation" class="active hidden-xs"><a data-target="#forsmms" aria-controls="forsmms" role="tab" data-toggle="tab">SMMs</a></li>
-    </ul>
-    <h1 class="col-xs-12">Resource Center</h1>
-  </section>
-
-
-
-    <div class="container">
-        <!-- Tab panes -->
-        <div class="tab-content">
-
-
-
-
-          <!-- SMM PANEL -->
-            <div role="tabpanel" class="tab-pane fade in active" id="forsmms">
-              <section class="container">
-                <section id="main-section" class="main-section">
-
-
-                  <!-- Stuff added -->
-                  <!-- <div ng-repeat="contentGroup in contentArray">
-                    <div class="container transform-main">
-                      <div class = "row margin-bottom-10">
-
-                        <img class = "bullet-image" ng-src="{{contentGroup.categoryImage}}" type="image/png" height="80px">
-                          <div class="col-sm-7 co l-md-10 bottom-border path-link">
-                            <a ng-click="showDetails = ! showDetails">{{contentGroup.categoryQuestion}}</h2>
-                          </div>
-                      </div>
-                    </div>
-
+      <form ng-submit="submit(searchModel)" class="dmc-search global-search-form" flex="60">
+          <div layout="column">
+              <div layout="row">
+                  <div layout="column" flex>
+                      <md-input-container md-no-float>
+                          <md-icon>
+                              <ng-md-icon icon="search"></ng-md-icon>
+                          </md-icon>
+                          <input type="text" placeholder="Search Marketplace" ng-model="searchModel">
+                      </md-input-container>
                   </div>
-
-                  <div ng-repeat="contentGroup in contentArray" class="transform-section">
-                      <div class="container transform-content">
-                          <div class="row nav-row">
-                              <a ng-click="gotoElement('main-section')"><ng-md-icon class="nav-back top" style="fill: white" icon="navigate_before" size="25"></ng-md-icon></a>
-                              <a href="index.php"><ng-md-icon class="pull-right nav-home" icon="home" style="fill: white" size="25"></ng-md-icon></a>
-                              <img ng-click="gotoElement('get-lean')" class="pull-right margin-right-3" ng-src="images/meter.png" type="image/png" height="25px">
-                              <img ng-click="gotoElement('cmm-operations')" class="pull-right margin-right-3" ng-src="images/ruler_grey.png" type="image/png" height="25px">
-                              <img ng-click="gotoElement('cnc-operations')" class="pull-right https://mail.google.com/mail/u/0/#inboxmargin-right-3" ng-src="images/computer_grey.png" type="image/png" height="25px">
-                              <img ng-click="gotoElement('improved-estimates')" class="pull-right margin-right-3" ng-src="images/calc_grey.png" type="image/png" height="25px">
-                          </div>
-                          <div
-                          ui-widget-content
-                               content-item="contentGroup.content">
-                          </div>
-                      </div>
-                  </div> -->
-
-                  <!-- End of stuff added -->
-
-                    <div class="container transform-main">
-                        <div class="row margin-bottom-10">
-                            <a ng-click="gotoElement('improved-estimates')">
-                                <img class="bullet-image" ng-src="images/calc.png" type="image/png" height="80px">
-                            </a>
-                            <div class="col-sm-7 co l-md-10 bottom-border path-link">
-                                <a ng-click="gotoElement('improved-estimates')">I want to improve estimates.</a>
-                            </div>
-                        </div>
-                        <div class="row margin-bottom-10">
-                            <a ng-click="gotoElement('cnc-operations')">
-                                <img class="bullet-image" ng-src="images/computer.png" type="image/png" height="80px">
-                            </a>
-                            <div class="col-sm-7 col-md-10 bottom-border path-link">
-                                <a ng-click="gotoElement('cnc-operations')">I want to improve my CNC operations.</a>
-                            </div>
-                        </div>
-                        <div class="row margin-bottom-10">
-                            <a ng-click="gotoElement('cmm-operations')">
-                                <img class="bullet-image" ng-src="images/ruler.png" type="image/png" height="80px">
-                            </a>
-                            <div class="col-sm-7 col-md-10 bottom-border path-link">
-                                <a ng-click="gotoElement('cmm-operations')">I want to improve my CMM operations.</a>
-                            </div>
-                        </div>
-                        <div class="row margin-bottom-10">
-                            <a ng-click="gotoElement('get-lean')">
-                                <img class="bullet-image" ng-src="images/meter.png" type="image/png" height="80px">
-                            </a>
-                            <div class="col-sm-7 col-md-10 bottom-border path-link">
-                                <a ng-click="gotoElement('get-lean')">I want to get lean.</a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-
-
-                <section id="improved-estimates" class="transform-section">
-                    <div class="container transform-content">
-                        <div class="row nav-row">
-                            <a ng-click="gotoElement('main-section')"><ng-md-icon class="nav-back top" style="fill: white" icon="navigate_before" size="25"></ng-md-icon></a>
-                            <a href="index.php"><ng-md-icon class="pull-right nav-home" icon="home" style="fill: white" size="25"></ng-md-icon></a>
-                            <img ng-click="gotoElement('get-lean')" class="pull-right margin-right-3" ng-src="images/meter_grey.png" type="image/png" height="25px">
-                            <img ng-click="gotoElement('cmm-operations')" class="pull-right margin-right-3" ng-src="images/ruler_grey.png" type="image/png" height="25px">
-                            <img ng-click="gotoElement('cnc-operations')" class="pull-right margin-right-3" ng-src="images/computer_grey.png" type="image/png" height="25px">
-                            <img ng-click="gotoElement('improved-estimates')" class="pull-right margin-right-3" ng-src="images/calc.png" type="image/png" height="25px">
-                        </div>
-                        <div ng-repeat="estimateItem in resourceMap[1].contentSet">
-                        <div ui-widget-content
-                             content-item="estimateItem"
-                             serviceMap="serviceMap">
-                        </div>
-                      </div>
-
-                    </div>
-                </section>
-
-                <section id="cnc-operations" class="transform-section">
-                    <div class="container transform-content">
-                        <div class="row nav-row">
-                            <a ng-click="gotoElement('main-section')"><ng-md-icon class="nav-back top" style="fill: white" icon="navigate_before" size="25"></ng-md-icon></a>
-                            <a href="index.php"><ng-md-icon class="pull-right nav-home" icon="home" style="fill: white" size="25"></ng-md-icon></a>
-                            <img ng-click="gotoElement('get-lean')" class="pull-right margin-right-3" ng-src="images/meter_grey.png" type="image/png" height="25px">
-                            <img ng-click="gotoElement('cmm-operations')" class="pull-right margin-right-3" ng-src="images/ruler_grey.png" type="image/png" height="25px">
-                            <img ng-click="gotoElement('cnc-operations')" class="pull-right margin-right-3" ng-src="images/computer.png" type="image/png" height="25px">
-                            <img ng-click="gotoElement('improved-estimates')" class="pull-right margin-right-3" ng-src="images/calc_grey.png" type="image/png" height="25px">
-                        </div>
-                        <div ng-repeat="cncItem in resourceMap[2].contentSet">
-                          <div ui-widget-content
-                               content-item="cncItem"
-                               serviceMap="serviceMap">
-                          </div>
-                        </div>
-
-                    </div>
-                </section>
-
-                <section id="cmm-operations" class="transform-section">
-                    <div class="container transform-content">
-                        <div class="row nav-row">
-                            <a ng-click="gotoElement('main-section')"><ng-md-icon class="nav-back top" style="fill: white" icon="navigate_before" size="25"></ng-md-icon></a>
-                            <a href="index.php"><ng-md-icon class="pull-right nav-home" icon="home" style="fill: white" size="25"></ng-md-icon></a>
-                            <img ng-click="gotoElement('get-lean')" class="pull-right margin-right-3" ng-src="images/meter_grey.png" type="image/png" height="25px">
-                            <img ng-click="gotoElement('cmm-operations')" class="pull-right margin-right-3" ng-src="images/ruler.png" type="image/png" height="25px">
-                            <img ng-click="gotoElement('cnc-operations')" class="pull-right margin-right-3" ng-src="images/computer_grey.png" type="image/png" height="25px">
-                            <img ng-click="gotoElement('improved-estimates')" class="pull-right margin-right-3" ng-src="images/calc_grey.png" type="image/png" height="25px">
-                        </div>
-
-                        <div ng-repeat="cmmItem in resourceMap[0].contentSet">
-                          <div ui-widget-content
-                               content-item="cmmItem"
-                               serviceMap="serviceMap">
-                          </div>
-                        </div>
-
-                    </div>
-                </section>
-
-                <section id="get-lean" class="transform-section">
-                    <div class="container transform-content">
-                        <div class="row nav-row">
-                            <a ng-click="gotoElement('main-section')"><ng-md-icon class="nav-back top" style="fill: white" icon="navigate_before" size="25"></ng-md-icon></a>
-                            <a href="index.php"><ng-md-icon class="pull-right nav-home" icon="home" style="fill: white" size="25"></ng-md-icon></a>
-                            <img ng-click="gotoElement('get-lean')" class="pull-right margin-right-3" ng-src="images/meter.png" type="image/png" height="25px">
-                            <img ng-click="gotoElement('cmm-operations')" class="pull-right margin-right-3" ng-src="images/ruler_grey.png" type="image/png" height="25px">
-                            <img ng-click="gotoElement('cnc-operations')" class="pull-right https://mail.google.com/mail/u/0/#inboxmargin-right-3" ng-src="images/computer_grey.png" type="image/png" height="25px">
-                            <img ng-click="gotoElement('improved-estimates')" class="pull-right margin-right-3" ng-src="images/calc_grey.png" type="image/png" height="25px">
-                        </div>
-
-                        <div ng-repeat="leanItem in resourceMap[3].contentSet">
-                          <div
-                          ui-widget-content
-                               content-item="leanItem"
-                               serviceMap="serviceMap">
-                          </div>
-                        </div>
-
-                    </div>
-                </section>
-              </section>
-            </div>
-
-            <!-- VIEW ALL PANEL -->
-              <section role="tabpanel" class="tab-pane fade " id="viewall">
-
-                <section class="container">
-
-                  <div class="row">
-                    <div class="col-xs-12">
-                      <form ng-submit="search(searchTerm)">
-                        <div class="search-input-div col-xs-10">
-                            <input class="search-input" type="text" ng-model="searchTerm" placeholder="Search">
-                            <ng-md-icon icon="clear" size="15" class="pull-right clear-icon" ng-click="clearSearch()"></ng-md-icon>
-                        </div>
-                        <button class="btn search-button no-click-border col-xs-2" type="submit">
-                          <ng-md-icon icon="search" size="20"></ng-md-icon>
-                        </button>
-                      </form>
-                    </div>
+                  <div layout="column">
+                      <md-input-container>
+                          <md-button type="submit" class="search-button">Search</md-button>
+                      </md-input-container>
                   </div>
-
-                </section>
-                <section class="container">
-                  <!-- <div class="row ws-filters">
-                    <div class="col-xs-6" ng-init="filterModel='both'">
-                      <h4>FILTER</h4>
-                      <md-radio-group ng-model="filterModel">
-                        <md-radio-button ng-click="setFilter('clear')" value="both" class="md-primary md-checked">Apps</md-radio-button>
-                        <md-radio-button ng-click="setFilter('public')" value="pubilc" class="md-primary">Documents</md-radio-button>
-                        <md-radio-button ng-click="setFilter('private')" value="private" class="md-primary">Services</md-radio-button>
-                      </md-radio-group>
-                    </div>
-
-                    <div class="col-xs-6">
-                      <div style="float: right;">
-                        <h4>SORT</h4>
-                        <md-radio-group>
-                          <md-radio-button ng-click="updateSort()" class="md-primary" checked="true">Popular</md-radio-button>
-                          <md-radio-button ng-click="updateSort()" class="md-primary" checked="false">A-Z</md-radio-button>
-                        </md-radio-group>
-                      </div>
-
-                    </div>
-                  </div> -->
-
-                  <div ng-repeat="item in allResources | filter:searchTerm">
-                    <div ui-widget-content
-                         content-item="item"
-                         serviceMap="serviceMap">
-                    </div>
-                  </div>
-
-              </section>
-            </section>
+              </div>
           </div>
-        </div>
-</main>
+      </form>
+
+      <span flex></span>
+
+      <div class="marketplace-search-button" layout="row" layout-align="center start">
+        <md-button class="link-button favorites-link" md-no-ink href="/favorites.php">
+          <ng-md-icon icon="favorite" size="14"></ng-md-icon>
+          Favorites ({{favoritesCount}})
+        </md-button>
+        <md-button class="md-raised dmc-button"
+                   ng-disabled="!$root.comparedServices || !$root.comparedServices.services || $root.comparedServices.services.length == 0"
+                   compare-button>
+          Compare ({{$root.comparedServices && $root.comparedServices.services ? $root.comparedServices.services.length : 0}})
+        </md-button>
+      </div>
+    </md-content> -->
+
+    <md-tabs md-dynamic-height md-border-bottom ng-if="!isSearch" class="marketplace-carousel-tabs">
+      <!-- <md-tab label="Popular">
+        <md-content class="carousel-padding">
+          <div dmc-carousel
+              name-carousel="'carouselPopular'"
+              max-items="24"
+              show-items="3"
+              carousel-source="carouselData.popular.arr"
+              run-carousel="true"
+              timeout="5">
+          </div>
+        </md-content>
+      </md-tab> -->
+
+      <md-tab label="DMC Marketplace">
+        <md-content class="carousel-padding">
+          <div dmc-carousel
+              name-carousel="'carouselNew'"
+              max-items="24"
+              show-items="3"
+              carousel-source="carouselData.new.arr"
+              run-carousel="true"
+              timeout="5">
+          </div>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+
+
+  <hr />
 
 
 
-<!--
+  <dmc-featured-app-card
+    cards="allApps">
 
-<div ng-repeat="contentGroup in contentArray">
-  <div class="container transform-main">
-    <div class = "row margin-bottom-10">
+  </dmc-featured-app-card>
 
-      <img class = "bullet-image" ng-src="{{contentGroup.categoryImage}}" type="image/png" height="80px">
-        <div class="col-sm-7 co l-md-10 bottom-border path-link">
-          <a ng-click="selectedIndex = $index">{{contentGroup.categoryQuestion}}</h2>
-        </div>
+
+
+<hr />
+
+
+
+  <!-- <div class="marketplace-search-button" layout="row" layout-align="center center"> -->
+
+    <!-- <div >
+      <img class="image" ng-src="images/home-market-icon.png"  style="width: 180px">
     </div>
+
+    <div class="flex-60 padding-10">
+      <h3>The DMC marketplace supplies services and applications from across the digital thread to allow one to do business better, cheaper and faster. The above carousel features new services and below you can browse them by category.</h3>
+    </div>
+
+    <div >
+      <md-button class="md-raised dmc-button"
+                 ng-disabled="!$root.comparedServices || !$root.comparedServices.services || $root.comparedServices.services.length == 0"
+                 compare-button>
+         Compare Services ({{$root.comparedServices && $root.comparedServices.services ? $root.comparedServices.services.length : 0}})
+      </md-button>
+    </div>
+
+
+  </div> -->
+
+  <hr />
+
+
+
+
+
+<!-- End -->
+
+
+
+  <div class="marketplace-search-button" layout="row" layout-align="center center">
+    <!-- <md-button class="link-button favorites-link" md-no-ink href="/favorites.php">
+      <ng-md-icon icon="favorite" size="14"></ng-md-icon>
+      Favorites ({{favoritesCount}})
+    </md-button> -->
+
+    <div >
+      <img class="image" ng-src="images/home-market-icon.png"  style="width: 180px">
+    </div>
+
+    <div class="flex-60 padding-10">
+      <h3>The DMC marketplace supplies services and applications from across the digital thread to allow one to do business better, cheaper and faster. The above carousel features new services and below you can browse them by category.</h3>
+    </div>
+
+    <div >
+      <md-button class="md-raised dmc-button"
+                 ng-disabled="!$root.comparedServices || !$root.comparedServices.services || $root.comparedServices.services.length == 0"
+                 compare-button>
+         Compare Services ({{$root.comparedServices && $root.comparedServices.services ? $root.comparedServices.services.length : 0}})
+      </md-button>
+    </div>
+
+
+
+
   </div>
 
-</div>
 
-<div ng-repeat="contentGroup in contentArray" class="transform-section">
-    <div class="container transform-content">
-        <div class="row nav-row">
-            <a ng-click="gotoElement('main-section')"><ng-md-icon class="nav-back top" style="fill: white" icon="navigate_before" size="25"></ng-md-icon></a>
-            <a href="index.php"><ng-md-icon class="pull-right nav-home" icon="home" style="fill: white" size="25"></ng-md-icon></a>
-            <img ng-click="gotoElement('get-lean')" class="pull-right margin-right-3" ng-src="images/meter.png" type="image/png" height="25px">
-            <img ng-click="gotoElement('cmm-operations')" class="pull-right margin-right-3" ng-src="images/ruler_grey.png" type="image/png" height="25px">
-            <img ng-click="gotoElement('cnc-operations')" class="pull-right https://mail.google.com/mail/u/0/#inboxmargin-right-3" ng-src="images/computer_grey.png" type="image/png" height="25px">
-            <img ng-click="gotoElement('improved-estimates')" class="pull-right margin-right-3" ng-src="images/calc_grey.png" type="image/png" height="25px">
-        </div>
-        <div
-        ui-widget-content
-             content-item="contentGroup.content">
-        </div>
-    </div>
-</div> -->
+
+  <hr />
+    <!-- Favorit items -->
+    <!-- <div class="marketplace-storefronts"> -->
+      <dmc-products-card
+          search-card="isSearch"
+          card-source="marketplaceItems"
+          card-loading="downloadData"
+          page-size="productCardPageSize"
+          update-page-size="updatePageSize"
+          current-page="productCardCurrentPage"
+          total-size="marketplaceItems.count"
+          class="content-panel-marketplace"
+          hide-buttons="['compare']"
+          view-all-link="'/marketplace.php#/search?product=services'"
+          layout-margin>
+      </dmc-products-card>
+    <!-- </div> -->
+  </div>
+</div>

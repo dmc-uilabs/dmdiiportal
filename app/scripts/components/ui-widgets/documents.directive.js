@@ -309,8 +309,8 @@ directive('uiWidgetUploadDocuments', ['$parse', '$q', 'toastModel', function($pa
         $scope.access.queryCompanySearch = queryCompanySearch;
 
         var getAllCompanies = function() {
-          ajax.get(dataFactory.companyURL().all, {}, function(response) {
-            $scope.access.companies = response.data;
+          ajax.get(dataFactory.getOrganizationList(), {}, function(response) {
+            $scope.access.companies = response.data.organizations;
           });
         }
 

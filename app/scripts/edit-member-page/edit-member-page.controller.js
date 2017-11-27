@@ -75,7 +75,7 @@ angular.module('dmc.edit-member')
                 if (!$stateParams.memberId) {
 
                     ajax.get(dataFactory.getNonDmdiiMembers(), {}, function(response) {
-                        $scope.organizations = response.data;
+                        $scope.organizations = response.data.organizations;
                     });
 
                 } else {
@@ -229,7 +229,7 @@ angular.module('dmc.edit-member')
             }
 
             var tagCallbackFunction = function(response) {
-                $scope.dmdiiMemberTags = response.data;
+                $scope.dmdiiMemberTags = response.data.areasOfExpertises;
             }
 
             $scope.getTags = function() {
@@ -390,7 +390,7 @@ angular.module('dmc.edit-member')
             var callbackSaveFunction = function(response) {
                 if (response.status === 200) {
                     toastModel.showToast('success', 'Member Successfully ' + $scope.action + '!');
-                    var companyId = response.data.id
+                    var companyId = response.data.organization.id
                     var promises = [];
 
                     if ($scope.logo.length) {
@@ -421,10 +421,8 @@ angular.module('dmc.edit-member')
             $scope.saveChanges = function() {
                 $scope.isSaved = true;
 
-                // if (!$scope.isValid) {
-                //     toastModel.showToast('error', 'Form is not valid!');
-                //     return;
-                // }
+                $scope.updateModel = {};
+                $scope.updateModel.id = $scope.company.organization.id;
 
                 $scope.setTier();
 
@@ -435,7 +433,7 @@ angular.module('dmc.edit-member')
                 var day = date.getDate();
                 day = (day < 10) ? '0' + day : day;
 
-                $scope.company.startDate = year + '-' + month + '-' + day;
+                $scope.updateModel.membership_start_date = year + '-' + month + '-' + day;
 
                 var date = new Date($scope.date.expire);
                 var year = date.getFullYear();
@@ -444,13 +442,16 @@ angular.module('dmc.edit-member')
                 var day = date.getDate();
                 day = (day < 10) ? '0' + day : day;
 
-                $scope.company.expireDate = year + '-' + month + '-' + day;
+                $scope.updateModel.membership_end_date = year + '-' + month + '-' + day;
 
                 // delete $scope.company.organization.logoImage;
 
-                $scope.company.organization.description = convertToMarkdown($scope.company.organization.description);
+                $scope.updateModel.description = convertToMarkdown($scope.company.organization.description);
 
-                ajax.create(dataFactory.saveDMDIIMember().member, $scope.company, callbackSaveFunction);
+                $scope.updateModel.dmdii_tier = $scope.company.dmdiiType.tier;
+                $scope.updateModel.organization_type = $scope.company.dmdiiType.dmdiiTypeCategory.id;
+
+                ajax.update(dataFactory.updateOrganization($scope.updateModel.id), $scope.updateModel, callbackSaveFunction);
             };
 
             $scope.cancelChanges = function(){

@@ -26,15 +26,23 @@
 
 <main>
     <section class="container">
+
+      <div class="row">
+        <a href="/dmdii-projects.php#/dmdii_projects"
+        style="color: darkgrey; margin-left: 5px; font-size: 12px;">
+          <ng-md-icon icon="keyboard_arrow_left" size="16" style="padding-left:0px;"></ng-md-icon>
+          BACK TO PROJECTS</a>
+      </div>
+
         <div class="row">
             <div class="col-md-6 project-main">
-                <div class="status status-complete">{{project.projectStatus.name}}</div>
+                <div class="status status-complete">{{project.status.name}}</div>
                 <!-- <div class="status" ng-if="project.kind == 'dmdiiEvent'">EVENT</div> -->
                 <h1>{{project.projectTitle}}</h1>
 <!-- ng-if="project.kind != 'dmdiiEvent'" -->
-                <time>{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</time>
+                <time>{{project.projectRootNumber | numberFixedLen:2}}-{{project.projectCallNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</time>
 
-                <span href="#">{{project.projectFocusArea.name }}</span> <span href="#">{{project.projectThrust.name}}</span>
+                <span href="#">{{project.focusArea.name}}</span> <span href="#">{{project.thrust.code}}</span>
             </div>
             <div class="col-md-6">
                 <div class="row">

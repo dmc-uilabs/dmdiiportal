@@ -15,11 +15,12 @@ angular.module('dmc.recent-updates', [])
                 ajax.get(dataFactory.getRecentUpdates(),{
                     limit : 20
                 },function(response){
-                    $scope.recentUpdates = response.data;
+                    $scope.recentUpdates = response.data.recentUpdates;
                     $scope.totalRecentUpdates = $scope.recentUpdates.length;
 
                     for(var e in $scope.recentUpdates){
                       var update = $scope.recentUpdates[e];
+                      update.parentTitle = update.description
                         if (update.updateType == "DMDIIMember") {
                           getOrgMemberId(update);
                           update.parentLink = '/member-page.php#/'

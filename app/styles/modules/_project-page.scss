@@ -268,3 +268,8 @@
   /* ...and now for the proper property */
   transition:.5s;
 }
+
+.service-output{
+  margin-bottom: 10px;
+  &:hover{background:#E8E8E8}
+}

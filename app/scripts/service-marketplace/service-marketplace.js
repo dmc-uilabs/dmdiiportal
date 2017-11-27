@@ -17,7 +17,6 @@ angular.module('dmc.service-marketplace', [
     'dmc.component.treemenu',
     'dmc.component.productcard',
     'dmc.component.members-card',
-    'dmc.component.run-default-button',
     'dmc.common.header',
     'dmc.common.footer',
     'dmc.component.carousel',
@@ -25,8 +24,7 @@ angular.module('dmc.service-marketplace', [
     'dmc.model.toast-model',
     'dmc.widgets.uploadModal',
     'dmc.compare',
-    'dmc.widgets.rich-text',
-    'dmc.more-less'
+    'dmc.widgets.rich-text'
 ])
     .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
         var resolve = {

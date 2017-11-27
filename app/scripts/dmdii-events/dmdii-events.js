@@ -27,6 +27,7 @@ angular.module('dmc.dmdiiEvents', [
     'dmc.widgets.tasks',
     'dmc.widgets.tabs',
     'dmc.recent-news',
+    'dmc.model.question-toast-model',
     'tien.clndr'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
@@ -46,9 +47,9 @@ angular.module('dmc.dmdiiEvents', [
     //     }
     // });
     .state('view_event', {
-      url: '/event/:projectId',
+      url: '/event/:eventId',
       templateUrl: 'templates/dmdii-events/view-event.html',
-      controller: 'DMCDmdiiEventsController'
+      controller: 'DMCDmdiiEventPageController'
     })
     $urlRouterProvider.otherwise('/dmdii_events');
 }).directive('tabSchedule', function () {

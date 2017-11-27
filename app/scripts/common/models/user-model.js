@@ -1,15 +1,11 @@
 'use strict';
 
-angular.module('dmc.model.user', ['dmc.data', 'dmc.ajax', 'ngCookies'])
-    .service('DMCUserModel', ['$http', 'dataFactory', '$q', '$window', '$rootScope', 'ajax', '$cookies', function($http, dataFactory, $q, $window, $rootScope, ajax, $cookies) {
+angular.module('dmc.model.user', ['dmc.data', 'dmc.ajax'])
+    .service('DMCUserModel', ['$http', 'dataFactory', '$q', '$window', '$rootScope', 'ajax', function($http, dataFactory, $q, $window, $rootScope, ajax) {
 
         var _userName = $window.apiUrl ? $window.givenName : 'DMC User';
-        // _userName = ''
         $rootScope.isLogged = _userName == ''  ? false : true;
-        //$rootScope.isLogged = false;
         // var _user;
-
-        console.log('this is happening');
 
         this.getUserName = function() {
             return _userName;
@@ -27,27 +23,12 @@ angular.module('dmc.model.user', ['dmc.data', 'dmc.ajax', 'ngCookies'])
           return $rootScope.isLogged;
         }
 
-        this.isFromDMDIISignup = function() {
-          var fromSignup =  $cookies.get('fromDMDIISignup') ? true : false;
-          $cookies.remove('fromDMDIISignup')
-          return fromSignup;
-        }
-
         this.resolver = function() {
-            var fromDMDIISignup = this.isFromDMDIISignup();
-
             var deferred = $q.defer();
             if (this.isLoggedIn()) {
                 this.getUserData().then(function(response){
                 var data = response.data ? response.data : response;
-                    // if (fromDMDIISignup && !data.termsConditions) {
-                    //     // deferred.reject('User not created');
-                    //     deferred.reject('New user from DMDII Signup');
-                    // } else if (!data.termsConditions) {
-                    //     deferred.reject('User not created');
-                    if (fromDMDIISignup) {
-                        deferred.reject('New user from DMDII Signup');
-                    } else if (!data.termsConditions) {
+                    if (!data.termsConditions) {
                         deferred.reject('User not created');
                     } else {
                         deferred.resolve();
@@ -65,18 +46,16 @@ angular.module('dmc.model.user', ['dmc.data', 'dmc.ajax', 'ngCookies'])
                 useCached = true;
             }
 
-            console.log("user call is happening");
-
             if ($rootScope.userData && useCached) {
                 return $q.when($rootScope.userData);
             } else {
-                console.log('get user url: ' + dataFactory.getUserUrl());
                 return $http.get(dataFactory.getUserUrl()).then(
                     function(response) {
-                        var data = response.data ? response.data : response;
+                        var data = response.data.user ? response.data.user : response;
                         // cache user data
                         $rootScope.userData = data;
-                        $rootScope.userData.isDmdiiAdmin = ($rootScope.userData.roles && angular.isDefined($rootScope.userData.roles[0])) ? true : false;
+                        $rootScope.userData.isDmdiiAdmin = true;
+                        // ($rootScope.userData.roles && angular.isDefined($rootScope.userData.roles[0])) ? true : false;
 
                         return data;
                     },

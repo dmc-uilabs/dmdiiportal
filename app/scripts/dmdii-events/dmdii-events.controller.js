@@ -80,11 +80,6 @@ angular.module('dmc.dmdiiEvents')
 
             var addDMDIIEvents = function(response) {
               var eventArray = response.data.data;
-              for (var i=0; i<eventArray.length; i++) {
-                eventArray[i].date = eventArray[i].awardedDate;
-                eventArray[i].name = eventArray[i].projectTitle;
-                eventArray[i].description = eventArray[i].projectSummary;
-              }
               $scope.events = $scope.events.concat(eventArray);
               sortEvents($scope.events);
             }
@@ -130,21 +125,24 @@ angular.module('dmc.dmdiiEvents')
 
             var setInitialSelectedDay = function(events) {
               var today = new Date();
-              var selectedDay;
+              today.setHours(0,0,0,0);
               var selectedEvents = [];
               // if we want to remove previous events
               // $scope.events = [];
 
               for (var i=0; i<events.length; i++) {
-                var eventDate = new Date(events[i].date)
-                if (!selectedDay && eventDate >= today) {
-                  selectedDay = eventDate
+                var eventDate = new Date(events[i].date.replace(/-/g, '\/'))
+                eventDate.setHours(0,0,0,0)
+
+                var endDate = new Date(events[i].endDate)
+                endDate.setHours(0,0,0,0)
+                if (today.getTime() <= endDate.getTime() && today.getTime() >= eventDate.getTime()) {
                   selectedEvents.push(events[i])
-                } else if (eventDate == selectedDay) {
+                } else if (eventDate.getTime() === today.getTime()) {
                   selectedEvents.push(events[i])
                 }
                 // if we want to remove previous events
-                if (eventDate >= today) {
+                if (eventDate > today) {
                   // $scope.events.push(events[i])
                   events[i].future=true;
                 }
@@ -178,7 +176,7 @@ angular.module('dmc.dmdiiEvents')
             $scope.deleteEvent = function(index, eventId) {
                 var eventToDelete = $scope.events[index];
                 showDeleteConfirm().then(function() {
-                  $http.delete(dataFactory.getDMDIIProject(eventId).delete).then(function(response){
+                  $http.delete(dataFactory.getDMDIIEvents(eventId).delete).then(function(response){
                       deleteEventsFromView(index, eventId);
                       toastModel.showToast('success', 'Event deleted successfully.');
                   }, function(error) {
@@ -205,6 +203,43 @@ angular.module('dmc.dmdiiEvents')
                     }
                 }
             }
+
+            $scope.eventFilters = [
+              {
+                name: "Upcoming", isSelected: true,
+                filterFunct: function(ev) {
+                  return Date.parse(ev.awardedDate) >= Date.now() || Date.parse(ev.endDate) >= Date.now();
+                }
+              },
+              {
+                name: "Historical",
+                filterFunct: function(ev) {
+                  return Date.parse(ev.awardedDate) < Date.now() || Date.parse(ev.endDate) < Date.now();
+                }
+              },
+              {
+                name: "All",
+                filterFunct: function(date) {
+                  return true;
+                }
+              }
+            ]
+
+            $scope.selectEventListFilter = function(filterIndex) {
+              $scope.eventFilters.forEach(function(eventFilter, i){
+                if (i==filterIndex) {
+                  eventFilter.isSelected = true;
+                } else {
+                  eventFilter.isSelected = false;
+                }
+              })
+            }
+
+            $scope.eventListFilter = function(event) {
+              var currentFilter = $scope.eventFilters.filter(function(eventFilter){return eventFilter.isSelected})[0];
+              return currentFilter.filterFunct(event);
+            }
+
         }
     ]
 )

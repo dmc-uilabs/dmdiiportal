@@ -3,11 +3,11 @@
 		<div layout="row" layout-align="space-between center">
 			<h3>Run Date: {{history.startDate}}</h3>
 			<md-button class="md-icon-button" ng-click="cancel()">
-				<ng-md-icon icon="close" fill="#fff" size="24" aria-label="Close dialog"></ng-md-icon>
+				<ng-md-icon icon="close" fill="#fff" size="32" aria-label="Close dialog"></ng-md-icon>
 			</md-button>
 		</div>
-		<h3>Status: {{(history.status == 1 ? 'Success' : (history.status == -1 ? 'Error' : 'Running' ))}}</h3>
-		<!-- <div layout="row" layout-align="space-between center">
+		<h3>Results: {{(history.status == 1 ? 'success' : (history.status == -1 ? 'error' : 'running' ))}}</h3>
+		<div layout="row" layout-align="space-between center">
 			<div flex="45">
 			<md-button class="md-primary md-raised" ng-click="rerun()">
 				Rerun
@@ -19,7 +19,7 @@
 				</md-button>
 		</div>
 
-		</div> -->
+		</div>
 		<div layout="row" class="preview" layout-align="space-between center">
 			<div flex="45">
 				<h2>Inputs</h2>
@@ -28,16 +28,16 @@
 
 
 					<div layout="column">
-						<div layout="row" ng-repeat="item in history.interface.inputs track by $index">
-							<div flex="35">
+						<div layout="row" ng-repeat="item in history.interface.inputs | filter:resultsFilter" class="service-output">
+							<div flex="35"style="margin-right: 10px;">
 							<b>{{item.name}}:</b>
 						</div>
-							<div flex="65" ng-if="!item.name.includes('emplate') && !item.name.includes('companyVPC')">
+							<div flex="65" ng-if="!item.value.includes('http')">
 								{{item.value}}
 								{{item.unit}}
 							</div>
-							<div flex="65" ng-if="item.name.includes('emplate') || item.name.includes('companyVPC')">
-								template
+							<div flex="65" ng-if="item.value.includes('http')">
+								<a href = {{item.value}} style="color:#65AF3F">view file</a>
 							</div>
 						</div>
 					</div>
@@ -45,22 +45,23 @@
 
 				</md-content>
 			</div>
-			<div flex="45">
+			<div flex="45" style="margin-left: -1px">
 				<h2>Outputs</h2>
 				<md-divider></md-divider>
 				<md-content>
 
 					<div layout="column">
-						<div layout="row" ng-repeat="item in history.interface.outParams track by $index">
-							<div flex="35">
+						<div layout="row" ng-repeat="item in outputParamsToArray(history.interface.outParams) | filter:resultsFilter" class="service-output">
+							<div flex="35"style="margin-right: 10px;">
 							<b>{{item.name}}:</b>
-						</div>
-							<div flex="65" ng-if="!item.name.includes('emplate') && !item.name.includes('companyVPC')">
+							</div>
+							<div flex="65" ng-if="!item.value.includes('http')">
 								{{item.value}}
 								{{item.unit}}
 							</div>
-							<div flex="65" ng-if="item.name.includes('emplate') || item.name.includes('companyVPC')">
-								template
+							<div flex="65" ng-if="item.value.includes('http')">
+								<a href = {{item.value}} style="color:#65AF3F">view file</a>
+								{{item.unit}}
 							</div>
 						</div>
 					</div>

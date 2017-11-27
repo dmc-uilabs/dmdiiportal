@@ -506,7 +506,7 @@ return {
         return localhost + 'appSubmission/appName';
       },
       getDmdiiMemberTags: function() {
-        return localhost + 'tags/dmdiiMember';
+        return localhost + 'area_of_expertises/dmdiiMember';
       },
       getOrgTags: function() {
         return localhost + 'tags/organization';
@@ -547,24 +547,10 @@ return {
           map: localhost + 'dmdiiMember/mapEntry'
         }
       },
-      dmdiiMemberNewsUrl: function(id) {
+      getDMDIIMemberProjects: function(id) {
         return {
-          get: localhost + 'dmdiiMember/news',
-          save: localhost + 'dmdiiMember/news',
-          delete: localhost + 'dmdiiMember/news/' + id
-        }
-      },
-      dmdiiMemberEventUrl: function(id) {
-        return {
-          get: localhost + 'dmdiiMember/events',
-          save: localhost + 'dmdiiMember/events',
-          delete: localhost + 'dmdiiMember/events/' + id
-        }
-      },
-      getDMDIIMemberProjects: function() {
-        return {
-          prime: localhost + 'dmdiiprojects/member',
-          contributing: localhost + 'contributingCompanies'
+          prime: localhost + 'organizations/' + id + '/dmdii_projects',
+          contributing: localhost + 'organizations/' + id +'/contributing_organizations'
         }
       },
       saveDMDIIMember: function() {
@@ -574,30 +560,37 @@ return {
       },
       getDMDIIProject: function(id) {
         return {
-          get: localhost + 'dmdiiProject/' + id,
-          all: localhost + 'dmdiiprojects',
-          delete: localhost + 'dmdiiProjects/' + id,
-          active: localhost + 'dmdiiprojects/member/active',
-          contributors: localhost + 'dmdiiproject/contributingcompanies',
-          search: localhost + 'dmdiiprojects/search'
+          get: localhost + 'dmdii_projects/' + id,
+          all: localhost + 'dmdii_projects',
+          delete: localhost + 'dmdii_projects/' + id,
+          active: localhost + 'dmdii_projects/member/active',
+          contributors: localhost + 'dmdii_projects/' + id + '/contributing_organizations',
+          update: localhost + 'dmdii_projects/' + id,
+          search: localhost + 'dmdii_projects/search'
         }
       },
       getDMDIIEvents: function(id) {
         return {
-          get: localhost + 'dmdiievent/' + id,
-          all: localhost + 'dmdiievents'
+          get: localhost + 'dmdii_events/' + id,
+          update: localhost + 'dmdii_events/' + id,
+          delete: localhost + 'dmdii_events/' + id,
+          contributors: localhost + 'dmdii_events/' + id + '/contributing_organizations',
+          all: localhost + 'dmdii_events'
         }
+      },
+      saveDMDIIEvent: function() {
+        return localhost + "dmdii_events";
       },
       saveDMDIIProject: function() {
         return {
-          project: localhost + 'dmdiiProject/save'
+          project: localhost + 'dmdii_projects'
         }
       },
       dmdiiProjectUpdateUrl: function(id) {
         return {
-          get: localhost + 'dmdiiProjectUpdate',
-          save: localhost + 'dmdiiProjectUpdate',
-          delete: localhost + 'dmdiiProjectUpdate/' + id
+          get: localhost + 'dmdii_project_updates',
+          save: localhost + 'dmdii_project_updates',
+          delete: localhost + 'dmdii_project_updates/' + id
         }
       },
       dmdiiProjectEventUrl: function(id) {
@@ -616,25 +609,20 @@ return {
       },
       quicklinkUrl: function(id) {
         return {
-          get: localhost + 'dmdiiquicklink',
-          save: localhost + 'dmdiiquicklink',
-          delete: localhost + 'dmdiiquicklink/' + id
-        };
-      },
-      payment: function(){
-        return {
-          pay: localhost + 'payment',
-          organizations: localhost + 'organizations/user'
+          get: localhost + 'dmdii_quick_links',
+          save: localhost + 'dmdii_quick_links',
+          delete: localhost + 'dmdii_quick_links/' + id
         };
       },
       getDMDIIDocuments: function(id) {
         return {
-          all: localhost + 'dmdiidocuments',
-          single: localhost + 'dmdiidocument/' + id,
-          project: localhost + 'dmdiidocuments/dmdiiProjectId',
-          overview: localhost + 'staticdocument/1',
-          status: localhost + 'staticdocument/2',
-          projectDocument: localhost + 'dmdiidocument/filetype'
+          all: localhost + 'dmdii_documents',
+          single: localhost + 'dmdii_documents/' + id,
+          project: localhost + 'dmdii_projects/' + id + '/dmdii_documents',
+          events: localhost + 'dmdii_events/' + id + '/dmdii_documents'
+          // overview: localhost + 'staticdocument/1',
+          // status: localhost + 'staticdocument/2',
+          // projectDocument: localhost + 'dmdii_documents/filetype'
         };
       },
       saveDMDIIDocument: function() {
@@ -678,16 +666,16 @@ return {
         return localhost + 'applicationTag'
       },
       getDmdiiDocumentTags: function() {
-        return localhost + 'dmdiidocuments/getAllTags';
+        return localhost + 'dmdii_document_tags';
       },
       getDocumentTags: function() {
         return localhost + 'documents/tags';
       },
       createDocumentTag: function() {
-        return localhost + 'dmdiidocuments/saveDocumentTag';
+        return localhost + 'dmdii_document_tags';
       },
       getNonDmdiiMembers: function() {
-        return localhost + 'organization/nonMember';
+        return localhost + 'nonMembers';
       },
       // companies ------------------
       companyURL: function(id) {
@@ -1102,9 +1090,6 @@ return {
       },
       getOnboardingBasicInfoUrl: function() {
         return localhost + 'user-basic-information'
-      },
-      getUserAcceptTermsAndConditionsUrl: function() {
-        return localhost + 'user-accept-terms-and-conditions'
       },
       getAccountNotificationCategoryItems: function() {
         return localhost + 'account-notification-category-items';

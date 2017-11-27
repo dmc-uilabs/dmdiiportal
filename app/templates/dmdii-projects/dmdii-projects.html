@@ -116,16 +116,15 @@
 
 					<tr ng-repeat="project in projects.arr">
 						<td class="project-name">
-							<a ng-href="{{'/dmdii-project-page.html#/'+project.id}}">{{project.projectTitle}}</a>
-							<!-- <time datetime="2011-01-12">January 12th, 2011</time> -->
-							<a ng-href="{{'member-page.html#/'+project.primeOrganization.id}}"><h6>{{project.primeOrganization.name}}</h6></a>
-							<div ng-if="project.kind != 'dmdiiEvent'" class="sublabel">{{project.rootNumber | numberFixedLen:2}}-{{project.callNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</div>
+							<a ng-href="{{'/dmdii-project-page.php#/'+project.id}}">{{project.projectTitle}}</a>
+							<a ng-href="{{'member-page.php#/'+project.organizationDmdiiMember.id}}"><h6>{{project.organizationDmdiiMember.name}}</h6></a>
+							<div ng-if="project.kind != 'dmdiiEvent'" class="sublabel">{{project.projectRootNumber | numberFixedLen:2}}-{{project.projectCallNumber | numberFixedLen:2}}-{{project.projectNumber | numberFixedLen:2}}</div>
 							<div ng-if="project.kind == 'dmdiiEvent'" class="sublabel">EVENT</div>
 						</td>
 
-						<td class="project-status">{{project.projectStatus.name}}</td>
-						<td class="project-focus">{{project.projectFocusArea.name}}</td>
-						<td class="project-thrust">{{project.projectThrust.name}}</td>
+						<td class="project-status">{{project.status.name}}</td>
+						<td class="project-focus">{{project.focusArea.name}}</td>
+						<td class="project-thrust">{{project.thrust.name}}</td>
 					</tr>
 
 				</tbody>

@@ -26,20 +26,20 @@ angular.module('dmc.addDmdiiContent')
                 $scope.user = res;
             });
 
-            $scope.projects = [];
+            // $scope.projects = [];
 
-            var callbackFunction = function(response) {
-                if(angular.isDefined(response.data.count)) {
-                    $scope.projects = response.data.data;
-                } else {
-                    $scope.projects = response.data;
-                }
-            }
-
-            $scope.getProjects = function() {
-                ajax.get(dataFactory.getDMDIIProject().all, {pageSize: 200, page:0}, callbackFunction)
-            };
-            $scope.getProjects();
+            // var callbackFunction = function(response) {
+            //     if(angular.isDefined(response.data.count)) {
+            //         $scope.projects = response.data.data;
+            //     } else {
+            //         $scope.projects = response.data;
+            //     }
+            // }
+            //
+            // $scope.getProjects = function() {
+            //     ajax.get(dataFactory.getDMDIIProject().all, {pageSize: 200, page:0}, callbackFunction)
+            // };
+            // $scope.getProjects();
 
             $scope.currentSection = {
                 index : 0,

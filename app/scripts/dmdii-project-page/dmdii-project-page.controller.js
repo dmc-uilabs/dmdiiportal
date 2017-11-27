@@ -55,15 +55,15 @@ angular.module('dmc.dmdiiProj')
 
             // callback for project
             var callbackFunction = function(response){
-                $scope.project = response.data;
+                $scope.project = response.data.dmdiiProject;
 
-                ajax.get(dataFactory.getDMDIIProject().contributors, {projectId: $scope.project.id}, function(response) {
-                    $scope.project.contributingCompanies = response.data;
+                ajax.get(dataFactory.getDMDIIProject($scope.project.id).contributors, responseData(), function(response) {
+                    $scope.project.contributingCompanies = response.data.organizations;
                     $scope.projectLoading = false;
                 });
 
-                ajax.get(dataFactory.dmdiiProjectUpdateUrl().get, {limit: 5, projectId: $scope.project.id}, function(response) {
-                    $scope.updates = response.data;
+                ajax.get(dataFactory.dmdiiProjectUpdateUrl().get, {limit: 5, dmdii_project_id: $scope.project.id}, function(response) {
+                    $scope.updates = response.data.dmdiiProjectUpdates;
                     angular.forEach($scope.updates, function(update, index) {
                         var date = new Date(update.created);
                         var year = date.getFullYear();
@@ -76,20 +76,20 @@ angular.module('dmc.dmdiiProj')
                     $scope.projectLoading = false;
                 });
 
-                ajax.get(dataFactory.getDMDIIDocuments().project, {page: 0, pageSize: 15, dmdiiProjectId: $scope.project.id}, function(response) {
-                    $scope.documents = response.data;
+                ajax.get(dataFactory.getDMDIIDocuments($scope.project.id).project, responseData(), function(response) {
+                    $scope.documents = response.data.dmdiiDocuments;
                     // if ($scope.documents.length > 0) {
                     //   selectDocument(0);
                     // }
                 });
 
-                ajax.get(dataFactory.getDMDIIDocuments().projectDocument, {fileTypeId: 3, dmdiiProjectId: $scope.project.id}, function(response) {
-                    $scope.projectFinancials = response.data;
-                });
-
-                ajax.get(dataFactory.getDMDIIDocuments().projectDocument, {fileTypeId: 4, dmdiiProjectId: $scope.project.id}, function(response) {
-                    $scope.projectSchedule = response.data;
-                });
+                // ajax.get(dataFactory.getDMDIIDocuments().projectDocument, {fileTypeId: 3, dmdiiProjectId: $scope.project.id}, function(response) {
+                //     $scope.projectFinancials = response.data;
+                // });
+                //
+                // ajax.get(dataFactory.getDMDIIDocuments().projectDocument, {fileTypeId: 4, dmdiiProjectId: $scope.project.id}, function(response) {
+                //     $scope.projectSchedule = response.data;
+                // });
 
             };
 

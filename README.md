@@ -8,10 +8,10 @@ Navigate to the jsonserver folder and run:
 Navigate to the root of the dmdiiportal project and run:
 
     gulp serve
-    
+
 **************
 
- 
+
 
 
 

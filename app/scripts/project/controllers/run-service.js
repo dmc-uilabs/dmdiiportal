@@ -15,9 +15,9 @@ angular.module('dmc.project')
         '$state',
         '$compile',
         '$mdDialog',
-        'questionToastModel',
         '$q',
         'fileUpload',
+        'questionToastModel',
         function ($scope,
                   $stateParams,
                   projectData,
@@ -33,9 +33,10 @@ angular.module('dmc.project')
                   $state,
                   $compile,
                   $mdDialog,
-                  questionToastModel,
                   $q,
-                  fileUpload) {
+                  fileUpload,
+                  questionToastModel) {
+
             $scope.ServiceId = $stateParams.ServiceId;
             $scope.rerun = (angular.isDefined($stateParams.rerun) ? $stateParams.rerun : null);
             $scope.projectData = projectData;
@@ -130,7 +131,6 @@ angular.module('dmc.project')
                 // Add the compiled html to the page
                 $('.content-placeholder').html(compiledHtml);
                 $scope.hasCustomUI = true;
-
               }else{
                 $scope.hasCustomUI = false;
               }
@@ -152,11 +152,11 @@ angular.module('dmc.project')
                 }
               }
               for (var outKey in $scope.service.interfaceModel.outParams){
-            		try{
-            	             context[outKey] = JSON.parse($scope.service.interfaceModel.outParams[outKey].value);
-            		}catch(e){
-            		  context[outKey] = $scope.service.interfaceModel.outParams[outKey].value;
-            		}
+		try{
+	             context[outKey] = JSON.parse($scope.service.interfaceModel.outParams[outKey].value);
+		}catch(e){
+		  context[outKey] = $scope.service.interfaceModel.outParams[outKey].value;
+		}
               }
 
               if($scope.service.interfaceModel.outParams['outputTemplate'].value){
@@ -339,14 +339,11 @@ angular.module('dmc.project')
                     for (var key in $scope.service.interfaceModel.inParams){
                       var domeName = $scope.service.interfaceModel.inParams[key].name;
                       if(document.getElementById(domeName)){
-                        console.log('found element id: ', domeName)
                         var domeValue = document.getElementById(domeName).value;
                         if(domeValue){
-                          console.log('found value: ', domeValue)
                           $scope.service.interfaceModel.inParams[key].value = domeValue;
                         }
                       }else{
-                        console.log('Not found element id: ', domeName)
                         $scope.service.interfaceModel.inParams[key].value = $scope.service.interfaceModel.inParams[key].defaultValue;
                       }
                     }
@@ -357,7 +354,6 @@ angular.module('dmc.project')
                           $scope.service.interfaceModel.inParams[key].value = $scope.service.interfaceModel.inParams[key].value.replace(/"/g, '\\"');
                       }
                   }
-
                     domeModel.runModel({
                         serviceId : $scope.service.id.toString(),
                         inParams: $scope.service.interfaceModel.inParams,
@@ -500,7 +496,6 @@ angular.module('dmc.project')
             }
 
             $scope.setinputFileValue = function(file) {
-              file = file || {documentUrl: ""};
               if (document.getElementById('inputFile')) {
                 document.getElementById('inputFile').value = file.documentUrl;
               } else {
@@ -508,17 +503,11 @@ angular.module('dmc.project')
               }
             }
 
-            $scope.unsetInputFile = function() {
-              $scope.setinputFileValue();
-              $scope.currentInputFile = null;
-            }
-
             function setVPCData(fieldId){
               ajax.get(dataFactory.getMyVPC(), {}, function(response){
                 document.getElementById(fieldId).value = response.data.myVPC;
               });
             }
-
 
             var uploadDocs = function(documents, directoryId, docProcessingCallback) {
               var promises = {};
@@ -764,6 +753,7 @@ angular.module('dmc.project')
                               updateServiceStatus(item, response.data);
                               toastModel.showToast("success", "Service run cancelled");
                           }, function(response){
+                            console.log(response)
                             toastModel.showToast("error", response.data ? response.data : response.statusText)
                           });
                         },
@@ -776,11 +766,25 @@ angular.module('dmc.project')
             function updateServiceStatus(service, currentStatus) {
               return service.currentStatus ? $.extend(true,service.currentStatus,currentStatus) : currentStatus;
             }
+          $scope.allInputsNotFilled = function() {
+            if($scope.service.interfaceModel && $scope.service.interfaceModel.inParams) {
+              if($scope.service.hasCustomUI){
+                return false;
+              }
+                for (var key in $scope.service.interfaceModel.inParams) {
+                  if (!$scope.service.interfaceModel.inParams[key].value) {
+                    return true;
+                  }
+                }
+              return false;
+            } else {
+              return true;
+            }
+          }
 
         }
     ]
-)
-.controller('uploadAppFileController',function($scope,$mdDialog,ajax,dataFactory,$compile,project,$http,toastModel){
+).controller('uploadAppFileController',function($scope,$mdDialog,ajax,dataFactory,$compile,project,$http,toastModel){
     $scope.cancel = function() {
       $mdDialog.cancel();
     }
